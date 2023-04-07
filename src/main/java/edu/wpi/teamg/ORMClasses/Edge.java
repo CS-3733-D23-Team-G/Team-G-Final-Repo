@@ -16,4 +16,13 @@ public class Edge {
     this.endNode = endNode;
     this.edgeID = edgeID;
   }
+
+  public int distance(Node A, Node B) {
+    double x1 = A.getXcoord();
+    double x2 = B.getXcoord();
+    double y1 = A.getYcoord();
+    double y2 = B.getYcoord();
+    int distance = (int) Math.sqrt((Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)));
+    return distance;
+  }
 }

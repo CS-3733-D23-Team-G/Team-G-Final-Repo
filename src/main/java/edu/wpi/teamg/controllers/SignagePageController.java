@@ -2,11 +2,11 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
+import edu.wpi.teamg.ORMClasses.Edge;
+import edu.wpi.teamg.ORMClasses.Graph;
+import edu.wpi.teamg.ORMClasses.Node;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
-import edu.wpi.teamg.pathFinding.Edge;
-import edu.wpi.teamg.pathFinding.Graph;
-import edu.wpi.teamg.pathFinding.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
@@ -121,7 +121,7 @@ public class SignagePageController {
       if (L1nodes.get(i).getFloor().equals("L1")) {
         L1NodeFinal.add(
             new Node(
-                Integer.toString(L1nodes.get(i).getNodeID()),
+                L1nodes.get(i).getNodeID(),
                 L1nodes.get(i).getXcoord(),
                 L1nodes.get(i).getYcoord(),
                 L1nodes.get(i).getFloor(),
@@ -143,20 +143,7 @@ public class SignagePageController {
         currentS = nodeMap.get(L1edges.get(i).getStartNode());
         currentE = nodeMap.get(L1edges.get(i).getEndNode());
         L1EdgeFinal.add(
-            new Edge(
-                L1edges.get(i).getEdgeID(),
-                new Node(
-                    (Integer.toString(currentS.getNodeID())),
-                    currentS.getXcoord(),
-                    currentS.getYcoord(),
-                    currentS.getFloor(),
-                    currentS.getBuilding()),
-                new Node(
-                    (Integer.toString(currentE.getNodeID())),
-                    currentE.getXcoord(),
-                    currentE.getYcoord(),
-                    currentE.getFloor(),
-                    currentE.getBuilding())));
+            new Edge(currentS.getNodeID(), currentE.getNodeID(), L1edges.get(i).getEdgeID()));
       }
       /*
       CONDITIONALS FOR CONNECTING FLOORS
@@ -188,10 +175,10 @@ public class SignagePageController {
     int endNode = 0;
     for (int i = 0; i < L1NodeFinal.size(); i++) {
 
-      if (nodeArray[i].getNodeID().equals(start)) {
+      if (nodeArray[i].getNodeID() == Integer.parseInt(start)) {
         startNode = i;
       }
-      if (nodeArray[i].getNodeID().equals(end)) {
+      if (nodeArray[i].getNodeID() == Integer.parseInt(end)) {
         endNode = i;
       }
     }
