@@ -11,4 +11,11 @@ public class Employee {
   @Getter @Setter private String can_serve;
 
   public Employee() {}
+
+  public Employee(String firstName, String lastName, String email, String can_serve) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.can_serve = can_serve;
+  }
 }

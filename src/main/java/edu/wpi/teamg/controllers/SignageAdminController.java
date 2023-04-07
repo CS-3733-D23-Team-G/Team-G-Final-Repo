@@ -58,8 +58,8 @@ public class SignageAdminController {
 
   // Edges
   @FXML TableColumn<Edge, String> edgeEdgeID;
-  @FXML TableColumn<Edge, Integer> edgeEndNode;
   @FXML TableColumn<Edge, Integer> edgeStartNode;
+  @FXML TableColumn<Edge, Integer> edgeEndNode;
 
   // Move
 
