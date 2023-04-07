@@ -80,7 +80,8 @@ public class LocationNameDAO implements LocationDAO {
     connection.setConnection();
     PreparedStatement ps;
     LocationName l1 = (LocationName) obj;
-    SQL = "INSERT INTO teamgdb.iteration1.locationname (longname, shortname, nodetype) VALUES (?,?,?)";
+    SQL =
+        "INSERT INTO teamgdb.iteration1.locationname (longname, shortname, nodetype) VALUES (?,?,?)";
 
     try {
       ps = connection.getConnection().prepareStatement(SQL);
@@ -121,7 +122,8 @@ public class LocationNameDAO implements LocationDAO {
     connection.setConnection();
 
     try {
-      SQL = "insert into teamgdb.iteration1.locationname (longname,shortname,nodetype) values (?,?,?)";
+      SQL =
+          "insert into teamgdb.iteration1.locationname (longname,shortname,nodetype) values (?,?,?)";
       PreparedStatement ps = connection.getConnection().prepareStatement(SQL);
 
       BufferedReader br = new BufferedReader(new FileReader(filename));

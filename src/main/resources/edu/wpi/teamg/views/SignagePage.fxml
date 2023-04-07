@@ -52,10 +52,10 @@
          <children>
             <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f1f1f1;">
                 <children>
-                  <StackPane layoutX="280.0" layoutY="55.0">
+                  <StackPane fx:id="stack" layoutX="280.0" layoutY="55.0">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
                         <GesturePane fx:id="pane" prefHeight="566.0" prefWidth="832.0" />
+                        <Pane fx:id="nodePane" prefHeight="566.0" prefWidth="832.0" />
                      </children>
                   </StackPane>
                   <MFXTextField fx:id="startLoc" layoutX="28.0" layoutY="49.0" maxHeight="45.0" minHeight="30.0" prefHeight="30.0" prefWidth="167.0" />

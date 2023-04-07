@@ -19,7 +19,8 @@ public class NodeDAO implements LocationDAO {
     db.setConnection();
     try {
 
-      SQL = "INSERT INTO iteration1.node (nodeid, xcoord, ycoord, floor, building) VALUES (?,?,?,?,?)";
+      SQL =
+          "INSERT INTO iteration1.node (nodeid, xcoord, ycoord, floor, building) VALUES (?,?,?,?,?)";
       PreparedStatement ps = db.getConnection().prepareStatement(SQL);
 
       BufferedReader br = new BufferedReader(new FileReader(path));
@@ -111,7 +112,8 @@ public class NodeDAO implements LocationDAO {
     db.setConnection();
 
     PreparedStatement ps;
-    SQL = "insert into iteration1.node(nodeid, xcoord, ycoord, floor, building) values (?, ?, ?, ?, ?)";
+    SQL =
+        "insert into iteration1.node(nodeid, xcoord, ycoord, floor, building) values (?, ?, ?, ?, ?)";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);

@@ -12,15 +12,18 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import net.kurobako.gesturefx.GesturePane;
@@ -44,6 +47,8 @@ public class SignagePageController {
   @FXML GesturePane pane;
   @FXML Pane nodePane;
 
+  @FXML StackPane stack;
+
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -53,7 +58,7 @@ public class SignagePageController {
           "Office Supplies Request Form");
 
   @FXML
-  public void initialize() {
+  public void initialize() throws SQLException {
     serviceRequestChoiceBox.setItems(list);
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
     backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
@@ -71,18 +76,42 @@ public class SignagePageController {
 
     startLoc.getText();
     endLoc.getText();
-    //    String imgPath = "/00_thelowerlevel1.png";
-    //    Image map = new Image(getClass().getResourceAsStream(imgPath));
-    //    ImageView image = new ImageView(map);
+    ;
     Image map = new Image("/edu/wpi/teamg/Images/00_thelowerlevel1.png");
     ImageView mapView = new ImageView(map);
     pane.setContent(mapView);
-    nodePane.setOnMouseClicked(event -> setNodePane());
-    // pane.setContent(image);
-    // pane.setMaxScale();
-    //  pane.setMinScale(.001);
-    // pane.zoomTo(.000001, new Point2D(2500, 1700));
-    //  pane.zoomTo(.000001, new Point2D(2500, 1700));
+
+    // Scales Map
+    pane.setMinScale(.001);
+    pane.zoomTo(.000001, new Point2D(2500, 1700));
+    pane.zoomTo(.000001, new Point2D(2500, 1700));
+
+    // Scaling is currently the issue with the node map
+
+    NodeDAO nodeDAO = new NodeDAO();
+
+    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
+    ArrayList<edu.wpi.teamg.ORMClasses.Node> listOfNodes = new ArrayList<>(nodes.values());
+
+    // Adds Nodes To Node Pane and should display them (if you divide by 5 you get them on the page)
+    // This indicates there is a scaling problem with the nodePane
+
+    for (int i = 0; i < listOfNodes.size(); i++) {
+      if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
+        Circle point =
+            new Circle(
+                listOfNodes.get(i).getNodeX(),
+                listOfNodes.get(i).getNodeY(),
+                5,
+                Color.BLACK);
+        nodePane.getChildren().add(point);
+      }
+    }
+
+    // Rectangle rec = new Rectangle(500, 500, Color.BLACK);
+    //  Circle circ = new Circle(10, Color.BLACK);
+    // circ.relocate(500, 500);
+
   }
 
   public void loadServiceRequestForm() {
@@ -208,15 +237,6 @@ public class SignagePageController {
     setPath(path);
   }
 
-  public void setNodePane(){
-    /*
-    for(int i  = 0; i < )
-    Circle point = new Circle(5, Color.BLACK);
-    point.relocate();
-    nodePane.getChildren();
-
-     */
-  }
   public void setPath(ArrayList<String> path) {
     results.setText(String.valueOf(path));
   }
