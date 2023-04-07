@@ -20,72 +20,103 @@ import javafx.stage.FileChooser;
 
 public class SignageAdminController {
 
-  @FXML MFXButton backToHomeButton;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
-  @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
+  @FXML
+  MFXButton backToHomeButton;
+  @FXML
+  ChoiceBox<String> serviceRequestChoiceBox;
+  @FXML
+  MFXButton signagePageButton;
+  @FXML
+  MFXButton exitButton;
 
   // @FXML MFXButton pathFindButton;
-  @FXML Label fileLabel;
+  @FXML
+  Label fileLabel;
   // @FXML MFXTextField startLoc;
   // @FXML MFXTextField endLoc;
-  @FXML MFXTextField results;
+  @FXML
+  MFXTextField results;
   //  @FXML GesturePane pane;
 
-  @FXML ChoiceBox<String> importDrop;
-  @FXML ChoiceBox<String> exportDrop;
+  @FXML
+  ChoiceBox<String> importDrop;
+  @FXML
+  ChoiceBox<String> exportDrop;
 
-  @FXML Button imp;
+  @FXML
+  Button imp;
   // @FXML MFXButton export;
 
-  @FXML Button nodes;
-  @FXML Button edges;
+  @FXML
+  Button nodes;
+  @FXML
+  Button edges;
 
-  @FXML Button nodeLoc;
-  @FXML Button move;
+  @FXML
+  Button nodeLoc;
+  @FXML
+  Button move;
 
-  @FXML TableView<Node> nodeTable;
-  @FXML TableView<Edge> edgeTable;
-  @FXML TableView<Move> moveTable;
-  @FXML TableView<LocationName> nodeLocTable;
+  @FXML
+  TableView<Node> nodeTable;
+  @FXML
+  TableView<Edge> edgeTable;
+  @FXML
+  TableView<Move> moveTable;
+  @FXML
+  TableView<LocationName> nodeLocTable;
 
   // Nodes
-  @FXML TableColumn<Node, Integer> nodeNodeID;
-  @FXML TableColumn<Node, Integer> nodeXcoord;
-  @FXML TableColumn<Node, Integer> nodeYcoord;
-  @FXML TableColumn<Node, String> nodeFloor;
-  @FXML TableColumn<Node, String> nodeBuilding;
+  @FXML
+  TableColumn<Node, Integer> nodeNodeID;
+  @FXML
+  TableColumn<Node, Integer> nodeXcoord;
+  @FXML
+  TableColumn<Node, Integer> nodeYcoord;
+  @FXML
+  TableColumn<Node, String> nodeFloor;
+  @FXML
+  TableColumn<Node, String> nodeBuilding;
 
   // Edges
-  @FXML TableColumn<Edge, String> edgeEdgeID;
-  @FXML TableColumn<Edge, Integer> edgeEndNode;
-  @FXML TableColumn<Edge, Integer> edgeStartNode;
+  @FXML
+  TableColumn<Edge, String> edgeEdgeID;
+  @FXML
+  TableColumn<Edge, Integer> edgeEndNode;
+  @FXML
+  TableColumn<Edge, Integer> edgeStartNode;
 
   // Move
 
-  @FXML TableColumn<Move, String> moveNodeID;
-  @FXML TableColumn<Move, Date> moveDate;
-  @FXML TableColumn<Move, Integer> moveLongName;
+  @FXML
+  TableColumn<Move, String> moveNodeID;
+  @FXML
+  TableColumn<Move, Date> moveDate;
+  @FXML
+  TableColumn<Move, Integer> moveLongName;
 
   // NodeLoc
 
-  @FXML TableColumn<LocationName, String> locLongName;
-  @FXML TableColumn<LocationName, Integer> locShortName;
-  @FXML TableColumn<LocationName, Integer> locNodeType;
+  @FXML
+  TableColumn<LocationName, String> locLongName;
+  @FXML
+  TableColumn<LocationName, Integer> locShortName;
+  @FXML
+  TableColumn<LocationName, Integer> locNodeType;
 
   ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
+          FXCollections.observableArrayList(
+                  "Conference Room Request Form",
+                  "Flowers Request Form",
+                  "Furniture Request Form",
+                  "Meal Request Form",
+                  "Office Supplies Request Form");
 
   ObservableList<String> importList =
-      FXCollections.observableArrayList("Nodes", "Edges", "LocationName", "Moves");
+          FXCollections.observableArrayList("Nodes", "Edges", "LocationName", "Moves");
 
   ObservableList<String> exportList =
-      FXCollections.observableArrayList("Nodes", "Edges", "LocationName", "Moves");
+          FXCollections.observableArrayList("Nodes", "Edges", "LocationName", "Moves");
 
   @FXML
   public void initialize() throws SQLException {
@@ -99,15 +130,21 @@ public class SignageAdminController {
     // importButton.setOnAction(event -> fileChooser());
 
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-    importDrop.setOnAction(event -> fileChooser());
+    importDrop.setOnAction(event -> {
+      try {
+        fileChooser();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+    });
     exportDrop.setOnAction(
-        event -> {
-          try {
-            fileExporter();
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-        });
+            event -> {
+              try {
+                fileExporter();
+              } catch (SQLException e) {
+                throw new RuntimeException(e);
+              }
+            });
     // fileLabel.getText();
 
     /*pathFindButton.setOnMouseClicked(
@@ -244,25 +281,25 @@ public class SignageAdminController {
   */
 
   @FXML
-  void fileChooser() {
+  void fileChooser() throws SQLException {
     switch (importDrop.getValue()) {
-      case "Nodes":
+      case "Nodes" -> {
         NodeDAO nodeDAO = new NodeDAO();
-        chooserHelper(nodeDAO);
-        break;
-      case "Edges":
+        nodeDAO.importCSV();
+      }
+      case "Edges" -> {
         EdgeDAO edgeDAO = new EdgeDAO();
-        chooserHelper(edgeDAO);
-        break;
-      case "LocationName":
+        edgeDAO.importCSV();
+      }
+      case "LocationName" -> {
         LocationNameDAO locationNameDAO = new LocationNameDAO();
-        chooserHelper(locationNameDAO);
-        break;
-      case "Moves":
+        locationNameDAO.importCSV();
+      }
+      case "Moves" -> {
         MoveDAO moveDAO = new MoveDAO();
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters()
-            .add(new FileChooser.ExtensionFilter("Comma Seperated Values", "*.csv"));
+                .add(new FileChooser.ExtensionFilter("Comma Seperated Values", "*.csv"));
         File f = fc.showOpenDialog(null);
         if (f != null) {
           try {
@@ -271,9 +308,9 @@ public class SignageAdminController {
             throw new RuntimeException(e);
           }
         }
-        break;
-      default:
-        break;
+      }
+      default -> {
+      }
     }
   }
 
@@ -375,19 +412,4 @@ public class SignageAdminController {
     Platform.exit();
   }
 
-  void chooserHelper(
-      LocationDAO dao) { // note because of move dao's uniqueness, this won't use that
-    FileChooser fc = new FileChooser();
-    fc.getExtensionFilters()
-        .add(new FileChooser.ExtensionFilter("Comma Seperated Values", "*.csv"));
-    File f = fc.showOpenDialog(null);
-    if (f != null) {
-      // fileLabel.setText("Selected File::" + f.getAbsolutePath());
-      try {
-        dao.importCSV(f.getAbsolutePath());
-      } catch (SQLException e) {
-        throw new RuntimeException(e);
-      }
-    }
-  }
 }
