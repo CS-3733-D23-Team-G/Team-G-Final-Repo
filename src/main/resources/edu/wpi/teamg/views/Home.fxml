@@ -19,15 +19,15 @@
          <children>
             <HBox alignment="CENTER" styleClass="top_banner" stylesheets="@style.css" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane maxWidth="600.0" minHeight="25.0" prefWidth="600.0">
+                  <AnchorPane minHeight="25.0" prefWidth="600.0">
                      <children>
-                        <Text disable="true" layoutX="504.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
-                        <ImageView fitHeight="67.0" fitWidth="205.0" layoutX="14.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                        <Text disable="true" layoutX="504.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" AnchorPane.rightAnchor="14.056640625" AnchorPane.topAnchor="4.05078125" />
+                        <ImageView fitHeight="67.0" fitWidth="205.0" layoutX="14.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="-3.0">
                            <image>
                               <Image url="@bwh-logo.png" />
                            </image>
                         </ImageView>
-                        <MFXButton fx:id="exitButton" layoutX="496.0" maxHeight="25.0" minHeight="25.0" opacity="0.0" prefHeight="25.0" prefWidth="97.0" text="Exit Application" />
+                        <MFXButton fx:id="exitButton" layoutX="496.0" maxHeight="25.0" minHeight="25.0" opacity="0.0" prefHeight="25.0" prefWidth="97.0" text="Exit Application" AnchorPane.rightAnchor="6.666666666666671" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>
