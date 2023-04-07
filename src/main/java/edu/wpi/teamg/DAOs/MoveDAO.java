@@ -20,7 +20,7 @@ public class MoveDAO implements LocationMoveDao {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    sql = "select * from proto2.move";
+    sql = "select * from iteration1.move";
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -55,7 +55,7 @@ public class MoveDAO implements LocationMoveDao {
     Move move = (Move) obj;
     db.setConnection();
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
-    sql = "UPDATE proto2.move set nodeID = ?, longName = ?, date = ?";
+    sql = "UPDATE iteration1.move set nodeID = ?, longName = ?, date = ?";
 
     try {
       ps.setInt(1, move.getNodeID());
@@ -72,7 +72,7 @@ public class MoveDAO implements LocationMoveDao {
   public void insert(Object obj) throws SQLException {
     Move move = (Move) obj;
     db.setConnection();
-    sql = "INSERT INTO proto2.move (nodeid, longname, date) VALUES (?,?,?);";
+    sql = "INSERT INTO iteration1.move (nodeid, longname, date) VALUES (?,?,?);";
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
     try {
@@ -92,7 +92,7 @@ public class MoveDAO implements LocationMoveDao {
     Move move = (Move) obj;
     db.setConnection();
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
-    sql = "DELETE FROM proto2.move WHERE nodeID = ?";
+    sql = "DELETE FROM iteration1.move WHERE nodeID = ?";
     try {
       ps.setInt(1, move.getNodeID());
     } catch (SQLException e) {
@@ -104,7 +104,7 @@ public class MoveDAO implements LocationMoveDao {
   @Override
   public void importCSV(String filePath) throws SQLException {
     db.setConnection();
-    sql = "insert into teamgdb.proto2.move (nodeid, longname, date) values (?,?,?)";
+    sql = "insert into teamgdb.iteration1.move (nodeid, longname, date) values (?,?,?)";
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
     try {
       BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -158,7 +158,7 @@ public class MoveDAO implements LocationMoveDao {
 
     try {
       Statement statement = db.getConnection().createStatement();
-      rs = statement.executeQuery("select * from teamgdb.proto2.move");
+      rs = statement.executeQuery("select * from teamgdb.iteration1.move");
 
       JFileChooser chooser = new JFileChooser();
       FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", ".csv");

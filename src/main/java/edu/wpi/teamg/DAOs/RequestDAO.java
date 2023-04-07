@@ -19,7 +19,7 @@ public class RequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    sql = "select * from proto2.request";
+    sql = "select * from iteration1.request";
 
     try {
       ps = db.getConnection().prepareStatement(sql);

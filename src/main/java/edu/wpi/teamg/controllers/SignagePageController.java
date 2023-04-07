@@ -20,6 +20,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import net.kurobako.gesturefx.GesturePane;
 
 public class SignagePageController {
@@ -39,6 +42,7 @@ public class SignagePageController {
   @FXML TextArea results;
 
   @FXML GesturePane pane;
+  @FXML Pane nodePane;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -73,6 +77,7 @@ public class SignagePageController {
     Image map = new Image("/edu/wpi/teamg/Images/00_thelowerlevel1.png");
     ImageView mapView = new ImageView(map);
     pane.setContent(mapView);
+    nodePane.setOnMouseClicked(event -> setNodePane());
     // pane.setContent(image);
     // pane.setMaxScale();
     //  pane.setMinScale(.001);
@@ -203,6 +208,15 @@ public class SignagePageController {
     setPath(path);
   }
 
+  public void setNodePane(){
+    /*
+    for(int i  = 0; i < )
+    Circle point = new Circle(5, Color.BLACK);
+    point.relocate();
+    nodePane.getChildren();
+
+     */
+  }
   public void setPath(ArrayList<String> path) {
     results.setText(String.valueOf(path));
   }

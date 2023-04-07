@@ -16,7 +16,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
+import javafx.util.converter.IntegerStringConverter;
 
 public class SignageAdminController {
 
@@ -34,9 +36,6 @@ public class SignageAdminController {
 
   @FXML ChoiceBox<String> importDrop;
   @FXML ChoiceBox<String> exportDrop;
-
-  @FXML Button imp;
-  // @FXML MFXButton export;
 
   @FXML Button nodes;
   @FXML Button edges;
@@ -73,6 +72,9 @@ public class SignageAdminController {
   @FXML TableColumn<LocationName, Integer> locShortName;
   @FXML TableColumn<LocationName, Integer> locNodeType;
 
+  @FXML MFXButton edit;
+  @FXML MFXButton cancel;
+
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -95,6 +97,8 @@ public class SignageAdminController {
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
     backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     exitButton.setOnMouseClicked(event -> exit());
+    cancel.setOnMouseClicked(event -> cancelTable());
+    edit.setOnMouseClicked(event -> editTable());
 
     // importButton.setOnAction(event -> fileChooser());
 
@@ -379,6 +383,45 @@ public class SignageAdminController {
   }
 
    */
+
+  public void cancelTable() {
+    nodeTable.setEditable(false);
+  }
+
+  public void editTable() {
+    nodeTable.setEditable(true);
+
+    nodeNodeID.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    nodeNodeID.setOnEditCommit(
+        event -> {
+          Node obj = event.getRowValue();
+          obj.setNodeID(event.getNewValue());
+        });
+    nodeXcoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    nodeXcoord.setOnEditCommit(
+        event -> {
+          Node obj = event.getRowValue();
+          obj.setXcoord(event.getNewValue());
+        });
+    nodeYcoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    nodeYcoord.setOnEditCommit(
+        event -> {
+          Node obj = event.getRowValue();
+          obj.setYcoord(event.getNewValue());
+        });
+    nodeFloor.setCellFactory(TextFieldTableCell.forTableColumn());
+    nodeFloor.setOnEditCommit(
+        event -> {
+          Node obj = event.getRowValue();
+          obj.setFloor(event.getNewValue());
+        });
+    nodeBuilding.setCellFactory(TextFieldTableCell.forTableColumn());
+    nodeBuilding.setOnEditCommit(
+        event -> {
+          Node obj = event.getRowValue();
+          obj.setBuilding(event.getNewValue());
+        });
+  }
 
   public void exit() {
     Platform.exit();
