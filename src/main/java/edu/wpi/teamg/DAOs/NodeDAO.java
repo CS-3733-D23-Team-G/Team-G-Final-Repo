@@ -19,7 +19,7 @@ public class NodeDAO implements LocationDAO {
     db.setConnection();
     try {
 
-      SQL = "INSERT INTO proto2.node (nodeid, xcoord, ycoord, floor, building) VALUES (?,?,?,?,?)";
+      SQL = "INSERT INTO teamgdb.iteration1.node (nodeid, xcoord, ycoord, floor, building) VALUES (?,?,?,?,?)";
       PreparedStatement ps = db.getConnection().prepareStatement(SQL);
 
       BufferedReader br = new BufferedReader(new FileReader(path));
@@ -66,7 +66,7 @@ public class NodeDAO implements LocationDAO {
 
     try {
       Statement statement = db.getConnection().createStatement();
-      rs = statement.executeQuery("select * from teamgdb.proto2.node");
+      rs = statement.executeQuery("select * from teamgdb.teamgdb.iteration1.node");
 
       JFileChooser chooser = new JFileChooser();
       FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", ".csv");
@@ -111,7 +111,7 @@ public class NodeDAO implements LocationDAO {
     db.setConnection();
 
     PreparedStatement ps;
-    SQL = "insert into proto2.node(nodeid, xcoord, ycoord, floor, building) values (?, ?, ?, ?, ?)";
+    SQL = "insert into teamgdb.iteration1.node(nodeid, xcoord, ycoord, floor, building) values (?, ?, ?, ?, ?)";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -141,7 +141,7 @@ public class NodeDAO implements LocationDAO {
 
     PreparedStatement ps;
 
-    SQL = "delete from proto2.node where nodeid = ?";
+    SQL = "delete from teamgdb.iteration1.node where nodeid = ?";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -165,7 +165,7 @@ public class NodeDAO implements LocationDAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    SQL = "select * from proto2.node";
+    SQL = "select * from teamgdb.iteration1.node";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);

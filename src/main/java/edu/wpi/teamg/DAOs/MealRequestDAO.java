@@ -24,7 +24,7 @@ public class MealRequestDAO implements DAO {
     ResultSet rs = null;
 
     SQL_mealRequest =
-        "select * from proto2.request join proto2.mealrequest on proto2.request.reqid = proto2.mealrequest.reqid";
+        "select * from teamgdb.iteration1.request join teamgdb.iteration1.mealrequest on teamgdb.iteration1.request.reqid = teamgdb.iteration1.mealrequest.reqid";
 
     try {
       ps = db.getConnection().prepareStatement(SQL_mealRequest);
@@ -90,7 +90,7 @@ public class MealRequestDAO implements DAO {
 
     ResultSet rs = null;
 
-    SQL_maxID = "select reqID from proto2.request order by reqid desc limit 1";
+    SQL_maxID = "select reqID from teamgdb.iteration1.request order by reqid desc limit 1";
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -109,9 +109,9 @@ public class MealRequestDAO implements DAO {
     }
 
     SQL_mealRequest =
-        "insert into proto2.mealrequest(reqid, deliverydate, deliverytime, recipient, mealOrder, note) values (?, ?, ?, ?, ?, ?)";
+        "insert into teamgdb.iteration1.mealrequest(reqid, deliverydate, deliverytime, recipient, mealOrder, note) values (?, ?, ?, ?, ?, ?)";
     SQL_Request =
-        "insert into proto2.request(reqid, empid, location, serv_by, status) values (?, ?, ?, ?, ?)";
+        "insert into teamgdb.iteration1.request(reqid, empid, location, serv_by, status) values (?, ?, ?, ?, ?)";
 
     try {
 
@@ -150,8 +150,8 @@ public class MealRequestDAO implements DAO {
     PreparedStatement ps_mealrequest;
     PreparedStatement ps_request;
 
-    String SQL_mealrequest = "delete from proto2.mealrequest where reqId = ?";
-    String SQL_request = "delete from proto2.request where reqId = ?";
+    String SQL_mealrequest = "delete from teamgdb.iteration1.mealrequest where reqId = ?";
+    String SQL_request = "delete from teamgdb.iteration1.request where reqId = ?";
 
     try {
       ps_mealrequest = db.getConnection().prepareStatement(SQL_mealrequest);
