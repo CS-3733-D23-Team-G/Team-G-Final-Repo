@@ -11,4 +11,10 @@ public class ConferenceRoomRequest extends Request {
   @Getter @Setter private String purpose;
 
   public ConferenceRoomRequest() {}
+
+  public ConferenceRoomRequest(Date meeting_date, Time meeting_time, String purpose) {
+    this.meeting_date = meeting_date;
+    this.meeting_time = meeting_time;
+    this.purpose = purpose;
+  }
 }

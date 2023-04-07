@@ -11,4 +11,16 @@ public class Request {
   @Getter @Setter private int serv_by;
 
   @Getter @Setter private StatusTypeEnum status;
+
+  public Request(){
+
+  }
+  public Request(int reqid, int empid, int location, int serv_by, StatusTypeEnum status) {
+    this.reqid = reqid;
+    this.empid = empid;
+    this.location = location;
+    this.serv_by = serv_by;
+    this.status = status;
+  }
+
 }

@@ -15,6 +15,14 @@ public class MealRequest extends Request {
   @Getter @Setter private String note;
 
   public MealRequest() {}
+
+  public MealRequest(Date deliveryDate, Time deliveryTime, String recipient, String order, String note) {
+    this.deliveryDate = deliveryDate;
+    this.deliveryTime = deliveryTime;
+    this.recipient = recipient;
+    this.order = order;
+    this.note = note;
+  }
 }
 
 // AL<Request>
