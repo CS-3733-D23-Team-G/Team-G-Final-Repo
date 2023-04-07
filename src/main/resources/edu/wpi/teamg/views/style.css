@@ -3,7 +3,11 @@
     -fx-background-size: contain;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 100% 100%;
+    -fx-background-size: 100%,100%;
+    -fx-background-color: #F1F1F1;
+    -fx-pref-height: 260;
+    -fx-pref-width: 600;
+    -fx-alignment: CENTER;
 }
 .functionality_zone{
     -fx-background-color: #F1F1F1;
@@ -20,6 +24,13 @@
 }
 .anchor_pane_sizing{
     -fx-pref-width: 600;
+}
+.background_test{
+    -fx-background-image: url(international-bwh-1428x1110.jpeg);
+    -fx-background-size: contain;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 100% 100%;
 }
 .pane_banner_sizing{
     -fx-pref-width: 600;
