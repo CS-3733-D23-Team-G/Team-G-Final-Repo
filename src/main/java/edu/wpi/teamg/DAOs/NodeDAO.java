@@ -17,43 +17,20 @@ public class NodeDAO implements LocationDAO {
   @Override
   public void importCSV(String path) throws SQLException {
     db.setConnection();
-    try {
+    JFileChooser chooser = new JFileChooser();
+    int choice = chooser.showOpenDialog(null);
+    if(choice==chooser.APPROVE_OPTION){
+      try{
+        String absPath = chooser.getSelectedFile().getAbsolutePath();
+        String sql = "copy teamgdb.iteration1.node from ? delimiter ',' csv header";
+        PreparedStatement ps = db.getConnection().prepareStatement(sql);
+        ps.setString(1,absPath);
+        ps.executeUpdate();
 
-      SQL = "INSERT INTO teamgdb.iteration1.node (nodeid, xcoord, ycoord, floor, building) VALUES (?,?,?,?,?)";
-      PreparedStatement ps = db.getConnection().prepareStatement(SQL);
-
-      BufferedReader br = new BufferedReader(new FileReader(path));
-      String line = null;
-
-      br.readLine(); // skip line
-      while ((line = br.readLine()) != null) {
-        String[] data = line.split(",");
-
-        String nodeID = data[0];
-        String xcoord = data[1];
-        String ycoord = data[2];
-        String floor = data[3];
-        String building = data[4];
-
-        int iNodeID = Integer.parseInt(nodeID);
-        ps.setInt(1, iNodeID);
-
-        int iXCoord = Integer.parseInt(xcoord);
-        ps.setInt(2, iXCoord);
-
-        int iYCoord = Integer.parseInt(ycoord);
-        ps.setInt(3, iYCoord);
-
-        ps.setString(4, floor);
-        ps.setString(5, building);
-        ps.addBatch();
+      }catch (SQLException e){
+        System.err.println("SQL Exception");
+        e.printStackTrace();
       }
-      br.close();
-      ps.executeBatch();
-    } catch (IOException e) {
-      System.err.println(e);
-    } catch (SQLException e) {
-      e.printStackTrace();
     }
     db.closeConnection();
   }
@@ -66,7 +43,7 @@ public class NodeDAO implements LocationDAO {
 
     try {
       Statement statement = db.getConnection().createStatement();
-      rs = statement.executeQuery("select * from teamgdb.teamgdb.iteration1.node");
+      rs = statement.executeQuery("select * from teamgdb.iteration1.node");
 
       JFileChooser chooser = new JFileChooser();
       FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", ".csv");
@@ -156,6 +133,11 @@ public class NodeDAO implements LocationDAO {
     }
 
     db.closeConnection();
+  }
+
+  @Override
+  public String getTable() {
+    return "teamgdb.iteration1.node";
   }
 
   @Override

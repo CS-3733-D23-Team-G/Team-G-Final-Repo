@@ -117,6 +117,11 @@ public class LocationNameDAO implements LocationDAO {
   }
 
   @Override
+  public String getTable() {
+    return "teamgdb.iteration1.locationname";
+  }
+
+  @Override
   public void importCSV(String filename) throws SQLException {
     connection.setConnection();
 

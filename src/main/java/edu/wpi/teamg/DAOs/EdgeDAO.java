@@ -100,6 +100,11 @@ public class EdgeDAO implements LocationDAO {
   }
 
   @Override
+  public String getTable() {
+    return "teamgdb.iteration1.edge";
+  }
+
+  @Override
   public void importCSV(String filename) throws SQLException {
     connection.setConnection();
     sql = "";

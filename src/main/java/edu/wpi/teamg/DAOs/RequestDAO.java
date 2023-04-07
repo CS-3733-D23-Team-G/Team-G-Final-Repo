@@ -60,4 +60,9 @@ public class RequestDAO implements DAO {
 
   @Override
   public void delete(Object obj) throws SQLException {}
+
+  @Override
+  public String getTable() {
+    return "teamgdb.iteration1.request";
+  }
 }

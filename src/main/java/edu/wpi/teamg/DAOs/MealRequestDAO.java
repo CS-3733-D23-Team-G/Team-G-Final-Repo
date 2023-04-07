@@ -172,4 +172,9 @@ public class MealRequestDAO implements DAO {
 
     db.closeConnection();
   }
+
+  @Override
+  public String getTable() {
+    return "teamgdb.iteration1.mealrequest";
+  }
 }
