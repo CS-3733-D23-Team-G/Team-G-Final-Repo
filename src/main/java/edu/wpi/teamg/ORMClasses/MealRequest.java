@@ -13,9 +13,17 @@ public class MealRequest extends Request {
   @Getter @Setter private String order;
   @Getter @Setter private String note;
 
-  public MealRequest() {}
-
-  public MealRequest(Date deliveryDate, Time deliveryTime, String recipient, String order, String note) {
+  public MealRequest(
+      int empid,
+      int location,
+      int serve_by,
+      StatusTypeEnum status,
+      Date deliveryDate,
+      Time deliveryTime,
+      String recipient,
+      String order,
+      String note) {
+    super(empid, location, serve_by, status);
     this.deliveryDate = deliveryDate;
     this.deliveryTime = deliveryTime;
     this.recipient = recipient;

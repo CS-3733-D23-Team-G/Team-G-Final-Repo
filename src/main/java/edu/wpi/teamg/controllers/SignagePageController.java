@@ -16,6 +16,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -75,9 +76,9 @@ public class SignagePageController {
     pane.setContent(mapView);
     // pane.setContent(image);
     // pane.setMaxScale();
-    //  pane.setMinScale(.001);
-    // pane.zoomTo(.000001, new Point2D(2500, 1700));
-    //  pane.zoomTo(.000001, new Point2D(2500, 1700));
+    pane.setMinScale(.001);
+    pane.zoomTo(.000001, new Point2D(2500, 1700));
+    pane.zoomTo(.000001, new Point2D(2500, 1700));
   }
 
   public void loadServiceRequestForm() {
@@ -121,8 +122,8 @@ public class SignagePageController {
         L1NodeFinal.add(
             new Node(
                 Integer.toString(L1nodes.get(i).getNodeID()),
-                L1nodes.get(i).getNodeX(),
-                L1nodes.get(i).getNodeY(),
+                L1nodes.get(i).getXcoord(),
+                L1nodes.get(i).getYcoord(),
                 L1nodes.get(i).getFloor(),
                 L1nodes.get(i).getBuilding()));
       }
@@ -146,14 +147,14 @@ public class SignagePageController {
                 L1edges.get(i).getEdgeID(),
                 new Node(
                     (Integer.toString(currentS.getNodeID())),
-                    currentS.getNodeX(),
-                    currentS.getNodeY(),
+                    currentS.getXcoord(),
+                    currentS.getYcoord(),
                     currentS.getFloor(),
                     currentS.getBuilding()),
                 new Node(
                     (Integer.toString(currentE.getNodeID())),
-                    currentE.getNodeX(),
-                    currentE.getNodeY(),
+                    currentE.getXcoord(),
+                    currentE.getYcoord(),
                     currentE.getFloor(),
                     currentE.getBuilding())));
       }

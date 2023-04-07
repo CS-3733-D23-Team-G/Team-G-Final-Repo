@@ -30,7 +30,6 @@ public class RequestDAO implements DAO {
     }
 
     while (rs.next()) {
-      Request cReq = new Request();
 
       int reqID = rs.getInt("reqid");
       int empID = rs.getInt("empid");
@@ -38,12 +37,8 @@ public class RequestDAO implements DAO {
       int serv_by = rs.getInt("serv_by");
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
 
+      Request cReq = new Request(empID, location, serv_by, status);
       cReq.setReqid(reqID);
-      cReq.setLocation(location);
-      cReq.setEmpid(empID);
-      cReq.setServ_by(serv_by);
-
-      cReq.setStatus(status);
 
       requestHash.put(reqID, cReq);
     }

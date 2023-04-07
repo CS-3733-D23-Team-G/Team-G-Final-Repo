@@ -12,29 +12,16 @@ public class Node extends LocationName {
   @Getter @Setter private String building;
 
   public Node() {}
-  public Node(int nodeID, int xcoord, int ycoord, String floor, String building){
-    this.nodeID=nodeID;
-    this.xcoord=xcoord;
-    this.ycoord=ycoord;
-    this.floor=floor;
-    this.building=building;
-  }
 
-
-  public int getNodeX() {
-    return xcoord;
-  }
-
-  public int getNodeY() {
-    return ycoord;
-  }
-
-  public int getNodeID() {
-    return nodeID;
+  public Node(int nodeID, int xcoord, int ycoord, String floor, String building) {
+    this.nodeID = nodeID;
+    this.xcoord = xcoord;
+    this.ycoord = ycoord;
+    this.floor = floor;
+    this.building = building;
   }
 
   public String getFloor() {
     return floor;
   }
-
 }

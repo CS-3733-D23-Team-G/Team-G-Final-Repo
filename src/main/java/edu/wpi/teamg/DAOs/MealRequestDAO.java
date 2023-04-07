@@ -36,38 +36,22 @@ public class MealRequestDAO implements DAO {
     }
 
     while (rs.next()) {
-      MealRequest mealReq = new MealRequest();
 
       int reqID = rs.getInt("reqID");
-      mealReq.setReqid(reqID);
-
       int empID = rs.getInt("empID");
-      mealReq.setEmpid(empID);
-
       int location = rs.getInt("location");
-      mealReq.setLocation(location);
-
       int serv_by = rs.getInt("serv_by");
-      mealReq.setServ_by(serv_by);
-
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
-
-      mealReq.setStatus(status);
-
       String recipient = rs.getString("recipient");
-      mealReq.setRecipient(recipient);
-
       Date deliveryDate = rs.getDate("deliveryDate");
-      mealReq.setDeliveryDate(deliveryDate);
-
       Time deliveryTime = rs.getTime("deliveryTime");
-      mealReq.setDeliveryTime(deliveryTime);
-
       String order = rs.getString("mealOrder");
-      mealReq.setOrder(order);
-
       String note = rs.getString("note");
-      mealReq.setNote(note); // check when merge
+      MealRequest mealReq =
+          new MealRequest(
+              empID, location, serv_by, status, deliveryDate, deliveryTime, recipient, order, note);
+
+      mealReq.setReqid(reqID);
 
       mealRequestHash.put(reqID, mealReq);
     }
