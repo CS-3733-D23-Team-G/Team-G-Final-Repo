@@ -30,8 +30,8 @@ public class ConferenceRoomRequestDAO implements DAO {
     ResultSet rs = null;
 
     SQL_confRoomRequest =
-        "select * from proto2.request join proto2.conferenceroomrequest "
-            + "on proto2.request.reqid = proto2.conferenceroomrequest.reqid";
+        "select * from iteration1.request join iteration1.conferenceroomrequest "
+            + "on iteration1.request.reqid = iteration1.conferenceroomrequest.reqid";
 
     try {
       ps = db.getConnection().prepareStatement(SQL_confRoomRequest);
@@ -78,7 +78,7 @@ public class ConferenceRoomRequestDAO implements DAO {
 
     ResultSet rs = null;
 
-    SQL_maxID = "select reqID from teamgdb.proto2.request order by reqid desc limit 1";
+    SQL_maxID = "select reqID from teamgdb.iteration1.request order by reqid desc limit 1";
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -93,9 +93,9 @@ public class ConferenceRoomRequestDAO implements DAO {
       maxID++;
     }
     SQL_confRoomRequest =
-        "insert  into teamgdb.proto2.conferenceroomrequest(reqid,meeting_date,meeting_time,purpose) values (?,?,?,?)";
+        "insert  into teamgdb.iteration1.conferenceroomrequest(reqid,meeting_date,meeting_time,purpose) values (?,?,?,?)";
     SQL_Request =
-        "insert into teamgdb.proto2.request(reqid,empid,location,serv_by,status) values (?,?,?,?,?)";
+        "insert into teamgdb.iteration1.request(reqid,empid,location,serv_by,status) values (?,?,?,?,?)";
 
     try {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
@@ -130,8 +130,8 @@ public class ConferenceRoomRequestDAO implements DAO {
     PreparedStatement ps_confReq;
     PreparedStatement ps_Req;
 
-    String SQL_confReq = "delete from teamgdb.proto2.conferenceroomrequest where reqID = ?";
-    String SQL_Req = "delete from teamgdb.proto2.request where reqID = ?";
+    String SQL_confReq = "delete from teamgdb.iteration1.conferenceroomrequest where reqID = ?";
+    String SQL_Req = "delete from teamgdb.iteration1.request where reqID = ?";
     try {
       ps_confReq = db.getConnection().prepareStatement(SQL_confReq);
       ps_confReq.setInt(1, ((ConferenceRoomRequest) obj).getReqid());
