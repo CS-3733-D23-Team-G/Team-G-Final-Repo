@@ -1,0 +1,47 @@
+.homepage{
+    -fx-background-image: url(international-bwh-1428x1110.jpeg);
+    -fx-background-size: contain;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 100% 100%;
+}
+.functionality_zone{
+    -fx-background-color: #F1F1F1;
+    -fx-max-height: 260;
+    -fx-pref-height: 260;
+    -fx-pref-width: 600;
+    -fx-alignment: CENTER;
+}
+.top_banner{
+    -fx-background-color: #F1F1F1;
+    -fx-max-height: 45;
+    -fx-pref-height: 45;
+    -fx-alignment: CENTER;
+}
+.anchor_pane_sizing{
+    -fx-pref-width: 600;
+}
+.pane_banner_sizing{
+    -fx-pref-width: 600;
+    -fx-max-height: 30;
+    -fx-pref-height: 30;
+    -fx-min-height: 30;
+    -fx-alignment: CENTER;
+}
+.banner{
+    -fx-background-color: #012D5A;
+    -fx-max-height: 50;
+    -fx-pref-height: 50;
+    -fx-alignment: CENTER;
+}
+.text_box {
+    -fx-background-color: #D9D9D9;
+    -fx-text-fill: #000000;
+}
+.banner_text{
+    -fx-text-fill: #FFFFFF;
+}
+.button_banner{
+    -fx-max-height: 30;
+    -fx-opacity: 0;
+}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox styleClass="anchor_pane_sizing" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MealRequestController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="top_banner" stylesheets="@style.css">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchor_pane_sizing">
+               <children>
+                        <MFXButton fx:id="exitButton" layoutX="496.0" opacity="0.0" prefHeight="27.0" prefWidth="97.0" text="Exit Application" />
+                        <Text disable="true" layoutX="504.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
+                  <ImageView fitHeight="48.0" fitWidth="194.0" layoutX="14.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@bwh-logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="banner" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+         <children>
+            <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="200.0" styleClass="pane_banner_sizing">
+               <children>
+                        <Text disable="true" fill="WHITE" layoutX="35.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" />
+                        <MFXButton fx:id="backToHomeButton" layoutY="5.0" opacity="0.0" prefHeight="64.0" prefWidth="184.0" styleClass="button_banner" text="Return to Home Button" />
+                        <MFXButton fx:id="signagePageButton" layoutX="422.0" maxHeight="30.0" opacity="0.0" prefHeight="30.0" prefWidth="184.0" styleClass="button_banner" text="Signage Page Button" />
+                        <ChoiceBox fx:id="serviceRequestChoiceBox" layoutX="177.0" layoutY="2.0" opacity="0.0" prefHeight="64.0" prefWidth="214.0" styleClass="button_banner" />
+                        <Text disable="true" fill="WHITE" layoutX="474.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" />
+                        <Text disable="true" fill="WHITE" layoutX="234.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox styleClass="functionality_zone">
+         <children>
+                <AnchorPane styleClass="anchor_pane_sizing">
+                    <children>
+                        <Text layoutX="272.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Location" translateX="-224.0" translateY="35.0" />
+                        <Text layoutX="284.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Person Ordering For" translateX="-235.0" translateY="85.0" />
+                        <Text layoutX="308.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" translateX="-255.0" translateY="135.0" />
+                        <MFXButton fx:id="mealSubmitButton" layoutX="346.0" layoutY="288.0" text="Submit" />
+                        <MFXTextField fx:id="mealDeliveryLocationData" layoutX="46.0" layoutY="75.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" />
+                        <MFXTextField fx:id="mealPersonOrderingForData" layoutX="46.0" layoutY="122.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" />
+                  <Text layoutX="394.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Options" />
+                  <ChoiceBox fx:id="mealFoodChoice" layoutX="340.0" layoutY="200.0" prefHeight="38.0" prefWidth="180.0" />
+                  <Text layoutX="402.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Date" />
+                  <Text layoutX="401.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Time" />
+                  <MFXTextField fx:id="mealTimeOfDeliver" layoutX="340.0" layoutY="137.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" />
+                  <MFXButton fx:id="mealClearAll" layoutX="166.0" layoutY="288.0" text="Clear All" />
+                  <MFXDatePicker fx:id="mealDate" layoutX="337.0" layoutY="75.0" prefHeight="38.0" prefWidth="180.0" />
+                  <MFXTextField fx:id="mealNotesData" layoutX="49.0" layoutY="174.0" prefHeight="51.0" prefWidth="180.0" />
+                    </children>
+                </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>

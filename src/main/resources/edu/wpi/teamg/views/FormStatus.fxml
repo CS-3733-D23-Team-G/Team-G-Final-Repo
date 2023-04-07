@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FormStatusController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="top_banner">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchor_pane_sizing">
+               <children>
+                    <MFXButton fx:id="exitButton" layoutX="496.0" maxHeight="25.0" opacity="0.0" prefHeight="25.0" prefWidth="97.0" text="Exit Application" />
+                    <Text disable="true" layoutX="504.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
+                  <ImageView fitHeight="46.0" fitWidth="197.0" layoutX="14.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@bwh-logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="banner">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="pane_banner_sizing">
+               <children>
+                    <MFXButton fx:id="backToHomeButton" layoutY="5.0" opacity="0.0" prefHeight="30.0" prefWidth="184.0" styleClass="button_banner" text="Return to Home Button" />
+                    <MFXButton fx:id="signagePageButton" layoutX="422.0" opacity="0.0" prefHeight="30.0" prefWidth="184.0" styleClass="button_banner" text="Signage Page Button" />
+                    <Text disable="true" fill="WHITE" layoutX="35.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" />
+                    <Text disable="true" fill="WHITE" layoutX="474.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" />
+                    <ChoiceBox fx:id="serviceRequestChoiceBox" layoutX="177.0" layoutY="2.0" opacity="0.0" prefHeight="64.0" prefWidth="214.0" styleClass="button_banner" />
+                    <Line endX="48.0" endY="-166.0" layoutX="368.0" layoutY="176.0" startX="48.0" startY="-154.0" stroke="#345871" strokeWidth="2.0" />
+                    <Line endX="48.0" endY="-166.0" layoutX="130.0" layoutY="176.0" startX="48.0" startY="-154.0" stroke="#345871" strokeWidth="2.0" />
+                    <Text disable="true" fill="WHITE" layoutX="234.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox maxHeight="-Infinity" prefHeight="260.0" styleClass="functionality_zone">
+         <children>
+            <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="600.0" styleClass="anchor_pane_sizing">
+                <children>
+                    <Button fx:id="allRequestTableButton" layoutY="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="All Requests" />
+                    <Button fx:id="mealTableButton" layoutY="36.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Meal Requests" />
+                    <Button fx:id="roomTableButton" layoutY="62.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Room Requests" />
+                    <Button layoutY="141.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="WIP" />
+                    <Button layoutY="88.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="WIP" />
+                    <Button layoutY="116.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="WIP" />
+                  <TextArea fx:id="areaInfo" layoutY="167.0" prefHeight="87.0" prefWidth="134.0" />
+                    <TableView fx:id="mealTable" layoutX="139.0" layoutY="3.0" prefHeight="253.0" prefWidth="455.0">
+                        <columns>
+                            <TableColumn fx:id="mealReqID" prefWidth="55.0" text="Req. ID" />
+                            <TableColumn fx:id="mealEmpID" prefWidth="55.0" text="Emp. ID" />
+                        <TableColumn fx:id="mealLocation1" prefWidth="60.0" text="Location" />
+                            <TableColumn fx:id="mealServeBy" prefWidth="50.0" text="Serve-By" />
+                            <TableColumn fx:id="mealStatus" prefWidth="55.0" text="Status" />
+                        <TableColumn prefWidth="75.0" text="Meal Request">
+                           <columns>
+                              <TableColumn fx:id="mealDate" minWidth="0.0" prefWidth="50.0" text="date" />
+                              <TableColumn fx:id="mealTime" prefWidth="50.0" text="time" />
+                              <TableColumn fx:id="mealOrder" prefWidth="75.0" text="order" />
+                              <TableColumn fx:id="mealRecipient" prefWidth="60.0" text="recipient" />
+                              <TableColumn fx:id="mealNote" minWidth="0.0" prefWidth="100.0" text="note" />
+                           </columns>
+                        </TableColumn>
+                        </columns>
+                    </TableView>
+                  <TableView fx:id="roomTable" layoutX="140.0" layoutY="2.0" prefHeight="253.0" prefWidth="455.0">
+                     <columns>
+                        <TableColumn fx:id="roomReqID" prefWidth="55.0" text="Req. ID" />
+                        <TableColumn fx:id="roomEmpID" prefWidth="55.0" text="Emp. ID" />
+                        <TableColumn fx:id="roomLocation1" prefWidth="60.0" text="Location" />
+                        <TableColumn fx:id="roomServeBy" prefWidth="50.0" text="Serve-By" />
+                        <TableColumn fx:id="roomStatus" prefWidth="55.0" text="Status" />
+                        <TableColumn prefWidth="75.0" text="Conference Room Request">
+                           <columns>
+                              <TableColumn fx:id="roomDate" prefWidth="75.0" text="Meeting Date" />
+                              <TableColumn fx:id="roomTime" prefWidth="75.0" text="Meeting Time" />
+                              <TableColumn fx:id="roomPurpose" prefWidth="75.0" text="Purpose" />
+                           </columns>
+                        </TableColumn>
+                     </columns>
+                  </TableView>
+                  <TableView fx:id="mainTable" layoutX="139.0" layoutY="2.0" prefHeight="253.0" prefWidth="455.0">
+                     <columns>
+                        <TableColumn fx:id="reqID" prefWidth="55.0" text="Req. ID" />
+                        <TableColumn fx:id="empID" prefWidth="55.0" text="Emp. ID" />
+                        <TableColumn fx:id="location1" prefWidth="60.0" text="Location" />
+                        <TableColumn fx:id="serveBy" prefWidth="50.0" text="Serve-By" />
+                        <TableColumn fx:id="status" prefWidth="55.0" text="Status" />
+                     </columns>
+                  </TableView>
+                </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>

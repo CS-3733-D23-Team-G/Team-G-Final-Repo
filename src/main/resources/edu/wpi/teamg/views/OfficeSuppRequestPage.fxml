@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.CheckComboBox?>
+
+<VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.OfficeSuppRequestController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="top_banner">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                    <MFXButton fx:id="exitButton" layoutX="496.0" opacity="0.0" prefHeight="25.0" prefWidth="97.0" text="Exit Application" />
+                    <Text disable="true" layoutX="504.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
+                  <ImageView fitHeight="67.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@bwh-logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="banner" stylesheets="@style.css">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="pane_banner_sizing" stylesheets="@style.css">
+               <children>
+                    <Line endX="48.0" endY="-166.0" layoutX="368.0" layoutY="176.0" startX="48.0" startY="-154.0" stroke="#345871" strokeWidth="2.0" />
+                    <Line endX="48.0" endY="-166.0" layoutX="130.0" layoutY="176.0" startX="48.0" startY="-154.0" stroke="#345871" strokeWidth="2.0" />
+                    <MFXButton fx:id="backToHomeButton" layoutY="5.0" opacity="0.0" prefHeight="30.0" prefWidth="184.0" styleClass="button_banner" text="Return to Home Button" />
+                    <MFXButton fx:id="signagePageButton" layoutX="422.0" opacity="0.0" prefHeight="64.0" prefWidth="184.0" styleClass="button_banner" text="Signage Page Button" />
+                    <Text disable="true" fill="WHITE" layoutX="35.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" />
+                    <Text disable="true" fill="WHITE" layoutX="474.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" />
+                    <ChoiceBox fx:id="serviceRequestChoiceBox" layoutX="177.0" layoutY="2.0" opacity="0.0" prefHeight="64.0" prefWidth="214.0" styleClass="button_banner" />
+                    <Text disable="true" fill="WHITE" layoutX="234.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox styleClass="functionality_zone" stylesheets="@style.css">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="functionality_zone" stylesheets="@style.css">
+               <children>
+                  <TextField layoutX="39.0" layoutY="47.0" />
+                  <TextField layoutX="39.0" layoutY="105.0" />
+                  <CheckComboBox layoutX="230.0" layoutY="47.0" prefHeight="25.0" prefWidth="119.0" />
+                  <ChoiceBox layoutX="397.0" layoutY="47.0" prefWidth="150.0" />
+                  <Text layoutX="39.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Location" />
+                  <Text layoutX="39.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+               </children></AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>

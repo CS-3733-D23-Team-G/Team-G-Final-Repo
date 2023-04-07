@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FlowersRequestController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="top_banner" VBox.vgrow="ALWAYS">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchor_pane_sizing">
+               <children>
+                  <ImageView fitHeight="67.0" fitWidth="205.0" layoutX="9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@bwh-logo.png" />
+                     </image>
+                  </ImageView>
+                    <MFXButton fx:id="exitButton" layoutX="489.0" layoutY="12.0" opacity="0.0" prefHeight="27.0" prefWidth="97.0" text="Exit Application" />
+                    <Text disable="true" layoutX="496.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox prefHeight="30.0" prefWidth="239.0" styleClass="banner">
+         <children>
+            <AnchorPane prefHeight="50.0" prefWidth="603.0">
+               <children>
+                  <MFXButton fx:id="returnHomeButton" layoutX="14.0" layoutY="10.0" opacity="0.0" prefHeight="30.0" prefWidth="176.0" styleClass="button_banner" text="Return to Home Button" />
+                  <Text fill="WHITE" layoutX="51.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to home " />
+                  <ChoiceBox fx:id="serviceRequestChoiceBox" layoutX="193.0" layoutY="10.0" opacity="0.0" prefHeight="30.0" prefWidth="214.0" styleClass="button_banner" />
+                  <Text disable="true" fill="WHITE" layoutX="244.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" />
+                  <MFXButton fx:id="signagePageButton" layoutX="407.0" layoutY="-4.0" maxHeight="30.0" opacity="0.0" prefHeight="50.0" prefWidth="205.0" styleClass="button_banner" text="Signage Page Button" />
+                  <Text fill="WHITE" layoutX="467.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox styleClass="functionality_zone" VBox.vgrow="ALWAYS">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="600.0" styleClass="anchor_pane_sizing">
+                <children>
+                  <Text layoutX="47.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Flower Type" />
+                  <Text layoutX="48.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Location" wrappingWidth="120.6435546875" />
+                  <TextField fx:id="deliveryLocation" layoutX="47.0" layoutY="54.0" prefHeight="26.0" prefWidth="184.0" />
+                  <Text layoutX="367.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordering for?" wrappingWidth="148.21630859375" />
+                  <TextField fx:id="orderingfor" layoutX="367.0" layoutY="51.0" prefHeight="26.0" prefWidth="184.0" />
+                  <Text layoutX="367.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes for Delivery" wrappingWidth="140.21630859375" />
+                  <TextArea fx:id="notes" layoutX="367.0" layoutY="124.0" prefHeight="84.0" prefWidth="184.0" />
+                  <ChoiceBox fx:id="flowerTypeChoiceBox" layoutX="49.0" layoutY="140.0" prefHeight="27.0" prefWidth="184.0" />
+                  <MFXButton fx:id="submit" layoutX="477.0" layoutY="219.0" text="Submit" />
+                  <MFXButton fx:id="clearAll" layoutX="376.0" layoutY="219.0" onAction="#clearFlowers" text="Clear all" />
+                </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>

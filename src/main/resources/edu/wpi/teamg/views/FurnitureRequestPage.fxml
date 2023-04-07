@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ChoiceBox?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FurnitureRequestController">
+    <children>
+        <Rectangle arcHeight="5.0" fill="#f1f1f1" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
+        <Rectangle arcHeight="5.0" fill="#012d5a" height="64.0" layoutY="40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
+        <MFXButton fx:id="backToHomeButton" layoutY="39.0" opacity="0.0" prefHeight="64.0" prefWidth="184.0" text="Return to Home Button" />
+        <MFXButton fx:id="signagePageButton" layoutX="416.0" layoutY="40.0" opacity="0.0" prefHeight="64.0" prefWidth="184.0" text="Signage Page Button" />
+        <MFXButton fx:id="exitButton" layoutX="476.0" layoutY="7.0" opacity="0.0" prefHeight="27.0" prefWidth="97.0" text="Exit Application" />
+        <Line endX="48.0" endY="-163.5" layoutX="139.0" layoutY="215.0" startX="48.0" startY="-120.5" stroke="#345871" strokeWidth="2.0" />
+        <Line endX="48.0" endY="-163.5" layoutX="362.0" layoutY="213.0" startX="48.0" startY="-119.5" stroke="#345871" strokeWidth="2.0" />
+        <Text disable="true" fill="WHITE" layoutX="49.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" />
+        <Text disable="true" fill="WHITE" layoutX="474.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" />
+        <Text disable="true" layoutX="482.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
+        <Text layoutX="197.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Furniture Request Page" />
+        <ChoiceBox fx:id="serviceRequestChoiceBox" layoutX="192.0" layoutY="40.0" opacity="0.0" prefHeight="64.0" prefWidth="214.0" />
+        <Text disable="true" fill="WHITE" layoutX="237.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" />
+    </children>
+</AnchorPane>

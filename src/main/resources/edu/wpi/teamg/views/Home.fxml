@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.HomeController">
+   <children>
+      <HBox alignment="CENTER" styleClass="top_banner" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+         <children>
+            <AnchorPane maxWidth="600.0" minHeight="25.0" prefWidth="600.0">
+               <children>
+                  <Text disable="true" layoutX="504.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
+                  <ImageView fitHeight="67.0" fitWidth="205.0" layoutX="14.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@bwh-logo.png" />
+                     </image>
+                  </ImageView>
+                  <MFXButton fx:id="exitButton" layoutX="496.0" maxHeight="25.0" minHeight="25.0" opacity="0.0" prefHeight="25.0" prefWidth="97.0" text="Exit Application" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="30.0" styleClass="banner" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+         <children>
+            <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="600.0" styleClass="pane_banner_sizing">
+               <children>
+                  <Text disable="true" fill="WHITE" layoutX="35.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Request Status" wrappingWidth="85.107421875" />
+                  <Line endX="48.0" endY="-166.0" layoutX="368.0" layoutY="176.0" startX="48.0" startY="-154.0" stroke="#345871" strokeWidth="2.0" />
+                  <Line endX="48.0" endY="-166.0" layoutX="130.0" layoutY="176.0" startX="48.0" startY="-154.0" stroke="#345871" strokeWidth="2.0" />
+                  <MFXButton fx:id="statusButton" layoutY="5.0" opacity="0.0" prefHeight="30.0" prefWidth="176.0" styleClass="button_banner" text="Return to Home Button" />
+                  <MFXButton fx:id="signagePageButton" layoutX="422.0" maxHeight="30.0" opacity="0.0" prefWidth="176.0" styleClass="button_banner" text="Signage Page Button" />
+                  <Text disable="true" fill="WHITE" layoutX="234.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" />
+                  <Text disable="true" fill="WHITE" layoutX="474.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" />
+                  <ChoiceBox fx:id="serviceRequestChoiceBox" layoutX="177.0" layoutY="2.0" opacity="0.0" prefHeight="30.0" prefWidth="239.0" styleClass="button_banner" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="260.0" prefWidth="600.0" styleClass="homepage" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+         <children>
+            <StackPane minHeight="-Infinity" minWidth="-Infinity">
+               <children>
+                  <AnchorPane prefHeight="260.0" prefWidth="600.0">
+                     <children>
+                        <Text fill="WHITE" layoutX="74.0" layoutY="163.0" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.6" text="Welcome" wrappingWidth="143.57618713378906">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>
