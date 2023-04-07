@@ -34,18 +34,14 @@ public class FurnitureRequestConfirmationController {
   }
 
   public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
+    switch (serviceRequestChoiceBox.getValue()) {
+      case "Meal Request Form" -> Navigation.navigate(Screen.MEAL_REQUEST);
+      case "Furniture Request Form" -> Navigation.navigate(Screen.FURNITURE_REQUEST);
+      case "Conference Request Form" -> Navigation.navigate(Screen.ROOM_REQUEST);
+      case "Flowers Request Form" -> Navigation.navigate(Screen.FLOWERS_REQUEST);
+      case "Office Supplies Request Form" -> Navigation.navigate(Screen.SUPPLIES_REQUEST);
+      default -> {
+      }
     }
   }
 

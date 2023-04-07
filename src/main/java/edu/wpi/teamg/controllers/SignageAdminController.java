@@ -177,23 +177,14 @@ public class SignageAdminController {
 
   public void loadServiceRequestForm() {
     switch (serviceRequestChoiceBox.getValue()) {
-      case "Meal Request Form":
-        Navigation.navigate(Screen.MEAL_REQUEST);
-        break;
-      case "Furniture Request Form":
-        Navigation.navigate(Screen.FURNITURE_REQUEST);
-        break;
-      case "Conference Room Request Form":
-        Navigation.navigate(Screen.ROOM_REQUEST);
-        break;
-      case "Flowers Request Form":
-        Navigation.navigate(Screen.FLOWERS_REQUEST);
-        break;
-      case "Office Supplies Request Form":
-        Navigation.navigate(Screen.SUPPLIES_REQUEST);
-        break;
-      default:
+      case "Meal Request Form" -> Navigation.navigate(Screen.MEAL_REQUEST);
+      case "Furniture Request Form" -> Navigation.navigate(Screen.FURNITURE_REQUEST);
+      case "Conference Room Request Form" -> Navigation.navigate(Screen.ROOM_REQUEST);
+      case "Flowers Request Form" -> Navigation.navigate(Screen.FLOWERS_REQUEST);
+      case "Office Supplies Request Form" -> Navigation.navigate(Screen.SUPPLIES_REQUEST);
+      default -> {
         return;
+      }
     }
   }
 
