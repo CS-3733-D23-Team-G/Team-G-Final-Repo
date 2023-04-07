@@ -31,16 +31,14 @@ public class LocationNameDAO implements LocationDAO {
       System.err.println("SQL exeption");
     }
     while (rs.next()) {
-      LocationName loc = new LocationName();
 
       String longname = rs.getString("longname");
-      loc.setLongName(longname);
 
       String shortname = rs.getString("shortname");
-      loc.setShortName(shortname);
 
       String nodeT = rs.getString("nodetype");
-      loc.setNodeType(nodeT);
+
+      LocationName loc = new LocationName(longname, shortname, nodeT);
 
       Location.put(longname, loc);
     }

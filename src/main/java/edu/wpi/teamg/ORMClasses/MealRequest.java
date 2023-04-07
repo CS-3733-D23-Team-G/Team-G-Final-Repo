@@ -13,6 +13,8 @@ public class MealRequest extends Request {
   @Getter @Setter private String order;
   @Getter @Setter private String note;
 
+  public MealRequest() {}
+
   public MealRequest(
       int empid,
       int location,
@@ -31,7 +33,3 @@ public class MealRequest extends Request {
     this.note = note;
   }
 }
-
-// AL<Request>
-// AL<MealRequest>
-// AL<Request> = AL<MealRequest> + AL<FlowerRequest>

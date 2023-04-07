@@ -106,11 +106,11 @@ public class SignagePageController {
     NodeDAO nodeDAO = new NodeDAO();
     EdgeDAO edgeDAO = new EdgeDAO();
 
-    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodeMap = nodeDAO.getAll();
-    HashMap<String, edu.wpi.teamg.ORMClasses.Edge> edgeMap = edgeDAO.getAll();
+    HashMap<Integer, Node> nodeMap = nodeDAO.getAll();
+    HashMap<String, Edge> edgeMap = edgeDAO.getAll();
 
-    ArrayList<edu.wpi.teamg.ORMClasses.Node> L1nodes = new ArrayList<>(nodeMap.values());
-    ArrayList<edu.wpi.teamg.ORMClasses.Edge> L1edges = new ArrayList<>(edgeMap.values());
+    ArrayList<Node> L1nodes = new ArrayList<>(nodeMap.values());
+    ArrayList<Edge> L1edges = new ArrayList<>(edgeMap.values());
 
     ArrayList<Node> L1NodeFinal = new ArrayList<>();
     ArrayList<Edge> L1EdgeFinal = new ArrayList<>();
@@ -138,12 +138,11 @@ public class SignagePageController {
 
       if ((nodeMap.get(L1edges.get(i).getStartNode())).getFloor().equals("L1")
           && ((nodeMap.get(L1edges.get(i).getEndNode())).getFloor().equals("L1"))) {
-        edu.wpi.teamg.ORMClasses.Node currentS = new edu.wpi.teamg.ORMClasses.Node();
-        edu.wpi.teamg.ORMClasses.Node currentE = new edu.wpi.teamg.ORMClasses.Node();
+        Node currentS = new Node();
+        Node currentE = new Node();
         currentS = nodeMap.get(L1edges.get(i).getStartNode());
         currentE = nodeMap.get(L1edges.get(i).getEndNode());
-        L1EdgeFinal.add(
-            new Edge(currentS.getNodeID(), currentE.getNodeID(), L1edges.get(i).getEdgeID()));
+        L1EdgeFinal.add(new Edge(currentS.getNodeID(), currentE.getNodeID()));
       }
       /*
       CONDITIONALS FOR CONNECTING FLOORS

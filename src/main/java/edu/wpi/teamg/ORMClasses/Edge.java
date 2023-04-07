@@ -11,10 +11,9 @@ public class Edge {
 
   public Edge() {}
 
-  public Edge(int startNode, int endNode, String edgeID) {
+  public Edge(int startNode, int endNode) {
     this.startNode = startNode;
     this.endNode = endNode;
-    this.edgeID = edgeID;
   }
 
   public int distance(Node A, Node B) {

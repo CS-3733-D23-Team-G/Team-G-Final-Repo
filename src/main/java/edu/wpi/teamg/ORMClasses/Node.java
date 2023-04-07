@@ -20,8 +20,4 @@ public class Node extends LocationName {
     this.floor = floor;
     this.building = building;
   }
-
-  public String getFloor() {
-    return floor;
-  }
 }

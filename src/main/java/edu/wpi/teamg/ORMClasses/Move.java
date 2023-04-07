@@ -9,11 +9,11 @@ public class Move extends Node {
   @Getter @Setter public String longName;
   @Getter @Setter public Date date;
 
+  public Move() {}
+
   public Move(int nodeID, String longName, Date date) {
     this.nodeID = nodeID;
     this.longName = longName;
     this.date = date;
   }
-
-  public Move() {}
 }
