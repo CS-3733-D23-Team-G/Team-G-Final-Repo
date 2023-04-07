@@ -10,28 +10,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane prefWidth="600.0" style="-fx-background-color: #F1F1F1;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.ConRoomRequestController">
-   <center>
-      <VBox>
-         <children>
-            <HBox prefHeight="260.0" prefWidth="600.0" stylesheets="@style.css">
-               <children>
-                  <AnchorPane prefHeight="260.0" prefWidth="600.0" style="-fx-background-color: #696969;">
-                     <children>
-                        <MFXDatePicker fx:id="datePicker" layoutX="7.0" layoutY="14.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="14.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </center>
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -87,4 +70,11 @@
          </children>
       </AnchorPane>
    </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <MFXDatePicker fx:id="datePicker" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>
