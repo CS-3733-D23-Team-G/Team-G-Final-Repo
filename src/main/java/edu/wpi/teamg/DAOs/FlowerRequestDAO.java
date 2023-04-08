@@ -68,4 +68,9 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public void delete(Object obj) throws SQLException {}
+
+  @Override
+  public String getTable() {
+    return null;
+  }
 }

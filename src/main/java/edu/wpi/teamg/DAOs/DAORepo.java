@@ -98,22 +98,6 @@ public class DAORepo {
     mealRequestDao.delete(obj);
   }
 
-  public void importNodeCSV(String path) throws SQLException {
-    nodeDao.importCSV(path);
-  }
-
-  public void importMoveCSV(String path) throws SQLException {
-    moveDao.importCSV(path);
-  }
-
-  public void importLocationNameCSV(String path) throws SQLException {
-    locationNameDao.importCSV(path);
-  }
-
-  public void importEdgeCSV(String path) throws SQLException {
-    edgeDao.importCSV(path);
-  }
-
   public void exportNodeCSV() throws SQLException {
     nodeDao.exportCSV();
   }

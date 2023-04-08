@@ -30,10 +30,8 @@ public class ConferenceRoomRequestDAO implements DAO {
     ResultSet rs = null;
 
     SQL_confRoomRequest =
-
         "select * from teamgdb.iteration1.request join teamgdb.iteration1.conferenceroomrequest "
             + "on teamgdb.iteration1.request.reqid = teamgdb.iteration1.conferenceroomrequest.reqid";
-
 
     try {
       ps = db.getConnection().prepareStatement(SQL_confRoomRequest);

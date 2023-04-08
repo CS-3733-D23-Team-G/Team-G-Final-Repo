@@ -11,23 +11,19 @@ import javafx.scene.control.ChoiceBox;
 
 public class HomeController {
 
-  @FXML
-  MFXButton signagePageButton;
-  @FXML
-  MFXButton exitButton;
+  @FXML MFXButton signagePageButton;
+  @FXML MFXButton exitButton;
 
-  @FXML
-  MFXButton statusButton;
-  @FXML
-  ChoiceBox<String> serviceRequestChoiceBox;
+  @FXML MFXButton statusButton;
+  @FXML ChoiceBox<String> serviceRequestChoiceBox;
 
   ObservableList<String> list =
-          FXCollections.observableArrayList(
-                  "Conference Room Request Form",
-                  "Flowers Request Form",
-                  "Furniture Request Form",
-                  "Meal Request Form",
-                  "Office Supplies Request Form");
+      FXCollections.observableArrayList(
+          "Conference Room Request Form",
+          "Flowers Request Form",
+          "Furniture Request Form",
+          "Meal Request Form",
+          "Office Supplies Request Form");
 
   @FXML
   public void initialize() {

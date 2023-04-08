@@ -98,12 +98,9 @@ public class EdgeDAO implements LocationDAO {
   }
 
   @Override
-
   public String getTable() {
     return "teamgdb.iteration1.edge";
-
   }
-
 
   @Override
   public void exportCSV() throws SQLException {

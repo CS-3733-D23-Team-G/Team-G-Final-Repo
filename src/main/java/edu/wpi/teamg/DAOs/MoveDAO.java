@@ -20,9 +20,7 @@ public class MoveDAO implements LocationMoveDao {
     PreparedStatement ps;
     ResultSet rs = null;
 
-
     sql = "select * from teamgdb.iteration1.move";
-
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -55,7 +53,6 @@ public class MoveDAO implements LocationMoveDao {
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
     sql = "UPDATE teamgdb.iteration1.move set nodeID = ?, longName = ?, date = ?";
-
 
     try {
       ps.setInt(1, move.getNodeID());

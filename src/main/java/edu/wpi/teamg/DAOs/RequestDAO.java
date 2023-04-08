@@ -19,9 +19,7 @@ public class RequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
-
     sql = "select * from teamgdb.iteration1.request";
-
 
     try {
       ps = db.getConnection().prepareStatement(sql);
