@@ -13,9 +13,9 @@ public class LocationName {
 
   public LocationName() {}
 
-  public LocationName(String lo, String sho, String nodetype) {
-    this.longName = lo;
-    this.shortName = sho;
-    this.nodeType = nodetype;
+  public LocationName(String longName, String shortName, String nodeType) {
+    this.longName = longName;
+    this.shortName = shortName;
+    this.nodeType = nodeType;
   }
 }

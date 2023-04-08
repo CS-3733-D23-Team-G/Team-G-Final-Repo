@@ -19,7 +19,9 @@ public class RequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
+
     sql = "select * from teamgdb.iteration1.request";
+
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -30,20 +32,17 @@ public class RequestDAO implements DAO {
     }
 
     while (rs.next()) {
-      Request cReq = new Request();
 
       int reqID = rs.getInt("reqid");
       int empID = rs.getInt("empid");
       int location = rs.getInt("location");
       int serv_by = rs.getInt("serv_by");
+      Date deliveryDate = rs.getDate("deliveryDate");
+      Time deliverytime = rs.getTime("deliveryTime");
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
 
+      Request cReq = new Request(empID, location, serv_by, status, deliveryDate, deliverytime);
       cReq.setReqid(reqID);
-      cReq.setLocation(location);
-      cReq.setEmpid(empID);
-      cReq.setServ_by(serv_by);
-
-      cReq.setStatus(status);
 
       requestHash.put(reqID, cReq);
     }

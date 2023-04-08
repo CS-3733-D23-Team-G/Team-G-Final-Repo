@@ -15,6 +15,8 @@ public class NodeDAO implements LocationDAO {
   private HashMap<Integer, Node> Nodes = new HashMap<>();
 
   @Override
+
+
   public void exportCSV() throws SQLException {
     db.setConnection();
     ResultSet rs = null;
@@ -67,6 +69,7 @@ public class NodeDAO implements LocationDAO {
     db.setConnection();
 
     PreparedStatement ps;
+
     SQL = "insert into teamgdb.iteration1.node(nodeid, xcoord, ycoord, floor, building) values (?, ?, ?, ?, ?)";
 
     try {
@@ -97,7 +100,9 @@ public class NodeDAO implements LocationDAO {
 
     PreparedStatement ps;
 
+
     SQL = "delete from teamgdb.iteration1.node where nodeid = ?";
+
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -126,7 +131,9 @@ public class NodeDAO implements LocationDAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
+
     SQL = "select * from teamgdb.iteration1.node";
+
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -137,22 +144,14 @@ public class NodeDAO implements LocationDAO {
     }
 
     while (rs.next()) {
-      Node node = new Node();
 
       int node_id = rs.getInt("nodeid");
-      node.setNodeID(node_id);
-
       int xcoord = rs.getInt("xcoord");
-      node.setXcoord(xcoord);
-
       int ycoord = rs.getInt("ycoord");
-      node.setYcoord(ycoord);
-
       String floor = rs.getString("floor");
-      node.setFloor(floor);
-
       String building = rs.getString("building");
-      node.setBuilding(building);
+
+      Node node = new Node(node_id, xcoord, ycoord, floor, building);
 
       nodeHash.put(node.getNodeID(), node);
     }

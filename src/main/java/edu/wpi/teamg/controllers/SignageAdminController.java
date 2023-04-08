@@ -16,7 +16,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
+import javafx.util.converter.IntegerStringConverter;
 
 public class SignageAdminController {
 
@@ -43,14 +45,10 @@ public class SignageAdminController {
   @FXML
   ChoiceBox<String> exportDrop;
 
-  @FXML
-  Button imp;
-  // @FXML MFXButton export;
 
-  @FXML
-  Button nodes;
-  @FXML
-  Button edges;
+  @FXML Button nodes;
+  @FXML Button edges;
+
 
   @FXML
   Button nodeLoc;
@@ -79,12 +77,11 @@ public class SignageAdminController {
   TableColumn<Node, String> nodeBuilding;
 
   // Edges
-  @FXML
-  TableColumn<Edge, String> edgeEdgeID;
-  @FXML
-  TableColumn<Edge, Integer> edgeEndNode;
-  @FXML
-  TableColumn<Edge, Integer> edgeStartNode;
+
+  @FXML TableColumn<Edge, String> edgeEdgeID;
+  @FXML TableColumn<Edge, Integer> edgeStartNode;
+  @FXML TableColumn<Edge, Integer> edgeEndNode;
+
 
   // Move
 
@@ -103,6 +100,9 @@ public class SignageAdminController {
   TableColumn<LocationName, Integer> locShortName;
   @FXML
   TableColumn<LocationName, Integer> locNodeType;
+
+  @FXML MFXButton edit;
+  @FXML MFXButton cancel;
 
   ObservableList<String> list =
           FXCollections.observableArrayList(
@@ -126,6 +126,8 @@ public class SignageAdminController {
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
     backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     exitButton.setOnMouseClicked(event -> exit());
+    cancel.setOnMouseClicked(event -> cancelTable());
+    edit.setOnMouseClicked(event -> editTable());
 
     // importButton.setOnAction(event -> fileChooser());
 
@@ -280,6 +282,8 @@ public class SignageAdminController {
                     "Office Supplies Request Form");
   */
 
+  DAORepo dao = new DAORepo();
+
   @FXML
   void fileChooser() throws SQLException {
     switch (importDrop.getValue()) {
@@ -318,20 +322,16 @@ public class SignageAdminController {
   void fileExporter() throws SQLException {
     switch (exportDrop.getValue()) {
       case "Nodes":
-        NodeDAO nodeDao = new NodeDAO();
-        nodeDao.exportCSV();
+        dao.exportNodeCSV();
         break;
       case "Edges":
-        EdgeDAO edgeDao = new EdgeDAO();
-        edgeDao.exportCSV();
+        dao.exportEdgeCSV();
         break;
       case "LocationName":
-        LocationNameDAO lNameDao = new LocationNameDAO();
-        lNameDao.exportCSV();
+        dao.exportLocationNameCSV();
         break;
       case "Moves":
-        MoveDAO moveDao = new MoveDAO();
-        moveDao.exportCSV();
+        dao.exportMoveCSV();
       default:
         break;
     }
@@ -366,8 +366,7 @@ public class SignageAdminController {
   }
 
   public ArrayList<Node> getNodes() throws SQLException {
-    NodeDAO nodeDAO = new NodeDAO();
-    HashMap<Integer, Node> nodes = nodeDAO.getAll();
+    HashMap<Integer, Node> nodes = dao.getAllNodes();
 
     ArrayList<Node> nodesList = new ArrayList<>(nodes.values());
 
@@ -375,8 +374,8 @@ public class SignageAdminController {
   }
 
   public ArrayList<edu.wpi.teamg.ORMClasses.Edge> getEdge() throws SQLException {
-    EdgeDAO edgeDAO = new EdgeDAO();
-    HashMap<String, Edge> edge = edgeDAO.getAll();
+
+    HashMap<String, Edge> edge = dao.getAllEdges();
 
     ArrayList<Edge> edgeList = new ArrayList<>(edge.values());
 
@@ -384,8 +383,7 @@ public class SignageAdminController {
   }
 
   public ArrayList<Move> getMove() throws SQLException {
-    MoveDAO moveDAO = new MoveDAO();
-    List<Move> moveL = moveDAO.getAll();
+    List<Move> moveL = dao.getAllMoves();
 
     ArrayList<Move> moveAl = (ArrayList<Move>) moveL;
 
@@ -393,8 +391,8 @@ public class SignageAdminController {
   }
 
   public ArrayList<LocationName> getLoc() throws SQLException {
-    LocationNameDAO locationNameDAO = new LocationNameDAO();
-    HashMap<String, LocationName> locNames = locationNameDAO.getAll();
+
+    HashMap<String, LocationName> locNames = dao.getAllLocationNames();
 
     ArrayList<LocationName> locList = new ArrayList<>(locNames.values());
 
@@ -407,6 +405,45 @@ public class SignageAdminController {
   }
 
    */
+
+  public void cancelTable() {
+    nodeTable.setEditable(false);
+  }
+
+  public void editTable() {
+    nodeTable.setEditable(true);
+
+    nodeNodeID.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    nodeNodeID.setOnEditCommit(
+        event -> {
+          Node obj = event.getRowValue();
+          obj.setNodeID(event.getNewValue());
+        });
+    nodeXcoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    nodeXcoord.setOnEditCommit(
+        event -> {
+          Node obj = event.getRowValue();
+          obj.setXcoord(event.getNewValue());
+        });
+    nodeYcoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    nodeYcoord.setOnEditCommit(
+        event -> {
+          Node obj = event.getRowValue();
+          obj.setYcoord(event.getNewValue());
+        });
+    nodeFloor.setCellFactory(TextFieldTableCell.forTableColumn());
+    nodeFloor.setOnEditCommit(
+        event -> {
+          Node obj = event.getRowValue();
+          obj.setFloor(event.getNewValue());
+        });
+    nodeBuilding.setCellFactory(TextFieldTableCell.forTableColumn());
+    nodeBuilding.setOnEditCommit(
+        event -> {
+          Node obj = event.getRowValue();
+          obj.setBuilding(event.getNewValue());
+        });
+  }
 
   public void exit() {
     Platform.exit();

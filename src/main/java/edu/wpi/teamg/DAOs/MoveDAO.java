@@ -20,7 +20,9 @@ public class MoveDAO implements LocationMoveDao {
     PreparedStatement ps;
     ResultSet rs = null;
 
+
     sql = "select * from teamgdb.iteration1.move";
+
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -33,16 +35,12 @@ public class MoveDAO implements LocationMoveDao {
     List<Move> moves = new ArrayList<Move>();
 
     while (rs.next()) {
-      Move move = new Move();
 
       int node_id = rs.getInt("nodeid");
-      move.setNodeID(node_id);
-
       String longname = rs.getString("longname");
-      move.setLongName(longname);
-
       Date date = rs.getDate("date");
-      move.setDate(date);
+
+      Move move = new Move(node_id, longname, date);
 
       moves.add(move);
     }
@@ -55,7 +53,9 @@ public class MoveDAO implements LocationMoveDao {
     Move move = (Move) obj;
     db.setConnection();
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
+
     sql = "UPDATE teamgdb.iteration1.move set nodeID = ?, longName = ?, date = ?";
+
 
     try {
       ps.setInt(1, move.getNodeID());
@@ -72,7 +72,9 @@ public class MoveDAO implements LocationMoveDao {
   public void insert(Object obj) throws SQLException {
     Move move = (Move) obj;
     db.setConnection();
+
     sql = "INSERT INTO teamgdb.iteration1.move (nodeid, longname, date) VALUES (?,?,?);";
+
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
     try {
@@ -92,7 +94,9 @@ public class MoveDAO implements LocationMoveDao {
     Move move = (Move) obj;
     db.setConnection();
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
+
     sql = "DELETE FROM teamgdb.iteration1.move WHERE nodeID = ?";
+
     try {
       ps.setInt(1, move.getNodeID());
     } catch (SQLException e) {

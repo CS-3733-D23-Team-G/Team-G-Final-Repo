@@ -1,6 +1,6 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.DAOs.MealRequestDAO;
+import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
@@ -93,39 +93,50 @@ public class MealRequestController {
   }
 
   public void storeMealValues() throws SQLException {
-    MealRequest mr = new MealRequest();
+    MealRequest mr =
+        new MealRequest(
+            1,
+            // assume for now they are going to input a node number, so parseInt
+            Integer.parseInt(mealDeliveryLocationData.getText()),
+            1,
+            StatusTypeEnum.blank,
+            Date.valueOf(mealDate.getValue()),
+            StringToTime(mealTimeOfDeliver.getText()),
+            mealPersonOrderingForData.getText(),
+            mealFoodChoice.getValue(),
+            mealNotesData.getText());
 
-    mr.setEmpid(1);
-    mr.setServ_by(1);
-    mr.setStatus(StatusTypeEnum.blank);
-    // assume for now they are going to input a node number, so parseInt
-    mr.setLocation(Integer.parseInt(mealDeliveryLocationData.getText()));
-    mr.setRecipient(mealPersonOrderingForData.getText());
-    mr.setNote(mealNotesData.getText());
-    mr.setDeliveryDate(Date.valueOf(mealDate.getValue()));
-    mr.setDeliveryTime(StringToTime(mealTimeOfDeliver.getText()));
-    mr.setOrder(mealFoodChoice.getValue());
+    //    mr.setEmpid(1);
+    //    mr.setServ_by(1);
+    //    mr.setStatus(StatusTypeEnum.blank);
+    //
+    //    mr.setLocation(Integer.parseInt(mealDeliveryLocationData.getText()));
+    //    mr.setRecipient(mealPersonOrderingForData.getText());
+    //    mr.setNote(mealNotesData.getText());
+    //    mr.setDeliveryDate(Date.valueOf(mealDate.getValue()));
+    //    mr.setDeliveryTime(StringToTime(mealTimeOfDeliver.getText()));
+    //    mr.setOrder(mealFoodChoice.getValue());
 
-    System.out.println(
-        "Employee ID: "
-            + mr.getEmpid()
-            + "\nDelivery Location: "
-            + mr.getLocation()
-            + "\nOrder: "
-            + mr.getOrder()
-            + "\nNote: "
-            + mr.getNote()
-            + "\nRecipient: "
-            + mr.getRecipient()
-            + "\nDelivery Date: "
-            + mr.getDeliveryDate()
-            + "\nDelivery Time: "
-            + mr.getDeliveryTime()
-            + "\nStatus: "
-            + mr.getStatus());
+    //    System.out.println(
+    //        "Employee ID: "
+    //            + mr.getEmpid()
+    //            + "\nDelivery Location: "
+    //            + mr.getLocation()
+    //            + "\nOrder: "
+    //            + mr.getOrder()
+    //            + "\nNote: "
+    //            + mr.getNote()
+    //            + "\nRecipient: "
+    //            + mr.getRecipient()
+    //            + "\nDelivery Date: "
+    //            + mr.getDeliveryDate()
+    //            + "\nDelivery Time: "
+    //            + mr.getDeliveryTime()
+    //            + "\nStatus: "
+    //            + mr.getStatus());
 
-    MealRequestDAO mealRequestDAO = new MealRequestDAO();
-    mealRequestDAO.insert(mr);
+    DAORepo dao = new DAORepo();
+    dao.insertMealRequest(mr);
   }
 
   public Time StringToTime(String s) {
