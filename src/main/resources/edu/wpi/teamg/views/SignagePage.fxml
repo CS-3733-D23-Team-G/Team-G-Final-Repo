@@ -2,12 +2,14 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
@@ -46,11 +48,17 @@
             </AnchorPane>
          </children>
       </HBox>
-      <HBox alignment="BOTTOM_CENTER" style="-fx-background-color: #f1f1f1;" VBox.vgrow="ALWAYS">
+      <HBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
          <children>
-            <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f1f1f1;">
+            <AnchorPane prefHeight="400.0" prefWidth="600.0">
                 <children>
-                  <GesturePane fx:id="pane" layoutX="280.0" layoutY="55.0" prefHeight="566.0" prefWidth="832.0" />
+                    <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" layoutX="230.0" layoutY="56.0" prefHeight="403.0" prefWidth="851.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="56.0">
+                        <Group fx:id="group">
+                            <Pane fx:id="nodePane" />
+                        </Group>
+                    </GesturePane>
+
+
                   <MFXTextField fx:id="startLoc" layoutX="28.0" layoutY="49.0" maxHeight="45.0" minHeight="30.0" prefHeight="30.0" prefWidth="167.0" />
                   <Text layoutX="28.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Starting Location:" />
                     <TextArea editable="false" layoutX="46.0" layoutY="382.0" prefHeight="77.0" prefWidth="131.0" text="&lt;-- Information Desk&#10;&lt;-- Emergency Room&#10;--&gt; Ultrasound Labs&#10;--&gt; Restrooms" />

@@ -70,6 +70,8 @@
             <ChoiceBox fx:id="exportDrop" layoutX="19.0" layoutY="223.0" prefHeight="26.0" prefWidth="75.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="200.0" />
             <Text layoutX="47.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import" AnchorPane.leftAnchor="46.853515625" AnchorPane.rightAnchor="47.146484375" AnchorPane.topAnchor="133.0" />
             <Text layoutX="48.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Export" AnchorPane.leftAnchor="46.853515625" AnchorPane.rightAnchor="49.244140625" AnchorPane.topAnchor="183.0" />
+            <MFXButton fx:id="cancel" layoutX="65.0" layoutY="238.0" text="Cancel" />
+            <MFXButton fx:id="edit" layoutX="15.0" layoutY="238.0" text="Edit" />
          </children>
       </AnchorPane>
    </left>
