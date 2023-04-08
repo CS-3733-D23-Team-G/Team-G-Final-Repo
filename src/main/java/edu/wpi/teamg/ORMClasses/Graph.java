@@ -1,12 +1,12 @@
-package edu.wpi.teamg.pathFinding;
+package edu.wpi.teamg.ORMClasses;
 
 import java.util.ArrayList;
 
 public class Graph {
-  private Node[] V;
-  private Edge[] E;
+  private edu.wpi.teamg.ORMClasses.Node[] V;
+  private edu.wpi.teamg.ORMClasses.Edge[] E;
 
-  public Graph(Node[] N, Edge[] ed) {
+  public Graph(edu.wpi.teamg.ORMClasses.Node[] N, Edge[] ed) {
     V = N;
     E = ed;
   }
@@ -21,26 +21,26 @@ public class Graph {
     }
     // this will connect the nodes to edges
     for (int i = 0; i < E.length; i++) { // i is number of rows
-      // we will get the frist edge out of the Edge[] array and
+      // we will get the first edge out of the Edge[] array and
       // get the start and end nodes from it.
-      Node start = E[i].getStartNode();
-      Node end = E[i].getEndNode();
+      int start = E[i].getStartNode();
+      int end = E[i].getEndNode();
       int vertice_numS = 0;
       int vertice_numE = 0;
       // then we will find where the nodes are in the Node[] array and save the int value
       for (int j = 0; j < V.length; j++) {
-        if ((Integer.parseInt(V[j].getNodeID())) == (Integer.parseInt(start.getNodeID()))) {
+        if (V[j].getNodeID() == start) {
           vertice_numS = j;
         }
-        if ((Integer.parseInt(V[j].getNodeID())) == (Integer.parseInt(end.getNodeID()))) {
+        if (V[j].getNodeID() == end) {
           vertice_numE = j;
         }
       }
       // we then calulate the distance between the two nodes and put it in the A1[][] array
       // since the adj matrix is sysmetric the number in the row x colum and colum x row will be the
       // same.
-      A1[vertice_numS][vertice_numE] = E[i].distance(start, end);
-      A1[vertice_numE][vertice_numS] = E[i].distance(end, start);
+      A1[vertice_numS][vertice_numE] = E[i].distance(V[vertice_numS], V[vertice_numE]);
+      A1[vertice_numE][vertice_numS] = E[i].distance(V[vertice_numE], V[vertice_numS]);
     }
     return A1;
   }
@@ -139,6 +139,6 @@ public class Graph {
     }
     printPath(parent[current], parent, start, s);
     // System.out.print(V[current].getNodeID() + " ");
-    s.add(V[current].getNodeID());
+    s.add(Integer.toString(V[current].getNodeID()));
   }
 }

@@ -22,7 +22,7 @@ public class LocationNameDAO implements LocationDAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    SQL = "select * from teamgdb.proto2.locationname";
+    SQL = "select * from teamgdb.iteration1.locationname";
 
     try {
       ps = connection.getConnection().prepareStatement(SQL);
@@ -31,16 +31,14 @@ public class LocationNameDAO implements LocationDAO {
       System.err.println("SQL exeption");
     }
     while (rs.next()) {
-      LocationName loc = new LocationName();
 
       String longname = rs.getString("longname");
-      loc.setLongName(longname);
 
       String shortname = rs.getString("shortname");
-      loc.setShortName(shortname);
 
       String nodeT = rs.getString("nodetype");
-      loc.setNodeType(nodeT);
+
+      LocationName loc = new LocationName(longname, shortname, nodeT);
 
       Location.put(longname, loc);
     }
@@ -55,7 +53,7 @@ public class LocationNameDAO implements LocationDAO {
     connection.setConnection();
     PreparedStatement ps;
     SQL =
-        "UPDATE proto2.locationname SET shortname=?, nodetype=?, longname=? Where longname=? AND shortname=? AND nodetype=? ";
+        "UPDATE iteration1.locationname SET shortname=?, nodetype=?, longname=? Where longname=? AND shortname=? AND nodetype=? ";
     LocationName ol = (LocationName) old;
     LocationName up = (LocationName) update;
     try {
@@ -80,7 +78,8 @@ public class LocationNameDAO implements LocationDAO {
     connection.setConnection();
     PreparedStatement ps;
     LocationName l1 = (LocationName) obj;
-    SQL = "INSERT INTO teamgdb.proto2.locationname (longname, shortname, nodetype) VALUES (?,?,?)";
+    SQL =
+        "INSERT INTO teamgdb.iteration1.locationname (longname, shortname, nodetype) VALUES (?,?,?)";
 
     try {
       ps = connection.getConnection().prepareStatement(SQL);
@@ -101,7 +100,7 @@ public class LocationNameDAO implements LocationDAO {
     connection.setConnection();
     PreparedStatement ps;
     LocationName l1 = (LocationName) obj;
-    SQL = "DELETE FROM proto2.locationname WHERE longname=? OR shortname=?";
+    SQL = "DELETE FROM iteration1.locationname WHERE longname=? OR shortname=?";
 
     try {
       ps = connection.getConnection().prepareStatement(SQL);
@@ -121,7 +120,8 @@ public class LocationNameDAO implements LocationDAO {
     connection.setConnection();
 
     try {
-      SQL = "insert into teamgdb.proto2.locationname (longname,shortname,nodetype) values (?,?,?)";
+      SQL =
+          "insert into teamgdb.iteration1.locationname (longname,shortname,nodetype) values (?,?,?)";
       PreparedStatement ps = connection.getConnection().prepareStatement(SQL);
 
       BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -166,7 +166,7 @@ public class LocationNameDAO implements LocationDAO {
 
     try {
       Statement statement = connection.getConnection().createStatement();
-      rs = statement.executeQuery("select * from teamgdb.proto2.locationname");
+      rs = statement.executeQuery("select * from teamgdb.iteration1.locationname");
 
       JFileChooser chooser = new JFileChooser();
       FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", ".csv");

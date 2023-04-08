@@ -21,7 +21,7 @@ public class EdgeDAO implements LocationDAO {
     connection.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
-    sql = "Select * from teamgdb.proto2.edge";
+    sql = "Select * from teamgdb.iteration1.edge";
 
     try {
       ps = connection.getConnection().prepareStatement(sql);
@@ -31,15 +31,13 @@ public class EdgeDAO implements LocationDAO {
     }
 
     while (rs.next()) {
-      Edge edge = new Edge();
 
       int startNode = rs.getInt("startnode");
-      edge.setStartNode(startNode);
-
       int endNode = rs.getInt("endnode");
-      edge.setEndNode(endNode);
 
       String edgeID = startNode + "_" + endNode;
+
+      Edge edge = new Edge(startNode, endNode);
 
       edge.setEdgeID(edgeID);
 
@@ -65,7 +63,7 @@ public class EdgeDAO implements LocationDAO {
   public void insert(Object obj) throws SQLException {
     connection.setConnection();
     sql = "";
-    sql = "INSERT INTO teamgdb.proto2.edge (startnode, endnode) VALUES (?,?)";
+    sql = "INSERT INTO teamgdb.iteration1.edge (startnode, endnode) VALUES (?,?)";
     PreparedStatement ps;
     try {
       ps = connection.getConnection().prepareStatement(sql);
@@ -85,7 +83,7 @@ public class EdgeDAO implements LocationDAO {
   public void delete(Object obj) throws SQLException {
     connection.setConnection();
     sql = "";
-    sql = "DELETE FROM teamgdb.proto2.edge WHERE startnode = ? AND endnode = ?";
+    sql = "DELETE FROM teamgdb.iteration1.edge WHERE startnode = ? AND endnode = ?";
     PreparedStatement ps = connection.getConnection().prepareStatement(sql);
     try {
       ps.setInt(1, ((Edge) obj).getStartNode());
@@ -103,7 +101,7 @@ public class EdgeDAO implements LocationDAO {
   public void importCSV(String filename) throws SQLException {
     connection.setConnection();
     sql = "";
-    sql = "insert into teamgdb.proto2.edge (startnode, endnode) values (?,?)";
+    sql = "insert into teamgdb.iteration1.edge (startnode, endnode) values (?,?)";
     PreparedStatement ps = connection.getConnection().prepareStatement(sql);
     try {
       BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -145,7 +143,7 @@ public class EdgeDAO implements LocationDAO {
 
     try {
       Statement statement = connection.getConnection().createStatement();
-      rs = statement.executeQuery("select * from teamgdb.proto2.edge");
+      rs = statement.executeQuery("select * from teamgdb.iteration1.edge");
 
       JFileChooser chooser = new JFileChooser();
       FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", ".csv");

@@ -24,7 +24,7 @@ public class MealRequestDAO implements DAO {
     ResultSet rs = null;
 
     SQL_mealRequest =
-        "select * from proto2.request join proto2.mealrequest on proto2.request.reqid = proto2.mealrequest.reqid";
+        "select * from iteration1.request join iteration1.mealrequest on iteration1.request.reqid = iteration1.mealrequest.reqid";
 
     try {
       ps = db.getConnection().prepareStatement(SQL_mealRequest);
@@ -36,38 +36,22 @@ public class MealRequestDAO implements DAO {
     }
 
     while (rs.next()) {
-      MealRequest mealReq = new MealRequest();
 
       int reqID = rs.getInt("reqID");
-      mealReq.setReqid(reqID);
-
       int empID = rs.getInt("empID");
-      mealReq.setEmpid(empID);
-
       int location = rs.getInt("location");
-      mealReq.setLocation(location);
-
       int serv_by = rs.getInt("serv_by");
-      mealReq.setServ_by(serv_by);
-
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
-
-      mealReq.setStatus(status);
-
       String recipient = rs.getString("recipient");
-      mealReq.setRecipient(recipient);
-
       Date deliveryDate = rs.getDate("deliveryDate");
-      mealReq.setDeliveryDate(deliveryDate);
-
       Time deliveryTime = rs.getTime("deliveryTime");
-      mealReq.setDeliveryTime(deliveryTime);
-
       String order = rs.getString("mealOrder");
-      mealReq.setOrder(order);
-
       String note = rs.getString("note");
-      mealReq.setNote(note); // check when merge
+      MealRequest mealReq =
+          new MealRequest(
+              empID, location, serv_by, status, deliveryDate, deliveryTime, recipient, order, note);
+
+      mealReq.setReqid(reqID);
 
       mealRequestHash.put(reqID, mealReq);
     }
@@ -90,7 +74,7 @@ public class MealRequestDAO implements DAO {
 
     ResultSet rs = null;
 
-    SQL_maxID = "select reqID from proto2.request order by reqid desc limit 1";
+    SQL_maxID = "select reqID from iteration1.request order by reqid desc limit 1";
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -109,9 +93,9 @@ public class MealRequestDAO implements DAO {
     }
 
     SQL_mealRequest =
-        "insert into proto2.mealrequest(reqid, deliverydate, deliverytime, recipient, mealOrder, note) values (?, ?, ?, ?, ?, ?)";
+        "insert into iteration1.mealrequest(reqid, deliverydate, deliverytime, recipient, mealOrder, note) values (?, ?, ?, ?, ?, ?)";
     SQL_Request =
-        "insert into proto2.request(reqid, empid, location, serv_by, status) values (?, ?, ?, ?, ?)";
+        "insert into iteration1.request(reqid, empid, location, serv_by, status) values (?, ?, ?, ?, ?)";
 
     try {
 
@@ -150,8 +134,8 @@ public class MealRequestDAO implements DAO {
     PreparedStatement ps_mealrequest;
     PreparedStatement ps_request;
 
-    String SQL_mealrequest = "delete from proto2.mealrequest where reqId = ?";
-    String SQL_request = "delete from proto2.request where reqId = ?";
+    String SQL_mealrequest = "delete from iteration1.mealrequest where reqId = ?";
+    String SQL_request = "delete from iteration1.request where reqId = ?";
 
     try {
       ps_mealrequest = db.getConnection().prepareStatement(SQL_mealrequest);
