@@ -92,8 +92,7 @@ public class ConRoomRequestController {
 
   public void storeRoomValues() {
 
-
-    ConferenceRoomRequestDAO conRoomDao = new ConferenceRoomRequestDAO();
+    DAORepo dao = new DAORepo();
     ConferenceRoomRequest conRoom =
         new ConferenceRoomRequest(
             1,
