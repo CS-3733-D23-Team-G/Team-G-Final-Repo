@@ -102,9 +102,6 @@ create table iteration1.FlowerRequest(
 );
 
 
-
-);
-
 INSERT INTO iteration1.Employee (empID, firstName, lastName, email, can_serve)
 VALUES
     (1, 'John', 'Doe', 'johndoe@example.com', 'Coffee'),
