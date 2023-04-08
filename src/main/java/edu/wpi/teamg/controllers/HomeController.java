@@ -11,19 +11,23 @@ import javafx.scene.control.ChoiceBox;
 
 public class HomeController {
 
-  @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
+  @FXML
+  MFXButton signagePageButton;
+  @FXML
+  MFXButton exitButton;
 
-  @FXML MFXButton statusButton;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
+  @FXML
+  MFXButton statusButton;
+  @FXML
+  ChoiceBox<String> serviceRequestChoiceBox;
 
   ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
+          FXCollections.observableArrayList(
+                  "Conference Room Request Form",
+                  "Flowers Request Form",
+                  "Furniture Request Form",
+                  "Meal Request Form",
+                  "Office Supplies Request Form");
 
   @FXML
   public void initialize() {
@@ -40,14 +44,18 @@ public class HomeController {
   }
 
   public void loadServiceRequestForm() {
-    switch (serviceRequestChoiceBox.getValue()) {
-      case "Meal Request Form" -> Navigation.navigate(Screen.MEAL_REQUEST);
-      case "Furniture Request Form" -> Navigation.navigate(Screen.FURNITURE_REQUEST);
-      case "Conference Request Form" -> Navigation.navigate(Screen.ROOM_REQUEST);
-      case "Flowers Request Form" -> Navigation.navigate(Screen.FLOWERS_REQUEST);
-      case "Office Supplies Request Form" -> Navigation.navigate(Screen.SUPPLIES_REQUEST);
-      default -> {
-      }
+    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
+      Navigation.navigate(Screen.MEAL_REQUEST);
+    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
+      Navigation.navigate(Screen.FURNITURE_REQUEST);
+    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
+      Navigation.navigate(Screen.ROOM_REQUEST);
+    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
+      Navigation.navigate(Screen.FLOWERS_REQUEST);
+    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
+      Navigation.navigate(Screen.SUPPLIES_REQUEST);
+    } else {
+      return;
     }
   }
 }

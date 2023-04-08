@@ -39,7 +39,7 @@ public class ExampleController {
 
     try {
       Class.forName(
-          "org.apache.derby.jdbc.ClientDriver"); // Check that proper driver is packaged for Apache
+              "org.apache.derby.jdbc.ClientDriver"); // Check that proper driver is packaged for Apache
       // Derby
     } catch (Exception e) {
       e.printStackTrace();
@@ -49,10 +49,10 @@ public class ExampleController {
     try {
       // create Connection at specified URL
       this.connection =
-          DriverManager.getConnection(
-              "jdbc:derby://localhost:1527/testDB;create=true",
-              "app",
-              "derbypass"); // This will change for each team as their DB is developed
+              DriverManager.getConnection(
+                      "jdbc:derby://localhost:1527/testDB;create=true",
+                      "app",
+                      "derbypass"); // This will change for each team as their DB is developed
       if (this.connection != null) {
         System.out.println("Connected to the database!");
       } else {
@@ -81,11 +81,11 @@ public class ExampleController {
 
     if (this.connection != null) {
       String createQuery =
-          "CREATE TABLE APP.buttonClicks("
-              + "id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), "
-              + "btn_name VARCHAR(50), "
-              + "time_stamp TIMESTAMP NOT NULL, "
-              + "PRIMARY KEY(id) )";
+              "CREATE TABLE APP.buttonClicks("
+                      + "id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), "
+                      + "btn_name VARCHAR(50), "
+                      + "time_stamp TIMESTAMP NOT NULL, "
+                      + "PRIMARY KEY(id) )";
       try {
         Statement statement = this.connection.createStatement();
         statement.execute(createQuery);
@@ -110,7 +110,7 @@ public class ExampleController {
   private boolean logData() {
     if (connection != null) {
       String writeQuery =
-          "INSERT INTO APP.buttonClicks(btn_name, time_stamp) VALUES ( 'ClickButton', CURRENT_TIMESTAMP ) ";
+              "INSERT INTO APP.buttonClicks(btn_name, time_stamp) VALUES ( 'ClickButton', CURRENT_TIMESTAMP ) ";
       try {
         Statement statement = this.connection.createStatement();
         statement.execute(writeQuery);
