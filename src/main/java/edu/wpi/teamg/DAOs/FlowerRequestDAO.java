@@ -65,6 +65,7 @@ public class FlowerRequestDAO implements DAO{
         PreparedStatement ps_getMaxID;
         PreparedStatement ps_flowerRequest;
         PreparedStatement ps_Request;
+        FlowerRequest f1= (FlowerRequest) obj;
 
         ResultSet rs = null;
 
@@ -87,7 +88,7 @@ public class FlowerRequestDAO implements DAO{
         }
 
         SQL_flowerRequest =
-                "insert into iteration1.mealrequest(reqid, deliverydate, deliverytime, recipient, mealOrder, note) values (?, ?, ?, ?, ?, ?)";
+                "insert into iteration1.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?, ?, ?, ?, ?)";
         SQL_Request =
                 "insert into iteration1.request(reqid, empid, location, serv_by, status) values (?, ?, ?, ?, ?)";
 
@@ -95,27 +96,26 @@ public class FlowerRequestDAO implements DAO{
 
             ps_Request = db.getConnection().prepareStatement(SQL_Request);
             ps_Request.setInt(1, maxID);
-            ps_Request.setInt(2, ((MealRequest) obj).getEmpid());
-            ps_Request.setInt(3, ((MealRequest) obj).getLocation());
-            ps_Request.setInt(4, ((MealRequest) obj).getServ_by());
-            ps_Request.setObject(5, ((MealRequest) obj).getStatus(), java.sql.Types.OTHER);
+            ps_Request.setInt(2, f1.getEmpid());
+            ps_Request.setInt(3, f1.getLocation());
+            ps_Request.setInt(4, f1.getServ_by());
+            ps_Request.setObject(5, f1.getStatus(), java.sql.Types.OTHER);
             ps_Request.executeUpdate();
 
             ps_flowerRequest = db.getConnection().prepareStatement(SQL_flowerRequest);
-            ps_mealRequest.setInt(1, maxID);
-            ps_mealRequest.setDate(2, ((MealRequest) obj).getDeliveryDate());
-            ps_mealRequest.setTime(3, ((MealRequest) obj).getDeliveryTime());
-            ps_mealRequest.setString(4, ((MealRequest) obj).getRecipient());
-            ps_mealRequest.setString(5, ((MealRequest) obj).getOrder());
-            ps_mealRequest.setString(6, ((MealRequest) obj).getNote());
-            ps_mealRequest.executeUpdate();
+            ps_flowerRequest.setInt(1, maxID);
+            ps_flowerRequest.setString(2, f1.getFlowerType());
+            ps_flowerRequest.setInt(3,f1.getNumFlower());
+            ps_flowerRequest.setString(4,f1.getRecipient());
+            ps_flowerRequest.setString(5,f1.getNote());
+            ps_flowerRequest.executeUpdate();
 
         } catch (SQLException e) {
             System.err.println("SQL exception");
             e.printStackTrace();
             // printSQLException(e);
         }
-        flowerHashMap.put(((MealRequest) obj).getReqid(), (MealRequest) obj);
+        flowerHashMap.put(maxID, f1);
 
         db.closeConnection();
     }
@@ -125,22 +125,23 @@ public class FlowerRequestDAO implements DAO{
 
         db.setConnection();
 
-        PreparedStatement ps_mealrequest;
+        PreparedStatement ps_flowerrequest;
         PreparedStatement ps_request;
+        FlowerRequest f1= (FlowerRequest) obj;
 
-        String SQL_mealrequest = "delete from iteration1.mealrequest where reqId = ?";
-        String SQL_request = "delete from iteration1.request where reqId = ?";
+        SQL_flowerRequest = "delete from iteration1.flowerrequest where reqId = ?";
+        SQL_Request = "delete from iteration1.request where reqId = ?";
 
         try {
-            ps_mealrequest = db.getConnection().prepareStatement(SQL_mealrequest);
-            ps_mealrequest.setInt(1, ((MealRequest) obj).getReqid());
-            ps_mealrequest.executeUpdate();
+            ps_flowerrequest = db.getConnection().prepareStatement(SQL_flowerRequest);
+            ps_flowerrequest.setInt(1, f1.getReqid());
+            ps_flowerrequest.executeUpdate();
 
-            ps_request = db.getConnection().prepareStatement(SQL_request);
-            ps_request.setInt(1, ((MealRequest) obj).getReqid());
+            ps_request = db.getConnection().prepareStatement(SQL_Request);
+            ps_request.setInt(1, f1.getReqid());
             ps_request.executeUpdate();
 
-            flowerHashMap.remove(((MealRequest) obj).getReqid());
+            flowerHashMap.remove(f1.getReqid());
 
         } catch (SQLException e) {
             System.err.println("SQL exception");
