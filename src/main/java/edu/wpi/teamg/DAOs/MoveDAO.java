@@ -20,7 +20,7 @@ public class MoveDAO implements LocationMoveDao {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    sql = "select * from iteration1.move";
+    sql = "select * from teamgdb.iteration1.move";
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -51,7 +51,8 @@ public class MoveDAO implements LocationMoveDao {
     Move move = (Move) obj;
     db.setConnection();
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
-    sql = "UPDATE iteration1.move set nodeID = ?, longName = ?, date = ?";
+
+    sql = "UPDATE teamgdb.iteration1.move set nodeID = ?, longName = ?, date = ?";
 
     try {
       ps.setInt(1, move.getNodeID());
@@ -68,7 +69,9 @@ public class MoveDAO implements LocationMoveDao {
   public void insert(Object obj) throws SQLException {
     Move move = (Move) obj;
     db.setConnection();
-    sql = "INSERT INTO iteration1.move (nodeid, longname, date) VALUES (?,?,?);";
+
+    sql = "INSERT INTO teamgdb.iteration1.move (nodeid, longname, date) VALUES (?,?,?);";
+
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
     try {
@@ -88,53 +91,13 @@ public class MoveDAO implements LocationMoveDao {
     Move move = (Move) obj;
     db.setConnection();
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
-    sql = "DELETE FROM iteration1.move WHERE nodeID = ?";
+
+    sql = "DELETE FROM teamgdb.iteration1.move WHERE nodeID = ?";
+
     try {
       ps.setInt(1, move.getNodeID());
     } catch (SQLException e) {
       System.err.println("SQL Exception");
-    }
-    db.closeConnection();
-  }
-
-  @Override
-  public void importCSV(String filePath) throws SQLException {
-    db.setConnection();
-    sql = "insert into teamgdb.iteration1.move (nodeid, longname, date) values (?,?,?)";
-    PreparedStatement ps = db.getConnection().prepareStatement(sql);
-    try {
-      BufferedReader br = new BufferedReader(new FileReader(filePath));
-      String line = null;
-
-      br.readLine();
-      while ((line = br.readLine()) != null) {
-        String[] data = line.split(",");
-
-        String nodeID = data[0];
-        String longname = data[1];
-        String dateString = data[2];
-
-        int inodeid = Integer.parseInt(nodeID);
-        ps.setInt(1, inodeid);
-
-        ps.setString(2, longname);
-
-        ps.setDate(3, stringToDate(dateString));
-
-        ps.addBatch();
-      }
-      br.close();
-      ps.executeBatch();
-
-    } catch (FileNotFoundException e) {
-      System.err.println("File not found");
-      e.printStackTrace();
-    } catch (IOException e) {
-      System.err.println("Input output exception");
-      e.printStackTrace();
-    } catch (SQLException e) {
-      System.err.println("SQL exception");
-      e.printStackTrace();
     }
     db.closeConnection();
   }
@@ -145,6 +108,9 @@ public class MoveDAO implements LocationMoveDao {
         new Date(Integer.parseInt(data[2]), Integer.parseInt(data[1]), Integer.parseInt(data[0]));
     return returnDate;
   }
+
+  @Override
+  public void importCSV() throws SQLException {}
 
   @Override
   public void exportCSV() throws SQLException {
@@ -191,6 +157,48 @@ public class MoveDAO implements LocationMoveDao {
       throw new RuntimeException(e);
     }
 
+    db.closeConnection();
+  }
+
+  @Override
+  public void importCSV(String filePath) throws SQLException {
+    db.setConnection();
+    sql = "insert into teamgdb.iteration1.move (nodeid, longname, date) values (?,?,?)";
+    PreparedStatement ps = db.getConnection().prepareStatement(sql);
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(filePath));
+      String line = null;
+
+      br.readLine();
+      while ((line = br.readLine()) != null) {
+        String[] data = line.split(",");
+
+        String nodeID = data[0];
+        String longname = data[1];
+        String dateString = data[2];
+
+        int inodeid = Integer.parseInt(nodeID);
+        ps.setInt(1, inodeid);
+
+        ps.setString(2, longname);
+
+        ps.setDate(3, stringToDate(dateString));
+
+        ps.addBatch();
+      }
+      br.close();
+      ps.executeBatch();
+
+    } catch (FileNotFoundException e) {
+      System.err.println("File not found");
+      e.printStackTrace();
+    } catch (IOException e) {
+      System.err.println("Input output exception");
+      e.printStackTrace();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      e.printStackTrace();
+    }
     db.closeConnection();
   }
 }
