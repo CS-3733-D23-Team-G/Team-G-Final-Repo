@@ -63,6 +63,8 @@ create table iteration1.Request (
                                             location int,
                                             serv_by int,
                                             status iteration1.enum1,
+                                            deliveryDate date,
+                                            deliveryTime time,
                                             foreign key (empID) references iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE,
                                             foreign key (location) references iteration1.node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
                                             foreign key (serv_by) references iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE
@@ -72,8 +74,10 @@ create table iteration1.ConferenceRoomRequest(
                                                          reqID int primary key,
                                                          meeting_date date,
                                                          meeting_time time,
+                                                         end_time int,
                                                          purpose varchar(255),
                                                          foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+
 );
 
 create table iteration1.MealRequest(

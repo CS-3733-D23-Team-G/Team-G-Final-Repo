@@ -108,8 +108,8 @@ public class ConferenceRoomRequestDAO implements DAO {
 
       ps_getRoomReq = db.getConnection().prepareStatement(SQL_confRoomRequest);
       ps_getRoomReq.setInt(1, maxID);
-      ps_getRoomReq.setDate(2, (java.sql.Date) ((ConferenceRoomRequest) obj).getMeeting_date());
-      ps_getRoomReq.setTime(3, ((ConferenceRoomRequest) obj).getMeeting_time());
+      ps_getRoomReq.setDate(2, (java.sql.Date) ((ConferenceRoomRequest) obj).getDeliveryDate());
+      ps_getRoomReq.setTime(3, ((ConferenceRoomRequest) obj).getDeliveryTime());
       ps_getRoomReq.setString(4, ((ConferenceRoomRequest) obj).getPurpose());
       ps_getRoomReq.executeUpdate();
 
