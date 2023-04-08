@@ -177,7 +177,6 @@ public class SignagePageController {
         currentE = nodeMap.get(L1edges.get(i).getEndNode());
         L1EdgeFinal.add(new Edge(currentS.getNodeID(), currentE.getNodeID()));
       }
-
     }
 
     String start = startLoc.getText();
@@ -217,8 +216,6 @@ public class SignagePageController {
     NodeDAO nodeDAO = new NodeDAO();
     HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
 
-
-
     // path = 4
     // path = 0,1,2,3
     // Line = 0,0,1,1
@@ -228,8 +225,8 @@ public class SignagePageController {
 
       Circle point =
           new Circle(
-              nodes.get(Integer.parseInt(path.get(i))).getNodeX(),
-              nodes.get(Integer.parseInt(path.get(i))).getNodeY(),
+              nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
+              nodes.get(Integer.parseInt(path.get(i))).getYcoord(),
               10,
               Color.rgb(1, 45, 90));
       nodePane.getChildren().add(point);
@@ -238,14 +235,13 @@ public class SignagePageController {
     for (int i = 1; i < path.size(); i++) {
       Line pathLine =
           new Line(
-              nodes.get(Integer.parseInt(path.get(i - 1))).getNodeX(),
-              nodes.get(Integer.parseInt(path.get(i - 1))).getNodeY(),
-              nodes.get(Integer.parseInt(path.get(i))).getNodeX(),
-              nodes.get(Integer.parseInt(path.get(i))).getNodeY());
+              nodes.get(Integer.parseInt(path.get(i - 1))).getXcoord(),
+              nodes.get(Integer.parseInt(path.get(i - 1))).getYcoord(),
+              nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
+              nodes.get(Integer.parseInt(path.get(i))).getYcoord());
       pathLine.setStrokeWidth(10);
       pathLine.setStroke(Color.rgb(1, 45, 90));
       nodePane.getChildren().add(pathLine);
-
     }
   }
 
