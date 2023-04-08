@@ -1,6 +1,6 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.DAOs.ConferenceRoomRequestDAO;
+import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
@@ -92,6 +92,7 @@ public class ConRoomRequestController {
 
   public void storeRoomValues() {
 
+
     ConferenceRoomRequestDAO conRoomDao = new ConferenceRoomRequestDAO();
     ConferenceRoomRequest conRoom =
         new ConferenceRoomRequest(
@@ -105,7 +106,7 @@ public class ConRoomRequestController {
             roomMeetingPurpose.getText());
 
     try {
-      conRoomDao.insert(conRoom);
+      dao.insertConferenceRoomRequest(conRoom);
     } catch (SQLException e) {
       System.err.println("SQL Exception");
       e.printStackTrace();

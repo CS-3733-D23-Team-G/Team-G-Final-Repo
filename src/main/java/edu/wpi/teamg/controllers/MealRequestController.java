@@ -1,6 +1,6 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.DAOs.MealRequestDAO;
+import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
@@ -135,8 +135,8 @@ public class MealRequestController {
     //            + "\nStatus: "
     //            + mr.getStatus());
 
-    MealRequestDAO mealRequestDAO = new MealRequestDAO();
-    mealRequestDAO.insert(mr);
+    DAORepo dao = new DAORepo();
+    dao.insertMealRequest(mr);
   }
 
   public Time StringToTime(String s) {
