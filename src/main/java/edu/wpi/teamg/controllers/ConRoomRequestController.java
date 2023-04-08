@@ -1,6 +1,6 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.DAOs.ConferenceRoomRequestDAO;
+import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
@@ -91,49 +91,41 @@ public class ConRoomRequestController {
   }
 
   public void storeRoomValues() {
-    ConferenceRoomRequest crr = new ConferenceRoomRequest();
 
-    //  crr.setEmpid(1);
-    crr.setServ_by(1);
-    // assume for now they are going to input a node number, so parseInt
-    crr.setLocation(Integer.parseInt(roomNumber.getText()));
-    crr.setPurpose(roomMeetingPurpose.getText());
-    crr.setMeeting_date(Date.valueOf(datePicker.getValue()));
-    crr.setMeeting_time(StringToTime(roomTimeData.getText()));
-
-    ConferenceRoomRequestDAO conRoomDao = new ConferenceRoomRequestDAO();
-    ConferenceRoomRequest conRoom = new ConferenceRoomRequest();
-
-    conRoom.setEmpid(1);
-    conRoom.setLocation(crr.getLocation());
-    conRoom.setServ_by(1);
-    conRoom.setStatus(StatusTypeEnum.blank);
-    conRoom.setMeeting_date(crr.getMeeting_date());
-    conRoom.setMeeting_time(crr.getMeeting_time());
-    conRoom.setPurpose(crr.getPurpose());
+    DAORepo dao = new DAORepo();
+    ConferenceRoomRequest conRoom =
+        new ConferenceRoomRequest(
+            1,
+            // assume for now they are going to input a node number, so parseInt
+            Integer.parseInt(roomNumber.getText()),
+            1,
+            StatusTypeEnum.blank,
+            Date.valueOf(datePicker.getValue()),
+            StringToTime(roomTimeData.getText()),
+            roomMeetingPurpose.getText());
 
     try {
-      conRoomDao.insert(conRoom);
+      dao.insertConferenceRoomRequest(conRoom);
     } catch (SQLException e) {
       System.err.println("SQL Exception");
       e.printStackTrace();
     }
 
-    System.out.println(
-        "Employee ID: "
-            + crr.getEmpid()
-            + "\nMeeting Location: "
-            + crr.getLocation()
-            + "\nPurpose: "
-            + crr.getPurpose()
-            //                    + "\nNote: "
-            //                    + crr.getNote()
-            //                    + "\nRecipient: "
-            //                    + crr.getRecipient()
-            + "\nMeeting Date: "
-            + crr.getMeeting_date()
-            + "\nMeeting Time: "
-            + crr.getMeeting_time());
+    //    System.out.println(
+    //        "Employee ID: "
+    //            + crr.getEmpid()
+    //            + "\nMeeting Location: "
+    //            + crr.getLocation()
+    //            + "\nPurpose: "
+    //            + crr.getPurpose()
+    //            //                    + "\nNote: "
+    //            //                    + crr.getNote()
+    //            //                    + "\nRecipient: "
+    //            //                    + crr.getRecipient()
+    //            + "\nMeeting Date: "
+    //            + crr.getMeeting_date()
+    //            + "\nMeeting Time: "
+    //            + crr.getMeeting_time());
 
     //    MealRequestDAO mealRequestDAO = new MealRequestDAO();
     //    mealRequestDAO.insert(mr);

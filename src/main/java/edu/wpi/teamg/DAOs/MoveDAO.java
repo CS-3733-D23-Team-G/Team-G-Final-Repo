@@ -33,16 +33,12 @@ public class MoveDAO implements LocationMoveDao {
     List<Move> moves = new ArrayList<Move>();
 
     while (rs.next()) {
-      Move move = new Move();
 
       int node_id = rs.getInt("nodeid");
-      move.setNodeID(node_id);
-
       String longname = rs.getString("longname");
-      move.setLongName(longname);
-
       Date date = rs.getDate("date");
-      move.setDate(date);
+
+      Move move = new Move(node_id, longname, date);
 
       moves.add(move);
     }

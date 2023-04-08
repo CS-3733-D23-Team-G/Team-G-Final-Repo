@@ -31,15 +31,13 @@ public class EdgeDAO implements LocationDAO {
     }
 
     while (rs.next()) {
-      Edge edge = new Edge();
 
       int startNode = rs.getInt("startnode");
-      edge.setStartNode(startNode);
-
       int endNode = rs.getInt("endnode");
-      edge.setEndNode(endNode);
 
       String edgeID = startNode + "_" + endNode;
+
+      Edge edge = new Edge(startNode, endNode);
 
       edge.setEdgeID(edgeID);
 

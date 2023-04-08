@@ -57,8 +57,8 @@ public class SignageAdminController {
 
   // Edges
   @FXML TableColumn<Edge, String> edgeEdgeID;
-  @FXML TableColumn<Edge, Integer> edgeEndNode;
   @FXML TableColumn<Edge, Integer> edgeStartNode;
+  @FXML TableColumn<Edge, Integer> edgeEndNode;
 
   // Move
 
@@ -256,6 +256,8 @@ public class SignageAdminController {
                     "Office Supplies Request Form");
   */
 
+  DAORepo dao = new DAORepo();
+
   @FXML
   void fileChooser() {
     switch (importDrop.getValue()) {
@@ -294,20 +296,16 @@ public class SignageAdminController {
   void fileExporter() throws SQLException {
     switch (exportDrop.getValue()) {
       case "Nodes":
-        NodeDAO nodeDao = new NodeDAO();
-        nodeDao.exportCSV();
+        dao.exportNodeCSV();
         break;
       case "Edges":
-        EdgeDAO edgeDao = new EdgeDAO();
-        edgeDao.exportCSV();
+        dao.exportEdgeCSV();
         break;
       case "LocationName":
-        LocationNameDAO lNameDao = new LocationNameDAO();
-        lNameDao.exportCSV();
+        dao.exportLocationNameCSV();
         break;
       case "Moves":
-        MoveDAO moveDao = new MoveDAO();
-        moveDao.exportCSV();
+        dao.exportMoveCSV();
       default:
         break;
     }
@@ -342,8 +340,7 @@ public class SignageAdminController {
   }
 
   public ArrayList<Node> getNodes() throws SQLException {
-    NodeDAO nodeDAO = new NodeDAO();
-    HashMap<Integer, Node> nodes = nodeDAO.getAll();
+    HashMap<Integer, Node> nodes = dao.getAllNodes();
 
     ArrayList<Node> nodesList = new ArrayList<>(nodes.values());
 
@@ -351,8 +348,8 @@ public class SignageAdminController {
   }
 
   public ArrayList<edu.wpi.teamg.ORMClasses.Edge> getEdge() throws SQLException {
-    EdgeDAO edgeDAO = new EdgeDAO();
-    HashMap<String, Edge> edge = edgeDAO.getAll();
+
+    HashMap<String, Edge> edge = dao.getAllEdges();
 
     ArrayList<Edge> edgeList = new ArrayList<>(edge.values());
 
@@ -360,8 +357,7 @@ public class SignageAdminController {
   }
 
   public ArrayList<Move> getMove() throws SQLException {
-    MoveDAO moveDAO = new MoveDAO();
-    List<Move> moveL = moveDAO.getAll();
+    List<Move> moveL = dao.getAllMoves();
 
     ArrayList<Move> moveAl = (ArrayList<Move>) moveL;
 
@@ -369,8 +365,8 @@ public class SignageAdminController {
   }
 
   public ArrayList<LocationName> getLoc() throws SQLException {
-    LocationNameDAO locationNameDAO = new LocationNameDAO();
-    HashMap<String, LocationName> locNames = locationNameDAO.getAll();
+
+    HashMap<String, LocationName> locNames = dao.getAllLocationNames();
 
     ArrayList<LocationName> locList = new ArrayList<>(locNames.values());
 

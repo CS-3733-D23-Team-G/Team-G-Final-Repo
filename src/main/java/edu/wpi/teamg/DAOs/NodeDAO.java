@@ -178,22 +178,14 @@ public class NodeDAO implements LocationDAO {
     }
 
     while (rs.next()) {
-      Node node = new Node();
 
       int node_id = rs.getInt("nodeid");
-      node.setNodeID(node_id);
-
       int xcoord = rs.getInt("xcoord");
-      node.setXcoord(xcoord);
-
       int ycoord = rs.getInt("ycoord");
-      node.setYcoord(ycoord);
-
       String floor = rs.getString("floor");
-      node.setFloor(floor);
-
       String building = rs.getString("building");
-      node.setBuilding(building);
+
+      Node node = new Node(node_id, xcoord, ycoord, floor, building);
 
       nodeHash.put(node.getNodeID(), node);
     }

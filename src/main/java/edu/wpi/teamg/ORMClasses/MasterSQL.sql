@@ -1,92 +1,111 @@
-drop table if exists proto2.MealRequest;
-drop table if exists proto2.ConferenceRoomRequest;
-drop table if exists proto2.Account;
-drop table if exists proto2.Request;
-drop table if exists proto2.Employee;
-drop type if exists proto2.enum1;
-drop table if exists proto2.Move;
-drop table if exists proto2.Edge;
-drop table if exists proto2.LocationName;
-drop table if exists proto2.Node;
+drop table if exists iteration1.MealRequest;
+drop table if exists iteration1.ConferenceRoomRequest;
+drop table if exists iteration1.flowerrequest;
+drop table if exists iteration1.Account;
+drop table if exists iteration1.Request;
+drop table if exists iteration1.Employee;
+drop type if exists iteration1.enum1;
+drop table if exists iteration1.Move;
+drop table if exists iteration1.Edge;
+drop table if exists iteration1.LocationName;
+drop table if exists iteration1.Node;
 
-create table proto2.Node(
-                            nodeID int primary key,
-                            xcoord int,
-                            ycoord int,
-                            floor char(2),
-                            building varchar(40)
+create table iteration1.Node(
+                                        nodeID int primary key,
+                                        xcoord int,
+                                        ycoord int,
+                                        floor char(2),
+                                        building varchar(40)
 );
 
-create table proto2.Edge(
-                            startNode int,
-                            endNode int,
-                            PRIMARY KEY (startNode, endNode),
-                            foreign key (startNode) references proto2.node(nodeID),
-                            foreign key (endNode) references proto2.node(nodeID)
+create table iteration1.Edge(
+                                        startNode int,
+                                        endNode int,
+                                        PRIMARY KEY (startNode, endNode),
+                                        foreign key (startNode) references iteration1.node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
+                                        foreign key (endNode) references iteration1.node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table proto2.LocationName(
-                                    longName varchar(100) primary key,
-                                    shortName varchar(55),
-                                    nodeType char(4)
+create table iteration1.LocationName(
+                                                longName varchar(100) primary key,
+                                                shortName varchar(55),
+                                                nodeType char(4)
 );
 
-create table proto2.Move(
-                                nodeID int,
-                                longName varchar(100),
-                                date date,
-                                PRIMARY KEY (nodeID, longName, date),
-                                foreign key (nodeID) references proto2.Node(nodeID),
-                                foreign key (longName) references proto2.LocationName(longName)
+create table iteration1.Move(
+                                        nodeID int,
+                                        longName varchar(100),
+                                        date date,
+                                        PRIMARY KEY (nodeID, longName, date),
+                                        foreign key (nodeID) references iteration1.Node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
+                                        foreign key (longName) references iteration1.LocationName(longName) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create type proto2.enum1 as enum('blank', 'processing', 'done');
+create type iteration1.enum1 as enum('blank', 'processing', 'done');
 
-create table proto2.Employee(
-                    empID int primary key,
-                    firstName varchar(20),
-                    lastName varchar(20),
-                    email varchar(254),
-                    can_serve varchar(20)
+create table iteration1.Employee(
+                                            empID int primary key,
+                                            firstName varchar(20),
+                                            lastName varchar(20),
+                                            email varchar(254),
+                                            can_serve varchar(20)
 );
 
-create table proto2.Account(
-    empID int primary key,
-    password varchar(100),
-    is_admin boolean,
-    foreign key (empID) references proto2.Employee(empID)
+create table iteration1.Account(
+                                           empID int primary key,
+                                           password varchar(100),
+                                           is_admin boolean,
+                                           foreign key (empID) references iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table proto2.Request (
+create table iteration1.Request (
+                                            reqID int primary key,
+                                            empID int,
+                                            location int,
+                                            serv_by int,
+                                            status iteration1.enum1,
+                                            deliveryDate date,
+                                            deliveryTime time,
+                                            foreign key (empID) references iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE,
+                                            foreign key (location) references iteration1.node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
+                                            foreign key (serv_by) references iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+create table iteration1.ConferenceRoomRequest(
+                                                         reqID int primary key,
+                                                         meeting_date date,
+                                                         meeting_time time,
+                                                         end_time int,
+                                                         purpose varchar(255),
+                                                         foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+create table iteration1.MealRequest(
+                                               reqID int primary key,
+                                               deliveryDate date,
+                                               deliveryTime time,
+                                               recipient varchar(50),
+                                               mealOrder varchar(255),
+                                               note varchar(255),
+                                               foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+create table iteration1.FlowerRequest(
     reqID int primary key,
-    empID int,
-    location int,
-    serv_by int,
-    status proto2.enum1,
-    foreign key (empID) references proto2.Employee(empID),
-    foreign key (location) references proto2.node(nodeID),
-    foreign key (serv_by) references proto2.Employee(empID)
+    flowerType varchar(50),
+    numFlower int,
+    note varchar(225),
+    deliveryDate date,
+    deliveryTime time,
+    recipient varchar(50),
+    foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table proto2.ConferenceRoomRequest(
-                               reqID int primary key,
-                               meeting_date date,
-                               meeting_time time,
-                               purpose varchar(255),
-                               foreign key (reqID) references proto2.Request(reqID)
+
+
 );
 
-create table proto2.MealRequest(
-                                 reqID int primary key,
-                                 deliveryDate date,
-                                 deliveryTime time,
-                                 recipient varchar(50),
-                                 mealOrder varchar(255),
-                                 note varchar(255),
-                                 foreign key (reqID) references proto2.Request(reqID)
-);
-
-INSERT INTO proto2.Employee (empID, firstName, lastName, email, can_serve)
+INSERT INTO iteration1.Employee (empID, firstName, lastName, email, can_serve)
 VALUES
     (1, 'John', 'Doe', 'johndoe@example.com', 'Coffee'),
     (2, 'Jane', 'Doe', 'janedoe@example.com', 'Lunch'),
@@ -97,16 +116,16 @@ VALUES
     (7, 'Diana','Wells','Dwells@example.com','All'),
     (8,'Mark', 'Specter', 'moonknight@example.com', 'Coffee');
 
--- Table: proto2.Account
-INSERT INTO proto2.Account (empID, password, is_admin)
+-- Table: iteration1.Account
+INSERT INTO iteration1.Account (empID, password, is_admin)
 VALUES
     (1, 'password123', true),
     (2, '123password', false),
     (3, 'password456', false),
     (4, '456password', true);
 
--- Table: proto2.Request
-INSERT INTO proto2.request (reqID, empID, location, serv_by, status)
+-- Table: iteration1.Request
+INSERT INTO iteration1.request (reqID, empID, location, serv_by, status)
 VALUES
     (1, 1, 105, 1, 'blank'),
     (2, 2, 110, 2, 'processing'),
@@ -117,16 +136,16 @@ VALUES
     (7, 7, 115, 3, 'done'),
     (8, 8, 120, 4, 'blank');
 
--- Table: proto2.ConferenceRoomRequest
-INSERT INTO proto2.ConferenceRoomRequest (reqID, meeting_date, meeting_time, purpose)
+-- Table: iteration1.ConferenceRoomRequest
+INSERT INTO iteration1.ConferenceRoomRequest (reqID, meeting_date, meeting_time, purpose)
 VALUES
     (5, '2023-04-15', '13:00:00', 'Team meeting'),
     (6, '2023-04-16', '14:30:00', 'Client presentation'),
     (7, '2023-04-17', '10:00:00', 'Interview'),
     (8, '2023-04-18', '15:00:00', 'Training session');
 
--- Table: proto2.MealRequest
-INSERT INTO proto2.mealrequest (reqID, deliveryDate, deliveryTime, recipient, mealOrder, note)
+-- Table: iteration1.MealRequest
+INSERT INTO iteration1.mealrequest (reqID, deliveryDate, deliveryTime, recipient, mealOrder, note)
 VALUES
     (1, '2023-04-15', '13:00:00','John Doe', 'Grilled chicken sandwich', 'No onions'),
     (2, '2023-04-15', '13:00:00','Jane Doe', 'Vegetarian pizza', 'Extra cheese'),

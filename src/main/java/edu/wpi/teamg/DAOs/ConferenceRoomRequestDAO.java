@@ -42,7 +42,7 @@ public class ConferenceRoomRequestDAO implements DAO {
     }
 
     while (rs.next()) {
-      ConferenceRoomRequest cReq = new ConferenceRoomRequest();
+
       int reqID = rs.getInt("reqid");
       int empID = rs.getInt("empid");
       int location = rs.getInt("location");
@@ -54,14 +54,11 @@ public class ConferenceRoomRequestDAO implements DAO {
       Time reqTime = rs.getTime("meeting_time");
       String confPurpose = rs.getString("purpose");
 
+      ConferenceRoomRequest cReq =
+          new ConferenceRoomRequest(
+              empID, location, serv_by, status, reqDate, reqTime, confPurpose);
+
       cReq.setReqid(reqID);
-      cReq.setLocation(location);
-      cReq.setEmpid(empID);
-      cReq.setServ_by(serv_by);
-      cReq.setStatus(StatusTypeEnum.done);
-      cReq.setPurpose(confPurpose);
-      cReq.setMeeting_time(reqTime);
-      cReq.setMeeting_date(reqDate);
 
       conferenceRequestHash.put(reqID, cReq);
     }
@@ -111,8 +108,8 @@ public class ConferenceRoomRequestDAO implements DAO {
 
       ps_getRoomReq = db.getConnection().prepareStatement(SQL_confRoomRequest);
       ps_getRoomReq.setInt(1, maxID);
-      ps_getRoomReq.setDate(2, (java.sql.Date) ((ConferenceRoomRequest) obj).getMeeting_date());
-      ps_getRoomReq.setTime(3, ((ConferenceRoomRequest) obj).getMeeting_time());
+      ps_getRoomReq.setDate(2, (java.sql.Date) ((ConferenceRoomRequest) obj).getDeliveryDate());
+      ps_getRoomReq.setTime(3, ((ConferenceRoomRequest) obj).getDeliveryTime());
       ps_getRoomReq.setString(4, ((ConferenceRoomRequest) obj).getPurpose());
       ps_getRoomReq.executeUpdate();
 

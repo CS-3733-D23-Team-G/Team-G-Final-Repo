@@ -2,11 +2,11 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
+import edu.wpi.teamg.ORMClasses.Edge;
+import edu.wpi.teamg.ORMClasses.Graph;
+import edu.wpi.teamg.ORMClasses.Node;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
-import edu.wpi.teamg.pathFinding.Edge;
-import edu.wpi.teamg.pathFinding.Graph;
-import edu.wpi.teamg.pathFinding.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
@@ -139,11 +139,11 @@ public class SignagePageController {
     NodeDAO nodeDAO = new NodeDAO();
     EdgeDAO edgeDAO = new EdgeDAO();
 
-    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodeMap = nodeDAO.getAll();
-    HashMap<String, edu.wpi.teamg.ORMClasses.Edge> edgeMap = edgeDAO.getAll();
+    HashMap<Integer, Node> nodeMap = nodeDAO.getAll();
+    HashMap<String, Edge> edgeMap = edgeDAO.getAll();
 
-    ArrayList<edu.wpi.teamg.ORMClasses.Node> L1nodes = new ArrayList<>(nodeMap.values());
-    ArrayList<edu.wpi.teamg.ORMClasses.Edge> L1edges = new ArrayList<>(edgeMap.values());
+    ArrayList<Node> L1nodes = new ArrayList<>(nodeMap.values());
+    ArrayList<Edge> L1edges = new ArrayList<>(edgeMap.values());
 
     ArrayList<Node> L1NodeFinal = new ArrayList<>();
     ArrayList<Edge> L1EdgeFinal = new ArrayList<>();
@@ -154,9 +154,9 @@ public class SignagePageController {
       if (L1nodes.get(i).getFloor().equals("L1")) {
         L1NodeFinal.add(
             new Node(
-                Integer.toString(L1nodes.get(i).getNodeID()),
-                L1nodes.get(i).getNodeX(),
-                L1nodes.get(i).getNodeY(),
+                L1nodes.get(i).getNodeID(),
+                L1nodes.get(i).getXcoord(),
+                L1nodes.get(i).getYcoord(),
                 L1nodes.get(i).getFloor(),
                 L1nodes.get(i).getBuilding()));
       }
@@ -171,25 +171,11 @@ public class SignagePageController {
 
       if ((nodeMap.get(L1edges.get(i).getStartNode())).getFloor().equals("L1")
           && ((nodeMap.get(L1edges.get(i).getEndNode())).getFloor().equals("L1"))) {
-        edu.wpi.teamg.ORMClasses.Node currentS = new edu.wpi.teamg.ORMClasses.Node();
-        edu.wpi.teamg.ORMClasses.Node currentE = new edu.wpi.teamg.ORMClasses.Node();
+        Node currentS = new Node();
+        Node currentE = new Node();
         currentS = nodeMap.get(L1edges.get(i).getStartNode());
         currentE = nodeMap.get(L1edges.get(i).getEndNode());
-        L1EdgeFinal.add(
-            new Edge(
-                L1edges.get(i).getEdgeID(),
-                new Node(
-                    (Integer.toString(currentS.getNodeID())),
-                    currentS.getNodeX(),
-                    currentS.getNodeY(),
-                    currentS.getFloor(),
-                    currentS.getBuilding()),
-                new Node(
-                    (Integer.toString(currentE.getNodeID())),
-                    currentE.getNodeX(),
-                    currentE.getNodeY(),
-                    currentE.getFloor(),
-                    currentE.getBuilding())));
+        L1EdgeFinal.add(new Edge(currentS.getNodeID(), currentE.getNodeID()));
       }
 
     }
@@ -210,10 +196,10 @@ public class SignagePageController {
     int endNode = 0;
     for (int i = 0; i < L1NodeFinal.size(); i++) {
 
-      if (nodeArray[i].getNodeID().equals(start)) {
+      if (nodeArray[i].getNodeID() == Integer.parseInt(start)) {
         startNode = i;
       }
-      if (nodeArray[i].getNodeID().equals(end)) {
+      if (nodeArray[i].getNodeID() == Integer.parseInt(end)) {
         endNode = i;
       }
     }
