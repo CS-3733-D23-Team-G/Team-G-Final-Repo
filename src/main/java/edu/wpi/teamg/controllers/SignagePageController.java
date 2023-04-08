@@ -12,12 +12,12 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -26,10 +26,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import net.kurobako.gesturefx.GesturePane;
 
 public class SignagePageController {
 
+  public Group group;
   @FXML MFXButton backToHomeButton;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
   @FXML MFXButton signagePageButton;
@@ -79,7 +81,17 @@ public class SignagePageController {
     ;
     Image map = new Image("/edu/wpi/teamg/Images/00_thelowerlevel1.png");
     ImageView mapView = new ImageView(map);
-    pane.setContent(mapView);
+
+    group.getChildren().add(mapView);
+    mapView.toBack();
+
+    mapView.relocate(0, 0);
+    nodePane.setLayoutX(0);
+    nodePane.setLayoutY(0);
+    nodePane.setMinWidth(map.getWidth());
+    nodePane.setMinHeight(map.getHeight());
+    nodePane.setMaxWidth(map.getWidth());
+    nodePane.setMaxHeight(map.getHeight());
 
     // Scales Map
     pane.setMinScale(.001);
@@ -95,18 +107,6 @@ public class SignagePageController {
 
     // Adds Nodes To Node Pane and should display them (if you divide by 5 you get them on the page)
     // This indicates there is a scaling problem with the nodePane
-
-    for (int i = 0; i < listOfNodes.size(); i++) {
-      if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-        Circle point =
-            new Circle(
-                listOfNodes.get(i).getNodeX(),
-                listOfNodes.get(i).getNodeY(),
-                5,
-                Color.BLACK);
-        nodePane.getChildren().add(point);
-      }
-    }
 
     // Rectangle rec = new Rectangle(500, 500, Color.BLACK);
     //  Circle circ = new Circle(10, Color.BLACK);
@@ -191,18 +191,7 @@ public class SignagePageController {
                     currentE.getFloor(),
                     currentE.getBuilding())));
       }
-      /*
-      CONDITIONALS FOR CONNECTING FLOORS
-      if (!Objects.equals(nodeMap.get(L1edges.get(i).getStartNode()).getFloor(), "L1")
-          && (nodeMap.get(L1edges.get(i).getEndNode()).getFloor()).equals("L1")) {
-        System.out.println("ERROR1234");
-      }
-      if ((nodeMap.get(L1edges.get(i).getStartNode()).getFloor()).equals("L1")
-          && !Objects.equals(nodeMap.get(L1edges.get(i).getEndNode()).getFloor(), "L1")) {
-        System.out.println("ERROR1234");
-      }
 
-       */
     }
 
     String start = startLoc.getText();
@@ -237,8 +226,41 @@ public class SignagePageController {
     setPath(path);
   }
 
-  public void setPath(ArrayList<String> path) {
+  public void setPath(ArrayList<String> path) throws SQLException {
     results.setText(String.valueOf(path));
+    NodeDAO nodeDAO = new NodeDAO();
+    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
+
+
+
+    // path = 4
+    // path = 0,1,2,3
+    // Line = 0,0,1,1
+    // Line = 1,1,2,2
+    // Line = 2,2,3,3
+    for (int i = 0; i < path.size(); i++) {
+
+      Circle point =
+          new Circle(
+              nodes.get(Integer.parseInt(path.get(i))).getNodeX(),
+              nodes.get(Integer.parseInt(path.get(i))).getNodeY(),
+              10,
+              Color.rgb(1, 45, 90));
+      nodePane.getChildren().add(point);
+    }
+
+    for (int i = 1; i < path.size(); i++) {
+      Line pathLine =
+          new Line(
+              nodes.get(Integer.parseInt(path.get(i - 1))).getNodeX(),
+              nodes.get(Integer.parseInt(path.get(i - 1))).getNodeY(),
+              nodes.get(Integer.parseInt(path.get(i))).getNodeX(),
+              nodes.get(Integer.parseInt(path.get(i))).getNodeY());
+      pathLine.setStrokeWidth(10);
+      pathLine.setStroke(Color.rgb(1, 45, 90));
+      nodePane.getChildren().add(pathLine);
+
+    }
   }
 
   public void exit() {
