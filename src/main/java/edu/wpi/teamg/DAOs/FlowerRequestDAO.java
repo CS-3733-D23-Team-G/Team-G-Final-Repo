@@ -2,7 +2,6 @@ package edu.wpi.teamg.DAOs;
 
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.FlowerRequest;
-import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 
 import java.sql.PreparedStatement;
