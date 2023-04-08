@@ -13,6 +13,10 @@ public class DAORepo {
   private LocationNameDAO locationNameDao = new LocationNameDAO();
   private ConferenceRoomRequestDAO conferenceRoomRequestDao = new ConferenceRoomRequestDAO();
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
+  private FlowerRequestDAO flowerRequestDAO = new FlowerRequestDAO();
+
+
+  // Get methods for Dao's
 
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
@@ -42,6 +46,11 @@ public class DAORepo {
     return locationNameDao.getAll();
   }
 
+  public HashMap getAllFlowerRequest() throws SQLException{
+    return flowerRequestDAO.getAll();
+  }
+
+  // Insert methods for Dao's
   public void insertNode(Object obj) throws SQLException {
     nodeDao.insert(obj);
   }
@@ -70,6 +79,11 @@ public class DAORepo {
     locationNameDao.insert(obj);
   }
 
+  public void insertFlowerRequest(Object obj) throws SQLException {
+    flowerRequestDAO.insert(obj);
+  }
+
+  // Delete methods for Dao's
   public void deleteNode(Object obj) throws SQLException {
     nodeDao.delete(obj);
   }
@@ -89,7 +103,7 @@ public class DAORepo {
   public void deleteRequest(Object obj) throws SQLException {
     requestDao.delete(obj);
   }
-
+// delete methods for dao's
   public void deleteConferenceRoomRequest(Object obj) throws SQLException {
     conferenceRoomRequestDao.delete(obj);
   }
@@ -98,6 +112,11 @@ public class DAORepo {
     mealRequestDao.delete(obj);
   }
 
+  public void deleteFlowerRequest(Object obj) throws SQLException {
+    flowerRequestDAO.delete(obj);
+  }
+
+  // import methods for dao's
   public void importNodeCSV(String path) throws SQLException {
     nodeDao.importCSV(path);
   }
@@ -114,6 +133,7 @@ public class DAORepo {
     edgeDao.importCSV(path);
   }
 
+  // export methods for daos
   public void exportNodeCSV() throws SQLException {
     nodeDao.exportCSV();
   }
