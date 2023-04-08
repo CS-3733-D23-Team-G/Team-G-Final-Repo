@@ -1,5 +1,6 @@
 drop table if exists iteration1.MealRequest;
 drop table if exists iteration1.ConferenceRoomRequest;
+drop table if exists iteration1.flowerrequest;
 drop table if exists iteration1.Account;
 drop table if exists iteration1.Request;
 drop table if exists iteration1.Employee;
@@ -63,6 +64,8 @@ create table iteration1.Request (
                                             location int,
                                             serv_by int,
                                             status iteration1.enum1,
+                                            deliveryDate date,
+                                            deliveryTime time,
                                             foreign key (empID) references iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE,
                                             foreign key (location) references iteration1.node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
                                             foreign key (serv_by) references iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE
@@ -72,8 +75,10 @@ create table iteration1.ConferenceRoomRequest(
                                                          reqID int primary key,
                                                          meeting_date date,
                                                          meeting_time time,
+                                                         end_time int,
                                                          purpose varchar(255),
                                                          foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+
 );
 
 create table iteration1.MealRequest(
@@ -84,6 +89,20 @@ create table iteration1.MealRequest(
                                                mealOrder varchar(255),
                                                note varchar(255),
                                                foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+create table iteration1.FlowerRequest(
+    reqID int primary key,
+    flowerType varchar(50),
+    numFlower int,
+    note varchar(225),
+    deliveryDate date,
+    deliveryTime time,
+    recipient varchar(50),
+    foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
 );
 
 INSERT INTO iteration1.Employee (empID, firstName, lastName, email, can_serve)
