@@ -102,54 +102,15 @@ public class MoveDAO implements LocationMoveDao {
     db.closeConnection();
   }
 
-  @Override
-  public void importCSV(String filePath) throws SQLException {
-    db.setConnection();
-    sql = "insert into teamgdb.iteration1.move (nodeid, longname, date) values (?,?,?)";
-    PreparedStatement ps = db.getConnection().prepareStatement(sql);
-    try {
-      BufferedReader br = new BufferedReader(new FileReader(filePath));
-      String line = null;
-
-      br.readLine();
-      while ((line = br.readLine()) != null) {
-        String[] data = line.split(",");
-
-        String nodeID = data[0];
-        String longname = data[1];
-        String dateString = data[2];
-
-        int inodeid = Integer.parseInt(nodeID);
-        ps.setInt(1, inodeid);
-
-        ps.setString(2, longname);
-
-        ps.setDate(3, stringToDate(dateString));
-
-        ps.addBatch();
-      }
-      br.close();
-      ps.executeBatch();
-
-    } catch (FileNotFoundException e) {
-      System.err.println("File not found");
-      e.printStackTrace();
-    } catch (IOException e) {
-      System.err.println("Input output exception");
-      e.printStackTrace();
-    } catch (SQLException e) {
-      System.err.println("SQL exception");
-      e.printStackTrace();
-    }
-    db.closeConnection();
-  }
-
   public Date stringToDate(String input) {
     String[] data = input.split("/");
     Date returnDate =
         new Date(Integer.parseInt(data[2]), Integer.parseInt(data[1]), Integer.parseInt(data[0]));
     return returnDate;
   }
+
+  @Override
+  public void importCSV() throws SQLException {}
 
   @Override
   public void exportCSV() throws SQLException {
@@ -196,6 +157,48 @@ public class MoveDAO implements LocationMoveDao {
       throw new RuntimeException(e);
     }
 
+    db.closeConnection();
+  }
+
+  @Override
+  public void importCSV(String filePath) throws SQLException {
+    db.setConnection();
+    sql = "insert into teamgdb.iteration1.move (nodeid, longname, date) values (?,?,?)";
+    PreparedStatement ps = db.getConnection().prepareStatement(sql);
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(filePath));
+      String line = null;
+
+      br.readLine();
+      while ((line = br.readLine()) != null) {
+        String[] data = line.split(",");
+
+        String nodeID = data[0];
+        String longname = data[1];
+        String dateString = data[2];
+
+        int inodeid = Integer.parseInt(nodeID);
+        ps.setInt(1, inodeid);
+
+        ps.setString(2, longname);
+
+        ps.setDate(3, stringToDate(dateString));
+
+        ps.addBatch();
+      }
+      br.close();
+      ps.executeBatch();
+
+    } catch (FileNotFoundException e) {
+      System.err.println("File not found");
+      e.printStackTrace();
+    } catch (IOException e) {
+      System.err.println("Input output exception");
+      e.printStackTrace();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      e.printStackTrace();
+    }
     db.closeConnection();
   }
 }

@@ -7,7 +7,6 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class LocationNameDAO implements LocationDAO {
   private static DBConnection connection = new DBConnection();
@@ -125,51 +124,44 @@ public class LocationNameDAO implements LocationDAO {
   }
 
   @Override
-  public void exportCSV() throws SQLException {
-
+  public void importCSV(String filename) throws SQLException {
     connection.setConnection();
-    ResultSet rs = null;
-    FileWriter fw = null;
 
     try {
-      Statement statement = connection.getConnection().createStatement();
-      rs = statement.executeQuery("select * from teamgdb.iteration1.locationname");
+      SQL =
+          "insert into teamgdb.iteration1.locationname (longname,shortname,nodetype) values (?,?,?)";
+      PreparedStatement ps = connection.getConnection().prepareStatement(SQL);
 
-      JFileChooser chooser = new JFileChooser();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", ".csv");
-      chooser.setFileFilter(filter);
+      BufferedReader br = new BufferedReader(new FileReader(filename));
+      String line = null;
+      br.readLine();
 
-      int result = chooser.showSaveDialog(null);
-      if (result == JFileChooser.APPROVE_OPTION) {
-        File savedFile = chooser.getSelectedFile();
-        String path = savedFile.getAbsolutePath();
-        fw = new FileWriter(path);
+      while ((line = br.readLine()) != null) {
+        String[] data = line.split(",");
 
-        int colCount = rs.getMetaData().getColumnCount();
-        for (int i = 1; i <= colCount; i++) {
-          String colLabel = rs.getMetaData().getColumnLabel(i);
-          fw.append(colLabel);
-          if (i < colCount) fw.append(",");
-        }
-        fw.append("\n");
+        String longname = data[0];
+        String shortname = data[1];
+        String nodetype = data[2];
 
-        while (rs.next()) {
-          for (int j = 1; j <= colCount; j++) {
-            String cellVal = rs.getString(j);
-            fw.append(cellVal);
-            if (j < colCount) fw.append(",");
-          }
-          fw.append("\n");
-        }
+        ps.setString(1, longname);
+        ps.setString(2, shortname);
+        ps.setString(3, nodetype);
+
+        ps.addBatch();
       }
+      br.close();
+      ps.executeBatch();
 
-      rs.close();
-      statement.close();
-      fw.close();
+    } catch (FileNotFoundException e) {
+      System.err.println("File Not Found Exception");
+      e.printStackTrace();
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      System.err.println("IO Exception");
+      e.printStackTrace();
+    } catch (SQLException e) {
+      System.err.println("SQL Exception");
+      e.printStackTrace();
     }
-
     connection.closeConnection();
   }
 }

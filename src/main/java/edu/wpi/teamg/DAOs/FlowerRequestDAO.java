@@ -22,7 +22,7 @@ public class FlowerRequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
     SQL_flowerRequest =
-        "select * from iteration1.request join iteration1.flowerrequest on iteration1.request.reid= iteration1.flowerrequest.reqid";
+        "select * from iteration1.request join iteration1.flowerrequest on iteration1.request.reqid= iteration1.flowerrequest.reqid";
     try {
       ps = db.getConnection().prepareStatement(SQL_flowerRequest);
       rs = ps.executeQuery();
@@ -71,6 +71,6 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return null;
+    return "teamgdb.iteration1.flowerrequest";
   }
 }

@@ -6,6 +6,8 @@ import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import javafx.application.Platform;
@@ -16,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.FileChooser;
 import javafx.util.converter.IntegerStringConverter;
 
 public class SignageAdminController {
@@ -105,7 +108,7 @@ public class SignageAdminController {
         event -> {
           try {
             fileChooser();
-          } catch (SQLException e) {
+          } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
           }
         });
@@ -255,19 +258,33 @@ public class SignageAdminController {
   DAORepo dao = new DAORepo();
 
   @FXML
-  void fileChooser() throws SQLException {
+  void fileChooser() throws SQLException, IOException {
     switch (importDrop.getValue()) {
       case "Nodes":
         NodeDAO nodeDAO = new NodeDAO();
-        nodeDAO.importCSV();
+        chooserHelper(nodeDAO);
         break;
       case "Edges":
         EdgeDAO edgeDAO = new EdgeDAO();
-        edgeDAO.importCSV();
+        chooserHelper(edgeDAO);
         break;
       case "LocationName":
-        LocationNameDAO lNameDAO = new LocationNameDAO();
-        lNameDAO.importCSV();
+        LocationNameDAO locationNameDAO = new LocationNameDAO();
+        chooserHelper(locationNameDAO);
+        break;
+      case "Moves":
+        MoveDAO moveDAO = new MoveDAO();
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters()
+            .add(new FileChooser.ExtensionFilter("Comma Seperated Values", "*.csv"));
+        File f = fc.showOpenDialog(null);
+        if (f != null) {
+          try {
+            moveDAO.importCSV(f.getAbsolutePath());
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        }
         break;
       default:
         break;
@@ -278,16 +295,20 @@ public class SignageAdminController {
   void fileExporter() throws SQLException {
     switch (exportDrop.getValue()) {
       case "Nodes":
-        dao.exportNodeCSV();
+        NodeDAO nodeDAO = new NodeDAO();
+        nodeDAO.exportCSV();
         break;
       case "Edges":
-        dao.exportEdgeCSV();
+        EdgeDAO edgeDAO = new EdgeDAO();
+        edgeDAO.exportCSV();
         break;
       case "LocationName":
-        dao.exportLocationNameCSV();
+        LocationNameDAO lNameDAO = new LocationNameDAO();
+        lNameDAO.exportCSV();
         break;
       case "Moves":
-        dao.exportMoveCSV();
+        MoveDAO mDao = new MoveDAO();
+        mDao.exportCSV();
       default:
         break;
     }
@@ -402,5 +423,21 @@ public class SignageAdminController {
 
   public void exit() {
     Platform.exit();
+  }
+
+  void chooserHelper(
+      LocationDAO dao) { // note because of move dao's uniqueness, this won't use that
+    FileChooser fc = new FileChooser();
+    fc.getExtensionFilters()
+        .add(new FileChooser.ExtensionFilter("Comma Seperated Values", "*.csv"));
+    File f = fc.showOpenDialog(null);
+    if (f != null) {
+      // fileLabel.setText("Selected File::" + f.getAbsolutePath());
+      try {
+        dao.importCSV(f.getAbsolutePath());
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+    }
   }
 }

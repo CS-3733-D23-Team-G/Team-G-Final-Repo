@@ -6,10 +6,8 @@ import java.io.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class EdgeDAO implements LocationDAO {
   static DBConnection connection = new DBConnection();
@@ -103,50 +101,40 @@ public class EdgeDAO implements LocationDAO {
   }
 
   @Override
-  public void exportCSV() throws SQLException {
+  public void importCSV(String filename) throws SQLException {
     connection.setConnection();
-    ResultSet rs = null;
-    FileWriter fw = null;
-
+    sql = "";
+    sql = "insert into teamgdb.iteration1.edge (startnode, endnode) values (?,?)";
+    PreparedStatement ps = connection.getConnection().prepareStatement(sql);
     try {
-      Statement statement = connection.getConnection().createStatement();
-      rs = statement.executeQuery("select * from teamgdb.iteration1.edge");
+      BufferedReader br = new BufferedReader(new FileReader(filename));
+      String line = null;
+      br.readLine();
 
-      JFileChooser chooser = new JFileChooser();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", ".csv");
-      chooser.setFileFilter(filter);
+      while ((line = br.readLine()) != null) {
+        String data[] = line.split(",");
 
-      int result = chooser.showSaveDialog(null);
-      if (result == JFileChooser.APPROVE_OPTION) {
-        File savedFile = chooser.getSelectedFile();
-        String path = savedFile.getAbsolutePath();
-        fw = new FileWriter(path);
+        int sNode = Integer.parseInt(data[0]);
+        int eNode = Integer.parseInt(data[1]);
 
-        int colCount = rs.getMetaData().getColumnCount();
-        for (int i = 1; i <= colCount; i++) {
-          String colLabel = rs.getMetaData().getColumnLabel(i);
-          fw.append(colLabel);
-          if (i < colCount) fw.append(",");
-        }
-        fw.append("\n");
+        ps.setInt(1, sNode);
+        ps.setInt(2, eNode);
 
-        while (rs.next()) {
-          for (int j = 1; j <= colCount; j++) {
-            String cellVal = rs.getString(j);
-            fw.append(cellVal);
-            if (j < colCount) fw.append(",");
-          }
-          fw.append("\n");
-        }
+        ps.addBatch();
       }
+      br.close();
+      ps.executeBatch();
 
-      rs.close();
-      statement.close();
-      fw.close();
+    } catch (FileNotFoundException e) {
+      System.err.println("File Not Found Exception");
+      e.printStackTrace();
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      System.err.println("IO Exception");
+      e.printStackTrace();
+    } catch (SQLException e) {
+      System.err.println("SQL Exception");
+      e.printStackTrace();
     }
-
     connection.closeConnection();
   }
 }
