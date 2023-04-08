@@ -1,8 +1,6 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.DAOs.ConferenceRoomRequestDAO;
-import edu.wpi.teamg.DAOs.MealRequestDAO;
-import edu.wpi.teamg.DAOs.RequestDAO;
+import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.Request;
@@ -93,9 +91,7 @@ public class FormStatusController {
   ObservableList<MealRequest> testMealList;
   ObservableList<ConferenceRoomRequest> testRoomList;
 
-  MealRequestDAO mealRequests = new MealRequestDAO();
-  ConferenceRoomRequestDAO conferenceRoom = new ConferenceRoomRequestDAO();
-  RequestDAO requests = new RequestDAO();
+  DAORepo dao = new DAORepo();
 
   @FXML
   public void initialize() throws SQLException {
@@ -249,7 +245,7 @@ public class FormStatusController {
     HashMap<Integer, Request> requestHashMap = new HashMap<Integer, Request>();
 
     try {
-      requestHashMap = requests.getAll();
+      requestHashMap = dao.getAllRequest();
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }
@@ -259,10 +255,10 @@ public class FormStatusController {
 
   public HashMap getHashMapMeal() throws SQLException {
 
-    HashMap<Integer, MealRequest> mealRequestHashMap = new HashMap<Integer, MealRequest>();
+    HashMap mealRequestHashMap = new HashMap<Integer, MealRequest>();
 
     try {
-      mealRequestHashMap = mealRequests.getAll();
+      mealRequestHashMap = dao.getAllMealRequest();
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }
@@ -276,7 +272,7 @@ public class FormStatusController {
         new HashMap<Integer, ConferenceRoomRequest>();
 
     try {
-      confRoomHash = conferenceRoom.getAll();
+      confRoomHash = dao.getAllConferenceRequest();
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }
