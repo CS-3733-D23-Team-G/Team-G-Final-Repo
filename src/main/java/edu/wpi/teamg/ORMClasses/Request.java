@@ -1,10 +1,9 @@
 package edu.wpi.teamg.ORMClasses;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.sql.Date;
 import java.sql.Time;
+import lombok.Getter;
+import lombok.Setter;
 
 public class Request {
 
@@ -19,12 +18,18 @@ public class Request {
 
   public Request() {}
 
-  public Request(int empid, int location, int serv_by, StatusTypeEnum status, Date deliveryDate, Time deliveryTime) {
+  public Request(
+      int empid,
+      int location,
+      int serv_by,
+      StatusTypeEnum status,
+      Date deliveryDate,
+      Time deliveryTime) {
     this.empid = empid;
     this.location = location;
     this.serv_by = serv_by;
     this.status = status;
-    this.deliveryDate=deliveryDate;
-    this.deliveryTime=deliveryTime;
+    this.deliveryDate = deliveryDate;
+    this.deliveryTime = deliveryTime;
   }
 }

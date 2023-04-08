@@ -35,11 +35,11 @@ public class RequestDAO implements DAO {
       int empID = rs.getInt("empid");
       int location = rs.getInt("location");
       int serv_by = rs.getInt("serv_by");
-      Date deliveryDate= rs.getDate("deliveryDate");
-      Time deliverytime=rs.getTime("deliveryTime");
+      Date deliveryDate = rs.getDate("deliveryDate");
+      Time deliverytime = rs.getTime("deliveryTime");
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
 
-      Request cReq = new Request(empID, location, serv_by, status, deliveryDate,deliverytime);
+      Request cReq = new Request(empID, location, serv_by, status, deliveryDate, deliverytime);
       cReq.setReqid(reqID);
 
       requestHash.put(reqID, cReq);

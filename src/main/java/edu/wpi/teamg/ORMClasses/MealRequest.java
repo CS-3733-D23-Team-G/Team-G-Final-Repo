@@ -7,7 +7,6 @@ import lombok.Setter;
 
 public class MealRequest extends Request {
 
-
   @Getter @Setter private String recipient;
   @Getter @Setter private String order;
   @Getter @Setter private String note;
@@ -24,7 +23,7 @@ public class MealRequest extends Request {
       String recipient,
       String order,
       String note) {
-    super(empid, location, serve_by, status, deliveryDate,deliveryTime);
+    super(empid, location, serve_by, status, deliveryDate, deliveryTime);
     this.recipient = recipient;
     this.order = order;
     this.note = note;

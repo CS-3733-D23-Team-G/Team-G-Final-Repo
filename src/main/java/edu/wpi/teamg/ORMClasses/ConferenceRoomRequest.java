@@ -16,7 +16,7 @@ public class ConferenceRoomRequest extends Request {
       Date meeting_date,
       Time meeting_time,
       String purpose) {
-    super(empid, location, serve_by, status,meeting_date,meeting_time);
+    super(empid, location, serve_by, status, meeting_date, meeting_time);
     this.purpose = purpose;
   }
 }

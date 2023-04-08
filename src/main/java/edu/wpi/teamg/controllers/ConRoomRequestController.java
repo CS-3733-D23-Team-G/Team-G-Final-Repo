@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import org.controlsfx.control.SearchableComboBox;
 
 public class ConRoomRequestController {
 
@@ -32,6 +33,13 @@ public class ConRoomRequestController {
   @FXML MFXTextField roomTimeData;
   @FXML MFXTextField roomNumber;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
+
+  // Hung This is the name and list associated with test searchable list
+  @FXML SearchableComboBox locationSearchDropdown;
+
+  ObservableList<String> locationList =
+      FXCollections.observableArrayList(
+          "Room 1", "Blue Room", "Regal Room", "321 Room", "Help, I Need Somebody Room");
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -72,6 +80,9 @@ public class ConRoomRequestController {
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     roomClearAll.setOnAction(event -> clearAllData());
+
+    // Hung this is where it sets the list - Andrew
+    locationSearchDropdown.setItems(locationList);
   }
 
   public void loadServiceRequestForm() {

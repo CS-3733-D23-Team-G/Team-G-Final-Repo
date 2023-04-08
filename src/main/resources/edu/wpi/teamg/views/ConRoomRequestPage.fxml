@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.ConRoomRequestController">
    <children>
@@ -59,6 +60,7 @@
                   <MFXTextField fx:id="roomTimeData" layoutX="342.0" layoutY="55.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
                   <MFXTextField fx:id="roomNumber" layoutX="83.0" layoutY="55.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
                   <MFXTextField fx:id="roomMeetingPurpose" layoutX="83.0" layoutY="142.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
+                  <SearchableComboBox fx:id="locationSearchDropdown" layoutX="85.0" layoutY="82.0" prefHeight="26.0" prefWidth="125.0" />
                </children>
             </AnchorPane>
          </children>
