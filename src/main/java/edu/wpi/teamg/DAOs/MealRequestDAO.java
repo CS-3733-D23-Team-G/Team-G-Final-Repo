@@ -49,7 +49,7 @@ public class MealRequestDAO implements DAO {
       String note = rs.getString("note");
       MealRequest mealReq =
           new MealRequest(
-              empID, location, serv_by, status, deliveryDate, deliveryTime, recipient, order, note);
+              "M", empID, "", serv_by, status, deliveryDate, deliveryTime, recipient, order, note);
 
       mealReq.setReqid(reqID);
 
@@ -102,15 +102,15 @@ public class MealRequestDAO implements DAO {
       ps_Request = db.getConnection().prepareStatement(SQL_Request);
       ps_Request.setInt(1, maxID);
       ps_Request.setInt(2, ((MealRequest) obj).getEmpid());
-      ps_Request.setInt(3, ((MealRequest) obj).getLocation());
-      ps_Request.setInt(4, ((MealRequest) obj).getServ_by());
+      // ps_Request.setInt(3, ((MealRequest) obj).getLocation());
+      ps_Request.setInt(4, ((MealRequest) obj).getServeBy());
       ps_Request.setObject(5, ((MealRequest) obj).getStatus(), java.sql.Types.OTHER);
       ps_Request.executeUpdate();
 
       ps_mealRequest = db.getConnection().prepareStatement(SQL_mealRequest);
       ps_mealRequest.setInt(1, maxID);
-      ps_mealRequest.setDate(2, ((MealRequest) obj).getDeliveryDate());
-      ps_mealRequest.setTime(3, ((MealRequest) obj).getDeliveryTime());
+      ps_mealRequest.setDate(2, ((MealRequest) obj).getRequestDate());
+      ps_mealRequest.setTime(3, ((MealRequest) obj).getRequestTime());
       ps_mealRequest.setString(4, ((MealRequest) obj).getRecipient());
       ps_mealRequest.setString(5, ((MealRequest) obj).getOrder());
       ps_mealRequest.setString(6, ((MealRequest) obj).getNote());

@@ -11,7 +11,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class NodeDAO implements LocationDAO {
   private HashMap<Integer, Node> nodeHash = new HashMap<Integer, Node>();
   private static DBConnection db = new DBConnection();
-  private String SQL;
+  private static String SQL;
   private HashMap<Integer, Node> Nodes = new HashMap<>();
 
   @Override
@@ -192,5 +192,67 @@ public class NodeDAO implements LocationDAO {
     db.closeConnection();
 
     return nodeHash;
+  }
+
+  public static HashMap<Integer, String> getCRLongName() throws SQLException {
+
+    HashMap<Integer, String> longNameHash = new HashMap<>();
+
+    db.setConnection();
+    PreparedStatement ps;
+
+    ResultSet rs = null;
+
+    SQL =
+        "SELECT Move.nodeID, LocationName.longName\n"
+            + "FROM iteration1.Move\n"
+            + "JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
+            + "JOIN iteration1.Node ON Move.nodeID = Node.nodeID\n"
+            + "WHERE LocationName.nodeType = 'CONF';";
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      // printSQLException(e);
+    }
+
+    while (rs.next()) {
+
+      int node_id = rs.getInt("nodeid");
+      String longname = rs.getString("longname");
+
+      longNameHash.put(node_id, longname);
+    }
+
+    db.closeConnection();
+
+    return longNameHash;
+  }
+
+  public int getNodeIDbyLongName(String longname) throws SQLException {
+    db.setConnection();
+    PreparedStatement ps;
+
+    ResultSet rs = null;
+    SQL = "select nodeid from iteration1.Move where longname = ?";
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
+      ps.setString(1, longname);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+    }
+
+    int node_id = 0;
+
+    while (rs.next()) {
+
+      node_id = rs.getInt("nodeid");
+    }
+
+    return node_id;
   }
 }

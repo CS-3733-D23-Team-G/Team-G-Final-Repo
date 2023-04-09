@@ -65,7 +65,7 @@ public class MealRequestController {
           "CC Buritto Bowl (w/ Siracha)");
 
   @FXML
-  public void initialize() {
+  public void initialize() throws SQLException {
     mealSubmitButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT));
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
     backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
@@ -106,9 +106,10 @@ public class MealRequestController {
   public void storeMealValues() throws SQLException {
     MealRequest mr =
         new MealRequest(
+            "M",
             1,
             // assume for now they are going to input a node number, so parseInt
-            Integer.parseInt(mealDeliveryLocationData.getText()),
+            mealDeliveryLocationData.getText(),
             1,
             StatusTypeEnum.blank,
             Date.valueOf(mealDate.getValue()),

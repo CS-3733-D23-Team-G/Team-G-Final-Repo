@@ -11,6 +11,8 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -55,15 +57,21 @@ public class ConRoomRequestController {
   //    FXCollections.observableArrayList(
   //        "1", "2", "3", "4", "5", "6");
 
+  DAORepo dao = new DAORepo();
+
   @FXML
-  public void initialize() {
+  public void initialize() throws SQLException {
     backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
     exitButton.setOnMouseClicked(event -> roomExit());
     roomConfirm.setOnMouseClicked(
         event -> {
           Navigation.navigate(Screen.ROOM_REQUEST_SUBMIT);
-          storeRoomValues();
+          try {
+            storeRoomValues();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
         });
 
     datePicker.setText("");
@@ -80,6 +88,22 @@ public class ConRoomRequestController {
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     roomClearAll.setOnAction(event -> clearAllData());
+
+    ArrayList<String> locationNames = new ArrayList<>();
+    HashMap<Integer, String> testingLongName = this.getHashMapCRLongName();
+
+    testingLongName.forEach(
+        (i, m) -> {
+          locationNames.add(m);
+          //          System.out.println("Request ID:" + m.getReqid());
+          //          System.out.println("Employee ID:" + m.getEmpid());
+          //          System.out.println("Status:" + m.getStatus());
+          //          System.out.println("Location:" + m.getLocation());
+          //          System.out.println("Serve By:" + m.getServ_by());
+          //          System.out.println();
+        });
+
+    locationList = FXCollections.observableArrayList(locationNames);
 
     // Hung this is where it sets the list - Andrew
     locationSearchDropdown.setItems(locationList);
@@ -101,18 +125,19 @@ public class ConRoomRequestController {
     }
   }
 
-  public void storeRoomValues() {
+  public void storeRoomValues() throws SQLException {
 
-    DAORepo dao = new DAORepo();
     ConferenceRoomRequest conRoom =
         new ConferenceRoomRequest(
+            "CR",
             1,
             // assume for now they are going to input a node number, so parseInt
-            Integer.parseInt(roomNumber.getText()),
+            (String) locationSearchDropdown.getValue(),
             1,
             StatusTypeEnum.blank,
             Date.valueOf(datePicker.getValue()),
             StringToTime(roomTimeData.getText()),
+            StringToTime("10:00"),
             roomMeetingPurpose.getText());
 
     try {
@@ -122,24 +147,22 @@ public class ConRoomRequestController {
       e.printStackTrace();
     }
 
-    //    System.out.println(
-    //        "Employee ID: "
-    //            + crr.getEmpid()
-    //            + "\nMeeting Location: "
-    //            + crr.getLocation()
-    //            + "\nPurpose: "
-    //            + crr.getPurpose()
-    //            //                    + "\nNote: "
-    //            //                    + crr.getNote()
-    //            //                    + "\nRecipient: "
-    //            //                    + crr.getRecipient()
-    //            + "\nMeeting Date: "
-    //            + crr.getMeeting_date()
-    //            + "\nMeeting Time: "
-    //            + crr.getMeeting_time());
+    System.out.println("Room Name: " + locationSearchDropdown.getValue());
+    System.out.println(
+        "Room ID: " + dao.getNodeIDbyLongName((String) locationSearchDropdown.getValue()));
+  }
 
-    //    MealRequestDAO mealRequestDAO = new MealRequestDAO();
-    //    mealRequestDAO.insert(mr);
+  public HashMap<Integer, String> getHashMapCRLongName() throws SQLException {
+
+    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getCRLongName();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return longNameHashMap;
   }
 
   public void clearAllData() {

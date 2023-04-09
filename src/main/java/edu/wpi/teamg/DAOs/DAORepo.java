@@ -129,4 +129,12 @@ public class DAORepo {
   public void exportLocationNameCSV() throws SQLException {
     locationNameDao.exportCSV();
   }
+
+  public HashMap getCRLongName() throws SQLException {
+    return nodeDao.getCRLongName();
+  }
+
+  public int getNodeIDbyLongName(String longname) throws SQLException {
+    return nodeDao.getNodeIDbyLongName(longname);
+  }
 }

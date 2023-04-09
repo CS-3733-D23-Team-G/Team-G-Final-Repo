@@ -11,6 +11,8 @@ public class FlowerRequest extends Request {
   @Getter @Setter private String note;
   @Getter @Setter private String recipient;
 
+  public FlowerRequest() {};
+
   public FlowerRequest(String flowerType, int numFlower, String note, String recipient) {
     this.flowerType = flowerType;
     this.numFlower = numFlower;
@@ -19,8 +21,9 @@ public class FlowerRequest extends Request {
   }
 
   public FlowerRequest(
+      String reqtype,
       int empid,
-      int location,
+      String location,
       int serv_by,
       StatusTypeEnum status,
       Date deliveryDate,
@@ -29,7 +32,7 @@ public class FlowerRequest extends Request {
       int numFlower,
       String note,
       String recipient) {
-    super(empid, location, serv_by, status, deliveryDate, deliveryTime);
+    super(reqtype, empid, location, serv_by, status, deliveryDate, deliveryTime);
     this.flowerType = flowerType;
     this.numFlower = numFlower;
     this.note = note;

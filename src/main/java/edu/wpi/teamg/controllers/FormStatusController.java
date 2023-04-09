@@ -38,10 +38,13 @@ public class FormStatusController {
 
   // Main Table
   @FXML TableColumn<Request, Integer> empID;
+  @FXML TableColumn<Request, String> reqType;
   @FXML TableColumn<Request, Integer> location1;
   @FXML TableColumn<Request, Integer> reqID;
   @FXML TableColumn<Request, Integer> serveBy;
   @FXML TableColumn<Request, StatusTypeEnum> status;
+  @FXML TableColumn<Request, Date> reqDate;
+  @FXML TableColumn<Request, Time> reqTime;
 
   //  @FXML TableColumn<Request, String> recipient;
   //  @FXML TableColumn<Request, String> order;
@@ -67,12 +70,13 @@ public class FormStatusController {
 
   // room Table
   @FXML TableColumn<ConferenceRoomRequest, Integer> roomEmpID;
-  @FXML TableColumn<ConferenceRoomRequest, Integer> roomLocation1;
+  @FXML TableColumn<ConferenceRoomRequest, String> roomLocation1;
   @FXML TableColumn<ConferenceRoomRequest, Integer> roomReqID;
   @FXML TableColumn<ConferenceRoomRequest, Integer> roomServeBy;
   @FXML TableColumn<ConferenceRoomRequest, StatusTypeEnum> roomStatus;
   @FXML TableColumn<ConferenceRoomRequest, Date> roomDate;
   @FXML TableColumn<ConferenceRoomRequest, Time> roomTime;
+  @FXML TableColumn<ConferenceRoomRequest, Time> endTime;
   @FXML TableColumn<ConferenceRoomRequest, String> roomPurpose;
 
   @FXML Button allRequestTableButton;
@@ -217,10 +221,11 @@ public class FormStatusController {
     roomReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
     roomEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
     roomLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    roomServeBy.setCellValueFactory(new PropertyValueFactory<>("serv_by"));
+    roomServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
     roomStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-    roomDate.setCellValueFactory(new PropertyValueFactory<>("meeting_date"));
-    roomTime.setCellValueFactory(new PropertyValueFactory<>("meeting_time"));
+    roomDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+    roomTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+    endTime.setCellValueFactory(new PropertyValueFactory<>("endtime"));
     roomPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
   }
 
