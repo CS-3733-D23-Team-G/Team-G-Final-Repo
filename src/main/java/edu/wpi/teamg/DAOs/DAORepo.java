@@ -13,6 +13,7 @@ public class DAORepo {
   private LocationNameDAO locationNameDao = new LocationNameDAO();
   private ConferenceRoomRequestDAO conferenceRoomRequestDao = new ConferenceRoomRequestDAO();
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
+  private LoginDao loginDAO = new LoginDao();
 
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
@@ -42,6 +43,9 @@ public class DAORepo {
     return locationNameDao.getAll();
   }
 
+  public HashMap getAllLogins() throws SQLException {
+    return loginDAO.getAll();
+  }
   public void insertNode(Object obj) throws SQLException {
     nodeDao.insert(obj);
   }
@@ -70,6 +74,10 @@ public class DAORepo {
     locationNameDao.insert(obj);
   }
 
+  public void insertLogin(Object obj) throws SQLException {
+    loginDAO.insert(obj);
+  }
+
   public void deleteNode(Object obj) throws SQLException {
     nodeDao.delete(obj);
   }
@@ -96,6 +104,10 @@ public class DAORepo {
 
   public void deleteMealRequest(Object obj) throws SQLException {
     mealRequestDao.delete(obj);
+  }
+
+  public void deleteLogin(Object obj) throws SQLException {
+    loginDAO.delete(obj);
   }
 
   public void importNodeCSV(String path) throws SQLException {
