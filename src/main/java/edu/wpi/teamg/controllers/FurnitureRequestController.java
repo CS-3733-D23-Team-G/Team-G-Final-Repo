@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 
 public class FurnitureRequestController {
 
@@ -15,6 +16,11 @@ public class FurnitureRequestController {
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
   @FXML MFXButton signagePageButton;
   @FXML MFXButton exitButton;
+  @FXML MFXButton praticeButton;
+  @FXML Label tenNumber;
+  @FXML Label prz;
+   @FXML ChoiceBox<Integer> praticeChoice;
+  ObservableList<Integer> priatice = FXCollections.observableArrayList(13, 14, 15, 20, 16);
 
   ObservableList<String> list =
       FXCollections.observableArrayList(

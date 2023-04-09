@@ -15,7 +15,6 @@ public class DAORepo {
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
   private FlowerRequestDAO flowerRequestDAO = new FlowerRequestDAO();
 
-
   // Get methods for Dao's
 
   public HashMap getAllNodes() throws SQLException {
@@ -46,7 +45,7 @@ public class DAORepo {
     return locationNameDao.getAll();
   }
 
-  public HashMap getAllFlowerRequest() throws SQLException{
+  public HashMap getAllFlowerRequest() throws SQLException {
     return flowerRequestDAO.getAll();
   }
 
@@ -103,7 +102,7 @@ public class DAORepo {
   public void deleteRequest(Object obj) throws SQLException {
     requestDao.delete(obj);
   }
-// delete methods for dao's
+  // delete methods for dao's
   public void deleteConferenceRoomRequest(Object obj) throws SQLException {
     conferenceRoomRequestDao.delete(obj);
   }
