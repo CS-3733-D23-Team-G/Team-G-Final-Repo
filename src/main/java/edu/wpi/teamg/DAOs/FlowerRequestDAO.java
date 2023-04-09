@@ -3,6 +3,8 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import oracle.ucp.proxy.annotation.Pre;
+
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -80,9 +82,21 @@ public class FlowerRequestDAO implements DAO {
       rs = ps_getMaxID.executeQuery();
     }catch(SQLException e){
       System.err.println("SQL Exception");
+      e.printStackTrace();
+    }
+    int maxID=0;
+    while(rs.next()){
+      maxID = rs.getInt("reqID");
+      maxID++;
     }
   }
 
   @Override
-  public void delete(Object obj) throws SQLException {}
+  public void delete(Object obj) throws SQLException {
+    db.setConnection();
+    PreparedStatement ps_flowerRequest;
+
+
+
+  }
 }
