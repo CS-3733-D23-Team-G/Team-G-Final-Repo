@@ -36,7 +36,15 @@ public class FlowersRequestController {
 
   ObservableList<String> listFlowers =
       FXCollections.observableArrayList(
-          "Carnations", "Daisies", "Lilacs", "Orchids", "Roses", "Sunflowers");
+          "Baby's Breath",
+          "Carnations",
+          "Daisies",
+          "Hyacinths",
+          "Lilacs",
+          "Orchids",
+          "Roses",
+          "Sunflowers",
+          "Tulips");
   ObservableList<String> listSizes =
       FXCollections.observableArrayList(
           "10 Stems (small)", "20 Stems (medium)", "30 Stems (large)");
