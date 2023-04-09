@@ -66,7 +66,22 @@ public class FlowerRequestDAO implements DAO {
   public void update(Object obj, Object update) throws SQLException {}
 
   @Override
-  public void insert(Object obj) throws SQLException {}
+  public void insert(Object obj) throws SQLException {
+    db.setConnection();
+    PreparedStatement ps_getMaxID;
+    PreparedStatement ps_getFlowerReq;
+    PreparedStatement ps_Req;
+
+    ResultSet rs = null;
+    SQL_maxID = "select reqid from teamgdb.iteration1.request order by reqid desc limit 1";
+
+    try{
+      ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
+      rs = ps_getMaxID.executeQuery();
+    }catch(SQLException e){
+      System.err.println("SQL Exception");
+    }
+  }
 
   @Override
   public void delete(Object obj) throws SQLException {}
