@@ -15,9 +15,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.layout.Pane?>
+<?import net.kurobako.gesturefx.GesturePane?>
+<?import javafx.scene.Group?>
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SignageAdminController">
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="304.0" prefWidth="423.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -25,14 +28,19 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="moveTable" prefHeight="291.0" prefWidth="437.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" layoutX="230.0" layoutY="56.0" prefHeight="403.0" prefWidth="851.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="56.0">
+               <Group fx:id="group">
+                  <Pane fx:id="nodePane" />
+               </Group>
+            </GesturePane>
+            <TableView fx:id="moveTable" prefHeight="291.0" prefWidth="177.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="moveNodeID" prefWidth="55.0" text="NodeID" />
                   <TableColumn fx:id="moveDate" prefWidth="55.0" text="Date" />
                   <TableColumn fx:id="moveLongName" prefWidth="55.0" text="LongName" />
                </columns>
             </TableView>
-            <TableView fx:id="edgeTable" prefHeight="291.0" prefWidth="437.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <TableView fx:id="edgeTable" prefHeight="291.0" prefWidth="263.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="edgeEdgeID" prefWidth="55.0" text="EdgeID" />
                   <TableColumn fx:id="edgeEndNode" prefWidth="55.0" text="EndNode" />
@@ -46,7 +54,7 @@
                   <TableColumn fx:id="locNodeType" prefWidth="60.0" text="NodeType" />
                </columns>
             </TableView>
-            <TableView fx:id="nodeTable" prefHeight="291.0" prefWidth="437.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <TableView fx:id="nodeTable" prefHeight="291.0" prefWidth="316.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="nodeNodeID" prefWidth="55.0" text="NodeID" />
                   <TableColumn fx:id="nodeXcoord" prefWidth="55.0" text="x-coord" />
@@ -72,6 +80,10 @@
             <Text layoutX="48.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Export" AnchorPane.leftAnchor="46.853515625" AnchorPane.rightAnchor="49.244140625" AnchorPane.topAnchor="183.0" />
             <MFXButton fx:id="cancel" layoutX="65.0" layoutY="238.0" text="Cancel" />
             <MFXButton fx:id="edit" layoutX="15.0" layoutY="238.0" text="Edit" />
+            <Button fx:id="disMap" layoutX="14.0" layoutY="271.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Map" />
+            <Button fx:id="l1" layoutX="15.0" layoutY="302.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="L1" />
+            <Button fx:id="l2" layoutX="15.0" layoutY="332.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="L2" />
+            <Button fx:id="floor1" layoutX="15.0" layoutY="362.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 1" />
          </children>
       </AnchorPane>
    </left>
