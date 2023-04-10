@@ -9,6 +9,7 @@ drop table if exists iteration1.Move;
 drop table if exists iteration1.Edge;
 drop table if exists iteration1.LocationName;
 drop table if exists iteration1.Node;
+drop table if exists iteration1.login;
 
 create table iteration1.Node(
                                         nodeID int primary key,
@@ -37,7 +38,7 @@ create table iteration1.Move(
                                         longName varchar(100),
                                         date date,
                                         PRIMARY KEY (nodeID, longName, date),
-                                        foreign key (nodeID) references iteration1.Node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
+                                        foreign key (nodeID) references iteration1.node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
                                         foreign key (longName) references iteration1.LocationName(longName) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -86,16 +87,21 @@ create table iteration1.MealRequest(
            mealOrder varchar(255),
            note varchar(255),
            foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+
 );
-create table iteration1.FlowerRequest(
+
+create table iteration1.flowerrequest(
     reqID int primary key,
     flowerType varchar(50),
     numFlower int,
     recipient varchar(50),
     note varchar(225),
-    foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+    foreign key (reqID) references iteration1.request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+create table iteration1.login(
+    email varchar(255) primary key,
+    password varchar(255));
 
 INSERT INTO iteration1.Employee (empID, firstName, lastName, email, can_serve)
 VALUES
@@ -156,13 +162,3 @@ VALUES
     (11, 'Daisy, Tulip', 20, 'Sarah', 'Congratulations on your new job!'),
     (12, 'Lily, Rose', 15, 'Michael', 'With deepest sympathy');
 
-SELECT Move.nodeID, LocationName.longName
-FROM iteration1.Move
-         JOIN iteration1.LocationName ON Move.longName = LocationName.longName
-         JOIN iteration1.Node ON Move.nodeID = Node.nodeID
-WHERE LocationName.nodeType = 'CONF';
-
-SELECT m.nodeID, ln.longName
-FROM iteration1.Move AS m
-         JOIN iteration1.LocationName AS ln ON m.longname = ln.longname
-WHERE ln.nodeType = 'CONF';

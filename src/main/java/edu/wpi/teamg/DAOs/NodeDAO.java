@@ -2,17 +2,49 @@ package edu.wpi.teamg.DAOs;
 
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Node;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.sql.*;
 import java.util.HashMap;
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class NodeDAO implements LocationDAO {
   private HashMap<Integer, Node> nodeHash = new HashMap<Integer, Node>();
   private static DBConnection db = new DBConnection();
   private static String SQL;
   private HashMap<Integer, Node> Nodes = new HashMap<>();
+
+  @Override
+  public void update(Object obj, Object update) throws SQLException {}
+
+  @Override
+  public void delete(Object obj) throws SQLException {
+    db.setConnection();
+
+    PreparedStatement ps;
+
+    SQL = "delete from teamgdb.iteration1.node where nodeid = ?";
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
+      ps.setInt(1, ((Node) obj).getNodeID());
+      ps.executeUpdate();
+      nodeHash.remove(((Node) obj).getNodeID());
+
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      e.printStackTrace();
+      // printSQLException(e);
+    }
+
+    db.closeConnection();
+  }
+
+  @Override
+  public String getTable() {
+    return "teamgdb.iteration1.node";
+  }
 
   @Override
   public void importCSV(String path) throws SQLException {
@@ -124,32 +156,6 @@ public class NodeDAO implements LocationDAO {
       ps.setString(5, ((Node) obj).getBuilding());
       ps.executeUpdate();
       nodeHash.put(((Node) obj).getNodeID(), (Node) obj);
-
-    } catch (SQLException e) {
-      System.err.println("SQL exception");
-      e.printStackTrace();
-      // printSQLException(e);
-    }
-
-    db.closeConnection();
-  }
-
-  @Override
-  public void update(Object obj, Object update) throws SQLException {}
-
-  @Override
-  public void delete(Object obj) throws SQLException {
-    db.setConnection();
-
-    PreparedStatement ps;
-
-    SQL = "delete from iteration1.node where nodeid = ?";
-
-    try {
-      ps = db.getConnection().prepareStatement(SQL);
-      ps.setInt(1, ((Node) obj).getNodeID());
-      ps.executeUpdate();
-      nodeHash.remove(((Node) obj).getNodeID());
 
     } catch (SQLException e) {
       System.err.println("SQL exception");
@@ -326,4 +332,5 @@ public class NodeDAO implements LocationDAO {
 
     return node_id;
   }
+
 }
