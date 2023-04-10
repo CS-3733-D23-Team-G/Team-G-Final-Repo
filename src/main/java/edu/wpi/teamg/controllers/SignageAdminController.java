@@ -7,6 +7,7 @@ import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import javafx.application.Platform;
@@ -103,7 +104,14 @@ public class SignageAdminController {
     // importButton.setOnAction(event -> fileChooser());
 
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-    importDrop.setOnAction(event -> fileChooser());
+    importDrop.setOnAction(
+        event -> {
+          try {
+            fileChooser();
+          } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
     exportDrop.setOnAction(
         event -> {
           try {
@@ -122,7 +130,6 @@ public class SignageAdminController {
            throw new RuntimeException(e);
          }
        });
-
     */
 
     // startLoc.getText();
@@ -202,17 +209,12 @@ public class SignageAdminController {
   }
 
   /*
-
   public void processAStarAlg() throws SQLException {
     ArrayList<String> path = new ArrayList<>();
-
     //    NodeDAO nodeDAO = new NodeDAO();
-
     //    List<Node> nodeList = nodeDAO.getAll();
-
     int startNode = Integer.parseInt(startLoc.getText());
     int endNode = Integer.parseInt(endLoc.getText());
-
     edu.wpi.teamg.pathFinding.Node[] N1 = new edu.wpi.teamg.pathFinding.Node[10];
     Random r = new Random(5591);
     for (int i = 0; i < 10; i++) {
@@ -241,12 +243,9 @@ public class SignageAdminController {
     Graph G1 = new Graph(N1, E1);
     int[][] Adj = G1.createWeightedAdj();
     // new int[10][10];
-
     path = G1.aStarAlg(G1.createWeightedAdj(), startNode, endNode);
-
     setPath(path);
   }
-
   /*ObservableList<String>  =
             FXCollections.observableArrayList(
                     "Conference Room Request Form",
@@ -259,7 +258,7 @@ public class SignageAdminController {
   DAORepo dao = new DAORepo();
 
   @FXML
-  void fileChooser() {
+  void fileChooser() throws SQLException, IOException {
     switch (importDrop.getValue()) {
       case "Nodes":
         NodeDAO nodeDAO = new NodeDAO();
@@ -296,16 +295,20 @@ public class SignageAdminController {
   void fileExporter() throws SQLException {
     switch (exportDrop.getValue()) {
       case "Nodes":
-        dao.exportNodeCSV();
+        NodeDAO nodeDAO = new NodeDAO();
+        nodeDAO.exportCSV();
         break;
       case "Edges":
-        dao.exportEdgeCSV();
+        EdgeDAO edgeDAO = new EdgeDAO();
+        edgeDAO.exportCSV();
         break;
       case "LocationName":
-        dao.exportLocationNameCSV();
+        LocationNameDAO lNameDAO = new LocationNameDAO();
+        lNameDAO.exportCSV();
         break;
       case "Moves":
-        dao.exportMoveCSV();
+        MoveDAO mDao = new MoveDAO();
+        mDao.exportCSV();
       default:
         break;
     }
@@ -377,7 +380,6 @@ public class SignageAdminController {
   public void setPath(ArrayList<String> path) {
     results.setText(String.valueOf(path));
   }
-
    */
 
   public void cancelTable() {

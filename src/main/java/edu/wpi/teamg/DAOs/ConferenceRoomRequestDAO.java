@@ -30,8 +30,8 @@ public class ConferenceRoomRequestDAO implements DAO {
     ResultSet rs = null;
 
     SQL_confRoomRequest =
-        "select * from iteration1.request join iteration1.conferenceroomrequest "
-            + "on iteration1.request.reqid = iteration1.conferenceroomrequest.reqid";
+        "select * from teamgdb.iteration1.request join teamgdb.iteration1.conferenceroomrequest "
+            + "on teamgdb.iteration1.request.reqid = teamgdb.iteration1.conferenceroomrequest.reqid";
 
     try {
       ps = db.getConnection().prepareStatement(SQL_confRoomRequest);
@@ -149,5 +149,10 @@ public class ConferenceRoomRequestDAO implements DAO {
     }
 
     db.closeConnection();
+  }
+
+  @Override
+  public String getTable() {
+    return "teamgdb.iteration1.conferenceroomrequest";
   }
 }
