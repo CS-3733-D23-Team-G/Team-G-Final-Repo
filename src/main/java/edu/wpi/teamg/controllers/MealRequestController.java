@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -110,6 +111,8 @@ public class MealRequestController {
           //          System.out.println("Serve By:" + m.getServ_by());
           //          System.out.println();
         });
+
+    Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
 
     locationList = FXCollections.observableArrayList(locationNames);
 
