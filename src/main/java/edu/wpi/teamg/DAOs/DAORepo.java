@@ -13,6 +13,7 @@ public class DAORepo {
   private LocationNameDAO locationNameDao = new LocationNameDAO();
   private ConferenceRoomRequestDAO conferenceRoomRequestDao = new ConferenceRoomRequestDAO();
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
+  private LoginDao loginDAO = new LoginDao();
 
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
@@ -42,6 +43,9 @@ public class DAORepo {
     return locationNameDao.getAll();
   }
 
+  public HashMap getAllLogins() throws SQLException {
+    return loginDAO.getAll();
+  }
   public void insertNode(Object obj) throws SQLException {
     nodeDao.insert(obj);
   }
@@ -68,6 +72,10 @@ public class DAORepo {
 
   public void insertLocationName(Object obj) throws SQLException {
     locationNameDao.insert(obj);
+  }
+
+  public void insertLogin(Object obj) throws SQLException {
+    loginDAO.insert(obj);
   }
 
   public void deleteNode(Object obj) throws SQLException {
@@ -97,6 +105,28 @@ public class DAORepo {
   public void deleteMealRequest(Object obj) throws SQLException {
     mealRequestDao.delete(obj);
   }
+
+
+  public void deleteLogin(Object obj) throws SQLException {
+    loginDAO.delete(obj);
+  }
+
+  public void importNodeCSV(String path) throws SQLException {
+    nodeDao.importCSV(path);
+  }
+
+  public void importMoveCSV(String path) throws SQLException {
+    moveDao.importCSV(path);
+  }
+
+  public void importLocationNameCSV(String path) throws SQLException {
+    locationNameDao.importCSV(path);
+  }
+
+  public void importEdgeCSV(String path) throws SQLException {
+    edgeDao.importCSV(path);
+  }
+
 
   public void exportNodeCSV() throws SQLException {
     nodeDao.exportCSV();
