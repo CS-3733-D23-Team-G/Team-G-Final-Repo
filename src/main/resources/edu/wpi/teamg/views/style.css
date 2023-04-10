@@ -56,3 +56,12 @@
     -fx-max-height: 30;
     -fx-opacity: 0;
 }
+.new_banner{
+    -fx-max-height: 89;
+    -fx-pref-height: 89;
+    -fx-background-color: #012D5A;
+    -fx-pref-width: 960;
+}
+.banner_halves{
+    -fx-pref-width: 480;
+}
