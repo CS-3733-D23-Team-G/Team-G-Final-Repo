@@ -3,8 +3,6 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-import oracle.ucp.proxy.annotation.Pre;
-
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -79,50 +77,52 @@ public class FlowerRequestDAO implements DAO {
     ResultSet rs = null;
     SQL_maxID = "select reqid from teamgdb.iteration1.request order by reqid desc limit 1";
 
-    try{
+    try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
       rs = ps_getMaxID.executeQuery();
-    }catch(SQLException e){
+    } catch (SQLException e) {
       System.err.println("SQL Exception");
       e.printStackTrace();
     }
-    int maxID=0;
-    while(rs.next()){
+    int maxID = 0;
+    while (rs.next()) {
       maxID = rs.getInt("reqID");
       maxID++;
     }
 
-    SQL_flowerRequest = "insert into teamgdb.iteration1.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
-    SQL_Request = "insert into teamgdb.iteration1.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+    SQL_flowerRequest =
+        "insert into teamgdb.iteration1.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
+    SQL_Request =
+        "insert into teamgdb.iteration1.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
 
-    try{
+    try {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
-      ps_Req.setInt(1,maxID);
-      ps_Req.setString(2,"FR");
-      ps_Req.setInt(3,((FlowerRequest)obj).getEmpid());
+      ps_Req.setInt(1, maxID);
+      ps_Req.setString(2, "FR");
+      ps_Req.setInt(3, ((FlowerRequest) obj).getEmpid());
 
-      int nodeID = nodeDAO.getNodeIDbyLongName(((FlowerRequest)obj).getLocation());
+      int nodeID = nodeDAO.getNodeIDbyLongName(((FlowerRequest) obj).getLocation());
 
-      ps_Req.setInt(4,nodeID);
-      ps_Req.setInt(5,((FlowerRequest) obj).getServeBy());
-      ps_Req.setObject(6,((FlowerRequest)obj).getStatus(),java.sql.Types.OTHER);
-      ps_Req.setDate(7,((FlowerRequest)obj).getRequestDate());
-      ps_Req.setTime(8,((FlowerRequest)obj).getRequestTime());
+      ps_Req.setInt(4, nodeID);
+      ps_Req.setInt(5, ((FlowerRequest) obj).getServeBy());
+      ps_Req.setObject(6, ((FlowerRequest) obj).getStatus(), java.sql.Types.OTHER);
+      ps_Req.setDate(7, ((FlowerRequest) obj).getRequestDate());
+      ps_Req.setTime(8, ((FlowerRequest) obj).getRequestTime());
       ps_Req.executeUpdate();
 
       ps_getFlowerReq = db.getConnection().prepareStatement(SQL_flowerRequest);
-      ps_getFlowerReq.setInt(1,maxID);
-      ps_getFlowerReq.setString(2,((FlowerRequest)obj).getFlowerType());
-      ps_getFlowerReq.setInt(3,((FlowerRequest)obj).getNumFlower());
-      ps_getFlowerReq.setString(4,((FlowerRequest)obj).getRecipient());
-      ps_getFlowerReq.setString(5,((FlowerRequest)obj).getNote());
+      ps_getFlowerReq.setInt(1, maxID);
+      ps_getFlowerReq.setString(2, ((FlowerRequest) obj).getFlowerType());
+      ps_getFlowerReq.setInt(3, ((FlowerRequest) obj).getNumFlower());
+      ps_getFlowerReq.setString(4, ((FlowerRequest) obj).getRecipient());
+      ps_getFlowerReq.setString(5, ((FlowerRequest) obj).getNote());
 
       ps_getFlowerReq.executeUpdate();
-    }catch (SQLException e){
+    } catch (SQLException e) {
       System.err.println("SQL Exception");
       e.printStackTrace();
     }
-    flowerHashMap.put(((FlowerRequest)obj).getReqid(),(FlowerRequest) obj);
+    flowerHashMap.put(((FlowerRequest) obj).getReqid(), (FlowerRequest) obj);
     db.closeConnection();
   }
 
@@ -131,24 +131,23 @@ public class FlowerRequestDAO implements DAO {
     db.setConnection();
     PreparedStatement ps_flower;
     PreparedStatement ps_Request;
-    FlowerRequest flow= (FlowerRequest) obj;
+    FlowerRequest flow = (FlowerRequest) obj;
 
-    SQL_flowerRequest="delete from teamgdb.iteration1.flowerrequest where reqid=?";
-    SQL_Request="delete from iteration1.flowerrequest where reqid=?";
-    try{
-      ps_flower=db.getConnection().prepareStatement(SQL_flowerRequest);
-      ps_flower.setInt(1,flow.getReqid());
+    SQL_flowerRequest = "delete from teamgdb.iteration1.flowerrequest where reqid=?";
+    SQL_Request = "delete from iteration1.flowerrequest where reqid=?";
+    try {
+      ps_flower = db.getConnection().prepareStatement(SQL_flowerRequest);
+      ps_flower.setInt(1, flow.getReqid());
       ps_flower.executeUpdate();
 
-      ps_Request=db.getConnection().prepareStatement(SQL_Request);
-      ps_Request.setInt(1,flow.getReqid());
+      ps_Request = db.getConnection().prepareStatement(SQL_Request);
+      ps_Request.setInt(1, flow.getReqid());
       ps_Request.executeUpdate();
-    }catch(SQLException e){
+    } catch (SQLException e) {
       System.err.println("SQL Exception");
       e.printStackTrace();
     }
     flowerHashMap.remove(flow.getReqid());
-            db.closeConnection();
-
+    db.closeConnection();
   }
 }

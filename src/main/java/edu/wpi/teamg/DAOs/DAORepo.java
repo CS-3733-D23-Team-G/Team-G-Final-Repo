@@ -13,6 +13,7 @@ public class DAORepo {
   private LocationNameDAO locationNameDao = new LocationNameDAO();
   private ConferenceRoomRequestDAO conferenceRoomRequestDao = new ConferenceRoomRequestDAO();
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
+  private FlowerRequestDAO flowerRequestDao = new FlowerRequestDAO();
 
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
@@ -68,6 +69,10 @@ public class DAORepo {
 
   public void insertLocationName(Object obj) throws SQLException {
     locationNameDao.insert(obj);
+  }
+
+  public void insertFlowerrequest(Object obj) throws SQLException {
+    flowerRequestDao.insert(obj);
   }
 
   public void deleteNode(Object obj) throws SQLException {
