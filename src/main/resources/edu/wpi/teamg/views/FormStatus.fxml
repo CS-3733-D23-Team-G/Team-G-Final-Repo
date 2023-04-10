@@ -100,9 +100,9 @@
                         <TableColumn fx:id="empID" minWidth="0.0" prefWidth="57.0" text="Emp. ID" />
                         <TableColumn fx:id="location1" prefWidth="60.0" text="Location" />
                         <TableColumn fx:id="serveBy" prefWidth="50.0" text="Serve-By" />
-                        <TableColumn fx:id="status" prefWidth="55.0" text="Status" />
                         <TableColumn fx:id="reqDate" prefWidth="55.0" text="Req. Date" />
                         <TableColumn fx:id="reqTime" prefWidth="56.0" text="Req. Time" />
+                        <TableColumn fx:id="status" prefWidth="55.0" text="Status" />
                      </columns>
                   </TableView>
                 </children>

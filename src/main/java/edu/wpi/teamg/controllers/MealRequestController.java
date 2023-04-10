@@ -11,6 +11,8 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +31,7 @@ public class MealRequestController {
 
   // TextFields
   @FXML MFXTextField mealTimeOfDeliver;
-  @FXML MFXTextField mealDeliveryLocationData;
+  // @FXML MFXTextField mealDeliveryLocationData;
   @FXML MFXTextField mealPersonOrderingForData;
   @FXML MFXTextField mealNotesData;
   @FXML ChoiceBox<String> mealFoodChoice;
@@ -38,9 +40,7 @@ public class MealRequestController {
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
 
-  ObservableList<String> locationList =
-      FXCollections.observableArrayList(
-          "Room 1", "Blue Room", "Regal Room", "321 Room", "Help, I Need Somebody Room");
+  ObservableList<String> locationList;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -64,6 +64,8 @@ public class MealRequestController {
           "One Singular Oyster",
           "CC Buritto Bowl (w/ Siracha)");
 
+  DAORepo dao = new DAORepo();
+
   @FXML
   public void initialize() throws SQLException {
     mealSubmitButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT));
@@ -84,7 +86,7 @@ public class MealRequestController {
         });
 
     //  mealNameData.getText();
-    mealDeliveryLocationData.getText();
+    // mealDeliveryLocationData.getText();
     mealPersonOrderingForData.getText();
     mealNotesData.getText();
 
@@ -94,6 +96,22 @@ public class MealRequestController {
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     mealDate.getValue();
     mealTimeOfDeliver.getText();
+
+    ArrayList<String> locationNames = new ArrayList<>();
+    HashMap<Integer, String> testingLongName = this.getHashMapMLongName();
+
+    testingLongName.forEach(
+        (i, m) -> {
+          locationNames.add(m);
+          //          System.out.println("Request ID:" + m.getReqid());
+          //          System.out.println("Employee ID:" + m.getEmpid());
+          //          System.out.println("Status:" + m.getStatus());
+          //          System.out.println("Location:" + m.getLocation());
+          //          System.out.println("Serve By:" + m.getServ_by());
+          //          System.out.println();
+        });
+
+    locationList = FXCollections.observableArrayList(locationNames);
 
     // Hung this is where it sets the list - Andrew
     locationSearchDropdown.setItems(locationList);
@@ -109,7 +127,7 @@ public class MealRequestController {
             "M",
             1,
             // assume for now they are going to input a node number, so parseInt
-            mealDeliveryLocationData.getText(),
+            (String) locationSearchDropdown.getValue(),
             1,
             StatusTypeEnum.blank,
             Date.valueOf(mealDate.getValue()),
@@ -151,6 +169,19 @@ public class MealRequestController {
     dao.insertMealRequest(mr);
   }
 
+  public HashMap<Integer, String> getHashMapMLongName() throws SQLException {
+
+    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getMLongName();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return longNameHashMap;
+  }
+
   public Time StringToTime(String s) {
 
     String[] hourMin = s.split(":", 2);
@@ -159,12 +190,13 @@ public class MealRequestController {
   }
 
   public void clearAllData() {
-    mealDeliveryLocationData.setText("");
+    // mealDeliveryLocationData.setText("");
     mealPersonOrderingForData.setText("");
     mealNotesData.setText("");
     mealDate.setText("");
     mealTimeOfDeliver.setText("");
     mealFoodChoice.setValue("");
+    locationSearchDropdown.setValue("");
     return;
   }
 

@@ -33,21 +33,24 @@ public class RequestDAO implements DAO {
 
     HashMap longNameHash = new HashMap<>();
 
-    longNameHash = nodeDao.getCRLongName();
+    longNameHash = nodeDao.getAllLongName();
 
     while (rs.next()) {
 
       int reqID = rs.getInt("reqid");
       String reqType = rs.getString("reqtype");
       int empID = rs.getInt("empid");
+
       String location = (String) longNameHash.get(rs.getInt("location"));
-      int serv_by = rs.getInt("serv_by");
-      Date deliveryDate = rs.getDate("deliveryDate");
-      Time deliverytime = rs.getTime("deliveryTime");
+
+      int serveBy = rs.getInt("serveBy");
+      Date requestdate = rs.getDate("requestdate");
+      Time requesttime = rs.getTime("requesttime");
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
 
       Request cReq =
-          new Request(reqType, empID, location, serv_by, status, deliveryDate, deliverytime);
+          new Request(reqType, empID, location, serveBy, status, requestdate, requesttime);
+
       cReq.setReqid(reqID);
 
       requestHash.put(reqID, cReq);

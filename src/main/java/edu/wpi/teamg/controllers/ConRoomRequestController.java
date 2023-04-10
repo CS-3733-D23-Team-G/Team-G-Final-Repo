@@ -33,15 +33,13 @@ public class ConRoomRequestController {
   @FXML MFXTextField roomMeetingPurpose;
   @FXML MFXDatePicker datePicker;
   @FXML MFXTextField roomTimeData;
-  @FXML MFXTextField roomNumber;
+  @FXML MFXTextField roomEndTime;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
 
-  ObservableList<String> locationList =
-      FXCollections.observableArrayList(
-          "Room 1", "Blue Room", "Regal Room", "321 Room", "Help, I Need Somebody Room");
+  ObservableList<String> locationList;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -77,7 +75,7 @@ public class ConRoomRequestController {
     datePicker.setText("");
 
     roomMeetingPurpose.getText();
-    roomNumber.getText();
+    // roomNumber.getText();
     roomTimeData.getText();
     // roomNumberData.setValue("noon");
     // roomNumberData.setItems(roomNumberDataList);
@@ -137,7 +135,7 @@ public class ConRoomRequestController {
             StatusTypeEnum.blank,
             Date.valueOf(datePicker.getValue()),
             StringToTime(roomTimeData.getText()),
-            StringToTime("10:00"),
+            StringToTime(roomEndTime.getText()),
             roomMeetingPurpose.getText());
 
     try {
@@ -169,7 +167,8 @@ public class ConRoomRequestController {
     roomMeetingPurpose.setText("");
     datePicker.setText("");
     roomTimeData.setText("");
-    roomNumber.setText("");
+    roomEndTime.setText("");
+    locationSearchDropdown.setValue("");
     return;
   }
 

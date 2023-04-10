@@ -231,6 +231,77 @@ public class NodeDAO implements LocationDAO {
     return longNameHash;
   }
 
+  public static HashMap<Integer, String> getMLongName() throws SQLException {
+    HashMap<Integer, String> longNameHash = new HashMap<>();
+
+    db.setConnection();
+    PreparedStatement ps;
+
+    ResultSet rs = null;
+
+    SQL =
+        "SELECT Move.nodeID, LocationName.longName\n"
+            + "           FROM iteration1.Move\n"
+            + "            JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
+            + "            WHERE LocationName.nodeType = 'CONF'\n"
+            + "                OR LocationName.nodeType = 'DEPT'\n"
+            + "                OR LocationName.nodeType = 'INFO'\n"
+            + "                OR LocationName.nodeType = 'SERV'\n"
+            + "                OR LocationName.nodeType = 'LABS'\n"
+            + "                OR LocationName.nodeType = 'RETL';";
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      // printSQLException(e);
+    }
+
+    while (rs.next()) {
+
+      int node_id = rs.getInt("nodeid");
+      String longname = rs.getString("longname");
+
+      longNameHash.put(node_id, longname);
+    }
+
+    db.closeConnection();
+
+    return longNameHash;
+  }
+
+  public static HashMap<Integer, String> getAllLongName() throws SQLException {
+    HashMap<Integer, String> longNameHash = new HashMap<>();
+
+    db.setConnection();
+    PreparedStatement ps;
+
+    ResultSet rs = null;
+
+    SQL = "select nodeid, longname from iteration1.Move;";
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      // printSQLException(e);
+    }
+
+    while (rs.next()) {
+
+      int node_id = rs.getInt("nodeid");
+      String longname = rs.getString("longname");
+
+      longNameHash.put(node_id, longname);
+    }
+
+    db.closeConnection();
+
+    return longNameHash;
+  }
+
   public int getNodeIDbyLongName(String longname) throws SQLException {
     db.setConnection();
     PreparedStatement ps;

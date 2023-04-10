@@ -134,6 +134,14 @@ public class DAORepo {
     return nodeDao.getCRLongName();
   }
 
+  public HashMap getMLongName() throws SQLException {
+    return nodeDao.getMLongName();
+  }
+
+  public HashMap getAllLongName() throws SQLException {
+    return nodeDao.getAllLongName();
+  }
+
   public int getNodeIDbyLongName(String longname) throws SQLException {
     return nodeDao.getNodeIDbyLongName(longname);
   }
