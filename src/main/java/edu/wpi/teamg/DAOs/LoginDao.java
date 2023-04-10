@@ -2,21 +2,16 @@ package edu.wpi.teamg.DAOs;
 
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Login;
-import edu.wpi.teamg.ORMClasses.Node;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class LoginDao implements DAO {
 
   HashMap<String, Login> logins = new HashMap<String, Login>();
   DBConnection conn = new DBConnection();
   private String query;
-
 
   @Override
   public HashMap getAll() throws SQLException {
@@ -35,7 +30,6 @@ public class LoginDao implements DAO {
       System.err.println("SQL exception");
     }
 
-
     while (rs.next()) {
 
       String email = rs.getString("email");
@@ -52,24 +46,21 @@ public class LoginDao implements DAO {
   }
 
   @Override
-  public void update(Object obj, Object update) throws SQLException {
-
-  }
+  public void update(Object obj, Object update) throws SQLException {}
 
   @Override
   public void insert(Object obj) throws SQLException {
     conn.setConnection();
 
     PreparedStatement ps;
-    query =
-            "insert into iteration1.login(email, password) values (?, ?)";
+    query = "insert into iteration1.login(email, password) values (?, ?)";
 
     try {
       ps = conn.getConnection().prepareStatement(query);
       ps.setString(1, ((Login) obj).getEmail());
       ps.setString(2, ((Login) obj).getPassword());
       ps.executeUpdate();
-     logins.put(((Login) obj).getEmail(), (Login) obj);
+      logins.put(((Login) obj).getEmail(), (Login) obj);
 
     } catch (SQLException e) {
       System.err.println("SQL exception");
@@ -101,5 +92,9 @@ public class LoginDao implements DAO {
 
     conn.closeConnection();
   }
-}
 
+  @Override
+  public String getTable() {
+    return null;
+  }
+}

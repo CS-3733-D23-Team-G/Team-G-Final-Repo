@@ -11,11 +11,15 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import org.controlsfx.control.SearchableComboBox;
 
 public class ConRoomRequestController {
 
@@ -30,8 +34,13 @@ public class ConRoomRequestController {
   @FXML MFXTextField roomMeetingPurpose;
   @FXML MFXDatePicker datePicker;
   @FXML MFXTextField roomTimeData;
-  @FXML MFXTextField roomNumber;
+  @FXML MFXTextField roomEndTime;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
+
+  // Hung This is the name and list associated with test searchable list
+  @FXML SearchableComboBox locationSearchDropdown;
+
+  ObservableList<String> locationList;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -47,21 +56,27 @@ public class ConRoomRequestController {
   //    FXCollections.observableArrayList(
   //        "1", "2", "3", "4", "5", "6");
 
+  DAORepo dao = new DAORepo();
+
   @FXML
-  public void initialize() {
+  public void initialize() throws SQLException {
     backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
     exitButton.setOnMouseClicked(event -> roomExit());
     roomConfirm.setOnMouseClicked(
         event -> {
           Navigation.navigate(Screen.ROOM_REQUEST_SUBMIT);
-          storeRoomValues();
+          try {
+            storeRoomValues();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
         });
 
     datePicker.setText("");
 
     roomMeetingPurpose.getText();
-    roomNumber.getText();
+    // roomNumber.getText();
     roomTimeData.getText();
     // roomNumberData.setValue("noon");
     // roomNumberData.setItems(roomNumberDataList);
@@ -72,6 +87,27 @@ public class ConRoomRequestController {
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     roomClearAll.setOnAction(event -> clearAllData());
+
+    ArrayList<String> locationNames = new ArrayList<>();
+    HashMap<Integer, String> testingLongName = this.getHashMapCRLongName();
+
+    testingLongName.forEach(
+        (i, m) -> {
+          locationNames.add(m);
+          //          System.out.println("Request ID:" + m.getReqid());
+          //          System.out.println("Employee ID:" + m.getEmpid());
+          //          System.out.println("Status:" + m.getStatus());
+          //          System.out.println("Location:" + m.getLocation());
+          //          System.out.println("Serve By:" + m.getServ_by());
+          //          System.out.println();
+        });
+
+    Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
+
+    locationList = FXCollections.observableArrayList(locationNames);
+
+    // Hung this is where it sets the list - Andrew
+    locationSearchDropdown.setItems(locationList);
   }
 
   public void loadServiceRequestForm() {
@@ -90,18 +126,19 @@ public class ConRoomRequestController {
     }
   }
 
-  public void storeRoomValues() {
+  public void storeRoomValues() throws SQLException {
 
-    DAORepo dao = new DAORepo();
     ConferenceRoomRequest conRoom =
         new ConferenceRoomRequest(
+            "CR",
             1,
             // assume for now they are going to input a node number, so parseInt
-            Integer.parseInt(roomNumber.getText()),
+            (String) locationSearchDropdown.getValue(),
             1,
             StatusTypeEnum.blank,
             Date.valueOf(datePicker.getValue()),
             StringToTime(roomTimeData.getText()),
+            StringToTime(roomEndTime.getText()),
             roomMeetingPurpose.getText());
 
     try {
@@ -111,31 +148,30 @@ public class ConRoomRequestController {
       e.printStackTrace();
     }
 
-    //    System.out.println(
-    //        "Employee ID: "
-    //            + crr.getEmpid()
-    //            + "\nMeeting Location: "
-    //            + crr.getLocation()
-    //            + "\nPurpose: "
-    //            + crr.getPurpose()
-    //            //                    + "\nNote: "
-    //            //                    + crr.getNote()
-    //            //                    + "\nRecipient: "
-    //            //                    + crr.getRecipient()
-    //            + "\nMeeting Date: "
-    //            + crr.getMeeting_date()
-    //            + "\nMeeting Time: "
-    //            + crr.getMeeting_time());
+    System.out.println("Room Name: " + locationSearchDropdown.getValue());
+    System.out.println(
+        "Room ID: " + dao.getNodeIDbyLongName((String) locationSearchDropdown.getValue()));
+  }
 
-    //    MealRequestDAO mealRequestDAO = new MealRequestDAO();
-    //    mealRequestDAO.insert(mr);
+  public HashMap<Integer, String> getHashMapCRLongName() throws SQLException {
+
+    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getCRLongName();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return longNameHashMap;
   }
 
   public void clearAllData() {
     roomMeetingPurpose.setText("");
     datePicker.setText("");
     roomTimeData.setText("");
-    roomNumber.setText("");
+    roomEndTime.setText("");
+    locationSearchDropdown.setValue("");
     return;
   }
 

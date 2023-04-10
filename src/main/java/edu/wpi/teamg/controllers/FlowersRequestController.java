@@ -8,8 +8,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.CheckComboBox;
+import org.controlsfx.control.SearchableComboBox;
 
 public class FlowersRequestController {
 
@@ -23,6 +25,16 @@ public class FlowersRequestController {
   @FXML MFXButton submit;
   @FXML MFXButton clearAll;
   @FXML TextField deliveryLocation;
+
+  @FXML TextField orderingFor;
+  @FXML TextArea notes;
+
+  // Hung This is the name and list associated with test searchable list
+  @FXML SearchableComboBox locationSearchDropdown;
+
+  ObservableList<String> locationList =
+      FXCollections.observableArrayList(
+          "Room 1", "Blue Room", "Regal Room", "321 Room", "Help, I Need Somebody Room");
 
   @FXML TextField deliveryDate;
 
@@ -74,11 +86,15 @@ public class FlowersRequestController {
     //    orderingFor.getText();
     //    notes.setText("");
 
+    // Hung this is where it sets the list - Andrew
+    locationSearchDropdown.setItems(locationList);
+
     //    serviceRequestChoiceBox.setOnMouseClicked(
     //        event -> {
     //          loadServiceRequestForm();
     //        });
     //    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT));
+
   }
 
   public void loadServiceRequestForm() {

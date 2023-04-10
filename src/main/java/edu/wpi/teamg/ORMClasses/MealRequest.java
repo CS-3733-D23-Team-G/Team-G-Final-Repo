@@ -14,8 +14,9 @@ public class MealRequest extends Request {
   public MealRequest() {}
 
   public MealRequest(
+      String reqtype,
       int empid,
-      int location,
+      String location,
       int serve_by,
       StatusTypeEnum status,
       Date deliveryDate,
@@ -23,7 +24,7 @@ public class MealRequest extends Request {
       String recipient,
       String order,
       String note) {
-    super(empid, location, serve_by, status, deliveryDate, deliveryTime);
+    super(reqtype, empid, location, serve_by, status, deliveryDate, deliveryTime);
     this.recipient = recipient;
     this.order = order;
     this.note = note;

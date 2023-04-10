@@ -46,6 +46,7 @@ public class DAORepo {
   public HashMap getAllLogins() throws SQLException {
     return loginDAO.getAll();
   }
+
   public void insertNode(Object obj) throws SQLException {
     nodeDao.insert(obj);
   }
@@ -106,7 +107,6 @@ public class DAORepo {
     mealRequestDao.delete(obj);
   }
 
-
   public void deleteLogin(Object obj) throws SQLException {
     loginDAO.delete(obj);
   }
@@ -127,7 +127,6 @@ public class DAORepo {
     edgeDao.importCSV(path);
   }
 
-
   public void exportNodeCSV() throws SQLException {
     nodeDao.exportCSV();
   }
@@ -142,5 +141,21 @@ public class DAORepo {
 
   public void exportLocationNameCSV() throws SQLException {
     locationNameDao.exportCSV();
+  }
+
+  public HashMap getCRLongName() throws SQLException {
+    return nodeDao.getCRLongName();
+  }
+
+  public HashMap getMLongName() throws SQLException {
+    return nodeDao.getMLongName();
+  }
+
+  public HashMap getAllLongName() throws SQLException {
+    return nodeDao.getAllLongName();
+  }
+
+  public int getNodeIDbyLongName(String longname) throws SQLException {
+    return nodeDao.getNodeIDbyLongName(longname);
   }
 }

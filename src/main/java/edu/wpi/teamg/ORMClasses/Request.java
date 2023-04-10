@@ -8,28 +8,31 @@ import lombok.Setter;
 public class Request {
 
   @Getter @Setter private int reqid;
+  @Getter @Setter private String reqtype;
   @Getter @Setter private int empid;
-  @Getter @Setter private int location;
-  @Getter @Setter private int serv_by;
+  @Getter @Setter private String location;
+  @Getter @Setter private int serveBy;
 
   @Getter @Setter private StatusTypeEnum status;
-  @Getter @Setter private Date deliveryDate;
-  @Getter @Setter private Time deliveryTime;
+  @Getter @Setter private Date requestDate;
+  @Getter @Setter private Time requestTime;
 
   public Request() {}
 
   public Request(
+      String reqtype,
       int empid,
-      int location,
-      int serv_by,
+      String location,
+      int serveBy,
       StatusTypeEnum status,
       Date deliveryDate,
       Time deliveryTime) {
+    this.reqtype = reqtype;
     this.empid = empid;
     this.location = location;
-    this.serv_by = serv_by;
+    this.serveBy = serveBy;
     this.status = status;
-    this.deliveryDate = deliveryDate;
-    this.deliveryTime = deliveryTime;
+    this.requestDate = deliveryDate;
+    this.requestTime = deliveryTime;
   }
 }
