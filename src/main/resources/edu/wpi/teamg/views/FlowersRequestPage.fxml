@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -63,6 +64,7 @@
                   <TextField fx:id="deliveryTime" layoutX="225.0" layoutY="49.0" prefHeight="26.0" prefWidth="130.0" />
                   <CheckComboBox fx:id="flowerTypeCheckBox" layoutX="426.0" layoutY="117.0" prefHeight="26.0" prefWidth="125.0" />
                   <TextField fx:id="bouquetNote" layoutX="50.0" layoutY="193.0" prefHeight="26.0" prefWidth="121.0" />
+                  <Label fx:id="checkFields" layoutX="375.0" layoutY="198.0" prefHeight="17.0" prefWidth="165.0" />
                 </children>
             </AnchorPane>
          </children>

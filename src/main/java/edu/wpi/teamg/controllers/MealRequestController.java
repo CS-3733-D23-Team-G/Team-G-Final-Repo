@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 
 public class MealRequestController {
   @FXML MFXButton mealSubmitButton;
@@ -33,6 +34,8 @@ public class MealRequestController {
   @FXML MFXTextField mealNotesData;
   @FXML ChoiceBox<String> mealFoodChoice;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
+
+  @FXML Label checkFields;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -65,15 +68,7 @@ public class MealRequestController {
 
     mealClearAll.setOnAction(event -> clearAllData());
 
-    mealSubmitButton.setOnMouseClicked(
-        event -> {
-          try {
-            storeMealValues();
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-          Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT);
-        });
+    mealSubmitButton.setOnMouseClicked(event -> allDataFilled());
 
     //  mealNameData.getText();
     mealDeliveryLocationData.getText();
@@ -86,6 +81,7 @@ public class MealRequestController {
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     mealDate.getValue();
     mealTimeOfDeliver.getText();
+    checkFields.getText();
   }
 
   public void exit() {
@@ -154,6 +150,24 @@ public class MealRequestController {
     mealTimeOfDeliver.setText("");
     mealFoodChoice.setValue("");
     return;
+  }
+  //mealFoodChoice Does Not Properly Check if Filled
+  public void allDataFilled() {
+    if (!(mealDeliveryLocationData.getText().equals("")
+        || mealPersonOrderingForData.getText().equals("")
+        || mealNotesData.getText().equals("")
+        || mealDate.getText().equals("")
+        || mealTimeOfDeliver.getText().equals("")
+        || mealFoodChoice.getValue().isBlank())) {
+      try {
+        storeMealValues();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+      Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT);
+    } else {
+      checkFields.setText("Not All Fields Are Filled");
+    }
   }
 
   public void loadServiceRequestForm() {

@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.CheckComboBox;
 
@@ -29,6 +30,7 @@ public class FlowersRequestController {
   @FXML TextField deliveryTime;
   @FXML TextField recipient;
   @FXML TextField bouquetNote;
+  @FXML Label checkFields;
 
   /*
    TODO: figure out how to get correct datatype to give to DB
@@ -67,9 +69,10 @@ public class FlowersRequestController {
     clearAll.setOnAction(event -> clearFlowers());
     submit.setOnAction(
         event -> {
-          storeFlowerValues();
-          Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT);
+          allDataFilled();
         });
+    checkFields.getText();
+
     //    deliveryLocation.getText();
     //    orderingFor.getText();
     //    notes.setText("");
@@ -124,6 +127,25 @@ public class FlowersRequestController {
     deliveryLocation.setText("");
     recipient.setText("");
     bouquetNote.setText("");
+    deliveryDate.setText("");
+    deliveryTime.setText("");
+  }
+
+  //flowerTypeCheckBox and bouquetSizeChoiceBox Do Not Properly Check if Filled
+  public void allDataFilled() {
+    if (!(deliveryTime.getText().equals("")
+        || deliveryDate.getText().equals("")
+        || deliveryLocation.getText().equals("")
+        || recipient.getText().equals("")
+        || bouquetNote.getText().equals("")
+        || flowerTypeCheckBox.getCheckModel().equals("")
+        || bouquetSizeChoiceBox.getValue().equals(""))) {
+
+      storeFlowerValues();
+      Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT);
+    } else {
+      checkFields.setText("Not All Fields Are Filled");
+    }
   }
 
   public void exit() {

@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 
 public class ConRoomRequestController {
 
@@ -32,6 +33,7 @@ public class ConRoomRequestController {
   @FXML MFXTextField roomTimeData;
   @FXML MFXTextField roomNumber;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
+  @FXML Label checkFields;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -54,8 +56,7 @@ public class ConRoomRequestController {
     exitButton.setOnMouseClicked(event -> roomExit());
     roomConfirm.setOnMouseClicked(
         event -> {
-          Navigation.navigate(Screen.ROOM_REQUEST_SUBMIT);
-          storeRoomValues();
+          allDataFilled();
         });
 
     datePicker.setText("");
@@ -72,6 +73,7 @@ public class ConRoomRequestController {
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     roomClearAll.setOnAction(event -> clearAllData());
+    checkFields.getText();
   }
 
   public void loadServiceRequestForm() {
@@ -137,6 +139,18 @@ public class ConRoomRequestController {
     roomTimeData.setText("");
     roomNumber.setText("");
     return;
+  }
+
+  public void allDataFilled() {
+    if (!(roomMeetingPurpose.getText().equals("")
+        || datePicker.getText().equals("")
+        || roomTimeData.getText().equals("")
+        || roomNumber.getText().equals(""))) {
+      storeRoomValues();
+      Navigation.navigate(Screen.ROOM_REQUEST_SUBMIT);
+    } else {
+      checkFields.setText("Not All Fields Are Filled");
+    }
   }
 
   public Time StringToTime(String s) {
