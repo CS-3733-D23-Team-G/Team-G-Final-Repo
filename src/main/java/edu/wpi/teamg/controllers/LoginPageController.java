@@ -1,6 +1,7 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.EdgeDAO;
+import edu.wpi.teamg.DAOs.LoginDao;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.Edge;
 import edu.wpi.teamg.ORMClasses.Graph;
@@ -67,6 +68,10 @@ public class LoginPageController {
     private TextField employeeIDField;
 
     private Label wrongLabel;
+    private MFXButton backSignUpButton;
+
+
+    LoginDao login = new LoginDao();
 
 
     public void initialize(){
@@ -74,6 +79,7 @@ public class LoginPageController {
         signUpButton.setOnMouseClicked(event -> signUpPanel.toFront());
         backButton.setOnMouseClicked(event -> signInPanel.toFront());
         signUpButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+        backSignUpButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
         // If email or password is incorrct, set label text to " Email or Password is Incorrect. Please try again.
         
 

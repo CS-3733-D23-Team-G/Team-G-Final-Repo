@@ -11,7 +11,7 @@ drop table if exists iteration1.LocationName;
 drop table if exists iteration1.Node;
 drop table if exists iteration1.login;
 
-create table teamgdb.iteration1.Node(
+create table iteration1.Node(
                                         nodeID int primary key,
                                         xcoord int,
                                         ycoord int,
@@ -19,7 +19,7 @@ create table teamgdb.iteration1.Node(
                                         building varchar(40)
 );
 
-create table teamgdb.iteration1.Edge(
+create table iteration1.Edge(
                                         startNode int,
                                         endNode int,
                                         PRIMARY KEY (startNode, endNode),
@@ -27,13 +27,13 @@ create table teamgdb.iteration1.Edge(
                                         foreign key (endNode) references teamgdb.iteration1.node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table teamgdb.iteration1.LocationName(
+create table iteration1.LocationName(
                                                 longName varchar(100) primary key,
                                                 shortName varchar(55),
                                                 nodeType char(4)
 );
 
-create table teamgdb.iteration1.Move(
+create table iteration1.Move(
                                         nodeID int,
                                         longName varchar(100),
                                         date date,
@@ -44,7 +44,7 @@ create table teamgdb.iteration1.Move(
 
 create type iteration1.enum1 as enum('blank', 'processing', 'done');
 
-create table teamgdb.iteration1.Employee(
+create table iteration1.Employee(
                                             empID int primary key,
                                             firstName varchar(50),
                                             lastName varchar(50),
@@ -52,14 +52,14 @@ create table teamgdb.iteration1.Employee(
                                             can_serve varchar(254)
 );
 
-create table teamgdb.iteration1.Account(
+create table iteration1.Account(
                                            empID int primary key,
                                            password varchar(100),
                                            is_admin boolean,
                                            foreign key (empID) references teamgdb.iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table teamgdb.iteration1.Request (
+create table iteration1.Request (
                                             reqID int primary key,
                                             empID int,
                                             location int,
@@ -80,14 +80,14 @@ create table iteration1.ConferenceRoomRequest(
 
 );
 
-create table teamgdb.iteration1.MealRequest(
+create table iteration1.MealRequest(
                                                reqID int primary key,
                                                recipient varchar(50),
                                                mealOrder varchar(255),
                                                note varchar(255),
                                                foreign key (reqID) references teamgdb.iteration1.request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
 );
-create table teamgdb.iteration1.flowerrequest(
+create table iteration1.flowerrequest(
     reqID int primary key,
     flowerType varchar(50),
     numFlower int,
@@ -96,11 +96,11 @@ create table teamgdb.iteration1.flowerrequest(
     foreign key (reqID) references teamgdb.iteration1.request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table teamgdb.iteration1.login(
-    email varchar(255) primary key,
-    password varchar(255));
+create table iteration1.login as result(
 
-INSERT INTO teamgdb.iteration1.Employee (empID, firstName, lastName, email, can_serve)
+    );
+
+INSERT INTO iteration1.Employee (empID, firstName, lastName, email, can_serve)
 VALUES
     (1, 'John', 'Doe', 'johndoe@example.com', 'Conference Room Request'),
     (2, 'Jane', 'Doe', 'janedoe@example.com', 'Meal Request'),
@@ -112,7 +112,7 @@ VALUES
     (8, 'Mark', 'Specter', 'moonknight@example.com', 'Conference Request');
 
 -- Table: iteration1.Account
-INSERT INTO teamgdb.iteration1.Account (empID, password, is_admin)
+INSERT INTO iteration1.Account (empID, password, is_admin)
 VALUES
     (1, 'password123', true),
     (2, '123password', false),

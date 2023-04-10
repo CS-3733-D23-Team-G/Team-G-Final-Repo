@@ -101,5 +101,35 @@ public class LoginDao implements DAO {
 
     conn.closeConnection();
   }
+
+  public void addLogin(String userEmail){
+    conn.setConnection();
+
+    PreparedStatement ps;
+    query =
+            "insert into iteration1.login(email, password) values (?, ?)";
+
+    try {
+      ps = conn.getConnection().prepareStatement(query);
+      ps.setString(1, (userEmail));
+      ps.executeUpdate();
+      logins.put(userEmail, new Login(userEmail,"password"));
+
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      e.printStackTrace();
+      // printSQLException(e);
+    }
+    conn.closeConnection();
+  }
+
+
+  @Override
+  public String getTable() {
+    return "iteration1.login";
+  }
+
+
+
 }
 
