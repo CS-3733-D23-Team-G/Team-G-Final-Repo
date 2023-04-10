@@ -94,6 +94,11 @@ public class SignageAdminController {
   @FXML Button l2;
   @FXML Button floor1;
 
+  @FXML MFXButton mapEdit;
+  @FXML MFXButton mapCancel;
+
+  private boolean editableMap = false;
+
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -119,6 +124,8 @@ public class SignageAdminController {
     cancel.setOnMouseClicked(event -> cancelTable());
     edit.setOnMouseClicked(event -> editTable());
     disMap.setOnMouseClicked(event -> showAdminMap());
+    mapEdit.setOnMouseClicked(event -> editMap());
+    mapCancel.setOnMouseClicked(event -> cancelMap());
 
     // importButton.setOnAction(event -> fileChooser());
 
@@ -337,6 +344,9 @@ public class SignageAdminController {
     edgeTable.setVisible(false);
     moveTable.setVisible(false);
     nodeLocTable.setVisible(false);
+    pane.setVisible(false);
+    nodePane.setVisible(false);
+    group.setVisible(false);
   }
 
   public void loadEdgeTable() {
@@ -344,6 +354,9 @@ public class SignageAdminController {
     edgeTable.setVisible(true);
     moveTable.setVisible(false);
     nodeLocTable.setVisible(false);
+    pane.setVisible(false);
+    nodePane.setVisible(false);
+    group.setVisible(false);
   }
 
   public void loadMoveTable() {
@@ -351,6 +364,9 @@ public class SignageAdminController {
     edgeTable.setVisible(false);
     moveTable.setVisible(true);
     nodeLocTable.setVisible(false);
+    pane.setVisible(false);
+    nodePane.setVisible(false);
+    group.setVisible(false);
   }
 
   public void loadLocTable() {
@@ -358,6 +374,9 @@ public class SignageAdminController {
     edgeTable.setVisible(false);
     moveTable.setVisible(false);
     nodeLocTable.setVisible(true);
+    pane.setVisible(false);
+    nodePane.setVisible(false);
+    group.setVisible(false);
   }
 
   public ArrayList<Node> getNodes() throws SQLException {
@@ -445,6 +464,9 @@ public class SignageAdminController {
     edgeTable.setVisible(false);
     moveTable.setVisible(false);
     nodeLocTable.setVisible(false);
+    pane.setVisible(true);
+    nodePane.setVisible(true);
+    group.setVisible(true);
   }
 
   public void goToL1(ArrayList<ImageView> imgs) throws SQLException {
@@ -547,9 +569,22 @@ public class SignageAdminController {
     displayNode.setPrefHeight(100);
     displayNode.setVisible(true);
     displayNode.toFront();
-    displayNode.setEditable(false);
+
+    if (editableMap) {
+      displayNode.setEditable(true);
+    } else {
+      displayNode.setEditable(false);
+    }
 
     nodePane.getChildren().add(displayNode);
+  }
+
+  public void editMap() {
+    editableMap = true;
+  }
+
+  public void cancelMap() {
+    editableMap = false;
   }
 
   public void exit() {
