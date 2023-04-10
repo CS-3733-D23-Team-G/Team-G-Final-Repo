@@ -1,17 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.LoginPageController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
          <left>
-            <Pane prefHeight="400.0" prefWidth="247.0" stylesheets="" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="400.0" prefWidth="274.0" style="-fx-background-color: linear-gradient(to bottom left, #009FFD, #2A2A72);" stylesheets="style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="110.0" fitWidth="132.0" layoutX="82.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../../Downloads/sign-up.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="forgotLabel1" layoutX="1.0" layoutY="225.0" prefHeight="34.0" prefWidth="273.0" text="Brigham and Womens Hospital" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="forgotLabel11" layoutX="7.0" layoutY="259.0" text="Founding Member, Mass General Brigham" textFill="WHITE">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
          </left>
          <center>
-            <Pane prefHeight="400.0" prefWidth="361.0" BorderPane.alignment="CENTER" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <TextField fx:id="signUpField" layoutX="32.0" layoutY="147.0" prefHeight="39.0" prefWidth="254.0" promptText="Email" />
+                        <Label layoutX="32.0" layoutY="101.0" text="SIGN UP">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <MFXButton fx:id="signUpButton" layoutX="163.0" layoutY="206.0" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: #1826f0;" text="Get Started" textFill="WHITE" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <TextField fx:id="emailBox" layoutX="41.0" layoutY="123.0" prefHeight="35.0" prefWidth="245.0" promptText="Email" />
+                        <TextField fx:id="passwordBox" layoutX="41.0" layoutY="192.0" prefHeight="35.0" prefWidth="245.0" promptText="Password" />
+                        <MFXButton fx:id="loginButton" layoutX="166.0" layoutY="253.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #1826f0;" text="Login" textAlignment="CENTER" textFill="WHITE" />
+                        <MFXButton fx:id="signUpButton" layoutX="45.0" layoutY="316.0" prefHeight="41.0" prefWidth="242.0" style="-fx-background-color: #8dbdeb; -fx-border-color: #1826f0; -fx-border-radius: 10px;" text="New Employee? Sign Up" textFill="#1826f0" />
+                        <Label fx:id="forgotLabel" layoutX="45.0" layoutY="262.0" text="Forgot Password?" />
+                        <Label layoutX="41.0" layoutY="78.0" text="Sign In">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
          </center>
       </BorderPane>
    </children>

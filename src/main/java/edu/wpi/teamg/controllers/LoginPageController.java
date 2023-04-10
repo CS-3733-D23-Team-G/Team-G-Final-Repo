@@ -16,7 +16,9 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -26,32 +28,58 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import net.kurobako.gesturefx.GesturePane;
 
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+
 public class LoginPageController {
-    @FXML
-    MFXButton loginButton;
 
     @FXML
-    StackPane stack;
-
-    ObservableList<String> list =
-            FXCollections.observableArrayList(
-                    "Conference Room Request Form",
-                    "Flowers Request Form",
-                    "Furniture Request Form",
-                    "Meal Request Form",
-                    "Office Supplies Request Form");
+    private TextField emailBox;
 
     @FXML
-    public void initialize()  {
-      loginButton.setOnAction(event -> Navigation.navigate(Screen.HOME));
+    private Label forgotLabel;
+
+    @FXML
+    private Label hospitalLabel;
+
+    @FXML
+    private Label labelSubText;
+
+    @FXML
+    private MFXButton loginButton;
+
+    @FXML
+    private TextField passwordBox;
+
+    @FXML
+    private MFXButton signUpButton;
+
+    @FXML
+    private TextField signUpField;
+    private Pane signUpPanel;
+    private Pane signInPanel;
+
+    private MFXButton backButton;
+    private TextField employeeIDField;
+
+    private Label wrongLabel;
+
+
+    public void initialize(){
+        loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+        signUpButton.setOnMouseClicked(event -> signUpPanel.toFront());
+        backButton.setOnMouseClicked(event -> signInPanel.toFront());
+        signUpButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+        // If email or password is incorrct, set label text to " Email or Password is Incorrect. Please try again.
+        
+
+
+
     }
-
-
-
 
 
     public void exit() {
