@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.Edge;
@@ -11,6 +12,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -28,6 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.SearchableComboBox;
 
 public class SignagePageController {
 
@@ -51,6 +54,9 @@ public class SignagePageController {
 
   @FXML StackPane stack;
 
+  @FXML SearchableComboBox startLocDrop;
+  @FXML SearchableComboBox endLocDrop;
+
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -58,6 +64,10 @@ public class SignagePageController {
           "Furniture Request Form",
           "Meal Request Form",
           "Office Supplies Request Form");
+
+  ObservableList<String> locationList;
+
+  DAORepo dao = new DAORepo();
 
   @FXML
   public void initialize() throws SQLException {
@@ -78,7 +88,7 @@ public class SignagePageController {
 
     startLoc.getText();
     endLoc.getText();
-    ;
+
     Image map = new Image("/edu/wpi/teamg/Images/00_thelowerlevel1.png");
     ImageView mapView = new ImageView(map);
 
@@ -112,6 +122,26 @@ public class SignagePageController {
     //  Circle circ = new Circle(10, Color.BLACK);
     // circ.relocate(500, 500);
 
+    ArrayList<String> locationNames = new ArrayList<>();
+    HashMap<Integer, String> testingLongName = this.getHashMapL1LongName();
+
+    testingLongName.forEach(
+        (i, m) -> {
+          locationNames.add(m);
+          // System.out.println("LocationName: " + m);
+          //          System.out.println("Employee ID:" + m.getEmpid());
+          //          System.out.println("Status:" + m.getStatus());
+          //          System.out.println("Location:" + m.getLocation());
+          //          System.out.println("Serve By:" + m.getServ_by());
+          //          System.out.println();
+        });
+
+    Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
+
+    locationList = FXCollections.observableArrayList(locationNames);
+
+    startLocDrop.setItems(locationList);
+    endLocDrop.setItems(locationList);
   }
 
   public void loadServiceRequestForm() {
@@ -243,6 +273,19 @@ public class SignagePageController {
       pathLine.setStroke(Color.rgb(1, 45, 90));
       nodePane.getChildren().add(pathLine);
     }
+  }
+
+  public HashMap<Integer, String> getHashMapL1LongName() throws SQLException {
+
+    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getL1LongNames();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return longNameHashMap;
   }
 
   public void exit() {
