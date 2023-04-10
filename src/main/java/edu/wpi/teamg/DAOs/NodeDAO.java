@@ -2,12 +2,11 @@ package edu.wpi.teamg.DAOs;
 
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Node;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.sql.*;
 import java.util.HashMap;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class NodeDAO implements LocationDAO {
   private HashMap<Integer, Node> nodeHash = new HashMap<Integer, Node>();
@@ -332,5 +331,4 @@ public class NodeDAO implements LocationDAO {
 
     return node_id;
   }
-
 }

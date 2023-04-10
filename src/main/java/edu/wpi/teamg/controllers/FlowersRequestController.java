@@ -10,9 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import org.controlsfx.control.SearchableComboBox;
 import org.controlsfx.control.CheckComboBox;
-
+import org.controlsfx.control.SearchableComboBox;
 
 public class FlowersRequestController {
 
@@ -28,8 +27,7 @@ public class FlowersRequestController {
   @FXML TextField deliveryLocation;
 
   @FXML TextField orderingFor;
-  @FXML
-  TextArea notes;
+  @FXML TextArea notes;
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
@@ -47,7 +45,6 @@ public class FlowersRequestController {
   /*
    TODO: figure out how to get correct datatype to give to DB
   */
-
 
   ObservableList<String> listFlowers =
       FXCollections.observableArrayList(
@@ -88,7 +85,6 @@ public class FlowersRequestController {
     //    deliveryLocation.getText();
     //    orderingFor.getText();
     //    notes.setText("");
-
 
     // Hung this is where it sets the list - Andrew
     locationSearchDropdown.setItems(locationList);

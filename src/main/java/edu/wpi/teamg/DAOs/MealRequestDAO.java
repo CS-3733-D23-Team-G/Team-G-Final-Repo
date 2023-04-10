@@ -112,11 +112,9 @@ public class MealRequestDAO implements DAO {
     }
 
     SQL_mealRequest =
-
         "insert into iteration1.mealrequest(reqid, recipient, mealOrder, note) values (?, ?, ?, ?)";
     SQL_Request =
         "insert into teamgdb.iteration1.request(reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
-
 
     try {
 

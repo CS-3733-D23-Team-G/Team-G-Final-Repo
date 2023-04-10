@@ -1,21 +1,17 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.DAORepo;
-import edu.wpi.teamg.ORMClasses.Move;
-import edu.wpi.teamg.ORMClasses.Node;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class HomeController {
   DAORepo dao = new DAORepo();
@@ -46,10 +42,10 @@ public class HomeController {
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
 
-    totalNodes=dao.getAllNodes();
-    totalEdges=dao.getAllEdges();
-    totalLNames=dao.getAllLocationNames();
-    totalMoves=dao.getAllMoves();
+    totalNodes = dao.getAllNodes();
+    totalEdges = dao.getAllEdges();
+    totalLNames = dao.getAllLocationNames();
+    totalMoves = dao.getAllMoves();
   }
 
   public void exit() {
