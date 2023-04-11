@@ -7,13 +7,15 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.ConRoomRequestController">
+<VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.ConRoomRequestController">
    <children>
       <HBox maxHeight="1.7976931348623157E308" styleClass="top_banner" stylesheets="@style.css">
          <children>
@@ -30,22 +32,24 @@
             </AnchorPane>
          </children>
       </HBox>
-      <HBox alignment="CENTER" maxHeight="30.0" prefHeight="30.0" styleClass="banner" stylesheets="@style.css">
+      <GridPane styleClass="banner">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <AnchorPane maxHeight="30.0" prefHeight="30.0" prefWidth="600.0">
-               <children>
-                  <Text disable="true" fill="WHITE" layoutX="35.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" wrappingWidth="85.107421875" />
-                  <Text disable="true" fill="WHITE" layoutX="240.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" />
-                  <Text disable="true" fill="WHITE" layoutX="473.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" />
-                  <Line endX="48.0" endY="-166.0" layoutX="130.0" layoutY="176.0" startX="48.0" startY="-154.0" stroke="#345871" strokeWidth="2.0" />
-                  <Line endX="48.0" endY="-166.0" layoutX="368.0" layoutY="176.0" startX="48.0" startY="-154.0" stroke="#345871" strokeWidth="2.0" />
-                  <ChoiceBox fx:id="serviceRequestChoiceBox" layoutX="177.0" layoutY="2.0" opacity="0.0" prefHeight="30.0" prefWidth="239.0" />
-                  <MFXButton fx:id="backToHomeButton" opacity="0.0" prefHeight="30.0" prefWidth="176.0" text="Return to Home Button" />
-                  <MFXButton fx:id="signagePageButton" layoutX="422.0" layoutY="3.0" maxHeight="30.0" opacity="0.0" prefHeight="30.0" prefWidth="176.0" text="Signage Page Button" />
-               </children>
-            </AnchorPane>
+            <MFXButton fx:id="backToHomeButton" opacity="0.0" prefHeight="30.0" prefWidth="176.0" text="Return to Home Button" />
+            <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" GridPane.columnIndex="1" />
+            <MFXButton fx:id="signagePageButton" maxHeight="30.0" opacity="0.0" prefHeight="30.0" prefWidth="176.0" text="Signage Page Button" GridPane.columnIndex="2" />
+            <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" wrappingWidth="85.107421875" />
+            <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" GridPane.columnIndex="2" />
+            <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="30.0" prefWidth="239.0" GridPane.columnIndex="1" />
          </children>
-      </HBox>
+      </GridPane>
       <HBox maxHeight="260.0" prefHeight="260.0" prefWidth="600.0" styleClass="functionality_zone" stylesheets="@style.css">
          <children>
             <AnchorPane prefHeight="260.0" prefWidth="600.0">
