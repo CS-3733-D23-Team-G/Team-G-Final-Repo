@@ -49,7 +49,7 @@ public class MoveDAO implements LocationMoveDao {
   @Override
   public void update(Object obj, String colName, Object value) throws SQLException {
     db.setConnection();
-    sql = "update teamgdb.iteration1.move set " + colName + " = ? where nodeid = ?";
+    sql = "update teamgdb.iteration1.move set " + colName + " = ? where nodeid in";
 
     db.closeConnection();
   }
@@ -171,9 +171,7 @@ public class MoveDAO implements LocationMoveDao {
 
         ps.setString(2, longname);
 
-
         ps.setDate(3, Date.valueOf(dateString));
-
 
         ps.addBatch();
       }

@@ -28,6 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.util.converter.DateStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -489,63 +490,48 @@ public class SignageAdminController {
           nodeDAO.update(obj, "building", event.getNewValue());
         });
 
-    /*
-    //Edge Update
-        EdgeDAO edgeDAO = new EdgeDAO();
-        edgeTable.setEditable(true);
-        edgeEdgeID.setCellFactory(TextFieldTableCell.forTableColumn());
-        edgeEdgeID.setOnEditCommit(
-                event -> {
-                  Edge obj = event.getRowValue();
-                  obj.setEdgeID(event.getNewValue());
-                  //edgeDAO.update(obj, "longname", event.getNewValue());
-                });
+    // Edge Update
+    EdgeDAO edgeDAO = new EdgeDAO();
+    edgeTable.setEditable(true);
+    edgeStartNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    edgeStartNode.setOnEditCommit(
+        event -> {
+          Edge obj = event.getRowValue();
+          obj.setStartNode(event.getNewValue());
+          edgeDAO.update(obj, "endnode", event.getNewValue());
+        });
+    edgeEndNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    edgeEndNode.setOnEditCommit(
+        event -> {
+          Edge obj = event.getRowValue();
+          obj.setEndNode(event.getNewValue());
+          edgeDAO.update(obj, "endnode", event.getNewValue());
+        });
 
-        edgeStartNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        edgeStartNode.setOnEditCommit(
-                event -> {
-                  Edge obj = event.getRowValue();
-                  obj.setStartNode(event.getNewValue());
-                  //edgeDAO.update(obj, "shortname", event.getNewValue());
-                });
-        edgeEndNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        edgeEndNode.setOnEditCommit(
-                event -> {
-                  Edge obj = event.getRowValue();
-                  obj.setEndNode(event.getNewValue());
-                  //edgeDAO.update(obj, "nodetype", event.getNewValue());
-                });
+    MoveDAO moveDAO = new MoveDAO();
+    moveTable.setEditable(true);
+    moveNodeID.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    moveNodeID.setOnEditCommit(
+        event -> {
+          Move obj = event.getRowValue();
+          obj.setNodeID(event.getNewValue());
+          // moveDAO.update(obj, "longname", event.getNewValue());
+        });
 
-
-
-
-        MoveDAO moveDAO = new MoveDAO();
-        moveTable.setEditable(true);
-        moveNodeID.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        moveNodeID.setOnEditCommit(
-                event -> {
-                  Move obj = event.getRowValue();
-                  obj.setNodeID(event.getNewValue());
-                  //moveDAO.update(obj, "longname", event.getNewValue());
-                });
-
-        moveDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
-        moveDate.setOnEditCommit(
-                event -> {
-                  Move obj = event.getRowValue();
-                  obj.setDate((java.sql.Date) event.getNewValue());
-                  //moveDAO.update(obj, "shortname", event.getNewValue());
-                });
-        moveLongName.setCellFactory(TextFieldTableCell.forTableColumn());
-        moveLongName.setOnEditCommit(
-                event -> {
-                  Move obj = event.getRowValue();
-                  obj.setLongName(event.getNewValue());
-                  //moveDAO.update(obj, "nodetype", event.getNewValue());
-                });
-
-
-      */
+    moveDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
+    moveDate.setOnEditCommit(
+        event -> {
+          Move obj = event.getRowValue();
+          obj.setDate((java.sql.Date) event.getNewValue());
+          // moveDAO.update(obj, "shortname", event.getNewValue());
+        });
+    moveLongName.setCellFactory(TextFieldTableCell.forTableColumn());
+    moveLongName.setOnEditCommit(
+        event -> {
+          Move obj = event.getRowValue();
+          obj.setLongName(event.getNewValue());
+          // moveDAO.update(obj, "nodetype", event.getNewValue());
+        });
 
     LocationNameDAO locationNameDAO = new LocationNameDAO();
 
