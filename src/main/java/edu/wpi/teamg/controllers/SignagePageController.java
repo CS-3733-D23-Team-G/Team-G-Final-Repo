@@ -125,11 +125,15 @@ public class SignagePageController {
     nodePane.setMinHeight(mapL1.getHeight());
     nodePane.setMaxWidth(mapL1.getWidth());
     nodePane.setMaxHeight(mapL1.getHeight());
+    longNameNodes(0);
 
     // Scales Map
     pane.setMinScale(.001);
-    pane.zoomTo(.000001, new Point2D(2500, 1700));
-    pane.zoomTo(.000001, new Point2D(2500, 1700));
+    pane.zoomTo(.3, new Point2D(2500, 1700));
+    pane.zoomTo(.3, new Point2D(2500, 1700));
+
+    pane.centreOnX(1000);
+    pane.centreOnY(500);
 
     imageViewsList.add(mapView);
     imageViewsList.add(mapViewL2);
@@ -452,9 +456,7 @@ public class SignagePageController {
     nodePane.getChildren().add(displayNode);
   }
 
-
   public HashMap<Integer, String> getHashMapL1LongName(int index) throws SQLException {
-
 
     HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
 
@@ -481,7 +483,6 @@ public class SignagePageController {
     }
 
     return longNameHashMap;
-
   }
 
   public void longNameNodes(int index) throws SQLException {
@@ -505,7 +506,6 @@ public class SignagePageController {
 
     startLocDrop.setItems(locationList);
     endLocDrop.setItems(locationList);
-
   }
 
   public void exit() {
