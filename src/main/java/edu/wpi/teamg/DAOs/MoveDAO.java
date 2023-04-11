@@ -182,7 +182,7 @@ public class MoveDAO implements LocationMoveDao {
 
         ps.setString(2, longname);
 
-        ps.setDate(3,  Date.valueOf(dateString));
+        ps.setDate(3, Date.valueOf(dateString));
 
         ps.addBatch();
       }

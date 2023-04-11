@@ -11,7 +11,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.CheckComboBox;
-import org.controlsfx.control.SearchableComboBox;
 
 public class FlowersRequestController {
 
@@ -30,7 +29,7 @@ public class FlowersRequestController {
   @FXML TextArea notes;
 
   // Hung This is the name and list associated with test searchable list
-  @FXML SearchableComboBox locationSearchDropdown;
+  //  @FXML SearchableComboBox locationSearchDropdown;
 
   ObservableList<String> locationList =
       FXCollections.observableArrayList(
@@ -87,7 +86,7 @@ public class FlowersRequestController {
     //    notes.setText("");
 
     // Hung this is where it sets the list - Andrew
-    locationSearchDropdown.setItems(locationList);
+    //    locationSearchDropdown.setItems(locationList);
 
     //    serviceRequestChoiceBox.setOnMouseClicked(
     //        event -> {
