@@ -9,6 +9,7 @@ drop table if exists iteration1.Move;
 drop table if exists iteration1.Edge;
 drop table if exists iteration1.LocationName;
 drop table if exists iteration1.Node;
+drop table if exists iteration1.login;
 
 create table iteration1.Node(
                                         nodeID int primary key,
@@ -37,7 +38,7 @@ create table iteration1.Move(
                                         longName varchar(100),
                                         date date,
                                         PRIMARY KEY (nodeID, longName, date),
-                                        foreign key (nodeID) references iteration1.Node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
+                                        foreign key (nodeID) references iteration1.node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
                                         foreign key (longName) references iteration1.LocationName(longName) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -59,42 +60,48 @@ create table iteration1.Account(
 );
 
 create table iteration1.Request (
-                                            reqID int primary key,
-                                            empID int,
-                                            location int,
-                                            serveBy int,
-                                            status iteration1.enum1,
-                                            requestDate date,
-                                            requestTime time,
-                                            foreign key (empID) references iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE,
-                                            foreign key (location) references iteration1.node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
-                                            foreign key (serveBy) references iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE
+                reqID int primary key,
+                reqType varchar(2),
+                empID int,
+                location int,
+                serveBy int,
+                status iteration1.enum1,
+                requestDate date,
+                requestTime time,
+                foreign key (empID) references iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE,
+                foreign key (location) references iteration1.node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
+                foreign key (serveBy) references iteration1.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table iteration1.ConferenceRoomRequest(
-                                                         reqID int primary key,
-                                                         endTime time,
-                                                         purpose varchar(255),
-                                                         foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+                                         reqID int primary key,
+                                         endTime time,
+                                         purpose varchar(255),
+                                         foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 
 create table iteration1.MealRequest(
-                                               reqID int primary key,
-                                               recipient varchar(50),
-                                               mealOrder varchar(255),
-                                               note varchar(255),
-                                               foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+           reqID int primary key,
+           recipient varchar(50),
+           mealOrder varchar(255),
+           note varchar(255),
+           foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+
 );
-create table iteration1.FlowerRequest(
+
+create table iteration1.flowerrequest(
     reqID int primary key,
     flowerType varchar(50),
     numFlower int,
     recipient varchar(50),
     note varchar(225),
-    foreign key (reqID) references iteration1.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+    foreign key (reqID) references iteration1.request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+create table iteration1.login(
+    email varchar(255) primary key,
+    password varchar(255));
 
 INSERT INTO iteration1.Employee (empID, firstName, lastName, email, can_serve)
 VALUES
@@ -116,20 +123,20 @@ VALUES
     (4, '456password', true);
 
 -- Table: iteration1.Request
-INSERT INTO iteration1.request (reqID, empID, location, serveBy, status, requestDate, requestTime)
+INSERT INTO iteration1.request (reqID, reqType, empID, location, serveBy, status, requestDate, requestTime)
 VALUES
-    (1, 1, 105, 1, 'blank', '2023-04-15', '13:00:00'),
-    (2, 2, 110, 2, 'processing', '2023-04-15', '13:00:00'),
-    (3, 3, 115, 3, 'done', '2023-04-15', '13:00:00'),
-    (4, 4, 120, 4, 'blank', '2023-04-15', '13:00:00'),
-    (5, 5, 105, 1, 'blank', '2023-04-15', '13:00:00'),
-    (6, 6, 110, 2, 'processing', '2023-04-16', '14:30:00'),
-    (7, 7, 115, 3, 'done', '2023-04-17', '10:00:00'),
-    (8, 8, 120, 4, 'blank', '2023-04-18', '15:00:00'),
-    (9, 1, 115, 3, 'processing', '2023-04-17', '10:00:00'),
-    (10, 2, 115, 3, 'blank', '2023-04-17', '10:00:00'),
-    (11, 3, 115, 3, 'done', '2023-04-17', '10:00:00'),
-    (12, 4, 115, 3, 'processing', '2023-04-17', '10:00:00');
+    (1, 'M', 1, 105, 1, 'blank', '2023-04-15', '13:00:00'),
+    (2, 'M', 2, 110, 2, 'processing', '2023-04-15', '13:00:00'),
+    (3, 'M', 3, 115, 3, 'done', '2023-04-15', '13:00:00'),
+    (4, 'M', 4, 120, 4, 'blank', '2023-04-15', '13:00:00'),
+    (5, 'CR', 5, 105, 1, 'blank', '2023-04-15', '13:00:00'),
+    (6, 'CR', 6, 110, 2, 'processing', '2023-04-16', '14:30:00'),
+    (7, 'CR', 7, 115, 3, 'done', '2023-04-17', '10:00:00'),
+    (8, 'CR', 8, 120, 4, 'blank', '2023-04-18', '15:00:00'),
+    (9, 'FL', 1, 115, 3, 'processing', '2023-04-17', '10:00:00'),
+    (10, 'FL', 2, 115, 3, 'blank', '2023-04-17', '10:00:00'),
+    (11, 'FL', 3, 115, 3, 'done', '2023-04-17', '10:00:00'),
+    (12, 'FL', 4, 115, 3, 'processing', '2023-04-17', '10:00:00');
 
 -- Table: iteration1.MealRequest
 INSERT INTO iteration1.mealrequest (reqID, recipient, mealOrder, note)
@@ -155,13 +162,3 @@ VALUES
     (11, 'Daisy, Tulip', 20, 'Sarah', 'Congratulations on your new job!'),
     (12, 'Lily, Rose', 15, 'Michael', 'With deepest sympathy');
 
-SELECT Move.nodeID, LocationName.longName
-FROM iteration1.Move
-         JOIN iteration1.LocationName ON Move.longName = LocationName.longName
-         JOIN iteration1.Node ON Move.nodeID = Node.nodeID
-WHERE LocationName.nodeType = 'CONF';
-
-SELECT m.nodeID, ln.longName
-FROM iteration1.Move AS m
-         JOIN iteration1.LocationName AS ln ON m.longname = ln.longname
-WHERE ln.nodeType = 'CONF';

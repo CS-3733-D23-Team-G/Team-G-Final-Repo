@@ -22,7 +22,7 @@ public class FlowerRequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
     SQL_flowerRequest =
-        "select * from iteration1.request join iteration1.flowerrequest on iteration1.request.reid= iteration1.flowerrequest.reqid";
+        "select * from iteration1.request join iteration1.flowerrequest on iteration1.request.reqid= iteration1.flowerrequest.reqid";
     try {
       ps = db.getConnection().prepareStatement(SQL_flowerRequest);
       rs = ps.executeQuery();
@@ -31,6 +31,7 @@ public class FlowerRequestDAO implements DAO {
     }
     while (rs.next()) {
       int reqID = rs.getInt("reqID");
+      String reqType = rs.getString("reqtype");
       int empID = rs.getInt("empID");
       int location = rs.getInt("location");
       int serv_by = rs.getInt("serv_by");
@@ -43,8 +44,9 @@ public class FlowerRequestDAO implements DAO {
       int numFlower = rs.getInt("numflower");
       FlowerRequest flowerReq =
           new FlowerRequest(
+              reqType,
               empID,
-              location,
+              "",
               serv_by,
               status,
               deliveryDate,
@@ -68,4 +70,9 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public void delete(Object obj) throws SQLException {}
+
+  @Override
+  public String getTable() {
+    return "teamgdb.iteration1.flowerrequest";
+  }
 }

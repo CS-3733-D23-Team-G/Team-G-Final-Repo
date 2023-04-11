@@ -21,4 +21,14 @@ public class Account extends Employee {
     this.password = password;
     this.is_admin = is_admin;
   }
+
+  public Account(String email, String password) {
+    email = getEmail();
+    this.password = password;
+  }
+
+  @Override
+  public String getEmail() {
+    return super.getEmail();
+  }
 }

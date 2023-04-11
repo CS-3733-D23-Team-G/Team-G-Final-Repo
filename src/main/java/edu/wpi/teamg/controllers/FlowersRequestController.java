@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.CheckComboBox;
+import org.controlsfx.control.SearchableComboBox;
 
 public class FlowersRequestController {
 
@@ -17,15 +19,39 @@ public class FlowersRequestController {
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
   @FXML MFXButton signagePageButton;
   @FXML MFXButton exitButton;
-  @FXML ChoiceBox<String> flowerTypeChoiceBox;
+
+  @FXML ChoiceBox<String> bouquetSizeChoiceBox;
+  @FXML CheckComboBox<String> flowerTypeCheckBox;
   @FXML MFXButton submit;
   @FXML MFXButton clearAll;
   @FXML TextField deliveryLocation;
+
   @FXML TextField orderingFor;
   @FXML TextArea notes;
+
+  // Hung This is the name and list associated with test searchable list
+  @FXML SearchableComboBox locationSearchDropdown;
+
+  ObservableList<String> locationList =
+      FXCollections.observableArrayList(
+          "Room 1", "Blue Room", "Regal Room", "321 Room", "Help, I Need Somebody Room");
+
+  @FXML TextField deliveryDate;
+
+  @FXML TextField deliveryTime;
+  @FXML TextField recipient;
+  @FXML TextField bouquetNote;
+
+  /*
+   TODO: figure out how to get correct datatype to give to DB
+  */
+
   ObservableList<String> listFlowers =
       FXCollections.observableArrayList(
-          "Roses", "Tulips", "Daisies", "Sunflowers", "Carnations", "Orchids");
+          "Carnations", "Daisies", "Lilacs", "Orchids", "Roses", "Sunflowers");
+  ObservableList<String> listSizes =
+      FXCollections.observableArrayList(
+          "10 Stems (small)", "20 Stems (medium)", "30 Stems (large)");
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -38,8 +64,8 @@ public class FlowersRequestController {
   public void initialize() {
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-
-    flowerTypeChoiceBox.setItems(listFlowers);
+    bouquetSizeChoiceBox.setItems(listSizes);
+    flowerTypeCheckBox.getItems().addAll(listFlowers);
 
     signagePageButton.setOnMouseClicked(
         event -> {
@@ -50,19 +76,25 @@ public class FlowersRequestController {
           Navigation.navigate(Screen.HOME);
         });
     exitButton.setOnMouseClicked(event -> exit());
-    //    serviceRequestChoiceBox.setOnMouseClicked(
-    //        event -> {
-    //          loadServiceRequestForm();
-    //        });
-    //    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT));
     clearAll.setOnAction(event -> clearFlowers());
     submit.setOnAction(
         event -> {
+          storeFlowerValues();
           Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT);
         });
     //    deliveryLocation.getText();
     //    orderingFor.getText();
     //    notes.setText("");
+
+    // Hung this is where it sets the list - Andrew
+    locationSearchDropdown.setItems(locationList);
+
+    //    serviceRequestChoiceBox.setOnMouseClicked(
+    //        event -> {
+    //          loadServiceRequestForm();
+    //        });
+    //    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT));
+
   }
 
   public void loadServiceRequestForm() {
@@ -81,11 +113,33 @@ public class FlowersRequestController {
     }
   }
 
+  public void storeFlowerValues() {
+    System.out.println(
+        "Delivery Location: "
+            + deliveryLocation.getText()
+            + "\nRecipient: "
+            + recipient.getText()
+            + "\nBouquet Note: "
+            + bouquetNote.getText()
+            + "\nDelivery Time: "
+            + deliveryTime.getText()
+            + "\nDelivery Date: "
+            + deliveryDate.getText()
+            + "\nBouquet Size: "
+            + bouquetSizeChoiceBox.getValue());
+  }
+
+  public int bouquetSizeToInt(String s) {
+    return -1;
+  }
+
+  // TODO: figure out clear for flowerTypeCheckBox
   public void clearFlowers() {
-    flowerTypeChoiceBox.setValue("");
+    bouquetSizeChoiceBox.setValue("");
+    flowerTypeCheckBox.setCheckModel(null);
     deliveryLocation.setText("");
-    orderingFor.setText("");
-    notes.setText("");
+    recipient.setText("");
+    bouquetNote.setText("");
   }
 
   public void exit() {

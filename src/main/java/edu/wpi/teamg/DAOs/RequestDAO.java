@@ -12,6 +12,8 @@ public class RequestDAO implements DAO {
   private String sql;
   private HashMap<Integer, Request> requestHash = new HashMap<Integer, Request>();
 
+  private NodeDAO nodeDao = new NodeDAO();
+
   @Override
   public HashMap<Integer, Request> getAll() throws SQLException {
     db.setConnection();
@@ -19,7 +21,7 @@ public class RequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    sql = "select * from iteration1.request";
+    sql = "select * from teamgdb.iteration1.request";
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -29,17 +31,26 @@ public class RequestDAO implements DAO {
       System.err.println("SQL Exception");
     }
 
+    HashMap longNameHash = new HashMap<>();
+
+    longNameHash = nodeDao.getAllLongName();
+
     while (rs.next()) {
 
       int reqID = rs.getInt("reqid");
+      String reqType = rs.getString("reqtype");
       int empID = rs.getInt("empid");
-      int location = rs.getInt("location");
-      int serv_by = rs.getInt("serv_by");
-      Date deliveryDate = rs.getDate("deliveryDate");
-      Time deliverytime = rs.getTime("deliveryTime");
+
+      String location = (String) longNameHash.get(rs.getInt("location"));
+
+      int serveBy = rs.getInt("serveBy");
+      Date requestdate = rs.getDate("requestdate");
+      Time requesttime = rs.getTime("requesttime");
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
 
-      Request cReq = new Request(empID, location, serv_by, status, deliveryDate, deliverytime);
+      Request cReq =
+          new Request(reqType, empID, location, serveBy, status, requestdate, requesttime);
+
       cReq.setReqid(reqID);
 
       requestHash.put(reqID, cReq);
@@ -57,4 +68,9 @@ public class RequestDAO implements DAO {
 
   @Override
   public void delete(Object obj) throws SQLException {}
+
+  @Override
+  public String getTable() {
+    return "teamgdb.iteration1.request";
+  }
 }

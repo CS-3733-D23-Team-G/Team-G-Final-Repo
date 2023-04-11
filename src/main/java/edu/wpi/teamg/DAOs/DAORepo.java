@@ -13,6 +13,7 @@ public class DAORepo {
   private LocationNameDAO locationNameDao = new LocationNameDAO();
   private ConferenceRoomRequestDAO conferenceRoomRequestDao = new ConferenceRoomRequestDAO();
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
+  private LoginDao loginDAO = new LoginDao();
 
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
@@ -40,6 +41,10 @@ public class DAORepo {
 
   public HashMap getAllLocationNames() throws SQLException {
     return locationNameDao.getAll();
+  }
+
+  public HashMap getAllLogins() throws SQLException {
+    return loginDAO.getAll();
   }
 
   public void insertNode(Object obj) throws SQLException {
@@ -70,6 +75,10 @@ public class DAORepo {
     locationNameDao.insert(obj);
   }
 
+  public void insertLogin(Object obj) throws SQLException {
+    loginDAO.insert(obj);
+  }
+
   public void deleteNode(Object obj) throws SQLException {
     nodeDao.delete(obj);
   }
@@ -96,6 +105,10 @@ public class DAORepo {
 
   public void deleteMealRequest(Object obj) throws SQLException {
     mealRequestDao.delete(obj);
+  }
+
+  public void deleteLogin(Object obj) throws SQLException {
+    loginDAO.delete(obj);
   }
 
   public void importNodeCSV(String path) throws SQLException {
@@ -128,5 +141,25 @@ public class DAORepo {
 
   public void exportLocationNameCSV() throws SQLException {
     locationNameDao.exportCSV();
+  }
+
+  public HashMap getCRLongName() throws SQLException {
+    return nodeDao.getCRLongName();
+  }
+
+  public HashMap getMLongName() throws SQLException {
+    return nodeDao.getMLongName();
+  }
+
+  public HashMap getL1LongNames() throws SQLException {
+    return nodeDao.getL1LongNames();
+  }
+
+  public HashMap getAllLongName() throws SQLException {
+    return nodeDao.getAllLongName();
+  }
+
+  public int getNodeIDbyLongName(String longname) throws SQLException {
+    return nodeDao.getNodeIDbyLongName(longname);
   }
 }

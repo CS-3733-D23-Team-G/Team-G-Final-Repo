@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,6 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.SearchableComboBox?>
+<?import org.controlsfx.control.CheckComboBox?>
+
 
 <VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FlowersRequestController">
    <children>
@@ -46,16 +49,22 @@
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="600.0" styleClass="anchor_pane_sizing">
                 <children>
-                  <Text layoutX="47.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Flower Type" />
-                  <Text layoutX="48.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Location" wrappingWidth="120.6435546875" />
-                  <TextField fx:id="deliveryLocation" layoutX="47.0" layoutY="54.0" prefHeight="26.0" prefWidth="184.0" />
-                  <Text layoutX="367.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordering for?" wrappingWidth="148.21630859375" />
-                  <TextField fx:id="orderingfor" layoutX="367.0" layoutY="51.0" prefHeight="26.0" prefWidth="184.0" />
-                  <Text layoutX="367.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes for Delivery" wrappingWidth="140.21630859375" />
-                  <TextArea fx:id="notes" layoutX="367.0" layoutY="124.0" prefHeight="84.0" prefWidth="184.0" />
-                  <ChoiceBox fx:id="flowerTypeChoiceBox" layoutX="49.0" layoutY="140.0" prefHeight="27.0" prefWidth="184.0" />
+                  <Text layoutX="429.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Flower Types" />
+                  <Text layoutX="49.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Location" wrappingWidth="120.6435546875" />
+                  <TextField fx:id="deliveryLocation" layoutX="49.0" layoutY="43.0" prefHeight="26.0" prefWidth="125.0" />
+                  <Text layoutX="49.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recipient" wrappingWidth="148.21630859375" />
+                  <Text layoutX="50.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note on Bouquet Card" wrappingWidth="140.21630859375" />
+                  <TextField fx:id="recipient" layoutX="47.0" layoutY="117.0" prefHeight="26.0" prefWidth="125.0" />
+                  <MFXDatePicker fx:id="deliveryDate" layoutX="225.0" layoutY="117.0" minHeight="-Infinity" prefHeight="26.0" prefWidth="121.0" />
+                  <ChoiceBox fx:id="bouquetSizeChoiceBox" layoutX="424.0" layoutY="47.0" prefHeight="27.0" prefWidth="125.0" />
                   <MFXButton fx:id="submit" layoutX="477.0" layoutY="219.0" text="Submit" />
                   <MFXButton fx:id="clearAll" layoutX="376.0" layoutY="219.0" onAction="#clearFlowers" text="Clear all" />
+                  <Text layoutX="225.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Date" />
+                  <Text layoutX="424.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bouquet Size" wrappingWidth="120.6435546875" />
+                  <Text layoutX="224.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Time" />
+                  <TextField fx:id="deliveryTime" layoutX="225.0" layoutY="49.0" prefHeight="26.0" prefWidth="130.0" />
+                  <CheckComboBox fx:id="flowerTypeCheckBox" layoutX="426.0" layoutY="117.0" prefHeight="26.0" prefWidth="125.0" />
+                  <TextField fx:id="bouquetNote" layoutX="50.0" layoutY="193.0" prefHeight="26.0" prefWidth="121.0" />
                 </children>
             </AnchorPane>
          </children>

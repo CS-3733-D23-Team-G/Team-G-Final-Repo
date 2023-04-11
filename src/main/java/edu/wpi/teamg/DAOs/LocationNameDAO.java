@@ -7,7 +7,6 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class LocationNameDAO implements LocationDAO {
   private static DBConnection connection = new DBConnection();
@@ -53,7 +52,9 @@ public class LocationNameDAO implements LocationDAO {
     connection.setConnection();
     PreparedStatement ps;
     SQL =
-        "UPDATE iteration1.locationname SET shortname=?, nodetype=?, longname=? Where longname=? AND shortname=? AND nodetype=? ";
+
+        "UPDATE teamgdb.iteration1.locationname SET shortname=?, nodetype=?, longname=? Where longname=? AND shortname=? AND nodetype=? ";
+
     LocationName ol = (LocationName) old;
     LocationName up = (LocationName) update;
     try {
@@ -78,6 +79,7 @@ public class LocationNameDAO implements LocationDAO {
     connection.setConnection();
     PreparedStatement ps;
     LocationName l1 = (LocationName) obj;
+
     SQL =
         "INSERT INTO teamgdb.iteration1.locationname (longname, shortname, nodetype) VALUES (?,?,?)";
 
@@ -100,7 +102,8 @@ public class LocationNameDAO implements LocationDAO {
     connection.setConnection();
     PreparedStatement ps;
     LocationName l1 = (LocationName) obj;
-    SQL = "DELETE FROM iteration1.locationname WHERE longname=? OR shortname=?";
+
+    SQL = "DELETE FROM teamgdb.iteration1.locationname WHERE longname=? OR shortname=?";
 
     try {
       ps = connection.getConnection().prepareStatement(SQL);
@@ -113,6 +116,11 @@ public class LocationNameDAO implements LocationDAO {
       System.err.println("SQL exeption");
     }
     connection.closeConnection();
+  }
+
+  @Override
+  public String getTable() {
+    return "teamgdb.iteration1.locationname";
   }
 
   @Override
@@ -154,55 +162,6 @@ public class LocationNameDAO implements LocationDAO {
       System.err.println("SQL Exception");
       e.printStackTrace();
     }
-    connection.closeConnection();
-  }
-
-  @Override
-  public void exportCSV() throws SQLException {
-
-    connection.setConnection();
-    ResultSet rs = null;
-    FileWriter fw = null;
-
-    try {
-      Statement statement = connection.getConnection().createStatement();
-      rs = statement.executeQuery("select * from teamgdb.iteration1.locationname");
-
-      JFileChooser chooser = new JFileChooser();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", ".csv");
-      chooser.setFileFilter(filter);
-
-      int result = chooser.showSaveDialog(null);
-      if (result == JFileChooser.APPROVE_OPTION) {
-        File savedFile = chooser.getSelectedFile();
-        String path = savedFile.getAbsolutePath();
-        fw = new FileWriter(path);
-
-        int colCount = rs.getMetaData().getColumnCount();
-        for (int i = 1; i <= colCount; i++) {
-          String colLabel = rs.getMetaData().getColumnLabel(i);
-          fw.append(colLabel);
-          if (i < colCount) fw.append(",");
-        }
-        fw.append("\n");
-
-        while (rs.next()) {
-          for (int j = 1; j <= colCount; j++) {
-            String cellVal = rs.getString(j);
-            fw.append(cellVal);
-            if (j < colCount) fw.append(",");
-          }
-          fw.append("\n");
-        }
-      }
-
-      rs.close();
-      statement.close();
-      fw.close();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-
     connection.closeConnection();
   }
 }

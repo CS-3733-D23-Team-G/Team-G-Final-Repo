@@ -7,6 +7,7 @@ import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import javafx.application.Platform;
@@ -130,7 +131,14 @@ public class SignageAdminController {
     // importButton.setOnAction(event -> fileChooser());
 
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-    importDrop.setOnAction(event -> fileChooser());
+    importDrop.setOnAction(
+        event -> {
+          try {
+            fileChooser();
+          } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
     exportDrop.setOnAction(
         event -> {
           try {
@@ -139,6 +147,24 @@ public class SignageAdminController {
             throw new RuntimeException(e);
           }
         });
+
+    // fileLabel.getText();
+
+    /*pathFindButton.setOnMouseClicked(
+       event -> {
+         try {
+           processAStarAlg();
+         } catch (SQLException e) {
+           throw new RuntimeException(e);
+         }
+       });
+    */
+
+    // startLoc.getText();
+    // endLoc.getText();
+    //  String imgPath = Main.class.getResource("images/00_thelowerlevel1.png").toString();
+    //  ImageView image = new ImageView(new Image(imgPath));
+    //  pane.setContent(image);
 
     nodes.setOnMouseClicked(event -> loadNodeTable());
     edges.setOnMouseClicked(event -> loadEdgeTable());
@@ -287,7 +313,7 @@ public class SignageAdminController {
   DAORepo dao = new DAORepo();
 
   @FXML
-  void fileChooser() {
+  void fileChooser() throws SQLException, IOException {
     switch (importDrop.getValue()) {
       case "Nodes":
         NodeDAO nodeDAO = new NodeDAO();
@@ -324,16 +350,20 @@ public class SignageAdminController {
   void fileExporter() throws SQLException {
     switch (exportDrop.getValue()) {
       case "Nodes":
-        dao.exportNodeCSV();
+        NodeDAO nodeDAO = new NodeDAO();
+        nodeDAO.exportCSV();
         break;
       case "Edges":
-        dao.exportEdgeCSV();
+        EdgeDAO edgeDAO = new EdgeDAO();
+        edgeDAO.exportCSV();
         break;
       case "LocationName":
-        dao.exportLocationNameCSV();
+        LocationNameDAO lNameDAO = new LocationNameDAO();
+        lNameDAO.exportCSV();
         break;
       case "Moves":
-        dao.exportMoveCSV();
+        MoveDAO mDao = new MoveDAO();
+        mDao.exportCSV();
       default:
         break;
     }
@@ -417,7 +447,6 @@ public class SignageAdminController {
   public void setPath(ArrayList<String> path) {
     results.setText(String.valueOf(path));
   }
-
    */
 
   public void cancelTable() {
