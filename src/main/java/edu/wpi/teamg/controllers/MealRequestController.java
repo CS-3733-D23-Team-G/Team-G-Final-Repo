@@ -175,7 +175,7 @@ public class MealRequestController {
     HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
 
     try {
-      longNameHashMap = dao.getMLongName();
+      longNameHashMap = dao.getMandFLLongName();
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }

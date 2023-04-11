@@ -23,7 +23,7 @@ public class FlowerRequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
     SQL_flowerRequest =
-        "select * from iteration1.request join iteration1.flowerrequest on iteration1.request.reqid= iteration1.flowerrequest.reqid";
+        "select * from iteration1.request join iteration1.flowerrequest on iteration1.request.reqid = iteration1.flowerrequest.reqid";
     try {
       ps = db.getConnection().prepareStatement(SQL_flowerRequest);
       rs = ps.executeQuery();
@@ -34,12 +34,20 @@ public class FlowerRequestDAO implements DAO {
       int reqID = rs.getInt("reqID");
       String reqType = rs.getString("reqtype");
       int empID = rs.getInt("empID");
-      String location = rs.getString("location");
-      int serv_by = rs.getInt("serv_by");
+
+      int location = rs.getInt("location");
+
+      HashMap longNameHash = new HashMap<>();
+
+      longNameHash = NodeDAO.getMandFLLongName();
+
+      String longName = (String) longNameHash.get(location);
+
+      int serv_by = rs.getInt("serveby");
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
       String recipient = rs.getString("recipient");
-      Date deliveryDate = rs.getDate("deliverydate");
-      Time deliveryTime = rs.getTime("deliverytime");
+      Date requestdate = rs.getDate("requestdate");
+      Time requesttime = rs.getTime("requesttime");
       String flowerType = rs.getString("flowertype");
       String note = rs.getString("note");
       int numFlower = rs.getInt("numflower");
@@ -47,15 +55,17 @@ public class FlowerRequestDAO implements DAO {
           new FlowerRequest(
               reqType,
               empID,
-              location,
+              longName,
               serv_by,
               status,
-              deliveryDate,
-              deliveryTime,
+              requestdate,
+              requesttime,
               flowerType,
               numFlower,
               note,
               recipient);
+
+      flowerReq.setReqid(reqID);
       flowerHashMap.put(reqID, flowerReq);
     }
     db.closeConnection();

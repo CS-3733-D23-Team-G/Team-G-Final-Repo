@@ -84,11 +84,11 @@
                             <TableColumn fx:id="mealStatus" prefWidth="55.0" text="Status" />
                         <TableColumn prefWidth="75.0" text="Meal Request">
                            <columns>
-                              <TableColumn fx:id="mealDate" minWidth="0.0" prefWidth="50.0" text="date" />
-                              <TableColumn fx:id="mealTime" prefWidth="50.0" text="time" />
-                              <TableColumn fx:id="mealOrder" prefWidth="75.0" text="order" />
-                              <TableColumn fx:id="mealRecipient" prefWidth="60.0" text="recipient" />
-                              <TableColumn fx:id="mealNote" minWidth="0.0" prefWidth="100.0" text="note" />
+                              <TableColumn fx:id="mealDate" minWidth="0.0" prefWidth="50.0" text="Date" />
+                              <TableColumn fx:id="mealTime" prefWidth="50.0" text="Time" />
+                              <TableColumn fx:id="mealOrder" prefWidth="75.0" text="Order" />
+                              <TableColumn fx:id="mealRecipient" prefWidth="60.0" text="Recipient" />
+                              <TableColumn fx:id="mealNote" minWidth="0.0" prefWidth="100.0" text="Note" />
                            </columns>
                         </TableColumn>
                         </columns>
@@ -102,6 +102,8 @@
                         <TableColumn fx:id="flowerStatus" prefWidth="55.0" text="Status" />
                         <TableColumn prefWidth="75.0" text="Flowers Request">
                            <columns>
+                              <TableColumn fx:id="flowerDate" minWidth="0.0" prefWidth="50.0" text="Date" />
+                              <TableColumn fx:id="flowerTime" prefWidth="50.0" text="Time" />
                               <TableColumn fx:id="flowerType" prefWidth="75.0" text="Flower Type" />
                               <TableColumn fx:id="flowerNumber" prefWidth="75.0" text="# of Flowers" />
                               <TableColumn fx:id="flowerRecipient" prefWidth="75.0" text="Recipient" />
@@ -117,8 +119,8 @@
                         <TableColumn fx:id="empID" minWidth="0.0" prefWidth="57.0" text="Emp. ID" />
                         <TableColumn fx:id="location1" prefWidth="60.0" text="Location" />
                         <TableColumn fx:id="serveBy" prefWidth="50.0" text="Serve-By" />
-                        <TableColumn fx:id="reqDate" prefWidth="55.0" text="Req. Date" />
-                        <TableColumn fx:id="reqTime" prefWidth="56.0" text="Req. Time" />
+                        <TableColumn fx:id="reqDate" prefWidth="55.0" text="Date" />
+                        <TableColumn fx:id="reqTime" prefWidth="56.0" text="Time" />
                         <TableColumn fx:id="status" prefWidth="55.0" text="Status" />
                      </columns>
                   </TableView>

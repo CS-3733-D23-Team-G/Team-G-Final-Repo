@@ -204,7 +204,7 @@ public class NodeDAO implements LocationDAO {
     return longNameHash;
   }
 
-  public static HashMap<Integer, String> getMLongName() throws SQLException {
+  public static HashMap<Integer, String> getMandFLLongName() throws SQLException {
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
     db.setConnection();

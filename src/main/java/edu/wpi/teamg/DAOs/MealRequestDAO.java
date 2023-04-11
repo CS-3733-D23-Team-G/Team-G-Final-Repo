@@ -46,7 +46,7 @@ public class MealRequestDAO implements DAO {
 
       HashMap longNameHash = new HashMap<>();
 
-      longNameHash = NodeDAO.getMLongName();
+      longNameHash = NodeDAO.getMandFLLongName();
 
       String longName = (String) longNameHash.get(location);
 

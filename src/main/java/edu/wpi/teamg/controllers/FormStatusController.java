@@ -74,9 +74,12 @@ public class FormStatusController {
   @FXML TableColumn<FlowerRequest, Integer> flowerServeBy;
   @FXML TableColumn<FlowerRequest, StatusTypeEnum> flowerStatus;
   @FXML TableColumn<FlowerRequest, String> flowerType;
-  @FXML TableColumn<FlowerRequest, String> flowerNumber;
+  @FXML TableColumn<FlowerRequest, Integer> flowerNumber;
   @FXML TableColumn<FlowerRequest, String> flowerRecipient;
   @FXML TableColumn<FlowerRequest, String> flowerNote;
+
+  @FXML TableColumn<ConferenceRoomRequest, Date> flowerDate;
+  @FXML TableColumn<ConferenceRoomRequest, Time> flowerTime;
 
   @FXML Button allRequestTableButton;
   @FXML Button mealTableButton;
@@ -203,8 +206,10 @@ public class FormStatusController {
     flowerLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
     flowerServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
     flowerStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-    flowerType.setCellValueFactory(new PropertyValueFactory<>("flowertype"));
-    flowerNumber.setCellValueFactory(new PropertyValueFactory<>("numflower"));
+    flowerType.setCellValueFactory(new PropertyValueFactory<>("flowerType"));
+    flowerNumber.setCellValueFactory(new PropertyValueFactory<>("numFlower"));
+    flowerDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+    flowerTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
     flowerRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
     flowerNote.setCellValueFactory(new PropertyValueFactory<>("note"));
   }

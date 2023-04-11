@@ -24,15 +24,15 @@ public class FlowerRequest extends Request {
       String reqtype,
       int empid,
       String location,
-      int serv_by,
+      int serveBy,
       StatusTypeEnum status,
-      Date deliveryDate,
-      Time deliveryTime,
+      Date requestdate,
+      Time requesttime,
       String flowerType,
       int numFlower,
       String note,
       String recipient) {
-    super(reqtype, empid, location, serv_by, status, deliveryDate, deliveryTime);
+    super(reqtype, empid, location, serveBy, status, requestdate, requesttime);
     this.flowerType = flowerType;
     this.numFlower = numFlower;
     this.note = note;

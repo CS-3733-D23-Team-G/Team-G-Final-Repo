@@ -160,8 +160,8 @@ public class DAORepo {
     return nodeDao.getCRLongName();
   }
 
-  public HashMap getMLongName() throws SQLException {
-    return nodeDao.getMLongName();
+  public HashMap getMandFLLongName() throws SQLException {
+    return nodeDao.getMandFLLongName();
   }
 
   public HashMap getL1LongNames() throws SQLException {

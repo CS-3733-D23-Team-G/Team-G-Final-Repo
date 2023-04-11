@@ -10,16 +10,19 @@ import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.IndexedCheckModel;
+import org.controlsfx.control.SearchableComboBox;
 
 public class FlowersRequestController {
 
@@ -32,18 +35,16 @@ public class FlowersRequestController {
   @FXML CheckComboBox<String> flowerTypeCheckBox;
   @FXML MFXButton submit;
   @FXML MFXButton clearAll;
-  @FXML TextField deliveryLocation;
+  // @FXML TextField deliveryLocation;
   @FXML Label checkFields;
 
-  @FXML TextField orderingFor;
-  @FXML TextArea notes;
-
   // Hung This is the name and list associated with test searchable list
-  // @FXML SearchableComboBox locationSearchDropdown;
+  @FXML SearchableComboBox locationSearchDropdown;
 
-  ObservableList<String> locationList =
-      FXCollections.observableArrayList(
-          "Room 1", "Blue Room", "Regal Room", "321 Room", "Help, I Need Somebody Room");
+  // @FXML TextField orderingFor;
+  // @FXML TextArea notes;
+
+  ObservableList<String> locationList;
 
   @FXML MFXDatePicker deliveryDate;
 
@@ -69,12 +70,35 @@ public class FlowersRequestController {
           "Meal Request Form",
           "Office Supplies Request Form");
 
+  DAORepo dao = new DAORepo();
+
   @FXML
-  public void initialize() {
+  public void initialize() throws SQLException {
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     bouquetSizeChoiceBox.setItems(listSizes);
     flowerTypeCheckBox.getItems().addAll(listFlowers);
+
+    ArrayList<String> locationNames = new ArrayList<>();
+    HashMap<Integer, String> testingLongName = this.getHashMapMLongName();
+
+    testingLongName.forEach(
+        (i, m) -> {
+          locationNames.add(m);
+          //          System.out.println("Request ID:" + m.getReqid());
+          //          System.out.println("Employee ID:" + m.getEmpid());
+          //          System.out.println("Status:" + m.getStatus());
+          //          System.out.println("Location:" + m.getLocation());
+          //          System.out.println("Serve By:" + m.getServ_by());
+          //          System.out.println();
+        });
+
+    Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
+
+    locationList = FXCollections.observableArrayList(locationNames);
+
+    // Hung this is where it sets the list - Andrew
+    locationSearchDropdown.setItems(locationList);
 
     checkFields.getText();
 
@@ -140,7 +164,7 @@ public class FlowersRequestController {
         new FlowerRequest(
             "FL",
             1,
-            deliveryLocation.getText(),
+            (String) locationSearchDropdown.getValue(),
             1,
             StatusTypeEnum.blank,
             Date.valueOf(deliveryDate.getValue()),
@@ -149,8 +173,8 @@ public class FlowersRequestController {
             flowerConvert(bouquetSizeChoiceBox.getValue()),
             bouquetNote.getText(),
             recipient.getText());
-    DAORepo f1 = new DAORepo();
-    f1.insertFlowerRequest(flower);
+
+    dao.insertFlowerRequest(flower);
     /*
     System.out.println(
         "Delivery Location: "
@@ -175,17 +199,31 @@ public class FlowersRequestController {
   public void clearFlowers() {
     bouquetSizeChoiceBox.setValue("");
     flowerTypeCheckBox.setCheckModel(null);
-    deliveryLocation.setText("");
+    // deliveryLocation.setText("");
+    locationSearchDropdown.setValue(null);
     deliveryTime.setText("");
     recipient.setText("");
     bouquetNote.setText("");
     deliveryDate.setText("");
   }
 
+  public HashMap<Integer, String> getHashMapMLongName() throws SQLException {
+
+    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getMandFLLongName();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return longNameHashMap;
+  }
+
   public void allDataFilled() {
     if (!(bouquetSizeChoiceBox == null
         || flowerTypeCheckBox == null
-        || deliveryLocation.getText().equals("")
+        // || deliveryLocation.getText().equals("")
         || recipient.getText().equals("")
         || deliveryTime.getText().equals("")
         || bouquetNote.getText().equals(""))) {
