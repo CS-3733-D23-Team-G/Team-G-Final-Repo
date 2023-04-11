@@ -56,6 +56,8 @@ public class SignagePageController {
   @FXML MFXButton l2;
   @FXML MFXButton floor1;
 
+  private ArrayList<ImageView> imageViewsList = new ArrayList<>();
+
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -122,7 +124,6 @@ public class SignagePageController {
     pane.zoomTo(.000001, new Point2D(2500, 1700));
     pane.zoomTo(.000001, new Point2D(2500, 1700));
 
-    ArrayList<ImageView> imageViewsList = new ArrayList<>();
     imageViewsList.add(mapView);
     imageViewsList.add(mapViewL2);
     imageViewsList.add(mapViewFloor1);
@@ -212,6 +213,16 @@ public class SignagePageController {
     ArrayList<Edge> L1EdgeFinal = new ArrayList<>();
 
     String floor = nodeMap.get(Integer.parseInt(start)).getFloor();
+    switch (floor) {
+      case "L1":
+        goToL1(imageViewsList);
+        break;
+      case "L2":
+        goToL2(imageViewsList);
+        break;
+      case "1 ":
+        goToFloor1(imageViewsList);
+    }
     // L1nodes = (ArrayList<edu.wpi.teamg.ORMClasses.Node>) nodeMap.values();
 
     for (int i = 0; i < L1nodes.size(); i++) {
