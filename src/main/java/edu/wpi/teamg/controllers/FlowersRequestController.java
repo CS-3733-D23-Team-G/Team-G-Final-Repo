@@ -131,21 +131,44 @@ public class FlowersRequestController {
 
   }
 
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
+//  public void loadServiceRequestForm() {
+//    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
+//      Navigation.navigate(Screen.MEAL_REQUEST);
+//    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
+//      Navigation.navigate(Screen.FURNITURE_REQUEST);
+//    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
+//      Navigation.navigate(Screen.ROOM_REQUEST);
+//    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
+//      Navigation.navigate(Screen.FLOWERS_REQUEST);
+//    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
+//      Navigation.navigate(Screen.SUPPLIES_REQUEST);
+//    } else {
+//      return;
+//    }
+//  }
+public void loadServiceRequestForm() {
+  String selectedValue = serviceRequestChoiceBox.getValue();
+  switch (selectedValue) {
+    case "Meal Request Form":
       Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
+      break;
+    case "Furniture Request Form":
       Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
+      break;
+    case "Conference Room Request Form":
       Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
+      break;
+    case "Flowers Request Form":
       Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
+      break;
+    case "Office Supplies Request Form":
       Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
+      break;
+    default:
       return;
-    }
   }
+}
+
   /*
   String reqtype,
         int empid,
