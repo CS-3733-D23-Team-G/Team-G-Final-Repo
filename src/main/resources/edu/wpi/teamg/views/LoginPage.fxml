@@ -50,10 +50,10 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
                      <children>
-                        <TextField fx:id="emailBox" layoutX="41.0" layoutY="123.0" prefHeight="35.0" prefWidth="245.0" promptText="Email" />
+                        <TextField fx:id="emailBox" layoutX="41.0" layoutY="128.0" prefHeight="35.0" prefWidth="245.0" promptText="Email" />
                         <TextField fx:id="passwordBox" layoutX="41.0" layoutY="192.0" prefHeight="35.0" prefWidth="245.0" promptText="Password" />
                         <MFXButton fx:id="loginButton" layoutX="166.0" layoutY="253.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #1826f0;" text="Login" textAlignment="CENTER" textFill="WHITE" />
-                        <MFXButton fx:id="signUpButton" layoutX="45.0" layoutY="316.0" prefHeight="41.0" prefWidth="242.0" style="-fx-background-color: #8dbdeb; -fx-border-color: #1826f0; -fx-border-radius: 10px;" text="New Employee? Sign Up" textFill="#1826f0" />
+                        <MFXButton fx:id="signUpButton" layoutX="45.0" layoutY="316.0" prefHeight="41.0" prefWidth="242.0" style="-fx-background-color: #8dbdeb; -fx-border-color: #1826f0; -fx-border-radius: 10px;" text="New Employee? Sign Up!" textFill="#1826f0" />
                         <Label fx:id="forgotLabel" layoutX="45.0" layoutY="262.0" text="Forgot Password?" />
                         <Label layoutX="41.0" layoutY="78.0" text="Sign In">
                            <font>
