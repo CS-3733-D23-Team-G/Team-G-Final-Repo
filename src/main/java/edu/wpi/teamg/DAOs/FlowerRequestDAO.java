@@ -34,7 +34,7 @@ public class FlowerRequestDAO implements DAO {
       int reqID = rs.getInt("reqID");
       String reqType = rs.getString("reqtype");
       int empID = rs.getInt("empID");
-      int location = rs.getInt("location");
+      String location = rs.getString("location");
       int serv_by = rs.getInt("serv_by");
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
       String recipient = rs.getString("recipient");
@@ -47,7 +47,7 @@ public class FlowerRequestDAO implements DAO {
           new FlowerRequest(
               reqType,
               empID,
-              "",
+              location,
               serv_by,
               status,
               deliveryDate,

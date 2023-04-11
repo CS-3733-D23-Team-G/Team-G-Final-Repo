@@ -94,7 +94,7 @@ public class FormStatusController {
   ObservableList<Request> testList;
   ObservableList<MealRequest> testMealList;
   ObservableList<ConferenceRoomRequest> testRoomList;
-
+  ObservableList<FlowerRequest> testFlowerList;
   DAORepo dao = new DAORepo();
 
   @FXML
@@ -147,13 +147,26 @@ public class FormStatusController {
           //              System.out.println("Meeting time: " + m.getMeeting_time());
           //              System.out.println("Purpose: " + m.getPurpose());
         });
+    ArrayList<FlowerRequest> flowerDel = new ArrayList<>();
+    HashMap<Integer, FlowerRequest> testingFlower = this.getHashMapFlowerRequest();
+    testingFlower.forEach(
+        (i, m) -> {
+          flowerDel.add(m);
+          System.out.println("Reqid: " + m.getReqid());
+          //              System.out.println("Meeting Date: " + m.getMeeting_date());
+          //              System.out.println("Meeting time: " + m.getMeeting_time());
+          //              System.out.println("Purpose: " + m.getPurpose());
+        });
 
     testList = FXCollections.observableArrayList(request1);
     testMealList = FXCollections.observableArrayList(mealRequests1);
     testRoomList = FXCollections.observableArrayList(confroom);
+    testFlowerList = FXCollections.observableArrayList(flowerDel);
+
     mainTable.setItems(testList);
     mealTable.setItems(testMealList);
     roomTable.setItems(testRoomList);
+    flowerTable.setItems(testFlowerList);
 
     reqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
     reqType.setCellValueFactory(new PropertyValueFactory<>("reqtype"));
@@ -250,6 +263,19 @@ public class FormStatusController {
     }
 
     return confRoomHash;
+  }
+
+  public HashMap getHashMapFlowerRequest() throws SQLException {
+
+    HashMap<Integer, FlowerRequest> flowerHashMap = new HashMap<Integer, FlowerRequest>();
+
+    try {
+      flowerHashMap = dao.getALLFlowerRequest();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return flowerHashMap;
   }
 
   public void loadAllRequestTable() {
