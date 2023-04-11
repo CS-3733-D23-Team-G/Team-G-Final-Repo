@@ -18,9 +18,9 @@
             <Pane prefHeight="400.0" prefWidth="274.0" style="-fx-background-color: linear-gradient(to bottom left, #009FFD, #2A2A72);" stylesheets="style.css" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="110.0" fitWidth="132.0" layoutX="90.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../../../../../Downloads/Screen_Shot_2023-04-10_at_9.30.45_PM-removebg-preview.png" />
-                     </image>
+<!--                     <image>-->
+<!--                        <Image url="@../../../../../../../../../../Downloads/Screen_Shot_2023-04-10_at_9.30.45_PM-removebg-preview.png" />-->
+<!--                     </image>-->
                   </ImageView>
                   <Label fx:id="forgotLabel1" layoutX="7.0" layoutY="225.0" prefHeight="34.0" prefWidth="273.0" text="Brigham and Womens Hospital" textFill="WHITE">
                      <font>
@@ -45,7 +45,7 @@
                               <Font name="Arial Rounded MT Bold" size="24.0" />
                            </font>
                         </Label>
-                        <MFXButton fx:id="signUpButton" layoutX="163.0" layoutY="206.0" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: #1826f0;" text="Get Started" textFill="WHITE" />
+<!--                        <MFXButton fx:id="signUpButton" layoutX="163.0" layoutY="206.0" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: #1826f0;" text="Get Started" textFill="WHITE" />-->
                      </children>
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
@@ -60,6 +60,7 @@
                               <Font name="System Bold" size="23.0" />
                            </font>
                         </Label>
+<!--                        <Label fx:id="invalidInput" layoutX="43.0" layoutY="231.0" prefHeight="17.0" prefWidth="241.0" text="  " />-->
                      </children>
                   </Pane>
                </children>
