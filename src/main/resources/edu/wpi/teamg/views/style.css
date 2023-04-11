@@ -1,3 +1,6 @@
+@font-face {
+    font-family: url('Poppins-Regular.ttf');
+}
 .homepage{
     -fx-background-image: url(international-bwh-1428x1110.jpeg);
     -fx-background-size: contain;
@@ -25,6 +28,11 @@
 .anchor_pane_sizing{
     -fx-pref-width: 600;
 }
+
+
+.text {
+    -fx-font-family: "Poppins";
+}
 .background_test{
     -fx-background-image: url(international-bwh-1428x1110.jpeg);
     -fx-background-size: contain;
@@ -51,17 +59,40 @@
 }
 .banner_text{
     -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Poppins-Regular";
 }
 .button_banner{
     -fx-max-height: 30;
     -fx-opacity: 0;
 }
 .new_banner{
-    -fx-max-height: 89;
-    -fx-pref-height: 89;
+    -fx-max-height: 90;
+    -fx-pref-height: 90;
     -fx-background-color: #012D5A;
     -fx-pref-width: 960;
 }
 .banner_halves{
     -fx-pref-width: 480;
+}
+.hit_the_griddy{
+    -fx-pref-height: 45;
+}
+.rest_of_page{
+    -fx-background-color: F1F1F1;
+    -fx-pref-height: 480;
+    -fx-pref-width: 870;
+}
+.half_bottom_page{
+    -fx-pref-height: 480;
+    -fx-pref-width: 435;
+}
+.widget_background{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 20 20 20 20;
+}
+.widget_homepage_pair{
+    -fx-pref-height: 345;
+    -fx-pref-width: 370;
+    -fx-max-height: 345;
+    -fx-max-width: 370;
 }

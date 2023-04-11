@@ -2,10 +2,11 @@ package edu.wpi.teamg.navigation;
 
 import edu.wpi.teamg.App;
 import java.io.IOException;
+
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 
 public class Navigation {
-
   public static void navigate(final Screen screen) {
     final String filename = screen.getFilename();
 
