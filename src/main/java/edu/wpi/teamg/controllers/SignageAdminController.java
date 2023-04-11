@@ -76,15 +76,15 @@ public class SignageAdminController {
 
   // Move
 
-  @FXML TableColumn<Move, String> moveNodeID;
+  @FXML TableColumn<Move, Integer> moveNodeID;
   @FXML TableColumn<Move, Date> moveDate;
-  @FXML TableColumn<Move, Integer> moveLongName;
+  @FXML TableColumn<Move, String> moveLongName;
 
   // NodeLoc
 
   @FXML TableColumn<LocationName, String> locLongName;
-  @FXML TableColumn<LocationName, Integer> locShortName;
-  @FXML TableColumn<LocationName, Integer> locNodeType;
+  @FXML TableColumn<LocationName, String> locShortName;
+  @FXML TableColumn<LocationName, String> locNodeType;
 
   @FXML MFXButton edit;
   @FXML MFXButton cancel;
@@ -454,37 +454,123 @@ public class SignageAdminController {
   }
 
   public void editTable() {
-    nodeTable.setEditable(true);
 
-    nodeNodeID.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-    nodeNodeID.setOnEditCommit(
-        event -> {
-          Node obj = event.getRowValue();
-          obj.setNodeID(event.getNewValue());
-        });
+    NodeDAO nodeDAO = new NodeDAO();
+
+    // Edit Nodes
+    nodeTable.setEditable(true);
     nodeXcoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
     nodeXcoord.setOnEditCommit(
         event -> {
           Node obj = event.getRowValue();
           obj.setXcoord(event.getNewValue());
+          nodeDAO.update(obj, "xcoord", event.getNewValue());
         });
+
     nodeYcoord.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
     nodeYcoord.setOnEditCommit(
         event -> {
           Node obj = event.getRowValue();
           obj.setYcoord(event.getNewValue());
+          nodeDAO.update(obj, "ycoord", event.getNewValue());
         });
     nodeFloor.setCellFactory(TextFieldTableCell.forTableColumn());
     nodeFloor.setOnEditCommit(
         event -> {
           Node obj = event.getRowValue();
           obj.setFloor(event.getNewValue());
+          nodeDAO.update(obj, "floor", event.getNewValue());
         });
     nodeBuilding.setCellFactory(TextFieldTableCell.forTableColumn());
     nodeBuilding.setOnEditCommit(
         event -> {
           Node obj = event.getRowValue();
           obj.setBuilding(event.getNewValue());
+          nodeDAO.update(obj, "building", event.getNewValue());
+        });
+
+    /*
+    //Edge Update
+        EdgeDAO edgeDAO = new EdgeDAO();
+        edgeTable.setEditable(true);
+        edgeEdgeID.setCellFactory(TextFieldTableCell.forTableColumn());
+        edgeEdgeID.setOnEditCommit(
+                event -> {
+                  Edge obj = event.getRowValue();
+                  obj.setEdgeID(event.getNewValue());
+                  //edgeDAO.update(obj, "longname", event.getNewValue());
+                });
+
+        edgeStartNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        edgeStartNode.setOnEditCommit(
+                event -> {
+                  Edge obj = event.getRowValue();
+                  obj.setStartNode(event.getNewValue());
+                  //edgeDAO.update(obj, "shortname", event.getNewValue());
+                });
+        edgeEndNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        edgeEndNode.setOnEditCommit(
+                event -> {
+                  Edge obj = event.getRowValue();
+                  obj.setEndNode(event.getNewValue());
+                  //edgeDAO.update(obj, "nodetype", event.getNewValue());
+                });
+
+
+
+
+        MoveDAO moveDAO = new MoveDAO();
+        moveTable.setEditable(true);
+        moveNodeID.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        moveNodeID.setOnEditCommit(
+                event -> {
+                  Move obj = event.getRowValue();
+                  obj.setNodeID(event.getNewValue());
+                  //moveDAO.update(obj, "longname", event.getNewValue());
+                });
+
+        moveDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
+        moveDate.setOnEditCommit(
+                event -> {
+                  Move obj = event.getRowValue();
+                  obj.setDate((java.sql.Date) event.getNewValue());
+                  //moveDAO.update(obj, "shortname", event.getNewValue());
+                });
+        moveLongName.setCellFactory(TextFieldTableCell.forTableColumn());
+        moveLongName.setOnEditCommit(
+                event -> {
+                  Move obj = event.getRowValue();
+                  obj.setLongName(event.getNewValue());
+                  //moveDAO.update(obj, "nodetype", event.getNewValue());
+                });
+
+
+      */
+
+    LocationNameDAO locationNameDAO = new LocationNameDAO();
+
+    nodeLocTable.setEditable(true);
+    locLongName.setCellFactory(TextFieldTableCell.forTableColumn());
+    locLongName.setOnEditCommit(
+        event -> {
+          LocationName obj = event.getRowValue();
+          obj.setLongName(event.getNewValue());
+          locationNameDAO.update(obj, "longname", event.getNewValue());
+        });
+
+    locShortName.setCellFactory(TextFieldTableCell.forTableColumn());
+    locShortName.setOnEditCommit(
+        event -> {
+          LocationName obj = event.getRowValue();
+          obj.setShortName(event.getNewValue());
+          locationNameDAO.update(obj, "shortname", event.getNewValue());
+        });
+    locNodeType.setCellFactory(TextFieldTableCell.forTableColumn());
+    locNodeType.setOnEditCommit(
+        event -> {
+          LocationName obj = event.getRowValue();
+          obj.setNodeType(event.getNewValue());
+          locationNameDAO.update(obj, "nodetype", event.getNewValue());
         });
   }
 

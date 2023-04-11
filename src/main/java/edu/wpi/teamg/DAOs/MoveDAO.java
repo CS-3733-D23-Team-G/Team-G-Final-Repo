@@ -47,21 +47,10 @@ public class MoveDAO implements LocationMoveDao {
   }
 
   @Override
-  public void update(Object obj, Object update) throws SQLException {
-    Move move = (Move) obj;
+  public void update(Object obj, String colName, Object value) throws SQLException {
     db.setConnection();
-    PreparedStatement ps = db.getConnection().prepareStatement(sql);
+    sql = "update teamgdb.iteration1.move set " + colName + " = ? where nodeid = ?";
 
-    sql = "UPDATE teamgdb.iteration1.move set nodeID = ?, longName = ?, date = ?";
-
-    try {
-      ps.setInt(1, move.getNodeID());
-      ps.setString(2, move.getLongName());
-      ps.setDate(3, move.getDate());
-      ps.executeUpdate(sql);
-    } catch (SQLException e) {
-      System.err.println("SQL Exception");
-    }
     db.closeConnection();
   }
 
@@ -182,7 +171,9 @@ public class MoveDAO implements LocationMoveDao {
 
         ps.setString(2, longname);
 
-        ps.setDate(3,  Date.valueOf(dateString));
+
+        ps.setDate(3, Date.valueOf(dateString));
+
 
         ps.addBatch();
       }

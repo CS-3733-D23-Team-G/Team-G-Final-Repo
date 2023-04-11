@@ -47,31 +47,22 @@ public class LocationNameDAO implements LocationDAO {
   }
 
   @Override
-  public void update(Object old, Object update) throws SQLException {
-    /*
-    connection.setConnection();
-    PreparedStatement ps;
-    SQL =
+  public void update(Object obj, String colName, Object value) {
+    db.setConnection();
+    SQL = "update  " + this.getTable() + " set " + colName + " = ? where longname = ?";
+    String lnameID = ((LocationName) obj).getLongName();
 
-        "UPDATE teamgdb.iteration1.locationname SET shortname=?, nodetype=?, longname=? Where longname=? AND shortname=? AND nodetype=? ";
-
-    LocationName ol = (LocationName) old;
-    LocationName up = (LocationName) update;
     try {
-      ps = connection.getConnection().prepareStatement(SQL);
-      ps.setString(1, up.getShortName());
-      ps.setString(2, up.getNodeType());
-      ps.setString(3, up.getLongName());
-      ps.setString(4, ol.getLongName());
-      ps.setString(5, ol.getShortName());
-      ps.setString(6, ol.getNodeType());
-      ps.executeQuery();
-      Location.remove(ol.getLongName());
-      Location.put(up.getLongName(), up);
+      PreparedStatement ps = db.getConnection().prepareStatement(SQL);
+      ps.setObject(1, value);
+      ps.setString(2, lnameID);
+      ps.executeUpdate();
+      ps.close();
     } catch (SQLException e) {
-      System.err.println("SQL exeption");
+      System.err.println("SQL Exception found");
+      e.printStackTrace();
     }
-    connection.closeConnection();*/
+    db.closeConnection();
   }
 
   @Override

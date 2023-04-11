@@ -81,7 +81,7 @@ public class MealRequestDAO implements DAO {
   }
 
   @Override
-  public void update(Object obj, Object update) throws SQLException {}
+  public void update(Object obj, String colName, Object value) throws SQLException {}
 
   @Override
   public void insert(Object obj) throws SQLException {
