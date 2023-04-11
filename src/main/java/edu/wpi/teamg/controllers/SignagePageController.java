@@ -331,6 +331,8 @@ public class SignagePageController {
     // Line = 0,0,1,1
     // Line = 1,1,2,2
     // Line = 2,2,3,3
+
+    nodePane.getChildren().clear();
     for (int i = 0; i < path.size(); i++) {
       Circle point =
           new Circle(
@@ -457,7 +459,8 @@ public class SignagePageController {
     displayNode.setEditable(false);
 
     nodePane.getChildren().add(displayNode);
-}
+  }
+
   public HashMap<Integer, String> getHashMapL1LongName() throws SQLException {
 
     HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
@@ -469,7 +472,6 @@ public class SignagePageController {
     }
 
     return longNameHashMap;
-
   }
 
   public void exit() {
