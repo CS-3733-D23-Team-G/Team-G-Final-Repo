@@ -452,7 +452,9 @@ public class SignagePageController {
     nodePane.getChildren().add(displayNode);
   }
 
+
   public HashMap<Integer, String> getHashMapL1LongName(int index) throws SQLException {
+
 
     HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
 
@@ -479,6 +481,7 @@ public class SignagePageController {
     }
 
     return longNameHashMap;
+
   }
 
   public void longNameNodes(int index) throws SQLException {
@@ -502,6 +505,7 @@ public class SignagePageController {
 
     startLocDrop.setItems(locationList);
     endLocDrop.setItems(locationList);
+
   }
 
   public void exit() {
