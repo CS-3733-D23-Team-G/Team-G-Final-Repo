@@ -2,8 +2,6 @@ package edu.wpi.teamg.navigation;
 
 import edu.wpi.teamg.App;
 import java.io.IOException;
-
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 
 public class Navigation {
@@ -13,7 +11,11 @@ public class Navigation {
     try {
       final var resource = App.class.getResource(filename);
       final FXMLLoader loader = new FXMLLoader(resource);
-
+      if (screen == Screen.HOME) {
+        App.getRootPane().getTop().setVisible(false);
+      } else {
+        App.getRootPane().getTop().setVisible(true);
+      }
       App.getRootPane().setCenter(loader.load());
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();

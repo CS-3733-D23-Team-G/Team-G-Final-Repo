@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +40,8 @@ public class App extends Application {
 
     Navigation.navigate(Screen.HOME);
   }
-  public void nonEmployeeScene (Stage frontStage) throws IOException{
+
+  public void nonEmployeeScene(Stage frontStage) throws IOException {
     App.primaryStage = frontStage;
 
     final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/Home.fxml"));

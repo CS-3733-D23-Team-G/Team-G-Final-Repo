@@ -22,6 +22,7 @@ public class RootController {
           "Furniture Request Form",
           "Meal Request Form",
           "Office Supplies Request Form");
+
   @FXML
   public void initialize() {
     //    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
