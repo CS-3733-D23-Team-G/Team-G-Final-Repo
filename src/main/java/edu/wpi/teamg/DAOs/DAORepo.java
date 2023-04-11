@@ -176,6 +176,10 @@ public class DAORepo {
     return nodeDao.getF1LongNames();
   }
 
+  public HashMap getShortName(String floor) throws SQLException {
+    return nodeDao.getShortName(floor);
+  }
+
   public HashMap getAllLongName() throws SQLException {
     return nodeDao.getAllLongName();
   }
