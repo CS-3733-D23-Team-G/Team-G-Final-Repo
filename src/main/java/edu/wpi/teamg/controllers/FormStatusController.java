@@ -1,10 +1,7 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.DAORepo;
-import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
-import edu.wpi.teamg.ORMClasses.MealRequest;
-import edu.wpi.teamg.ORMClasses.Request;
-import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import edu.wpi.teamg.ORMClasses.*;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -35,6 +32,7 @@ public class FormStatusController {
   @FXML TableView<Request> mainTable;
   @FXML TableView<MealRequest> mealTable;
   @FXML TableView<ConferenceRoomRequest> roomTable;
+  @FXML TableView<FlowerRequest> flowerTable;
 
   // Main Table
   @FXML TableColumn<Request, Integer> empID;
@@ -69,9 +67,21 @@ public class FormStatusController {
   @FXML TableColumn<ConferenceRoomRequest, Time> endTime;
   @FXML TableColumn<ConferenceRoomRequest, String> roomPurpose;
 
+  // flower Table
+  @FXML TableColumn<FlowerRequest, Integer> flowerEmpID;
+  @FXML TableColumn<FlowerRequest, String> flowerLocation1;
+  @FXML TableColumn<FlowerRequest, Integer> flowerReqID;
+  @FXML TableColumn<FlowerRequest, Integer> flowerServeBy;
+  @FXML TableColumn<FlowerRequest, StatusTypeEnum> flowerStatus;
+  @FXML TableColumn<FlowerRequest, String> flowerType;
+  @FXML TableColumn<FlowerRequest, String> flowerNumber;
+  @FXML TableColumn<FlowerRequest, String> flowerRecipient;
+  @FXML TableColumn<FlowerRequest, String> flowerNote;
+
   @FXML Button allRequestTableButton;
   @FXML Button mealTableButton;
   @FXML Button roomTableButton;
+  @FXML Button flowerTableButton;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -98,6 +108,7 @@ public class FormStatusController {
     allRequestTableButton.setOnMouseClicked(event -> loadAllRequestTable());
     mealTableButton.setOnMouseClicked(event -> loadMealTable());
     roomTableButton.setOnMouseClicked(event -> loadRoomTable());
+    flowerTableButton.setOnMouseClicked(event -> loadFlowerTable());
 
     ArrayList<Request> request1 = new ArrayList<>();
 
@@ -173,6 +184,16 @@ public class FormStatusController {
     roomTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
     endTime.setCellValueFactory(new PropertyValueFactory<>("endtime"));
     roomPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
+
+    flowerReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+    flowerEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+    flowerLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+    flowerServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+    flowerStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+    flowerType.setCellValueFactory(new PropertyValueFactory<>("flowertype"));
+    flowerNumber.setCellValueFactory(new PropertyValueFactory<>("numflower"));
+    flowerRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+    flowerNote.setCellValueFactory(new PropertyValueFactory<>("note"));
   }
 
   public void loadServiceRequestForm() {
@@ -235,18 +256,28 @@ public class FormStatusController {
     mainTable.setVisible(true);
     mealTable.setVisible(false);
     roomTable.setVisible(false);
+    flowerTable.setVisible(false);
   }
 
   public void loadMealTable() {
     mealTable.setVisible(true);
     mainTable.setVisible(false);
     roomTable.setVisible(false);
+    flowerTable.setVisible(false);
   }
 
   public void loadRoomTable() {
     roomTable.setVisible(true);
     mainTable.setVisible(false);
     mealTable.setVisible(false);
+    flowerTable.setVisible(false);
+  }
+
+  public void loadFlowerTable() {
+    flowerTable.setVisible(true);
+    mainTable.setVisible(false);
+    mealTable.setVisible(false);
+    roomTable.setVisible(false);
   }
 
   public void exit() {

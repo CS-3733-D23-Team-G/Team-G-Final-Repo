@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,9 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<?import org.controlsfx.control.SearchableComboBox?>
 <?import org.controlsfx.control.CheckComboBox?>
-
 
 <VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FlowersRequestController">
    <children>
@@ -65,6 +64,7 @@
                   <TextField fx:id="deliveryTime" layoutX="225.0" layoutY="49.0" prefHeight="26.0" prefWidth="130.0" />
                   <CheckComboBox fx:id="flowerTypeCheckBox" layoutX="426.0" layoutY="117.0" prefHeight="26.0" prefWidth="125.0" />
                   <TextField fx:id="bouquetNote" layoutX="50.0" layoutY="193.0" prefHeight="26.0" prefWidth="121.0" />
+                  <Label fx:id="checkFields" layoutX="376.0" layoutY="206.0" prefHeight="17.0" prefWidth="167.0" />
                 </children>
             </AnchorPane>
          </children>
