@@ -16,8 +16,41 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MealRequestController">
+   <center>
+      <AnchorPane prefHeight="260.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <MFXButton fx:id="mealSubmitButton" text="Submit" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Options" />
+            <ChoiceBox fx:id="mealFoodChoice" prefHeight="38.0" prefWidth="180.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Date" />
+            <MFXButton fx:id="mealClearAll" text="Clear All" />
+            <MFXDatePicker fx:id="mealDate" prefHeight="38.0" prefWidth="180.0" />
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+      <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Text layoutX="17.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Time" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="23.17903645833333" AnchorPane.topAnchor="75.0" />
+                  <MFXTextField fx:id="mealTimeOfDeliver" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Location" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
+                  <MFXTextField fx:id="mealDeliveryLocationData" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <MFXTextField fx:id="mealPersonOrderingForData" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                  <MFXTextField fx:id="mealNotesData" prefHeight="51.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
+                  <Text layoutX="32.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.55859375" AnchorPane.topAnchor="75.0" />
+                  <Text layoutX="12.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Person Ordering For" wrappingWidth="71.21483612060547" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.785163879394531" AnchorPane.topAnchor="10.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </left>
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -57,38 +90,4 @@
          </children>
       </VBox>
    </top>
-   <center>
-      <AnchorPane prefHeight="260.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <MFXButton fx:id="mealSubmitButton" text="Submit" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Options" />
-            <ChoiceBox fx:id="mealFoodChoice" prefHeight="38.0" prefWidth="180.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Date" />
-            <MFXButton fx:id="mealClearAll" text="Clear All" />
-            <MFXDatePicker fx:id="mealDate" prefHeight="38.0" prefWidth="180.0" />
-         </children>
-      </AnchorPane>
-   </center>
-   <left>
-      <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <Text layoutX="17.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Time" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="23.17903645833333" AnchorPane.topAnchor="75.0" />
-                  <MFXTextField fx:id="mealTimeOfDeliver" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Location" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
-                  <MFXTextField fx:id="mealDeliveryLocationData" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <MFXTextField fx:id="mealPersonOrderingForData" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
-                  <MFXTextField fx:id="mealNotesData" prefHeight="51.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
-                  <Text layoutX="32.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.55859375" AnchorPane.topAnchor="75.0" />
-                  <Text layoutX="12.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Person Ordering For" wrappingWidth="71.21483612060547" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.785163879394531" AnchorPane.topAnchor="10.0" />
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-   </left>
 </BorderPane>

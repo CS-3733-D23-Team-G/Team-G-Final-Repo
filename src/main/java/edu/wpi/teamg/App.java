@@ -38,22 +38,7 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
 
-    Navigation.navigate(Screen.HOME);
-  }
-
-  public void nonEmployeeScene(Stage frontStage) throws IOException {
-    App.primaryStage = frontStage;
-
-    final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/Home.fxml"));
-    final BorderPane root = loader.load();
-
-    App.rootPane = root;
-
-    final Scene scene = new Scene(root);
-    primaryStage.setScene(scene);
-    primaryStage.show();
-
-    Navigation.navigate(Screen.HOME);
+    Navigation.navigate(Screen.SIGNAGE_PAGE);
   }
 
   @Override

@@ -20,6 +20,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import net.kurobako.gesturefx.GesturePane;
 
 public class SignagePageController {
@@ -29,7 +30,7 @@ public class SignagePageController {
   @FXML MFXButton signagePageButton;
   @FXML MFXButton exitButton;
   @FXML MFXButton goToAdminSign;
-
+  @FXML VBox tohome;
   @FXML MFXButton pathFindButton;
 
   @FXML MFXTextField startLoc;
@@ -56,6 +57,7 @@ public class SignagePageController {
     goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
     exitButton.setOnMouseClicked(event -> exit());
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
+    tohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     pathFindButton.setOnMouseClicked(
         event -> {
           try {
