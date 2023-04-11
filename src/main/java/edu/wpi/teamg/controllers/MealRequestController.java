@@ -19,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import org.controlsfx.control.SearchableComboBox;
 
 public class MealRequestController {
@@ -40,6 +41,7 @@ public class MealRequestController {
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
+  @FXML Label checkFields;
 
   ObservableList<String> locationList;
 
@@ -78,12 +80,7 @@ public class MealRequestController {
 
     mealSubmitButton.setOnMouseClicked(
         event -> {
-          try {
-            storeMealValues();
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-          Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT);
+          allDataFilled();
         });
 
     //  mealNameData.getText();
@@ -118,6 +115,7 @@ public class MealRequestController {
 
     // Hung this is where it sets the list - Andrew
     locationSearchDropdown.setItems(locationList);
+    checkFields.getText();
   }
 
   public void exit() {
@@ -192,14 +190,32 @@ public class MealRequestController {
     return t;
   }
 
+  public void allDataFilled() {
+    if (!(mealPersonOrderingForData.getText().equals("")
+        || mealNotesData.getText().equals("")
+        || mealDate.getText().equals("")
+        || mealTimeOfDeliver.getText().equals("")
+        || mealFoodChoice.getValue() == null
+        || locationSearchDropdown.getValue() == null)) {
+      try {
+        storeMealValues();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+      Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT);
+    } else {
+      checkFields.setText("Not All Fields Are Filled");
+    }
+  }
+
   public void clearAllData() {
     // mealDeliveryLocationData.setText("");
     mealPersonOrderingForData.setText("");
     mealNotesData.setText("");
     mealDate.setText("");
     mealTimeOfDeliver.setText("");
-    mealFoodChoice.setValue("");
-    locationSearchDropdown.setValue("");
+    mealFoodChoice.setValue(null);
+    locationSearchDropdown.setValue(null);
     return;
   }
 

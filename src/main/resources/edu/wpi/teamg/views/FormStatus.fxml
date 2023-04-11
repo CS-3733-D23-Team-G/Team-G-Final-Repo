@@ -55,7 +55,7 @@
                     <Button fx:id="mealTableButton" layoutY="36.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Meal Requests" />
                     <Button fx:id="roomTableButton" layoutY="62.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Room Requests" />
                     <Button layoutY="141.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="WIP" />
-                    <Button layoutY="88.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="WIP" />
+                    <Button fx:id="flowerTableButton" layoutY="88.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Flower Request" />
                     <Button layoutY="116.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="WIP" />
                   <TextArea fx:id="areaInfo" layoutY="167.0" prefHeight="87.0" prefWidth="134.0" />
                   <TableView fx:id="roomTable" layoutX="140.0" layoutY="2.0" prefHeight="253.0" prefWidth="455.0">
@@ -93,6 +93,23 @@
                         </TableColumn>
                         </columns>
                     </TableView>
+                  <TableView fx:id="flowerTable" layoutX="139.0" layoutY="2.0" prefHeight="253.0" prefWidth="455.0">
+                     <columns>
+                        <TableColumn fx:id="flowerReqID" prefWidth="55.0" text="Req. ID" />
+                        <TableColumn fx:id="flowerEmpID" prefWidth="55.0" text="Emp. ID" />
+                        <TableColumn fx:id="flowerLocation1" prefWidth="60.0" text="Location" />
+                        <TableColumn fx:id="flowerServeBy" prefWidth="50.0" text="Serve-By" />
+                        <TableColumn fx:id="flowerStatus" prefWidth="55.0" text="Status" />
+                        <TableColumn prefWidth="75.0" text="Flowers Request">
+                           <columns>
+                              <TableColumn fx:id="flowerType" prefWidth="75.0" text="Flower Type" />
+                              <TableColumn fx:id="flowerNumber" prefWidth="75.0" text="# of Flowers" />
+                              <TableColumn fx:id="flowerRecipient" prefWidth="75.0" text="Recipient" />
+                              <TableColumn fx:id="flowerNote" prefWidth="75.0" text="Note" />
+                           </columns>
+                        </TableColumn>
+                     </columns>
+                  </TableView>
                   <TableView fx:id="mainTable" layoutX="139.0" layoutY="2.0" prefHeight="253.0" prefWidth="455.0">
                      <columns>
                         <TableColumn fx:id="reqID" prefWidth="53.0" text="Req. ID" />
