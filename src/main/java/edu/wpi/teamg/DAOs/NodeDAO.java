@@ -6,7 +6,6 @@ import java.io.*;
 import java.sql.*;
 import java.util.HashMap;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class NodeDAO implements LocationDAO {
   private HashMap<Integer, Node> nodeHash = new HashMap<Integer, Node>();
@@ -90,7 +89,6 @@ public class NodeDAO implements LocationDAO {
     db.closeConnection();
   }
 
-  
   @Override
   public void insert(Object obj) throws SQLException {
     db.setConnection();
