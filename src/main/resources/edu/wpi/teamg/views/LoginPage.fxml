@@ -17,9 +17,9 @@
          <left>
             <Pane prefHeight="400.0" prefWidth="274.0" style="-fx-background-color: linear-gradient(to bottom left, #009FFD, #2A2A72);" stylesheets="style.css" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="110.0" fitWidth="132.0" layoutX="82.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="110.0" fitWidth="132.0" layoutX="90.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../../Downloads/sign-up.png" />
+                        <Image url="@../../../../../../../../../../Downloads/Screen_Shot_2023-04-10_at_9.30.45_PM-removebg-preview.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="forgotLabel1" layoutX="1.0" layoutY="225.0" prefHeight="34.0" prefWidth="273.0" text="Brigham and Womens Hospital" textFill="WHITE">
