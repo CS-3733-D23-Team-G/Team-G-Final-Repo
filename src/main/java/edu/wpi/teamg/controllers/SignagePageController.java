@@ -457,7 +457,8 @@ public class SignagePageController {
     displayNode.setEditable(false);
 
     nodePane.getChildren().add(displayNode);
-}
+  }
+
   public HashMap<Integer, String> getHashMapL1LongName() throws SQLException {
 
     HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
@@ -469,7 +470,6 @@ public class SignagePageController {
     }
 
     return longNameHashMap;
-
   }
 
   public void exit() {
