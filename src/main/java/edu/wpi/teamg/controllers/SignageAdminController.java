@@ -13,16 +13,29 @@ import java.util.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
+import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.util.converter.IntegerStringConverter;
+import net.kurobako.gesturefx.GesturePane;
 
 public class SignageAdminController {
 
+  @FXML Pane nodePane;
+  public Group group;
+  @FXML GesturePane pane;
   @FXML MFXButton backToHomeButton;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
   @FXML MFXButton signagePageButton;
@@ -76,6 +89,17 @@ public class SignageAdminController {
   @FXML MFXButton edit;
   @FXML MFXButton cancel;
 
+  @FXML Button disMap;
+
+  @FXML Button l1;
+  @FXML Button l2;
+  @FXML Button floor1;
+
+  @FXML MFXButton mapEdit;
+  @FXML MFXButton mapCancel;
+
+  private boolean editableMap = false;
+
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -100,6 +124,9 @@ public class SignageAdminController {
     exitButton.setOnMouseClicked(event -> exit());
     cancel.setOnMouseClicked(event -> cancelTable());
     edit.setOnMouseClicked(event -> editTable());
+    disMap.setOnMouseClicked(event -> showAdminMap());
+    mapEdit.setOnMouseClicked(event -> editMap());
+    mapCancel.setOnMouseClicked(event -> cancelMap());
 
     // importButton.setOnAction(event -> fileChooser());
 
@@ -120,6 +147,7 @@ public class SignageAdminController {
             throw new RuntimeException(e);
           }
         });
+
     // fileLabel.getText();
 
     /*pathFindButton.setOnMouseClicked(
@@ -137,15 +165,11 @@ public class SignageAdminController {
     //  String imgPath = Main.class.getResource("images/00_thelowerlevel1.png").toString();
     //  ImageView image = new ImageView(new Image(imgPath));
     //  pane.setContent(image);
+
     nodes.setOnMouseClicked(event -> loadNodeTable());
     edges.setOnMouseClicked(event -> loadEdgeTable());
     move.setOnMouseClicked(event -> loadMoveTable());
     nodeLoc.setOnMouseClicked(event -> loadLocTable());
-    // pane.setMaxScale();
-
-    //  pane.setMinScale(.001);
-    //  pane.zoomTo(.000001, new Point2D(2500, 1700));
-    //  pane.zoomTo(.000001, new Point2D(2500, 1700));
 
     ObservableList<Node> nodeList;
     ObservableList<Edge> edgeList;
@@ -184,6 +208,84 @@ public class SignageAdminController {
     locLongName.setCellValueFactory(new PropertyValueFactory<>("LongName"));
     locShortName.setCellValueFactory(new PropertyValueFactory<>("ShortName"));
     locNodeType.setCellValueFactory(new PropertyValueFactory<>("NodeType"));
+
+    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1_pts'ed.png");
+    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2_pts'ed.png");
+    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor_pts'ed.png");
+    ImageView mapView = new ImageView(mapL1);
+    ImageView mapViewL2 = new ImageView(mapL2);
+    ImageView mapViewFloor1 = new ImageView(mapFloor1);
+
+    group.getChildren().add(mapView);
+    group.getChildren().add(mapViewL2);
+    group.getChildren().add(mapViewFloor1);
+
+    mapViewL2.setVisible(false);
+    mapViewFloor1.setVisible(false);
+
+    mapView.toBack();
+    mapView.relocate(0, 0);
+
+    mapViewL2.toBack();
+    mapViewL2.relocate(0, 0);
+
+    mapViewFloor1.toBack();
+    mapViewFloor1.relocate(0, 0);
+
+    nodePane.setLayoutX(0);
+    nodePane.setLayoutY(0);
+    nodePane.setMinWidth(mapL1.getWidth());
+    nodePane.setMinHeight(mapL1.getHeight());
+    nodePane.setMaxWidth(mapL1.getWidth());
+    nodePane.setMaxHeight(mapL1.getHeight());
+
+    // Scales Map
+    pane.setMinScale(.001);
+    pane.zoomTo(.000001, new Point2D(2500, 1700));
+    pane.zoomTo(.000001, new Point2D(2500, 1700));
+
+    ArrayList<ImageView> imageViewsList = new ArrayList<>();
+    imageViewsList.add(mapView);
+    imageViewsList.add(mapViewL2);
+    imageViewsList.add(mapViewFloor1);
+
+    l1.setOnMouseClicked(
+        event -> {
+          try {
+            goToL1(imageViewsList);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+    l2.setOnMouseClicked(
+        event -> {
+          try {
+            goToL2(imageViewsList);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+    floor1.setOnMouseClicked(
+        event -> {
+          try {
+            goToFloor1(imageViewsList);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    // Scaling is currently the issue with the node map
+
+    NodeDAO nodeDAO = new NodeDAO();
+
+    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
+    ArrayList<edu.wpi.teamg.ORMClasses.Node> listOfNodes = new ArrayList<>(nodes.values());
+
+    for (int i = 0; i < listOfNodes.size(); i++) {
+      if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
+        getNodesWFunctionality(listOfNodes, i);
+      }
+    }
   }
 
   public void loadServiceRequestForm() {
@@ -207,53 +309,6 @@ public class SignageAdminController {
         return;
     }
   }
-
-  /*
-  public void processAStarAlg() throws SQLException {
-    ArrayList<String> path = new ArrayList<>();
-    //    NodeDAO nodeDAO = new NodeDAO();
-    //    List<Node> nodeList = nodeDAO.getAll();
-    int startNode = Integer.parseInt(startLoc.getText());
-    int endNode = Integer.parseInt(endLoc.getText());
-    edu.wpi.teamg.pathFinding.Node[] N1 = new edu.wpi.teamg.pathFinding.Node[10];
-    Random r = new Random(5591);
-    for (int i = 0; i < 10; i++) {
-      N1[i] =
-          new edu.wpi.teamg.pathFinding.Node(
-              String.valueOf(i),
-              (int) r.nextInt(100) + i,
-              (int) r.nextInt(100) + i,
-              "L1",
-              "fsadfasd",
-              "dsfajd;",
-              "jk;ldsjf",
-              "dsfaj;sldk");
-    }
-    Edge[] E1 = new Edge[10];
-    E1[0] = new Edge("e1", N1[0], N1[1]);
-    E1[1] = new Edge("e2", N1[1], N1[2]);
-    E1[2] = new Edge("e3", N1[1], N1[3]);
-    E1[3] = new Edge("e4", N1[2], N1[4]);
-    E1[4] = new Edge("e5", N1[3], N1[4]);
-    E1[5] = new Edge("e6", N1[4], N1[5]);
-    E1[6] = new Edge("e7", N1[5], N1[6]);
-    E1[7] = new Edge("e8", N1[6], N1[7]);
-    E1[8] = new Edge("e9", N1[5], N1[8]);
-    E1[9] = new Edge("e10", N1[8], N1[9]);
-    Graph G1 = new Graph(N1, E1);
-    int[][] Adj = G1.createWeightedAdj();
-    // new int[10][10];
-    path = G1.aStarAlg(G1.createWeightedAdj(), startNode, endNode);
-    setPath(path);
-  }
-  /*ObservableList<String>  =
-            FXCollections.observableArrayList(
-                    "Conference Room Request Form",
-                    "Flowers Request Form",
-                    "Furniture Request Form",
-                    "Meal Request Form",
-                    "Office Supplies Request Form");
-  */
 
   DAORepo dao = new DAORepo();
 
@@ -319,6 +374,9 @@ public class SignageAdminController {
     edgeTable.setVisible(false);
     moveTable.setVisible(false);
     nodeLocTable.setVisible(false);
+    pane.setVisible(false);
+    nodePane.setVisible(false);
+    group.setVisible(false);
   }
 
   public void loadEdgeTable() {
@@ -326,6 +384,9 @@ public class SignageAdminController {
     edgeTable.setVisible(true);
     moveTable.setVisible(false);
     nodeLocTable.setVisible(false);
+    pane.setVisible(false);
+    nodePane.setVisible(false);
+    group.setVisible(false);
   }
 
   public void loadMoveTable() {
@@ -333,6 +394,9 @@ public class SignageAdminController {
     edgeTable.setVisible(false);
     moveTable.setVisible(true);
     nodeLocTable.setVisible(false);
+    pane.setVisible(false);
+    nodePane.setVisible(false);
+    group.setVisible(false);
   }
 
   public void loadLocTable() {
@@ -340,6 +404,9 @@ public class SignageAdminController {
     edgeTable.setVisible(false);
     moveTable.setVisible(false);
     nodeLocTable.setVisible(true);
+    pane.setVisible(false);
+    nodePane.setVisible(false);
+    group.setVisible(false);
   }
 
   public ArrayList<Node> getNodes() throws SQLException {
@@ -419,6 +486,134 @@ public class SignageAdminController {
           Node obj = event.getRowValue();
           obj.setBuilding(event.getNewValue());
         });
+  }
+
+  public void showAdminMap() {
+    nodeTable.setVisible(false);
+    edgeTable.setVisible(false);
+    moveTable.setVisible(false);
+    nodeLocTable.setVisible(false);
+    pane.setVisible(true);
+    nodePane.setVisible(true);
+    group.setVisible(true);
+  }
+
+  public void goToL1(ArrayList<ImageView> imgs) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(0).setVisible(true);
+
+    newNodes(0);
+  }
+
+  public void goToL2(ArrayList<ImageView> imgs) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(1).setVisible(true);
+    newNodes(1);
+  }
+
+  public void goToFloor1(ArrayList<ImageView> imgs) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(2).setVisible(true);
+
+    newNodes(2);
+  }
+
+  public void newNodes(int index) throws SQLException {
+    NodeDAO nodeDAO = new NodeDAO();
+
+    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
+    ArrayList<edu.wpi.teamg.ORMClasses.Node> listOfNodes = new ArrayList<>(nodes.values());
+
+    nodePane.getChildren().clear();
+    switch (index) {
+      case 0:
+        for (int i = 0; i < listOfNodes.size(); i++) {
+          if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
+            getNodesWFunctionality(listOfNodes, i);
+          }
+        }
+        break;
+      case 1:
+        for (int i = 0; i < listOfNodes.size(); i++) {
+          if (Objects.equals(listOfNodes.get(i).getFloor(), "L2")) {
+            getNodesWFunctionality(listOfNodes, i);
+          }
+        }
+        break;
+
+      case 2:
+        for (int i = 0; i < listOfNodes.size(); i++) {
+          if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
+            getNodesWFunctionality(listOfNodes, i);
+          }
+        }
+
+        break;
+    }
+  }
+
+  private void getNodesWFunctionality(ArrayList<Node> listOfNodes, int i) {
+    Node currentNode = listOfNodes.get(i);
+    Circle point =
+        new Circle(
+            listOfNodes.get(i).getXcoord(),
+            listOfNodes.get(i).getYcoord(),
+            10,
+            Color.rgb(1, 45, 90));
+    point.setOnMouseClicked(
+        new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+            displayData(currentNode);
+          }
+        });
+    nodePane.getChildren().add(point);
+  }
+
+  public void displayData(Node point) {
+
+    nodePane.getChildren().removeIf(node -> node instanceof TextArea);
+    TextArea displayNode = new TextArea();
+    displayNode.setText(
+        "NodeID: "
+            + point.getNodeID()
+            + "\nXcoord: "
+            + point.getXcoord()
+            + "\nYcoord: "
+            + point.getYcoord()
+            + "\nFloor: "
+            + point.getFloor()
+            + "\nBuilding: "
+            + point.getBuilding());
+
+    displayNode.setLayoutX(point.getXcoord());
+    displayNode.setLayoutY(point.getYcoord());
+    displayNode.setPrefWidth(150);
+    displayNode.setPrefHeight(100);
+    displayNode.setVisible(true);
+    displayNode.toFront();
+
+    if (editableMap) {
+      displayNode.setEditable(true);
+    } else {
+      displayNode.setEditable(false);
+    }
+
+    nodePane.getChildren().add(displayNode);
+  }
+
+  public void editMap() {
+    editableMap = true;
+  }
+
+  public void cancelMap() {
+    editableMap = false;
   }
 
   public void exit() {
