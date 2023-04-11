@@ -30,6 +30,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.SearchableComboBox;
 
@@ -423,31 +424,31 @@ public class SignagePageController {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            displayData(currentNode);
+            try {
+              displayData(currentNode);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
           }
         });
     nodePane.getChildren().add(point);
   }
 
-  public void displayData(Node point) {
+  public void displayData(Node point) throws SQLException {
 
     nodePane.getChildren().removeIf(node -> node instanceof TextArea);
     TextArea displayNode = new TextArea();
-    displayNode.setText(
-        "NodeID: "
-            + point.getNodeID()
-            + "\nXcoord: "
-            + point.getXcoord()
-            + "\nYcoord: "
-            + point.getYcoord()
-            + "\nFloor: "
-            + point.getFloor()
-            + "\nBuilding: "
-            + point.getBuilding());
+    NodeDAO nodeDAO = new NodeDAO();
+    String floor = point.getFloor();
+
+    HashMap<Integer, String> sn = nodeDAO.getShortName(floor);
+    displayNode.setFont(Font.font(35));
+
+    displayNode.setText("Location: " + sn.get(point.getNodeID()));
 
     displayNode.setLayoutX(point.getXcoord());
     displayNode.setLayoutY(point.getYcoord());
-    displayNode.setPrefWidth(150);
+    displayNode.setPrefWidth(550);
     displayNode.setPrefHeight(100);
     displayNode.setVisible(true);
     displayNode.toFront();

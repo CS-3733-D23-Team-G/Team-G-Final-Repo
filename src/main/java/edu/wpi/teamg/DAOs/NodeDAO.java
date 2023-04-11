@@ -361,11 +361,11 @@ public class NodeDAO implements LocationDAO {
     ResultSet rs = null;
 
     SQL =
-            "SELECT Move.nodeID, LocationName.shortname\n"
-                    + "             FROM iteration1.Move\n"
-                    + "             JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
-                    + "             JOIN iteration1.node ON move.nodeid = node.nodeid\n"
-                    + "             WHERE node.floor = ?;";
+        "SELECT Move.nodeID, LocationName.shortname\n"
+            + "             FROM iteration1.Move\n"
+            + "             JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration1.node ON move.nodeid = node.nodeid\n"
+            + "             WHERE node.floor = ?;";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);

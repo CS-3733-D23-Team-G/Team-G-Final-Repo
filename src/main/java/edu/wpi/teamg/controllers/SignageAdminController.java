@@ -451,6 +451,9 @@ public class SignageAdminController {
 
   public void cancelTable() {
     nodeTable.setEditable(false);
+    moveTable.setEditable(false);
+    locNodeType.setEditable(false);
+    edgeTable.setEditable(false);
   }
 
   public void editTable() {
