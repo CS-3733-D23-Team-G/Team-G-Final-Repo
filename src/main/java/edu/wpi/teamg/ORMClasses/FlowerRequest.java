@@ -2,8 +2,6 @@ package edu.wpi.teamg.ORMClasses;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.concurrent.Flow;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,12 +39,12 @@ public class FlowerRequest extends Request {
     this.note = note;
     this.recipient = recipient;
   }
-  public FlowerRequest(int reqId, String flowerType, int numFlower, String recipient, String note ){
+
+  public FlowerRequest(int reqId, String flowerType, int numFlower, String recipient, String note) {
     this.flowerType = flowerType;
     this.numFlower = numFlower;
     this.note = note;
     this.recipient = recipient;
     this.reqId = reqId;
   }
-
 }
