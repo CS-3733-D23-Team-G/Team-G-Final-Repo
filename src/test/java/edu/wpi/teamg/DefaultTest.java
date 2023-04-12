@@ -9,10 +9,12 @@ package edu.wpi.teamg;
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
 import javafx.scene.shape.Ellipse;
+import lombok.experimental.StandardException;
 import org.junit.jupiter.api.Test;
 
 import javax.print.attribute.HashPrintJobAttributeSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.Flow;
 
@@ -171,8 +173,45 @@ public class DefaultTest {
 
 
   // Test  insert() methods
+    @Test
+    public void testInsertNode() throws SQLException {
+      Node newNode = new Node(4, 9291, 8338, "L2", "Tower");
+      nodeHash.put(4, newNode);
+      nodeDAO.insert(newNode);
 
+      assertEquals(nodeHash, nodeDAO);
+  }
 
+    @Test
+    public void testInsertMove() throws SQLException {
+
+        Date date = new Date(1/1/2023);
+        Move newMove = new Move(105, "Hall 3 Level 1", (java.sql.Date) date);
+        moveHash.put(105, newMove);
+        moveDAO.insert(newMove);
+
+        assertEquals(moveHash, moveDAO);
+    }
+
+    @Test
+    public void testInsertLocationName() throws SQLException {
+
+        LocationName newLocationName = new LocationName("Neuroscience Waiting Room","Neuro Waiting Room","DEPT");
+        locationNameHashMap.put("Neuroscience Waiting Room", newLocationName);
+        nameDAO.insert(newLocationName);
+
+        assertEquals(locationNameHashMap, nameDAO);
+    }
+
+    @Test
+    public void testInsertEdge() throws SQLException {
+
+        Edge newEdge = new Edge(2851, 5103);
+        edgeHash.put("HALL", newEdge);
+        edgeDAO.insert(newEdge);
+
+        assertEquals(edgeHash, edgeDAO);
+    }
 
   // Test delete() delete
 

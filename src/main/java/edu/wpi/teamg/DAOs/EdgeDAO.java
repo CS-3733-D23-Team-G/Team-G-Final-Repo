@@ -11,7 +11,7 @@ import javax.swing.*;
 
 public class EdgeDAO implements LocationDAO {
   static DBConnection connection = new DBConnection();
-  private String sql;
+  private static String sql;
   private HashMap<String, Edge> edgeHash = new HashMap<String, Edge>();
 
   @Override
