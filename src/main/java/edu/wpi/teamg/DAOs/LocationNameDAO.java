@@ -16,7 +16,7 @@ public class LocationNameDAO implements LocationDAO {
   public LocationNameDAO() {}
 
   @Override
-  public  HashMap<String, LocationName> getAll() throws SQLException {
+  public HashMap<String, LocationName> getAll() throws SQLException {
     connection.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
