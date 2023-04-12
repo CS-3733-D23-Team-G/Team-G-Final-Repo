@@ -143,7 +143,7 @@ public class SignageAdminController {
         event -> {
           try {
             fileExporter();
-          } catch (SQLException e) {
+          } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
           }
         });
@@ -347,7 +347,7 @@ public class SignageAdminController {
   }
 
   @FXML
-  void fileExporter() throws SQLException {
+  void fileExporter() throws SQLException, IOException {
     switch (exportDrop.getValue()) {
       case "Nodes":
         NodeDAO nodeDAO = new NodeDAO();

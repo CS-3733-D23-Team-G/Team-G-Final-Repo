@@ -1,6 +1,7 @@
 package edu.wpi.teamg.DAOs;
 
 import edu.wpi.teamg.ORMClasses.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -140,19 +141,19 @@ public class DAORepo {
     edgeDao.importCSV(path);
   }
 
-  public void exportNodeCSV() throws SQLException {
+  public void exportNodeCSV() throws SQLException, IOException {
     nodeDao.exportCSV();
   }
 
-  public void exportEdgeCSV() throws SQLException {
+  public void exportEdgeCSV() throws SQLException, IOException {
     edgeDao.exportCSV();
   }
 
-  public void exportMoveCSV() throws SQLException {
+  public void exportMoveCSV() throws SQLException, IOException {
     moveDao.exportCSV();
   }
 
-  public void exportLocationNameCSV() throws SQLException {
+  public void exportLocationNameCSV() throws SQLException, IOException {
     locationNameDao.exportCSV();
   }
 

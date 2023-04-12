@@ -3,6 +3,7 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import java.io.*;
 import java.sql.*;
+import javafx.stage.FileChooser;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -77,50 +78,52 @@ public interface LocationDAO<T> extends DAO {
     db.closeConnection();
   }
 
-  public default void exportCSV() throws SQLException {
+  public default void exportCSV() throws SQLException, IOException {
     db.setConnection();
+
+    Statement statement = null;
+    String sql = "select * from " + this.getTable();
     ResultSet rs = null;
-    FileWriter fw = null;
+    FileWriter writer = null;
 
     try {
-      Statement statement = db.getConnection().createStatement();
-      rs = statement.executeQuery("select * from " + this.getTable());
+      statement = db.getConnection().createStatement();
+      rs = statement.executeQuery(sql);
 
-      JFileChooser chooser = new JFileChooser();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", ".csv");
-      chooser.setFileFilter(filter);
+      FileChooser fc = new FileChooser();
+      fc.setTitle("Save CSV Table");
+      fc.setInitialFileName(this.getTable() + ".csv");
+      File file = fc.showSaveDialog(null);
 
-      int result = chooser.showSaveDialog(null);
-      if (result == JFileChooser.APPROVE_OPTION) {
-        File savedFile = chooser.getSelectedFile();
-        String path = savedFile.getAbsolutePath();
-        fw = new FileWriter(path);
+      if (file != null) {
+        writer = new FileWriter(file);
 
         int colCount = rs.getMetaData().getColumnCount();
         for (int i = 1; i <= colCount; i++) {
           String colLabel = rs.getMetaData().getColumnLabel(i);
-          fw.append(colLabel);
-          if (i < colCount) fw.append(",");
+          writer.append(colLabel);
+          if (i < colCount) writer.append(",");
         }
-        fw.append("\n");
+        writer.append("\n");
 
         while (rs.next()) {
-          for (int j = 1; j <= colCount; j++) {
-            String cellVal = rs.getString(j);
-            fw.append(cellVal);
-            if (j < colCount) fw.append(",");
+          for (int i = 1; i <= colCount; i++) {
+            String val = rs.getString(i);
+            writer.append(val);
+            if (i < colCount) writer.append(",");
           }
-          fw.append("\n");
+          writer.append("\n");
         }
       }
 
-      rs.close();
-      statement.close();
-      fw.close();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    } catch (SQLException | IOException e) {
+      System.err.println("SQL Export error occurred");
+      e.printStackTrace();
     }
 
+    rs.close();
+    statement.close();
+    writer.close();
     db.closeConnection();
   }
 
