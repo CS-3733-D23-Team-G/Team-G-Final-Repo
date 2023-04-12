@@ -1,0 +1,6 @@
+empid,firstname,lastname,email,can_serve
+1,john,barry,jb@gmail.com,yes
+2,tom,doe,td@yahoo.com,no
+3,micheal,smith,ms@gmail.com,yes
+4,stephen,jackson,sj@gmail.com,no
+5,austin,meyers,am@yahoo.com,yes
