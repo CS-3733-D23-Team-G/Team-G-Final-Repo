@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.editPopUpController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.InsertNodeController">
    <children>
       <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER">
          <children>
@@ -39,14 +39,7 @@
             <MFXTextField fx:id="nBuilding" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefWidth="200.0">
-         <children>
-            <Label prefWidth="200.0" text="Short Name" />
-            <MFXTextField fx:id="shortName" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
-      <MFXButton fx:id="delete" text="Delete" />
-      <MFXButton fx:id="submit" text="Submit" />
+      <MFXButton fx:id="addNode" text="Add Node" />
    </children>
    <padding>
       <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

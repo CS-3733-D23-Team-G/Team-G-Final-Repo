@@ -22,10 +22,9 @@ public class Account extends Employee {
     this.is_admin = is_admin;
   }
 
-  public Account(int empid, String password, Boolean is_admin) {
-    this.empid = empid;
+  public Account(String email, String password) {
+    email = getEmail();
     this.password = password;
-    this.is_admin = is_admin();
   }
 
   @Override

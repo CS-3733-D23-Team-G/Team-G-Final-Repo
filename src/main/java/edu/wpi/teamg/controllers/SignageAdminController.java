@@ -106,6 +106,8 @@ public class SignageAdminController {
   @FXML MFXButton mapEdit;
   @FXML MFXButton mapCancel;
 
+  @FXML MFXButton add;
+
   private boolean editableMap = false;
 
   ObservableList<String> list =
@@ -135,6 +137,14 @@ public class SignageAdminController {
     disMap.setOnMouseClicked(event -> showAdminMap());
     mapEdit.setOnMouseClicked(event -> editMap());
     mapCancel.setOnMouseClicked(event -> cancelMap());
+    add.setOnMouseClicked(
+        event -> {
+          try {
+            addNode();
+          } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
 
     // importButton.setOnAction(event -> fileChooser());
 
@@ -151,7 +161,7 @@ public class SignageAdminController {
         event -> {
           try {
             fileExporter();
-          } catch (SQLException e) {
+          } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
           }
         });
@@ -349,7 +359,7 @@ public class SignageAdminController {
   }
 
   @FXML
-  void fileExporter() throws SQLException {
+  void fileExporter() throws SQLException, IOException {
     switch (exportDrop.getValue()) {
       case "Nodes":
         NodeDAO nodeDAO = new NodeDAO();
@@ -659,7 +669,7 @@ public class SignageAdminController {
           public void handle(MouseEvent event) {
             try {
               displayData(currentNode);
-            } catch (IOException e) {
+            } catch (IOException | SQLException e) {
               throw new RuntimeException(e);
             }
           }
@@ -667,25 +677,43 @@ public class SignageAdminController {
     nodePane.getChildren().add(point);
   }
 
-  public void displayData(Node point) throws IOException {
+  public void displayData(Node point) throws IOException, SQLException {
 
-    nodePane.getChildren().removeIf(node -> node instanceof TextArea);
-    nodePane.getChildren().removeIf(node -> node instanceof Button);
-    TextArea displayNode = new TextArea();
-    Button exit = new Button();
-    Label nodeID = new Label();
-    Label xcoord = new Label();
-    Label ycoord = new Label();
-    Label floor = new Label();
-    Label building = new Label();
+    //    nodePane.getChildren().removeIf(node -> node instanceof TextArea);
+    //    nodePane.getChildren().removeIf(node -> node instanceof Button);
+    //    TextArea displayNode = new TextArea();
+    //    Button exit = new Button();
+    //    Label nodeID = new Label();
+    //    Label xcoord = new Label();
+    //    Label ycoord = new Label();
+    //    Label floor = new Label();
+    //    Label building = new Label();
     // PopOver displayNodeTest = new PopOver();
+    NodeDAO nodeDAO = new NodeDAO();
+
+    LocationNameDAO locationNameDAO = new LocationNameDAO();
+
+
+    HashMap<String, LocationName> LocationNames = locationNameDAO.getAll();
+    HashMap<Integer, String> sn = nodeDAO.getShortName(point.getFloor());
+    ArrayList<LocationName> locs = new ArrayList<>(LocationNames.values());
+    LocationName knownLoc = new LocationName();
+
+    for(int i = 0; i < locs.size(); i++){
+        if (Objects.equals(sn.get(point.getNodeID()), locs.get(i).getShortName())){
+          knownLoc = locs.get(i);
+        }
+    }
+
+
+
     final PopOver window = new PopOver();
     var loader = new FXMLLoader(App.class.getResource("views/editNodePopUp.fxml"));
     window.setContentNode(loader.load());
 
     window.setArrowSize(0);
     editPopUpController controller = loader.getController();
-    controller.setFields(point);
+    controller.setFields(point, knownLoc);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
@@ -718,16 +746,18 @@ public class SignageAdminController {
     //    exit.setVisible(true);
     //    exit.toFront();
 
-    if (editableMap) {
-      displayNode.setEditable(true);
-    } else {
-      displayNode.setEditable(false);
-    }
 
-    nodePane.getChildren().add(displayNode);
-    nodePane.getChildren().add(exit);
-
-    exit.setOnMouseClicked(event -> remove(displayNode, exit));
+    //    if (editableMap) {
+    //      displayNode.setEditable(true);
+    //    } else {
+    //      displayNode.setEditable(false);
+    //    }
+    //
+    //
+    //    nodePane.getChildren().add(displayNode);
+    //
+    //
+    //    exit.setOnMouseClicked(event -> remove(displayNode, exit));
   }
 
   public void remove(TextArea displayNode, Button exit) {
@@ -742,6 +772,19 @@ public class SignageAdminController {
   public void cancelMap() {
     editableMap = false;
   }
+
+  public void addNode() throws IOException, SQLException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/InsertNode.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    InsertNodeController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
 
   public void exit() {
     Platform.exit();

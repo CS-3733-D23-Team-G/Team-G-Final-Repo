@@ -244,7 +244,7 @@ public class NodeDAO implements LocationDAO {
     return longNameHash;
   }
 
-  public static HashMap<Integer, String> getLongNames(String floor) throws SQLException {
+  public static HashMap<Integer, String> getL1LongNames() throws SQLException {
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
     db.setConnection();
@@ -257,11 +257,82 @@ public class NodeDAO implements LocationDAO {
             + "             FROM iteration1.Move\n"
             + "             JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
             + "             JOIN iteration1.node ON move.nodeid = node.nodeid\n"
-            + "             WHERE node.floor = ?;";
+            + "             WHERE node.floor = 'L1';";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
-      ps.setString(1, floor);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      // printSQLException(e);
+    }
+
+    while (rs.next()) {
+
+      int node_id = rs.getInt("nodeid");
+      String longname = rs.getString("longname");
+
+      longNameHash.put(node_id, longname);
+    }
+
+    db.closeConnection();
+
+    return longNameHash;
+  }
+
+  public static HashMap<Integer, String> getL2LongNames() throws SQLException {
+    HashMap<Integer, String> longNameHash = new HashMap<>();
+
+    db.setConnection();
+    PreparedStatement ps;
+
+    ResultSet rs = null;
+
+    SQL =
+        "SELECT Move.nodeID, LocationName.longName\n"
+            + "             FROM iteration1.Move\n"
+            + "             JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration1.node ON move.nodeid = node.nodeid\n"
+            + "             WHERE node.floor = 'L2';";
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      // printSQLException(e);
+    }
+
+    while (rs.next()) {
+
+      int node_id = rs.getInt("nodeid");
+      String longname = rs.getString("longname");
+
+      longNameHash.put(node_id, longname);
+    }
+
+    db.closeConnection();
+
+    return longNameHash;
+  }
+
+  public static HashMap<Integer, String> getF1LongNames() throws SQLException {
+    HashMap<Integer, String> longNameHash = new HashMap<>();
+
+    db.setConnection();
+    PreparedStatement ps;
+
+    ResultSet rs = null;
+
+    SQL =
+        "SELECT Move.nodeID, LocationName.longName\n"
+            + "             FROM iteration1.Move\n"
+            + "             JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration1.node ON move.nodeid = node.nodeid\n"
+            + "             WHERE node.floor = '1 ';";
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
       rs = ps.executeQuery();
     } catch (SQLException e) {
       System.err.println("SQL exception");
