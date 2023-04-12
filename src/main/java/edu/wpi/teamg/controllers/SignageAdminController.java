@@ -516,8 +516,10 @@ public class SignageAdminController {
     moveNodeID.setOnEditCommit(
         event -> {
           Move obj = event.getRowValue();
+          String col= event.getTableColumn().getText();
+          moveDAO.update(obj, col, event.getNewValue());
           obj.setNodeID(event.getNewValue());
-          // moveDAO.update(obj, "longname", event.getNewValue());
+
         });
 
     moveDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));

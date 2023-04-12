@@ -75,6 +75,7 @@ public class EdgeDAO implements LocationDAO {
       System.err.println("SQL exception");
       e.printStackTrace();
     }
+    connection.closeConnection();
   }
 
   @Override
