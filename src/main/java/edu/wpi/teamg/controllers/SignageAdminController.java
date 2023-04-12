@@ -161,7 +161,7 @@ public class SignageAdminController {
         event -> {
           try {
             fileExporter();
-          } catch (SQLException e) {
+          } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
           }
         });
@@ -359,7 +359,7 @@ public class SignageAdminController {
   }
 
   @FXML
-  void fileExporter() throws SQLException {
+  void fileExporter() throws SQLException, IOException {
     switch (exportDrop.getValue()) {
       case "Nodes":
         NodeDAO nodeDAO = new NodeDAO();
@@ -693,16 +693,19 @@ public class SignageAdminController {
 
     LocationNameDAO locationNameDAO = new LocationNameDAO();
 
+
     HashMap<String, LocationName> LocationNames = locationNameDAO.getAll();
     HashMap<Integer, String> sn = nodeDAO.getShortName(point.getFloor());
     ArrayList<LocationName> locs = new ArrayList<>(LocationNames.values());
     LocationName knownLoc = new LocationName();
 
-    for (int i = 0; i < locs.size(); i++) {
-      if (Objects.equals(sn.get(point.getNodeID()), locs.get(i).getShortName())) {
-        knownLoc = locs.get(i);
-      }
+    for(int i = 0; i < locs.size(); i++){
+        if (Objects.equals(sn.get(point.getNodeID()), locs.get(i).getShortName())){
+          knownLoc = locs.get(i);
+        }
     }
+
+
 
     final PopOver window = new PopOver();
     var loader = new FXMLLoader(App.class.getResource("views/editNodePopUp.fxml"));
@@ -743,6 +746,7 @@ public class SignageAdminController {
     //    exit.setVisible(true);
     //    exit.toFront();
 
+
     //    if (editableMap) {
     //      displayNode.setEditable(true);
     //    } else {
@@ -780,6 +784,7 @@ public class SignageAdminController {
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
+
 
   public void exit() {
     Platform.exit();
