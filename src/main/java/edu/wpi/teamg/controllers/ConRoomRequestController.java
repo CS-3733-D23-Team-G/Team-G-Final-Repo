@@ -108,19 +108,41 @@ public class ConRoomRequestController {
     locationSearchDropdown.setItems(locationList);
   }
 
+  //  public void loadServiceRequestForm() {
+  //    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
+  //      Navigation.navigate(Screen.MEAL_REQUEST);
+  //    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
+  //      Navigation.navigate(Screen.FURNITURE_REQUEST);
+  //    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
+  //      Navigation.navigate(Screen.ROOM_REQUEST);
+  //    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
+  //      Navigation.navigate(Screen.FLOWERS_REQUEST);
+  //    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
+  //      Navigation.navigate(Screen.SUPPLIES_REQUEST);
+  //    } else {
+  //      return;
+  //    }
+  //  }
   public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
+    String selectedValue = serviceRequestChoiceBox.getValue();
+    switch (selectedValue) {
+      case "Meal Request Form":
+        Navigation.navigate(Screen.MEAL_REQUEST);
+        break;
+      case "Furniture Request Form":
+        Navigation.navigate(Screen.FURNITURE_REQUEST);
+        break;
+      case "Conference Room Request Form":
+        Navigation.navigate(Screen.ROOM_REQUEST);
+        break;
+      case "Flowers Request Form":
+        Navigation.navigate(Screen.FLOWERS_REQUEST);
+        break;
+      case "Office Supplies Request Form":
+        Navigation.navigate(Screen.SUPPLIES_REQUEST);
+        break;
+      default:
+        return;
     }
   }
 
