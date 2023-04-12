@@ -27,11 +27,9 @@ public class ConferenceRoomRequest extends Request {
     this.purpose = purpose;
   }
 
-  public ConferenceRoomRequest(int reqid, Time endtime, String purpose){
+  public ConferenceRoomRequest(int reqid, Time endtime, String purpose) {
     this.reqid = reqid;
     this.endtime = endtime;
     this.purpose = purpose;
   }
-
-
 }

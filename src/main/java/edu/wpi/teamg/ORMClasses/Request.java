@@ -7,7 +7,6 @@ import lombok.Setter;
 
 public class Request {
 
-
   @Getter @Setter private int reqid;
   @Getter @Setter private String reqtype;
   @Getter @Setter private int empid;
@@ -37,7 +36,15 @@ public class Request {
     this.requestDate = deliveryDate;
     this.requestTime = deliveryTime;
   }
-  private  Request (int reqid, int empid, String location, StatusTypeEnum status,String serve_By, Date date, Time time ){
+
+  private Request(
+      int reqid,
+      int empid,
+      String location,
+      StatusTypeEnum status,
+      String serve_By,
+      Date date,
+      Time time) {
     this.reqid = reqid;
     this.empid = empid;
     this.location = location;
