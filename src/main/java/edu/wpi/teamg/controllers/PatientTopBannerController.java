@@ -27,31 +27,14 @@ public class PatientTopBannerController {
   @FXML
   public void initialize() {
     //    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    exitButton.setOnMouseClicked(event -> exit());
-    statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.STATUS_PAGE));
 
-    serviceRequestChoiceBox.setItems(list);
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
+    exitButton.setOnMouseClicked(event -> exit());
+
   }
 
   public void exit() {
     Platform.exit();
   }
 
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
-    }
-  }
+
 }

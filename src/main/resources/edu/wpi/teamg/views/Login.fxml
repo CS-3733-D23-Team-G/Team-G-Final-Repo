@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.RootController" />
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="333.0" prefWidth="870.0">
+         <children>
+            <Pane layoutX="352.0" layoutY="129.0" prefHeight="31.0" prefWidth="135.0" styleClass="widget_background">
+               <children>
+                  <Text fill="WHITE" layoutX="6.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Employee ID">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutX="352.0" layoutY="226.0" prefHeight="31.0" prefWidth="105.0" styleClass="widget_background">
+               <children>
+                  <Text fill="WHITE" layoutX="7.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Password">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <CustomTextField layoutX="352.0" layoutY="167.0" prefHeight="31.0" prefWidth="149.0" styleClass="text_box" />
+            <CustomTextField layoutX="352.0" layoutY="267.0" prefHeight="32.0" prefWidth="149.0" styleClass="text_box" />
+         </children>
+      </AnchorPane>
+      <HBox prefHeight="100.0" prefWidth="200.0" />
+   </children>
+</VBox>

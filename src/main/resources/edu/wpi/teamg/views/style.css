@@ -96,3 +96,7 @@
     -fx-max-height: 345;
     -fx-max-width: 370;
 }
+.login_background{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 10 10 10 10;
+}
