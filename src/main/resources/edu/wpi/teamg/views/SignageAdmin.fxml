@@ -86,6 +86,7 @@
             <Button fx:id="floor1" layoutX="15.0" layoutY="390.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 1" />
             <MFXButton fx:id="mapEdit" layoutX="15.0" layoutY="421.0" prefHeight="25.0" prefWidth="102.0" text="Map Edit" />
             <MFXButton fx:id="mapCancel" layoutX="15.0" layoutY="450.0" prefHeight="25.0" prefWidth="102.0" text="Map Cancel" />
+            <MFXButton fx:id="add" layoutX="15.0" layoutY="480.0" prefHeight="25.0" prefWidth="102.0" text="Add Node" />
          </children>
       </AnchorPane>
    </left>
