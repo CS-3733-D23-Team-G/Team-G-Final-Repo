@@ -65,6 +65,7 @@ public class editPopUpController {
     LocationNameDAO locationNameDAO = new LocationNameDAO();
     HashMap<String, LocationName> LocationNames = locationNameDAO.getAll();
     HashMap<Integer, String> sn = nodeDAO.getShortName(nFloor.getText());
+    HashMap<Integer, String> ln = nodeDAO.getLongNames(nFloor.getText());
     ArrayList<LocationName> locs = new ArrayList<>(LocationNames.values());
     LocationName knownLoc = new LocationName();
 
@@ -74,7 +75,7 @@ public class editPopUpController {
       }
     }
 
-    knownLoc.setShortName(shortName.getText());
+    System.out.println(knownLoc.getLongName());
     Node node =
         new Node(
             Integer.parseInt(nID.getText()),
@@ -86,7 +87,7 @@ public class editPopUpController {
     nodeDAO.update(node, "ycoord", Integer.parseInt(nYcoord.getText()));
     nodeDAO.update(node, "floor", nFloor.getText());
     nodeDAO.update(node, "building", nBuilding.getText());
-    locationNameDAO.update(knownLoc, "shortname", knownLoc.getShortName());
+    locationNameDAO.update(knownLoc, "shortname", shortName.getText());
   }
 
   public void deleteNode() throws SQLException {
