@@ -497,15 +497,17 @@ public class SignageAdminController {
     edgeStartNode.setOnEditCommit(
         event -> {
           Edge obj = event.getRowValue();
+          String col = event.getTableColumn().getText();
+          edgeDAO.update(obj, col, event.getNewValue());
           obj.setStartNode(event.getNewValue());
-          edgeDAO.update(obj, "endnode", event.getNewValue());
         });
     edgeEndNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
     edgeEndNode.setOnEditCommit(
         event -> {
           Edge obj = event.getRowValue();
+          String col = event.getTableColumn().getText();
+          edgeDAO.update(obj, col, event.getNewValue());
           obj.setEndNode(event.getNewValue());
-          edgeDAO.update(obj, "endnode", event.getNewValue());
         });
 
     MoveDAO moveDAO = new MoveDAO();

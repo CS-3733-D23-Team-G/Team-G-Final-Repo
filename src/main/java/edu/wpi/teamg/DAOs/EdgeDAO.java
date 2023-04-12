@@ -62,18 +62,18 @@ public class EdgeDAO implements LocationDAO {
             + this.getTable()
             + " set "
             + colName
-            + " = ? where "
-            + colName
-            + " in (select nodeid from teamgdb.iteration1.node where nodeid = ?)";
+            + " = ? where startNode = ? AND endNode = ?";
 
     try {
       PreparedStatement ps = db.getConnection().prepareStatement(sql);
       ps.setObject(1, value);
-      ps.setObject(2, value);
+      ps.setInt(2, ((Edge) obj).getStartNode());
+      ps.setInt(3, ((Edge) obj).getEndNode());
       ps.executeUpdate();
       ps.close();
     } catch (SQLException e) {
       System.err.println("SQL exception");
+      e.printStackTrace();
     }
   }
 
