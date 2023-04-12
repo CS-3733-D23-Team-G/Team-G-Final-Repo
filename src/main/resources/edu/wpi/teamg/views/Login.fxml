@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -23,17 +24,27 @@
                         </Text>
                      </children>
                   </Pane>
-                  <CustomTextField prefHeight="67.0" prefWidth="415.0" styleClass="text_box" />
-                  <Pane prefHeight="70.0" prefWidth="179.0" styleClass="widget_background">
+                  <CustomTextField fx:id="EmployeeID" prefHeight="67.0" prefWidth="415.0" styleClass="text_box" />
+                  <Pane prefHeight="57.0" prefWidth="169.0" styleClass="widget_background">
                      <children>
-                        <Text fill="#f6bd38" layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Password">
+                        <Text fill="#f6bd38" layoutX="3.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Password">
                            <font>
                               <Font size="36.0" />
                            </font>
                         </Text>
                      </children>
                   </Pane>
-                  <CustomTextField prefHeight="67.0" prefWidth="415.0" styleClass="text_box" />
+                  <CustomTextField fx:id="Password" prefHeight="67.0" prefWidth="415.0" styleClass="text_box" />
+                  <Pane prefHeight="119.0" prefWidth="481.0" styleClass="login_background">
+                     <children>
+                        <Text fill="#f6bd38" layoutX="201.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Login">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                        <MFXButton fx:id="loginButton" layoutX="1.0" layoutY="3.0" opacity="0.0" prefHeight="115.0" prefWidth="462.0" />
+                     </children>
+                  </Pane>
                </children>
             </VBox>
          </children>

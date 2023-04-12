@@ -28,7 +28,7 @@
          <children>
             <AnchorPane styleClass="hit_the_griddy">
                <children>
-                  <Text fill="#f6bd38" layoutX="380.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Log out" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="73.01025390625" AnchorPane.topAnchor="15.0">
+                  <Text fill="#f6bd38" layoutX="380.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="aaag" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="73.01025390625" AnchorPane.topAnchor="15.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -38,7 +38,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <MFXButton fx:id="loginButton" layoutX="367.0" layoutY="3.0" opacity="0.0" prefHeight="40.0" prefWidth="41.0" text="Button" AnchorPane.bottomAnchor="2.3333333333333357" AnchorPane.rightAnchor="71.66666666666669" AnchorPane.topAnchor="3.0" />
+                  <MFXButton fx:id="loginButton" layoutX="367.0" layoutY="3.0" opacity="0.0" prefHeight="45.0" prefWidth="222.0" text="Button" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="3.0" />
                   <MFXButton fx:id="exitButton" layoutX="425.0" layoutY="3.0" opacity="0.0" prefHeight="40.0" prefWidth="41.0" AnchorPane.bottomAnchor="2.3333333333333357" AnchorPane.rightAnchor="13.666666666666664" AnchorPane.topAnchor="3.0" />
                </children>
             </AnchorPane>
