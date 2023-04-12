@@ -11,11 +11,11 @@ import javax.swing.*;
 
 public class EdgeDAO implements LocationDAO {
   static DBConnection connection = new DBConnection();
-  private String sql;
+  private static String sql;
   private HashMap<String, Edge> edgeHash = new HashMap<String, Edge>();
 
   @Override
-  public static HashMap<String, Edge> getAll() throws SQLException {
+  public HashMap<String, Edge> getAll() throws SQLException {
     connection.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;

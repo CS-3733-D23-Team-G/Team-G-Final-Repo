@@ -441,7 +441,8 @@ public class SignagePageController {
     NodeDAO nodeDAO = new NodeDAO();
     String floor = point.getFloor();
 
-    HashMap<Integer, String> sn = nodeDAO.getShortName(floor);
+    HashMap<Integer, String> sn = nodeDAO.getLongNames(floor);
+
     displayNode.setFont(Font.font(35));
 
     displayNode.setText("Location: " + sn.get(point.getNodeID()));
