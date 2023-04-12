@@ -1,24 +1,31 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -30,6 +37,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.util.converter.IntegerStringConverter;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.PopOver;
 
 public class SignageAdminController {
 
@@ -160,12 +168,6 @@ public class SignageAdminController {
        });
     */
 
-    // startLoc.getText();
-    // endLoc.getText();
-    //  String imgPath = Main.class.getResource("images/00_thelowerlevel1.png").toString();
-    //  ImageView image = new ImageView(new Image(imgPath));
-    //  pane.setContent(image);
-
     nodes.setOnMouseClicked(event -> loadNodeTable());
     edges.setOnMouseClicked(event -> loadEdgeTable());
     move.setOnMouseClicked(event -> loadMoveTable());
@@ -209,9 +211,9 @@ public class SignageAdminController {
     locShortName.setCellValueFactory(new PropertyValueFactory<>("ShortName"));
     locNodeType.setCellValueFactory(new PropertyValueFactory<>("NodeType"));
 
-    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1_pts'ed.png");
-    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2_pts'ed.png");
-    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor_pts'ed.png");
+    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
+    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2.png");
+    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor.png");
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
     ImageView mapViewFloor1 = new ImageView(mapFloor1);
@@ -496,20 +498,13 @@ public class SignageAdminController {
     //Edge Update
         EdgeDAO edgeDAO = new EdgeDAO();
         edgeTable.setEditable(true);
-        edgeEdgeID.setCellFactory(TextFieldTableCell.forTableColumn());
-        edgeEdgeID.setOnEditCommit(
-                event -> {
-                  Edge obj = event.getRowValue();
-                  obj.setEdgeID(event.getNewValue());
-                  //edgeDAO.update(obj, "longname", event.getNewValue());
-                });
-
         edgeStartNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         edgeStartNode.setOnEditCommit(
                 event -> {
                   Edge obj = event.getRowValue();
                   obj.setStartNode(event.getNewValue());
                   //edgeDAO.update(obj, "shortname", event.getNewValue());
+                  edgeTable.refresh();
                 });
         edgeEndNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         edgeEndNode.setOnEditCommit(
@@ -517,6 +512,7 @@ public class SignageAdminController {
                   Edge obj = event.getRowValue();
                   obj.setEndNode(event.getNewValue());
                   //edgeDAO.update(obj, "nodetype", event.getNewValue());
+                   edgeTable.refresh();
                 });
 
 
@@ -557,8 +553,10 @@ public class SignageAdminController {
     locLongName.setOnEditCommit(
         event -> {
           LocationName obj = event.getRowValue();
-          obj.setLongName(event.getNewValue());
+
           locationNameDAO.update(obj, "longname", event.getNewValue());
+
+          obj.setLongName(event.getNewValue());
         });
 
     locShortName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -659,34 +657,66 @@ public class SignageAdminController {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            displayData(currentNode);
+            try {
+              displayData(currentNode);
+            } catch (IOException e) {
+              throw new RuntimeException(e);
+            }
           }
         });
     nodePane.getChildren().add(point);
   }
 
-  public void displayData(Node point) {
+  public void displayData(Node point) throws IOException {
 
     nodePane.getChildren().removeIf(node -> node instanceof TextArea);
+    nodePane.getChildren().removeIf(node -> node instanceof Button);
     TextArea displayNode = new TextArea();
-    displayNode.setText(
-        "NodeID: "
-            + point.getNodeID()
-            + "\nXcoord: "
-            + point.getXcoord()
-            + "\nYcoord: "
-            + point.getYcoord()
-            + "\nFloor: "
-            + point.getFloor()
-            + "\nBuilding: "
-            + point.getBuilding());
+    Button exit = new Button();
+    Label nodeID = new Label();
+    Label xcoord = new Label();
+    Label ycoord = new Label();
+    Label floor = new Label();
+    Label building = new Label();
+    // PopOver displayNodeTest = new PopOver();
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/editNodePopUp.fxml"));
+    window.setContentNode(loader.load());
 
-    displayNode.setLayoutX(point.getXcoord());
-    displayNode.setLayoutY(point.getYcoord());
-    displayNode.setPrefWidth(150);
-    displayNode.setPrefHeight(100);
-    displayNode.setVisible(true);
-    displayNode.toFront();
+    window.setArrowSize(0);
+    editPopUpController controller = loader.getController();
+    controller.setFields(point);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    //    displayNode.setText(
+    //        "NodeID: "
+    //            + point.getNodeID()
+    //            + "\nXcoord: "
+    //            + point.getXcoord()
+    //            + "\nYcoord: "
+    //            + point.getYcoord()
+    //            + "\nFloor: "
+    //            + point.getFloor()
+    //            + "\nBuilding: "
+    //            + point.getBuilding());
+    //
+    //    displayNode.setFont(Font.font(35));
+    //    displayNode.setLayoutX(point.getXcoord());
+    //    displayNode.setLayoutY(point.getYcoord());
+    //    displayNode.setPrefWidth(300);
+    //    displayNode.setPrefHeight(300);
+    //    displayNode.setVisible(true);
+    //    displayNode.toFront();
+    //    exit.setLayoutX(point.getXcoord() + 300);
+    //    exit.setPrefWidth(100);
+    //    exit.setPrefHeight(100);
+    //    exit.setFont(Font.font(25));
+    //    exit.setLayoutY(point.getYcoord());
+    //    exit.setText("Close");
+    //    exit.setVisible(true);
+    //    exit.toFront();
 
     if (editableMap) {
       displayNode.setEditable(true);
@@ -695,6 +725,14 @@ public class SignageAdminController {
     }
 
     nodePane.getChildren().add(displayNode);
+    nodePane.getChildren().add(exit);
+
+    exit.setOnMouseClicked(event -> remove(displayNode, exit));
+  }
+
+  public void remove(TextArea displayNode, Button exit) {
+    nodePane.getChildren().remove(displayNode);
+    nodePane.getChildren().remove(exit);
   }
 
   public void editMap() {
