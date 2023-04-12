@@ -172,9 +172,16 @@ public class DefaultTest {
 
   // Test  insert() methods
 
+ @Test
+    public void testInsertNode() throws SQLException {
+      nodeHash.put(4, new Node(4,9291,8338,"L2","Tower"));
+      nodeDAO.insert(new Node(4,9291,8338,"L2","Tower"));
+
+      assertEquals(nodeHash,nodeDAO);
+ }
 
 
-  // Test delete() delete
+    // Test delete() delete
 
 
 }
