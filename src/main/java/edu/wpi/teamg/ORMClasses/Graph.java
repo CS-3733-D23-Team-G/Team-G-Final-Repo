@@ -40,8 +40,11 @@ public class Graph {
       // since the adj matrix is sysmetric the number in the row x colum and colum x row will be the
       // same.
       A1[vertice_numS][vertice_numE] = E[i].distance(V[vertice_numS], V[vertice_numE]);
+
       A1[vertice_numE][vertice_numS] = E[i].distance(V[vertice_numE], V[vertice_numS]);
     }
+    // System.out.println("A1 " + E[i].distance(V[vertice_numS], V[vertice_numE]));
+    // System.out.println("A2 " + E[i].distance(V[vertice_numS], V[vertice_numE]));
     return A1;
   }
 
@@ -61,6 +64,7 @@ public class Graph {
     // (0, inf, inf, inf, inf, inf, inf, inf)
     for (int v = 0; v < vertex; v++) {
       totalDistance = Integer.MAX_VALUE; // Java version of infinity is MAX_VALUE
+      parent[v] = Integer.MAX_VALUE;
       // When we are at our beginning node we set it to 0
       // So, we know where to start
       if (v == start) {
@@ -135,6 +139,10 @@ public class Graph {
   // HELPER FUNCTION FOR OUR A* alg
   public void printPath(int current, int[] parent, int start, ArrayList<String> s) {
     if (current == -1) {
+      return;
+    }
+    if (current == Integer.MAX_VALUE) {
+      System.out.println("Error No Path Found");
       return;
     }
     printPath(parent[current], parent, start, s);
