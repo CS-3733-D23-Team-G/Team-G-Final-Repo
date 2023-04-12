@@ -92,7 +92,7 @@ create table iteration1.MealRequest(
 
 create table iteration1.flowerrequest(
     reqID int primary key,
-    flowerType varchar(50),
+    flowerType varchar(350),
     numFlower int,
     recipient varchar(50),
     note varchar(225),

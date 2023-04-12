@@ -19,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import org.controlsfx.control.SearchableComboBox;
 
 public class ConRoomRequestController {
@@ -39,6 +40,7 @@ public class ConRoomRequestController {
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
+  @FXML Label checkFields;
 
   ObservableList<String> locationList;
 
@@ -65,15 +67,11 @@ public class ConRoomRequestController {
     exitButton.setOnMouseClicked(event -> roomExit());
     roomConfirm.setOnMouseClicked(
         event -> {
-          Navigation.navigate(Screen.ROOM_REQUEST_SUBMIT);
-          try {
-            storeRoomValues();
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
+          allDataFilled();
         });
 
     datePicker.setText("");
+    checkFields.getText();
 
     roomMeetingPurpose.getText();
     // roomNumber.getText();
@@ -171,8 +169,25 @@ public class ConRoomRequestController {
     datePicker.setText("");
     roomTimeData.setText("");
     roomEndTime.setText("");
-    locationSearchDropdown.setValue("");
+    locationSearchDropdown.setValue(null);
     return;
+  }
+
+  public void allDataFilled() {
+    if (!(roomMeetingPurpose.getText().equals("")
+        || datePicker.getText().equals("")
+        || roomTimeData.getText().equals("")
+        || roomEndTime.getText().equals("")
+        || locationSearchDropdown == null)) {
+      try {
+        storeRoomValues();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+      Navigation.navigate(Screen.ROOM_REQUEST_SUBMIT);
+    } else {
+      checkFields.setText("Not All Fields Are Filled");
+    }
   }
 
   public Time StringToTime(String s) {

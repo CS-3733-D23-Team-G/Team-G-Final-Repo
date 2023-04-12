@@ -9,7 +9,6 @@ import edu.wpi.teamg.ORMClasses.Node;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,8 +30,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.SearchableComboBox;
+
+// Touch Ups
+// Make NodeInfo Disappear More clean
+// L1 Nodes need to be in dropdown from start
+// If we have an error all nodes should remain displayed
 
 public class SignagePageController {
 
@@ -44,10 +49,6 @@ public class SignagePageController {
   @FXML MFXButton goToAdminSign;
 
   @FXML MFXButton pathFindButton;
-
-  @FXML MFXTextField startLoc;
-
-  @FXML MFXTextField endLoc;
 
   @FXML TextArea results;
 
@@ -94,9 +95,6 @@ public class SignagePageController {
           }
         });
 
-    startLoc.getText();
-    endLoc.getText();
-
     // goToL1();
 
     Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1_pts'ed.png");
@@ -128,11 +126,15 @@ public class SignagePageController {
     nodePane.setMinHeight(mapL1.getHeight());
     nodePane.setMaxWidth(mapL1.getWidth());
     nodePane.setMaxHeight(mapL1.getHeight());
+    longNameNodes(0);
 
     // Scales Map
     pane.setMinScale(.001);
-    pane.zoomTo(.000001, new Point2D(2500, 1700));
-    pane.zoomTo(.000001, new Point2D(2500, 1700));
+    pane.zoomTo(.3, new Point2D(2500, 1700));
+    pane.zoomTo(.3, new Point2D(2500, 1700));
+
+    pane.centreOnX(1000);
+    pane.centreOnY(500);
 
     imageViewsList.add(mapView);
     imageViewsList.add(mapViewL2);
@@ -183,26 +185,6 @@ public class SignagePageController {
     //  Circle circ = new Circle(10, Color.BLACK);
     // circ.relocate(500, 500);
 
-    ArrayList<String> locationNames = new ArrayList<>();
-    HashMap<Integer, String> testingLongName = this.getHashMapL1LongName();
-
-    testingLongName.forEach(
-        (i, m) -> {
-          locationNames.add(m);
-          // System.out.println("LocationName: " + m);
-          //          System.out.println("Employee ID:" + m.getEmpid());
-          //          System.out.println("Status:" + m.getStatus());
-          //          System.out.println("Location:" + m.getLocation());
-          //          System.out.println("Serve By:" + m.getServ_by());
-          //          System.out.println();
-        });
-
-    Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
-
-    locationList = FXCollections.observableArrayList(locationNames);
-
-    startLocDrop.setItems(locationList);
-    endLocDrop.setItems(locationList);
   }
 
   public void loadServiceRequestForm() {
@@ -224,8 +206,18 @@ public class SignagePageController {
   public void processAStarAlg() throws SQLException {
     ArrayList<String> path = new ArrayList<>();
     ArrayList<String> finaNodes = new ArrayList<>();
-    String start = startLoc.getText();
-    String end = endLoc.getText();
+
+    String L1StartNodeLongName = (String) startLocDrop.getValue();
+    String L1EndNodeLongName = (String) endLocDrop.getValue();
+
+    System.out.println("Start Node LN = " + L1StartNodeLongName);
+    System.out.println("End Node LN = " + L1EndNodeLongName);
+
+    int L1StartNodeID = dao.getNodeIDbyLongName(L1StartNodeLongName);
+    int L1EndNodeID = dao.getNodeIDbyLongName(L1EndNodeLongName);
+
+    System.out.println("Start NodeID = " + L1StartNodeID);
+    System.out.println("End NodeID = " + L1EndNodeID);
 
     // ArrayList<edu.wpi.teamg.ORMClasses.Node> L1nodeKeys = new ArrayList<>();
     // ArrayList<edu.wpi.teamg.ORMClasses.Node> L1edgeKeys = new ArrayList<>();
@@ -242,7 +234,7 @@ public class SignagePageController {
     ArrayList<Node> L1NodeFinal = new ArrayList<>();
     ArrayList<Edge> L1EdgeFinal = new ArrayList<>();
 
-    String floor = nodeMap.get(Integer.parseInt(start)).getFloor();
+    String floor = nodeMap.get(L1StartNodeID).getFloor();
     switch (floor) {
       case "L1":
         goToL1(imageViewsList);
@@ -297,10 +289,10 @@ public class SignagePageController {
     int endNode = 0;
     for (int i = 0; i < L1NodeFinal.size(); i++) {
 
-      if (nodeArray[i].getNodeID() == Integer.parseInt(start)) {
+      if (nodeArray[i].getNodeID() == L1StartNodeID) {
         startNode = i;
       }
-      if (nodeArray[i].getNodeID() == Integer.parseInt(end)) {
+      if (nodeArray[i].getNodeID() == L1EndNodeID) {
         endNode = i;
       }
     }
@@ -331,6 +323,8 @@ public class SignagePageController {
     // Line = 0,0,1,1
     // Line = 1,1,2,2
     // Line = 2,2,3,3
+
+    nodePane.getChildren().clear();
     for (int i = 0; i < path.size(); i++) {
       Circle point =
           new Circle(
@@ -360,6 +354,8 @@ public class SignagePageController {
     }
     imgs.get(0).setVisible(true);
 
+    longNameNodes(0);
+
     newNodes(0);
   }
 
@@ -368,6 +364,7 @@ public class SignagePageController {
       imgs.get(i).setVisible(false);
     }
     imgs.get(1).setVisible(true);
+    longNameNodes(1);
     newNodes(1);
   }
 
@@ -376,6 +373,7 @@ public class SignagePageController {
       imgs.get(i).setVisible(false);
     }
     imgs.get(2).setVisible(true);
+    longNameNodes(2);
 
     newNodes(2);
   }
@@ -426,31 +424,31 @@ public class SignagePageController {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            displayData(currentNode);
+            try {
+              displayData(currentNode);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
           }
         });
     nodePane.getChildren().add(point);
   }
 
-  public void displayData(Node point) {
+  public void displayData(Node point) throws SQLException {
 
     nodePane.getChildren().removeIf(node -> node instanceof TextArea);
     TextArea displayNode = new TextArea();
-    displayNode.setText(
-        "NodeID: "
-            + point.getNodeID()
-            + "\nXcoord: "
-            + point.getXcoord()
-            + "\nYcoord: "
-            + point.getYcoord()
-            + "\nFloor: "
-            + point.getFloor()
-            + "\nBuilding: "
-            + point.getBuilding());
+    NodeDAO nodeDAO = new NodeDAO();
+    String floor = point.getFloor();
+
+    HashMap<Integer, String> sn = nodeDAO.getShortName(floor);
+    displayNode.setFont(Font.font(35));
+
+    displayNode.setText("Location: " + sn.get(point.getNodeID()));
 
     displayNode.setLayoutX(point.getXcoord());
     displayNode.setLayoutY(point.getYcoord());
-    displayNode.setPrefWidth(150);
+    displayNode.setPrefWidth(550);
     displayNode.setPrefHeight(100);
     displayNode.setVisible(true);
     displayNode.toFront();
@@ -459,17 +457,56 @@ public class SignagePageController {
     nodePane.getChildren().add(displayNode);
   }
 
-  public HashMap<Integer, String> getHashMapL1LongName() throws SQLException {
+  public HashMap<Integer, String> getHashMapL1LongName(int index) throws SQLException {
 
     HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
 
-    try {
-      longNameHashMap = dao.getL1LongNames();
-    } catch (SQLException e) {
-      System.err.print(e.getErrorCode());
+    if (index == 0) {
+      try {
+        longNameHashMap = dao.getL1LongNames();
+      } catch (SQLException e) {
+        System.err.print(e.getErrorCode());
+      }
+    }
+    if (index == 1) {
+      try {
+        longNameHashMap = dao.getL2LongNames();
+      } catch (SQLException e) {
+        System.err.print(e.getErrorCode());
+      }
+    }
+    if (index == 2) {
+      try {
+        longNameHashMap = dao.getF1LongNames();
+      } catch (SQLException e) {
+        System.err.print(e.getErrorCode());
+      }
     }
 
     return longNameHashMap;
+  }
+
+  public void longNameNodes(int index) throws SQLException {
+    ArrayList<String> locationNames = new ArrayList<>();
+    HashMap<Integer, String> testingLongName = this.getHashMapL1LongName(index);
+
+    testingLongName.forEach(
+        (i, m) -> {
+          locationNames.add(m);
+          // System.out.println("LocationName: " + m);
+          //          System.out.println("Employee ID:" + m.getEmpid());
+          //          System.out.println("Status:" + m.getStatus());
+          //          System.out.println("Location:" + m.getLocation());
+          //          System.out.println("Serve By:" + m.getServ_by());
+          //          System.out.println();
+        });
+
+    Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
+
+    locationList = FXCollections.observableArrayList(locationNames);
+
+    startLocDrop.setItems(locationList);
+    endLocDrop.setItems(locationList);
   }
 
   public void exit() {

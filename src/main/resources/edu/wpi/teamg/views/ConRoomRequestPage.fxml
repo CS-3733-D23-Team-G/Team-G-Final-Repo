@@ -4,6 +4,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -66,6 +67,7 @@
                   <SearchableComboBox fx:id="locationSearchDropdown" layoutX="83.0" layoutY="42.0" prefHeight="26.0" prefWidth="125.0" />
                   <Text layoutX="342.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Time" />
                   <MFXTextField fx:id="roomEndTime" layoutX="342.0" layoutY="108.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
+                  <Label fx:id="checkFields" layoutX="390.0" layoutY="238.0" prefHeight="17.0" prefWidth="196.0" />
                </children>
             </AnchorPane>
          </children>
