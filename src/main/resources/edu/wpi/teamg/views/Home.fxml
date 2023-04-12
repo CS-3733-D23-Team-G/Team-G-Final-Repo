@@ -13,11 +13,11 @@
 
 <BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.HomeController">
    <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
-                  <AnchorPane layoutX="33.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane layoutX="123.0" layoutY="111.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="95.66666666666663">
                      <styleClass>
                         <String fx:value="widget_background" />
                         <String fx:value="widget_homepage_pair" />
@@ -51,7 +51,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
-                  <AnchorPane layoutX="33.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane layoutX="121.0" layoutY="122.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="97.66666666666663">
                      <styleClass>
                         <String fx:value="widget_background" />
                         <String fx:value="widget_homepage_pair" />

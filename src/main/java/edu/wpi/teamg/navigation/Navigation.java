@@ -14,12 +14,19 @@ public class Navigation {
       final FXMLLoader loader = new FXMLLoader(resource);
       if (screen == Screen.SIGNAGE_PAGE) {
         App.getRootPane().setTop(null);
+      }
+      if (screen == Screen.LOGIN_PAGE) {
+        final FXMLLoader LoginLoader =
+            new FXMLLoader(App.class.getResource("views/LoginBanner.fxml"));
+        final Node Login = LoginLoader.load();
+        App.getRootPane().setTop(Login);
 
       } else {
 
-        final FXMLLoader loader2 = new FXMLLoader(App.class.getResource("views/TopBorder.fxml"));
-        final Node root = loader2.load();
-        App.getRootPane().setTop(root);
+        final FXMLLoader BannerLoader =
+            new FXMLLoader(App.class.getResource("views/TopBorder.fxml"));
+        final Node MainBanner = BannerLoader.load();
+        App.getRootPane().setTop(MainBanner);
       }
       App.getRootPane().setCenter(loader.load());
     } catch (IOException | NullPointerException e) {
