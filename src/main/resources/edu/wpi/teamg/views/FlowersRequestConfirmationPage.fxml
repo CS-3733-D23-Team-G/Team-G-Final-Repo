@@ -18,7 +18,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchor_pane_sizing">
                <children>
-                  <ImageView fitHeight="67.0" fitWidth="205.0" layoutX="9.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="9.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@bwh-logo.png" />
                      </image>

@@ -24,7 +24,6 @@ import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.IndexedCheckModel;
 import org.controlsfx.control.SearchableComboBox;
 
-
 public class FlowersRequestController {
 
   @FXML MFXButton returnHomeButton;
@@ -52,6 +51,8 @@ public class FlowersRequestController {
   @FXML TextField deliveryTime;
   @FXML TextField recipient;
   @FXML TextField bouquetNote;
+
+  @FXML SearchableComboBox locationSearchDropdown;
 
   /*
    TODO: figure out how to get correct datatype to give to DB
@@ -124,7 +125,6 @@ public class FlowersRequestController {
     // Hung this is where it sets the list - Andrew
 
     // locationSearchDropdown.setItems(locationList);
-
 
     //    serviceRequestChoiceBox.setOnMouseClicked(
     //        event -> {

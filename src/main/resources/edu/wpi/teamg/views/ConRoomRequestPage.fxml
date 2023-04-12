@@ -24,7 +24,7 @@
                <children>
                   <MFXButton fx:id="exitButton" layoutX="496.0" maxHeight="25.0" minHeight="25.0" opacity="0.0" prefHeight="25.0" prefWidth="97.0" text="Exit Application" />
                   <Text layoutX="504.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
-                  <ImageView fitHeight="50.0" fitWidth="175.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@bwh-logo.png" />
                      </image>
