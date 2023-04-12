@@ -24,6 +24,7 @@ import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.IndexedCheckModel;
 import org.controlsfx.control.SearchableComboBox;
 
+
 public class FlowersRequestController {
 
   @FXML MFXButton returnHomeButton;
@@ -39,7 +40,7 @@ public class FlowersRequestController {
   @FXML Label checkFields;
 
   // Hung This is the name and list associated with test searchable list
-  @FXML SearchableComboBox locationSearchDropdown;
+  //  @FXML SearchableComboBox locationSearchDropdown;
 
   // @FXML TextField orderingFor;
   // @FXML TextArea notes;
@@ -121,7 +122,9 @@ public class FlowersRequestController {
     //    notes.setText("");
 
     // Hung this is where it sets the list - Andrew
+
     // locationSearchDropdown.setItems(locationList);
+
 
     //    serviceRequestChoiceBox.setOnMouseClicked(
     //        event -> {
