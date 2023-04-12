@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.LoginPageController">
    <left>
       <Pane prefHeight="400.0" prefWidth="274.0" style="-fx-background-color: linear-gradient(to bottom left, #009FFD, #2A2A72);" stylesheets="style.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="110.0" fitWidth="132.0" layoutX="78.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
-<!--                     <image>-->
-<!--                        <Image url="@../../../../../../../../../../Downloads/Screen_Shot_2023-04-10_at_9.30.45_PM-removebg-preview.png" />-->
-<!--                     </image>-->
-                  </ImageView>
+            <ImageView fitHeight="29.0" fitWidth="20.0" layoutX="127.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@small_logo.png" />
+               </image></ImageView>
             <Label fx:id="forgotLabel1" layoutX="7.0" layoutY="225.0" prefHeight="34.0" prefWidth="273.0" text="Brigham and Womens Hospital" textFill="WHITE">
                <font>
                   <Font size="20.0" />
@@ -48,16 +49,16 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
                <children>
-                  <TextField fx:id="emailBox" layoutX="41.0" layoutY="128.0" prefHeight="35.0" prefWidth="245.0" promptText="Email" />
-                  <TextField fx:id="passwordBox" layoutX="41.0" layoutY="192.0" prefHeight="35.0" prefWidth="245.0" promptText="Password" />
-                  <MFXButton fx:id="loginButton" layoutX="166.0" layoutY="253.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #1826f0;" text="Login" textAlignment="CENTER" textFill="WHITE" />
-                  <MFXButton fx:id="signUpButton" layoutX="45.0" layoutY="316.0" prefHeight="41.0" prefWidth="242.0" style="-fx-background-color: #8dbdeb; -fx-border-color: #1826f0; -fx-border-radius: 10px;" text="New Employee? Sign Up!" textFill="#1826f0" />
+                  <MFXButton fx:id="loginButton" layoutX="166.0" layoutY="253.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #012d5a;" text="Login" textAlignment="CENTER" textFill="WHITE" />
+                  <MFXButton fx:id="signUpButton" layoutX="45.0" layoutY="316.0" prefHeight="41.0" prefWidth="242.0" style="-fx-background-color: #8dbdeb; -fx-border-color: #1826f0; -fx-border-radius: 10px;" text="New Employee? Sign Up!" />
                   <Label fx:id="forgotLabel" layoutX="45.0" layoutY="262.0" text="Forgot Password?" />
                   <Label layoutX="41.0" layoutY="78.0" text="Sign In">
                      <font>
                         <Font name="System Bold" size="23.0" />
                      </font>
                   </Label>
+                  <MFXPasswordField fx:id="passwordBox" layoutX="41.0" layoutY="183.0" minHeight="-Infinity" prefHeight="35.0" prefWidth="245.0" promptText="Password" />
+                  <MFXTextField fx:id="emailBox" layoutX="41.0" layoutY="132.0" minHeight="-Infinity" prefHeight="35.0" prefWidth="245.0" promptText="Email" />
 <!--                        <Label fx:id="invalidInput" layoutX="43.0" layoutY="231.0" prefHeight="17.0" prefWidth="241.0" text="  " />-->
                </children>
             </Pane>

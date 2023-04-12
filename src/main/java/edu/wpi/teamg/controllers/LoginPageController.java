@@ -3,6 +3,8 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,7 +13,7 @@ import javafx.scene.control.TextField;
 public class LoginPageController {
 
   // public Label invalidInput;
-  @FXML private TextField emailBox;
+  @FXML private MFXTextField emailBox;
 
   @FXML private Label forgotLabel;
 
@@ -21,7 +23,7 @@ public class LoginPageController {
 
   @FXML private MFXButton loginButton;
 
-  @FXML private TextField passwordBox;
+  @FXML private MFXPasswordField passwordBox;
 
   @FXML private MFXButton signUpButton;
 
