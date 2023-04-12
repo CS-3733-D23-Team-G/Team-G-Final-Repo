@@ -21,6 +21,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -97,9 +98,9 @@ public class SignagePageController {
 
     // goToL1();
 
-    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1_pts'ed.png");
-    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2_pts'ed.png");
-    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor_pts'ed.png");
+    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
+    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2.png");
+    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor.png");
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
     ImageView mapViewFloor1 = new ImageView(mapFloor1);
@@ -174,7 +175,7 @@ public class SignagePageController {
 
     for (int i = 0; i < listOfNodes.size(); i++) {
       if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-        getNodesWFunctionality(listOfNodes, i);
+        getNodesWFunctionality(listOfNodes, i, "L1");
       }
     }
 
@@ -303,10 +304,10 @@ public class SignagePageController {
     System.out.println(nodeArray[0].getNodeID());
     path = G1.aStarAlg(Adj, startNode, endNode);
 
-    setPath(path);
+    setPath(path, floor);
   }
 
-  public void setPath(ArrayList<String> path) throws SQLException {
+  public void setPath(ArrayList<String> path, String floor) throws SQLException {
 
     if (path.size() == 1) {
       results.setText("Error: No Possible Path Found");
@@ -316,7 +317,7 @@ public class SignagePageController {
 
     NodeDAO nodeDAO = new NodeDAO();
     HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
-    Edge e = new Edge(1025, 1275);
+    // Edge e = new Edge(1025, 1275);
 
     // path = 4
     // path = 0,1,2,3
@@ -325,15 +326,6 @@ public class SignagePageController {
     // Line = 2,2,3,3
 
     nodePane.getChildren().clear();
-    for (int i = 0; i < path.size(); i++) {
-      Circle point =
-          new Circle(
-              nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
-              nodes.get(Integer.parseInt(path.get(i))).getYcoord(),
-              10,
-              Color.rgb(1, 45, 90));
-      nodePane.getChildren().add(point);
-    }
 
     for (int i = 1; i < path.size(); i++) {
       Line pathLine =
@@ -346,6 +338,28 @@ public class SignagePageController {
       pathLine.setStroke(Color.rgb(1, 45, 90));
       nodePane.getChildren().add(pathLine);
     }
+
+    for (int i = 0; i < path.size(); i++) {
+      Node currentNode = nodes.get(Integer.parseInt(path.get(i)));
+      Circle point =
+          new Circle(
+              nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
+              nodes.get(Integer.parseInt(path.get(i))).getYcoord(),
+              10,
+              Color.rgb(1, 45, 90));
+      point.setOnMouseClicked(
+          new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+              try {
+                displayData(currentNode);
+              } catch (SQLException e) {
+                throw new RuntimeException(e);
+              }
+            }
+          });
+      nodePane.getChildren().add(point);
+    }
   }
 
   public void goToL1(ArrayList<ImageView> imgs) throws SQLException {
@@ -355,8 +369,8 @@ public class SignagePageController {
     imgs.get(0).setVisible(true);
 
     longNameNodes(0);
-
     newNodes(0);
+    //   displayShortNames(0);
   }
 
   public void goToL2(ArrayList<ImageView> imgs) throws SQLException {
@@ -366,6 +380,7 @@ public class SignagePageController {
     imgs.get(1).setVisible(true);
     longNameNodes(1);
     newNodes(1);
+    //   displayShortNames(1);
   }
 
   public void goToFloor1(ArrayList<ImageView> imgs) throws SQLException {
@@ -374,8 +389,8 @@ public class SignagePageController {
     }
     imgs.get(2).setVisible(true);
     longNameNodes(2);
-
     newNodes(2);
+    //  displayShortNames(1);
   }
 
   public void newNodes(int index) throws SQLException {
@@ -389,14 +404,14 @@ public class SignagePageController {
       case 0:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-            getNodesWFunctionality(listOfNodes, i);
+            getNodesWFunctionality(listOfNodes, i, "L1");
           }
         }
         break;
       case 1:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L2")) {
-            getNodesWFunctionality(listOfNodes, i);
+            getNodesWFunctionality(listOfNodes, i, "L2");
           }
         }
         break;
@@ -404,7 +419,7 @@ public class SignagePageController {
       case 2:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
-            getNodesWFunctionality(listOfNodes, i);
+            getNodesWFunctionality(listOfNodes, i, "1 ");
           }
         }
 
@@ -412,8 +427,22 @@ public class SignagePageController {
     }
   }
 
-  private void getNodesWFunctionality(ArrayList<Node> listOfNodes, int i) {
+  private void getNodesWFunctionality(ArrayList<Node> listOfNodes, int i, String floor)
+      throws SQLException {
+    NodeDAO nodeDAO = new NodeDAO();
+    // HashMap<Integer, String> sn = nodeDAO.getShortName(floor);
+
     Node currentNode = listOfNodes.get(i);
+
+    /*
+    Label pointLabel = new Label(sn.get(listOfNodes.get(i).getNodeID()));
+    pointLabel.setLayoutX(0);
+    pointLabel.setLayoutY(0);
+
+     */
+
+    // System.out.println(pointLabel);
+
     Circle point =
         new Circle(
             listOfNodes.get(i).getXcoord(),
@@ -431,20 +460,25 @@ public class SignagePageController {
             }
           }
         });
-    nodePane.getChildren().add(point);
+
+    // pointLabel.setLabelFor(point);
+
+    nodePane.getChildren().addAll(point);
   }
 
   public void displayData(Node point) throws SQLException {
 
     nodePane.getChildren().removeIf(node -> node instanceof TextArea);
+    nodePane.getChildren().removeIf(node -> node instanceof Button);
     TextArea displayNode = new TextArea();
+    Button exit = new Button();
+
     NodeDAO nodeDAO = new NodeDAO();
     String floor = point.getFloor();
 
-    HashMap<Integer, String> sn = nodeDAO.getShortName(floor);
+    HashMap<Integer, String> ln = nodeDAO.getLongNames(floor);
     displayNode.setFont(Font.font(35));
-
-    displayNode.setText("Location: " + sn.get(point.getNodeID()));
+    displayNode.setText("Location: " + ln.get(point.getNodeID()));
 
     displayNode.setLayoutX(point.getXcoord());
     displayNode.setLayoutY(point.getYcoord());
@@ -454,30 +488,46 @@ public class SignagePageController {
     displayNode.toFront();
     displayNode.setEditable(false);
 
+    exit.setLayoutX(point.getXcoord() + 550);
+    exit.setPrefWidth(100);
+    exit.setPrefHeight(100);
+    exit.setFont(Font.font(25));
+    exit.setLayoutY(point.getYcoord());
+    exit.setText("Close");
+    exit.setVisible(true);
+    exit.toFront();
+
     nodePane.getChildren().add(displayNode);
+    nodePane.getChildren().add(exit);
+    exit.setOnMouseClicked(event -> remove(displayNode, exit));
   }
 
-  public HashMap<Integer, String> getHashMapL1LongName(int index) throws SQLException {
+  public void remove(TextArea displayNode, Button exit) {
+    nodePane.getChildren().remove(displayNode);
+    nodePane.getChildren().remove(exit);
+  }
+
+  public HashMap<Integer, String> getHashMapLongName(int index) throws SQLException {
 
     HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
 
     if (index == 0) {
       try {
-        longNameHashMap = dao.getL1LongNames();
+        longNameHashMap = dao.getLongNames("L1");
       } catch (SQLException e) {
         System.err.print(e.getErrorCode());
       }
     }
     if (index == 1) {
       try {
-        longNameHashMap = dao.getL2LongNames();
+        longNameHashMap = dao.getLongNames("L2");
       } catch (SQLException e) {
         System.err.print(e.getErrorCode());
       }
     }
     if (index == 2) {
       try {
-        longNameHashMap = dao.getF1LongNames();
+        longNameHashMap = dao.getLongNames("1 ");
       } catch (SQLException e) {
         System.err.print(e.getErrorCode());
       }
@@ -488,7 +538,7 @@ public class SignagePageController {
 
   public void longNameNodes(int index) throws SQLException {
     ArrayList<String> locationNames = new ArrayList<>();
-    HashMap<Integer, String> testingLongName = this.getHashMapL1LongName(index);
+    HashMap<Integer, String> testingLongName = this.getHashMapLongName(index);
 
     testingLongName.forEach(
         (i, m) -> {
@@ -508,6 +558,57 @@ public class SignagePageController {
     startLocDrop.setItems(locationList);
     endLocDrop.setItems(locationList);
   }
+
+  /*
+  public void displayShortNames(int index) throws SQLException {
+    NodeDAO nodeDAO = new NodeDAO();
+
+    String floor = "L1";
+    switch (index) {
+      case (0):
+        floor = "L1";
+        break;
+      case (1):
+        floor = "L2";
+        break;
+      case (2):
+        floor = "1 ";
+        break;
+        // it will throw an error that I will print out but this will never happen
+        // the switch statement saves me from writing
+    }
+    ;
+
+    HashMap<Integer, String> sn = nodeDAO.getShortName(floor);
+    HashMap<Integer, Node> nodes = nodeDAO.getAll();
+    ArrayList<Node> nodeList = new ArrayList<>(nodes.values());
+    ArrayList<Node> nodeFinal = new ArrayList<>(nodes.values());
+
+    for (int i = 0; i < nodeList.size(); i++) {
+      if (Objects.equals(nodeList.get(i).getFloor(), floor)) {
+        nodeFinal.add(nodeList.get(i));
+      }
+    }
+
+    for (int i = 0; i < nodeFinal.size(); i++) {
+      TextArea shortNames = new TextArea();
+      shortNames.setStyle("-fx-background-color: transparent");
+      shortNames.setFont(Font.font(35));
+      shortNames.setText(sn.get(nodeFinal.get(i).getNodeID()));
+      shortNames.setLayoutX(nodeFinal.get(i).getXcoord() - 10);
+      shortNames.setLayoutY(nodeFinal.get(i).getYcoord());
+      shortNames.setVisible(true);
+      shortNames.toFront();
+      shortNames.setEditable(false);
+      shortNames.prefWidth(100);
+      shortNames.prefHeight(100);
+      nodePane.getChildren().add(shortNames);
+    }
+
+    System.out.println(nodePane.getChildren());
+  }
+
+   */
 
   public void exit() {
     Platform.exit();
