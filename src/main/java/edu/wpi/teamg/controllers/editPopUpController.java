@@ -3,7 +3,6 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
 
 public class editPopUpController {
 
@@ -12,7 +11,6 @@ public class editPopUpController {
   @FXML MFXTextField nYcoord;
   @FXML MFXTextField nFloor;
   @FXML MFXTextField nBuilding;
-  @FXML VBox popUp;
 
   public void initialize() {
 
