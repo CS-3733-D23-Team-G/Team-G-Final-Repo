@@ -39,6 +39,12 @@
             <MFXTextField fx:id="nBuilding" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
+      <HBox alignment="CENTER" prefWidth="200.0">
+         <children>
+            <Label prefWidth="200.0" text="Long Name" />
+            <MFXTextField fx:id="ln" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
       <MFXButton fx:id="addNode" text="Add Node" />
    </children>
    <padding>

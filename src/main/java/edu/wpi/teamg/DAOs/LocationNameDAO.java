@@ -79,10 +79,11 @@ public class LocationNameDAO implements LocationDAO {
       ps.setString(2, l1.getShortName());
       ps.setString(3, l1.getNodeType());
       ps.setString(1, l1.getLongName());
-      ps.executeQuery();
+      ps.executeUpdate();
 
       Location.put(l1.getLongName(), l1);
     } catch (SQLException e) {
+      e.printStackTrace();
       System.err.println("SQL exeption");
     }
     connection.closeConnection();

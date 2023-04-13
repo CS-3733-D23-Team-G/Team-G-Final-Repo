@@ -56,11 +56,11 @@
             </TableView>
             <TableView fx:id="nodeTable" prefHeight="291.0" prefWidth="316.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                <columns>
-                  <TableColumn fx:id="nodeNodeID" prefWidth="55.0" text="NodeID" />
-                  <TableColumn fx:id="nodeXcoord" prefWidth="55.0" text="x-coord" />
-                  <TableColumn fx:id="nodeYcoord" prefWidth="60.0" text="y-coord" />
-                  <TableColumn fx:id="nodeFloor" prefWidth="50.0" text="floor" />
-                  <TableColumn fx:id="nodeBuilding" prefWidth="55.0" text="building" />
+                  <TableColumn fx:id="nodeNodeID" prefWidth="100.0" text="NodeID" />
+                  <TableColumn fx:id="nodeXcoord" prefWidth="100.0" text="x-coord" />
+                  <TableColumn fx:id="nodeYcoord" prefWidth="100.0" text="y-coord" />
+                  <TableColumn fx:id="nodeFloor" prefWidth="150.0" text="floor" />
+                  <TableColumn fx:id="nodeBuilding" prefWidth="150.0" text="building" />
                </columns>
             </TableView>
          </children>
@@ -80,13 +80,15 @@
             <Text layoutX="48.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Export" AnchorPane.leftAnchor="46.853515625" AnchorPane.rightAnchor="49.244140625" AnchorPane.topAnchor="183.0" />
             <MFXButton fx:id="cancel" layoutX="19.0" layoutY="267.0" prefHeight="25.0" prefWidth="90.0" text="Tabe Cancel" />
             <MFXButton fx:id="edit" layoutX="28.0" layoutY="238.0" prefHeight="25.0" prefWidth="71.0" text="Table Edit" />
-            <Button fx:id="disMap" layoutX="14.0" layoutY="299.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Map" />
-            <Button fx:id="l1" layoutX="15.0" layoutY="329.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="L1" />
-            <Button fx:id="l2" layoutX="15.0" layoutY="358.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="L2" />
-            <Button fx:id="floor1" layoutX="15.0" layoutY="390.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 1" />
-            <MFXButton fx:id="mapEdit" layoutX="15.0" layoutY="421.0" prefHeight="25.0" prefWidth="102.0" text="Map Edit" />
-            <MFXButton fx:id="mapCancel" layoutX="15.0" layoutY="450.0" prefHeight="25.0" prefWidth="102.0" text="Map Cancel" />
-            <MFXButton fx:id="add" layoutX="15.0" layoutY="480.0" prefHeight="25.0" prefWidth="102.0" text="Add Node" />
+            <Button fx:id="disMap" layoutX="14.0" layoutY="293.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Map" />
+            <Button fx:id="l1" layoutX="15.0" layoutY="347.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="L1" />
+            <Button fx:id="l2" layoutX="15.0" layoutY="375.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="L2" />
+            <Button fx:id="floor1" layoutX="15.0" layoutY="403.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 1" />
+            <MFXButton fx:id="mapEdit" layoutX="15.0" layoutY="492.0" prefHeight="25.0" prefWidth="102.0" text="Map Edit" />
+            <MFXButton fx:id="mapCancel" layoutX="15.0" layoutY="522.0" prefHeight="25.0" prefWidth="102.0" text="Map Cancel" />
+            <MFXButton fx:id="add" layoutX="15.0" layoutY="552.0" prefHeight="25.0" prefWidth="102.0" text="Add Node" />
+            <Button fx:id="floor3" layoutX="16.0" layoutY="461.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 3" />
+            <Button fx:id="floor2" layoutX="15.0" layoutY="432.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 2" />
          </children>
       </AnchorPane>
    </left>

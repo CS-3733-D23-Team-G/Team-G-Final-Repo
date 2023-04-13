@@ -55,7 +55,28 @@ public class EdgeDAO implements LocationDAO {
   }
 
   @Override
-  public void update(Object obj, String colName, Object value) throws SQLException {}
+  public void update(Object obj, String colName, Object value) {
+    connection.setConnection();
+    sql =
+        "update "
+            + this.getTable()
+            + " set "
+            + colName
+            + " = ? where startNode = ? AND endNode = ?";
+
+    try {
+      PreparedStatement ps = db.getConnection().prepareStatement(sql);
+      ps.setObject(1, value);
+      ps.setInt(2, ((Edge) obj).getStartNode());
+      ps.setInt(3, ((Edge) obj).getEndNode());
+      ps.executeUpdate();
+      ps.close();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      e.printStackTrace();
+    }
+    connection.closeConnection();
+  }
 
   @Override
   public void insert(Object obj) throws SQLException {

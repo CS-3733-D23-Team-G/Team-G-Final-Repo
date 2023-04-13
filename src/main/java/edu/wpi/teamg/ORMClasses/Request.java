@@ -37,7 +37,7 @@ public class Request {
     this.requestTime = deliveryTime;
   }
 
-  public Request(
+  private Request(
       int reqid,
       int empid,
       String location,
