@@ -59,6 +59,8 @@ public class SignagePageController {
   @FXML MFXButton l1;
   @FXML MFXButton l2;
   @FXML MFXButton floor1;
+  @FXML MFXButton floor2;
+  @FXML MFXButton floor3;
 
   private ArrayList<ImageView> imageViewsList = new ArrayList<>();
 
@@ -100,16 +102,25 @@ public class SignagePageController {
     Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1_pts'ed.png");
     Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2_pts'ed.png");
     Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor_pts'ed.png");
+    Image mapFloor2 = new Image("edu/wpi/teamg/Images/02_thesecondfloor.png");
+    Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
+
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
     ImageView mapViewFloor1 = new ImageView(mapFloor1);
+    ImageView mapViewFloor2 = new ImageView(mapFloor2);
+    ImageView mapViewFloor3 = new ImageView(mapFloor3);
 
     group.getChildren().add(mapView);
     group.getChildren().add(mapViewL2);
     group.getChildren().add(mapViewFloor1);
+    group.getChildren().add(mapViewFloor2);
+    group.getChildren().add(mapViewFloor3);
 
     mapViewL2.setVisible(false);
     mapViewFloor1.setVisible(false);
+    mapViewFloor2.setVisible(false);
+    mapViewFloor3.setVisible(false);
 
     mapView.toBack();
     mapView.relocate(0, 0);
@@ -119,6 +130,12 @@ public class SignagePageController {
 
     mapViewFloor1.toBack();
     mapViewFloor1.relocate(0, 0);
+
+    mapViewFloor2.toBack();
+    mapViewFloor2.relocate(0, 0);
+
+    mapViewFloor3.toBack();
+    mapViewFloor3.relocate(0, 0);
 
     nodePane.setLayoutX(0);
     nodePane.setLayoutY(0);
@@ -139,6 +156,8 @@ public class SignagePageController {
     imageViewsList.add(mapView);
     imageViewsList.add(mapViewL2);
     imageViewsList.add(mapViewFloor1);
+    imageViewsList.add(mapViewFloor2);
+    imageViewsList.add(mapViewFloor3);
 
     l1.setOnMouseClicked(
         event -> {
@@ -160,6 +179,22 @@ public class SignagePageController {
         event -> {
           try {
             goToFloor1(imageViewsList);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+    floor2.setOnMouseClicked(
+        event -> {
+          try {
+            goToFloor2(imageViewsList);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+    floor3.setOnMouseClicked(
+        event -> {
+          try {
+            goToFloor3(imageViewsList);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -244,6 +279,13 @@ public class SignagePageController {
         break;
       case "1 ":
         goToFloor1(imageViewsList);
+        break;
+      case "2 ":
+        goToFloor2(imageViewsList);
+        break;
+      case "3 ":
+        goToFloor3(imageViewsList);
+        break;
     }
     // L1nodes = (ArrayList<edu.wpi.teamg.ORMClasses.Node>) nodeMap.values();
 
@@ -378,6 +420,26 @@ public class SignagePageController {
     newNodes(2);
   }
 
+  public void goToFloor2(ArrayList<ImageView> imgs) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(3).setVisible(true);
+    longNameNodes(3);
+
+    newNodes(3);
+  }
+
+  public void goToFloor3(ArrayList<ImageView> imgs) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(4).setVisible(true);
+    longNameNodes(4);
+
+    newNodes(4);
+  }
+
   public void newNodes(int index) throws SQLException {
     NodeDAO nodeDAO = new NodeDAO();
 
@@ -404,6 +466,22 @@ public class SignagePageController {
       case 2:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
+            getNodesWFunctionality(listOfNodes, i);
+          }
+        }
+
+        break;
+      case 3:
+        for (int i = 0; i < listOfNodes.size(); i++) {
+          if (Objects.equals(listOfNodes.get(i).getFloor(), "2 ")) {
+            getNodesWFunctionality(listOfNodes, i);
+          }
+        }
+
+        break;
+      case 4:
+        for (int i = 0; i < listOfNodes.size(); i++) {
+          if (Objects.equals(listOfNodes.get(i).getFloor(), "3 ")) {
             getNodesWFunctionality(listOfNodes, i);
           }
         }
@@ -479,6 +557,20 @@ public class SignagePageController {
     if (index == 2) {
       try {
         longNameHashMap = dao.getF1LongNames();
+      } catch (SQLException e) {
+        System.err.print(e.getErrorCode());
+      }
+    }
+    if (index == 3) {
+      try {
+        longNameHashMap = dao.getLongNames("2 ");
+      } catch (SQLException e) {
+        System.err.print(e.getErrorCode());
+      }
+    }
+    if (index == 4) {
+      try {
+        longNameHashMap = dao.getLongNames("3 ");
       } catch (SQLException e) {
         System.err.print(e.getErrorCode());
       }
