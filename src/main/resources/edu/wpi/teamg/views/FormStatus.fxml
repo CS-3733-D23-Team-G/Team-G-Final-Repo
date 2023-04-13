@@ -9,9 +9,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
 <VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FormStatusController">
@@ -22,7 +24,7 @@
                <children>
                     <MFXButton fx:id="exitButton" layoutX="496.0" maxHeight="25.0" opacity="0.0" prefHeight="25.0" prefWidth="97.0" text="Exit Application" />
                     <Text disable="true" layoutX="504.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
-                  <ImageView fitHeight="46.0" fitWidth="197.0" layoutX="14.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="14.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@bwh-logo.png" />
                      </image>
@@ -31,22 +33,24 @@
             </AnchorPane>
          </children>
       </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="banner">
+      <GridPane styleClass="banner">
+        <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="pane_banner_sizing">
-               <children>
-                    <MFXButton fx:id="backToHomeButton" layoutY="5.0" opacity="0.0" prefHeight="30.0" prefWidth="184.0" styleClass="button_banner" text="Return to Home Button" />
-                    <MFXButton fx:id="signagePageButton" layoutX="422.0" opacity="0.0" prefHeight="30.0" prefWidth="184.0" styleClass="button_banner" text="Signage Page Button" />
-                    <Text disable="true" fill="WHITE" layoutX="35.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" />
-                    <Text disable="true" fill="WHITE" layoutX="474.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" />
-                    <ChoiceBox fx:id="serviceRequestChoiceBox" layoutX="177.0" layoutY="2.0" opacity="0.0" prefHeight="64.0" prefWidth="214.0" styleClass="button_banner" />
-                    <Line endX="48.0" endY="-166.0" layoutX="368.0" layoutY="176.0" startX="48.0" startY="-154.0" stroke="#345871" strokeWidth="2.0" />
-                    <Line endX="48.0" endY="-166.0" layoutX="130.0" layoutY="176.0" startX="48.0" startY="-154.0" stroke="#345871" strokeWidth="2.0" />
-                    <Text disable="true" fill="WHITE" layoutX="234.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" />
-               </children>
-            </AnchorPane>
+              <MFXButton fx:id="backToHomeButton" opacity="0.0" prefHeight="30.0" prefWidth="184.0" styleClass="button_banner" text="Return to Home Button" />
+              <MFXButton fx:id="signagePageButton" opacity="0.0" prefHeight="30.0" prefWidth="184.0" styleClass="button_banner" text="Signage Page Button" GridPane.columnIndex="2" />
+              <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" />
+              <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" GridPane.columnIndex="2" />
+              <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="64.0" prefWidth="214.0" styleClass="button_banner" GridPane.columnIndex="1" />
+              <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" GridPane.columnIndex="1" />
          </children>
-      </HBox>
+      </GridPane>
       <HBox maxHeight="-Infinity" prefHeight="260.0" styleClass="functionality_zone">
          <children>
             <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="600.0" styleClass="anchor_pane_sizing">
@@ -55,7 +59,7 @@
                     <Button fx:id="mealTableButton" layoutY="36.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Meal Requests" />
                     <Button fx:id="roomTableButton" layoutY="62.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Room Requests" />
                     <Button layoutY="141.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="WIP" />
-                    <Button layoutY="88.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="WIP" />
+                    <Button fx:id="flowerTableButton" layoutY="88.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Flower Request" />
                     <Button layoutY="116.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="WIP" />
                   <TextArea fx:id="areaInfo" layoutY="167.0" prefHeight="87.0" prefWidth="134.0" />
                   <TableView fx:id="roomTable" layoutX="140.0" layoutY="2.0" prefHeight="253.0" prefWidth="455.0">
@@ -84,15 +88,34 @@
                             <TableColumn fx:id="mealStatus" prefWidth="55.0" text="Status" />
                         <TableColumn prefWidth="75.0" text="Meal Request">
                            <columns>
-                              <TableColumn fx:id="mealDate" minWidth="0.0" prefWidth="50.0" text="date" />
-                              <TableColumn fx:id="mealTime" prefWidth="50.0" text="time" />
-                              <TableColumn fx:id="mealOrder" prefWidth="75.0" text="order" />
-                              <TableColumn fx:id="mealRecipient" prefWidth="60.0" text="recipient" />
-                              <TableColumn fx:id="mealNote" minWidth="0.0" prefWidth="100.0" text="note" />
+                              <TableColumn fx:id="mealDate" minWidth="0.0" prefWidth="50.0" text="Date" />
+                              <TableColumn fx:id="mealTime" prefWidth="50.0" text="Time" />
+                              <TableColumn fx:id="mealOrder" prefWidth="75.0" text="Order" />
+                              <TableColumn fx:id="mealRecipient" prefWidth="60.0" text="Recipient" />
+                              <TableColumn fx:id="mealNote" minWidth="0.0" prefWidth="100.0" text="Note" />
                            </columns>
                         </TableColumn>
                         </columns>
                     </TableView>
+                  <TableView fx:id="flowerTable" layoutX="139.0" layoutY="2.0" prefHeight="253.0" prefWidth="455.0">
+                     <columns>
+                        <TableColumn fx:id="flowerReqID" prefWidth="55.0" text="Req. ID" />
+                        <TableColumn fx:id="flowerEmpID" prefWidth="55.0" text="Emp. ID" />
+                        <TableColumn fx:id="flowerLocation1" prefWidth="60.0" text="Location" />
+                        <TableColumn fx:id="flowerServeBy" prefWidth="50.0" text="Serve-By" />
+                        <TableColumn fx:id="flowerStatus" prefWidth="55.0" text="Status" />
+                        <TableColumn prefWidth="75.0" text="Flowers Request">
+                           <columns>
+                              <TableColumn fx:id="flowerDate" minWidth="0.0" prefWidth="50.0" text="Date" />
+                              <TableColumn fx:id="flowerTime" prefWidth="50.0" text="Time" />
+                              <TableColumn fx:id="flowerType" prefWidth="75.0" text="Flower Type" />
+                              <TableColumn fx:id="flowerNumber" prefWidth="75.0" text="# of Flowers" />
+                              <TableColumn fx:id="flowerRecipient" prefWidth="75.0" text="Recipient" />
+                              <TableColumn fx:id="flowerNote" prefWidth="75.0" text="Note" />
+                           </columns>
+                        </TableColumn>
+                     </columns>
+                  </TableView>
                   <TableView fx:id="mainTable" layoutX="139.0" layoutY="2.0" prefHeight="253.0" prefWidth="455.0">
                      <columns>
                         <TableColumn fx:id="reqID" prefWidth="53.0" text="Req. ID" />
@@ -100,8 +123,8 @@
                         <TableColumn fx:id="empID" minWidth="0.0" prefWidth="57.0" text="Emp. ID" />
                         <TableColumn fx:id="location1" prefWidth="60.0" text="Location" />
                         <TableColumn fx:id="serveBy" prefWidth="50.0" text="Serve-By" />
-                        <TableColumn fx:id="reqDate" prefWidth="55.0" text="Req. Date" />
-                        <TableColumn fx:id="reqTime" prefWidth="56.0" text="Req. Time" />
+                        <TableColumn fx:id="reqDate" prefWidth="55.0" text="Date" />
+                        <TableColumn fx:id="reqTime" prefWidth="56.0" text="Time" />
                         <TableColumn fx:id="status" prefWidth="55.0" text="Status" />
                      </columns>
                   </TableView>

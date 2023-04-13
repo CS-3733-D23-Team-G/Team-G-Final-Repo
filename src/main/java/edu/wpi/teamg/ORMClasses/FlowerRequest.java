@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class FlowerRequest extends Request {
+  @Getter @Setter private int reqId;
   @Getter @Setter private String flowerType;
   @Getter @Setter private int numFlower;
   @Getter @Setter private String note;
@@ -24,18 +25,26 @@ public class FlowerRequest extends Request {
       String reqtype,
       int empid,
       String location,
-      int serv_by,
+      int serveBy,
       StatusTypeEnum status,
-      Date deliveryDate,
-      Time deliveryTime,
+      Date requestdate,
+      Time requesttime,
       String flowerType,
       int numFlower,
       String note,
       String recipient) {
-    super(reqtype, empid, location, serv_by, status, deliveryDate, deliveryTime);
+    super(reqtype, empid, location, serveBy, status, requestdate, requesttime);
     this.flowerType = flowerType;
     this.numFlower = numFlower;
     this.note = note;
     this.recipient = recipient;
+  }
+
+  public FlowerRequest(int reqId, String flowerType, int numFlower, String recipient, String note) {
+    this.flowerType = flowerType;
+    this.numFlower = numFlower;
+    this.note = note;
+    this.recipient = recipient;
+    this.reqId = reqId;
   }
 }

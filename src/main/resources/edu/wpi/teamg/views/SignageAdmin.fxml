@@ -86,6 +86,7 @@
             <Button fx:id="floor1" layoutX="15.0" layoutY="390.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 1" />
             <MFXButton fx:id="mapEdit" layoutX="15.0" layoutY="421.0" prefHeight="25.0" prefWidth="102.0" text="Map Edit" />
             <MFXButton fx:id="mapCancel" layoutX="15.0" layoutY="450.0" prefHeight="25.0" prefWidth="102.0" text="Map Cancel" />
+            <MFXButton fx:id="add" layoutX="15.0" layoutY="480.0" prefHeight="25.0" prefWidth="102.0" text="Add Node" />
          </children>
       </AnchorPane>
    </left>
@@ -97,7 +98,7 @@
 
                   <Text disable="true" layoutX="518.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" AnchorPane.rightAnchor="0.056640625" AnchorPane.topAnchor="14.05078125" />
                   <MFXButton fx:id="exitButton" layoutX="510.0" layoutY="9.0" opacity="0.0" prefHeight="27.0" prefWidth="97.0" text="Exit Application" AnchorPane.rightAnchor="4.263256414560601E-14" AnchorPane.topAnchor="9.0" />
-                  <ImageView fitHeight="46.0" fitWidth="191.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
                      <image>
                         <Image url="@bwh-logo.png" />
                      </image>

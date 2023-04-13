@@ -1,6 +1,7 @@
 package edu.wpi.teamg.DAOs;
 
 import edu.wpi.teamg.ORMClasses.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ public class DAORepo {
   private LocationNameDAO locationNameDao = new LocationNameDAO();
   private ConferenceRoomRequestDAO conferenceRoomRequestDao = new ConferenceRoomRequestDAO();
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
+  private FlowerRequestDAO flowerRequestDAO = new FlowerRequestDAO();
   private LoginDao loginDAO = new LoginDao();
 
   public HashMap getAllNodes() throws SQLException {
@@ -33,6 +35,10 @@ public class DAORepo {
 
   public HashMap getAllConferenceRequest() throws SQLException {
     return conferenceRoomRequestDao.getAll();
+  }
+
+  public HashMap getALLFlowerRequest() throws SQLException {
+    return flowerRequestDAO.getAll();
   }
 
   public HashMap getAllMealRequest() throws SQLException {
@@ -69,6 +75,10 @@ public class DAORepo {
 
   public void insertMealRequest(Object obj) throws SQLException {
     mealRequestDao.insert(obj);
+  }
+
+  public void insertFlowerRequest(Object obj) throws SQLException {
+    flowerRequestDAO.insert(obj);
   }
 
   public void insertLocationName(Object obj) throws SQLException {
@@ -111,6 +121,10 @@ public class DAORepo {
     loginDAO.delete(obj);
   }
 
+  public void deleteFlowerRequest(Object obj) throws SQLException {
+    flowerRequestDAO.delete(obj);
+  }
+
   public void importNodeCSV(String path) throws SQLException {
     nodeDao.importCSV(path);
   }
@@ -127,19 +141,19 @@ public class DAORepo {
     edgeDao.importCSV(path);
   }
 
-  public void exportNodeCSV() throws SQLException {
+  public void exportNodeCSV() throws SQLException, IOException {
     nodeDao.exportCSV();
   }
 
-  public void exportEdgeCSV() throws SQLException {
+  public void exportEdgeCSV() throws SQLException, IOException {
     edgeDao.exportCSV();
   }
 
-  public void exportMoveCSV() throws SQLException {
+  public void exportMoveCSV() throws SQLException, IOException {
     moveDao.exportCSV();
   }
 
-  public void exportLocationNameCSV() throws SQLException {
+  public void exportLocationNameCSV() throws SQLException, IOException {
     locationNameDao.exportCSV();
   }
 
@@ -147,8 +161,12 @@ public class DAORepo {
     return nodeDao.getCRLongName();
   }
 
-  public HashMap getMLongName() throws SQLException {
-    return nodeDao.getMLongName();
+  public HashMap getMandFLLongName() throws SQLException {
+    return nodeDao.getMandFLLongName();
+  }
+
+  public HashMap getLongNames(String floor) throws SQLException {
+    return nodeDao.getLongNames(floor);
   }
 
   public HashMap getL1LongNames() throws SQLException {
@@ -161,6 +179,10 @@ public class DAORepo {
 
   public HashMap getF1LongNames() throws SQLException {
     return nodeDao.getF1LongNames();
+  }
+
+  public HashMap getShortName(String floor) throws SQLException {
+    return nodeDao.getShortName(floor);
   }
 
   public HashMap getAllLongName() throws SQLException {

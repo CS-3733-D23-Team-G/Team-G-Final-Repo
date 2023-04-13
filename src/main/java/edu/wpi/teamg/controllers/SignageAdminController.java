@@ -1,24 +1,31 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -31,6 +38,7 @@ import javafx.stage.FileChooser;
 import javafx.util.converter.DateStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.PopOver;
 
 public class SignageAdminController {
 
@@ -99,6 +107,8 @@ public class SignageAdminController {
   @FXML MFXButton mapEdit;
   @FXML MFXButton mapCancel;
 
+  @FXML MFXButton add;
+
   private boolean editableMap = false;
 
   ObservableList<String> list =
@@ -128,6 +138,14 @@ public class SignageAdminController {
     disMap.setOnMouseClicked(event -> showAdminMap());
     mapEdit.setOnMouseClicked(event -> editMap());
     mapCancel.setOnMouseClicked(event -> cancelMap());
+    add.setOnMouseClicked(
+        event -> {
+          try {
+            addNode();
+          } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
 
     // importButton.setOnAction(event -> fileChooser());
 
@@ -144,7 +162,7 @@ public class SignageAdminController {
         event -> {
           try {
             fileExporter();
-          } catch (SQLException e) {
+          } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
           }
         });
@@ -160,12 +178,6 @@ public class SignageAdminController {
          }
        });
     */
-
-    // startLoc.getText();
-    // endLoc.getText();
-    //  String imgPath = Main.class.getResource("images/00_thelowerlevel1.png").toString();
-    //  ImageView image = new ImageView(new Image(imgPath));
-    //  pane.setContent(image);
 
     nodes.setOnMouseClicked(event -> loadNodeTable());
     edges.setOnMouseClicked(event -> loadEdgeTable());
@@ -210,9 +222,9 @@ public class SignageAdminController {
     locShortName.setCellValueFactory(new PropertyValueFactory<>("ShortName"));
     locNodeType.setCellValueFactory(new PropertyValueFactory<>("NodeType"));
 
-    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1_pts'ed.png");
-    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2_pts'ed.png");
-    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor_pts'ed.png");
+    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
+    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2.png");
+    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor.png");
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
     ImageView mapViewFloor1 = new ImageView(mapFloor1);
@@ -348,7 +360,7 @@ public class SignageAdminController {
   }
 
   @FXML
-  void fileExporter() throws SQLException {
+  void fileExporter() throws SQLException, IOException {
     switch (exportDrop.getValue()) {
       case "Nodes":
         NodeDAO nodeDAO = new NodeDAO();
@@ -452,6 +464,9 @@ public class SignageAdminController {
 
   public void cancelTable() {
     nodeTable.setEditable(false);
+    moveTable.setEditable(false);
+    locNodeType.setEditable(false);
+    edgeTable.setEditable(false);
   }
 
   public void editTable() {
@@ -490,6 +505,7 @@ public class SignageAdminController {
           nodeDAO.update(obj, "building", event.getNewValue());
         });
 
+
     // Edge Update
     EdgeDAO edgeDAO = new EdgeDAO();
     edgeTable.setEditable(true);
@@ -509,6 +525,7 @@ public class SignageAdminController {
           edgeDAO.update(obj, col, event.getNewValue());
           obj.setEndNode(event.getNewValue());
         });
+
 
     MoveDAO moveDAO = new MoveDAO();
     moveTable.setEditable(true);
@@ -544,8 +561,10 @@ public class SignageAdminController {
     locLongName.setOnEditCommit(
         event -> {
           LocationName obj = event.getRowValue();
-          obj.setLongName(event.getNewValue());
+
           locationNameDAO.update(obj, "longname", event.getNewValue());
+
+          obj.setLongName(event.getNewValue());
         });
 
     locShortName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -646,42 +665,98 @@ public class SignageAdminController {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            displayData(currentNode);
+            try {
+              displayData(currentNode);
+            } catch (IOException | SQLException e) {
+              throw new RuntimeException(e);
+            }
           }
         });
     nodePane.getChildren().add(point);
   }
 
-  public void displayData(Node point) {
+  public void displayData(Node point) throws IOException, SQLException {
 
-    nodePane.getChildren().removeIf(node -> node instanceof TextArea);
-    TextArea displayNode = new TextArea();
-    displayNode.setText(
-        "NodeID: "
-            + point.getNodeID()
-            + "\nXcoord: "
-            + point.getXcoord()
-            + "\nYcoord: "
-            + point.getYcoord()
-            + "\nFloor: "
-            + point.getFloor()
-            + "\nBuilding: "
-            + point.getBuilding());
+    //    nodePane.getChildren().removeIf(node -> node instanceof TextArea);
+    //    nodePane.getChildren().removeIf(node -> node instanceof Button);
+    //    TextArea displayNode = new TextArea();
+    //    Button exit = new Button();
+    //    Label nodeID = new Label();
+    //    Label xcoord = new Label();
+    //    Label ycoord = new Label();
+    //    Label floor = new Label();
+    //    Label building = new Label();
+    // PopOver displayNodeTest = new PopOver();
+    NodeDAO nodeDAO = new NodeDAO();
 
-    displayNode.setLayoutX(point.getXcoord());
-    displayNode.setLayoutY(point.getYcoord());
-    displayNode.setPrefWidth(150);
-    displayNode.setPrefHeight(100);
-    displayNode.setVisible(true);
-    displayNode.toFront();
+    LocationNameDAO locationNameDAO = new LocationNameDAO();
 
-    if (editableMap) {
-      displayNode.setEditable(true);
-    } else {
-      displayNode.setEditable(false);
+    HashMap<String, LocationName> LocationNames = locationNameDAO.getAll();
+    HashMap<Integer, String> sn = nodeDAO.getShortName(point.getFloor());
+    ArrayList<LocationName> locs = new ArrayList<>(LocationNames.values());
+    LocationName knownLoc = new LocationName();
+
+    for (int i = 0; i < locs.size(); i++) {
+      if (Objects.equals(sn.get(point.getNodeID()), locs.get(i).getShortName())) {
+        knownLoc = locs.get(i);
+      }
     }
 
-    nodePane.getChildren().add(displayNode);
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/editNodePopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    editPopUpController controller = loader.getController();
+    controller.setFields(point, knownLoc);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    //    displayNode.setText(
+    //        "NodeID: "
+    //            + point.getNodeID()
+    //            + "\nXcoord: "
+    //            + point.getXcoord()
+    //            + "\nYcoord: "
+    //            + point.getYcoord()
+    //            + "\nFloor: "
+    //            + point.getFloor()
+    //            + "\nBuilding: "
+    //            + point.getBuilding());
+    //
+    //    displayNode.setFont(Font.font(35));
+    //    displayNode.setLayoutX(point.getXcoord());
+    //    displayNode.setLayoutY(point.getYcoord());
+    //    displayNode.setPrefWidth(300);
+    //    displayNode.setPrefHeight(300);
+    //    displayNode.setVisible(true);
+    //    displayNode.toFront();
+    //    exit.setLayoutX(point.getXcoord() + 300);
+    //    exit.setPrefWidth(100);
+    //    exit.setPrefHeight(100);
+    //    exit.setFont(Font.font(25));
+    //    exit.setLayoutY(point.getYcoord());
+    //    exit.setText("Close");
+    //    exit.setVisible(true);
+    //    exit.toFront();
+
+    //    if (editableMap) {
+    //      displayNode.setEditable(true);
+    //    } else {
+    //      displayNode.setEditable(false);
+    //    }
+    //
+    //
+    //    nodePane.getChildren().add(displayNode);
+    //
+    //
+    //    exit.setOnMouseClicked(event -> remove(displayNode, exit));
+  }
+
+  public void remove(TextArea displayNode, Button exit) {
+    nodePane.getChildren().remove(displayNode);
+    nodePane.getChildren().remove(exit);
   }
 
   public void editMap() {
@@ -690,6 +765,18 @@ public class SignageAdminController {
 
   public void cancelMap() {
     editableMap = false;
+  }
+
+  public void addNode() throws IOException, SQLException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/InsertNode.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    InsertNodeController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void exit() {

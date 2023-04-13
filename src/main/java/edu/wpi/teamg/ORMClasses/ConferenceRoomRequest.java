@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class ConferenceRoomRequest extends Request {
+  @Getter @Setter private int reqid;
   @Getter @Setter private String purpose;
   @Getter @Setter private Time endtime;
 
@@ -22,6 +23,12 @@ public class ConferenceRoomRequest extends Request {
       Time endtime,
       String purpose) {
     super(reqtype, empid, location, serveBy, status, meetingDate, meetingTime);
+    this.endtime = endtime;
+    this.purpose = purpose;
+  }
+
+  public ConferenceRoomRequest(int reqid, Time endtime, String purpose) {
+    this.reqid = reqid;
     this.endtime = endtime;
     this.purpose = purpose;
   }

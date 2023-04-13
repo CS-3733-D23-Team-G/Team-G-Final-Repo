@@ -30,6 +30,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.SearchableComboBox;
 
@@ -125,11 +126,15 @@ public class SignagePageController {
     nodePane.setMinHeight(mapL1.getHeight());
     nodePane.setMaxWidth(mapL1.getWidth());
     nodePane.setMaxHeight(mapL1.getHeight());
+    longNameNodes(0);
 
     // Scales Map
     pane.setMinScale(.001);
-    pane.zoomTo(.000001, new Point2D(2500, 1700));
-    pane.zoomTo(.000001, new Point2D(2500, 1700));
+    pane.zoomTo(.3, new Point2D(2500, 1700));
+    pane.zoomTo(.3, new Point2D(2500, 1700));
+
+    pane.centreOnX(1000);
+    pane.centreOnY(500);
 
     imageViewsList.add(mapView);
     imageViewsList.add(mapViewL2);
@@ -419,31 +424,32 @@ public class SignagePageController {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            displayData(currentNode);
+            try {
+              displayData(currentNode);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
           }
         });
     nodePane.getChildren().add(point);
   }
 
-  public void displayData(Node point) {
+  public void displayData(Node point) throws SQLException {
 
     nodePane.getChildren().removeIf(node -> node instanceof TextArea);
     TextArea displayNode = new TextArea();
-    displayNode.setText(
-        "NodeID: "
-            + point.getNodeID()
-            + "\nXcoord: "
-            + point.getXcoord()
-            + "\nYcoord: "
-            + point.getYcoord()
-            + "\nFloor: "
-            + point.getFloor()
-            + "\nBuilding: "
-            + point.getBuilding());
+    NodeDAO nodeDAO = new NodeDAO();
+    String floor = point.getFloor();
+
+    HashMap<Integer, String> sn = nodeDAO.getLongNames(floor);
+
+    displayNode.setFont(Font.font(35));
+
+    displayNode.setText("Location: " + sn.get(point.getNodeID()));
 
     displayNode.setLayoutX(point.getXcoord());
     displayNode.setLayoutY(point.getYcoord());
-    displayNode.setPrefWidth(150);
+    displayNode.setPrefWidth(550);
     displayNode.setPrefHeight(100);
     displayNode.setVisible(true);
     displayNode.toFront();

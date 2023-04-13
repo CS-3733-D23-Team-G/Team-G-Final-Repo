@@ -12,6 +12,7 @@ public class Request {
   @Getter @Setter private int empid;
   @Getter @Setter private String location;
   @Getter @Setter private int serveBy;
+  @Getter @Setter private String serve_By;
 
   @Getter @Setter private StatusTypeEnum status;
   @Getter @Setter private Date requestDate;
@@ -34,5 +35,22 @@ public class Request {
     this.status = status;
     this.requestDate = deliveryDate;
     this.requestTime = deliveryTime;
+  }
+
+  private Request(
+      int reqid,
+      int empid,
+      String location,
+      StatusTypeEnum status,
+      String serve_By,
+      Date date,
+      Time time) {
+    this.reqid = reqid;
+    this.empid = empid;
+    this.location = location;
+    this.serve_By = serve_By;
+    this.status = status;
+    this.requestDate = date;
+    this.requestTime = time;
   }
 }
