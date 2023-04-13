@@ -28,13 +28,13 @@ public class TopBannerController {
   @FXML
   public void initialize() {
     //    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
+    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
     exitButton.setOnMouseClicked(event -> exit());
     statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.STATUS_PAGE));
 
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-    loginButton.setOnAction(event -> Navigation.navigate(Screen.LOGIN_PAGE));
+    loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOGIN_PAGE));
   }
 
   public void exit() {
