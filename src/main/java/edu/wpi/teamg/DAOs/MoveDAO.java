@@ -20,7 +20,7 @@ public class MoveDAO implements LocationMoveDao {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    sql = "select * from teamgdb.iteration1.move";
+    sql = "select * from teamgdb.iteration2.move";
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -51,7 +51,7 @@ public class MoveDAO implements LocationMoveDao {
     db.setConnection();
     PreparedStatement ps;
     sql =
-        "update teamgdb.iteration1.move set "
+        "update teamgdb.iteration2.move set "
             + colName
             + " = ? where nodeID=? AND longname=? AND Date=?";
     try {
@@ -85,7 +85,7 @@ public class MoveDAO implements LocationMoveDao {
     Move move = (Move) obj;
     db.setConnection();
 
-    sql = "INSERT INTO teamgdb.iteration1.move (nodeid, longname, date) VALUES (?,?,?);";
+    sql = "INSERT INTO teamgdb.iteration2.move (nodeid, longname, date) VALUES (?,?,?);";
 
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
@@ -107,7 +107,7 @@ public class MoveDAO implements LocationMoveDao {
     db.setConnection();
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
-    sql = "DELETE FROM teamgdb.iteration1.move WHERE nodeID = ?";
+    sql = "DELETE FROM teamgdb.iteration2.move WHERE nodeID = ?";
 
     try {
       ps.setInt(1, move.getNodeID());
@@ -132,7 +132,7 @@ public class MoveDAO implements LocationMoveDao {
     db.setConnection();
 
     Statement statement = null;
-    String sql = "select * from teamgdb.iteration1.move";
+    String sql = "select * from teamgdb.iteration2.move";
     ResultSet rs = null;
     FileWriter writer = null;
 
@@ -180,7 +180,7 @@ public class MoveDAO implements LocationMoveDao {
   @Override
   public void importCSV(String filePath) throws SQLException {
     db.setConnection();
-    sql = "insert into teamgdb.iteration1.move (nodeid, longname, date) values (?,?,?)";
+    sql = "insert into teamgdb.iteration2.move (nodeid, longname, date) values (?,?,?)";
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
     try {
       BufferedReader br = new BufferedReader(new FileReader(filePath));
