@@ -99,9 +99,12 @@ public class SignageAdminController {
 
   @FXML Button disMap;
 
+  @FXML Button gf;
   @FXML Button l1;
   @FXML Button l2;
   @FXML Button floor1;
+  @FXML Button floor2;
+  @FXML Button floor3;
 
   @FXML MFXButton mapEdit;
   @FXML MFXButton mapCancel;
@@ -224,16 +227,25 @@ public class SignageAdminController {
     Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
     Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2.png");
     Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor.png");
+    Image mapFloor2 = new Image("edu/wpi/teamg/Images/02_thesecondfloor.png");
+    Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
+
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
     ImageView mapViewFloor1 = new ImageView(mapFloor1);
+    ImageView mapViewFloor2 = new ImageView(mapFloor2);
+    ImageView mapViewFloor3 = new ImageView(mapFloor3);
 
     group.getChildren().add(mapView);
     group.getChildren().add(mapViewL2);
     group.getChildren().add(mapViewFloor1);
+    group.getChildren().add(mapViewFloor2);
+    group.getChildren().add(mapViewFloor3);
 
     mapViewL2.setVisible(false);
     mapViewFloor1.setVisible(false);
+    mapViewFloor2.setVisible(false);
+    mapViewFloor3.setVisible(false);
 
     mapView.toBack();
     mapView.relocate(0, 0);
@@ -243,6 +255,12 @@ public class SignageAdminController {
 
     mapViewFloor1.toBack();
     mapViewFloor1.relocate(0, 0);
+
+    mapViewFloor2.toBack();
+    mapViewFloor2.relocate(0, 0);
+
+    mapViewFloor3.toBack();
+    mapViewFloor3.relocate(0, 0);
 
     nodePane.setLayoutX(0);
     nodePane.setLayoutY(0);
@@ -260,6 +278,8 @@ public class SignageAdminController {
     imageViewsList.add(mapView);
     imageViewsList.add(mapViewL2);
     imageViewsList.add(mapViewFloor1);
+    imageViewsList.add(mapViewFloor2);
+    imageViewsList.add(mapViewFloor3);
 
     l1.setOnMouseClicked(
         event -> {
@@ -285,7 +305,22 @@ public class SignageAdminController {
             throw new RuntimeException(e);
           }
         });
-
+    floor2.setOnMouseClicked(
+        event -> {
+          try {
+            goToFloor2(imageViewsList);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+    floor3.setOnMouseClicked(
+        event -> {
+          try {
+            goToFloor3(imageViewsList);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
     // Scaling is currently the issue with the node map
 
     NodeDAO nodeDAO = new NodeDAO();
@@ -621,6 +656,24 @@ public class SignageAdminController {
     newNodes(2);
   }
 
+  public void goToFloor2(ArrayList<ImageView> imgs) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(3).setVisible(true);
+
+    newNodes(3);
+  }
+
+  public void goToFloor3(ArrayList<ImageView> imgs) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(4).setVisible(true);
+
+    newNodes(4);
+  }
+
   public void newNodes(int index) throws SQLException {
     NodeDAO nodeDAO = new NodeDAO();
 
@@ -647,6 +700,22 @@ public class SignageAdminController {
       case 2:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
+            getNodesWFunctionality(listOfNodes, i);
+          }
+        }
+
+        break;
+      case 3:
+        for (int i = 0; i < listOfNodes.size(); i++) {
+          if (Objects.equals(listOfNodes.get(i).getFloor(), "2 ")) {
+            getNodesWFunctionality(listOfNodes, i);
+          }
+        }
+
+        break;
+      case 4:
+        for (int i = 0; i < listOfNodes.size(); i++) {
+          if (Objects.equals(listOfNodes.get(i).getFloor(), "3 ")) {
             getNodesWFunctionality(listOfNodes, i);
           }
         }
