@@ -23,7 +23,7 @@ public class FlowerRequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
     SQL_flowerRequest =
-        "select * from iteration1.request join iteration1.flowerrequest on iteration1.request.reqid = iteration1.flowerrequest.reqid";
+        "select * from iteration2.request join iteration2.flowerrequest on iteration2.request.reqid = iteration2.flowerrequest.reqid";
     try {
       ps = db.getConnection().prepareStatement(SQL_flowerRequest);
       rs = ps.executeQuery();
@@ -84,7 +84,7 @@ public class FlowerRequestDAO implements DAO {
     PreparedStatement ps_Req;
 
     ResultSet rs = null;
-    SQL_maxID = "select reqid from teamgdb.iteration1.request order by reqid desc limit 1";
+    SQL_maxID = "select reqid from teamgdb.iteration2.request order by reqid desc limit 1";
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -100,9 +100,9 @@ public class FlowerRequestDAO implements DAO {
     }
 
     SQL_flowerRequest =
-        "insert into teamgdb.iteration1.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
+        "insert into teamgdb.iteration2.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
     SQL_Request =
-        "insert into teamgdb.iteration1.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+        "insert into teamgdb.iteration2.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
 
     try {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
