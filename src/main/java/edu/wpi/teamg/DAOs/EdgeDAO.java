@@ -15,7 +15,7 @@ public class EdgeDAO implements LocationDAO {
   private HashMap<String, Edge> edgeHash = new HashMap<String, Edge>();
 
   @Override
-  public  HashMap<String, Edge> getAll() throws SQLException {
+  public HashMap<String, Edge> getAll() throws SQLException {
     connection.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
