@@ -505,7 +505,6 @@ public class SignageAdminController {
           nodeDAO.update(obj, "building", event.getNewValue());
         });
 
-
     // Edge Update
     EdgeDAO edgeDAO = new EdgeDAO();
     edgeTable.setEditable(true);
@@ -526,17 +525,15 @@ public class SignageAdminController {
           obj.setEndNode(event.getNewValue());
         });
 
-
     MoveDAO moveDAO = new MoveDAO();
     moveTable.setEditable(true);
     moveNodeID.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
     moveNodeID.setOnEditCommit(
         event -> {
           Move obj = event.getRowValue();
-          String col= event.getTableColumn().getText();
+          String col = event.getTableColumn().getText();
           moveDAO.update(obj, col, event.getNewValue());
           obj.setNodeID(event.getNewValue());
-
         });
 
     moveDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));

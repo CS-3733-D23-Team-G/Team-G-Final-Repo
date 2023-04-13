@@ -50,28 +50,31 @@ public class MoveDAO implements LocationMoveDao {
   public void update(Object obj, String colName, Object value) {
     db.setConnection();
     PreparedStatement ps;
-    sql = "update teamgdb.iteration1.move set " + colName +
-            " = ? where nodeID=? AND longname=? AND Date=?";
-    try{
-      ps=db.getConnection().prepareStatement(sql);
-      switch (colName){/*
-        case "nodeid":
-          ps.setInt(1,((Move)obj).getNodeID());
-          break;
-        case "longname":
-          ps.setString(1,((Move)obj).getLongName());
-          break;*/
-        case"date":
-          ps.setDate(1,((Move)obj).getDate());
+    sql =
+        "update teamgdb.iteration1.move set "
+            + colName
+            + " = ? where nodeID=? AND longname=? AND Date=?";
+    try {
+      ps = db.getConnection().prepareStatement(sql);
+      switch (colName) {
+          /*
+          case "nodeid":
+            ps.setInt(1,((Move)obj).getNodeID());
+            break;
+          case "longname":
+            ps.setString(1,((Move)obj).getLongName());
+            break;*/
+        case "date":
+          ps.setDate(1, ((Move) obj).getDate());
           break;
       }
-      ps.setInt(2,((Move)obj).getNodeID());
-      ps.setString(3,((Move)obj).getLongName());
-      ps.setDate(3,((Move)obj).getDate());
+      ps.setInt(2, ((Move) obj).getNodeID());
+      ps.setString(3, ((Move) obj).getLongName());
+      ps.setDate(3, ((Move) obj).getDate());
       ps.executeUpdate();
       ps.close();
 
-    }catch(SQLException e){
+    } catch (SQLException e) {
       System.err.println("SQL exception");
     }
     db.closeConnection();
