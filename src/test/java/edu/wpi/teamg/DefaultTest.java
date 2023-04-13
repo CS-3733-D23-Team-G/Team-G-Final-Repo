@@ -166,44 +166,25 @@ public class DefaultTest {
     assertEquals(employeeHashMap, allEmployees);
   }
 
-//  @Test
-//  public void testGetAllRequest() throws SQLException {
-//    StatusTypeEnum status1 = StatusTypeEnum.valueOf("done");
-//    Request r1 =
-//        new Request(
-//            1,
-//            3,
-//            "Conference Room",
-//            status1,
-//            "Paul",
-//            new java.util.Date(2023, 02, 05),
-//            new Time(12, 0, 0));
-//
-//    requestHash.put(1, r1);
-//    requestHash.put(
-//        2,
-//        new Request(
-//            2,
-//            3,
-//            "Conference Room",
-//            "Paul",
-//            "done",
-//            new java.sql.Date(2023, 02, 05),
-//            new Time(12, 0, 0)));
-//    requestHash.put(
-//        3,
-//        new Request(
-//            3,
-//            3,
-//            "Conference Room",
-//            "Paul",
-//            "done",
-//            new java.sql.Date(2023, 02, 05),
-//            new Time(12, 0, 0)));
-//
-//    HashMap<Integer, Request> allRequest = requestDAO.getAll();
-//    assertEquals(requestHash, allRequest);
-//  }
+  @Test
+  public void testGetAllRequest() throws SQLException {
+    StatusTypeEnum status1 = StatusTypeEnum.valueOf("done");
+    Request r1 =new Request(1,3,"Conference Room", status1, "Paul", new Date(2023,2,5), new Time(12,0,0));
+
+    StatusTypeEnum status2 = StatusTypeEnum.valueOf("in progress");
+    Request r2 =new Request(2,2,"Patient Room", status2, "Mary", new Date(2023,2,5), new Time(2,0,0));
+
+    StatusTypeEnum status3 = StatusTypeEnum.valueOf("done");
+    Request r3 =new Request(3,1,"Main Office", status3, "Austin", new Date(2023,2,5), new Time(4,0,0));
+
+
+    requestHash.put(1, r1);
+    requestHash.put(2,r2);
+    requestHash.put(3,r3);
+
+    HashMap<Integer, Request> allRequest = requestDAO.getAll();
+    assertEquals(requestHash, allRequest);
+  }
 
 
 
@@ -331,7 +312,7 @@ public class DefaultTest {
 
   @Test
   public void testDeleteEmployees() throws SQLException {
-    Employee e1 =  new Employee(6, "tom", "stevens", "ts@gmail.com", "yes"));
+    Employee e1 =  new Employee(6, "tom", "stevens", "ts@gmail.com", "yes");
     employeeHashMap.put(1, new Employee(1, "john", "barry", "jb@gmail.com", "yes"));
     employeeHashMap.put(2, new Employee(2, "tom", "doe", "td@gmail.com", "no"));
     employeeHashMap.put(3, new Employee(3, "micheal", "smith", "ms@gmail.com", "yes"));
@@ -344,44 +325,29 @@ public class DefaultTest {
     assertEquals(employeeHashMap, employeeDAO);
   }
 
-//  @Test
-//  public void testGetAllRequest() throws SQLException {
-//    StatusTypeEnum status1 = StatusTypeEnum.valueOf("done");
-//    Request r1 =
-//        new Request(
-//            1,
-//            3,
-//            "Conference Room",
-//            status1,
-//            "Paul",
-//            new java.util.Date(2023, 02, 05),
-//            new Time(12, 0, 0));
-//
-//    requestHash.put(1, r1);
-//    requestHash.put(
-//        2,
-//        new Request(
-//            2,
-//            3,
-//            "Conference Room",
-//            "Paul",
-//            "done",
-//            new java.sql.Date(2023, 02, 05),
-//            new Time(12, 0, 0)));
-//    requestHash.put(
-//        3,
-//        new Request(
-//            3,
-//            3,
-//            "Conference Room",
-//            "Paul",
-//            "done",
-//            new java.sql.Date(2023, 02, 05),
-//            new Time(12, 0, 0)));
-//
-//    HashMap<Integer, Request> allRequest = requestDAO.getAll();
-//    assertEquals(requestHash, allRequest);
-//  }
+  @Test
+  public void testDeleteRequest() throws SQLException {
+    StatusTypeEnum status1 = StatusTypeEnum.valueOf("done");
+    Request r1 =new Request(1,3,"Conference Room", status1, "Paul", new Date(2023,2,5), new Time(12,0,0));
+
+    StatusTypeEnum status2 = StatusTypeEnum.valueOf("in progress");
+    Request r2 =new Request(2,2,"Patient Room", status2, "Mary", new Date(2023,2,5), new Time(2,0,0));
+
+    StatusTypeEnum status3 = StatusTypeEnum.valueOf("done");
+    Request r3 =new Request(3,1,"Main Office", status3, "Austin", new Date(2023,2,5), new Time(4,0,0));
+
+
+    StatusTypeEnum status4 = StatusTypeEnum.valueOf("in progress");
+    Request r4 =new Request(4,10,"Conference Room", status4, "Mo", new Date(2023,2,5), new Time(4,0,0));
+
+    requestHash.put(1, r1);
+    requestHash.put(2,r2);
+    requestHash.put(3,r3);
+    requestHash.put(4,r4);
+
+    requestDAO.delete(r4);
+    assertEquals(requestHash, requestDAO);
+  }
 
   @Test
   public void testDeleteLocationNames() throws SQLException {
@@ -528,7 +494,7 @@ public class DefaultTest {
 
   @Test
   public void testInsertEmployees() throws SQLException {
-    Employee e1 =  new Employee(6, "tom", "stevens", "ts@gmail.com", "yes"));
+    Employee e1 =  new Employee(6, "tom", "stevens", "ts@gmail.com", "yes");
     employeeHashMap.put(1, new Employee(1, "john", "barry", "jb@gmail.com", "yes"));
     employeeHashMap.put(2, new Employee(2, "tom", "doe", "td@gmail.com", "no"));
     employeeHashMap.put(3, new Employee(3, "micheal", "smith", "ms@gmail.com", "yes"));
@@ -540,44 +506,29 @@ public class DefaultTest {
     assertEquals(employeeHashMap, employeeDAO);
   }
 
-//  @Test
-//  public void testGetAllRequest() throws SQLException {
-//    StatusTypeEnum status1 = StatusTypeEnum.valueOf("done");
-//    Request r1 =
-//        new Request(
-//            1,
-//            3,
-//            "Conference Room",
-//            status1,
-//            "Paul",
-//            new java.util.Date(2023, 02, 05),
-//            new Time(12, 0, 0));
-//
-//    requestHash.put(1, r1);
-//    requestHash.put(
-//        2,
-//        new Request(
-//            2,
-//            3,
-//            "Conference Room",
-//            "Paul",
-//            "done",
-//            new java.sql.Date(2023, 02, 05),
-//            new Time(12, 0, 0)));
-//    requestHash.put(
-//        3,
-//        new Request(
-//            3,
-//            3,
-//            "Conference Room",
-//            "Paul",
-//            "done",
-//            new java.sql.Date(2023, 02, 05),
-//            new Time(12, 0, 0)));
-//
-//    HashMap<Integer, Request> allRequest = requestDAO.getAll();
-//    assertEquals(requestHash, allRequest);
-//  }
+  @Test
+  public void testInsertRequest() throws SQLException {
+    StatusTypeEnum status1 = StatusTypeEnum.valueOf("done");
+    Request r1 =new Request(1,3,"Conference Room", status1, "Paul", new Date(2023,2,5), new Time(12,0,0));
+
+    StatusTypeEnum status2 = StatusTypeEnum.valueOf("in progress");
+    Request r2 =new Request(2,2,"Patient Room", status2, "Mary", new Date(2023,2,5), new Time(2,0,0));
+
+    StatusTypeEnum status3 = StatusTypeEnum.valueOf("done");
+    Request r3 =new Request(3,1,"Main Office", status3, "Austin", new Date(2023,2,5), new Time(4,0,0));
+
+
+    StatusTypeEnum status4 = StatusTypeEnum.valueOf("in progress");
+    Request r4 =new Request(4,10,"Conference Room", status4, "Mo", new Date(2023,2,5), new Time(4,0,0));
+
+    requestHash.put(1, r1);
+    requestHash.put(2,r2);
+    requestHash.put(3,r3);
+    requestHash.put(4,r4);
+
+    requestDAO.insert(r4);
+    assertEquals(requestHash, requestDAO);
+  }
 
   @Test
   public void testInsertLocationNames() throws SQLException {
@@ -607,4 +558,6 @@ public class DefaultTest {
     nameDAO.insert(loc6);
     assertEquals(locationNameHashMap, nameDAO);
   }
+
+  
 }
