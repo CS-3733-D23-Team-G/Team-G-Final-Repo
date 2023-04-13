@@ -559,5 +559,5 @@ public class DefaultTest {
     assertEquals(locationNameHashMap, nameDAO);
   }
 
-  
+
 }
