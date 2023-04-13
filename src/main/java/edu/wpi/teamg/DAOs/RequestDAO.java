@@ -21,7 +21,7 @@ public class RequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    sql = "select * from teamgdb.iteration1.request";
+    sql = "select * from " + this.getTable();
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -71,6 +71,6 @@ public class RequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration1.request";
+    return "teamgdb.iteration2.request";
   }
 }
