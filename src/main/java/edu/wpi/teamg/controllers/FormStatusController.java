@@ -1,12 +1,7 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.DAOs.ConferenceRoomRequestDAO;
-import edu.wpi.teamg.DAOs.MealRequestDAO;
-import edu.wpi.teamg.DAOs.RequestDAO;
-import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
-import edu.wpi.teamg.ORMClasses.MealRequest;
-import edu.wpi.teamg.ORMClasses.Request;
-import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import edu.wpi.teamg.DAOs.DAORepo;
+import edu.wpi.teamg.ORMClasses.*;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -37,23 +32,17 @@ public class FormStatusController {
   @FXML TableView<Request> mainTable;
   @FXML TableView<MealRequest> mealTable;
   @FXML TableView<ConferenceRoomRequest> roomTable;
+  @FXML TableView<FlowerRequest> flowerTable;
 
   // Main Table
   @FXML TableColumn<Request, Integer> empID;
+  @FXML TableColumn<Request, String> reqType;
   @FXML TableColumn<Request, Integer> location1;
   @FXML TableColumn<Request, Integer> reqID;
   @FXML TableColumn<Request, Integer> serveBy;
   @FXML TableColumn<Request, StatusTypeEnum> status;
-
-  //  @FXML TableColumn<Request, String> recipient;
-  //  @FXML TableColumn<Request, String> order;
-  //  @FXML TableColumn<Request, String> note;
-  //  @FXML TableColumn<Request, Date> date;
-  //  @FXML TableColumn<Request, Time> time;
-  //
-  //  @FXML TableColumn<Request, Date> mainRoomDate;
-  //  @FXML TableColumn<Request, Time> mainRoomTime;
-  //  @FXML TableColumn<Request, String> mainRoomPurpose;
+  @FXML TableColumn<Request, Date> reqDate;
+  @FXML TableColumn<Request, Time> reqTime;
 
   // Meal Table
   @FXML TableColumn<MealRequest, Integer> mealEmpID;
@@ -69,17 +58,33 @@ public class FormStatusController {
 
   // room Table
   @FXML TableColumn<ConferenceRoomRequest, Integer> roomEmpID;
-  @FXML TableColumn<ConferenceRoomRequest, Integer> roomLocation1;
+  @FXML TableColumn<ConferenceRoomRequest, String> roomLocation1;
   @FXML TableColumn<ConferenceRoomRequest, Integer> roomReqID;
   @FXML TableColumn<ConferenceRoomRequest, Integer> roomServeBy;
   @FXML TableColumn<ConferenceRoomRequest, StatusTypeEnum> roomStatus;
   @FXML TableColumn<ConferenceRoomRequest, Date> roomDate;
   @FXML TableColumn<ConferenceRoomRequest, Time> roomTime;
+  @FXML TableColumn<ConferenceRoomRequest, Time> endTime;
   @FXML TableColumn<ConferenceRoomRequest, String> roomPurpose;
+
+  // flower Table
+  @FXML TableColumn<FlowerRequest, Integer> flowerEmpID;
+  @FXML TableColumn<FlowerRequest, String> flowerLocation1;
+  @FXML TableColumn<FlowerRequest, Integer> flowerReqID;
+  @FXML TableColumn<FlowerRequest, Integer> flowerServeBy;
+  @FXML TableColumn<FlowerRequest, StatusTypeEnum> flowerStatus;
+  @FXML TableColumn<FlowerRequest, String> flowerType;
+  @FXML TableColumn<FlowerRequest, Integer> flowerNumber;
+  @FXML TableColumn<FlowerRequest, String> flowerRecipient;
+  @FXML TableColumn<FlowerRequest, String> flowerNote;
+
+  @FXML TableColumn<ConferenceRoomRequest, Date> flowerDate;
+  @FXML TableColumn<ConferenceRoomRequest, Time> flowerTime;
 
   @FXML Button allRequestTableButton;
   @FXML Button mealTableButton;
   @FXML Button roomTableButton;
+  @FXML Button flowerTableButton;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -92,10 +97,8 @@ public class FormStatusController {
   ObservableList<Request> testList;
   ObservableList<MealRequest> testMealList;
   ObservableList<ConferenceRoomRequest> testRoomList;
-
-  MealRequestDAO mealRequests = new MealRequestDAO();
-  ConferenceRoomRequestDAO conferenceRoom = new ConferenceRoomRequestDAO();
-  RequestDAO requests = new RequestDAO();
+  ObservableList<FlowerRequest> testFlowerList;
+  DAORepo dao = new DAORepo();
 
   @FXML
   public void initialize() throws SQLException {
@@ -108,6 +111,7 @@ public class FormStatusController {
     allRequestTableButton.setOnMouseClicked(event -> loadAllRequestTable());
     mealTableButton.setOnMouseClicked(event -> loadMealTable());
     roomTableButton.setOnMouseClicked(event -> loadRoomTable());
+    flowerTableButton.setOnMouseClicked(event -> loadFlowerTable());
 
     ArrayList<Request> request1 = new ArrayList<>();
 
@@ -146,86 +150,68 @@ public class FormStatusController {
           //              System.out.println("Meeting time: " + m.getMeeting_time());
           //              System.out.println("Purpose: " + m.getPurpose());
         });
-
-    //    MealRequest testItem1 = new MealRequest();
-    //    testItem1.setEmpid(2);
-    //    testItem1.setReqid(1);
-    //    testItem1.setLocation(3);
-    //    testItem1.setServ_by(2);
-
-    //    testItem1.setStatus("Status");
-
-    //    testItem1.setRecipient("Andrew");
-    //    testItem1.setOrder("Food");
-    //    testItem1.setNote("Please Let This Work");
-    //    testItem1.setDeliveryDate(new Date(3, 2, 1));
-    //    testItem1.setDeliveryTime(new Time(1, 2, 3));
-    //
-
-    //    MealRequest testItem2 = new MealRequest();
-    //    testItem2.setEmpid(2);
-    //    testItem2.setReqid(1);
-    //    testItem2.setLocation(3);
-    //    testItem2.setServ_by(2);
-    //    testItem2.setStatus("Status");
-    //    testItem2.setRecipient("Andrew");
-    //    testItem2.setOrder("Food");
-    //    testItem2.setNote("Please Let This Work");
-
-    //
-    //    testItem2.setDeliveryDate(new Date(3, 2, 1));
-    //    testItem2.setDeliveryTime(new Time(1, 2, 3));
-    //
-    //    ConferenceRoomRequest testItem3 = new ConferenceRoomRequest();
-    //    testItem3.setEmpid(2);
-    //    testItem3.setReqid(1);
-    //    testItem3.setLocation(3);
-    //    testItem3.setServ_by(2);
-    //    testItem3.setStatus("Status");
-    //    testItem3.setMeeting_date(new Date(3, 2, 1));
-    //    testItem3.setMeeting_time(new Time(1, 2, 3));
-    //    testItem3.setPurpose("To Work Please");
+    ArrayList<FlowerRequest> flowerDel = new ArrayList<>();
+    HashMap<Integer, FlowerRequest> testingFlower = this.getHashMapFlowerRequest();
+    testingFlower.forEach(
+        (i, m) -> {
+          flowerDel.add(m);
+          System.out.println("Reqid: " + m.getReqid());
+          //              System.out.println("Meeting Date: " + m.getMeeting_date());
+          //              System.out.println("Meeting time: " + m.getMeeting_time());
+          //              System.out.println("Purpose: " + m.getPurpose());
+        });
 
     testList = FXCollections.observableArrayList(request1);
     testMealList = FXCollections.observableArrayList(mealRequests1);
     testRoomList = FXCollections.observableArrayList(confroom);
+    testFlowerList = FXCollections.observableArrayList(flowerDel);
+
     mainTable.setItems(testList);
     mealTable.setItems(testMealList);
     roomTable.setItems(testRoomList);
+    flowerTable.setItems(testFlowerList);
 
     reqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+    reqType.setCellValueFactory(new PropertyValueFactory<>("reqtype"));
     empID.setCellValueFactory(new PropertyValueFactory<>("empid"));
     location1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    serveBy.setCellValueFactory(new PropertyValueFactory<>("serv_by"));
+    serveBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
     status.setCellValueFactory(new PropertyValueFactory<>("status"));
-    //    recipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
-    //    order.setCellValueFactory(new PropertyValueFactory<>("order"));
-    //    note.setCellValueFactory(new PropertyValueFactory<>("note"));
-    //    date.setCellValueFactory(new PropertyValueFactory<>("deliveryDate"));
-    //    time.setCellValueFactory(new PropertyValueFactory<>("deliveryTime"));
-    //    mainRoomDate.setCellValueFactory(new PropertyValueFactory<>("meeting_date"));
-    //    mainRoomTime.setCellValueFactory(new PropertyValueFactory<>("meeting_time"));
-    //    mainRoomPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
+    reqDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+    reqTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
 
     mealReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
     mealEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
     mealLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    mealServeBy.setCellValueFactory(new PropertyValueFactory<>("serv_by"));
+    mealServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
     mealStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
     mealRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
     mealOrder.setCellValueFactory(new PropertyValueFactory<>("order"));
     mealNote.setCellValueFactory(new PropertyValueFactory<>("note"));
-    mealDate.setCellValueFactory(new PropertyValueFactory<>("deliveryDate"));
-    mealTime.setCellValueFactory(new PropertyValueFactory<>("deliveryTime"));
+    mealDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+    mealTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
 
     roomReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
     roomEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
     roomLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    roomServeBy.setCellValueFactory(new PropertyValueFactory<>("serv_by"));
+    roomServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
     roomStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-    roomDate.setCellValueFactory(new PropertyValueFactory<>("meeting_date"));
-    roomTime.setCellValueFactory(new PropertyValueFactory<>("meeting_time"));
+    roomDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+    roomTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+    endTime.setCellValueFactory(new PropertyValueFactory<>("endtime"));
     roomPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
+
+    flowerReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+    flowerEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+    flowerLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+    flowerServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+    flowerStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+    flowerType.setCellValueFactory(new PropertyValueFactory<>("flowerType"));
+    flowerNumber.setCellValueFactory(new PropertyValueFactory<>("numFlower"));
+    flowerDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+    flowerTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+    flowerRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+    flowerNote.setCellValueFactory(new PropertyValueFactory<>("note"));
   }
 
   public void loadServiceRequestForm() {
@@ -249,7 +235,7 @@ public class FormStatusController {
     HashMap<Integer, Request> requestHashMap = new HashMap<Integer, Request>();
 
     try {
-      requestHashMap = requests.getAll();
+      requestHashMap = dao.getAllRequest();
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }
@@ -259,10 +245,10 @@ public class FormStatusController {
 
   public HashMap getHashMapMeal() throws SQLException {
 
-    HashMap<Integer, MealRequest> mealRequestHashMap = new HashMap<Integer, MealRequest>();
+    HashMap mealRequestHashMap = new HashMap<Integer, MealRequest>();
 
     try {
-      mealRequestHashMap = mealRequests.getAll();
+      mealRequestHashMap = dao.getAllMealRequest();
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }
@@ -276,7 +262,7 @@ public class FormStatusController {
         new HashMap<Integer, ConferenceRoomRequest>();
 
     try {
-      confRoomHash = conferenceRoom.getAll();
+      confRoomHash = dao.getAllConferenceRequest();
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }
@@ -284,22 +270,45 @@ public class FormStatusController {
     return confRoomHash;
   }
 
+  public HashMap getHashMapFlowerRequest() throws SQLException {
+
+    HashMap<Integer, FlowerRequest> flowerHashMap = new HashMap<Integer, FlowerRequest>();
+
+    try {
+      flowerHashMap = dao.getALLFlowerRequest();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return flowerHashMap;
+  }
+
   public void loadAllRequestTable() {
     mainTable.setVisible(true);
     mealTable.setVisible(false);
     roomTable.setVisible(false);
+    flowerTable.setVisible(false);
   }
 
   public void loadMealTable() {
     mealTable.setVisible(true);
     mainTable.setVisible(false);
     roomTable.setVisible(false);
+    flowerTable.setVisible(false);
   }
 
   public void loadRoomTable() {
     roomTable.setVisible(true);
     mainTable.setVisible(false);
     mealTable.setVisible(false);
+    flowerTable.setVisible(false);
+  }
+
+  public void loadFlowerTable() {
+    flowerTable.setVisible(true);
+    mainTable.setVisible(false);
+    mealTable.setVisible(false);
+    roomTable.setVisible(false);
   }
 
   public void exit() {

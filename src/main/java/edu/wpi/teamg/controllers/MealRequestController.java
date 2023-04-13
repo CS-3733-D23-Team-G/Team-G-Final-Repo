@@ -1,6 +1,6 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.DAOs.MealRequestDAO;
+import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
@@ -11,11 +11,16 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import org.controlsfx.control.SearchableComboBox;
 
 public class MealRequestController {
   @FXML MFXButton mealSubmitButton;
@@ -28,11 +33,17 @@ public class MealRequestController {
 
   // TextFields
   @FXML MFXTextField mealTimeOfDeliver;
-  @FXML MFXTextField mealDeliveryLocationData;
+  // @FXML MFXTextField mealDeliveryLocationData;
   @FXML MFXTextField mealPersonOrderingForData;
   @FXML MFXTextField mealNotesData;
   @FXML ChoiceBox<String> mealFoodChoice;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
+
+  // Hung This is the name and list associated with test searchable list
+  @FXML SearchableComboBox locationSearchDropdown;
+  @FXML Label checkFields;
+
+  ObservableList<String> locationList;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -56,8 +67,10 @@ public class MealRequestController {
           "One Singular Oyster",
           "CC Buritto Bowl (w/ Siracha)");
 
+  DAORepo dao = new DAORepo();
+
   @FXML
-  public void initialize() {
+  public void initialize() throws SQLException {
     mealSubmitButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT));
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
     backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
@@ -67,16 +80,11 @@ public class MealRequestController {
 
     mealSubmitButton.setOnMouseClicked(
         event -> {
-          try {
-            storeMealValues();
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-          Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT);
+          allDataFilled();
         });
 
     //  mealNameData.getText();
-    mealDeliveryLocationData.getText();
+    // mealDeliveryLocationData.getText();
     mealPersonOrderingForData.getText();
     mealNotesData.getText();
 
@@ -86,6 +94,28 @@ public class MealRequestController {
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     mealDate.getValue();
     mealTimeOfDeliver.getText();
+
+    ArrayList<String> locationNames = new ArrayList<>();
+    HashMap<Integer, String> testingLongName = this.getHashMapMLongName();
+
+    testingLongName.forEach(
+        (i, m) -> {
+          locationNames.add(m);
+          //          System.out.println("Request ID:" + m.getReqid());
+          //          System.out.println("Employee ID:" + m.getEmpid());
+          //          System.out.println("Status:" + m.getStatus());
+          //          System.out.println("Location:" + m.getLocation());
+          //          System.out.println("Serve By:" + m.getServ_by());
+          //          System.out.println();
+        });
+
+    Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
+
+    locationList = FXCollections.observableArrayList(locationNames);
+
+    // Hung this is where it sets the list - Andrew
+    locationSearchDropdown.setItems(locationList);
+    checkFields.getText();
   }
 
   public void exit() {
@@ -93,39 +123,64 @@ public class MealRequestController {
   }
 
   public void storeMealValues() throws SQLException {
-    MealRequest mr = new MealRequest();
+    MealRequest mr =
+        new MealRequest(
+            "M",
+            1,
+            // assume for now they are going to input a node number, so parseInt
+            (String) locationSearchDropdown.getValue(),
+            1,
+            StatusTypeEnum.blank,
+            Date.valueOf(mealDate.getValue()),
+            StringToTime(mealTimeOfDeliver.getText()),
+            mealPersonOrderingForData.getText(),
+            mealFoodChoice.getValue(),
+            mealNotesData.getText());
 
-    mr.setEmpid(1);
-    mr.setServ_by(1);
-    mr.setStatus(StatusTypeEnum.blank);
-    // assume for now they are going to input a node number, so parseInt
-    mr.setLocation(Integer.parseInt(mealDeliveryLocationData.getText()));
-    mr.setRecipient(mealPersonOrderingForData.getText());
-    mr.setNote(mealNotesData.getText());
-    mr.setDeliveryDate(Date.valueOf(mealDate.getValue()));
-    mr.setDeliveryTime(StringToTime(mealTimeOfDeliver.getText()));
-    mr.setOrder(mealFoodChoice.getValue());
+    //    mr.setEmpid(1);
+    //    mr.setServ_by(1);
+    //    mr.setStatus(StatusTypeEnum.blank);
+    //
+    //    mr.setLocation(Integer.parseInt(mealDeliveryLocationData.getText()));
+    //    mr.setRecipient(mealPersonOrderingForData.getText());
+    //    mr.setNote(mealNotesData.getText());
+    //    mr.setDeliveryDate(Date.valueOf(mealDate.getValue()));
+    //    mr.setDeliveryTime(StringToTime(mealTimeOfDeliver.getText()));
+    //    mr.setOrder(mealFoodChoice.getValue());
 
-    System.out.println(
-        "Employee ID: "
-            + mr.getEmpid()
-            + "\nDelivery Location: "
-            + mr.getLocation()
-            + "\nOrder: "
-            + mr.getOrder()
-            + "\nNote: "
-            + mr.getNote()
-            + "\nRecipient: "
-            + mr.getRecipient()
-            + "\nDelivery Date: "
-            + mr.getDeliveryDate()
-            + "\nDelivery Time: "
-            + mr.getDeliveryTime()
-            + "\nStatus: "
-            + mr.getStatus());
+    //    System.out.println(
+    //        "Employee ID: "
+    //            + mr.getEmpid()
+    //            + "\nDelivery Location: "
+    //            + mr.getLocation()
+    //            + "\nOrder: "
+    //            + mr.getOrder()
+    //            + "\nNote: "
+    //            + mr.getNote()
+    //            + "\nRecipient: "
+    //            + mr.getRecipient()
+    //            + "\nDelivery Date: "
+    //            + mr.getDeliveryDate()
+    //            + "\nDelivery Time: "
+    //            + mr.getDeliveryTime()
+    //            + "\nStatus: "
+    //            + mr.getStatus());
 
-    MealRequestDAO mealRequestDAO = new MealRequestDAO();
-    mealRequestDAO.insert(mr);
+    DAORepo dao = new DAORepo();
+    dao.insertMealRequest(mr);
+  }
+
+  public HashMap<Integer, String> getHashMapMLongName() throws SQLException {
+
+    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getMandFLLongName();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return longNameHashMap;
   }
 
   public Time StringToTime(String s) {
@@ -135,13 +190,32 @@ public class MealRequestController {
     return t;
   }
 
+  public void allDataFilled() {
+    if (!(mealPersonOrderingForData.getText().equals("")
+        || mealNotesData.getText().equals("")
+        || mealDate.getText().equals("")
+        || mealTimeOfDeliver.getText().equals("")
+        || mealFoodChoice.getValue() == null
+        || locationSearchDropdown.getValue() == null)) {
+      try {
+        storeMealValues();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+      Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT);
+    } else {
+      checkFields.setText("Not All Fields Are Filled");
+    }
+  }
+
   public void clearAllData() {
-    mealDeliveryLocationData.setText("");
+    // mealDeliveryLocationData.setText("");
     mealPersonOrderingForData.setText("");
     mealNotesData.setText("");
     mealDate.setText("");
     mealTimeOfDeliver.setText("");
-    mealFoodChoice.setValue("");
+    mealFoodChoice.setValue(null);
+    locationSearchDropdown.setValue(null);
     return;
   }
 

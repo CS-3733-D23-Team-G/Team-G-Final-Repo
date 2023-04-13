@@ -45,3 +45,6 @@
     -fx-max-height: 30;
     -fx-opacity: 0;
 }
+.linear-grad{
+    -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
+}

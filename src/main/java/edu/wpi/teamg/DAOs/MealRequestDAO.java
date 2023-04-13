@@ -15,6 +15,8 @@ public class MealRequestDAO implements DAO {
 
   private HashMap<Integer, MealRequest> mealRequestHash = new HashMap<Integer, MealRequest>();
 
+  NodeDAO nodeDAO = new NodeDAO();
+
   @Override
   public HashMap<Integer, MealRequest> getAll() throws SQLException {
 
@@ -24,7 +26,7 @@ public class MealRequestDAO implements DAO {
     ResultSet rs = null;
 
     SQL_mealRequest =
-        "select * from proto2.request join proto2.mealrequest on proto2.request.reqid = proto2.mealrequest.reqid";
+        "select * from teamgdb.iteration1.request join teamgdb.iteration1.mealrequest on teamgdb.iteration1.request.reqid = teamgdb.iteration1.mealrequest.reqid";
 
     try {
       ps = db.getConnection().prepareStatement(SQL_mealRequest);
@@ -36,38 +38,39 @@ public class MealRequestDAO implements DAO {
     }
 
     while (rs.next()) {
-      MealRequest mealReq = new MealRequest();
 
       int reqID = rs.getInt("reqID");
-      mealReq.setReqid(reqID);
-
       int empID = rs.getInt("empID");
-      mealReq.setEmpid(empID);
 
       int location = rs.getInt("location");
-      mealReq.setLocation(location);
 
-      int serv_by = rs.getInt("serv_by");
-      mealReq.setServ_by(serv_by);
+      HashMap longNameHash = new HashMap<>();
 
+      longNameHash = NodeDAO.getMandFLLongName();
+
+      String longName = (String) longNameHash.get(location);
+
+      int serveBy = rs.getInt("serveBy");
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
-
-      mealReq.setStatus(status);
-
       String recipient = rs.getString("recipient");
-      mealReq.setRecipient(recipient);
-
-      Date deliveryDate = rs.getDate("deliveryDate");
-      mealReq.setDeliveryDate(deliveryDate);
-
-      Time deliveryTime = rs.getTime("deliveryTime");
-      mealReq.setDeliveryTime(deliveryTime);
-
+      Date requestdate = rs.getDate("requestdate");
+      Time requesttime = rs.getTime("requesttime");
       String order = rs.getString("mealOrder");
-      mealReq.setOrder(order);
-
       String note = rs.getString("note");
-      mealReq.setNote(note); // check when merge
+      MealRequest mealReq =
+          new MealRequest(
+              "M",
+              empID,
+              longName,
+              serveBy,
+              status,
+              requestdate,
+              requesttime,
+              recipient,
+              order,
+              note);
+
+      mealReq.setReqid(reqID);
 
       mealRequestHash.put(reqID, mealReq);
     }
@@ -78,7 +81,7 @@ public class MealRequestDAO implements DAO {
   }
 
   @Override
-  public void update(Object obj, Object update) throws SQLException {}
+  public void update(Object obj, String colName, Object value) throws SQLException {}
 
   @Override
   public void insert(Object obj) throws SQLException {
@@ -90,7 +93,7 @@ public class MealRequestDAO implements DAO {
 
     ResultSet rs = null;
 
-    SQL_maxID = "select reqID from proto2.request order by reqid desc limit 1";
+    SQL_maxID = "select reqID from teamgdb.iteration1.request order by reqid desc limit 1";
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -109,27 +112,32 @@ public class MealRequestDAO implements DAO {
     }
 
     SQL_mealRequest =
-        "insert into proto2.mealrequest(reqid, deliverydate, deliverytime, recipient, mealOrder, note) values (?, ?, ?, ?, ?, ?)";
+        "insert into iteration1.mealrequest(reqid, recipient, mealOrder, note) values (?, ?, ?, ?)";
     SQL_Request =
-        "insert into proto2.request(reqid, empid, location, serv_by, status) values (?, ?, ?, ?, ?)";
+        "insert into teamgdb.iteration1.request(reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
 
     try {
 
       ps_Request = db.getConnection().prepareStatement(SQL_Request);
       ps_Request.setInt(1, maxID);
-      ps_Request.setInt(2, ((MealRequest) obj).getEmpid());
-      ps_Request.setInt(3, ((MealRequest) obj).getLocation());
-      ps_Request.setInt(4, ((MealRequest) obj).getServ_by());
-      ps_Request.setObject(5, ((MealRequest) obj).getStatus(), java.sql.Types.OTHER);
+      ps_Request.setString(2, "M");
+      ps_Request.setInt(3, ((MealRequest) obj).getEmpid());
+
+      int nodeID = nodeDAO.getNodeIDbyLongName(((MealRequest) obj).getLocation());
+
+      ps_Request.setInt(4, nodeID);
+
+      ps_Request.setInt(5, ((MealRequest) obj).getServeBy());
+      ps_Request.setObject(6, ((MealRequest) obj).getStatus(), java.sql.Types.OTHER);
+      ps_Request.setDate(7, ((MealRequest) obj).getRequestDate());
+      ps_Request.setTime(8, ((MealRequest) obj).getRequestTime());
       ps_Request.executeUpdate();
 
       ps_mealRequest = db.getConnection().prepareStatement(SQL_mealRequest);
       ps_mealRequest.setInt(1, maxID);
-      ps_mealRequest.setDate(2, ((MealRequest) obj).getDeliveryDate());
-      ps_mealRequest.setTime(3, ((MealRequest) obj).getDeliveryTime());
-      ps_mealRequest.setString(4, ((MealRequest) obj).getRecipient());
-      ps_mealRequest.setString(5, ((MealRequest) obj).getOrder());
-      ps_mealRequest.setString(6, ((MealRequest) obj).getNote());
+      ps_mealRequest.setString(2, ((MealRequest) obj).getRecipient());
+      ps_mealRequest.setString(3, ((MealRequest) obj).getOrder());
+      ps_mealRequest.setString(4, ((MealRequest) obj).getNote());
       ps_mealRequest.executeUpdate();
 
     } catch (SQLException e) {
@@ -150,8 +158,8 @@ public class MealRequestDAO implements DAO {
     PreparedStatement ps_mealrequest;
     PreparedStatement ps_request;
 
-    String SQL_mealrequest = "delete from proto2.mealrequest where reqId = ?";
-    String SQL_request = "delete from proto2.request where reqId = ?";
+    String SQL_mealrequest = "delete from teamgdb.iteration1.mealrequest where reqId = ?";
+    String SQL_request = "delete from teamgdb.iteration1.request where reqId = ?";
 
     try {
       ps_mealrequest = db.getConnection().prepareStatement(SQL_mealrequest);
@@ -171,5 +179,10 @@ public class MealRequestDAO implements DAO {
     }
 
     db.closeConnection();
+  }
+
+  @Override
+  public String getTable() {
+    return "teamgdb.iteration1.mealrequest";
   }
 }
