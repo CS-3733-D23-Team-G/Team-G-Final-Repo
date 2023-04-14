@@ -6,14 +6,12 @@ import java.io.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class EdgeDAO implements LocationDAO {
   static DBConnection connection = new DBConnection();
-  private String sql;
+  private static String sql;
   private HashMap<String, Edge> edgeHash = new HashMap<String, Edge>();
 
   @Override
@@ -21,7 +19,7 @@ public class EdgeDAO implements LocationDAO {
     connection.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
-    sql = "Select * from teamgdb.proto2.edge";
+    sql = "Select * from " + this.getTable();
 
     try {
       ps = connection.getConnection().prepareStatement(sql);
@@ -31,15 +29,13 @@ public class EdgeDAO implements LocationDAO {
     }
 
     while (rs.next()) {
-      Edge edge = new Edge();
 
       int startNode = rs.getInt("startnode");
-      edge.setStartNode(startNode);
-
       int endNode = rs.getInt("endnode");
-      edge.setEndNode(endNode);
 
       String edgeID = startNode + "_" + endNode;
+
+      Edge edge = new Edge(startNode, endNode);
 
       edge.setEdgeID(edgeID);
 
@@ -59,13 +55,34 @@ public class EdgeDAO implements LocationDAO {
   }
 
   @Override
-  public void update(Object obj, Object update) throws SQLException {}
+  public void update(Object obj, String colName, Object value) {
+    connection.setConnection();
+    sql =
+        "update "
+            + this.getTable()
+            + " set "
+            + colName
+            + " = ? where startNode = ? AND endNode = ?";
+
+    try {
+      PreparedStatement ps = db.getConnection().prepareStatement(sql);
+      ps.setObject(1, value);
+      ps.setInt(2, ((Edge) obj).getStartNode());
+      ps.setInt(3, ((Edge) obj).getEndNode());
+      ps.executeUpdate();
+      ps.close();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      e.printStackTrace();
+    }
+    connection.closeConnection();
+  }
 
   @Override
   public void insert(Object obj) throws SQLException {
     connection.setConnection();
     sql = "";
-    sql = "INSERT INTO teamgdb.proto2.edge (startnode, endnode) VALUES (?,?)";
+    sql = "INSERT INTO " + this.getTable() + " (startnode, endnode) VALUES (?,?)";
     PreparedStatement ps;
     try {
       ps = connection.getConnection().prepareStatement(sql);
@@ -85,7 +102,7 @@ public class EdgeDAO implements LocationDAO {
   public void delete(Object obj) throws SQLException {
     connection.setConnection();
     sql = "";
-    sql = "DELETE FROM teamgdb.proto2.edge WHERE startnode = ? AND endnode = ?";
+    sql = "DELETE FROM " + this.getTable() + " WHERE startnode = ? AND endnode = ?";
     PreparedStatement ps = connection.getConnection().prepareStatement(sql);
     try {
       ps.setInt(1, ((Edge) obj).getStartNode());
@@ -100,10 +117,15 @@ public class EdgeDAO implements LocationDAO {
   }
 
   @Override
+  public String getTable() {
+    return "teamgdb.iteration2.edge";
+  }
+
+  @Override
   public void importCSV(String filename) throws SQLException {
     connection.setConnection();
     sql = "";
-    sql = "insert into teamgdb.proto2.edge (startnode, endnode) values (?,?)";
+    sql = "insert into " + this.getTable() + " (startnode, endnode) values (?,?)";
     PreparedStatement ps = connection.getConnection().prepareStatement(sql);
     try {
       BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -134,54 +156,6 @@ public class EdgeDAO implements LocationDAO {
       System.err.println("SQL Exception");
       e.printStackTrace();
     }
-    connection.closeConnection();
-  }
-
-  @Override
-  public void exportCSV() throws SQLException {
-    connection.setConnection();
-    ResultSet rs = null;
-    FileWriter fw = null;
-
-    try {
-      Statement statement = connection.getConnection().createStatement();
-      rs = statement.executeQuery("select * from teamgdb.proto2.edge");
-
-      JFileChooser chooser = new JFileChooser();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV file", ".csv");
-      chooser.setFileFilter(filter);
-
-      int result = chooser.showSaveDialog(null);
-      if (result == JFileChooser.APPROVE_OPTION) {
-        File savedFile = chooser.getSelectedFile();
-        String path = savedFile.getAbsolutePath();
-        fw = new FileWriter(path);
-
-        int colCount = rs.getMetaData().getColumnCount();
-        for (int i = 1; i <= colCount; i++) {
-          String colLabel = rs.getMetaData().getColumnLabel(i);
-          fw.append(colLabel);
-          if (i < colCount) fw.append(",");
-        }
-        fw.append("\n");
-
-        while (rs.next()) {
-          for (int j = 1; j <= colCount; j++) {
-            String cellVal = rs.getString(j);
-            fw.append(cellVal);
-            if (j < colCount) fw.append(",");
-          }
-          fw.append("\n");
-        }
-      }
-
-      rs.close();
-      statement.close();
-      fw.close();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-
     connection.closeConnection();
   }
 }

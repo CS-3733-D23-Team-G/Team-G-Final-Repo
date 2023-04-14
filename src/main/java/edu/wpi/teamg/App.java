@@ -38,7 +38,9 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
 
+
     Navigation.navigate(Screen.SIGNAGE_PAGE);
+
   }
 
   @Override
