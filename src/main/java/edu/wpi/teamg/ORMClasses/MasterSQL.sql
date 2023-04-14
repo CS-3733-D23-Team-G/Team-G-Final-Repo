@@ -74,10 +74,12 @@ create table iteration2.Request (
 );
 
 create table iteration2.ConferenceRoomRequest(
+
                  reqID int primary key,
                  endTime time,
                  purpose varchar(255),
                  foreign key (reqID) references iteration2.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+
 
 );
 

@@ -17,7 +17,7 @@ public enum Screen {
   FURNITURE_REQUEST_SUBMIT("views/FurnitureRequestConfirmationPage.fxml"),
   SUPPLIES_REQUEST_SUBMIT("views/OfficeSuppRequestConfirmationPage.fxml"),
   STATUS_PAGE("views/FormStatus.fxml"),
-  LOGIN_PAGE("views/LoginPage.fxml");
+  LOGIN_PAGE("views/Login.fxml");
 
   private final String filename;
 

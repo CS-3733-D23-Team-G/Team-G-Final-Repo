@@ -17,6 +17,7 @@ public class App extends Application {
 
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
+  @Setter @Getter private static Stage frontStage;
 
   @Override
   public void init() {
@@ -37,7 +38,7 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
 
-    Navigation.navigate(Screen.LOGIN_PAGE);
+    Navigation.navigate(Screen.SIGNAGE_PAGE);
   }
 
   @Override

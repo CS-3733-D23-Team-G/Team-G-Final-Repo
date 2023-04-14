@@ -122,7 +122,11 @@ public class MealRequestDAO implements DAO {
     }
 
     SQL_mealRequest =
-        "insert into iteration2.mealrequest(reqid, recipient, mealOrder, note) values (?, ?, ?, ?)";
+
+        "insert into "
+            + this.getTable()
+            + "(reqid, recipient, mealOrder, note) values (?, ?, ?, ?)";
+
     SQL_Request =
         "insert into teamgdb.iteration2.request(reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
 
@@ -178,7 +182,9 @@ public class MealRequestDAO implements DAO {
     PreparedStatement ps_mealrequest;
     PreparedStatement ps_request;
 
-    String SQL_mealrequest = "delete from teamgdb.iteration2.mealrequest where reqId = ?";
+
+    String SQL_mealrequest = "delete from " + this.getTable() + " where reqId = ?";
+
     String SQL_request = "delete from teamgdb.iteration2.request where reqId = ?";
 
     try {

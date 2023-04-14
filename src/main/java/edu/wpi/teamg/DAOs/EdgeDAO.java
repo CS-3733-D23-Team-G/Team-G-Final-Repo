@@ -19,7 +19,8 @@ public class EdgeDAO implements LocationDAO {
     connection.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
-    sql = "Select * from teamgdb.iteration2.edge";
+
+    sql = "Select * from " + this.getTable();
 
     try {
       ps = connection.getConnection().prepareStatement(sql);
@@ -55,13 +56,36 @@ public class EdgeDAO implements LocationDAO {
   }
 
   @Override
-  public void update(Object obj, String colName, Object value) throws SQLException {}
+  public void update(Object obj, String colName, Object value) {
+    connection.setConnection();
+    sql =
+        "update "
+            + this.getTable()
+            + " set "
+            + colName
+            + " = ? where startNode = ? AND endNode = ?";
+
+    try {
+      PreparedStatement ps = db.getConnection().prepareStatement(sql);
+      ps.setObject(1, value);
+      ps.setInt(2, ((Edge) obj).getStartNode());
+      ps.setInt(3, ((Edge) obj).getEndNode());
+      ps.executeUpdate();
+      ps.close();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      e.printStackTrace();
+    }
+    connection.closeConnection();
+  }
 
   @Override
   public void insert(Object obj) throws SQLException {
     connection.setConnection();
     sql = "";
-    sql = "INSERT INTO teamgdb.iteration2.edge (startnode, endnode) VALUES (?,?)";
+
+    sql = "INSERT INTO " + this.getTable() + " (startnode, endnode) VALUES (?,?)";
+
     PreparedStatement ps;
     try {
       ps = connection.getConnection().prepareStatement(sql);
@@ -81,7 +105,9 @@ public class EdgeDAO implements LocationDAO {
   public void delete(Object obj) throws SQLException {
     connection.setConnection();
     sql = "";
-    sql = "DELETE FROM teamgdb.iteration2.edge WHERE startnode = ? AND endnode = ?";
+
+    sql = "DELETE FROM " + this.getTable() + " WHERE startnode = ? AND endnode = ?";
+
     PreparedStatement ps = connection.getConnection().prepareStatement(sql);
     try {
       ps.setInt(1, ((Edge) obj).getStartNode());
@@ -104,7 +130,9 @@ public class EdgeDAO implements LocationDAO {
   public void importCSV(String filename) throws SQLException {
     connection.setConnection();
     sql = "";
-    sql = "insert into teamgdb.iteration2.edge (startnode, endnode) values (?,?)";
+
+    sql = "insert into " + this.getTable() + " (startnode, endnode) values (?,?)";
+
     PreparedStatement ps = connection.getConnection().prepareStatement(sql);
     try {
       BufferedReader br = new BufferedReader(new FileReader(filename));

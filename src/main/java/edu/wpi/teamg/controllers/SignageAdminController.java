@@ -35,6 +35,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.util.converter.DateStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
@@ -99,9 +100,12 @@ public class SignageAdminController {
 
   @FXML Button disMap;
 
+  @FXML Button gf;
   @FXML Button l1;
   @FXML Button l2;
   @FXML Button floor1;
+  @FXML Button floor2;
+  @FXML Button floor3;
 
   @FXML MFXButton mapEdit;
   @FXML MFXButton mapCancel;
@@ -224,16 +228,25 @@ public class SignageAdminController {
     Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
     Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2.png");
     Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor.png");
+    Image mapFloor2 = new Image("edu/wpi/teamg/Images/02_thesecondfloor.png");
+    Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
+
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
     ImageView mapViewFloor1 = new ImageView(mapFloor1);
+    ImageView mapViewFloor2 = new ImageView(mapFloor2);
+    ImageView mapViewFloor3 = new ImageView(mapFloor3);
 
     group.getChildren().add(mapView);
     group.getChildren().add(mapViewL2);
     group.getChildren().add(mapViewFloor1);
+    group.getChildren().add(mapViewFloor2);
+    group.getChildren().add(mapViewFloor3);
 
     mapViewL2.setVisible(false);
     mapViewFloor1.setVisible(false);
+    mapViewFloor2.setVisible(false);
+    mapViewFloor3.setVisible(false);
 
     mapView.toBack();
     mapView.relocate(0, 0);
@@ -243,6 +256,12 @@ public class SignageAdminController {
 
     mapViewFloor1.toBack();
     mapViewFloor1.relocate(0, 0);
+
+    mapViewFloor2.toBack();
+    mapViewFloor2.relocate(0, 0);
+
+    mapViewFloor3.toBack();
+    mapViewFloor3.relocate(0, 0);
 
     nodePane.setLayoutX(0);
     nodePane.setLayoutY(0);
@@ -260,6 +279,8 @@ public class SignageAdminController {
     imageViewsList.add(mapView);
     imageViewsList.add(mapViewL2);
     imageViewsList.add(mapViewFloor1);
+    imageViewsList.add(mapViewFloor2);
+    imageViewsList.add(mapViewFloor3);
 
     l1.setOnMouseClicked(
         event -> {
@@ -285,7 +306,22 @@ public class SignageAdminController {
             throw new RuntimeException(e);
           }
         });
-
+    floor2.setOnMouseClicked(
+        event -> {
+          try {
+            goToFloor2(imageViewsList);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+    floor3.setOnMouseClicked(
+        event -> {
+          try {
+            goToFloor3(imageViewsList);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
     // Scaling is currently the issue with the node map
 
     NodeDAO nodeDAO = new NodeDAO();
@@ -504,57 +540,51 @@ public class SignageAdminController {
           nodeDAO.update(obj, "building", event.getNewValue());
         });
 
-    /*
-    //Edge Update
-        EdgeDAO edgeDAO = new EdgeDAO();
-        edgeTable.setEditable(true);
-        edgeStartNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        edgeStartNode.setOnEditCommit(
-                event -> {
-                  Edge obj = event.getRowValue();
-                  obj.setStartNode(event.getNewValue());
-                  //edgeDAO.update(obj, "shortname", event.getNewValue());
-                  edgeTable.refresh();
-                });
-        edgeEndNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        edgeEndNode.setOnEditCommit(
-                event -> {
-                  Edge obj = event.getRowValue();
-                  obj.setEndNode(event.getNewValue());
-                  //edgeDAO.update(obj, "nodetype", event.getNewValue());
-                   edgeTable.refresh();
-                });
+    // Edge Update
+    EdgeDAO edgeDAO = new EdgeDAO();
+    edgeTable.setEditable(true);
+    edgeStartNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    edgeStartNode.setOnEditCommit(
+        event -> {
+          Edge obj = event.getRowValue();
+          String col = event.getTableColumn().getText();
+          edgeDAO.update(obj, col, event.getNewValue());
+          obj.setStartNode(event.getNewValue());
+        });
+    edgeEndNode.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    edgeEndNode.setOnEditCommit(
+        event -> {
+          Edge obj = event.getRowValue();
+          String col = event.getTableColumn().getText();
+          edgeDAO.update(obj, col, event.getNewValue());
+          obj.setEndNode(event.getNewValue());
+        });
 
+    MoveDAO moveDAO = new MoveDAO();
+    moveTable.setEditable(true);
+    moveNodeID.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    moveNodeID.setOnEditCommit(
+        event -> {
+          Move obj = event.getRowValue();
+          String col = event.getTableColumn().getText();
+          moveDAO.update(obj, col, event.getNewValue());
+          obj.setNodeID(event.getNewValue());
+        });
 
-
-
-        MoveDAO moveDAO = new MoveDAO();
-        moveTable.setEditable(true);
-        moveNodeID.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        moveNodeID.setOnEditCommit(
-                event -> {
-                  Move obj = event.getRowValue();
-                  obj.setNodeID(event.getNewValue());
-                  //moveDAO.update(obj, "longname", event.getNewValue());
-                });
-
-        moveDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
-        moveDate.setOnEditCommit(
-                event -> {
-                  Move obj = event.getRowValue();
-                  obj.setDate((java.sql.Date) event.getNewValue());
-                  //moveDAO.update(obj, "shortname", event.getNewValue());
-                });
-        moveLongName.setCellFactory(TextFieldTableCell.forTableColumn());
-        moveLongName.setOnEditCommit(
-                event -> {
-                  Move obj = event.getRowValue();
-                  obj.setLongName(event.getNewValue());
-                  //moveDAO.update(obj, "nodetype", event.getNewValue());
-                });
-
-
-      */
+    moveDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
+    moveDate.setOnEditCommit(
+        event -> {
+          Move obj = event.getRowValue();
+          obj.setDate((java.sql.Date) event.getNewValue());
+          // moveDAO.update(obj, "shortname", event.getNewValue());
+        });
+    moveLongName.setCellFactory(TextFieldTableCell.forTableColumn());
+    moveLongName.setOnEditCommit(
+        event -> {
+          Move obj = event.getRowValue();
+          obj.setLongName(event.getNewValue());
+          // moveDAO.update(obj, "nodetype", event.getNewValue());
+        });
 
     LocationNameDAO locationNameDAO = new LocationNameDAO();
 
@@ -621,6 +651,24 @@ public class SignageAdminController {
     newNodes(2);
   }
 
+  public void goToFloor2(ArrayList<ImageView> imgs) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(3).setVisible(true);
+
+    newNodes(3);
+  }
+
+  public void goToFloor3(ArrayList<ImageView> imgs) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(4).setVisible(true);
+
+    newNodes(4);
+  }
+
   public void newNodes(int index) throws SQLException {
     NodeDAO nodeDAO = new NodeDAO();
 
@@ -647,6 +695,22 @@ public class SignageAdminController {
       case 2:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
+            getNodesWFunctionality(listOfNodes, i);
+          }
+        }
+
+        break;
+      case 3:
+        for (int i = 0; i < listOfNodes.size(); i++) {
+          if (Objects.equals(listOfNodes.get(i).getFloor(), "2 ")) {
+            getNodesWFunctionality(listOfNodes, i);
+          }
+        }
+
+        break;
+      case 4:
+        for (int i = 0; i < listOfNodes.size(); i++) {
+          if (Objects.equals(listOfNodes.get(i).getFloor(), "3 ")) {
             getNodesWFunctionality(listOfNodes, i);
           }
         }

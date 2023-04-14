@@ -73,7 +73,7 @@ public class ConRoomRequestController {
         });
 
     datePicker.setText("");
-    checkFields.getText();
+    //    checkFields.getText();
 
     roomMeetingPurpose.getText();
     // roomNumber.getText();

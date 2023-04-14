@@ -20,7 +20,9 @@ public class LoginDao implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    query = "select * from iteration2.login";
+
+    query = "select * from " + this.getTable();
+
 
     try {
       ps = conn.getConnection().prepareStatement(query);
@@ -53,7 +55,9 @@ public class LoginDao implements DAO {
     conn.setConnection();
 
     PreparedStatement ps;
-    query = "insert into iteration2.login(email, password) values (?, ?)";
+
+    query = "insert into " + this.getTable() + "(email, password) values (?, ?)";
+
 
     try {
       ps = conn.getConnection().prepareStatement(query);
@@ -76,7 +80,9 @@ public class LoginDao implements DAO {
 
     PreparedStatement ps;
 
-    query = "delete from iteration2.login where email = ?";
+
+    query = "delete from " + this.getTable() + " email = ?";
+
 
     try {
       ps = conn.getConnection().prepareStatement(query);
@@ -95,6 +101,6 @@ public class LoginDao implements DAO {
 
   @Override
   public String getTable() {
-    return null;
+    return "teamgdb.iteration2.login";
   }
 }

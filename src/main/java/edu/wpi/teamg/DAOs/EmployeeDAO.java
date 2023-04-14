@@ -19,7 +19,9 @@ public class EmployeeDAO implements DAO {
     conn.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
-    query = "Select * from teamgdb.iteration2.employee";
+
+    query = "Select * from " + this.getTable();
+
 
     try {
       ps = conn.getConnection().prepareStatement(query);
@@ -52,7 +54,11 @@ public class EmployeeDAO implements DAO {
     Employee employee = (Employee) obj;
     conn.setConnection();
     query =
-        "INSERT INTO teamgdb.iteration2.employee (empid, firstname, lastname, email, can_serve) VALUES (?,?,?,?,?)";
+
+        "INSERT INTO "
+            + this.getTable()
+            + "(empid, firstname, lastname, email, can_serve) VALUES (?,?,?,?,?)";
+
 
     PreparedStatement ps;
     try {
@@ -76,7 +82,7 @@ public class EmployeeDAO implements DAO {
     conn.setConnection();
     PreparedStatement ps = conn.getConnection().prepareStatement(query);
 
-    query = "DELETE FROM teamgdb.iteration2.employee WHERE empID = ?";
+    query = "DELETE FROM " + this.getTable() + " WHERE empID = ?";
 
     try {
       ps.setInt(1, employee.getEmpID());
@@ -157,5 +163,8 @@ public class EmployeeDAO implements DAO {
     conn.closeConnection();
 
     return longNameHash;
+
+
+
   }
 }
