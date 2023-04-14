@@ -97,13 +97,44 @@ public class SignagePageController {
     startingFloor();
     floorEnd.setOnAction(
         event -> {
-          try {
-            longNameEnd();
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
+          if (Objects.equals(floorEnd.getValue(), "L1")) {
+            try {
+              longNameEnd(0);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+          if (Objects.equals(floorEnd.getValue(), "L2")) {
+            try {
+              longNameEnd(1);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+          if (Objects.equals(floorEnd.getValue(), "1")) {
+            try {
+              longNameEnd(2);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+
+          if (Objects.equals(floorEnd.getValue(), "2")) {
+            try {
+              longNameEnd(3);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+
+          if (Objects.equals(floorEnd.getValue(), "3")) {
+            try {
+              longNameEnd(4);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
           }
         });
-
     pathFindButton.setOnMouseClicked(
         event -> {
           try {
@@ -329,25 +360,25 @@ public class SignagePageController {
     ArrayList<Node> L1NodeFinal = new ArrayList<>();
     ArrayList<Edge> L1EdgeFinal = new ArrayList<>();
 
-    String floor = nodeMap.get(L1StartNodeID).getFloor();
-    switch (floor) {
-      case "L1":
-        goToL1(imageViewsList);
-        break;
-      case "L2":
-        goToL2(imageViewsList);
-        break;
-      case "1 ":
-        goToFloor1(imageViewsList);
-        break;
-      case "2 ":
-        goToFloor2(imageViewsList);
-        break;
-      case "3 ":
-        goToFloor3(imageViewsList);
-        break;
-    }
-    //
+    //   String floor = nodeMap.get(L1StartNodeID).getFloor();
+    //    switch (floor) {
+    //      case "L1":
+    //        goToL1(imageViewsList);
+    //        break;
+    //      case "L2":
+    //        goToL2(imageViewsList);
+    //        break;
+    //      case "1 ":
+    //        goToFloor1(imageViewsList);
+    //        break;
+    //      case "2 ":
+    //        goToFloor2(imageViewsList);
+    //        break;
+    //      case "3 ":
+    //        goToFloor3(imageViewsList);
+    //        break;
+    //    }
+    //    //
     //    String floorEnd = nodeMap.get(L1EndNodeID).getFloor();
     //    switch (floor) {
     //      case "L1":
@@ -368,62 +399,49 @@ public class SignagePageController {
     //    }
     // L1nodes = (ArrayList<edu.wpi.teamg.ORMClasses.Node>) nodeMap.values();
 
-    for (int i = 0; i < L1nodes.size(); i++) {
-      if (L1nodes.get(i).getFloor().equals(floor)) {
-        L1NodeFinal.add(
-            new Node(
-                L1nodes.get(i).getNodeID(),
-                L1nodes.get(i).getXcoord(),
-                L1nodes.get(i).getYcoord(),
-                L1nodes.get(i).getFloor(),
-                L1nodes.get(i).getBuilding()));
-      }
-    }
+    //    for (int i = 0; i < L1nodes.size(); i++) {
+    //      if (L1nodes.get(i).getFloor().equals(floor)) {
+    //        L1NodeFinal.add(
+    //            new Node(
+    //                L1nodes.get(i).getNodeID(),
+    //                L1nodes.get(i).getXcoord(),
+    //                L1nodes.get(i).getYcoord(),
+    //                L1nodes.get(i).getFloor(),
+    //                L1nodes.get(i).getBuilding()));
+    //      }
+    //    }
+    //
+    //    String endFloor = nodeMap.get(L1EndNodeID).getFloor();
 
-    String endFloor = nodeMap.get(L1EndNodeID).getFloor();
-
-    for (int i = 0; i < L1nodes.size(); i++) {
-      if (L1nodes.get(i).getFloor().equals(endFloor)) {
-        L1NodeFinal.add(
-            new Node(
-                L1nodes.get(i).getNodeID(),
-                L1nodes.get(i).getXcoord(),
-                L1nodes.get(i).getYcoord(),
-                L1nodes.get(i).getFloor(),
-                L1nodes.get(i).getBuilding()));
-      }
-    }
-
-    for (int i = 0; i < L1edges.size(); i++) {
-      // For each edge
-      // If the start and end node are both on floor 1
-      // Add edge to final edge array
-      // If only start and end node are on floor 1
-      // print out "error"
-
-      if ((nodeMap.get(L1edges.get(i).getStartNode())).getFloor().equals(floor)
-          && ((nodeMap.get(L1edges.get(i).getEndNode())).getFloor().equals(floor))) {
-        Node currentS = new Node();
-        Node currentE = new Node();
-        currentS = nodeMap.get(L1edges.get(i).getStartNode());
-        currentE = nodeMap.get(L1edges.get(i).getEndNode());
-        L1EdgeFinal.add(new Edge(currentS.getNodeID(), currentE.getNodeID()));
-      }
-    }
-
+    //    for (int i = 0; i < L1edges.size(); i++) {
+    //      // For each edge
+    //      // If the start and end node are both on floor 1
+    //      // Add edge to final edge array
+    //      // If only start and end node are on floor 1
+    //      // print out "error"
+    //
+    //      if ((nodeMap.get(L1edges.get(i).getStartNode())).getFloor().equals(floor)
+    //          && ((nodeMap.get(L1edges.get(i).getEndNode())).getFloor().equals(floor))) {
+    //        Node currentS = new Node();
+    //        Node currentE = new Node();
+    //        currentS = nodeMap.get(L1edges.get(i).getStartNode());
+    //        currentE = nodeMap.get(L1edges.get(i).getEndNode());
+    //        L1EdgeFinal.add(new Edge(currentS.getNodeID(), currentE.getNodeID()));
+    //      }
+    //    }
 
     Node[] nodeArray = new Node[allNodes.size()];
     for (int i = 0; i < allNodes.size(); i++) {
-      nodeArray[i] = L1NodeFinal.get(i);
+      nodeArray[i] = allNodes.get(i);
     }
     Edge[] edgeArray = new Edge[allEdges.size()];
     for (int i = 0; i < allEdges.size(); i++) {
-      edgeArray[i] = L1EdgeFinal.get(i);
+      edgeArray[i] = allEdges.get(i);
     }
 
     int startNode = 0;
     int endNode = 0;
-    for (int i = 0; i < L1NodeFinal.size(); i++) {
+    for (int i = 0; i < allNodes.size(); i++) {
 
       if (nodeArray[i].getNodeID() == L1StartNodeID) {
         startNode = i;
@@ -452,7 +470,12 @@ public class SignagePageController {
 
     NodeDAO nodeDAO = new NodeDAO();
     HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
-    Edge e = new Edge(1025, 1275);
+    EdgeDAO edgeDao = new EdgeDAO();
+    Edge e = new Edge(2875, 2890);
+    Edge e1 = new Edge(2875, 2870);
+
+    System.out.println(e.distance(nodes.get(e.getStartNode()), nodes.get(e.getEndNode())));
+    System.out.println(e1.distance(nodes.get(e1.getStartNode()), nodes.get(e1.getEndNode())));
 
     // path = 4
     // path = 0,1,2,3
@@ -461,10 +484,11 @@ public class SignagePageController {
     // Line = 2,2,3,3
 
     System.out.println(path);
+    ArrayList<String> pathForFloor = new ArrayList<>();
 
     nodePane.getChildren().clear();
     for (int i = 0; i < path.size(); i++) {
-
+      int finalI = i;
       Circle point =
           new Circle(
               nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
@@ -474,21 +498,27 @@ public class SignagePageController {
       if (i + 1 != path.size()
           && !Objects.equals(
               nodes.get(Integer.parseInt(path.get(i))).getFloor(),
-              nodes.get(Integer.parseInt(path.get(i))).getFloor())) {
-        int finalI = i;
+              nodes.get(Integer.parseInt(path.get(i + 1))).getFloor())) {
+        nodePane.getChildren().add(point);
+        pathForFloor.add(path.get(i));
         point.setOnMouseClicked(
             event -> {
               try {
-                nextFloor(nodes.get(Integer.parseInt(path.get(finalI + 1))), path, finalI);
+                nextFloor(nodes.get(Integer.parseInt(path.get(finalI + 1))), path, finalI + 1);
               } catch (SQLException ex) {
                 throw new RuntimeException(ex);
               }
             });
+        break;
+      } else {
+        nodePane.getChildren().add(point);
+        pathForFloor.add(path.get(i));
       }
-      nodePane.getChildren().add(point);
     }
 
-    for (int i = 1; i < path.size(); i++) {
+    System.out.println(pathForFloor + " Testing");
+
+    for (int i = 1; i < pathForFloor.size(); i++) {
       Line pathLine =
           new Line(
               nodes.get(Integer.parseInt(path.get(i - 1))).getXcoord(),
@@ -504,6 +534,7 @@ public class SignagePageController {
   public void nextFloor(Node node, ArrayList<String> path, int index) throws SQLException {
     NodeDAO nodeDAO = new NodeDAO();
     HashMap<Integer, Node> nodes = nodeDAO.getAll();
+    ArrayList<String> pathForFloor = new ArrayList<>();
 
     String floor = node.getFloor();
     switch (floor) {
@@ -526,22 +557,41 @@ public class SignagePageController {
 
     nodePane.getChildren().clear();
     for (int i = index; i < path.size(); i++) {
+      int finalI = i;
       Circle point =
           new Circle(
               nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
               nodes.get(Integer.parseInt(path.get(i))).getYcoord(),
               10,
               Color.rgb(1, 45, 90));
-      nodePane.getChildren().add(point);
+      if (i + 1 != path.size()
+          && !Objects.equals(
+              nodes.get(Integer.parseInt(path.get(i))).getFloor(),
+              nodes.get(Integer.parseInt(path.get(i + 1))).getFloor())) {
+        nodePane.getChildren().add(point);
+        pathForFloor.add(path.get(i));
+        point.setOnMouseClicked(
+            event -> {
+              try {
+                nextFloor(nodes.get(Integer.parseInt(path.get(finalI + 1))), path, finalI + 1);
+              } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+              }
+            });
+        break;
+      } else {
+        nodePane.getChildren().add(point);
+        pathForFloor.add(path.get(i));
+      }
     }
 
-    for (int i = index + 1; i < path.size(); i++) {
+    for (int i = 1; i < pathForFloor.size(); i++) {
       Line pathLine =
           new Line(
-              nodes.get(Integer.parseInt(path.get(i - 1))).getXcoord(),
-              nodes.get(Integer.parseInt(path.get(i - 1))).getYcoord(),
-              nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
-              nodes.get(Integer.parseInt(path.get(i))).getYcoord());
+              nodes.get(Integer.parseInt(path.get(index + i - 1))).getXcoord(),
+              nodes.get(Integer.parseInt(path.get(index + i - 1))).getYcoord(),
+              nodes.get(Integer.parseInt(path.get(index + i))).getXcoord(),
+              nodes.get(Integer.parseInt(path.get(index + i))).getYcoord());
       pathLine.setStrokeWidth(10);
       pathLine.setStroke(Color.rgb(1, 45, 90));
       nodePane.getChildren().add(pathLine);
@@ -763,24 +813,16 @@ public class SignagePageController {
     endLocDrop.setItems(locationListEnd);
   }
 
-  public void longNameEnd() throws SQLException {
+  public void longNameEnd(int endFloorIndex) throws SQLException {
     ArrayList<String> locationNamesEnd = new ArrayList<>();
 
-    int endFloorIndex = 0;
-    switch ((String) floorEnd.getValue()) {
-      case "L2":
-        endFloorIndex = 1;
-        break;
-      case "1":
-        endFloorIndex = 2;
-        break;
-      case "2":
-        endFloorIndex = 3;
-        break;
-      case "3":
-        endFloorIndex = 4;
-        break;
-    }
+    //    int endFloorIndex = switch (floorEnd.getValue()) {
+    //      case "L2" -> 1;
+    //      case "1" -> 2;
+    //      case "2" -> 3;
+    //      case "3" -> 4;
+    //      default -> 0;
+    //    };
 
     HashMap<Integer, String> LongNameFinal = this.getHashMapL1LongName(endFloorIndex);
     LongNameFinal.forEach(
