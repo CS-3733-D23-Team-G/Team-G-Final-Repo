@@ -48,6 +48,10 @@ dependencies {
 
             // https://mvnrepository.com/artifact/org.yaml/snakeyaml
             'org.yaml:snakeyaml:2.0'
+
+
+            
+
     )
 
     String javaFxVersion = "19"
@@ -67,6 +71,8 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac-aarch64'
+
+    implementation group: 'javax.mail', name: 'mail', version: '1.4.1'
 
 
     testImplementation(
