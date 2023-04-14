@@ -39,7 +39,7 @@ public class NodeDAO implements LocationDAO {
 
     PreparedStatement ps;
 
-    SQL = "delete from teamgdb.iteration1.node where nodeid = ?";
+    SQL = "delete from teamgdb.iteration2.node where nodeid = ?";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -58,7 +58,7 @@ public class NodeDAO implements LocationDAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration1.node";
+    return "teamgdb.iteration2.node";
   }
 
   @Override
@@ -67,7 +67,7 @@ public class NodeDAO implements LocationDAO {
     try {
 
       SQL =
-          "INSERT INTO iteration1.node (nodeid, xcoord, ycoord, floor, building) VALUES (?,?,?,?,?)";
+          "INSERT INTO iteration2.node (nodeid, xcoord, ycoord, floor, building) VALUES (?,?,?,?,?)";
       PreparedStatement ps = db.getConnection().prepareStatement(SQL);
 
       BufferedReader br = new BufferedReader(new FileReader(path));
@@ -112,7 +112,7 @@ public class NodeDAO implements LocationDAO {
 
     PreparedStatement ps;
     SQL =
-        "insert into iteration1.node(nodeid, xcoord, ycoord, floor, building) values (?, ?, ?, ?, ?)";
+        "insert into iteration2.node(nodeid, xcoord, ycoord, floor, building) values (?, ?, ?, ?, ?)";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -140,7 +140,7 @@ public class NodeDAO implements LocationDAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    SQL = "select * from iteration1.node";
+    SQL = "select * from iteration2.node";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -178,9 +178,9 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.longName\n"
-            + "FROM iteration1.Move\n"
-            + "JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
-            + "JOIN iteration1.Node ON Move.nodeID = Node.nodeID\n"
+            + "FROM iteration2.Move\n"
+            + "JOIN iteration2.LocationName ON Move.longName = LocationName.longName\n"
+            + "JOIN iteration2.Node ON Move.nodeID = Node.nodeID\n"
             + "WHERE LocationName.nodeType = 'CONF';";
 
     try {
@@ -214,8 +214,8 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.longName\n"
-            + "           FROM iteration1.Move\n"
-            + "            JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
+            + "           FROM iteration2.Move\n"
+            + "            JOIN iteration2.LocationName ON Move.longName = LocationName.longName\n"
             + "            WHERE LocationName.nodeType = 'CONF'\n"
             + "                OR LocationName.nodeType = 'DEPT'\n"
             + "                OR LocationName.nodeType = 'INFO'\n"
@@ -254,9 +254,9 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.longName\n"
-            + "             FROM iteration1.Move\n"
-            + "             JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
-            + "             JOIN iteration1.node ON move.nodeid = node.nodeid\n"
+            + "             FROM iteration2.Move\n"
+            + "             JOIN iteration2.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration2.node ON move.nodeid = node.nodeid\n"
             + "             WHERE node.floor = 'L1';";
 
     try {
@@ -290,9 +290,9 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.longName\n"
-            + "             FROM iteration1.Move\n"
-            + "             JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
-            + "             JOIN iteration1.node ON move.nodeid = node.nodeid\n"
+            + "             FROM iteration2.Move\n"
+            + "             JOIN iteration2.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration2.node ON move.nodeid = node.nodeid\n"
             + "             WHERE node.floor = 'L2';";
 
     try {
@@ -326,9 +326,9 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.longName\n"
-            + "             FROM iteration1.Move\n"
-            + "             JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
-            + "             JOIN iteration1.node ON move.nodeid = node.nodeid\n"
+            + "             FROM iteration2.Move\n"
+            + "             JOIN iteration2.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration2.node ON move.nodeid = node.nodeid\n"
             + "             WHERE node.floor = '1 ';";
 
     try {
@@ -362,9 +362,9 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.shortname\n"
-            + "             FROM iteration1.Move\n"
-            + "             JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
-            + "             JOIN iteration1.node ON move.nodeid = node.nodeid\n"
+            + "             FROM iteration2.Move\n"
+            + "             JOIN iteration2.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration2.node ON move.nodeid = node.nodeid\n"
             + "             WHERE node.floor = ?;";
 
     try {
@@ -397,7 +397,7 @@ public class NodeDAO implements LocationDAO {
 
     ResultSet rs = null;
 
-    SQL = "select nodeid, longname from iteration1.Move;";
+    SQL = "select nodeid, longname from iteration2.Move;";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -425,7 +425,7 @@ public class NodeDAO implements LocationDAO {
     PreparedStatement ps;
 
     ResultSet rs = null;
-    SQL = "select nodeid from iteration1.Move where longname = ?";
+    SQL = "select nodeid from iteration2.Move where longname = ?";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -452,9 +452,9 @@ public class NodeDAO implements LocationDAO {
     db.setConnection();
     SQL =
         "SELECT Move.nodeID, LocationName.longname\n"
-            + "             FROM iteration1.Move\n"
-            + "             JOIN iteration1.LocationName ON Move.longName = LocationName.longName\n"
-            + "             JOIN iteration1.node ON move.nodeid = node.nodeid\n"
+            + "             FROM iteration2.Move\n"
+            + "             JOIN iteration2.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration2.node ON move.nodeid = node.nodeid\n"
             + "             WHERE node.floor = ?;";
 
     PreparedStatement ps;

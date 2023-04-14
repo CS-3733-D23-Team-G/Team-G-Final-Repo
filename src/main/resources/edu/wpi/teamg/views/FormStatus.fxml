@@ -79,24 +79,6 @@
                         </TableColumn>
                      </columns>
                   </TableView>
-                    <TableView fx:id="mealTable" layoutX="139.0" layoutY="3.0" prefHeight="253.0" prefWidth="455.0">
-                        <columns>
-                            <TableColumn fx:id="mealReqID" prefWidth="60.0" text="Req. ID" />
-                            <TableColumn fx:id="mealEmpID" minWidth="0.0" prefWidth="0.0" text="Emp. ID" />
-                        <TableColumn fx:id="mealLocation1" prefWidth="60.0" text="Location" />
-                            <TableColumn fx:id="mealServeBy" prefWidth="50.0" text="Serve-By" />
-                            <TableColumn fx:id="mealStatus" prefWidth="55.0" text="Status" />
-                        <TableColumn prefWidth="75.0" text="Meal Request">
-                           <columns>
-                              <TableColumn fx:id="mealDate" minWidth="0.0" prefWidth="50.0" text="Date" />
-                              <TableColumn fx:id="mealTime" prefWidth="50.0" text="Time" />
-                              <TableColumn fx:id="mealOrder" prefWidth="75.0" text="Order" />
-                              <TableColumn fx:id="mealRecipient" prefWidth="60.0" text="Recipient" />
-                              <TableColumn fx:id="mealNote" minWidth="0.0" prefWidth="100.0" text="Note" />
-                           </columns>
-                        </TableColumn>
-                        </columns>
-                    </TableView>
                   <TableView fx:id="flowerTable" layoutX="139.0" layoutY="2.0" prefHeight="253.0" prefWidth="455.0">
                      <columns>
                         <TableColumn fx:id="flowerReqID" prefWidth="55.0" text="Req. ID" />
@@ -128,6 +110,24 @@
                         <TableColumn fx:id="status" prefWidth="55.0" text="Status" />
                      </columns>
                   </TableView>
+                    <TableView fx:id="mealTable" layoutX="139.0" layoutY="3.0" prefHeight="253.0" prefWidth="455.0">
+                        <columns>
+                            <TableColumn fx:id="mealReqID" prefWidth="40.0" text="Req. ID" />
+                            <TableColumn fx:id="mealEmpID" minWidth="0.0" prefWidth="44.800048828125" text="Emp. ID" />
+                        <TableColumn fx:id="mealLocation1" minWidth="0.0" prefWidth="51.99993896484375" text="Location" />
+                            <TableColumn fx:id="mealServeBy" prefWidth="47.199951171875" text="Serve-By" />
+                            <TableColumn fx:id="mealStatus" prefWidth="47.20001220703125" text="Status" />
+                        <TableColumn prefWidth="75.0" text="Meal Request">
+                           <columns>
+                              <TableColumn fx:id="mealDate" minWidth="0.0" prefWidth="50.0" text="Date" />
+                              <TableColumn fx:id="mealTime" prefWidth="50.0" text="Time" />
+                              <TableColumn fx:id="mealOrder" prefWidth="75.0" text="Order" />
+                              <TableColumn fx:id="mealRecipient" prefWidth="60.0" text="Recipient" />
+                              <TableColumn fx:id="mealNote" minWidth="0.0" prefWidth="100.0" text="Note" />
+                           </columns>
+                        </TableColumn>
+                        </columns>
+                    </TableView>
                 </children>
             </AnchorPane>
          </children>

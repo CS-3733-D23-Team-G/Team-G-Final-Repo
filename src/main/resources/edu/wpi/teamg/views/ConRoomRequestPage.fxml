@@ -55,19 +55,21 @@
          <children>
             <AnchorPane prefHeight="260.0" prefWidth="600.0">
                <children>
-                  <Text layoutX="83.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Purpose" />
+                  <Text layoutX="85.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Purpose" />
                   <Text layoutX="342.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time" />
                   <Text layoutX="82.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room" />
-                  <Text layoutX="82.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+                  <Text layoutX="85.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
                   <MFXButton fx:id="roomClearAll" layoutX="334.0" layoutY="204.0" text="Clear All" />
                   <MFXButton fx:id="roomConfirm" layoutX="451.0" layoutY="204.0" text="Confirm" />
-                  <MFXDatePicker fx:id="datePicker" layoutX="83.0" layoutY="172.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
+                  <MFXDatePicker fx:id="datePicker" layoutX="83.0" layoutY="202.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="166.0" />
                   <MFXTextField fx:id="roomTimeData" layoutX="342.0" layoutY="41.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
-                  <MFXTextField fx:id="roomMeetingPurpose" layoutX="83.0" layoutY="108.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
-                  <SearchableComboBox fx:id="locationSearchDropdown" layoutX="83.0" layoutY="42.0" prefHeight="26.0" prefWidth="125.0" />
+                  <MFXTextField fx:id="roomMeetingPurpose" layoutX="83.0" layoutY="144.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="166.0" />
+                  <SearchableComboBox fx:id="locationSearchDropdown" layoutX="83.0" layoutY="42.0" prefHeight="26.0" prefWidth="166.0" />
                   <Text layoutX="342.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Time" />
                   <MFXTextField fx:id="roomEndTime" layoutX="342.0" layoutY="108.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
                   <Label fx:id="checkFields" layoutX="390.0" layoutY="238.0" prefHeight="17.0" prefWidth="196.0" />
+                  <SearchableComboBox fx:id="employeeSearchDropdown" layoutX="82.0" layoutY="95.0" prefHeight="26.0" prefWidth="165.0" />
+                  <Text layoutX="85.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign to" />
                </children>
             </AnchorPane>
          </children>

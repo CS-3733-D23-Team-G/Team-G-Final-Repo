@@ -45,6 +45,7 @@ public class FlowersRequestController {
   // @FXML TextArea notes;
 
   ObservableList<String> locationList;
+  ObservableList<String> employeeList;
 
   @FXML MFXDatePicker deliveryDate;
 
@@ -53,6 +54,8 @@ public class FlowersRequestController {
   @FXML TextField bouquetNote;
 
   @FXML SearchableComboBox locationSearchDropdown;
+
+  @FXML SearchableComboBox employeeSearchDropdown;
 
   /*
    TODO: figure out how to get correct datatype to give to DB
@@ -81,6 +84,18 @@ public class FlowersRequestController {
     bouquetSizeChoiceBox.setItems(listSizes);
     flowerTypeCheckBox.getItems().addAll(listFlowers);
 
+    ArrayList<String> employeeNames = new ArrayList<>();
+    HashMap<Integer, String> employeeLongName = this.getHashMapEmployeeLongName("Flowers Request");
+
+    employeeLongName.forEach(
+        (i, m) -> {
+          employeeNames.add("ID " + i + ": " + m);
+        });
+
+    Collections.sort(employeeNames, String.CASE_INSENSITIVE_ORDER);
+
+    employeeList = FXCollections.observableArrayList(employeeNames);
+
     ArrayList<String> locationNames = new ArrayList<>();
     HashMap<Integer, String> testingLongName = this.getHashMapMLongName();
 
@@ -100,6 +115,7 @@ public class FlowersRequestController {
     locationList = FXCollections.observableArrayList(locationNames);
 
     // Hung this is where it sets the list - Andrew
+    employeeSearchDropdown.setItems(employeeList);
     locationSearchDropdown.setItems(locationList);
 
     checkFields.getText();
@@ -163,12 +179,13 @@ public class FlowersRequestController {
         String recipient
    */
   public void storeFlowerValues() throws SQLException {
+
     FlowerRequest flower =
         new FlowerRequest(
             "FL",
-            1,
+            "ID 1: John Doe",
             (String) locationSearchDropdown.getValue(),
-            1,
+            (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
             Date.valueOf(deliveryDate.getValue()),
             StringToTime(deliveryTime.getText()),
@@ -192,6 +209,19 @@ public class FlowersRequestController {
             + deliveryDate.getText()
             + "\nBouquet Size: "
             + bouquetSizeChoiceBox.getValue());*/
+  }
+
+  public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
+
+    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getEmployeeFullName(canServe);
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return longNameHashMap;
   }
 
   public int bouquetSizeToInt(String s) {

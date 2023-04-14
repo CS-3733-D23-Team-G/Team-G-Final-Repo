@@ -40,9 +40,11 @@ public class ConRoomRequestController {
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
+  @FXML SearchableComboBox employeeSearchDropdown;
   @FXML Label checkFields;
 
   ObservableList<String> locationList;
+  ObservableList<String> employeeList;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -86,6 +88,19 @@ public class ConRoomRequestController {
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     roomClearAll.setOnAction(event -> clearAllData());
 
+    ArrayList<String> employeeNames = new ArrayList<>();
+    HashMap<Integer, String> employeeLongName =
+        this.getHashMapEmployeeLongName("Conference Rooms Request");
+
+    employeeLongName.forEach(
+        (i, m) -> {
+          employeeNames.add("ID " + i + ": " + m);
+        });
+
+    Collections.sort(employeeNames, String.CASE_INSENSITIVE_ORDER);
+
+    employeeList = FXCollections.observableArrayList(employeeNames);
+
     ArrayList<String> locationNames = new ArrayList<>();
     HashMap<Integer, String> testingLongName = this.getHashMapCRLongName();
 
@@ -105,6 +120,7 @@ public class ConRoomRequestController {
     locationList = FXCollections.observableArrayList(locationNames);
 
     // Hung this is where it sets the list - Andrew
+    employeeSearchDropdown.setItems(employeeList);
     locationSearchDropdown.setItems(locationList);
   }
 
@@ -124,15 +140,28 @@ public class ConRoomRequestController {
     }
   }
 
+  public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
+
+    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getEmployeeFullName(canServe);
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return longNameHashMap;
+  }
+
   public void storeRoomValues() throws SQLException {
 
     ConferenceRoomRequest conRoom =
         new ConferenceRoomRequest(
             "CR",
-            1,
+            "ID 1: John Doe",
             // assume for now they are going to input a node number, so parseInt
             (String) locationSearchDropdown.getValue(),
-            1,
+            (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
             Date.valueOf(datePicker.getValue()),
             StringToTime(roomTimeData.getText()),
@@ -146,9 +175,10 @@ public class ConRoomRequestController {
       e.printStackTrace();
     }
 
-    System.out.println("Room Name: " + locationSearchDropdown.getValue());
-    System.out.println(
-        "Room ID: " + dao.getNodeIDbyLongName((String) locationSearchDropdown.getValue()));
+    // System.out.println("Employee Name: " + employeeSearchDropdown.getValue());
+    //    System.out.println(
+    //        "Room ID: " + dao.getNodeIDbyLongName((String) locationSearchDropdown.getValue()));
+
   }
 
   public HashMap<Integer, String> getHashMapCRLongName() throws SQLException {

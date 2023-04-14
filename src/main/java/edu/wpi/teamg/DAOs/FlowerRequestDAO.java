@@ -16,6 +16,7 @@ public class FlowerRequestDAO implements DAO {
   private String SQL_flowerRequest;
   private String SQL_Request;
   NodeDAO nodeDAO = new NodeDAO();
+  EmployeeDAO employeeDAO = new EmployeeDAO();
 
   @Override
   public HashMap<Integer, FlowerRequest> getAll() throws SQLException {
@@ -23,27 +24,36 @@ public class FlowerRequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
     SQL_flowerRequest =
-        "select * from iteration1.request join iteration1.flowerrequest on iteration1.request.reqid = iteration1.flowerrequest.reqid";
+        "select * from iteration2.request join iteration2.flowerrequest on iteration2.request.reqid = iteration2.flowerrequest.reqid";
     try {
       ps = db.getConnection().prepareStatement(SQL_flowerRequest);
       rs = ps.executeQuery();
     } catch (SQLException e) {
       e.printStackTrace();
     }
+
+    HashMap longNameHash = new HashMap<>();
+    longNameHash = NodeDAO.getMandFLLongName();
+
+    HashMap employeeHash = new HashMap<>();
+    employeeHash = employeeDAO.getEmployeeFullName("Flowers Request");
+
+    HashMap allEmployeeHash = new HashMap<>();
+    allEmployeeHash = employeeDAO.getAllEmployeeFullName();
+
     while (rs.next()) {
       int reqID = rs.getInt("reqID");
       String reqType = rs.getString("reqtype");
+
       int empID = rs.getInt("empID");
+      String requestingEmployee = "ID " + empID + ": " + (String) allEmployeeHash.get(empID);
 
       int location = rs.getInt("location");
-
-      HashMap longNameHash = new HashMap<>();
-
-      longNameHash = NodeDAO.getMandFLLongName();
-
       String longName = (String) longNameHash.get(location);
 
-      int serv_by = rs.getInt("serveby");
+      int serveBy = rs.getInt("serveby");
+      String assignedEmployee = "ID " + serveBy + ": " + (String) employeeHash.get(serveBy);
+
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
       String recipient = rs.getString("recipient");
       Date requestdate = rs.getDate("requestdate");
@@ -54,9 +64,9 @@ public class FlowerRequestDAO implements DAO {
       FlowerRequest flowerReq =
           new FlowerRequest(
               reqType,
-              empID,
+              requestingEmployee,
               longName,
-              serv_by,
+              assignedEmployee,
               status,
               requestdate,
               requesttime,
@@ -84,7 +94,7 @@ public class FlowerRequestDAO implements DAO {
     PreparedStatement ps_Req;
 
     ResultSet rs = null;
-    SQL_maxID = "select reqid from teamgdb.iteration1.request order by reqid desc limit 1";
+    SQL_maxID = "select reqid from teamgdb.iteration2.request order by reqid desc limit 1";
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -100,20 +110,30 @@ public class FlowerRequestDAO implements DAO {
     }
 
     SQL_flowerRequest =
-        "insert into teamgdb.iteration1.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
+        "insert into teamgdb.iteration2.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
     SQL_Request =
-        "insert into teamgdb.iteration1.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+        "insert into teamgdb.iteration2.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
 
     try {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
       ps_Req.setInt(1, maxID);
       ps_Req.setString(2, "FL");
-      ps_Req.setInt(3, ((FlowerRequest) obj).getEmpid());
+
+      String requestingEmployee = ((FlowerRequest) obj).getEmpid();
+      String assignedEmployee = ((FlowerRequest) obj).getServeBy();
+
+      String[] split0 = requestingEmployee.split(":");
+      String[] split1 = assignedEmployee.split(":");
+
+      int empid = Integer.parseInt(split0[0].substring(3));
+      int serveBy = Integer.parseInt(split1[0].substring(3));
+
+      ps_Req.setInt(3, empid);
 
       int nodeID = nodeDAO.getNodeIDbyLongName(((FlowerRequest) obj).getLocation());
 
       ps_Req.setInt(4, nodeID);
-      ps_Req.setInt(5, ((FlowerRequest) obj).getServeBy());
+      ps_Req.setInt(5, serveBy);
       ps_Req.setObject(6, ((FlowerRequest) obj).getStatus(), java.sql.Types.OTHER);
       ps_Req.setDate(7, ((FlowerRequest) obj).getRequestDate());
       ps_Req.setTime(8, ((FlowerRequest) obj).getRequestTime());
@@ -140,6 +160,6 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration1.flowerrequest";
+    return "teamgdb.iteration2.flowerrequest";
   }
 }

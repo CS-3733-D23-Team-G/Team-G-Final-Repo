@@ -18,7 +18,7 @@ public class AccountDAO implements DAO {
     conn.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
-    query = "Select * from teamgdb.iteration1.account";
+    query = "Select * from teamgdb.iteration2.account";
 
     try {
       ps = conn.getConnection().prepareStatement(query);
@@ -47,7 +47,7 @@ public class AccountDAO implements DAO {
   public void insert(Object obj) throws SQLException {
     Account account = (Account) obj;
     conn.setConnection();
-    query = "INSERT INTO teamgdb.iteration1.account(empid,password,is_admin) VALUES (?,?,?)";
+    query = "INSERT INTO teamgdb.iteration2.account(empid,password,is_admin) VALUES (?,?,?)";
     PreparedStatement ps;
     try {
       ps = conn.getConnection().prepareStatement(query);
@@ -69,7 +69,7 @@ public class AccountDAO implements DAO {
     conn.setConnection();
     PreparedStatement ps = conn.getConnection().prepareStatement(query);
 
-    query = "DELETE FROM teamgdb.iteration1.account WHERE empID = ?";
+    query = "DELETE FROM teamgdb.iteration2.account WHERE empID = ?";
 
     try {
       ps.setInt(1, account.getEmpID());
@@ -81,6 +81,6 @@ public class AccountDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration1.account";
+    return "teamgdb.iteration2.account";
   }
 }
