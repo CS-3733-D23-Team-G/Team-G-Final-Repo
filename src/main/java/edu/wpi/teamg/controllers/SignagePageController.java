@@ -25,12 +25,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
+import javafx.scene.layout.VBox;
+
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.SearchableComboBox;
 
@@ -47,7 +43,7 @@ public class SignagePageController {
   @FXML MFXButton signagePageButton;
   @FXML MFXButton exitButton;
   @FXML MFXButton goToAdminSign;
-
+  @FXML VBox tohome;
   @FXML MFXButton pathFindButton;
 
   @FXML TextArea results;
@@ -87,7 +83,7 @@ public class SignagePageController {
     goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
     exitButton.setOnMouseClicked(event -> exit());
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-
+    tohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     pathFindButton.setOnMouseClicked(
         event -> {
           try {

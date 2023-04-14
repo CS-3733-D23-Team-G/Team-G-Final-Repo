@@ -8,17 +8,17 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.ConRoomRequestController">
-   <children>
-      <HBox maxHeight="1.7976931348623157E308" styleClass="top_banner" stylesheets="@style.css">
+<BorderPane prefWidth="600.0" style="-fx-background-color: #F1F1F1;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.ConRoomRequestController">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
          <children>
             <AnchorPane maxHeight="45.0" prefWidth="600.0">
                <children>
@@ -31,46 +31,52 @@
                   </ImageView>
                </children>
             </AnchorPane>
-         </children>
-      </HBox>
-      <GridPane styleClass="banner">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <MFXButton fx:id="backToHomeButton" opacity="0.0" prefHeight="30.0" prefWidth="176.0" text="Return to Home Button" />
-            <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" GridPane.columnIndex="1" />
-            <MFXButton fx:id="signagePageButton" maxHeight="30.0" opacity="0.0" prefHeight="30.0" prefWidth="176.0" text="Signage Page Button" GridPane.columnIndex="2" />
-            <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" wrappingWidth="96.107421875" />
-            <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" GridPane.columnIndex="2" />
-            <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="30.0" prefWidth="239.0" GridPane.columnIndex="1" />
-         </children>
-      </GridPane>
-      <HBox maxHeight="260.0" prefHeight="260.0" prefWidth="600.0" styleClass="functionality_zone" stylesheets="@style.css">
-         <children>
-            <AnchorPane prefHeight="260.0" prefWidth="600.0">
+            <GridPane styleClass="banner">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Text layoutX="83.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Purpose" />
-                  <Text layoutX="342.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time" />
-                  <Text layoutX="82.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room" />
-                  <Text layoutX="82.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
-                  <MFXButton fx:id="roomClearAll" layoutX="334.0" layoutY="204.0" text="Clear All" />
-                  <MFXButton fx:id="roomConfirm" layoutX="451.0" layoutY="204.0" text="Confirm" />
-                  <MFXDatePicker fx:id="datePicker" layoutX="83.0" layoutY="172.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
-                  <MFXTextField fx:id="roomTimeData" layoutX="342.0" layoutY="41.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
-                  <MFXTextField fx:id="roomMeetingPurpose" layoutX="83.0" layoutY="108.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
-                  <SearchableComboBox fx:id="locationSearchDropdown" layoutX="83.0" layoutY="42.0" prefHeight="26.0" prefWidth="125.0" />
-                  <Text layoutX="342.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Time" />
-                  <MFXTextField fx:id="roomEndTime" layoutX="342.0" layoutY="108.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
-                  <Label fx:id="checkFields" layoutX="390.0" layoutY="238.0" prefHeight="17.0" prefWidth="196.0" />
+                  <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" wrappingWidth="85.107421875" />
+                  <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" GridPane.columnIndex="1" />
+                  <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" GridPane.columnIndex="2" />
+                  <MFXButton fx:id="backToHomeButton" opacity="0.0" prefHeight="30.0" prefWidth="176.0" text="Return to Home Button" />
+                  <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="30.0" prefWidth="239.0" GridPane.columnIndex="1" />
+                  <MFXButton fx:id="signagePageButton" maxHeight="30.0" opacity="0.0" prefHeight="30.0" prefWidth="176.0" text="Signage Page Button" GridPane.columnIndex="2" />
                </children>
-            </AnchorPane>
+            </GridPane>
          </children>
-      </HBox>
-   </children>
-</VBox>
+      </VBox>
+   </top>
+   <right>
+      <AnchorPane BorderPane.alignment="BOTTOM_CENTER">
+         <children>
+            <MFXButton fx:id="roomClearAll" text="Clear All" AnchorPane.bottomAnchor="40.0" />
+            <MFXButton fx:id="roomConfirm" text="Confirm" AnchorPane.bottomAnchor="5.0" />
+         </children>
+      </AnchorPane>
+   </right>
+   <left>
+      <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="70.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="53.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Purpose" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="25.0" />
+            <MFXTextField fx:id="roomMeetingPurpose" layoutX="25.0" layoutY="50.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="50.0" />
+            <Text layoutX="62.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="85.0" />
+            <MFXTextField fx:id="roomTimeData" layoutX="25.0" layoutY="137.33333587646484" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="105.0" />
+            <Text layoutX="51.0" layoutY="210.94921875" strokeType="OUTSIDE" strokeWidth="0.0" text="Room" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="145.0" />
+            <MFXTextField fx:id="roomNumber" layoutX="25.0" layoutY="224.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="165.0" />
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <MFXDatePicker fx:id="datePicker" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

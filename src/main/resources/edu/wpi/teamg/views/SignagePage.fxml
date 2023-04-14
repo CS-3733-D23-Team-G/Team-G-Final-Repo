@@ -17,7 +17,7 @@
 <?import net.kurobako.gesturefx.GesturePane?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SignagePageController">
+<VBox fx:id="tohome" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SignagePageController">
    <children>
       <HBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #f1f1f1;" styleClass="top_banner" VBox.vgrow="ALWAYS">
          <children>

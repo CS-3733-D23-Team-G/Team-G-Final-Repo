@@ -1,70 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import java.lang.String?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.HomeController">
-   <children>
-      <HBox alignment="CENTER" styleClass="top_banner" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+<BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.HomeController">
+   <center>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane maxWidth="600.0" minHeight="25.0" prefWidth="600.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
-                  <Text disable="true" layoutX="504.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
-                  <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="14.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@bwh-logo.png" />
-                     </image>
-                  </ImageView>
-                  <MFXButton fx:id="exitButton" layoutX="496.0" maxHeight="25.0" minHeight="25.0" opacity="0.0" prefHeight="25.0" prefWidth="97.0" text="Exit Application" />
+
+                  <AnchorPane layoutX="123.0" layoutY="111.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="95.66666666666663">
+                     <styleClass>
+                        <String fx:value="widget_background" />
+                        <String fx:value="widget_homepage_pair" />
+                     </styleClass>
+                     <children>
+                        <GridPane prefHeight="273.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                        <Text fill="WHITE" layoutX="37.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Notifications:">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                        <Line endX="78.10447692871094" endY="-7.62939453125E-6" layoutX="138.0" layoutY="46.0" startX="-100.0" stroke="#f6bd38" />
+                     </children>
+                  </AnchorPane>
+                  <Text layoutX="33.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Welcome John Smith">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+               <children>
+                  <AnchorPane layoutX="121.0" layoutY="122.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="97.66666666666663">
+                     <styleClass>
+                        <String fx:value="widget_background" />
+                        <String fx:value="widget_homepage_pair" />
+                     </styleClass>
+                     <children>
+                        <GridPane prefHeight="273.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                        <Text fill="WHITE" layoutX="37.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Forms:">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                        <Line endX="14.510787963867188" endY="-7.62939453125E-6" layoutX="138.0" layoutY="46.0" startX="-100.0" stroke="#f6bd38" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>
       </HBox>
-      <GridPane styleClass="banner">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <MFXButton fx:id="statusButton" opacity="0.0" prefHeight="30.0" prefWidth="176.0" styleClass="button_banner" text="Return to Home Button" />
-            <MFXButton fx:id="signagePageButton" maxHeight="30.0" opacity="0.0" prefWidth="176.0" styleClass="button_banner" text="Signage Page Button" GridPane.columnIndex="2" />
-            <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Request Status" wrappingWidth="85.107421875" />
-            <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" GridPane.columnIndex="1" />
-            <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" GridPane.columnIndex="2" />
-            <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="30.0" prefWidth="239.0" styleClass="button_banner" GridPane.columnIndex="1" />
-         </children>
-      </GridPane>
-      <HBox alignment="CENTER" prefHeight="260.0" prefWidth="600.0" styleClass="homepage" stylesheets="@style.css" VBox.vgrow="ALWAYS">
-         <children>
-            <StackPane minHeight="-Infinity" minWidth="-Infinity">
-               <children>
-                  <AnchorPane prefHeight="260.0" prefWidth="600.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="74.0" layoutY="163.0" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.6" text="Welcome" wrappingWidth="143.57618713378906">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </StackPane>
-         </children>
-      </HBox>
-   </children>
-</VBox>
+   </center>
+</BorderPane>
