@@ -99,9 +99,10 @@
     -fx-max-height: 690;
     -fx-max-width: 741;
 }
-.login_background{
+.login_background {
     -fx-background-color: #012D5A;
     -fx-background-radius: 10 10 10 10;
+}
 .linear-grad{
     -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
 }

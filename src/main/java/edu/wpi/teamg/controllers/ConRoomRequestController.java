@@ -42,7 +42,13 @@ public class ConRoomRequestController {
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML Label checkFields;
 
-  ObservableList<String> locationList;
+  ObservableList<String> locationList =
+      FXCollections.observableArrayList(
+          "Conference Room Request Form",
+          "Flowers Request Form",
+          "Furniture Request Form",
+          "Meal Request Form",
+          "Office Supplies Request Form");;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -71,7 +77,7 @@ public class ConRoomRequestController {
         });
 
     datePicker.setText("");
-    checkFields.getText();
+    //    checkFields.getText();
 
     roomMeetingPurpose.getText();
     // roomNumber.getText();
