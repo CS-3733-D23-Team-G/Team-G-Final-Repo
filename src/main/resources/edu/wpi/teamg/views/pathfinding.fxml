@@ -26,10 +26,10 @@
                         <VBox prefHeight="486.0" prefWidth="418.0" styleClass="locationSelect_vbox">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="locationLabel" text="STARTING LOCATION:" />
-                              <HBox prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
+                              <HBox styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXComboBox fx:id="floorStart" prefHeight="58.0" prefWidth="118.0" styleClass="locationSelect_comboSearchBox" />
-                                    <SearchableComboBox fx:id="startLocDrop" prefHeight="67.0" prefWidth="400.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css">
+                                    <MFXComboBox fx:id="floorStart" alignment="CENTER" styleClass="locationSelect_comboSearchBox" />
+                                    <SearchableComboBox fx:id="startLocDrop" prefHeight="47.0" prefWidth="338.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css">
                                        <HBox.margin>
                                           <Insets left="25.0" />
                                        </HBox.margin>
@@ -39,8 +39,8 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="locationLabel" text="DESTINATION:" />
                               <HBox prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXComboBox fx:id="floorEnd" prefHeight="84.0" prefWidth="118.0" styleClass="locationSelect_comboSearchBox" />
-                                    <SearchableComboBox fx:id="endLocDrop" prefHeight="67.0" prefWidth="400.0" styleClass="locationSelect_comboSearchBox">
+                                    <MFXComboBox fx:id="floorEnd" alignment="CENTER" styleClass="locationSelect_comboSearchBox" />
+                                    <SearchableComboBox fx:id="endLocDrop" styleClass="locationSelect_comboSearchBox">
                                        <HBox.margin>
                                           <Insets left="25.0" />
                                        </HBox.margin>

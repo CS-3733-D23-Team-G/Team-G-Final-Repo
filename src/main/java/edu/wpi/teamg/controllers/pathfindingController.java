@@ -78,8 +78,6 @@ public class pathfindingController {
 
     goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
 
-    l1.s
-
     aStarCheckBox.setSelected(true);
 
     aStarCheckBox.setOnAction(
@@ -221,8 +219,15 @@ public class pathfindingController {
     imageViewsList.add(mapViewFloor2);
     imageViewsList.add(mapViewFloor3);
 
+    l1.setDisable(true);
+
     l1.setOnMouseClicked(
         event -> {
+          l1.setDisable(true);
+          l2.setDisable(false);
+          floor1.setDisable(false);
+          floor2.setDisable(false);
+          floor3.setDisable(false);
           try {
             floorButtons(imageViewsList, 0);
           } catch (SQLException e) {
@@ -231,6 +236,11 @@ public class pathfindingController {
         });
     l2.setOnMouseClicked(
         event -> {
+          l1.setDisable(false);
+          l2.setDisable(true);
+          floor1.setDisable(false);
+          floor2.setDisable(false);
+          floor3.setDisable(false);
           try {
             floorButtons(imageViewsList, 1);
           } catch (SQLException e) {
@@ -239,6 +249,11 @@ public class pathfindingController {
         });
     floor1.setOnMouseClicked(
         event -> {
+          l1.setDisable(false);
+          l2.setDisable(false);
+          floor1.setDisable(true);
+          floor2.setDisable(false);
+          floor3.setDisable(false);
           try {
             floorButtons(imageViewsList, 2);
           } catch (SQLException e) {
@@ -247,6 +262,11 @@ public class pathfindingController {
         });
     floor2.setOnMouseClicked(
         event -> {
+          l1.setDisable(false);
+          l2.setDisable(false);
+          floor1.setDisable(false);
+          floor2.setDisable(true);
+          floor3.setDisable(false);
           try {
             floorButtons(imageViewsList, 3);
           } catch (SQLException e) {
@@ -255,6 +275,11 @@ public class pathfindingController {
         });
     floor3.setOnMouseClicked(
         event -> {
+          l1.setDisable(false);
+          l2.setDisable(false);
+          floor1.setDisable(false);
+          floor2.setDisable(false);
+          floor3.setDisable(true);
           try {
             floorButtons(imageViewsList, 4);
           } catch (SQLException e) {
