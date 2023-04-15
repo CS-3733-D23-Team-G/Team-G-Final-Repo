@@ -2,9 +2,6 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -15,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,7 +19,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FormStatusController {
 
   // Heading
-
 
   // Tables
   @FXML TableView<Request> mainTable;
@@ -82,8 +77,6 @@ public class FormStatusController {
   @FXML Button mealTableButton;
   @FXML Button roomTableButton;
   @FXML Button flowerTableButton;
-
-
 
   ObservableList<Request> testList;
   ObservableList<MealRequest> testMealList;
@@ -198,8 +191,6 @@ public class FormStatusController {
     flowerRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
     flowerNote.setCellValueFactory(new PropertyValueFactory<>("note"));
   }
-
-
 
   public HashMap getHashMapRequest() throws SQLException {
 

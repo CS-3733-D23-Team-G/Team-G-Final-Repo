@@ -20,6 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import org.controlsfx.control.SearchableComboBox;
 
 public class MealRequestController {
@@ -33,9 +34,8 @@ public class MealRequestController {
   @FXML MFXTextField mealTimeOfDeliver;
   // @FXML MFXTextField mealDeliveryLocationData;
   @FXML MFXTextField mealPersonOrderingForData;
-  @FXML MFXTextField mealNotesData;
+  @FXML TextArea mealNotesData;
   @FXML ChoiceBox<String> mealFoodChoice;
-
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
@@ -70,6 +70,7 @@ public class MealRequestController {
   @FXML
   public void initialize() throws SQLException {
     mealSubmitButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT));
+    mealSubmitButton.setStyle("-fx-background-color: rgba(F6, BD ,38, 0);");
 
     mealClearAll.setOnAction(event -> clearAllData());
 
@@ -208,5 +209,4 @@ public class MealRequestController {
     locationSearchDropdown.setValue(null);
     return;
   }
-
-
+}

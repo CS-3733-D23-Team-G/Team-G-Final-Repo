@@ -3,45 +3,103 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.SplitPane?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
-<BorderPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MealRequestController">
-   <center>
-      <AnchorPane prefHeight="260.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <MFXButton fx:id="mealSubmitButton" text="Submit" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Options" />
-            <ChoiceBox fx:id="mealFoodChoice" prefHeight="38.0" prefWidth="180.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Date" />
-            <MFXButton fx:id="mealClearAll" text="Clear All" />
-            <MFXDatePicker fx:id="mealDate" prefHeight="38.0" prefWidth="180.0" />
-         </children>
-      </AnchorPane>
-   </center>
-   <left>
-      <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <Text layoutX="17.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Time" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="23.17903645833333" AnchorPane.topAnchor="75.0" />
-                  <MFXTextField fx:id="mealTimeOfDeliver" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Location" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
-                  <MFXTextField fx:id="mealDeliveryLocationData" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <MFXTextField fx:id="mealPersonOrderingForData" minHeight="-Infinity" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
-                  <MFXTextField fx:id="mealNotesData" prefHeight="51.0" prefWidth="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
-                  <Text layoutX="32.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.55859375" AnchorPane.topAnchor="75.0" />
-                  <Text layoutX="12.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Person Ordering For" wrappingWidth="71.21483612060547" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.785163879394531" AnchorPane.topAnchor="10.0" />
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-   </left>
+<BorderPane prefHeight="10.0" prefWidth="10.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MealRequestController">
+    <center>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+                    <children>
+
+                        <AnchorPane layoutX="123.0" layoutY="111.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="95.66666666666663">
+                            <styleClass>
+                                <String fx:value="widget_background" />
+                                <String fx:value="widget_homepage_pair" />
+                            </styleClass>
+                            <children>
+                                <Text fill="WHITE" layoutX="37.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Recipient" AnchorPane.leftAnchor="37.0">
+                                    <font>
+                                        <Font size="22.0" />
+                                    </font>
+                                </Text>
+                                <Line endX="-17.5" layoutX="137.5" layoutY="96.0" startX="-100.0" stroke="#f6bd38" AnchorPane.leftAnchor="37.0" />
+                        <MFXTextField fx:id="mealPersonOrderingFor" layoutX="37.0" layoutY="105.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="200.0" styleClass="text_box" AnchorPane.leftAnchor="37.0" />
+                        <Text fill="WHITE" layoutX="37.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Delivery Location" AnchorPane.leftAnchor="37.0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                        <Line endX="56.5" layoutX="137.5" layoutY="208.0" startX="-100.0" stroke="#f6bd38" AnchorPane.leftAnchor="37.0" />
+                        <SearchableComboBox fx:id="locationSearchDropdown" layoutX="37.0" layoutY="219.0" prefHeight="32.0" prefWidth="200.0" styleClass="text_box" AnchorPane.leftAnchor="37.0" />
+                        <TextArea fx:id="mealNotesData" layoutX="37.0" layoutY="360.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="360.0" />
+                        <Text fill="WHITE" layoutX="35.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Notes" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="317.73046875">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                        <Line endX="-43.5" layoutX="136.0" layoutY="347.0" startX="-100.0" stroke="#f6bd38" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="346.5" />
+                        <Text fill="WHITE" layoutX="426.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Date" AnchorPane.leftAnchor="430.0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                        <Line endX="-56.0" layoutX="527.0" layoutY="96.0" startX="-100.0" stroke="#f6bd38" AnchorPane.leftAnchor="430.0" />
+                        <Text fill="WHITE" layoutX="426.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Time" AnchorPane.leftAnchor="430.0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                        <Line endX="-52.0" layoutX="527.0" layoutY="208.0" startX="-100.0" stroke="#f6bd38" AnchorPane.leftAnchor="430.0" />
+                        <MFXTextField fx:id="mealTimeOfDeliver" layoutX="427.0" layoutY="220.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="200.0" styleClass="text_box" AnchorPane.leftAnchor="430.0" />
+                        <MFXDatePicker fx:id="mealDate" layoutX="430.0" layoutY="105.0" minHeight="-Infinity" styleClass="text_box" />
+                        <Text fill="WHITE" layoutX="430.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Assign To" AnchorPane.leftAnchor="430.0" AnchorPane.topAnchor="317.73046875">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                        <Line endX="-9.086990356445312" layoutX="531.0" layoutY="342.0" startX="-100.0" stroke="#f6bd38" AnchorPane.leftAnchor="430.0" AnchorPane.topAnchor="346.5" />
+                        <SearchableComboBox layoutX="395.0" layoutY="359.0" prefHeight="32.0" prefWidth="200.0" styleClass="text_box" AnchorPane.leftAnchor="430.0" AnchorPane.topAnchor="360.0" />
+                        <MFXButton fx:id="mealClearAll" layoutX="430.0" layoutY="516.0" prefHeight="45.0" prefWidth="114.0" text="Clear" />
+                        <MFXButton fx:id="mealSubmitButton" layoutX="573.0" layoutY="516.0" prefHeight="45.0" prefWidth="114.0" text="Confirm" />
+                        <Label layoutX="430.0" layoutY="560.0" prefHeight="17.0" prefWidth="252.0" textFill="#d01616" />
+                            </children>
+                        </AnchorPane>
+                        <Text layoutX="123.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Meal Request Form">
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+                    <children>
+                        <AnchorPane layoutX="121.0" layoutY="122.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="97.66666666666663">
+                            <styleClass>
+                                <String fx:value="widget_background" />
+                                <String fx:value="widget_homepage_pair" />
+                            </styleClass>
+                            <children>
+                                <Text fill="WHITE" layoutX="37.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Forms:">
+                                    <font>
+                                        <Font size="22.0" />
+                                    </font>
+                                </Text>
+                                <Line endX="14.510787963867188" endY="-7.62939453125E-6" layoutX="138.0" layoutY="46.0" startX="-100.0" stroke="#f6bd38" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+    </center>
 </BorderPane>
