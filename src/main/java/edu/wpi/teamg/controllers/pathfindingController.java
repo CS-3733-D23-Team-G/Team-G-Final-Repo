@@ -224,7 +224,7 @@ public class pathfindingController {
     l1.setOnMouseClicked(
         event -> {
           try {
-            goToL1(imageViewsList);
+            floorButtons(imageViewsList, 0);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -232,7 +232,7 @@ public class pathfindingController {
     l2.setOnMouseClicked(
         event -> {
           try {
-            goToL2(imageViewsList);
+            floorButtons(imageViewsList, 1);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -240,7 +240,7 @@ public class pathfindingController {
     floor1.setOnMouseClicked(
         event -> {
           try {
-            goToFloor1(imageViewsList);
+            floorButtons(imageViewsList, 2);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -248,7 +248,7 @@ public class pathfindingController {
     floor2.setOnMouseClicked(
         event -> {
           try {
-            goToFloor2(imageViewsList);
+            floorButtons(imageViewsList, 3);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -256,7 +256,7 @@ public class pathfindingController {
     floor3.setOnMouseClicked(
         event -> {
           try {
-            goToFloor3(imageViewsList);
+            floorButtons(imageViewsList, 4);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -372,8 +372,8 @@ public class pathfindingController {
 
     NodeDAO nodeDAO = new NodeDAO();
     HashMap<Integer, Node> nodes = nodeDAO.getAll();
-
     ArrayList<String> pathForFloor = new ArrayList<>();
+    Circle fPoint = new Circle();
 
     nodePane.getChildren().clear();
     for (int i = 0; i < path.size(); i++) {
@@ -390,7 +390,8 @@ public class pathfindingController {
               nodes.get(Integer.parseInt(path.get(i + 1))).getFloor())) {
         point.setFill(Color.rgb(246, 189, 56));
         point.setRadius(20);
-        nodePane.getChildren().add(point);
+        fPoint = point;
+        nodePane.getChildren().add(fPoint);
         pathForFloor.add(path.get(i));
         point.setOnMouseClicked(
             event -> {
@@ -420,12 +421,15 @@ public class pathfindingController {
       pathLine.setStroke(Color.rgb(1, 45, 90));
       nodePane.getChildren().add(pathLine);
     }
+
+    fPoint.toFront();
   }
 
   public void nextFloor(Node node, ArrayList<String> path, int index) throws SQLException {
     NodeDAO nodeDAO = new NodeDAO();
     HashMap<Integer, Node> nodes = nodeDAO.getAll();
     ArrayList<String> pathForFloor = new ArrayList<>();
+    Circle fPoint = new Circle();
 
     String floor = node.getFloor();
     switch (floor) {
@@ -461,7 +465,8 @@ public class pathfindingController {
               nodes.get(Integer.parseInt(path.get(i + 1))).getFloor())) {
         point.setFill(Color.rgb(246, 189, 56));
         point.setRadius(20);
-        nodePane.getChildren().add(point);
+        fPoint = point;
+        nodePane.getChildren().add(fPoint);
         pathForFloor.add(path.get(i));
         point.setOnMouseClicked(
             event -> {
@@ -489,6 +494,8 @@ public class pathfindingController {
       pathLine.setStroke(Color.rgb(1, 45, 90));
       nodePane.getChildren().add(pathLine);
     }
+
+    fPoint.toFront();
   }
 
   public void goToL1(ArrayList<ImageView> imgs) throws SQLException {
@@ -539,6 +546,14 @@ public class pathfindingController {
     longNameNodes(4);
 
     newNodes(4);
+  }
+
+  public void floorButtons(ArrayList<ImageView> imgs, int index) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(index).setVisible(true);
+    newNodes(index);
   }
 
   public void newNodes(int index) throws SQLException {
@@ -745,7 +760,9 @@ public class pathfindingController {
     floorStart.setItems(FloorList);
     floorEnd.setItems(FloorList);
     floorStart.setValue("L1");
+    floorStart.setText("L1");
     floorEnd.setValue("L1");
+    floorEnd.setText("L1");
   }
 
   public void listenToMouse() {}
