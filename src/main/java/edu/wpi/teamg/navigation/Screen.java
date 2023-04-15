@@ -11,6 +11,8 @@ public enum Screen {
 
   SIGNAGE_PAGE("views/SignagePage.fxml"),
   ADMIN_SIGNAGE_PAGE("views/SignageAdmin.fxml"),
+
+  EDIT_SIGNAGE_PAGE("views/SignageEditor.fxml"),
   ROOM_REQUEST_SUBMIT("views/ConRoomRequestConfirmationPage.fxml"),
   MEAL_REQUEST_SUBMIT("views/MealRequestConfirmationPage.fxml"),
   FLOWERS_REQUEST_SUBMIT("views/FlowersRequestConfirmationPage.fxml"),

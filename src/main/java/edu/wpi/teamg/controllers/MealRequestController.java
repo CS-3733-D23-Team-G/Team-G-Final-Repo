@@ -20,7 +20,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import org.controlsfx.control.SearchableComboBox;
 
 public class MealRequestController {
@@ -34,7 +33,7 @@ public class MealRequestController {
   @FXML MFXTextField mealTimeOfDeliver;
   // @FXML MFXTextField mealDeliveryLocationData;
   @FXML MFXTextField mealPersonOrderingForData;
-  @FXML TextArea mealNotesData;
+  @FXML MFXTextField mealNotesData;
   @FXML ChoiceBox<String> mealFoodChoice;
 
   // Hung This is the name and list associated with test searchable list
