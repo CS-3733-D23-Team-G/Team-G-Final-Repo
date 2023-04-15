@@ -292,6 +292,11 @@ public class pathfindingController {
           if (Objects.equals(floorStart.getValue(), "L1")) {
             try {
               goToL1(imageViewsList);
+              l1.setDisable(true);
+              l2.setDisable(false);
+              floor1.setDisable(false);
+              floor2.setDisable(false);
+              floor3.setDisable(false);
             } catch (SQLException e) {
               throw new RuntimeException(e);
             }
@@ -299,6 +304,11 @@ public class pathfindingController {
           if (Objects.equals(floorStart.getValue(), "L2")) {
             try {
               goToL2(imageViewsList);
+              l1.setDisable(false);
+              l2.setDisable(true);
+              floor1.setDisable(false);
+              floor2.setDisable(false);
+              floor3.setDisable(false);
             } catch (SQLException e) {
               throw new RuntimeException(e);
             }
@@ -307,6 +317,11 @@ public class pathfindingController {
           if (Objects.equals(floorStart.getValue(), "1")) {
             try {
               goToFloor1(imageViewsList);
+              l1.setDisable(false);
+              l2.setDisable(false);
+              floor1.setDisable(true);
+              floor2.setDisable(false);
+              floor3.setDisable(false);
             } catch (SQLException e) {
               throw new RuntimeException(e);
             }
@@ -315,6 +330,11 @@ public class pathfindingController {
           if (Objects.equals(floorStart.getValue(), "2")) {
             try {
               goToFloor2(imageViewsList);
+              l1.setDisable(false);
+              l2.setDisable(false);
+              floor1.setDisable(false);
+              floor2.setDisable(true);
+              floor3.setDisable(false);
             } catch (SQLException e) {
               throw new RuntimeException(e);
             }
@@ -323,6 +343,11 @@ public class pathfindingController {
           if (Objects.equals(floorStart.getValue(), "3")) {
             try {
               goToFloor3(imageViewsList);
+              l1.setDisable(false);
+              l2.setDisable(false);
+              floor1.setDisable(false);
+              floor2.setDisable(false);
+              floor3.setDisable(true);
             } catch (SQLException e) {
               throw new RuntimeException(e);
             }

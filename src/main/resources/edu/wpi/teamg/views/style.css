@@ -197,7 +197,6 @@ left_vbox{
 
 }
 
-/*https://stackoverflow.com/questions/70513411/how-do-i-remove-scroll-buttons-from-scroll-bar-in-a-scrollpane-javafx*/
 .gesture_pane_pathfinding .scroll-bar:vertical {
     -fx-opacity: 0;
     -fx-padding:-7;
