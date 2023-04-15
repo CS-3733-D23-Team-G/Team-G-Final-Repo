@@ -40,7 +40,6 @@ import org.controlsfx.control.SearchableComboBox;
 // If we have an error all nodes should remain displayed
 
 public class SignagePageController {
-
   public Group group;
   @FXML MFXButton backToHomeButton;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;

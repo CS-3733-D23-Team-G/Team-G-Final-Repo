@@ -78,6 +78,8 @@ public class pathfindingController {
 
     goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
 
+    l1.s
+
     aStarCheckBox.setSelected(true);
 
     aStarCheckBox.setOnAction(

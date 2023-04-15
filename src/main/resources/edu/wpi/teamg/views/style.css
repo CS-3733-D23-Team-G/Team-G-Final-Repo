@@ -116,6 +116,9 @@
 .half_bottom_right{
     -fx-pref-height: 913;
     -fx-pref-width: 1344;
+    -fx-border-color: #012D5A;
+    -fx-border-width: 5px;
+    -fx-border-radius: 5;
 }
 
 .floor_button{
@@ -186,6 +189,22 @@
 
 .locationLabel{
     -fx-font-size: 30;
+}
+
+left_vbox{
+    -fx-min-width: 576;
+
+
+}
+
+/*https://stackoverflow.com/questions/70513411/how-do-i-remove-scroll-buttons-from-scroll-bar-in-a-scrollpane-javafx*/
+.gesture_pane_pathfinding .scroll-bar:vertical {
+    -fx-opacity: 0;
+    -fx-padding:-7;
+}
+.gesture_pane_pathfinding .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-padding:-7;
 }
 
 
