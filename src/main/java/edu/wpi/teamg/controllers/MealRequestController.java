@@ -24,9 +24,7 @@ import org.controlsfx.control.SearchableComboBox;
 
 public class MealRequestController {
   @FXML MFXButton mealSubmitButton;
-  @FXML MFXButton signagePageButton;
-  @FXML MFXButton backToHomeButton;
-  @FXML MFXButton exitButton;
+
   @FXML MFXButton mealClearAll;
 
   @FXML MFXDatePicker mealDate;
@@ -37,7 +35,7 @@ public class MealRequestController {
   @FXML MFXTextField mealPersonOrderingForData;
   @FXML MFXTextField mealNotesData;
   @FXML ChoiceBox<String> mealFoodChoice;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
+
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
@@ -72,9 +70,6 @@ public class MealRequestController {
   @FXML
   public void initialize() throws SQLException {
     mealSubmitButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT));
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    exitButton.setOnMouseClicked(event -> exit());
 
     mealClearAll.setOnAction(event -> clearAllData());
 
@@ -82,16 +77,11 @@ public class MealRequestController {
         event -> {
           allDataFilled();
         });
-
     //  mealNameData.getText();
     // mealDeliveryLocationData.getText();
     mealPersonOrderingForData.getText();
     mealNotesData.getText();
-
-    serviceRequestChoiceBox.setItems(list);
     mealFoodChoice.setItems(foodList);
-    serviceRequestChoiceBox.setItems(list);
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     mealDate.getValue();
     mealTimeOfDeliver.getText();
 
@@ -219,19 +209,4 @@ public class MealRequestController {
     return;
   }
 
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
-    }
-  }
-}
+

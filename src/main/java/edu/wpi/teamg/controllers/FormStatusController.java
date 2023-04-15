@@ -23,10 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FormStatusController {
 
   // Heading
-  @FXML MFXButton backToHomeButton;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
-  @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
+
 
   // Tables
   @FXML TableView<Request> mainTable;
@@ -86,13 +83,7 @@ public class FormStatusController {
   @FXML Button roomTableButton;
   @FXML Button flowerTableButton;
 
-  ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
+
 
   ObservableList<Request> testList;
   ObservableList<MealRequest> testMealList;
@@ -102,12 +93,6 @@ public class FormStatusController {
 
   @FXML
   public void initialize() throws SQLException {
-    serviceRequestChoiceBox.setItems(list);
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    exitButton.setOnMouseClicked(event -> exit());
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-
     allRequestTableButton.setOnMouseClicked(event -> loadAllRequestTable());
     mealTableButton.setOnMouseClicked(event -> loadMealTable());
     roomTableButton.setOnMouseClicked(event -> loadRoomTable());
@@ -214,21 +199,7 @@ public class FormStatusController {
     flowerNote.setCellValueFactory(new PropertyValueFactory<>("note"));
   }
 
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
-    }
-  }
+
 
   public HashMap getHashMapRequest() throws SQLException {
 

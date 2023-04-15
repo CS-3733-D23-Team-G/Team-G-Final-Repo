@@ -43,10 +43,6 @@ import org.controlsfx.control.SearchableComboBox;
 public class SignagePageController {
 
   public Group group;
-  @FXML MFXButton backToHomeButton;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
-  @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
   @FXML MFXButton goToAdminSign;
   @FXML VBox tohome;
   @FXML MFXButton pathFindButton;
@@ -68,13 +64,7 @@ public class SignagePageController {
   @FXML SearchableComboBox startLocDrop;
   @FXML SearchableComboBox endLocDrop;
 
-  ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
+
 
   ObservableList<String> locationList;
 
@@ -82,12 +72,8 @@ public class SignagePageController {
 
   @FXML
   public void initialize() throws SQLException {
-    serviceRequestChoiceBox.setItems(list);
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+
     goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
-    exitButton.setOnMouseClicked(event -> exit());
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     tohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     pathFindButton.setOnMouseClicked(
         event -> {
@@ -221,22 +207,6 @@ public class SignagePageController {
     //  Circle circ = new Circle(10, Color.BLACK);
     // circ.relocate(500, 500);
 
-  }
-
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
-    }
   }
 
   public void processAStarAlg() throws SQLException {

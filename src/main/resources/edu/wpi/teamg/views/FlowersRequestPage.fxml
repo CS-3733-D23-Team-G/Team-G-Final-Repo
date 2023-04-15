@@ -5,13 +5,8 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.CheckComboBox?>
@@ -19,40 +14,6 @@
 
 <VBox stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FlowersRequestController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="top_banner" VBox.vgrow="ALWAYS">
-         <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchor_pane_sizing">
-               <children>
-                  <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="9.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@bwh-logo.png" />
-                     </image>
-                  </ImageView>
-                    <MFXButton fx:id="exitButton" layoutX="489.0" layoutY="12.0" opacity="0.0" prefHeight="27.0" prefWidth="97.0" text="Exit Application" />
-                    <Text disable="true" layoutX="496.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
-               </children>
-            </AnchorPane>
-         </children>
-      </HBox>
-      <GridPane styleClass="banner">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" GridPane.columnIndex="1" />
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" GridPane.columnIndex="2" />
-            <MFXButton fx:id="returnHomeButton" maxHeight="50.0" opacity="0.0" prefHeight="50.0" prefWidth="206.0" styleClass="button_banner" text="Return to Home Button" />
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to home " />
-            <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="30.0" prefWidth="214.0" styleClass="button_banner" GridPane.columnIndex="1" />
-            <MFXButton fx:id="signagePageButton" maxHeight="50.0" opacity="0.0" prefHeight="30.0" prefWidth="214.0" styleClass="button_banner" text="Signage Page Button" GridPane.columnIndex="2" />
-
-         </children>
-      </GridPane>
       <HBox styleClass="functionality_zone" VBox.vgrow="ALWAYS">
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="600.0" styleClass="anchor_pane_sizing">
