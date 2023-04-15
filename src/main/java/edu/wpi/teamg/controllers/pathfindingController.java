@@ -9,6 +9,8 @@ import edu.wpi.teamg.ORMClasses.Node;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,13 +23,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -39,19 +39,12 @@ import org.controlsfx.control.SearchableComboBox;
 // Make NodeInfo Disappear More clean
 // If we have an error all nodes should remain displayed
 
-public class SignagePageController {
-
+public class pathfindingController {
   public Group group;
-  @FXML MFXButton backToHomeButton;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
-  @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
   @FXML MFXButton goToAdminSign;
-  @FXML VBox tohome;
   @FXML MFXButton pathFindButton;
 
   @FXML TextArea results;
-
   @FXML GesturePane pane;
   @FXML Pane nodePane;
 
@@ -67,16 +60,12 @@ public class SignagePageController {
   @FXML SearchableComboBox startLocDrop;
   @FXML SearchableComboBox endLocDrop;
 
-  @FXML SearchableComboBox floorStart;
-  @FXML SearchableComboBox floorEnd;
+  @FXML MFXComboBox floorStart;
+  @FXML MFXComboBox floorEnd;
 
-  ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
+  @FXML MFXCheckbox aStarCheckBox;
+  @FXML MFXCheckbox bfsCheckBox;
+  @FXML MFXCheckbox dfsCheckBox;
 
   ObservableList<String> locationListStart;
   ObservableList<String> locationListEnd;
@@ -86,17 +75,38 @@ public class SignagePageController {
 
   @FXML
   public void initialize() throws SQLException {
-    serviceRequestChoiceBox.setItems(list);
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
-    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+
     goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
-    exitButton.setOnMouseClicked(event -> exit());
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-    tohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+
+    aStarCheckBox.setSelected(true);
+
+    aStarCheckBox.setOnAction(
+        event -> {
+          if (aStarCheckBox.isSelected()) {
+            bfsCheckBox.setSelected(false);
+            dfsCheckBox.setSelected(false);
+          }
+        });
+
+    bfsCheckBox.setOnAction(
+        event -> {
+          if (bfsCheckBox.isSelected()) {
+            aStarCheckBox.setSelected(false);
+            dfsCheckBox.setSelected(false);
+          }
+        });
+
+    dfsCheckBox.setOnAction(
+        event -> {
+          if (dfsCheckBox.isSelected()) {
+            aStarCheckBox.setSelected(false);
+            bfsCheckBox.setSelected(false);
+          }
+        });
 
     startingFloor();
-
     longNameEnd(0);
+
     floorEnd.setOnAction(
         event -> {
           if (Objects.equals(floorEnd.getValue(), "L1")) {
@@ -137,6 +147,7 @@ public class SignagePageController {
             }
           }
         });
+
     pathFindButton.setOnMouseClicked(
         event -> {
           try {
@@ -305,22 +316,6 @@ public class SignagePageController {
     }
   }
 
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
-    }
-  }
-
   public void processAStarAlg() throws SQLException {
     ArrayList<String> path = new ArrayList<>();
 
@@ -367,11 +362,11 @@ public class SignagePageController {
 
   public void setPath(ArrayList<String> path) throws SQLException {
 
-    if (path.size() == 1) {
-      results.setText("Error: No Possible Path Found");
-    } else {
-      results.setText(String.valueOf(path));
-    }
+    //    if (path.size() == 1) {
+    //      results.setText("Error: No Possible Path Found");
+    //    } else {
+    //      results.setText(String.valueOf(path));
+    //    }
 
     NodeDAO nodeDAO = new NodeDAO();
     HashMap<Integer, Node> nodes = nodeDAO.getAll();
@@ -636,7 +631,7 @@ public class SignagePageController {
 
     displayNode.setFont(Font.font(35));
 
-    displayNode.setText("Location: " + sn.get(point.getNodeID()));
+    displayNode.setText(sn.get(point.getNodeID()));
 
     displayNode.setLayoutX(point.getXcoord());
     displayNode.setLayoutY(point.getYcoord());

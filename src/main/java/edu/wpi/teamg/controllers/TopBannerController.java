@@ -28,7 +28,7 @@ public class TopBannerController {
   @FXML
   public void initialize() {
     //    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
+    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     exitButton.setOnMouseClicked(event -> exit());
     statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.STATUS_PAGE));
 

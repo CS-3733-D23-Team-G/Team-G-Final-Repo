@@ -7,7 +7,7 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 100%,100%;
-    -fx-background-color: #F1F1F1;
+    -fx-background-color: #FFFFFF;
     -fx-pref-height: 260;
     -fx-pref-width: 600;
     -fx-alignment: CENTER;
@@ -106,3 +106,86 @@
 .linear-grad{
     -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
 }
+
+/*Pathfinding CSS*/
+.half_bottom_left{
+    -fx-pref-height: 913;
+    -fx-pref-width: 576;
+}
+
+.half_bottom_right{
+    -fx-pref-height: 913;
+    -fx-pref-width: 1344;
+}
+
+.floor_button{
+    -fx-pref-height: 100;
+    -fx-pref-width: 100;
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 20;
+    -fx-font-size: 40;
+    -fx-font-weight: 700; /* bold */
+    -fx-text-fill: #F6BD38;
+}
+
+.gesture_pane_pathfinding{
+    -fx-pref-height: 913;
+    -fx-pref-width: 1344;
+}
+
+.button_vbox{
+    -fx-pref-height: 560;
+    -fx-pref-width: 80;
+    -fx-padding: 10;
+}
+
+.locationSelect_vbox{
+    -fx-pref-height: 560;
+    -fx-pref-width: 400;
+}
+
+.algoCheckBox{
+    -fx-pref-height: 45;
+    -fx-pref-width: 45;
+    -fx-font-size: 40;
+    -fx-font-weight: 600;
+}
+
+.algoSelect_hbox{
+    -fx-pref-height: 60;
+    -fx-pref-width: 400;
+}
+
+.algoCheckBox .box{
+    -fx-background-color: #D9D9D9;
+    -fx-border-color: none;
+}
+
+.algoCheckBox:selected .mark {
+    -fx-background-color: white;
+}
+
+.algoCheckBox:selected .box {
+    -fx-background-color: #012D5A;
+}
+
+.locationSelect_comboSearchBox{
+    -fx-background-color: #D9D9D9;
+    -fx-font-size: 15;
+}
+
+.getPath_Button{
+    -fx-pref-height: 65;
+    -fx-pref-width: 250;
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 30;
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+
+.locationLabel{
+    -fx-font-size: 30;
+}
+
+
