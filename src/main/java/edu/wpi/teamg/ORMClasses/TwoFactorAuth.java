@@ -17,8 +17,12 @@ import java.util.Properties;
 public class TwoFactorAuth {
     String sender= "";
     String recipient="";
+    int code;
+
+    public TwoFactorAuth(){
+        code = (int)(Math.random()*900000+100000);
+    }
     public void sendEmail() throws MessagingException {
-        int code = (int)(Math.random()*900000+100000);
         String message = "Your 6 digit 2 factor code is: "+code;
 
         String stringHost = "stmp.gmail.com";
