@@ -3,8 +3,6 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
@@ -45,7 +43,6 @@ public class SignageAdminController {
   @FXML Pane nodePane;
   public Group group;
   @FXML GesturePane pane;
-
 
   // @FXML MFXButton pathFindButton;
   @FXML Label fileLabel;
@@ -111,8 +108,6 @@ public class SignageAdminController {
 
   private boolean editableMap = false;
 
-
-
   ObservableList<String> importList =
       FXCollections.observableArrayList("Nodes", "Edges", "LocationName", "Moves");
 
@@ -138,7 +133,6 @@ public class SignageAdminController {
         });
 
     // importButton.setOnAction(event -> fileChooser());
-
 
     importDrop.setOnAction(
         event -> {
@@ -322,8 +316,6 @@ public class SignageAdminController {
       }
     }
   }
-
-
 
   DAORepo dao = new DAORepo();
 

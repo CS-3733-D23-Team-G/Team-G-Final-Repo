@@ -1,4 +1,3 @@
 package edu.wpi.teamg.controllers;
 
-public class EmployeeFormView {
-}
+public class EmployeeFormView {}

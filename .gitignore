@@ -1,5 +1,5 @@
-creds.yml
-./creds.yml
+src/main/resources/edu/wpi/teamg/creds.yml
+src/main/resources/edu/wpi/teamg/creds.yml
 derby.log
 *.lock
 

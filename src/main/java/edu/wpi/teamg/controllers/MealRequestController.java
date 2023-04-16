@@ -23,56 +23,46 @@ import javafx.scene.control.Label;
 import org.controlsfx.control.SearchableComboBox;
 
 public class MealRequestController {
-  @FXML
-  MFXButton mealSubmitButton;
+  @FXML MFXButton mealSubmitButton;
 
-  @FXML
-  MFXButton mealClearAll;
+  @FXML MFXButton mealClearAll;
 
-  @FXML
-  MFXDatePicker mealDate;
+  @FXML MFXDatePicker mealDate;
 
   // TextFields
-  @FXML
-  MFXTextField mealTimeOfDeliver;
+  @FXML MFXTextField mealTimeOfDeliver;
   // @FXML MFXTextField mealDeliveryLocationData;
-  @FXML
-  MFXTextField mealPersonOrderingForData;
-  @FXML
-  MFXTextField mealNotesData;
-  @FXML
-  ChoiceBox<String> mealFoodChoice;
-
+  @FXML MFXTextField mealPersonOrderingForData;
+  @FXML MFXTextField mealNotesData;
+  @FXML ChoiceBox<String> mealFoodChoice;
 
   // Hung This is the name and list associated with test searchable list
-  @FXML
-  SearchableComboBox locationSearchDropdown;
-  @FXML
-  Label checkFields;
+  @FXML SearchableComboBox locationSearchDropdown;
+  @FXML Label checkFields;
 
   ObservableList<String> locationList;
 
   ObservableList<String> list =
-          FXCollections.observableArrayList(
-                  "Conference Room Request Form",
-                  "Flowers Request Form",
-                  "Furniture Request Form",
-                  "Meal Request Form",
-                  "Office Supplies Request Form");
+      FXCollections.observableArrayList(
+          "Conference Room Request Form",
+          "Flowers Request Form",
+          "Furniture Request Form",
+          "Meal Request Form",
+          "Office Supplies Request Form");
 
   ObservableList<String> foodList =
-          FXCollections.observableArrayList(
-                  "Fenway Franks",
-                  "Choco Taco",
-                  "Salt-Based Steak",
-                  "Bisquit",
-                  "Shrimp Fried Rice",
-                  "Beef Wellington",
-                  "Spaghetii Taco",
-                  "Mac and Cheese Pizza",
-                  "Cavatappi",
-                  "One Singular Oyster",
-                  "CC Buritto Bowl (w/ Siracha)");
+      FXCollections.observableArrayList(
+          "Fenway Franks",
+          "Choco Taco",
+          "Salt-Based Steak",
+          "Bisquit",
+          "Shrimp Fried Rice",
+          "Beef Wellington",
+          "Spaghetii Taco",
+          "Mac and Cheese Pizza",
+          "Cavatappi",
+          "One Singular Oyster",
+          "CC Buritto Bowl (w/ Siracha)");
 
   DAORepo dao = new DAORepo();
 
@@ -83,9 +73,9 @@ public class MealRequestController {
     mealClearAll.setOnAction(event -> clearAllData());
 
     mealSubmitButton.setOnMouseClicked(
-            event -> {
-              allDataFilled();
-            });
+        event -> {
+          allDataFilled();
+        });
     //  mealNameData.getText();
     // mealDeliveryLocationData.getText();
     mealPersonOrderingForData.getText();
@@ -98,15 +88,15 @@ public class MealRequestController {
     HashMap<Integer, String> testingLongName = this.getHashMapMLongName();
 
     testingLongName.forEach(
-            (i, m) -> {
-              locationNames.add(m);
-              //          System.out.println("Request ID:" + m.getReqid());
-              //          System.out.println("Employee ID:" + m.getEmpid());
-              //          System.out.println("Status:" + m.getStatus());
-              //          System.out.println("Location:" + m.getLocation());
-              //          System.out.println("Serve By:" + m.getServ_by());
-              //          System.out.println();
-            });
+        (i, m) -> {
+          locationNames.add(m);
+          //          System.out.println("Request ID:" + m.getReqid());
+          //          System.out.println("Employee ID:" + m.getEmpid());
+          //          System.out.println("Status:" + m.getStatus());
+          //          System.out.println("Location:" + m.getLocation());
+          //          System.out.println("Serve By:" + m.getServ_by());
+          //          System.out.println();
+        });
 
     Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
 
@@ -123,18 +113,18 @@ public class MealRequestController {
 
   public void storeMealValues() throws SQLException {
     MealRequest mr =
-            new MealRequest(
-                    "M",
-                    1,
-                    // assume for now they are going to input a node number, so parseInt
-                    (String) locationSearchDropdown.getValue(),
-                    1,
-                    StatusTypeEnum.blank,
-                    Date.valueOf(mealDate.getValue()),
-                    StringToTime(mealTimeOfDeliver.getText()),
-                    mealPersonOrderingForData.getText(),
-                    mealFoodChoice.getValue(),
-                    mealNotesData.getText());
+        new MealRequest(
+            "M",
+            1,
+            // assume for now they are going to input a node number, so parseInt
+            (String) locationSearchDropdown.getValue(),
+            1,
+            StatusTypeEnum.blank,
+            Date.valueOf(mealDate.getValue()),
+            StringToTime(mealTimeOfDeliver.getText()),
+            mealPersonOrderingForData.getText(),
+            mealFoodChoice.getValue(),
+            mealNotesData.getText());
 
     //    mr.setEmpid(1);
     //    mr.setServ_by(1);
@@ -191,11 +181,11 @@ public class MealRequestController {
 
   public void allDataFilled() {
     if (!(mealPersonOrderingForData.getText().equals("")
-            || mealNotesData.getText().equals("")
-            || mealDate.getText().equals("")
-            || mealTimeOfDeliver.getText().equals("")
-            || mealFoodChoice.getValue() == null
-            || locationSearchDropdown.getValue() == null)) {
+        || mealNotesData.getText().equals("")
+        || mealDate.getText().equals("")
+        || mealTimeOfDeliver.getText().equals("")
+        || mealFoodChoice.getValue() == null
+        || locationSearchDropdown.getValue() == null)) {
       try {
         storeMealValues();
       } catch (SQLException e) {
@@ -218,5 +208,3 @@ public class MealRequestController {
     return;
   }
 }
-
-
