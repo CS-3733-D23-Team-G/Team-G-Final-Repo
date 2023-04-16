@@ -147,9 +147,9 @@ public class SignagePageController {
 
     // goToL1();
 
-    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1_pts'ed.png");
-    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2_pts'ed.png");
-    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor_pts'ed.png");
+    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
+    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2.png");
+    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor.png");
     Image mapFloor2 = new Image("edu/wpi/teamg/Images/02_thesecondfloor.png");
     Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
 
