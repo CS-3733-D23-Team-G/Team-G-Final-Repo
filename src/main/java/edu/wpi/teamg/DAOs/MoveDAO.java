@@ -57,13 +57,12 @@ public class MoveDAO implements LocationMoveDao {
     try {
       ps = db.getConnection().prepareStatement(sql);
       switch (colName) {
-          /*
           case "nodeid":
             ps.setInt(1,((Move)obj).getNodeID());
             break;
           case "longname":
             ps.setString(1,((Move)obj).getLongName());
-            break;*/
+            break;
         case "date":
           ps.setDate(1, ((Move) obj).getDate());
           break;
