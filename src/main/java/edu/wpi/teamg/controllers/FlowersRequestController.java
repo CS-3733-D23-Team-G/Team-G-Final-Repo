@@ -48,6 +48,7 @@ public class FlowersRequestController {
   @FXML TextField bouquetNote;
 
   @FXML SearchableComboBox locationSearchDropdown;
+  @FXML SearchableComboBox EmployeeSearchBox;
 
   /*
    TODO: figure out how to get correct datatype to give to DB
@@ -59,7 +60,9 @@ public class FlowersRequestController {
   ObservableList<String> listSizes =
       FXCollections.observableArrayList(
           "10 Stems (small)", "20 Stems (medium)", "30 Stems (large)");
-
+  ObservableList<String> listEmployees =
+      FXCollections.observableArrayList(
+          "Tom", "Kristine", "Raj", "Professor Wong", "Mo", "Andrew", "Hung");
   DAORepo dao = new DAORepo();
 
   @FXML
