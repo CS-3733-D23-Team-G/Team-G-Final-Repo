@@ -89,13 +89,13 @@ public class pathfindingController {
           }
         });
 
-       bfsCheckBox.setOnAction(
-            event -> {
-              if (bfsCheckBox.isSelected()) {
-                aStarCheckBox.setSelected(false);
-                dfsCheckBox.setSelected(false);
-              }
-            });
+    bfsCheckBox.setOnAction(
+        event -> {
+          if (bfsCheckBox.isSelected()) {
+            aStarCheckBox.setSelected(false);
+            dfsCheckBox.setSelected(false);
+          }
+        });
 
     dfsCheckBox.setOnAction(
         event -> {

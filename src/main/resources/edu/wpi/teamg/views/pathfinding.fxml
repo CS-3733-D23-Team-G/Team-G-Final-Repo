@@ -21,7 +21,7 @@
          <children>
             <AnchorPane prefHeight="980.0" prefWidth="656.0" styleClass="half_bottom_left">
                <children>
-                  <HBox layoutX="69.0" layoutY="228.0" prefHeight="486.0" prefWidth="502.0" styleClass="left_vbox" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="228.0">
+                  <HBox layoutX="69.0" layoutY="228.0" prefHeight="486.0" prefWidth="502.0" styleClass="left_vbox" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="150.0">
                      <children>
                         <VBox prefHeight="486.0" prefWidth="418.0" styleClass="locationSelect_vbox">
                            <children>
