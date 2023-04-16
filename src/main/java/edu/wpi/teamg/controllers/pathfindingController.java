@@ -23,6 +23,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -364,7 +365,7 @@ public class pathfindingController {
 
     for (int i = 0; i < listOfNodes.size(); i++) {
       if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-        getNodesWFunctionality(listOfNodes, i);
+        getNodesWFunctionality(listOfNodes, i, "L1");
       }
     }
   }
@@ -746,14 +747,14 @@ public class pathfindingController {
       case 0:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-            getNodesWFunctionality(listOfNodes, i);
+            getNodesWFunctionality(listOfNodes, i, "L1");
           }
         }
         break;
       case 1:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L2")) {
-            getNodesWFunctionality(listOfNodes, i);
+            getNodesWFunctionality(listOfNodes, i, "L2");
           }
         }
         break;
@@ -761,7 +762,7 @@ public class pathfindingController {
       case 2:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
-            getNodesWFunctionality(listOfNodes, i);
+            getNodesWFunctionality(listOfNodes, i, "1 ");
           }
         }
 
@@ -769,7 +770,7 @@ public class pathfindingController {
       case 3:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "2 ")) {
-            getNodesWFunctionality(listOfNodes, i);
+            getNodesWFunctionality(listOfNodes, i, "2 ");
           }
         }
 
@@ -777,7 +778,7 @@ public class pathfindingController {
       case 4:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "3 ")) {
-            getNodesWFunctionality(listOfNodes, i);
+            getNodesWFunctionality(listOfNodes, i, "3 ");
           }
         }
 
@@ -785,14 +786,24 @@ public class pathfindingController {
     }
   }
 
-  private void getNodesWFunctionality(ArrayList<Node> listOfNodes, int i) {
+  private void getNodesWFunctionality(ArrayList<Node> listOfNodes, int i, String floor)
+      throws SQLException {
     Node currentNode = listOfNodes.get(i);
+    NodeDAO nodeDAO = new NodeDAO();
+    HashMap<Integer, String> sn = nodeDAO.getShortName(floor);
+
     Circle point =
         new Circle(
             listOfNodes.get(i).getXcoord(),
             listOfNodes.get(i).getYcoord(),
             10,
             Color.rgb(1, 45, 90));
+    Label nodeLabel = new Label();
+    nodeLabel.setTextFill(Color.BLACK);
+    nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
+    nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
+    nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
+    nodeLabel.toFront();
     /*
        point.setOnMouseEntered(event ->
 
@@ -814,6 +825,7 @@ public class pathfindingController {
           }
         });
     nodePane.getChildren().add(point);
+    nodePane.getChildren().add(nodeLabel);
   }
 
   public void displayData(Node point) throws SQLException {
