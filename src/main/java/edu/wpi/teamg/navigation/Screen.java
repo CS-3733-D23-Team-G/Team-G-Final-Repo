@@ -16,14 +16,13 @@ public enum Screen {
   FLOWERS_REQUEST_SUBMIT("views/FlowersRequestConfirmationPage.fxml"),
   FURNITURE_REQUEST_SUBMIT("views/FurnitureRequestConfirmationPage.fxml"),
   SUPPLIES_REQUEST_SUBMIT("views/OfficeSuppRequestConfirmationPage.fxml"),
-  ADMIN_STATUS_PAGE("views/FormStatus.fxml"),
+  ADMIN_STATUS_PAGE("views/AdminFormStatus.fxml"),
   LOGIN_PAGE("views/Login.fxml"),
   EMPLOYEE_FORMS("views/EmployeeSelfFormView.fxml"),
   PATHFINDING_PAGE("views/Pathfinding.fxml"),
   ADMIN_SIGNAGE_EDITOR("views/SignageAdmin.fxml"),
   ADMIN_MAP_EDITOR("views/MapEditor.fxml"),
   NODE_EDITOR("views/NodeViewAndEditor");
-
 
   private final String filename;
 
