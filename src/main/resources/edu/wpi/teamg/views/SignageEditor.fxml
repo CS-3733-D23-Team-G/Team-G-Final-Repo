@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SignageEditorController">
@@ -24,27 +23,11 @@
                   <SearchableComboBox layoutX="440.0" layoutY="214.0" prefHeight="32.0" prefWidth="220.0" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="260.0" />
                   <SearchableComboBox layoutX="440.0" layoutY="297.0" prefHeight="32.0" prefWidth="220.0" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="330.0" />
                   <SearchableComboBox layoutX="440.0" layoutY="356.0" prefHeight="32.0" prefWidth="220.0" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="400.0" />
-                  <StackPane layoutX="113.0" layoutY="111.0" prefHeight="50.0" prefWidth="50.0">
-                     <children>
-                        <ImageView fx:id="southArrow" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#changeSouthArrow" pickOnBounds="true" preserveRatio="true" visible="false">
-                           <image>
-                              <Image url="@../Images/SouthArrow.png" />
-                           </image></ImageView>
-                        <ImageView fx:id="eastArrow" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#changeEastArrow" pickOnBounds="true" preserveRatio="true" visible="false">
-                           <image>
-                              <Image url="@../Images/EastArrow.png" />
-                           </image></ImageView>
-                        <ImageView fx:id="northArrow" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#changeNorthArrow" pickOnBounds="true" preserveRatio="true" visible="false">
-                           <image>
-                              <Image url="@../Images/NorthArrow.png" />
-                           </image></ImageView>
-                        <ImageView fx:id="westArrow" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#changeWestArrow" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/WestArrow.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </StackPane>
+                  <ImageView fx:id="noArrow" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../Images/NoArrow.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>

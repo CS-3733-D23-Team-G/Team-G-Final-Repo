@@ -5,76 +5,87 @@ import javafx.scene.image.ImageView;
 
 public class SignageEditorController {
 
-  @FXML ImageView westArrow;
-  @FXML ImageView northArrow;
-  @FXML ImageView southArrow;
-  @FXML ImageView eastArrow;
+  @FXML ImageView arrow1;
+
+  public static int[] arrowDirectionNumber = new int[10];
 
   @FXML
   public void initialize() {
-    westArrow.setVisible(true);
-    westArrow.setDisable(true);
 
-    northArrow.setVisible(false);
-    northArrow.setDisable(false);
+    arrowSetUp(arrowDirectionNumber);
 
-    southArrow.setVisible(false);
-    southArrow.setDisable(true);
-
-    eastArrow.setVisible(false);
-    eastArrow.setDisable(true);
-
-    eastArrow.onMouseClickedProperty();
-    westArrow.onMouseClickedProperty();
-    northArrow.onMouseClickedProperty();
-    southArrow.onMouseClickedProperty();
+    westArrow.setOnMouseClicked(event -> arrowSwap());
+    northArrow.setOnMouseClicked(event -> arrowSwap());
+    eastArrow.setOnMouseClicked(event -> arrowSwap());
+    southArrow.setOnMouseClicked(event -> arrowSwap());
+    noArrow.setOnMouseClicked(event -> arrowSwap());
   }
 
-  public void changeWestArrow() {
-    westArrow.setVisible(true);
-    westArrow.setDisable(false);
+  public void arrowSwap() {
+    if (westArrow.isVisible()) {
+      westArrow.setVisible(false);
+      northArrow.setVisible(true);
 
-    northArrow.setVisible(false);
-    northArrow.setDisable(true);
+      arrowDirectionNumber[0] = 2;
 
-    eastArrow.setVisible(false);
+    } else if (northArrow.isVisible()) {
+      northArrow.setVisible(false);
+      eastArrow.setVisible(true);
 
-    southArrow.setVisible(false);
+      arrowDirectionNumber[0] = 3;
+
+    } else if (eastArrow.isVisible()) {
+      eastArrow.setVisible(false);
+      southArrow.setVisible(true);
+
+      arrowDirectionNumber[0] = 4;
+
+    } else if (southArrow.isVisible()) {
+      southArrow.setVisible(false);
+      noArrow.setVisible(true);
+
+      arrowDirectionNumber[0] = 0;
+
+    } else if (noArrow.isVisible()) {
+      noArrow.setVisible(false);
+      westArrow.setVisible(true);
+
+      arrowDirectionNumber[0] = 1;
+    }
   }
 
-  public void changeNorthArrow() {
+  public void arrowSetUp(int[] readList) {
+
+    noArrow.setVisible(false);
+    northArrow.setVisible(false);
+    southArrow.setVisible(false);
     westArrow.setVisible(false);
-
-    northArrow.setVisible(true);
-    northArrow.setDisable(true);
-
-    eastArrow.setVisible(false);
-    eastArrow.setDisable(false);
-
-    southArrow.setVisible(false);
-  }
-
-  public void changeEastArrow() {
-    westArrow.setVisible(false);
-
-    northArrow.setVisible(false);
-
-    eastArrow.setVisible(true);
-    eastArrow.setDisable(true);
-
-    southArrow.setVisible(false);
-    southArrow.setDisable(false);
-  }
-
-  public void changeSouthArrow() {
-    westArrow.setVisible(false);
-    westArrow.setDisable(false);
-
-    northArrow.setVisible(false);
-
     eastArrow.setVisible(false);
 
-    southArrow.setVisible(true);
-    southArrow.setDisable(true);
+    // for (int i = 0; i <= 9; i++) {
+
+    int v = readList[0];
+    switch (v) {
+      case 0:
+        noArrow.setVisible(true);
+        break;
+      case 1:
+        westArrow.setVisible(true);
+        break;
+      case 2:
+        northArrow.setVisible(true);
+        break;
+      case 3:
+        eastArrow.setVisible(true);
+        break;
+      case 4:
+        southArrow.setVisible(true);
+        break;
+    }
+  }
+  // }
+
+  public int[] getArrowDirection() {
+    return arrowDirectionNumber;
   }
 }
