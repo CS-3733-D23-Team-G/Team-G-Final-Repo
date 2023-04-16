@@ -363,9 +363,10 @@ public class pathfindingController {
     HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
     ArrayList<edu.wpi.teamg.ORMClasses.Node> listOfNodes = new ArrayList<>(nodes.values());
 
+    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
     for (int i = 0; i < listOfNodes.size(); i++) {
       if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-        getNodesWFunctionality(listOfNodes, i, "L1");
+        getNodesWFunctionality(listOfNodes, i, sn);
       }
     }
   }
@@ -741,20 +742,24 @@ public class pathfindingController {
 
     HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
     ArrayList<edu.wpi.teamg.ORMClasses.Node> listOfNodes = new ArrayList<>(nodes.values());
-
+    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
+    HashMap<Integer, String> snL2 = nodeDAO.getShortName("L2");
+    HashMap<Integer, String> sn1 = nodeDAO.getShortName("1 ");
+    HashMap<Integer, String> sn2 = nodeDAO.getShortName("2 ");
+    HashMap<Integer, String> sn3 = nodeDAO.getShortName("3 ");
     nodePane.getChildren().clear();
     switch (index) {
       case 0:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-            getNodesWFunctionality(listOfNodes, i, "L1");
+            getNodesWFunctionality(listOfNodes, i, sn);
           }
         }
         break;
       case 1:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L2")) {
-            getNodesWFunctionality(listOfNodes, i, "L2");
+            getNodesWFunctionality(listOfNodes, i, snL2);
           }
         }
         break;
@@ -762,7 +767,7 @@ public class pathfindingController {
       case 2:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
-            getNodesWFunctionality(listOfNodes, i, "1 ");
+            getNodesWFunctionality(listOfNodes, i, sn1);
           }
         }
 
@@ -770,7 +775,7 @@ public class pathfindingController {
       case 3:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "2 ")) {
-            getNodesWFunctionality(listOfNodes, i, "2 ");
+            getNodesWFunctionality(listOfNodes, i, sn2);
           }
         }
 
@@ -778,7 +783,7 @@ public class pathfindingController {
       case 4:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "3 ")) {
-            getNodesWFunctionality(listOfNodes, i, "3 ");
+            getNodesWFunctionality(listOfNodes, i, sn3);
           }
         }
 
@@ -786,11 +791,9 @@ public class pathfindingController {
     }
   }
 
-  private void getNodesWFunctionality(ArrayList<Node> listOfNodes, int i, String floor)
-      throws SQLException {
+  private void getNodesWFunctionality(
+      ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn) throws SQLException {
     Node currentNode = listOfNodes.get(i);
-    NodeDAO nodeDAO = new NodeDAO();
-    HashMap<Integer, String> sn = nodeDAO.getShortName(floor);
 
     Circle point =
         new Circle(
