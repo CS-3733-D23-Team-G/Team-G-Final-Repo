@@ -31,6 +31,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.SearchableComboBox;
@@ -88,13 +89,13 @@ public class pathfindingController {
           }
         });
 
-    bfsCheckBox.setOnAction(
-        event -> {
-          if (bfsCheckBox.isSelected()) {
-            aStarCheckBox.setSelected(false);
-            dfsCheckBox.setSelected(false);
-          }
-        });
+       bfsCheckBox.setOnAction(
+            event -> {
+              if (bfsCheckBox.isSelected()) {
+                aStarCheckBox.setSelected(false);
+                dfsCheckBox.setSelected(false);
+              }
+            });
 
     dfsCheckBox.setOnAction(
         event -> {
@@ -424,10 +425,32 @@ public class pathfindingController {
     HashMap<Integer, Node> nodes = nodeDAO.getAll();
     ArrayList<String> pathForFloor = new ArrayList<>();
     Circle fPoint = new Circle();
+    Polygon triangle = new Polygon();
+    Circle start = new Circle();
+
+    String floor = nodes.get(Integer.parseInt(path.get(0))).getFloor();
+    switch (floor) {
+      case "L1":
+        goToL1(imageViewsList);
+        break;
+      case "L2":
+        goToL2(imageViewsList);
+        break;
+      case "1 ":
+        goToFloor1(imageViewsList);
+        break;
+      case "2 ":
+        goToFloor2(imageViewsList);
+        break;
+      case "3 ":
+        goToFloor3(imageViewsList);
+        break;
+    }
 
     nodePane.getChildren().clear();
     for (int i = 0; i < path.size(); i++) {
       int finalI = i;
+
       Circle point =
           new Circle(
               nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
@@ -438,12 +461,34 @@ public class pathfindingController {
           && !Objects.equals(
               nodes.get(Integer.parseInt(path.get(i))).getFloor(),
               nodes.get(Integer.parseInt(path.get(i + 1))).getFloor())) {
-        point.setFill(Color.rgb(246, 189, 56));
-        point.setRadius(20);
-        fPoint = point;
-        nodePane.getChildren().add(fPoint);
+        triangle.setFill(Color.rgb(246, 189, 56));
+        point.setRadius(30);
+
+        if (getFloorIndex(nodes.get(Integer.parseInt(path.get(i))).getFloor())
+            < getFloorIndex(nodes.get(Integer.parseInt(path.get(i + 1))).getFloor())) {
+          triangle
+              .getPoints()
+              .setAll(
+                  point.getCenterX() - point.getRadius(),
+                  point.getCenterY() + 10,
+                  point.getCenterX(),
+                  point.getCenterY() - point.getRadius(),
+                  point.getCenterX() + point.getRadius(),
+                  point.getCenterY() + 10);
+        } else {
+          triangle
+              .getPoints()
+              .setAll(
+                  point.getCenterX() - point.getRadius(),
+                  point.getCenterY() - 10,
+                  point.getCenterX(),
+                  point.getCenterY() + point.getRadius(),
+                  point.getCenterX() + point.getRadius(),
+                  point.getCenterY() - 10);
+        }
+        nodePane.getChildren().add(triangle);
         pathForFloor.add(path.get(i));
-        point.setOnMouseClicked(
+        triangle.setOnMouseClicked(
             event -> {
               try {
                 nextFloor(nodes.get(Integer.parseInt(path.get(finalI + 1))), path, finalI + 1);
@@ -453,8 +498,18 @@ public class pathfindingController {
             });
         break;
       } else {
-        nodePane.getChildren().add(point);
-        pathForFloor.add(path.get(i));
+
+        if (i == 0) {
+          point.setFill(Color.rgb(0, 156, 166));
+          point.setRadius(20);
+
+          start = point;
+          nodePane.getChildren().add(start);
+          pathForFloor.add(path.get(i));
+        } else {
+          nodePane.getChildren().add(point);
+          pathForFloor.add(path.get(i));
+        }
       }
     }
 
@@ -472,14 +527,17 @@ public class pathfindingController {
       nodePane.getChildren().add(pathLine);
     }
 
-    fPoint.toFront();
+    triangle.toFront();
+    start.toFront();
   }
 
   public void nextFloor(Node node, ArrayList<String> path, int index) throws SQLException {
     NodeDAO nodeDAO = new NodeDAO();
     HashMap<Integer, Node> nodes = nodeDAO.getAll();
     ArrayList<String> pathForFloor = new ArrayList<>();
-    Circle fPoint = new Circle();
+    Polygon triangle = new Polygon();
+    Circle downPoint = new Circle();
+    Circle end = new Circle();
 
     String floor = node.getFloor();
     switch (floor) {
@@ -503,6 +561,25 @@ public class pathfindingController {
     nodePane.getChildren().clear();
     for (int i = index; i < path.size(); i++) {
       int finalI = i;
+
+      if (i == index) {
+        downPoint =
+            new Circle(
+                nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
+                nodes.get(Integer.parseInt(path.get(i))).getYcoord(),
+                20,
+                Color.rgb(246, 189, 56));
+
+        nodePane.getChildren().add(downPoint);
+        downPoint.setOnMouseClicked(
+            event -> {
+              try {
+                setPath(path);
+              } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+              }
+            });
+      }
       Circle point =
           new Circle(
               nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
@@ -513,12 +590,34 @@ public class pathfindingController {
           && !Objects.equals(
               nodes.get(Integer.parseInt(path.get(i))).getFloor(),
               nodes.get(Integer.parseInt(path.get(i + 1))).getFloor())) {
-        point.setFill(Color.rgb(246, 189, 56));
-        point.setRadius(20);
-        fPoint = point;
-        nodePane.getChildren().add(fPoint);
+
+        point.setRadius(30);
+        if (getFloorIndex(nodes.get(Integer.parseInt(path.get(i))).getFloor())
+            < getFloorIndex(nodes.get(Integer.parseInt(path.get(i + 1))).getFloor())) {
+          triangle
+              .getPoints()
+              .setAll(
+                  point.getCenterX() - point.getRadius(),
+                  point.getCenterY() + 10,
+                  point.getCenterX(),
+                  point.getCenterY() - point.getRadius(),
+                  point.getCenterX() + point.getRadius(),
+                  point.getCenterY() + 10);
+        } else {
+          triangle
+              .getPoints()
+              .setAll(
+                  point.getCenterX() - point.getRadius(),
+                  point.getCenterY() - 10,
+                  point.getCenterX(),
+                  point.getCenterY() + point.getRadius(),
+                  point.getCenterX() + point.getRadius(),
+                  point.getCenterY() - 10);
+        }
+        triangle.setFill(Color.rgb(246, 189, 56));
+        nodePane.getChildren().add(triangle);
         pathForFloor.add(path.get(i));
-        point.setOnMouseClicked(
+        triangle.setOnMouseClicked(
             event -> {
               try {
                 nextFloor(nodes.get(Integer.parseInt(path.get(finalI + 1))), path, finalI + 1);
@@ -528,8 +627,17 @@ public class pathfindingController {
             });
         break;
       } else {
-        nodePane.getChildren().add(point);
-        pathForFloor.add(path.get(i));
+        if (i == (path.size() - 1)) {
+          point.setFill(Color.rgb(0, 156, 166));
+          point.setRadius(20);
+          end = point;
+          nodePane.getChildren().add(end);
+          pathForFloor.add(path.get(i));
+        } else {
+
+          nodePane.getChildren().add(point);
+          pathForFloor.add(path.get(i));
+        }
       }
     }
 
@@ -545,7 +653,9 @@ public class pathfindingController {
       nodePane.getChildren().add(pathLine);
     }
 
-    fPoint.toFront();
+    downPoint.toFront();
+    triangle.toFront();
+    end.toFront();
   }
 
   public void goToL1(ArrayList<ImageView> imgs) throws SQLException {
@@ -604,6 +714,25 @@ public class pathfindingController {
     }
     imgs.get(index).setVisible(true);
     newNodes(index);
+  }
+
+  public int getFloorIndex(String floor) {
+    int floorIndex = 0;
+    switch (floor) {
+      case "L2":
+        floorIndex = 1;
+        break;
+      case "1 ":
+        floorIndex = 2;
+        break;
+      case "2 ":
+        floorIndex = 3;
+        break;
+      case "3 ":
+        floorIndex = 4;
+    }
+
+    return floorIndex;
   }
 
   public void newNodes(int index) throws SQLException {
