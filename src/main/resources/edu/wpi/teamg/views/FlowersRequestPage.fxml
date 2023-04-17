@@ -90,7 +90,7 @@
                         <String fx:value="widget_homepage_pair" />
                      </styleClass>
                      <children>
-                        <Line endX="15.1385498046875" endY="1.52587890625E-5" layoutX="140.0" layoutY="99.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                        <Line endX="15.1385498046875" endY="1.52587890625E-5" layoutX="143.0" layoutY="98.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                         <ChoiceBox fx:id="bouquetSizeChoiceBox" layoutX="42.0" layoutY="291.0" prefHeight="50.0" prefWidth="250.0" />
                         <CheckComboBox fx:id="flowerTypeCheckBox" layoutX="42.0" layoutY="107.0" prefHeight="50.0" prefWidth="250.0" />
                         <Text fill="WHITE" layoutX="42.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flowers" wrappingWidth="317.3411865234375">
@@ -103,8 +103,8 @@
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <MFXButton fx:id="clearAll" layoutX="136.0" layoutY="622.0" prefHeight="53.0" prefWidth="140.0" styleClass="mfx-button" stylesheets="@style.css" text="Clear" />
-                        <MFXButton fx:id="submit" layoutX="420.0" layoutY="622.0" prefHeight="53.0" prefWidth="140.0" styleClass="mfx-button" stylesheets="@style.css" text="Confirm" />
+                        <MFXButton fx:id="clearAll" layoutX="173.0" layoutY="622.0" prefHeight="53.0" prefWidth="140.0" styleClass="mfx-button" stylesheets="@style.css" text="Clear" />
+                        <MFXButton fx:id="submit" layoutX="457.0" layoutY="622.0" prefHeight="53.0" prefWidth="140.0" styleClass="mfx-button" stylesheets="@style.css" text="Confirm" />
                         <MFXTextField layoutX="42.0" layoutY="456.0" prefHeight="50.0" prefWidth="250.0" />
                         <Text fill="WHITE" layoutX="42.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number">
                            <font>
