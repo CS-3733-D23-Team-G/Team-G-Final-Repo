@@ -9,108 +9,123 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.CheckComboBox?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FlowersRequestController">
-    <center>
-        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <AnchorPane>
-                    <children>
-                        <AnchorPane layoutX="111.0" layoutY="151.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
-                            <styleClass>
-                                <String fx:value="widget_homepage_pair" />
-                                <String fx:value="widget_background" />
-                            </styleClass>
-                            <children>
-                                <MFXTextField fx:id="roomField" layoutX="86.0" layoutY="139.0" prefHeight="57.0" prefWidth="198.0" stylesheets="@style.css">
+<BorderPane prefHeight="10.0" prefWidth="10.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FlowersRequestController">
+   <center>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+               <children>
+                  <AnchorPane layoutX="139.0" layoutY="139.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                     <styleClass>
+                        <String fx:value="widget_background" />
+                        <String fx:value="widget_homepage_pair" />
+                     </styleClass>
+                     <children>
+                        <Text fill="WHITE" layoutX="37.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Notifications:">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                        <Line endX="192.08010864257812" layoutX="138.0" layoutY="46.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                        <MFXTextField fx:id="roomField" layoutX="211.0" layoutY="262.0" prefHeight="57.0" prefWidth="198.0" stylesheets="@style.css">
                            <textFill>
                               <Color red="0.9450980424880981" green="0.9450980424880981" blue="0.9450980424880981" opacity="0.8700000047683716" />
-                           </textFill></MFXTextField>
-                                <MFXTextField fx:id="bouquetNote" layoutX="86.0" layoutY="419.0" prefHeight="194.0" prefWidth="266.0">
+                           </textFill>
+                        </MFXTextField>
+                        <MFXTextField fx:id="bouquetNote" layoutX="282.0" layoutY="239.0" prefHeight="194.0" prefWidth="266.0">
                            <textFill>
                               <Color red="0.9450980424880981" green="0.9450980424880981" blue="0.9450980424880981" opacity="0.8700000047683716" />
-                           </textFill></MFXTextField>
-                                <MFXDatePicker fx:id="deliveryDate" layoutX="403.0" layoutY="278.0" prefHeight="52.0" prefWidth="210.0" />
-                        <Text fill="WHITE" layoutX="83.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room" wrappingWidth="158.4469451904297">
+                           </textFill>
+                        </MFXTextField>
+                        <MFXDatePicker fx:id="deliveryDate" layoutX="212.0" layoutY="237.0" prefHeight="52.0" prefWidth="210.0" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Room" wrappingWidth="158.4469451904297">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="86.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" wrappingWidth="116.755859375">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" wrappingWidth="116.755859375">
                            <font>
                               <Font size="29.0" />
                            </font>
                         </Text>
-                        <MFXTextField layoutX="85.0" layoutY="273.0" prefHeight="61.0" prefWidth="210.0" />
-                        <Text fill="WHITE" layoutX="84.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number">
+                        <MFXTextField layoutX="201.0" layoutY="236.0" prefHeight="61.0" prefWidth="210.0" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Number">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Text layoutX="442.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <Text fill="WHITE" layoutX="405.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="149.94610595703125">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="149.94610595703125">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="401.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign To">
+                        <Text fill="WHITE" layoutX="258.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign To">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <SearchableComboBox fx:id="EmployeeSearchBox" layoutX="404.0" layoutY="421.0" prefHeight="50.0" prefWidth="236.0" />
-                        <MFXTextField fx:id="deliveryTime" layoutX="406.0" layoutY="139.0" prefHeight="48.0" prefWidth="214.0" />
-                        <Text fill="WHITE" layoutX="406.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" wrappingWidth="139.7366943359375">
+                        <SearchableComboBox fx:id="EmployeeSearchBox" layoutX="215.0" layoutY="287.0" prefHeight="50.0" prefWidth="236.0" />
+                        <MFXTextField fx:id="deliveryTime" layoutX="179.0" layoutY="263.0" prefHeight="48.0" prefWidth="214.0" />
+                        <Text fill="WHITE" layoutX="206.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" wrappingWidth="139.7366943359375">
                            <font>
                               <Font size="31.0" />
                            </font>
                         </Text>
-                            </children>
-                        </AnchorPane>
-                  <Text layoutX="70.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flower Request" wrappingWidth="272.53672790527344">
+                     </children>
+                  </AnchorPane>
+                  <Text layoutX="33.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Welcome John Smith">
                      <font>
-                        <Font size="35.0" />
+                        <Font size="25.0" />
                      </font>
                   </Text>
-                    </children>
-                </AnchorPane>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
-                    <children>
-                        <AnchorPane layoutX="195.0" layoutY="146.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
-                            <styleClass>
-                                <String fx:value="widget_homepage_pair" />
-                                <String fx:value="widget_background" />
-                            </styleClass>
-                            <children>
-                                <SearchableComboBox fx:id="locationSearchDropdown" layoutX="65.0" layoutY="300.0" prefHeight="50.0" prefWidth="236.0" />
-                                <ChoiceBox fx:id="bouquetSizeChoiceBox" layoutX="67.0" layoutY="456.0" prefHeight="52.0" prefWidth="297.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="456.0" />
-                                <CheckComboBox fx:id="flowerTypeCheckBox" layoutX="65.0" layoutY="148.0" prefHeight="58.0" prefWidth="376.0" />
-                        <Text fill="WHITE" layoutX="67.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flowers" wrappingWidth="317.3411865234375">
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+               <children>
+                  <AnchorPane layoutX="139.0" layoutY="144.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                     <styleClass>
+                        <String fx:value="widget_background" />
+                        <String fx:value="widget_homepage_pair" />
+                     </styleClass>
+                     <children>
+                        <Text fill="WHITE" layoutX="37.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Forms:">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Text>
+                        <Line endX="67.015625" endY="0.03125" layoutX="138.0" layoutY="46.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                        <SearchableComboBox fx:id="locationSearchDropdown" layoutX="149.0" layoutY="212.0" prefHeight="50.0" prefWidth="236.0" />
+                        <ChoiceBox fx:id="bouquetSizeChoiceBox" layoutX="149.0" layoutY="212.0" prefHeight="52.0" prefWidth="297.0" />
+                        <CheckComboBox fx:id="flowerTypeCheckBox" layoutX="149.0" layoutY="212.0" prefHeight="58.0" prefWidth="376.0" />
+                        <Text fill="WHITE" layoutX="149.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flowers" wrappingWidth="317.3411865234375">
                            <font>
                               <Font size="39.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="67.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location">
+                        <Text fill="WHITE" layoutX="149.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="67.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bouquet Size">
+                        <Text fill="WHITE" layoutX="149.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bouquet Size">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
-                                <MFXButton fx:id="clearAll" layoutX="204.0" layoutY="625.0" prefHeight="53.0" prefWidth="140.0" text="Clear" />
-                                <MFXButton fx:id="submit" layoutX="432.0" layoutY="621.0" prefHeight="53.0" prefWidth="140.0" stylesheets="@style.css" text="Confirm" />
-                            </children>
-                        </AnchorPane>
-                    </children>
-                </AnchorPane>
-            </children>
-        </HBox>
-    </center>
+                        <MFXButton fx:id="clearAll" layoutX="149.0" layoutY="212.0" prefHeight="53.0" prefWidth="140.0" text="Clear" />
+                        <MFXButton fx:id="submit" layoutX="149.0" layoutY="212.0" prefHeight="53.0" prefWidth="140.0" stylesheets="@style.css" text="Confirm" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </center>
 </BorderPane>
