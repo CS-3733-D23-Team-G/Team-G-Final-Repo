@@ -125,7 +125,9 @@ public class MealRequestDAO implements DAO {
       ps_Request.setString(2, "M");
       ps_Request.setInt(3, ((MealRequest) obj).getEmpid());
 
-      int nodeID = nodeDAO.getNodeIDbyLongName(((MealRequest) obj).getLocation());
+      int nodeID =
+          nodeDAO.getNodeIDbyLongName(
+              ((MealRequest) obj).getLocation(), new java.sql.Date(System.currentTimeMillis()));
 
       ps_Request.setInt(4, nodeID);
 

@@ -25,7 +25,6 @@ public class AdminFormStatusController {
   @FXML TableView<MealRequest> mealTable;
   @FXML TableView<ConferenceRoomRequest> roomTable;
   @FXML TableView<FlowerRequest> flowerTable;
-
   // Main Table
   @FXML TableColumn<Request, Integer> empID;
   @FXML TableColumn<Request, String> reqType;
@@ -73,6 +72,7 @@ public class AdminFormStatusController {
   @FXML TableColumn<ConferenceRoomRequest, Date> flowerDate;
   @FXML TableColumn<ConferenceRoomRequest, Time> flowerTime;
 
+
   //  @FXML Button allRequestTableButton;
   //  @FXML Button mealTableButton;
   //  @FXML Button roomTableButton;
@@ -84,7 +84,7 @@ public class AdminFormStatusController {
   @FXML MFXButton flowerTableButton;
   //  @FXML MFXButton FurnitureTableButton;
   //  @FXML MFXButton OfficeSupplyTableButton;
-
+  
   ObservableList<Request> testList;
   ObservableList<MealRequest> testMealList;
   ObservableList<ConferenceRoomRequest> testRoomList;
@@ -248,7 +248,6 @@ public class AdminFormStatusController {
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }
-
     return flowerHashMap;
   }
 
