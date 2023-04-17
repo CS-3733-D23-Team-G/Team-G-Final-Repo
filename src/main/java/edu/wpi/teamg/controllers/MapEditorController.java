@@ -5,6 +5,7 @@ import static edu.wpi.teamg.Main.*;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
+import edu.wpi.teamg.DAOs.MoveDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
 import edu.wpi.teamg.ORMClasses.Node;
@@ -44,6 +45,8 @@ public class MapEditorController {
   @FXML Button floor3;
 
   @FXML MFXButton add;
+
+  @FXML MFXButton fmoves;
 
   public void initialize() throws SQLException {
     pane.setVisible(true);
@@ -325,6 +328,12 @@ public class MapEditorController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void displayMove(){
+    MoveDAO moveDAO = new MoveDAO();
+
+    //Hashmap<Integer, String> moveNode = moveDAO.getAll()
   }
 
   public void exit() {
