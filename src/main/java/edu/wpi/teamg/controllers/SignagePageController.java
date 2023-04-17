@@ -61,6 +61,7 @@ public class SignagePageController {
   @FXML SearchableComboBox startLocDrop;
   @FXML SearchableComboBox endLocDrop;
 
+
   @FXML SearchableComboBox floorStart;
   @FXML SearchableComboBox floorEnd;
 
@@ -75,6 +76,7 @@ public class SignagePageController {
   ObservableList<String> locationListStart;
   ObservableList<String> locationListEnd;
   ObservableList<String> FloorList;
+
 
   DAORepo dao = new DAORepo();
 
