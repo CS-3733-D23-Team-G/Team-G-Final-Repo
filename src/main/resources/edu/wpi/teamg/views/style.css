@@ -82,8 +82,10 @@
 }
 .rest_of_page{
     -fx-background-color: F1F1F1;
-    -fx-pref-height: 980;
+/*   -fx-pref-height: 980;
     -fx-pref-width: 1920;
+    -fx-max-height: 980;
+    -fx-max-width: 1920; */
 }
 .half_bottom_page{
     -fx-pref-height: 980;

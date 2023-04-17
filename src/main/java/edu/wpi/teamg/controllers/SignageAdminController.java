@@ -92,19 +92,21 @@ public class SignageAdminController {
   @FXML MFXButton edit;
   @FXML MFXButton cancel;
 
-  @FXML Button disMap;
+  //  @FXML Button disMap;
 
-  @FXML Button gf;
-  @FXML Button l1;
-  @FXML Button l2;
-  @FXML Button floor1;
-  @FXML Button floor2;
-  @FXML Button floor3;
+  //  @FXML Button gf;
+  //  @FXML Button l1;
+  //  @FXML Button l2;
+  //  @FXML Button floor1;
+  //  @FXML Button floor2;
+  //  @FXML Button floor3;
 
-  @FXML MFXButton mapEdit;
-  @FXML MFXButton mapCancel;
+  //  @FXML MFXButton mapEdit;
+  //  @FXML MFXButton mapCancel;
 
-  @FXML MFXButton add;
+  //  @FXML MFXButton add;
+
+  @FXML MFXButton mapEditorPageBtn;
 
   private boolean editableMap = false;
 
@@ -120,17 +122,18 @@ public class SignageAdminController {
     exportDrop.setItems(exportList);
     cancel.setOnMouseClicked(event -> cancelTable());
     edit.setOnMouseClicked(event -> editTable());
-    disMap.setOnMouseClicked(event -> showAdminMap());
-    mapEdit.setOnMouseClicked(event -> editMap());
-    mapCancel.setOnMouseClicked(event -> cancelMap());
-    add.setOnMouseClicked(
-        event -> {
-          try {
-            addNode();
-          } catch (IOException | SQLException e) {
-            throw new RuntimeException(e);
-          }
-        });
+    //    disMap.setOnMouseClicked(event -> showAdminMap());
+    //    mapEdit.setOnMouseClicked(event -> editMap());
+    //    mapCancel.setOnMouseClicked(event -> cancelMap());
+    mapEditorPageBtn.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_MAP_EDITOR));
+    //    add.setOnMouseClicked(
+    //        event -> {
+    //          try {
+    //            addNode();
+    //          } catch (IOException | SQLException e) {
+    //            throw new RuntimeException(e);
+    //          }
+    //        });
 
     // importButton.setOnAction(event -> fileChooser());
 
@@ -262,47 +265,48 @@ public class SignageAdminController {
     imageViewsList.add(mapViewFloor1);
     imageViewsList.add(mapViewFloor2);
     imageViewsList.add(mapViewFloor3);
+    //
+    //    l1.setOnMouseClicked(
+    //        event -> {
+    //          try {
+    //            goToL1(imageViewsList);
+    //          } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //          }
+    //        });
+    //    l2.setOnMouseClicked(
+    //        event -> {
+    //          try {
+    //            goToL2(imageViewsList);
+    //          } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //          }
+    //        });
+    //    floor1.setOnMouseClicked(
+    //        event -> {
+    //          try {
+    //            goToFloor1(imageViewsList);
+    //          } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //          }
+    //        });
+    //    floor2.setOnMouseClicked(
+    //        event -> {
+    //          try {
+    //            goToFloor2(imageViewsList);
+    //          } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //          }
+    //        });
+    //    floor3.setOnMouseClicked(
+    //        event -> {
+    //          try {
+    //            goToFloor3(imageViewsList);
+    //          } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //          }
+    //        });
 
-    l1.setOnMouseClicked(
-        event -> {
-          try {
-            goToL1(imageViewsList);
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-        });
-    l2.setOnMouseClicked(
-        event -> {
-          try {
-            goToL2(imageViewsList);
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-        });
-    floor1.setOnMouseClicked(
-        event -> {
-          try {
-            goToFloor1(imageViewsList);
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-        });
-    floor2.setOnMouseClicked(
-        event -> {
-          try {
-            goToFloor2(imageViewsList);
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-        });
-    floor3.setOnMouseClicked(
-        event -> {
-          try {
-            goToFloor3(imageViewsList);
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-        });
     // Scaling is currently the issue with the node map
 
     NodeDAO nodeDAO = new NodeDAO();
