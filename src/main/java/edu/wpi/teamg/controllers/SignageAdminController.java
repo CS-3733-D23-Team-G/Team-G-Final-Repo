@@ -2,6 +2,8 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
@@ -16,7 +18,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -43,11 +44,11 @@ public class SignageAdminController {
   @FXML ChoiceBox<String> importDrop;
   @FXML ChoiceBox<String> exportDrop;
 
-  @FXML Button nodes;
-  @FXML Button edges;
+  @FXML MFXButton nodesButton;
+  @FXML MFXButton edgesButton;
 
-  @FXML Button nodeLoc;
-  @FXML Button move;
+  @FXML MFXButton nodeLocButton;
+  @FXML MFXButton moveButton;
 
   @FXML TableView<Node> nodeTable;
   @FXML TableView<Edge> edgeTable;
@@ -89,7 +90,6 @@ public class SignageAdminController {
   //  @FXML Button floor1;
   //  @FXML Button floor2;
   //  @FXML Button floor3;
-
 
   //  @FXML MFXButton mapEdit;
   //  @FXML MFXButton mapCancel;
@@ -154,10 +154,10 @@ public class SignageAdminController {
        });
     */
 
-    nodes.setOnMouseClicked(event -> loadNodeTable());
-    edges.setOnMouseClicked(event -> loadEdgeTable());
-    move.setOnMouseClicked(event -> loadMoveTable());
-    nodeLoc.setOnMouseClicked(event -> loadLocTable());
+    nodesButton.setOnMouseClicked(event -> loadNodeTable());
+    edgesButton.setOnMouseClicked(event -> loadEdgeTable());
+    moveButton.setOnMouseClicked(event -> loadMoveTable());
+    nodeLocButton.setOnMouseClicked(event -> loadLocTable());
 
     ObservableList<Node> nodeList;
     ObservableList<Edge> edgeList;

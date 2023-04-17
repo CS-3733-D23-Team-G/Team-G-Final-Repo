@@ -21,6 +21,7 @@ public class ConferenceRoomRequestDAO implements DAO {
       new HashMap<Integer, ConferenceRoomRequest>();
 
   NodeDAO nodeDAO = new NodeDAO();
+  EmployeeDAO employeeDAO = new EmployeeDAO();
 
   @Override
   public HashMap<Integer, ConferenceRoomRequest> getAll() throws SQLException {
@@ -43,20 +44,27 @@ public class ConferenceRoomRequestDAO implements DAO {
       System.err.println("SQL Exception");
     }
 
+    HashMap longNameHash = new HashMap<>();
+    longNameHash = NodeDAO.getCRLongName();
+
+    HashMap employeeHash = new HashMap<>();
+    employeeHash = employeeDAO.getEmployeeFullName("Conference Rooms Request");
+
+    HashMap allEmployeeHash = new HashMap<>();
+    allEmployeeHash = employeeDAO.getAllEmployeeFullName();
+
     while (rs.next()) {
 
       int reqID = rs.getInt("reqid");
+
       int empID = rs.getInt("empid");
+      String requestingEmployee = "ID " + empID + ": " + (String) allEmployeeHash.get(empID);
 
       int location = rs.getInt("location");
-
-      HashMap longNameHash = new HashMap<>();
-
-      longNameHash = NodeDAO.getCRLongName();
-
       String longName = (String) longNameHash.get(location);
 
-      int servBy = rs.getInt("serveBy");
+      int serveBy = rs.getInt("serveBy");
+      String assignedEmployee = "ID " + serveBy + ": " + (String) employeeHash.get(serveBy);
 
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
 
@@ -67,7 +75,15 @@ public class ConferenceRoomRequestDAO implements DAO {
 
       ConferenceRoomRequest cReq =
           new ConferenceRoomRequest(
-              "CR", empID, longName, servBy, status, reqDate, reqTime, endTime, confPurpose);
+              "CR",
+              requestingEmployee,
+              longName,
+              assignedEmployee,
+              status,
+              reqDate,
+              reqTime,
+              endTime,
+              confPurpose);
 
       cReq.setReqid(reqID);
 
@@ -121,7 +137,17 @@ public class ConferenceRoomRequestDAO implements DAO {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
       ps_Req.setInt(1, maxID);
       ps_Req.setString(2, "CR");
-      ps_Req.setInt(3, ((ConferenceRoomRequest) obj).getEmpid());
+
+      String requestingEmployee = ((ConferenceRoomRequest) obj).getEmpid();
+      String assignedEmployee = ((ConferenceRoomRequest) obj).getServeBy();
+
+      String[] split0 = requestingEmployee.split(":");
+      String[] split1 = assignedEmployee.split(":");
+
+      int empid = Integer.parseInt(split0[0].substring(3));
+      int serveBy = Integer.parseInt(split1[0].substring(3));
+
+      ps_Req.setInt(3, empid);
 
       int nodeID =
           nodeDAO.getNodeIDbyLongName(
@@ -130,7 +156,7 @@ public class ConferenceRoomRequestDAO implements DAO {
 
       ps_Req.setInt(4, nodeID);
 
-      ps_Req.setInt(5, ((ConferenceRoomRequest) obj).getServeBy());
+      ps_Req.setInt(5, serveBy);
       ps_Req.setObject(6, ((ConferenceRoomRequest) obj).getStatus(), java.sql.Types.OTHER);
       ps_Req.setDate(7, ((ConferenceRoomRequest) obj).getRequestDate());
       ps_Req.setTime(8, ((ConferenceRoomRequest) obj).getRequestTime());

@@ -70,6 +70,7 @@ public class NodeDAO implements LocationDAO {
           "INSERT INTO "
               + this.getTable()
               + " (nodeid, xcoord, ycoord, floor, building) VALUES (?,?,?,?,?)";
+
       PreparedStatement ps = db.getConnection().prepareStatement(SQL);
 
       BufferedReader br = new BufferedReader(new FileReader(path));
