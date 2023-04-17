@@ -248,13 +248,13 @@ public class FlowersRequestController {
   public int flowerConvert(String t) {
     int i = 0;
     switch (t) {
-      case "10 Stems (small)":
+      case "6 Stems (small)":
         i = 10;
         break;
-      case "20 Stems (medium)":
+      case "12 Stems (medium)":
         i = 20;
         break;
-      case "30 Stems (large)":
+      case "24 Stems (large)":
         i = 30;
         break;
       default:
@@ -272,7 +272,6 @@ public class FlowersRequestController {
     }
     return s1;
   }
-
   public void exit() {
     Platform.exit();
   }
