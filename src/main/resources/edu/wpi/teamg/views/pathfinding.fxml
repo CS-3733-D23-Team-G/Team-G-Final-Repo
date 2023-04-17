@@ -28,7 +28,7 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="locationLabel" text="STARTING LOCATION:" />
                               <HBox styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXComboBox fx:id="floorStart" alignment="CENTER" styleClass="locationSelect_comboSearchBox" />
+                                    <MFXComboBox fx:id="floorStart" alignment="CENTER" prefHeight="70.0" prefWidth="135.0" styleClass="locationSelect_comboSearchBox" />
                                     <SearchableComboBox fx:id="startLocDrop" prefHeight="47.0" prefWidth="338.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css">
                                        <HBox.margin>
                                           <Insets left="25.0" />
@@ -39,8 +39,8 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="locationLabel" text="DESTINATION:" />
                               <HBox prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXComboBox fx:id="floorEnd" alignment="CENTER" styleClass="locationSelect_comboSearchBox" />
-                                    <SearchableComboBox fx:id="endLocDrop" styleClass="locationSelect_comboSearchBox">
+                                    <MFXComboBox fx:id="floorEnd" alignment="CENTER" prefHeight="64.0" prefWidth="135.0" styleClass="locationSelect_comboSearchBox" />
+                                    <SearchableComboBox fx:id="endLocDrop" prefHeight="60.0" prefWidth="241.0" styleClass="locationSelect_comboSearchBox">
                                        <HBox.margin>
                                           <Insets left="25.0" />
                                        </HBox.margin>

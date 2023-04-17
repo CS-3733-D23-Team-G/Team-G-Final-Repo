@@ -18,8 +18,8 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import org.controlsfx.control.SearchableComboBox;
 
 public class MealRequestController {
@@ -31,14 +31,24 @@ public class MealRequestController {
 
   // TextFields
   @FXML MFXTextField mealTimeOfDeliver;
-  // @FXML MFXTextField mealDeliveryLocationData;
+
   @FXML MFXTextField mealPersonOrderingForData;
   @FXML MFXTextField mealNotesData;
-  @FXML ChoiceBox<String> mealFoodChoice;
 
-  // Hung This is the name and list associated with test searchable list
+  @FXML ImageView selectedBurger;
+  @FXML ImageView burgerOption;
+  @FXML ImageView selectedCornDog;
+  @FXML ImageView corndogOption;
+  @FXML ImageView selectedFriedRice;
+  @FXML ImageView friedRiceOption;
+
+  // @FXML ChoiceBox<String> mealFoodChoice;
+  @FXML Label mealFoodChoice;
+
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML Label checkFields;
+
+  String Order = "";
 
   ObservableList<String> locationList;
 
@@ -68,21 +78,31 @@ public class MealRequestController {
 
   @FXML
   public void initialize() throws SQLException {
-    mealSubmitButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT));
-
-    mealClearAll.setOnAction(event -> clearAllData());
-
     mealSubmitButton.setOnMouseClicked(
         event -> {
           allDataFilled();
+          foodOrder();
+          Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT);
         });
-    //  mealNameData.getText();
-    // mealDeliveryLocationData.getText();
+
+    mealClearAll.setOnAction(event -> clearAllData());
+
     mealPersonOrderingForData.getText();
     mealNotesData.getText();
-    mealFoodChoice.setItems(foodList);
+    // mealFoodChoice.setItems(foodList);
+    mealFoodChoice.getText();
     mealDate.getValue();
     mealTimeOfDeliver.getText();
+
+    selectedBurger.setVisible(false);
+    selectedBurger.setDisable(true);
+    selectedCornDog.setVisible(false);
+    selectedCornDog.setDisable(true);
+    selectedFriedRice.setVisible(false);
+    selectedFriedRice.setDisable(true);
+    burgerOption.setOnMouseClicked(event -> selectBurgerOption());
+    friedRiceOption.setOnMouseClicked(event -> selectFriedRiceOption());
+    corndogOption.setOnMouseClicked(event -> selectCorndogOption());
 
     ArrayList<String> locationNames = new ArrayList<>();
     HashMap<Integer, String> testingLongName = this.getHashMapMLongName();
@@ -111,6 +131,50 @@ public class MealRequestController {
     Platform.exit();
   }
 
+  public void selectBurgerOption() {
+    if (selectedBurger.isVisible() == false) {
+      selectedBurger.setVisible(true);
+      Order += "Cheeseburger, ";
+    } else if (selectedBurger.isVisible() == true) {
+      selectedBurger.setVisible(false);
+      Order.replace("Cheeseburger, ", "");
+    }
+  }
+
+  public void selectCorndogOption() {
+    if (selectedCornDog.isVisible() == false) {
+      selectedCornDog.setVisible(true);
+      Order += "Corndog, ";
+    } else if (selectedCornDog.isVisible() == true) {
+      selectedCornDog.setVisible(false);
+      Order.replace("Corndog, ", "");
+    }
+  }
+
+  public void selectFriedRiceOption() {
+    if (selectedFriedRice.isVisible() == false) {
+      selectedFriedRice.setVisible(true);
+      Order += "Shrimp Fried Rice, ";
+    } else if (selectedFriedRice.isVisible() == true) {
+      selectedFriedRice.setVisible(false);
+      Order.replace("Shrimp Fried Rice, ", "");
+    }
+  }
+
+  public void foodOrder() {
+    if (selectedBurger.isVisible()) {
+      Order += "Cheeseburger, ";
+    }
+    if (selectedCornDog.isVisible()) {
+      Order += "Corndog, ";
+    }
+    if (selectedFriedRice.isVisible()) {
+      Order += "Shrinmp Fried Rice, ";
+    }
+    mealFoodChoice.setText(Order);
+    // System.out.println(mealFoodChoice.getText());
+  }
+
   public void storeMealValues() throws SQLException {
     MealRequest mr =
         new MealRequest(
@@ -123,8 +187,10 @@ public class MealRequestController {
             Date.valueOf(mealDate.getValue()),
             StringToTime(mealTimeOfDeliver.getText()),
             mealPersonOrderingForData.getText(),
-            mealFoodChoice.getValue(),
+            Order,
             mealNotesData.getText());
+
+    System.out.println(Order);
 
     //    mr.setEmpid(1);
     //    mr.setServ_by(1);
@@ -156,7 +222,7 @@ public class MealRequestController {
     //            + mr.getStatus());
 
     DAORepo dao = new DAORepo();
-    dao.insertMealRequest(mr);
+    // dao.insertMealRequest(mr);
   }
 
   public HashMap<Integer, String> getHashMapMLongName() throws SQLException {
@@ -184,7 +250,7 @@ public class MealRequestController {
         || mealNotesData.getText().equals("")
         || mealDate.getText().equals("")
         || mealTimeOfDeliver.getText().equals("")
-        || mealFoodChoice.getValue() == null
+        || Order.equals("")
         || locationSearchDropdown.getValue() == null)) {
       try {
         storeMealValues();
@@ -203,8 +269,17 @@ public class MealRequestController {
     mealNotesData.setText("");
     mealDate.setText("");
     mealTimeOfDeliver.setText("");
-    mealFoodChoice.setValue(null);
+    mealFoodChoice.setText("");
+
     locationSearchDropdown.setValue(null);
+
+    selectedBurger.setVisible(false);
+    selectedBurger.setDisable(true);
+    selectedCornDog.setVisible(false);
+    selectedCornDog.setDisable(true);
+    selectedFriedRice.setVisible(false);
+    selectedFriedRice.setDisable(true);
+
     return;
   }
 }
