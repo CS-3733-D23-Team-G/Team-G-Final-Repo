@@ -2,16 +2,10 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import net.kurobako.gesturefx.GesturePane?>
@@ -19,39 +13,6 @@
 
 <VBox fx:id="tohome" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SignagePageController">
    <children>
-      <HBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #f1f1f1;" styleClass="top_banner" VBox.vgrow="ALWAYS">
-         <children>
-            <AnchorPane prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #f1f1f1;">
-               <children>
-                    <Text disable="true" layoutX="504.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
-                    <MFXButton fx:id="exitButton" contentDisplay="RIGHT" layoutX="496.0" opacity="0.0" prefHeight="27.0" prefWidth="97.0" text="Exit Application" />
-                  <ImageView fitHeight="48.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@bwh-logo.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-         </children>
-      </HBox>
-      <GridPane styleClass="banner">
-        <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-              <MFXButton fx:id="backToHomeButton" opacity="0.0" prefHeight="64.0" prefWidth="167.0" styleClass="button_banner" text="Return to Home Button" />
-              <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" wrappingWidth="72.041015625" GridPane.columnIndex="2" />
-              <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" wrappingWidth="85.107421875" />
-              <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" wrappingWidth="119.103515625" GridPane.columnIndex="1" />
-              <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="64.0" prefWidth="214.0" styleClass="button_banner" GridPane.columnIndex="1" />
-              <MFXButton fx:id="signagePageButton" opacity="0.0" prefHeight="64.0" prefWidth="167.0" styleClass="button_banner" text="Signage Page Button" GridPane.columnIndex="2" />
-         </children>
-      </GridPane>
       <HBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
          <children>
             <AnchorPane prefHeight="400.0" prefWidth="600.0">

@@ -18,7 +18,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.IndexedCheckModel;
@@ -26,17 +25,12 @@ import org.controlsfx.control.SearchableComboBox;
 
 public class FlowersRequestController {
 
-  @FXML MFXButton returnHomeButton;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
-  @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
-
   @FXML ChoiceBox<String> bouquetSizeChoiceBox;
   @FXML CheckComboBox<String> flowerTypeCheckBox;
   @FXML MFXButton submit;
   @FXML MFXButton clearAll;
   // @FXML TextField deliveryLocation;
-  @FXML Label checkFields;
+  // @FXML Label checkFields;
 
   // Hung This is the name and list associated with test searchable list
   //  @FXML SearchableComboBox locationSearchDropdown;
@@ -53,6 +47,7 @@ public class FlowersRequestController {
   @FXML TextField bouquetNote;
 
   @FXML SearchableComboBox locationSearchDropdown;
+  @FXML SearchableComboBox EmployeeSearchBox;
 
   /*
    TODO: figure out how to get correct datatype to give to DB
@@ -64,22 +59,17 @@ public class FlowersRequestController {
   ObservableList<String> listSizes =
       FXCollections.observableArrayList(
           "10 Stems (small)", "20 Stems (medium)", "30 Stems (large)");
-  ObservableList<String> list =
+  ObservableList<String> listEmployee =
       FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
-
+          "Tom", "Kristine", "Raj", "Professor Wong", "Mo", "Andrew", "Hung");
   DAORepo dao = new DAORepo();
 
   @FXML
   public void initialize() throws SQLException {
-    serviceRequestChoiceBox.setItems(list);
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
+
     bouquetSizeChoiceBox.setItems(listSizes);
     flowerTypeCheckBox.getItems().addAll(listFlowers);
+    EmployeeSearchBox.getItems().addAll(listEmployee);
 
     ArrayList<String> locationNames = new ArrayList<>();
     HashMap<Integer, String> testingLongName = this.getHashMapMLongName();
@@ -102,17 +92,7 @@ public class FlowersRequestController {
     // Hung this is where it sets the list - Andrew
     locationSearchDropdown.setItems(locationList);
 
-    checkFields.getText();
-
-    signagePageButton.setOnMouseClicked(
-        event -> {
-          Navigation.navigate(Screen.SIGNAGE_PAGE);
-        });
-    returnHomeButton.setOnMouseClicked(
-        event -> {
-          Navigation.navigate(Screen.HOME);
-        });
-    exitButton.setOnMouseClicked(event -> exit());
+    // checkFields.getText();
     clearAll.setOnAction(event -> clearFlowers());
     submit.setOnAction(
         event -> {
@@ -134,21 +114,6 @@ public class FlowersRequestController {
 
   }
 
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
-    }
-  }
   /*
   String reqtype,
         int empid,
@@ -237,7 +202,7 @@ public class FlowersRequestController {
       }
       Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT);
     } else {
-      checkFields.setText("Not All Fields Are Filled");
+      // checkFields.setText("Not All Fields Are Filled");
     }
   }
 

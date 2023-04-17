@@ -2,9 +2,6 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -15,18 +12,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class FormStatusController {
+public class AdminFormStatusController {
 
   // Heading
-  @FXML MFXButton backToHomeButton;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
-  @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
 
   // Tables
   @FXML TableView<Request> mainTable;
@@ -86,14 +78,6 @@ public class FormStatusController {
   @FXML Button roomTableButton;
   @FXML Button flowerTableButton;
 
-  ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
-
   ObservableList<Request> testList;
   ObservableList<MealRequest> testMealList;
   ObservableList<ConferenceRoomRequest> testRoomList;
@@ -102,12 +86,6 @@ public class FormStatusController {
 
   @FXML
   public void initialize() throws SQLException {
-    serviceRequestChoiceBox.setItems(list);
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    exitButton.setOnMouseClicked(event -> exit());
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-
     allRequestTableButton.setOnMouseClicked(event -> loadAllRequestTable());
     mealTableButton.setOnMouseClicked(event -> loadMealTable());
     roomTableButton.setOnMouseClicked(event -> loadRoomTable());
@@ -212,22 +190,6 @@ public class FormStatusController {
     flowerTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
     flowerRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
     flowerNote.setCellValueFactory(new PropertyValueFactory<>("note"));
-  }
-
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
-    }
   }
 
   public HashMap getHashMapRequest() throws SQLException {
