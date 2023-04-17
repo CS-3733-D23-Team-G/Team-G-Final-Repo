@@ -21,7 +21,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -63,8 +62,6 @@ public class SignagePageController {
 
   @FXML SearchableComboBox startLocDrop;
   @FXML SearchableComboBox endLocDrop;
-
-
 
   ObservableList<String> locationList;
 
