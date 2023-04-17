@@ -429,7 +429,7 @@ public class NodeDAO implements LocationDAO {
     PreparedStatement ps;
 
     ResultSet rs = null;
-    SQL = "select nodeid from iteration2.Move where longname = ? and date<=?";
+    SQL = "select nodeid from iteration2.Move where longname = ? and date<=? order by date";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
