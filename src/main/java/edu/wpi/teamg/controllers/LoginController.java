@@ -23,8 +23,6 @@ public class LoginController {
 
   @FXML Label passInc;
 
-
-
   DBConnection db = new DBConnection();
   String query;
 
@@ -51,18 +49,17 @@ public class LoginController {
       boolean tableAdmin = false;
 
       while (rs.next()) {
-        tableUser = rs.getString("username");
-        tableEmp = rs.getInt("empid");
-        tablePass = rs.getString("hashPassword");
+
+        tablePass = rs.getString("hashpassword");
         tableSalt = rs.getBytes("salt");
-        tableAdmin = rs.getBoolean("is_admin");
+        // tableAdmin = rs.getBoolean("is_admin");
       }
 
       Account account = new Account();
       account.setPassword(pass);
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
-
+        Navigation.navigate(Screen.HOME);
       } else {
         incorrectPassword();
       }
