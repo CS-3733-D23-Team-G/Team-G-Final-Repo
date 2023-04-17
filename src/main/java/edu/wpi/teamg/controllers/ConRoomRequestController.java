@@ -18,7 +18,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import org.controlsfx.control.SearchableComboBox;
 
@@ -35,7 +34,6 @@ public class ConRoomRequestController {
   @FXML MFXTextField roomTimeData;
   @FXML MFXTextField roomEndTime;
 
-
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML Label checkFields;
@@ -47,8 +45,6 @@ public class ConRoomRequestController {
           "Furniture Request Form",
           "Meal Request Form",
           "Office Supplies Request Form");;
-
-
 
   DAORepo dao = new DAORepo();
 
@@ -96,8 +92,6 @@ public class ConRoomRequestController {
     // Hung this is where it sets the list - Andrew
     locationSearchDropdown.setItems(locationList);
   }
-
-  
 
   public void storeRoomValues() throws SQLException {
 

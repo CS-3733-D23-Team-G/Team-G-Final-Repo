@@ -18,7 +18,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.IndexedCheckModel;
@@ -26,14 +25,12 @@ import org.controlsfx.control.SearchableComboBox;
 
 public class FlowersRequestController {
 
-
-
   @FXML ChoiceBox<String> bouquetSizeChoiceBox;
   @FXML CheckComboBox<String> flowerTypeCheckBox;
   @FXML MFXButton submit;
   @FXML MFXButton clearAll;
   // @FXML TextField deliveryLocation;
-  @FXML Label checkFields;
+  // @FXML Label checkFields;
 
   // Hung This is the name and list associated with test searchable list
   //  @FXML SearchableComboBox locationSearchDropdown;
@@ -50,6 +47,7 @@ public class FlowersRequestController {
   @FXML TextField bouquetNote;
 
   @FXML SearchableComboBox locationSearchDropdown;
+  @FXML SearchableComboBox EmployeeSearchBox;
 
   /*
    TODO: figure out how to get correct datatype to give to DB
@@ -61,8 +59,9 @@ public class FlowersRequestController {
   ObservableList<String> listSizes =
       FXCollections.observableArrayList(
           "10 Stems (small)", "20 Stems (medium)", "30 Stems (large)");
-
-
+  ObservableList<String> listEmployee =
+      FXCollections.observableArrayList(
+          "Tom", "Kristine", "Raj", "Professor Wong", "Mo", "Andrew", "Hung");
   DAORepo dao = new DAORepo();
 
   @FXML
@@ -70,6 +69,7 @@ public class FlowersRequestController {
 
     bouquetSizeChoiceBox.setItems(listSizes);
     flowerTypeCheckBox.getItems().addAll(listFlowers);
+    EmployeeSearchBox.getItems().addAll(listEmployee);
 
     ArrayList<String> locationNames = new ArrayList<>();
     HashMap<Integer, String> testingLongName = this.getHashMapMLongName();
@@ -92,7 +92,7 @@ public class FlowersRequestController {
     // Hung this is where it sets the list - Andrew
     locationSearchDropdown.setItems(locationList);
 
-    checkFields.getText();
+    // checkFields.getText();
     clearAll.setOnAction(event -> clearFlowers());
     submit.setOnAction(
         event -> {
@@ -113,7 +113,6 @@ public class FlowersRequestController {
     //    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT));
 
   }
-
 
   /*
   String reqtype,
@@ -203,7 +202,7 @@ public class FlowersRequestController {
       }
       Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT);
     } else {
-      checkFields.setText("Not All Fields Are Filled");
+      // checkFields.setText("Not All Fields Are Filled");
     }
   }
 
