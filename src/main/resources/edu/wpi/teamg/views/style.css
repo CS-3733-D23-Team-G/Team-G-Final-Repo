@@ -106,3 +106,9 @@
 .linear-grad{
     -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
 }
+.signage_text{
+    -fx-font-size: 30;
+}
+.signage_background_color{
+    -fx-background-color: #D9D9D9;
+}
