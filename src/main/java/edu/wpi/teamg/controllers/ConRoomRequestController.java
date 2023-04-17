@@ -36,7 +36,6 @@ public class ConRoomRequestController {
 
   //  @FXML SearchableComboBox roomNumber;
 
-
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML Label checkFields;
