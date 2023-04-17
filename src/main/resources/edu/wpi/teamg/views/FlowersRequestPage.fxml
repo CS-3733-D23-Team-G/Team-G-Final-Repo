@@ -4,11 +4,13 @@
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -17,11 +19,11 @@
 
 <BorderPane prefHeight="10.0" prefWidth="10.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FlowersRequestController">
    <center>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="rest_of_page" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
-                  <AnchorPane layoutX="139.0" layoutY="139.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                  <AnchorPane layoutX="249.0" layoutY="222.0" maxHeight="756.0" prefHeight="756.0" prefWidth="200.0" AnchorPane.leftAnchor="149.0" AnchorPane.topAnchor="100.0">
                      <styleClass>
                         <String fx:value="widget_background" />
                         <String fx:value="widget_homepage_pair" />
@@ -78,44 +80,62 @@
                         <Line endX="6.29925537109375" layoutX="543.0" layoutY="267.0" startX="-111.36810302734375" stroke="#f6bd38" strokeWidth="3.0" />
                         <Line endX="-25.648590087890625" layoutX="142.0" layoutY="267.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                         <Line endX="29.79705810546875" endY="1.328125" layoutX="540.0" layoutY="435.0" startX="-108.0" startY="1.328125" stroke="#f6bd38" strokeWidth="3.0" />
+                        <MFXButton fx:id="clearAll" layoutX="392.0" layoutY="563.0" opacity="0.0" prefHeight="75.0" prefWidth="140.0" styleClass="mfx-button" stylesheets="@style.css" text="Clear" />
+                        <MFXButton fx:id="submit" layoutX="562.0" layoutY="556.0" opacity="0.0" prefHeight="89.0" prefWidth="140.0" styleClass="mfx-button" stylesheets="@style.css" text="Confirm" />
+                        <Ellipse fill="#f6bd38" layoutX="636.0" layoutY="602.0" radiusX="68.0" radiusY="41.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="603.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Ellipse fill="#f1f1f1" layoutX="460.0" layoutY="601.0" radiusX="68.0" radiusY="41.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="438.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clear">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
                </children>
+               <padding>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+               </padding>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+            <AnchorPane prefHeight="1555.0" prefWidth="1109.0" styleClass="half_bottom_page">
                <children>
-                  <AnchorPane layoutX="100.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="99.0">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <styleClass>
                         <String fx:value="widget_background" />
                         <String fx:value="widget_homepage_pair" />
                      </styleClass>
                      <children>
-                        <Line endX="15.1385498046875" endY="1.52587890625E-5" layoutX="143.0" layoutY="98.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                        <ChoiceBox fx:id="bouquetSizeChoiceBox" layoutX="42.0" layoutY="291.0" prefHeight="50.0" prefWidth="250.0" />
-                        <CheckComboBox fx:id="flowerTypeCheckBox" layoutX="42.0" layoutY="107.0" prefHeight="50.0" prefWidth="250.0" />
-                        <Text fill="WHITE" layoutX="42.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flowers" wrappingWidth="317.3411865234375">
+                        <Line endX="15.1385498046875" endY="1.52587890625E-5" layoutX="367.0" layoutY="98.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                        <ChoiceBox fx:id="bouquetSizeChoiceBox" layoutX="266.0" layoutY="291.0" prefHeight="50.0" prefWidth="250.0" />
+                        <CheckComboBox fx:id="flowerTypeCheckBox" layoutX="266.0" layoutY="107.0" prefHeight="50.0" prefWidth="250.0" />
+                        <Text fill="WHITE" layoutX="266.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flowers" wrappingWidth="317.3411865234375">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="42.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bouquet Size">
+                        <Text fill="WHITE" layoutX="266.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bouquet Size">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <MFXButton fx:id="clearAll" layoutX="173.0" layoutY="622.0" prefHeight="53.0" prefWidth="140.0" styleClass="mfx-button" stylesheets="@style.css" text="Clear" />
-                        <MFXButton fx:id="submit" layoutX="457.0" layoutY="622.0" prefHeight="53.0" prefWidth="140.0" styleClass="mfx-button" stylesheets="@style.css" text="Confirm" />
-                        <MFXTextField layoutX="42.0" layoutY="456.0" prefHeight="50.0" prefWidth="250.0" />
-                        <Text fill="WHITE" layoutX="42.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number">
+                        <MFXTextField layoutX="266.0" layoutY="456.0" prefHeight="50.0" prefWidth="250.0" />
+                        <Text fill="WHITE" layoutX="266.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Line endX="78.100830078125" endY="3.0517578125E-5" layoutX="142.0" layoutY="279.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                        <Line endX="15.8480224609375" layoutX="141.0" layoutY="443.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                        <Line endX="78.100830078125" endY="3.0517578125E-5" layoutX="366.0" layoutY="279.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                        <Line endX="15.8480224609375" layoutX="365.0" layoutY="443.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                      </children>
                   </AnchorPane>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </AnchorPane>
          </children>
       </HBox>
