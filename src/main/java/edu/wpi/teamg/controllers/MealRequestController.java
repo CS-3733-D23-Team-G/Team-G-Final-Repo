@@ -273,7 +273,6 @@ public class MealRequestController {
 
     locationSearchDropdown.setValue(null);
 
-
     selectedBurger.setVisible(false);
     selectedBurger.setDisable(true);
     selectedCornDog.setVisible(false);
