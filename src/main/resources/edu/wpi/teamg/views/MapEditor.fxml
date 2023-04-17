@@ -10,22 +10,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MapEditorController">
+<BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MapEditorController">
    <center>
-      <HBox BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="980.0" prefWidth="135.0">
+            <AnchorPane prefHeight="980.0" prefWidth="656.0" styleClass="half_bottom_left" stylesheets="@style.css">
                <children>
-                  <AnchorPane prefHeight="980.0" prefWidth="135.0">
+                  <HBox layoutX="69.0" layoutY="228.0" prefHeight="486.0" prefWidth="502.0" styleClass="left_vbox" stylesheets="@style.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="150.0">
                      <children>
-                        <Button fx:id="floor1" layoutX="15.0" layoutY="172.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 1" />
-                        <MFXButton fx:id="add" layoutX="15.0" layoutY="348.0" prefHeight="25.0" prefWidth="102.0" text="Add Node" />
-                        <Button fx:id="floor3" layoutX="16.0" layoutY="238.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 3" />
-                        <Button fx:id="floor2" layoutX="15.0" layoutY="205.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 2" />
+                        <VBox prefHeight="980.0" prefWidth="135.0" styleClass="locationSelect_vbox">
+                           <children>
+                              <Button fx:id="floor2" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 2" />
+                              <Button fx:id="floor3" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 3" />
+                              <Button fx:id="floor1" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 1" />
+                              <MFXButton fx:id="add" prefHeight="25.0" prefWidth="102.0" text="Add Node" />
+                              <Button fx:id="l1" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="L1" />
+                              <Button fx:id="l2" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="L2" />
+                           </children></VBox>
                      </children>
-                  </AnchorPane>
+                  </HBox>
                </children>
-            </VBox>
+            </AnchorPane>
             <AnchorPane>
                <children>
                   <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" prefHeight="619.0" prefWidth="1317.0">
@@ -37,6 +42,7 @@
                         </Group>
                      </content>
                   </GesturePane>
+                  <AnchorPane layoutX="358.0" layoutY="-48.0" prefHeight="619.0" prefWidth="432.0" />
                </children>
             </AnchorPane>
          </children>
