@@ -78,3 +78,4 @@ public class SignageEditorController {
     southArrow.setDisable(true);
   }
 }
+

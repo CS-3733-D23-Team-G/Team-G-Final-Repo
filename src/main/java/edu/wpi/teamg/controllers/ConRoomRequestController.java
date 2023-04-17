@@ -31,13 +31,23 @@ public class ConRoomRequestController {
   // Text Fields
   @FXML MFXTextField roomMeetingPurpose;
   @FXML MFXDatePicker datePicker;
-  @FXML MFXTextField roomTimeData;
+  @FXML MFXTextField roomStartTime;
   @FXML MFXTextField roomEndTime;
+
+
+  //  @FXML SearchableComboBox roomNumber;
+
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML Label checkFields;
-
+  ObservableList<String> roomList =
+      FXCollections.observableArrayList(
+          "Conference Room Request Form",
+          "Flowers Request Form",
+          "Furniture Request Form",
+          "Meal Request Form",
+          "Office Supplies Request Form");;
   ObservableList<String> locationList =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -61,7 +71,7 @@ public class ConRoomRequestController {
 
     roomMeetingPurpose.getText();
     // roomNumber.getText();
-    roomTimeData.getText();
+    roomStartTime.getText();
     // roomNumberData.setValue("noon");
     // roomNumberData.setItems(roomNumberDataList);
     // roomTimeData.setValue("noon");
@@ -104,7 +114,7 @@ public class ConRoomRequestController {
             1,
             StatusTypeEnum.blank,
             Date.valueOf(datePicker.getValue()),
-            StringToTime(roomTimeData.getText()),
+            StringToTime(roomStartTime.getText()),
             StringToTime(roomEndTime.getText()),
             roomMeetingPurpose.getText());
 
@@ -136,7 +146,7 @@ public class ConRoomRequestController {
   public void clearAllData() {
     roomMeetingPurpose.setText("");
     datePicker.setText("");
-    roomTimeData.setText("");
+    roomStartTime.setText("");
     roomEndTime.setText("");
     locationSearchDropdown.setValue(null);
     return;
@@ -145,7 +155,7 @@ public class ConRoomRequestController {
   public void allDataFilled() {
     if (!(roomMeetingPurpose.getText().equals("")
         || datePicker.getText().equals("")
-        || roomTimeData.getText().equals("")
+        || roomStartTime.getText().equals("")
         || roomEndTime.getText().equals("")
         || locationSearchDropdown == null)) {
       try {

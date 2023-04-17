@@ -9,7 +9,10 @@ public enum Screen {
   FURNITURE_REQUEST("views/FurnitureRequestPage.fxml"),
   SUPPLIES_REQUEST("views/OfficeSuppRequestPage.fxml"),
 
+  PATHFINDING_PAGE("views/pathfinding.fxml"),
+
   SIGNAGE_PAGE("views/SignagePage.fxml"),
+
   ADMIN_SIGNAGE_PAGE("views/SignageAdmin.fxml"),
 
   EDIT_SIGNAGE_PAGE("views/SignageEditor.fxml"),
@@ -18,8 +21,12 @@ public enum Screen {
   FLOWERS_REQUEST_SUBMIT("views/FlowersRequestConfirmationPage.fxml"),
   FURNITURE_REQUEST_SUBMIT("views/FurnitureRequestConfirmationPage.fxml"),
   SUPPLIES_REQUEST_SUBMIT("views/OfficeSuppRequestConfirmationPage.fxml"),
-  STATUS_PAGE("views/FormStatus.fxml"),
-  LOGIN_PAGE("views/Login.fxml");
+  ADMIN_STATUS_PAGE("views/AdminFormStatus.fxml"),
+  LOGIN_PAGE("views/Login.fxml"),
+  EMPLOYEE_FORMS("views/EmployeeSelfFormView.fxml"),
+  ADMIN_SIGNAGE_EDITOR("views/SignageAdmin.fxml"),
+  ADMIN_MAP_EDITOR("views/MapEditor.fxml"),
+  NODE_EDITOR("views/NodeViewAndEditor");
 
   private final String filename;
 
