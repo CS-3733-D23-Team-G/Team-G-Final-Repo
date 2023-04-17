@@ -46,11 +46,13 @@ public class MealRequestController {
   @FXML Label mealFoodChoice;
 
   @FXML SearchableComboBox locationSearchDropdown;
+  @FXML SearchableComboBox employeeSearchDropdown;
   @FXML Label checkFields;
 
   String Order = "";
 
   ObservableList<String> locationList;
+  ObservableList<String> employeeList;
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -104,6 +106,18 @@ public class MealRequestController {
     friedRiceOption.setOnMouseClicked(event -> selectFriedRiceOption());
     corndogOption.setOnMouseClicked(event -> selectCorndogOption());
 
+    ArrayList<String> employeeNames = new ArrayList<>();
+    HashMap<Integer, String> employeeLongName = this.getHashMapEmployeeLongName("Meal Request");
+
+    employeeLongName.forEach(
+        (i, m) -> {
+          employeeNames.add("ID " + i + ": " + m);
+        });
+
+    Collections.sort(employeeNames, String.CASE_INSENSITIVE_ORDER);
+
+    employeeList = FXCollections.observableArrayList(employeeNames);
+
     ArrayList<String> locationNames = new ArrayList<>();
     HashMap<Integer, String> testingLongName = this.getHashMapMLongName();
 
@@ -123,6 +137,7 @@ public class MealRequestController {
     locationList = FXCollections.observableArrayList(locationNames);
 
     // Hung this is where it sets the list - Andrew
+    employeeSearchDropdown.setItems(employeeList);
     locationSearchDropdown.setItems(locationList);
     checkFields.getText();
   }
@@ -176,13 +191,14 @@ public class MealRequestController {
   }
 
   public void storeMealValues() throws SQLException {
+
     MealRequest mr =
         new MealRequest(
             "M",
-            1,
+            "ID 1: John Doe",
             // assume for now they are going to input a node number, so parseInt
             (String) locationSearchDropdown.getValue(),
-            1,
+            (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
             Date.valueOf(mealDate.getValue()),
             StringToTime(mealTimeOfDeliver.getText()),
@@ -222,7 +238,20 @@ public class MealRequestController {
     //            + mr.getStatus());
 
     DAORepo dao = new DAORepo();
-    // dao.insertMealRequest(mr);
+    dao.insertMealRequest(mr);
+  }
+
+  public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
+
+    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getEmployeeFullName(canServe);
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return longNameHashMap;
   }
 
   public HashMap<Integer, String> getHashMapMLongName() throws SQLException {
@@ -251,7 +280,9 @@ public class MealRequestController {
         || mealDate.getText().equals("")
         || mealTimeOfDeliver.getText().equals("")
         || Order.equals("")
-        || locationSearchDropdown.getValue() == null)) {
+        || locationSearchDropdown.getValue() == null
+        || employeeSearchDropdown.getValue() == null)) {
+
       try {
         storeMealValues();
       } catch (SQLException e) {
@@ -280,6 +311,7 @@ public class MealRequestController {
     selectedFriedRice.setVisible(false);
     selectedFriedRice.setDisable(true);
 
+    employeeSearchDropdown.setValue(null);
     return;
   }
 }

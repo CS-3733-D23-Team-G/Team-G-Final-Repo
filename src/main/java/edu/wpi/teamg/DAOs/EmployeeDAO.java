@@ -9,8 +9,8 @@ import java.util.HashMap;
 
 public class EmployeeDAO implements DAO {
 
-  private String query;
-  private DBConnection conn = new DBConnection();
+  private static String query;
+  private static DBConnection conn = new DBConnection();
 
   private HashMap<Integer, Employee> employeeHash = new HashMap<Integer, Employee>();
 
@@ -19,6 +19,7 @@ public class EmployeeDAO implements DAO {
     conn.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
+
     query = "Select * from " + this.getTable();
 
     try {
@@ -90,7 +91,74 @@ public class EmployeeDAO implements DAO {
 
   @Override
   public String getTable() {
-
     return "teamgdb.iteration2.employee";
+  }
+
+  public static HashMap<Integer, String> getEmployeeFullName(String canServe) throws SQLException {
+
+    HashMap<Integer, String> longNameHash = new HashMap<>();
+
+    conn.setConnection();
+    PreparedStatement ps;
+
+    ResultSet rs = null;
+
+    query =
+        "SELECT empid, firstname, lastname\n"
+            + "FROM iteration2.employee\n"
+            + "WHERE can_serve = ?;";
+
+    try {
+      ps = conn.getConnection().prepareStatement(query);
+      ps.setString(1, canServe);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      // printSQLException(e);
+    }
+
+    while (rs.next()) {
+
+      int empid = rs.getInt("empid");
+      String fullname = rs.getString("firstname") + " " + rs.getString("lastname");
+
+      longNameHash.put(empid, fullname);
+    }
+
+    conn.closeConnection();
+
+    return longNameHash;
+  }
+
+  public static HashMap<Integer, String> getAllEmployeeFullName() throws SQLException {
+
+    HashMap<Integer, String> longNameHash = new HashMap<>();
+
+    conn.setConnection();
+    PreparedStatement ps;
+
+    ResultSet rs = null;
+
+    query = "SELECT empid, firstname, lastname\n" + "FROM iteration2.employee;";
+
+    try {
+      ps = conn.getConnection().prepareStatement(query);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      // printSQLException(e);
+    }
+
+    while (rs.next()) {
+
+      int empid = rs.getInt("empid");
+      String fullname = rs.getString("firstname") + " " + rs.getString("lastname");
+
+      longNameHash.put(empid, fullname);
+    }
+
+    conn.closeConnection();
+
+    return longNameHash;
   }
 }

@@ -14,6 +14,8 @@ public class RequestDAO implements DAO {
 
   private NodeDAO nodeDao = new NodeDAO();
 
+  EmployeeDAO employeeDAO = new EmployeeDAO();
+
   @Override
   public HashMap<Integer, Request> getAll() throws SQLException {
     db.setConnection();
@@ -32,24 +34,37 @@ public class RequestDAO implements DAO {
     }
 
     HashMap longNameHash = new HashMap<>();
-
     longNameHash = nodeDao.getAllLongName();
+
+    HashMap allEmployeeHash = new HashMap<>();
+    allEmployeeHash = employeeDAO.getAllEmployeeFullName();
 
     while (rs.next()) {
 
       int reqID = rs.getInt("reqid");
       String reqType = rs.getString("reqtype");
+
       int empID = rs.getInt("empid");
+      String requestingEmployee = "ID " + empID + ": " + (String) allEmployeeHash.get(empID);
 
       String location = (String) longNameHash.get(rs.getInt("location"));
 
       int serveBy = rs.getInt("serveBy");
+      String assignedEmployee = "ID " + empID + ": " + (String) allEmployeeHash.get(serveBy);
+
       Date requestdate = rs.getDate("requestdate");
       Time requesttime = rs.getTime("requesttime");
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
 
       Request cReq =
-          new Request(reqType, empID, location, serveBy, status, requestdate, requesttime);
+          new Request(
+              reqType,
+              requestingEmployee,
+              location,
+              assignedEmployee,
+              status,
+              requestdate,
+              requesttime);
 
       cReq.setReqid(reqID);
 

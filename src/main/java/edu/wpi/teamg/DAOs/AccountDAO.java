@@ -19,6 +19,7 @@ public class AccountDAO implements DAO {
     conn.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
+
     query = "Select * from " + this.getTable();
 
     try {
@@ -56,6 +57,7 @@ public class AccountDAO implements DAO {
         "INSERT INTO "
             + this.getTable()
             + "(username,empid,hashPassword,salt,is_admin) VALUES (?,?,?,?,?)";
+
     PreparedStatement ps;
     try {
       ps = conn.getConnection().prepareStatement(query);

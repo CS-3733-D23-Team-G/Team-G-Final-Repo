@@ -49,6 +49,7 @@ public class MoveDAO implements LocationMoveDao {
   @Override
   public void update(Object obj, String colName, Object value) {
     db.setConnection();
+
     PreparedStatement ps;
     sql =
         "update teamgdb.iteration2.move set "

@@ -179,4 +179,8 @@ public class DAORepo {
   public int getNodeIDbyLongName(String longname) throws SQLException {
     return nodeDao.getNodeIDbyLongName(longname, new java.sql.Date(System.currentTimeMillis()));
   }
+
+  public HashMap getEmployeeFullName(String canServe) throws SQLException {
+    return employeeDAO.getEmployeeFullName(canServe);
+  }
 }

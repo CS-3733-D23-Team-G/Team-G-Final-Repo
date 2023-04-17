@@ -23,9 +23,9 @@ public class FlowerRequest extends Request {
 
   public FlowerRequest(
       String reqtype,
-      int empid,
+      String empid,
       String location,
-      int serveBy,
+      String serveBy,
       StatusTypeEnum status,
       Date requestdate,
       Time requesttime,
