@@ -76,7 +76,6 @@ public class SignagePageController {
   ObservableList<String> locationListEnd;
   ObservableList<String> FloorList;
 
-
   DAORepo dao = new DAORepo();
 
   @FXML
