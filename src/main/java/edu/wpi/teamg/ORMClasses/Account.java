@@ -1,5 +1,8 @@
 package edu.wpi.teamg.ORMClasses;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,5 +39,31 @@ public class Account extends Employee {
   @Override
   public String getEmail() {
     return super.getEmail();
+  }
+
+  public String getHashedPassword(byte[] salt) {
+    String generatedPass = null;
+    try {
+      MessageDigest md = MessageDigest.getInstance("SHA-256");
+      md.update(salt);
+
+      byte[] bytes = md.digest(getPassword().getBytes());
+      StringBuilder sb = new StringBuilder();
+      for (int i = 0; i < bytes.length; i++)
+        sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+
+      generatedPass = sb.toString();
+
+    } catch (NoSuchAlgorithmException e) {
+      e.printStackTrace();
+    }
+    return generatedPass;
+  }
+
+  public static byte[] getSalt() throws NoSuchAlgorithmException {
+    SecureRandom random = new SecureRandom();
+    byte[] salt = new byte[16];
+    random.nextBytes(salt);
+    return salt;
   }
 }
