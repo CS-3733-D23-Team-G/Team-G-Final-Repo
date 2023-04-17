@@ -40,43 +40,47 @@
                            <children>
                               <VBox prefHeight="200.0" prefWidth="198.0" styleClass="mealLocationNotes_vbox">
                                  <children>
-                                            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Recipient">
+                                            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Recipient">
                                                 <font>
                                                     <Font size="22.0" />
                                                 </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="15.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                             </Text>
-                                            <Line endX="-11.107086181640625" startX="-100.0" stroke="#f6bd38" />
-                                    <MFXTextField fx:id="mealPersonOrderingForData" minHeight="-Infinity" prefHeight="30.0" prefWidth="394.0" styleClass="text_box">
+                                            <Line endX="24.5" startX="-100.0" stroke="#f6bd38" />
+                                    <MFXTextField fx:id="mealPersonOrderingForData" minHeight="-Infinity" prefHeight="30.0" prefWidth="394.0" styleClass="locationSelect_comboSearchBox">
                                        <VBox.margin>
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </MFXTextField>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Delivery Location">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Delivery Location">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="15.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="67.5" startX="-100.0" stroke="#f6bd38" />
-                                    <SearchableComboBox fx:id="locationSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="text_box">
+                                    <Line endX="126.57804870605469" startX="-100.0" stroke="#f6bd38" />
+                                    <SearchableComboBox fx:id="locationSearchDropdown" prefHeight="32.0" prefWidth="200.0">
                                        <VBox.margin>
                                           <Insets top="15.0" />
                                        </VBox.margin>
+                                       <styleClass>
+                                          <String fx:value="text_box" />
+                                          <String fx:value="locationSelect_comboSearchBox" />
+                                       </styleClass>
                                     </SearchableComboBox>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Notes">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Notes">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="15.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-43.5" startX="-100.0" stroke="#f6bd38" />
+                                    <Line endX="-22.5" startX="-100.0" stroke="#f6bd38" />
                                     <MFXTextField fx:id="mealNotesData" prefHeight="162.0" prefWidth="386.0">
                                        <VBox.margin>
                                           <Insets top="15.0" />
@@ -84,61 +88,61 @@
                                     </MFXTextField>
                                  </children>
                                  <padding>
-                                    <Insets left="25.0" right="25.0" />
+                                    <Insets left="50.0" right="25.0" />
                                  </padding>
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="436.0" styleClass="mealLocationNotes_vbox">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Date">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Date">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="15.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-56.0" startX="-100.0" stroke="#f6bd38" />
-                                    <MFXDatePicker fx:id="mealDate" minHeight="-Infinity" prefHeight="30.0" prefWidth="324.0" styleClass="text_box">
+                                    <Line endX="-42.70710754394531" endY="7.748603820800781E-7" startX="-100.0" stroke="#f6bd38" />
+                                    <MFXDatePicker fx:id="mealDate" minHeight="-Infinity" prefHeight="30.0" prefWidth="324.0" styleClass="locationSelect_comboSearchBox">
                                        <VBox.margin>
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </MFXDatePicker>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Time">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Time">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="15.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-52.0" startX="-100.0" stroke="#f6bd38" />
-                                    <MFXTextField fx:id="mealTimeOfDeliver" minHeight="-Infinity" prefHeight="30.0" prefWidth="317.0" styleClass="text_box">
+                                    <Line endX="-35.70710754394531" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" />
+                                    <MFXTextField fx:id="mealTimeOfDeliver" minHeight="-Infinity" prefHeight="30.0" prefWidth="317.0" styleClass="locationSelect_comboSearchBox">
                                        <VBox.margin>
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </MFXTextField>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Assign To">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Assign To">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="15.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-9.086990356445312" startX="-100.0" stroke="#f6bd38" />
-                                    <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="text_box">
+                                    <Line endX="26.292892456054688" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" />
+                                    <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css">
                                        <VBox.margin>
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </SearchableComboBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <MFXButton fx:id="mealClearAll" prefHeight="46.0" prefWidth="217.0" text="Clear">
+                                          <MFXButton fx:id="mealClearAll" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </MFXButton>
-                                          <MFXButton fx:id="mealSubmitButton" prefHeight="46.0" prefWidth="210.0" text="Confirm">
+                                          <MFXButton fx:id="mealSubmitButton" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm">
                                              <HBox.margin>
                                                 <Insets left="15.0" />
                                              </HBox.margin>
@@ -148,17 +152,20 @@
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Label fx:id="checkFields" prefHeight="17.0" prefWidth="252.0" textFill="#d01616" />
+                                    <Label fx:id="checkFields" prefHeight="17.0" prefWidth="377.0" styleClass="allFilledError" stylesheets="@style.css" text="Not All Fields Are Filled." textFill="#d01616">
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font></Label>
                                  </children>
                                  <padding>
-                                    <Insets left="25.0" right="25.0" />
+                                    <Insets left="50.0" right="25.0" />
                                  </padding>
                               </VBox>
                            </children>
                         </HBox>
                             </children>
                         </AnchorPane>
-                        <Text layoutX="123.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Meal Request Form" AnchorPane.topAnchor="50.0">
+                        <Text layoutX="123.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Meal Request Form" AnchorPane.topAnchor="50.0">
                             <font>
                                 <Font size="25.0" />
                             </font>
@@ -176,7 +183,7 @@
                      <content>
                         <Pane prefHeight="779.0">
                            <children>
-                              <ImageView fx:id="burgerOption" fitWidth="400.0" layoutX="80.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="burgerOption" fitWidth="600.0" layoutX="100.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/UnClickedCheeseburgerImage.png" />
                                  </image>
@@ -184,7 +191,7 @@
                                     <Rectangle2D />
                                  </viewport>
                               </ImageView>
-                              <ImageView fx:id="selectedBurger" fitHeight="200.0" fitWidth="400.0" layoutX="80.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="selectedBurger" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/ClickedBugerImage.png" />
                                  </image>
@@ -192,7 +199,7 @@
                                     <Rectangle2D />
                                  </viewport>
                               </ImageView>
-                              <ImageView fx:id="corndogOption" fitHeight="200.0" fitWidth="400.0" layoutX="80.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="corndogOption" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/UnClickedCornDogImage.png" />
                                  </image>
@@ -200,7 +207,7 @@
                                     <Rectangle2D />
                                  </viewport>
                               </ImageView>
-                              <ImageView fx:id="selectedCornDog" fitWidth="400.0" layoutX="80.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="selectedCornDog" fitWidth="600.0" layoutX="100.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/ClickedCornDogImage.png" />
                                  </image>
@@ -208,7 +215,7 @@
                                     <Rectangle2D />
                                  </viewport>
                               </ImageView>
-                              <ImageView fx:id="friedRiceOption" fitHeight="200.0" fitWidth="400.0" layoutX="80.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="friedRiceOption" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/UnClickedShirmpFriedRiceImage.png" />
                                  </image>
@@ -216,7 +223,7 @@
                                     <Rectangle2D />
                                  </viewport>
                               </ImageView>
-                              <ImageView fx:id="selectedFriedRice" fitHeight="200.0" fitWidth="400.0" layoutX="80.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="selectedFriedRice" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/ClickedShrimpFriedRiceImage.png" />
                                  </image>
