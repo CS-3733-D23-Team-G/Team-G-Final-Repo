@@ -13,13 +13,17 @@ public enum Screen {
 
   SIGNAGE_PAGE("views/SignagePage.fxml"),
 
+  SIGNAGE_SCREENSAVER_PAGE("views/SignageScreenSaver.fxml"),
+
   ADMIN_SIGNAGE_PAGE("views/SignageAdmin.fxml"),
+
+  EDIT_SIGNAGE_PAGE("views/SignageEditor.fxml"),
   ROOM_REQUEST_SUBMIT("views/ConRoomRequestConfirmationPage.fxml"),
   MEAL_REQUEST_SUBMIT("views/MealRequestConfirmationPage.fxml"),
   FLOWERS_REQUEST_SUBMIT("views/FlowersRequestConfirmationPage.fxml"),
   FURNITURE_REQUEST_SUBMIT("views/FurnitureRequestConfirmationPage.fxml"),
   SUPPLIES_REQUEST_SUBMIT("views/OfficeSuppRequestConfirmationPage.fxml"),
-  ADMIN_STATUS_PAGE("views/FormStatus.fxml"),
+  ADMIN_STATUS_PAGE("views/AdminFormStatus.fxml"),
   LOGIN_PAGE("views/Login.fxml"),
   EMPLOYEE_FORMS("views/EmployeeSelfFormView.fxml"),
   ADMIN_SIGNAGE_EDITOR("views/SignageAdmin.fxml"),

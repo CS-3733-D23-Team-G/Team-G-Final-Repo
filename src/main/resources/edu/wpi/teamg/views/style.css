@@ -88,7 +88,7 @@
     -fx-max-width: 1920;
 }
 .half_bottom_page{
-    -fx-pref-height: 980;
+    -fx-pref-height: 913;
     -fx-pref-width: 960;
 
 }
@@ -110,9 +110,31 @@
     -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
 }
 
+.signage_text{
+    -fx-font-size: 30;
+}
+.signage_background_color{
+    -fx-background-color: #f1f1f1;
+}
+
+
+/* meal request */
+.mealLocationNotes_vbox{
+    -fx-pref-height: 690;
+    -fx-pref-width: 370.5;
+}
+
+.scrollPane{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 20 20 20 20;
+}
+
+.menu_vbox{
+    -fx-pref-height: 779;
+    -fx-pref-width: 759;
+}
 
 /*Pathfinding CSS*/
-
 .half_bottom_left{
     -fx-pref-height: 913;
     -fx-pref-width: 576;
@@ -216,5 +238,12 @@
     -fx-font-size: 30;
 }
 
+.signage_clear_button{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 30;
+    -fx-font-size: 13;
+    -fx-text-fill: #FFFFFF;
+    -fx-alignment: center;
+}
 
 

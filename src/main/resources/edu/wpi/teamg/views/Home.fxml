@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import java.lang.String?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -15,7 +16,9 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
 
+
                   <AnchorPane layoutX="139.0" layoutY="139.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+
                      <styleClass>
                         <String fx:value="widget_background" />
                         <String fx:value="widget_homepage_pair" />
@@ -26,7 +29,11 @@
                               <Font size="36.0" />
                            </font>
                         </Text>
-                        <Line endX="192.08010864257812" layoutX="138.0" layoutY="46.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+
+                        <Line endX="78.10447692871094" endY="-7.62939453125E-6" layoutX="138.0" layoutY="46.0" startX="-100.0" stroke="#f6bd38" />
+                        <MFXButton fx:id="QuickTestButton" layoutX="286.0" layoutY="195.0" text="Button" />
+                        <MFXButton fx:id="OtherTestButton" layoutX="286.0" layoutY="264.0" text="OtherButton" />
+
                      </children>
                   </AnchorPane>
                   <Text layoutX="33.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Welcome John Smith">
@@ -38,6 +45,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
+
 
                   <AnchorPane layoutX="139.0" layoutY="144.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
 
