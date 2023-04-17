@@ -36,7 +36,7 @@ public class CalanderController {
       case 2:
         MonthVal = "February";
         MonthTotal = 28;
-        StartDate = 4;
+        StartDate = 3;
         CalanderSet();
         break;
       case 3:
@@ -71,17 +71,16 @@ public class CalanderController {
     Boolean StartDateCheck = false;
     MonthText.setText(MonthVal);
     int DateAcc = 1;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
       for (int j = 0; j < 7; j++) {
         StartDateCheck = (j == StartDate) || StartDateCheck;
         if (DateAcc <= MonthTotal && StartDateCheck) {
           Text dateInput = new Text(DateAcc + "");
-
           Calander.add(dateInput, j, i);
           DateAcc++;
         }
       }
-      DateAcc++;
+      //      DateAcc++;
     }
   }
 }
