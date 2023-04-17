@@ -83,9 +83,9 @@ public class MealRequestController {
     mealSubmitButton.setOnMouseClicked(
         event -> {
           allDataFilled();
-          foodOrder();
-          Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT);
         });
+
+    checkFields.setVisible(false);
 
     mealClearAll.setOnAction(event -> clearAllData());
 
@@ -174,20 +174,6 @@ public class MealRequestController {
       selectedFriedRice.setVisible(false);
       Order.replace("Shrimp Fried Rice, ", "");
     }
-  }
-
-  public void foodOrder() {
-    if (selectedBurger.isVisible()) {
-      Order += "Cheeseburger, ";
-    }
-    if (selectedCornDog.isVisible()) {
-      Order += "Corndog, ";
-    }
-    if (selectedFriedRice.isVisible()) {
-      Order += "Shrinmp Fried Rice, ";
-    }
-    mealFoodChoice.setText(Order);
-    // System.out.println(mealFoodChoice.getText());
   }
 
   public void storeMealValues() throws SQLException {
@@ -290,7 +276,7 @@ public class MealRequestController {
       }
       Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT);
     } else {
-      checkFields.setText("Not All Fields Are Filled");
+      checkFields.setVisible(true);
     }
   }
 

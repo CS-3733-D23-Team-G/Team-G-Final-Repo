@@ -53,6 +53,7 @@ public class AccountDAO implements DAO {
   public void insertAccount(Object obj, String pass, Boolean admin) throws SQLException {
     Account account = (Account) obj;
     conn.setConnection();
+
     query =
         "INSERT INTO "
             + this.getTable()
