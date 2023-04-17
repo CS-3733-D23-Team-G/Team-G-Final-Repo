@@ -15,7 +15,7 @@
 <?import net.kurobako.gesturefx.GesturePane?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.PathfindingController">
+<BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.pathfindingController">
    <center>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
