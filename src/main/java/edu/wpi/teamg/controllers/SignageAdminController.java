@@ -98,7 +98,6 @@ public class SignageAdminController {
   //  @FXML MFXButton add;
 
   @FXML MFXButton mapEditorPageBtn;
-
   ObservableList<String> importList =
       FXCollections.observableArrayList("Nodes", "Edges", "LocationName", "Moves");
 
