@@ -11,4 +11,10 @@ public class Login extends Account {
   public Login(String email, String password) {
     super(email, password);
   }
+
+  public String getHashedPassword(byte[] salt){
+    String generatedPass = null;
+
+    return generatedPass;
+  }
 }
