@@ -47,7 +47,9 @@ dependencies {
             'net.java.dev.jna:jna:5.12.1',
 
             // https://mvnrepository.com/artifact/org.yaml/snakeyaml
-            'org.yaml:snakeyaml:2.0'
+            'org.yaml:snakeyaml:2.0',
+
+            'com.google.apis:google-api-services-gmail:v1-rev20211108-1.32.1'
 
 
             
