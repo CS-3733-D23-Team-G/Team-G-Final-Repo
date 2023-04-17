@@ -132,13 +132,19 @@
                               </MFXDatePicker>
                               <HBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <MFXButton fx:id="roomClearAll" text="Clear All" />
-                                    <MFXButton fx:id="roomConfirm" prefHeight="80.0" prefWidth="225.0" text="Confirm">
+                                    <MFXButton fx:id="roomClearAll" prefHeight="42.0" prefWidth="174.0" style="-fx-background-color: #FFFFFF;" styleClass="request_submit_button" text="Clear All" />
+                                    <MFXButton fx:id="roomConfirm" prefHeight="42.0" prefWidth="174.0" style="-fx-background-color: #F6BD38;" styleClass="request_submit_button" text="Confirm">
                                        <font>
-                                          <Font name="Book Antiqua" size="56.0" />
+                                          <Font name="Book Antiqua" size="13.0" />
                                        </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
                                     </MFXButton>
                                  </children>
+                                 <padding>
+                                    <Insets top="166.0" />
+                                 </padding>
                               </HBox>
                            </children>
                         </VBox>

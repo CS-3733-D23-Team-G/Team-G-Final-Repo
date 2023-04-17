@@ -15,7 +15,7 @@ public class AdminTopBannerController {
 
   @FXML MFXButton statusButton;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
-
+  @FXML MFXButton HomeButton;
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -33,6 +33,7 @@ public class AdminTopBannerController {
 
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
+    HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   public void exit() {
