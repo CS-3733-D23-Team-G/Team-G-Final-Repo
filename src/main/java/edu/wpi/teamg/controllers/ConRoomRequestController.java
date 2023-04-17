@@ -34,9 +34,7 @@ public class ConRoomRequestController {
   @FXML MFXTextField roomStartTime;
   @FXML MFXTextField roomEndTime;
 
-
   //  @FXML SearchableComboBox roomNumber;
-
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
