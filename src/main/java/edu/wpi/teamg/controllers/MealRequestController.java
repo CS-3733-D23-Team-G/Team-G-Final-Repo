@@ -32,6 +32,7 @@ public class MealRequestController {
   // TextFields
   @FXML MFXTextField mealTimeOfDeliver;
 
+
   @FXML MFXTextField mealPersonOrderingForData;
   @FXML MFXTextField mealNotesData;
 
@@ -49,6 +50,7 @@ public class MealRequestController {
   @FXML Label checkFields;
 
   String Order = "";
+
 
   ObservableList<String> locationList;
 
@@ -86,6 +88,7 @@ public class MealRequestController {
         });
 
     mealClearAll.setOnAction(event -> clearAllData());
+
 
     mealPersonOrderingForData.getText();
     mealNotesData.getText();
@@ -187,6 +190,7 @@ public class MealRequestController {
             Date.valueOf(mealDate.getValue()),
             StringToTime(mealTimeOfDeliver.getText()),
             mealPersonOrderingForData.getText(),
+
             Order,
             mealNotesData.getText());
 

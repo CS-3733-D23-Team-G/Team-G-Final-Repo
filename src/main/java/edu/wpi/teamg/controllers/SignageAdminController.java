@@ -2,8 +2,6 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
@@ -92,12 +90,14 @@ public class SignageAdminController {
   //  @FXML Button floor2;
   //  @FXML Button floor3;
 
+
   //  @FXML MFXButton mapEdit;
   //  @FXML MFXButton mapCancel;
 
   //  @FXML MFXButton add;
 
   @FXML MFXButton mapEditorPageBtn;
+
   ObservableList<String> importList =
       FXCollections.observableArrayList("Nodes", "Edges", "LocationName", "Moves");
 
