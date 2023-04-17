@@ -19,7 +19,6 @@
          <children>
             <AnchorPane prefHeight="540.0" prefWidth="971.0">
                <children>
-<<<
                   <SearchableComboBox fx:id="signageDropDown1" layoutX="182.0" layoutY="144.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="105.0" />
                   <SearchableComboBox fx:id="signageDropDown2" layoutX="180.0" layoutY="191.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="255.0" />
                   <SearchableComboBox fx:id="signageDropDown3" layoutX="180.0" layoutY="238.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="405.0" />
