@@ -3,8 +3,6 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
@@ -45,10 +43,6 @@ public class SignageAdminController {
   @FXML Pane nodePane;
   public Group group;
   @FXML GesturePane pane;
-  @FXML MFXButton backToHomeButton;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
-  @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
 
   // @FXML MFXButton pathFindButton;
   @FXML Label fileLabel;
@@ -114,14 +108,6 @@ public class SignageAdminController {
 
   private boolean editableMap = false;
 
-  ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
-
   ObservableList<String> importList =
       FXCollections.observableArrayList("Nodes", "Edges", "LocationName", "Moves");
 
@@ -130,12 +116,8 @@ public class SignageAdminController {
 
   @FXML
   public void initialize() throws SQLException {
-    serviceRequestChoiceBox.setItems(list);
     importDrop.setItems(importList);
     exportDrop.setItems(exportList);
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    exitButton.setOnMouseClicked(event -> exit());
     cancel.setOnMouseClicked(event -> cancelTable());
     edit.setOnMouseClicked(event -> editTable());
     disMap.setOnMouseClicked(event -> showAdminMap());
@@ -152,7 +134,6 @@ public class SignageAdminController {
 
     // importButton.setOnAction(event -> fileChooser());
 
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     importDrop.setOnAction(
         event -> {
           try {
@@ -333,28 +314,6 @@ public class SignageAdminController {
       if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
         getNodesWFunctionality(listOfNodes, i);
       }
-    }
-  }
-
-  public void loadServiceRequestForm() {
-    switch (serviceRequestChoiceBox.getValue()) {
-      case "Meal Request Form":
-        Navigation.navigate(Screen.MEAL_REQUEST);
-        break;
-      case "Furniture Request Form":
-        Navigation.navigate(Screen.FURNITURE_REQUEST);
-        break;
-      case "Conference Room Request Form":
-        Navigation.navigate(Screen.ROOM_REQUEST);
-        break;
-      case "Flowers Request Form":
-        Navigation.navigate(Screen.FLOWERS_REQUEST);
-        break;
-      case "Office Supplies Request Form":
-        Navigation.navigate(Screen.SUPPLIES_REQUEST);
-        break;
-      default:
-        return;
     }
   }
 

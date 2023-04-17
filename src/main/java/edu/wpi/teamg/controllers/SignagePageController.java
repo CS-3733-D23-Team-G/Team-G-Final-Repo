@@ -21,7 +21,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,10 +40,6 @@ import org.controlsfx.control.SearchableComboBox;
 
 public class SignagePageController {
   public Group group;
-  @FXML MFXButton backToHomeButton;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
-  @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
   @FXML MFXButton goToAdminSign;
   @FXML VBox tohome;
   @FXML MFXButton pathFindButton;
@@ -66,6 +61,7 @@ public class SignagePageController {
   @FXML SearchableComboBox startLocDrop;
   @FXML SearchableComboBox endLocDrop;
 
+
   @FXML SearchableComboBox floorStart;
   @FXML SearchableComboBox floorEnd;
 
@@ -81,16 +77,17 @@ public class SignagePageController {
   ObservableList<String> locationListEnd;
   ObservableList<String> FloorList;
 
+
   DAORepo dao = new DAORepo();
 
   @FXML
   public void initialize() throws SQLException {
+
     serviceRequestChoiceBox.setItems(list);
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+
     goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
-    exitButton.setOnMouseClicked(event -> exit());
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     tohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
     startingFloor();
@@ -301,22 +298,6 @@ public class SignagePageController {
       if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
         getNodesWFunctionality(listOfNodes, i);
       }
-    }
-  }
-
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
     }
   }
 

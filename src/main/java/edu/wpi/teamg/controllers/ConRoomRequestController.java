@@ -18,16 +18,13 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import org.controlsfx.control.SearchableComboBox;
 
 public class ConRoomRequestController {
 
   // buttons
-  @FXML MFXButton backToHomeButton;
-  @FXML MFXButton exitButton;
-  @FXML MFXButton signagePageButton;
+
   @FXML MFXButton roomConfirm;
   @FXML MFXButton roomClearAll;
 
@@ -36,7 +33,6 @@ public class ConRoomRequestController {
   @FXML MFXDatePicker datePicker;
   @FXML MFXTextField roomTimeData;
   @FXML MFXTextField roomEndTime;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
@@ -50,27 +46,11 @@ public class ConRoomRequestController {
           "Meal Request Form",
           "Office Supplies Request Form");;
 
-  ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
-  // ObservableList<String> roomTimeDataList =
-  //    FXCollections.observableArrayList(
-  //        "12:00", "12:30", "1:00", "1:30");
-  // ObservableList<String> roomNumberDataList =
-  //    FXCollections.observableArrayList(
-  //        "1", "2", "3", "4", "5", "6");
-
   DAORepo dao = new DAORepo();
 
   @FXML
   public void initialize() throws SQLException {
-    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    exitButton.setOnMouseClicked(event -> roomExit());
+
     roomConfirm.setOnMouseClicked(
         event -> {
           allDataFilled();
@@ -88,8 +68,7 @@ public class ConRoomRequestController {
     // roomTimeData.setItems(roomTimeDataList);
     // roomTimeData.getValue();
     // roomNumberData.getValue();
-    serviceRequestChoiceBox.setItems(list);
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
+
     roomClearAll.setOnAction(event -> clearAllData());
 
     ArrayList<String> locationNames = new ArrayList<>();
@@ -112,22 +91,6 @@ public class ConRoomRequestController {
 
     // Hung this is where it sets the list - Andrew
     locationSearchDropdown.setItems(locationList);
-  }
-
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
-    }
   }
 
   public void storeRoomValues() throws SQLException {
