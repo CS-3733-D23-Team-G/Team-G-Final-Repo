@@ -18,7 +18,7 @@
                <children>
                   <Pane prefHeight="70.0" prefWidth="221.0" styleClass="widget_background">
                      <children>
-                        <Text fx:id="EomployeeID" fill="#f6bd38" layoutX="9.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Username">
+                        <Text fx:id="EomployeeID" fill="#f6bd38" layoutX="31.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Username">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -29,7 +29,7 @@
                   <Label fx:id="userInc" text="Incorrect Username or Password" />
                   <Pane prefHeight="57.0" prefWidth="169.0" styleClass="widget_background">
                      <children>
-                        <Text fx:id="Password" fill="#f6bd38" layoutX="3.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Password">
+                        <Text fx:id="Password" fill="#f6bd38" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Password">
                            <font>
                               <Font size="36.0" />
                            </font>
