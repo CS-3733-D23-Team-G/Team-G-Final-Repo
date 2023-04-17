@@ -9,7 +9,6 @@ drop table if exists iteration2.Move;
 drop table if exists iteration2.Edge;
 drop table if exists iteration2.LocationName;
 drop table if exists iteration2.Node;
-drop table if exists iteration2.login;
 
 create table iteration2.Node(
                                         nodeID int primary key,
@@ -101,9 +100,14 @@ create table iteration2.flowerrequest(
     foreign key (reqID) references iteration2.request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table iteration2.login(
-    email varchar(255) primary key,
-    password varchar(255));
+create table iteration2.account(
+    username text  primary key,
+    empID int,
+    hashPassword text,
+    salt bytea NOT NULL,
+    is_admin bool,
+    foreign key (empID) references iteration2.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE);
+
 
 INSERT INTO iteration2.Employee (empID, firstName, lastName, email, can_serve)
 VALUES

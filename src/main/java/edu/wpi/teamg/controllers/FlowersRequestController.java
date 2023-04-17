@@ -44,7 +44,7 @@ public class FlowersRequestController {
   @FXML MFXDatePicker deliveryDate;
 
   @FXML TextField deliveryTime;
-  @FXML TextField recipient;
+  @FXML TextField roomField;
   @FXML TextField bouquetNote;
 
   @FXML SearchableComboBox locationSearchDropdown;
@@ -143,7 +143,7 @@ public class FlowersRequestController {
         String flowerType,
         int numFlower,
         String note,
-        String recipient
+        String roomField
    */
   public void storeFlowerValues() throws SQLException {
 
@@ -159,15 +159,15 @@ public class FlowersRequestController {
             mutipleFlowers(flowerTypeCheckBox.getCheckModel()),
             flowerConvert(bouquetSizeChoiceBox.getValue()),
             bouquetNote.getText(),
-            recipient.getText());
+            roomField.getText());
 
     dao.insertFlowerRequest(flower);
     /*
     System.out.println(
         "Delivery Location: "
             + deliveryLocation.getText()
-            + "\nRecipient: "
-            + recipient.getText()
+            + "\nroomField: "
+            + roomField.getText()
             + "\nBouquet Note: "
             + bouquetNote.getText()
             + "\nDelivery Time: "
@@ -199,12 +199,15 @@ public class FlowersRequestController {
   public void clearFlowers() {
     bouquetSizeChoiceBox.setValue("");
     flowerTypeCheckBox.setCheckModel(null);
+    EmployeeSearchBox.setValue(null);
+    flowerTypeCheckBox.getCheckModel().clearChecks();
+    bouquetSizeChoiceBox.setValue(null);
     // deliveryLocation.setText("");
     locationSearchDropdown.setValue(null);
     deliveryTime.setText("");
-    recipient.setText("");
+    roomField.setText("");
     bouquetNote.setText("");
-    deliveryDate.setText("");
+    deliveryDate.setValue(null);
   }
 
   public HashMap<Integer, String> getHashMapMLongName() throws SQLException {
@@ -224,7 +227,7 @@ public class FlowersRequestController {
     if (!(bouquetSizeChoiceBox == null
         || flowerTypeCheckBox == null
         // || deliveryLocation.getText().equals("")
-        || recipient.getText().equals("")
+        || roomField.getText().equals("")
         || deliveryTime.getText().equals("")
         || bouquetNote.getText().equals(""))) {
       try {
