@@ -19,7 +19,7 @@
     <center>
         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <AnchorPane fx:id="EmployeeSearchBox" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+                <AnchorPane>
                     <children>
                         <AnchorPane layoutX="111.0" layoutY="151.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="143.60000000000002" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="148.39999999999998" AnchorPane.topAnchor="146.0">
                             <styleClass>
