@@ -78,18 +78,14 @@ public class MealRequestController {
 
   @FXML
   public void initialize() throws SQLException {
-    mealSubmitButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT));
-    //    mealSubmitButton.setOnMouseClicked(
-    //        event -> {
-    //          foodOrder();
-    //        });
     mealSubmitButton.setOnMouseClicked(
         event -> {
           allDataFilled();
+          foodOrder();
+          Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT);
         });
 
     mealClearAll.setOnAction(event -> clearAllData());
-
     mealPersonOrderingForData.getText();
     mealNotesData.getText();
     // mealFoodChoice.setItems(foodList);
@@ -164,19 +160,19 @@ public class MealRequestController {
     }
   }
 
-  //  public void foodOrder() {
-  //    if (selectedBurger.isVisible()) {
-  //      Order += "Cheeseburger, ";
-  //    }
-  //    if (selectedCornDog.isVisible()) {
-  //      Order += "Corndog, ";
-  //    }
-  //    if (selectedFriedRice.isVisible()) {
-  //      Order += "Shrinmp Fried Rice, ";
-  //    }
-  //    mealFoodChoice.setText(Order);
-  //    System.out.println(mealFoodChoice.getText());
-  //  }
+  public void foodOrder() {
+    if (selectedBurger.isVisible()) {
+      Order += "Cheeseburger, ";
+    }
+    if (selectedCornDog.isVisible()) {
+      Order += "Corndog, ";
+    }
+    if (selectedFriedRice.isVisible()) {
+      Order += "Shrinmp Fried Rice, ";
+    }
+    mealFoodChoice.setText(Order);
+    // System.out.println(mealFoodChoice.getText());
+  }
 
   public void storeMealValues() throws SQLException {
     MealRequest mr =
@@ -192,6 +188,8 @@ public class MealRequestController {
             mealPersonOrderingForData.getText(),
             Order,
             mealNotesData.getText());
+
+    System.out.println(Order);
 
     //    mr.setEmpid(1);
     //    mr.setServ_by(1);
@@ -223,7 +221,7 @@ public class MealRequestController {
     //            + mr.getStatus());
 
     DAORepo dao = new DAORepo();
-    dao.insertMealRequest(mr);
+    // dao.insertMealRequest(mr);
   }
 
   public HashMap<Integer, String> getHashMapMLongName() throws SQLException {
@@ -271,7 +269,14 @@ public class MealRequestController {
     mealDate.setText("");
     mealTimeOfDeliver.setText("");
     mealFoodChoice.setText("");
-    locationSearchDropdown.setValue(null);
+
+    selectedBurger.setVisible(false);
+    selectedBurger.setDisable(true);
+    selectedCornDog.setVisible(false);
+    selectedCornDog.setDisable(true);
+    selectedFriedRice.setVisible(false);
+    selectedFriedRice.setDisable(true);
+
     return;
   }
 }

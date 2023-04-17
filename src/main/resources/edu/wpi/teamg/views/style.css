@@ -7,7 +7,7 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 100%,100%;
-    -fx-background-color: #F1F1F1;
+    -fx-background-color: #FFFFFF;
     -fx-pref-height: 260;
     -fx-pref-width: 600;
     -fx-alignment: CENTER;
@@ -86,7 +86,7 @@
     -fx-pref-width: 1920;
 }
 .half_bottom_page{
-    -fx-pref-height: 980;
+    -fx-pref-height: 913;
     -fx-pref-width: 960;
 }
 .widget_background{
@@ -105,4 +105,19 @@
 }
 .linear-grad{
     -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
+}
+/* meal request */
+.mealLocationNotes_vbox{
+    -fx-pref-height: 690;
+    -fx-pref-width: 370.5;
+}
+
+.scrollPane{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 20 20 20 20;
+}
+
+.menu_vbox{
+    -fx-pref-height: 779;
+    -fx-pref-width: 759;
 }
