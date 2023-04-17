@@ -22,8 +22,8 @@ public enum Screen {
   PATHFINDING_PAGE("views/Pathfinding.fxml"),
   ADMIN_SIGNAGE_EDITOR("views/SignageAdmin.fxml"),
   ADMIN_MAP_EDITOR("views/MapEditor.fxml"),
-  NODE_EDITOR("views/NodeViewAndEditor");
-
+  NODE_EDITOR("views/NodeViewAndEditor"),
+  CALENDER("views/Calander.fxml");
 
   private final String filename;
 
