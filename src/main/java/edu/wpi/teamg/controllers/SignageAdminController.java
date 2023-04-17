@@ -125,7 +125,7 @@ public class SignageAdminController {
     //    disMap.setOnMouseClicked(event -> showAdminMap());
     //    mapEdit.setOnMouseClicked(event -> editMap());
     //    mapCancel.setOnMouseClicked(event -> cancelMap());
-    mapEditorPageBtn.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_MAP_EDITOR));
+   // mapEditorPageBtn.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_MAP_EDITOR));
     //    add.setOnMouseClicked(
     //        event -> {
     //          try {

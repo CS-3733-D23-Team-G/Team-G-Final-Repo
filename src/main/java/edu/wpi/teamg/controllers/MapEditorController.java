@@ -1,6 +1,6 @@
 package edu.wpi.teamg.controllers;
 
-<<<<<<< HEAD
+
 import static edu.wpi.teamg.App.*;
 import static edu.wpi.teamg.Main.*;
 
@@ -332,6 +332,3 @@ public class MapEditorController {
     Platform.exit();
   }
 }
-=======
-public class MapEditorController {}
->>>>>>> 017d2380e5d392f73d43cf0d3b2a99b5f9759f62
