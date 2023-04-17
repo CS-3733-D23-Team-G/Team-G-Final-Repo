@@ -25,7 +25,6 @@ public class AdminFormStatusController {
   @FXML TableView<MealRequest> mealTable;
   @FXML TableView<ConferenceRoomRequest> roomTable;
   @FXML TableView<FlowerRequest> flowerTable;
-
   // Main Table
   @FXML TableColumn<Request, Integer> empID;
   @FXML TableColumn<Request, String> reqType;
@@ -241,7 +240,6 @@ public class AdminFormStatusController {
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }
-
     return flowerHashMap;
   }
 

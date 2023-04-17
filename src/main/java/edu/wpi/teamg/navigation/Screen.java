@@ -9,7 +9,10 @@ public enum Screen {
   FURNITURE_REQUEST("views/FurnitureRequestPage.fxml"),
   SUPPLIES_REQUEST("views/OfficeSuppRequestPage.fxml"),
 
+  PATHFINDING_PAGE("views/pathfinding.fxml"),
+
   SIGNAGE_PAGE("views/SignagePage.fxml"),
+
   ADMIN_SIGNAGE_PAGE("views/SignageAdmin.fxml"),
   ROOM_REQUEST_SUBMIT("views/ConRoomRequestConfirmationPage.fxml"),
   MEAL_REQUEST_SUBMIT("views/MealRequestConfirmationPage.fxml"),
@@ -19,7 +22,6 @@ public enum Screen {
   ADMIN_STATUS_PAGE("views/FormStatus.fxml"),
   LOGIN_PAGE("views/Login.fxml"),
   EMPLOYEE_FORMS("views/EmployeeSelfFormView.fxml"),
-  PATHFINDING_PAGE("views/Pathfinding.fxml"),
   ADMIN_SIGNAGE_EDITOR("views/SignageAdmin.fxml"),
   ADMIN_MAP_EDITOR("views/MapEditor.fxml"),
   NODE_EDITOR("views/NodeViewAndEditor");

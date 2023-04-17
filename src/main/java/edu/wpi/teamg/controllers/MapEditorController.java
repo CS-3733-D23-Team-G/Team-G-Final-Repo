@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+
 import static edu.wpi.teamg.App.*;
 import static edu.wpi.teamg.Main.*;
 
@@ -331,3 +332,4 @@ public class MapEditorController {
     Platform.exit();
   }
 }
+

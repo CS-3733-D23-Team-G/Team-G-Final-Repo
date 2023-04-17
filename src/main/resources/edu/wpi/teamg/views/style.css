@@ -7,7 +7,7 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 100%,100%;
-    -fx-background-color: #F1F1F1;
+    -fx-background-color: #FFFFFF;
     -fx-pref-height: 260;
     -fx-pref-width: 600;
     -fx-alignment: CENTER;
@@ -90,6 +90,7 @@
 .half_bottom_page{
     -fx-pref-height: 980;
     -fx-pref-width: 960;
+
 }
 .widget_background{
     -fx-background-color: #012D5A;
@@ -97,9 +98,9 @@
 }
 .widget_homepage_pair{
     -fx-pref-height: 690;
-    -fx-pref-width: 741;
+    -fx-pref-width: 740;
     -fx-max-height: 690;
-    -fx-max-width: 741;
+    -fx-max-width: 740;
 }
 .login_background {
     -fx-background-color: #012D5A;
@@ -108,6 +109,9 @@
 .linear-grad{
     -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
 }
+
+
+/*Pathfinding CSS*/
 
 .half_bottom_left{
     -fx-pref-height: 913;
@@ -192,6 +196,7 @@
     -fx-font-size: 30;
 }
 
+
 .left_vbox{
     -fx-min-width: 576;
 
@@ -206,3 +211,10 @@
     -fx-opacity: 0;
     -fx-padding:-7;
 }
+
+.request_submit_button{
+    -fx-font-size: 30;
+}
+
+
+

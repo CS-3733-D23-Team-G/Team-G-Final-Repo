@@ -19,9 +19,7 @@ public class InsertNodeController {
   @FXML MFXTextField nYcoord;
   @FXML MFXTextField nFloor;
   @FXML MFXTextField nBuilding;
-
   @FXML MFXTextField ln;
-
   @FXML MFXButton addNode;
 
   public void initialize() {
