@@ -10,10 +10,10 @@
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
 <BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.LoginController">
-   <top>
+   <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="rest_of_page" BorderPane.alignment="CENTER">
          <children>
-            <VBox fillWidth="false" layoutX="811.0" layoutY="149.0" prefHeight="675.0" prefWidth="465.0" spacing="67.0">
+            <VBox fillWidth="false" layoutX="712.0" layoutY="126.0" prefHeight="675.0" prefWidth="465.0" spacing="67.0">
                <children>
                   <Pane prefHeight="70.0" prefWidth="221.0" styleClass="widget_background">
                      <children>
@@ -49,5 +49,5 @@
             </VBox>
          </children>
       </AnchorPane>
-   </top>
+   </center>
 </BorderPane>
