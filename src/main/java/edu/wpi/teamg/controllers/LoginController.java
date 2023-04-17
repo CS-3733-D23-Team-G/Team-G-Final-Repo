@@ -1,7 +1,5 @@
 package edu.wpi.teamg.controllers;
 
-import static javafx.scene.paint.Color.RED;
-
 import edu.wpi.teamg.DAOs.AccountDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
@@ -14,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 import org.controlsfx.control.textfield.CustomTextField;
 
 public class LoginController {
@@ -77,9 +76,10 @@ public class LoginController {
   }
 
   public void incorrectPassword() {
+    userInc.setFont(Font.font(20));
+    passInc.setFont(Font.font(20));
+
     userInc.setVisible(true);
     passInc.setVisible(true);
-    userInc.setTextFill(RED);
-    passInc.setTextFill(RED);
   }
 }
