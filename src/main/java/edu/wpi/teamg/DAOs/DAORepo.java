@@ -15,6 +15,8 @@ public class DAORepo {
   private ConferenceRoomRequestDAO conferenceRoomRequestDao = new ConferenceRoomRequestDAO();
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
   private FlowerRequestDAO flowerRequestDAO = new FlowerRequestDAO();
+
+  private EmployeeDAO employeeDAO = new EmployeeDAO();
   private LoginDao loginDAO = new LoginDao();
 
   public HashMap getAllNodes() throws SQLException {
@@ -191,5 +193,9 @@ public class DAORepo {
 
   public int getNodeIDbyLongName(String longname) throws SQLException {
     return nodeDao.getNodeIDbyLongName(longname, new java.sql.Date(System.currentTimeMillis()));
+  }
+
+  public HashMap getEmployeeFullName(String canServe) throws SQLException {
+    return employeeDAO.getEmployeeFullName(canServe);
   }
 }

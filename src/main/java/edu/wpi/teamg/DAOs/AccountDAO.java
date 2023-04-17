@@ -18,6 +18,7 @@ public class AccountDAO implements DAO {
     conn.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
+
     query = "Select * from " + this.getTable();
 
     try {
@@ -47,7 +48,9 @@ public class AccountDAO implements DAO {
   public void insert(Object obj) throws SQLException {
     Account account = (Account) obj;
     conn.setConnection();
+
     query = "INSERT INTO " + this.getTable() + "(empid,password,is_admin) VALUES (?,?,?)";
+
     PreparedStatement ps;
     try {
       ps = conn.getConnection().prepareStatement(query);

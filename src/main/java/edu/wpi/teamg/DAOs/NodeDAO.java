@@ -39,7 +39,9 @@ public class NodeDAO implements LocationDAO {
 
     PreparedStatement ps;
 
+
     SQL = "delete from " + this.getTable() + " where nodeid = ?";
+
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -67,9 +69,11 @@ public class NodeDAO implements LocationDAO {
     try {
 
       SQL =
+
           "INSERT INTO "
               + this.getTable()
               + " (nodeid, xcoord, ycoord, floor, building) VALUES (?,?,?,?,?)";
+
       PreparedStatement ps = db.getConnection().prepareStatement(SQL);
 
       BufferedReader br = new BufferedReader(new FileReader(path));
@@ -114,9 +118,11 @@ public class NodeDAO implements LocationDAO {
 
     PreparedStatement ps;
     SQL =
+
         "insert into "
             + this.getTable()
             + "(nodeid, xcoord, ycoord, floor, building) values (?, ?, ?, ?, ?)";
+
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
