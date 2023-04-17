@@ -15,6 +15,7 @@ public class DAORepo {
   private ConferenceRoomRequestDAO conferenceRoomRequestDao = new ConferenceRoomRequestDAO();
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
   private FlowerRequestDAO flowerRequestDAO = new FlowerRequestDAO();
+  private EmployeeDAO employeeDAO = new EmployeeDAO();
 
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();

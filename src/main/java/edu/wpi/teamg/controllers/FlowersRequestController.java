@@ -48,7 +48,6 @@ public class FlowersRequestController {
   @FXML TextField bouquetNote;
 
   @FXML SearchableComboBox locationSearchDropdown;
-  @FXML SearchableComboBox EmployeeSearchBox;
 
   @FXML SearchableComboBox employeeSearchDropdown;
 
@@ -74,7 +73,6 @@ public class FlowersRequestController {
 
     bouquetSizeChoiceBox.setItems(listSizes);
     flowerTypeCheckBox.getItems().addAll(listFlowers);
-    EmployeeSearchBox.getItems().addAll(listEmployee);
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName = this.getHashMapEmployeeLongName("Flowers Request");
@@ -199,7 +197,6 @@ public class FlowersRequestController {
   public void clearFlowers() {
     bouquetSizeChoiceBox.setValue("");
     flowerTypeCheckBox.setCheckModel(null);
-    EmployeeSearchBox.setValue(null);
     flowerTypeCheckBox.getCheckModel().clearChecks();
     bouquetSizeChoiceBox.setValue(null);
     // deliveryLocation.setText("");
