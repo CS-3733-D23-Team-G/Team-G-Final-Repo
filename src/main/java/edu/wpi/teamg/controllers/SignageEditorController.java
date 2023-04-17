@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+
 import edu.wpi.teamg.DAOs.DAORepo;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.SQLException;
@@ -321,5 +322,6 @@ public class SignageEditorController {
 
   public String[] getSavedNames() {
     return locationNameSave;
+
   }
 }

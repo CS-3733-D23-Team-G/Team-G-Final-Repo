@@ -8,11 +8,15 @@ import javafx.fxml.FXML;
 public class HomeController {
 
   @FXML MFXButton QuickTestButton;
+
   @FXML MFXButton OtherTestButton;
+
 
   @FXML
   public void initialize() {
     QuickTestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.EDIT_SIGNAGE_PAGE));
+
     OtherTestButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
+
   }
 }
