@@ -169,12 +169,15 @@ public class FlowersRequestController {
   public void clearFlowers() {
     bouquetSizeChoiceBox.setValue("");
     flowerTypeCheckBox.setCheckModel(null);
+    EmployeeSearchBox.setValue(null);
+    flowerTypeCheckBox.getCheckModel().clearChecks();
+    bouquetSizeChoiceBox.setValue(null);
     // deliveryLocation.setText("");
     locationSearchDropdown.setValue(null);
     deliveryTime.setText("");
     roomField.setText("");
     bouquetNote.setText("");
-    deliveryDate.setText("");
+    deliveryDate.setValue(null);
   }
 
   public HashMap<Integer, String> getHashMapMLongName() throws SQLException {
