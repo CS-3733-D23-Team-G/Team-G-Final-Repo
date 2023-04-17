@@ -8,4 +8,15 @@ public class Main {
 
   // shortcut: psvm
 
+
+  //getAll()
+  //update()
+  //insert()
+  //delete()
+  //importCSV() (LocationDAO)*
+  //exportCSV() (LocationDAO)*
+
+
+
+  // work on processAStarAlg afterwards
 }

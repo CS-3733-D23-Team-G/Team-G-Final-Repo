@@ -1,15 +1,23 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.LocationNameDAO;
+import edu.wpi.teamg.DAOs.MoveDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
+import edu.wpi.teamg.ORMClasses.Move;
 import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
+//import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.List;
+import java.util.ListIterator;
 import javafx.fxml.FXML;
 
 public class editPopUpController {
@@ -21,9 +29,14 @@ public class editPopUpController {
   @FXML MFXTextField nBuilding;
   @FXML MFXButton submit;
 
-  @FXML MFXTextField shortName;
 
+  @FXML MFXTextField shortName;
   @FXML MFXButton delete;
+
+
+  @FXML MFXTextField longName; // step 1
+  @FXML MFXTextField date; // step 1
+  @FXML MFXTextField display; // step 1
 
   public void initialize() {
 
@@ -33,6 +46,9 @@ public class editPopUpController {
     nFloor.setEditable(true);
     nBuilding.setEditable(true);
     shortName.setEditable(true);
+    longName.setEditable(true);
+    date.setEditable(true);
+
     submit.setOnMouseClicked(
         event -> {
           try {
@@ -49,6 +65,16 @@ public class editPopUpController {
             throw new RuntimeException(e);
           }
         });
+    display.setOnMouseClicked(
+         event -> {
+              try {
+                displayMove();
+              } catch (SQLException e) {
+                throw new RuntimeException(e);
+              }
+         }
+    ); // step 2
+
   }
 
   public void setFields(Node node, LocationName loc) {
@@ -100,5 +126,46 @@ public class editPopUpController {
             nFloor.getText(),
             nBuilding.getText());
     nodeDAO.delete(node);
+  }
+
+  public void displayMove() throws SQLException {
+    int ID = Integer.parseInt(nID.getText());
+
+    String name = String.valueOf(longName.getText());
+    String text = date.getText();
+    MoveDAO moveDAO = new MoveDAO();
+    Date storedDate = moveDAO.stringToDate(text);
+    Move move = new Move(ID, name, storedDate);
+
+    List<edu.wpi.teamg.ORMClasses.Move> moves = moveDAO.getAll();
+    int moveIndex = moves.indexOf(move);
+    List<Integer> nIDs = new ArrayList<>();
+
+    for(int i = 0; i < moves.size(); i++) {
+      nIDs.add(ID);
+    }
+
+    ListIterator<Move> moveIterator = moves.listIterator();
+    if(moveIterator.hasNext()) {
+      while(moveIterator.hasNext()) {
+        if(nIDs.indexOf(ID) == moveIndex) {
+          moveDAO.insert(moves.get(moveIndex).getNodeID());
+          moveDAO.insert(moves.get(moveIndex).getLongName());
+          moveDAO.insert(moves.get(moveIndex).getDate());
+          break;
+        }
+      }
+    } else {
+      if(nIDs.size() == 1 ||  moveIndex == nIDs.size() - 1) {
+        moveDAO.insert(moves.get(moveIndex).getNodeID());
+        moveDAO.insert(moves.get(moveIndex).getLongName());
+        moveDAO.insert(moves.get(moveIndex).getDate());
+      } else {
+        throw new SQLException();
+      }
+    }
+
+
+
   }
 }
