@@ -112,5 +112,6 @@
     -fx-background-radius: 20 20 20 20;
 }
 .calender_text{
+    -fx-fill: #F6BD38;
 
 }
