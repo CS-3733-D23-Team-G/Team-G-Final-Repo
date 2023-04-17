@@ -16,7 +16,7 @@ public class TopBannerController {
   @FXML MFXButton statusButton;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
   @FXML MFXButton loginButton;
-
+  @FXML MFXButton HomeButton;
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -28,13 +28,14 @@ public class TopBannerController {
   @FXML
   public void initialize() {
     //    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
+    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     exitButton.setOnMouseClicked(event -> exit());
     statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_STATUS_PAGE));
 
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOGIN_PAGE));
+    HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   public void exit() {

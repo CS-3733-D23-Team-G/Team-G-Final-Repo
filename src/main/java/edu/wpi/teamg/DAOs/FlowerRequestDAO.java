@@ -110,7 +110,9 @@ public class FlowerRequestDAO implements DAO {
       ps_Req.setString(2, "FL");
       ps_Req.setInt(3, ((FlowerRequest) obj).getEmpid());
 
-      int nodeID = nodeDAO.getNodeIDbyLongName(((FlowerRequest) obj).getLocation());
+      int nodeID =
+          nodeDAO.getNodeIDbyLongName(
+              ((FlowerRequest) obj).getLocation(), new java.sql.Date(System.currentTimeMillis()));
 
       ps_Req.setInt(4, nodeID);
       ps_Req.setInt(5, ((FlowerRequest) obj).getServeBy());
