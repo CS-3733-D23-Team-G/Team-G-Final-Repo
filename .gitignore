@@ -1,5 +1,7 @@
 creds.yml
 ./creds.yml
+emailCreds.yml
+./emailCreds.yml
 derby.log
 *.lock
 

@@ -1,5 +1,7 @@
 package edu.wpi.teamg.ORMClasses;
 
+import org.yaml.snakeyaml.Yaml;
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -12,12 +14,17 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 public class TwoFactorAuth {
-    String sender= "";
+    String sender="brighmanwomenautosender@gmail.com";
     String recipient="";
     int code;
+    String password = getEmailCred().get(0);//Uses API key in the google credential features for the email account
 
     public TwoFactorAuth(){
         code = (int)(Math.random()*900000+100000);
@@ -32,7 +39,7 @@ public class TwoFactorAuth {
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
 
-        String password = "Stand In Password For Now";
+
         javax.mail.Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -58,5 +65,14 @@ public class TwoFactorAuth {
         });
 
         thread.start();
+    }
+
+    private List<String> getEmailCred(){
+        List<String> creds = new LinkedList<>();
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("edu/wpi/teamg/emailCreds.yml");
+        Yaml yaml = new Yaml();
+        Map<String, Object> data = yaml.load(is);
+        creds.add(data.get("emailPass").toString());
+        return creds;
     }
 }
