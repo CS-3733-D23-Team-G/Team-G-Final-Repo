@@ -41,7 +41,7 @@ import org.controlsfx.control.SearchableComboBox;
 // Make NodeInfo Disappear More clean
 // If we have an error all nodes should remain displayed
 
-public class pathfindingController {
+public class PathfindingController {
   public Group group;
   @FXML MFXButton goToAdminSign;
   @FXML MFXButton pathFindButton;
