@@ -3,36 +3,165 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
-<BorderPane prefWidth="600.0" style="-fx-background-color: #F1F1F1;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.ConRoomRequestController">
-   <right>
-      <AnchorPane BorderPane.alignment="BOTTOM_CENTER">
-         <children>
-            <MFXButton fx:id="roomClearAll" text="Clear All" AnchorPane.bottomAnchor="40.0" />
-            <MFXButton fx:id="roomConfirm" text="Confirm" AnchorPane.bottomAnchor="5.0" />
-         </children>
-      </AnchorPane>
-   </right>
-   <left>
-      <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="70.0" BorderPane.alignment="CENTER">
-         <children>
-            <Text layoutX="53.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Purpose" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="25.0" />
-            <MFXTextField fx:id="roomMeetingPurpose" layoutX="25.0" layoutY="50.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="50.0" />
-            <Text layoutX="62.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="85.0" />
-            <MFXTextField fx:id="roomTimeData" layoutX="25.0" layoutY="137.33333587646484" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="105.0" />
-            <Text layoutX="51.0" layoutY="210.94921875" strokeType="OUTSIDE" strokeWidth="0.0" text="Room" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="145.0" />
-            <MFXTextField fx:id="roomNumber" layoutX="25.0" layoutY="224.0" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="165.0" />
-         </children>
-      </AnchorPane>
-   </left>
+<BorderPane prefWidth="600.0" style="-fx-background-color: #F1F1F1;" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.ConRoomRequestController">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <MFXDatePicker fx:id="datePicker" minHeight="-Infinity" prefHeight="27.0" prefWidth="125.0" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+               <children>
+                  <AnchorPane layoutX="97.0" layoutY="171.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.topAnchor="171.0">
+                     <styleClass>
+                        <String fx:value="widget_background" />
+                        <String fx:value="widget_homepage_pair" />
+                     </styleClass>
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="widget_homepage_pair">
+                           <children>
+                              <VBox prefHeight="690.0" prefWidth="370.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Purpose">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="15.0" top="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Text>
+                                    <Line endX="100.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="15.0" />
+                                       </VBox.margin>
+                                    </Line>
+                                    <MFXTextField fx:id="roomMeetingPurpose" minHeight="-Infinity" prefHeight="60.0" prefWidth="240.0">
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
+                                    </MFXTextField>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Room">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="15.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="100.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" styleClass="text">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="15.0" />
+                                       </VBox.margin>
+                                    </Line>
+                                    <SearchableComboBox fx:id="locationSearchDropdown" prefHeight="60.0" prefWidth="240.0">
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" left="15.0" right="115.0" top="5.0" />
+                                       </VBox.margin>
+                                    </SearchableComboBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="690.0" prefWidth="370.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="15.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="100.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="15.0" />
+                                       </VBox.margin>
+                                    </Line>
+                                    <MFXTextField fx:id="roomStartTime" minHeight="-Infinity" prefHeight="60.0" prefWidth="240.0">
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
+                                    </MFXTextField>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="End Time">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="15.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="100.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="15.0" />
+                                       </VBox.margin>
+                                    </Line>
+                                    <MFXTextField fx:id="roomEndTime" minHeight="-Infinity" prefHeight="60.0" prefWidth="240.0">
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="30.0" />
+                                       </font>
+                                    </MFXTextField>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="15.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="100.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="15.0" />
+                                       </VBox.margin>
+                                    </Line>
+                                    <MFXDatePicker fx:id="datePicker" minHeight="-Infinity" prefHeight="60.0" prefWidth="240.0">
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                       </VBox.margin>
+                                    </MFXDatePicker>
+                                    <HBox alignment="BOTTOM_RIGHT">
+                                       <children>
+                                          <MFXButton fx:id="roomClearAll" text="Clear All" />
+                                          <MFXButton fx:id="roomConfirm" prefHeight="80.0" prefWidth="225.0" text="Confirm">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </MFXButton>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+               <children>
+                  <AnchorPane layoutX="97.0" layoutY="151.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.topAnchor="151.0">
+                     <styleClass>
+                        <String fx:value="widget_background" />
+                        <String fx:value="widget_homepage_pair" />
+                     </styleClass>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
+      </HBox>
    </center>
 </BorderPane>

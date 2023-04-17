@@ -95,9 +95,9 @@
 }
 .widget_homepage_pair{
     -fx-pref-height: 690;
-    -fx-pref-width: 741;
+    -fx-pref-width: 740;
     -fx-max-height: 690;
-    -fx-max-width: 741;
+    -fx-max-width: 740;
 }
 .login_background {
     -fx-background-color: #012D5A;
