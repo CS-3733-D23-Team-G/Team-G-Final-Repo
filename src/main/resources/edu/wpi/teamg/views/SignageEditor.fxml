@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.lang.String?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +13,7 @@
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="540.0" prefWidth="971.0" styleClass="rest_of_page">
+            <AnchorPane prefHeight="540.0" prefWidth="971.0">
                <children>
                   <SearchableComboBox fx:id="signageDropDown1" layoutX="182.0" layoutY="144.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="105.0" />
                   <SearchableComboBox fx:id="signageDropDown2" layoutX="180.0" layoutY="191.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="255.0" />
@@ -74,17 +75,21 @@
                         <Image url="@../Images/NoArrow.png" />
                      </image>
                   </ImageView>
-                  <MFXButton fx:id="clearField1" buttonType="RAISED" layoutX="161.0" layoutY="103.0" prefHeight="34.0" prefWidth="56.0" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="105.0" />
-                  <MFXButton fx:id="clearField2" buttonType="RAISED" layoutX="161.0" layoutY="258.0" prefHeight="34.0" prefWidth="56.0" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="255.0" />
-                  <MFXButton fx:id="clearField3" buttonType="RAISED" layoutX="161.0" layoutY="408.0" prefHeight="34.0" prefWidth="56.0" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="405.0" />
-                  <MFXButton fx:id="clearField4" buttonType="RAISED" layoutX="161.0" layoutY="558.0" prefHeight="34.0" prefWidth="56.0" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="555.0" />
-                  <MFXButton fx:id="clearField5" buttonType="RAISED" layoutX="161.0" layoutY="708.0" prefHeight="34.0" prefWidth="56.0" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="705.0" />
-                  <MFXButton fx:id="clearField6" buttonType="RAISED" layoutX="875.0" layoutY="86.0" prefHeight="34.0" prefWidth="56.0" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="105.0" />
-                  <MFXButton fx:id="clearField7" buttonType="RAISED" layoutX="875.0" layoutY="241.0" prefHeight="34.0" prefWidth="56.0" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="255.0" />
-                  <MFXButton fx:id="clearField8" buttonType="RAISED" layoutX="875.0" layoutY="391.0" prefHeight="34.0" prefWidth="56.0" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="405.0" />
-                  <MFXButton fx:id="clearField9" buttonType="RAISED" layoutX="875.0" layoutY="541.0" prefHeight="34.0" prefWidth="56.0" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="555.0" />
-                  <MFXButton fx:id="clearField10" buttonType="RAISED" layoutX="875.0" layoutY="691.0" prefHeight="34.0" prefWidth="56.0" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="705.0" />
+                  <MFXButton fx:id="clearField1" buttonType="RAISED" layoutX="161.0" layoutY="103.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="105.0" />
+                  <MFXButton fx:id="clearField2" buttonType="RAISED" layoutX="161.0" layoutY="258.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="255.0" />
+                  <MFXButton fx:id="clearField3" buttonType="RAISED" layoutX="161.0" layoutY="408.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="405.0" />
+                  <MFXButton fx:id="clearField4" buttonType="RAISED" layoutX="161.0" layoutY="558.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="555.0" />
+                  <MFXButton fx:id="clearField5" buttonType="RAISED" layoutX="161.0" layoutY="708.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="705.0" />
+                  <MFXButton fx:id="clearField6" buttonType="RAISED" layoutX="875.0" layoutY="86.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="105.0" />
+                  <MFXButton fx:id="clearField7" buttonType="RAISED" layoutX="875.0" layoutY="241.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="255.0" />
+                  <MFXButton fx:id="clearField8" buttonType="RAISED" layoutX="875.0" layoutY="391.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="405.0" />
+                  <MFXButton fx:id="clearField9" buttonType="RAISED" layoutX="875.0" layoutY="541.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="555.0" />
+                  <MFXButton fx:id="clearField10" buttonType="RAISED" layoutX="875.0" layoutY="691.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="705.0" />
                </children>
+               <styleClass>
+                  <String fx:value="rest_of_page" />
+                  <String fx:value="signage_background_color" />
+               </styleClass>
             </AnchorPane>
          </children>
       </HBox>

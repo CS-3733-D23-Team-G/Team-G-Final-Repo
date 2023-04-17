@@ -35,7 +35,6 @@ public class MealRequestController {
   @FXML MFXTextField mealPersonOrderingForData;
   @FXML MFXTextField mealNotesData;
 
-
   @FXML ImageView selectedBurger;
   @FXML ImageView burgerOption;
   @FXML ImageView selectedCornDog;

@@ -113,7 +113,7 @@
     -fx-font-size: 30;
 }
 .signage_background_color{
-    -fx-background-color: #D9D9D9;
+    -fx-background-color: #f1f1f1;
 }
 
 /*Pathfinding CSS*/
@@ -219,3 +219,12 @@
 .request_submit_button{
     -fx-font-size: 30;
 }
+
+.signage_clear_button{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 30;
+    -fx-font-size: 13;
+    -fx-text-fill: #FFFFFF;
+    -fx-alignment: center;
+}
+
