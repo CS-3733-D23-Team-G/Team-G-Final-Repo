@@ -36,11 +36,9 @@ import org.controlsfx.control.SearchableComboBox;
 
 // Touch Ups
 // Make NodeInfo Disappear More clean
-// L1 Nodes need to be in dropdown from start
 // If we have an error all nodes should remain displayed
 
 public class SignagePageController {
-
   public Group group;
   @FXML MFXButton goToAdminSign;
   @FXML VBox tohome;
@@ -63,15 +61,79 @@ public class SignagePageController {
   @FXML SearchableComboBox startLocDrop;
   @FXML SearchableComboBox endLocDrop;
 
-  ObservableList<String> locationList;
+
+  @FXML SearchableComboBox floorStart;
+  @FXML SearchableComboBox floorEnd;
+
+  ObservableList<String> list =
+      FXCollections.observableArrayList(
+          "Conference Room Request Form",
+          "Flowers Request Form",
+          "Furniture Request Form",
+          "Meal Request Form",
+          "Office Supplies Request Form");
+
+  ObservableList<String> locationListStart;
+  ObservableList<String> locationListEnd;
+  ObservableList<String> FloorList;
+
 
   DAORepo dao = new DAORepo();
 
   @FXML
   public void initialize() throws SQLException {
 
+    //    serviceRequestChoiceBox.setItems(list);
+    //    signagePageButton.setOnMouseClicked(event ->
+    // Navigation.navigate(Screen.PATHFINDING_PAGE));
+    //    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+
     goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
     tohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+
+    startingFloor();
+
+    longNameEnd(0);
+    floorEnd.setOnAction(
+        event -> {
+          if (Objects.equals(floorEnd.getValue(), "L1")) {
+            try {
+              longNameEnd(0);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+          if (Objects.equals(floorEnd.getValue(), "L2")) {
+            try {
+              longNameEnd(1);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+          if (Objects.equals(floorEnd.getValue(), "1")) {
+            try {
+              longNameEnd(2);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+
+          if (Objects.equals(floorEnd.getValue(), "2")) {
+            try {
+              longNameEnd(3);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+
+          if (Objects.equals(floorEnd.getValue(), "3")) {
+            try {
+              longNameEnd(4);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+        });
     pathFindButton.setOnMouseClicked(
         event -> {
           try {
@@ -83,9 +145,9 @@ public class SignagePageController {
 
     // goToL1();
 
-    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1_pts'ed.png");
-    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2_pts'ed.png");
-    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor_pts'ed.png");
+    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
+    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2.png");
+    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor.png");
     Image mapFloor2 = new Image("edu/wpi/teamg/Images/02_thesecondfloor.png");
     Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
 
@@ -184,6 +246,48 @@ public class SignagePageController {
           }
         });
 
+    floorStart.setOnAction(
+        event -> {
+          if (Objects.equals(floorStart.getValue(), "L1")) {
+            try {
+              goToL1(imageViewsList);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+          if (Objects.equals(floorStart.getValue(), "L2")) {
+            try {
+              goToL2(imageViewsList);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+
+          if (Objects.equals(floorStart.getValue(), "1")) {
+            try {
+              goToFloor1(imageViewsList);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+
+          if (Objects.equals(floorStart.getValue(), "2")) {
+            try {
+              goToFloor2(imageViewsList);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+
+          if (Objects.equals(floorStart.getValue(), "3")) {
+            try {
+              goToFloor3(imageViewsList);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+        });
+
     // Scaling is currently the issue with the node map
 
     NodeDAO nodeDAO = new NodeDAO();
@@ -196,108 +300,34 @@ public class SignagePageController {
         getNodesWFunctionality(listOfNodes, i);
       }
     }
-
-    // Adds Nodes To Node Pane and should display them (if you divide by 5 you get them on the page)
-    // This indicates there is a scaling problem with the nodePane
-
-    // Rectangle rec = new Rectangle(500, 500, Color.BLACK);
-    //  Circle circ = new Circle(10, Color.BLACK);
-    // circ.relocate(500, 500);
-
   }
 
   public void processAStarAlg() throws SQLException {
     ArrayList<String> path = new ArrayList<>();
-    ArrayList<String> finaNodes = new ArrayList<>();
+
+    NodeDAO nodeDAO = new NodeDAO();
+    EdgeDAO edgeDAO = new EdgeDAO();
+    ArrayList<Node> allNodes = new ArrayList<>(nodeDAO.getAll().values());
+    ArrayList<Edge> allEdges = new ArrayList<>(edgeDAO.getAll().values());
 
     String L1StartNodeLongName = (String) startLocDrop.getValue();
     String L1EndNodeLongName = (String) endLocDrop.getValue();
 
-    System.out.println("Start Node LN = " + L1StartNodeLongName);
-    System.out.println("End Node LN = " + L1EndNodeLongName);
-
     int L1StartNodeID = dao.getNodeIDbyLongName(L1StartNodeLongName);
     int L1EndNodeID = dao.getNodeIDbyLongName(L1EndNodeLongName);
 
-    System.out.println("Start NodeID = " + L1StartNodeID);
-    System.out.println("End NodeID = " + L1EndNodeID);
-
-    // ArrayList<edu.wpi.teamg.ORMClasses.Node> L1nodeKeys = new ArrayList<>();
-    // ArrayList<edu.wpi.teamg.ORMClasses.Node> L1edgeKeys = new ArrayList<>();
-
-    NodeDAO nodeDAO = new NodeDAO();
-    EdgeDAO edgeDAO = new EdgeDAO();
-
-    HashMap<Integer, Node> nodeMap = nodeDAO.getAll();
-    HashMap<String, Edge> edgeMap = edgeDAO.getAll();
-
-    ArrayList<Node> L1nodes = new ArrayList<>(nodeMap.values());
-    ArrayList<Edge> L1edges = new ArrayList<>(edgeMap.values());
-
-    ArrayList<Node> L1NodeFinal = new ArrayList<>();
-    ArrayList<Edge> L1EdgeFinal = new ArrayList<>();
-
-    String floor = nodeMap.get(L1StartNodeID).getFloor();
-    switch (floor) {
-      case "L1":
-        goToL1(imageViewsList);
-        break;
-      case "L2":
-        goToL2(imageViewsList);
-        break;
-      case "1 ":
-        goToFloor1(imageViewsList);
-        break;
-      case "2 ":
-        goToFloor2(imageViewsList);
-        break;
-      case "3 ":
-        goToFloor3(imageViewsList);
-        break;
+    Node[] nodeArray = new Node[allNodes.size()];
+    for (int i = 0; i < allNodes.size(); i++) {
+      nodeArray[i] = allNodes.get(i);
     }
-    // L1nodes = (ArrayList<edu.wpi.teamg.ORMClasses.Node>) nodeMap.values();
-
-    for (int i = 0; i < L1nodes.size(); i++) {
-      if (L1nodes.get(i).getFloor().equals(floor)) {
-        L1NodeFinal.add(
-            new Node(
-                L1nodes.get(i).getNodeID(),
-                L1nodes.get(i).getXcoord(),
-                L1nodes.get(i).getYcoord(),
-                L1nodes.get(i).getFloor(),
-                L1nodes.get(i).getBuilding()));
-      }
-    }
-
-    for (int i = 0; i < L1edges.size(); i++) {
-      // For each edge
-      // If the start and end node are both on floor 1
-      // Add edge to final edge array
-      // If only start and end node are on floor 1
-      // print out "error"
-
-      if ((nodeMap.get(L1edges.get(i).getStartNode())).getFloor().equals(floor)
-          && ((nodeMap.get(L1edges.get(i).getEndNode())).getFloor().equals(floor))) {
-        Node currentS = new Node();
-        Node currentE = new Node();
-        currentS = nodeMap.get(L1edges.get(i).getStartNode());
-        currentE = nodeMap.get(L1edges.get(i).getEndNode());
-        L1EdgeFinal.add(new Edge(currentS.getNodeID(), currentE.getNodeID()));
-      }
-    }
-
-    Node[] nodeArray = new Node[L1NodeFinal.size()];
-    for (int i = 0; i < L1NodeFinal.size(); i++) {
-      nodeArray[i] = L1NodeFinal.get(i);
-    }
-    Edge[] edgeArray = new Edge[L1EdgeFinal.size()];
-    for (int i = 0; i < L1EdgeFinal.size(); i++) {
-      edgeArray[i] = L1EdgeFinal.get(i);
+    Edge[] edgeArray = new Edge[allEdges.size()];
+    for (int i = 0; i < allEdges.size(); i++) {
+      edgeArray[i] = allEdges.get(i);
     }
 
     int startNode = 0;
     int endNode = 0;
-    for (int i = 0; i < L1NodeFinal.size(); i++) {
+    for (int i = 0; i < allNodes.size(); i++) {
 
       if (nodeArray[i].getNodeID() == L1StartNodeID) {
         startNode = i;
@@ -325,33 +355,120 @@ public class SignagePageController {
     }
 
     NodeDAO nodeDAO = new NodeDAO();
-    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
-    Edge e = new Edge(1025, 1275);
+    HashMap<Integer, Node> nodes = nodeDAO.getAll();
 
-    // path = 4
-    // path = 0,1,2,3
-    // Line = 0,0,1,1
-    // Line = 1,1,2,2
-    // Line = 2,2,3,3
+    ArrayList<String> pathForFloor = new ArrayList<>();
 
     nodePane.getChildren().clear();
     for (int i = 0; i < path.size(); i++) {
+      int finalI = i;
       Circle point =
           new Circle(
               nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
               nodes.get(Integer.parseInt(path.get(i))).getYcoord(),
               10,
               Color.rgb(1, 45, 90));
-      nodePane.getChildren().add(point);
+      if (i + 1 != path.size()
+          && !Objects.equals(
+              nodes.get(Integer.parseInt(path.get(i))).getFloor(),
+              nodes.get(Integer.parseInt(path.get(i + 1))).getFloor())) {
+        point.setFill(Color.rgb(246, 189, 56));
+        point.setRadius(20);
+        nodePane.getChildren().add(point);
+        pathForFloor.add(path.get(i));
+        point.setOnMouseClicked(
+            event -> {
+              try {
+                nextFloor(nodes.get(Integer.parseInt(path.get(finalI + 1))), path, finalI + 1);
+              } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+              }
+            });
+        break;
+      } else {
+        nodePane.getChildren().add(point);
+        pathForFloor.add(path.get(i));
+      }
     }
 
-    for (int i = 1; i < path.size(); i++) {
+    System.out.println(pathForFloor + " Testing");
+
+    for (int i = 1; i < pathForFloor.size(); i++) {
       Line pathLine =
           new Line(
               nodes.get(Integer.parseInt(path.get(i - 1))).getXcoord(),
               nodes.get(Integer.parseInt(path.get(i - 1))).getYcoord(),
               nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
               nodes.get(Integer.parseInt(path.get(i))).getYcoord());
+      pathLine.setStrokeWidth(10);
+      pathLine.setStroke(Color.rgb(1, 45, 90));
+      nodePane.getChildren().add(pathLine);
+    }
+  }
+
+  public void nextFloor(Node node, ArrayList<String> path, int index) throws SQLException {
+    NodeDAO nodeDAO = new NodeDAO();
+    HashMap<Integer, Node> nodes = nodeDAO.getAll();
+    ArrayList<String> pathForFloor = new ArrayList<>();
+
+    String floor = node.getFloor();
+    switch (floor) {
+      case "L1":
+        goToL1(imageViewsList);
+        break;
+      case "L2":
+        goToL2(imageViewsList);
+        break;
+      case "1 ":
+        goToFloor1(imageViewsList);
+        break;
+      case "2 ":
+        goToFloor2(imageViewsList);
+        break;
+      case "3 ":
+        goToFloor3(imageViewsList);
+        break;
+    }
+
+    nodePane.getChildren().clear();
+    for (int i = index; i < path.size(); i++) {
+      int finalI = i;
+      Circle point =
+          new Circle(
+              nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
+              nodes.get(Integer.parseInt(path.get(i))).getYcoord(),
+              10,
+              Color.rgb(1, 45, 90));
+      if (i + 1 != path.size()
+          && !Objects.equals(
+              nodes.get(Integer.parseInt(path.get(i))).getFloor(),
+              nodes.get(Integer.parseInt(path.get(i + 1))).getFloor())) {
+        point.setFill(Color.rgb(246, 189, 56));
+        point.setRadius(20);
+        nodePane.getChildren().add(point);
+        pathForFloor.add(path.get(i));
+        point.setOnMouseClicked(
+            event -> {
+              try {
+                nextFloor(nodes.get(Integer.parseInt(path.get(finalI + 1))), path, finalI + 1);
+              } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+              }
+            });
+        break;
+      } else {
+        nodePane.getChildren().add(point);
+        pathForFloor.add(path.get(i));
+      }
+    }
+
+    for (int i = 1; i < pathForFloor.size(); i++) {
+      Line pathLine =
+          new Line(
+              nodes.get(Integer.parseInt(path.get(index + i - 1))).getXcoord(),
+              nodes.get(Integer.parseInt(path.get(index + i - 1))).getYcoord(),
+              nodes.get(Integer.parseInt(path.get(index + i))).getXcoord(),
+              nodes.get(Integer.parseInt(path.get(index + i))).getYcoord());
       pathLine.setStrokeWidth(10);
       pathLine.setStroke(Color.rgb(1, 45, 90));
       nodePane.getChildren().add(pathLine);
@@ -466,6 +583,15 @@ public class SignagePageController {
             listOfNodes.get(i).getYcoord(),
             10,
             Color.rgb(1, 45, 90));
+    /*
+       point.setOnMouseEntered(event ->
+
+               Color.rgb(255, 255, 0);
+               System.out.println("worked");
+       point.setOnMouseExited(event -> Color.rgb(1, 45, 90));
+
+    */
+
     point.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
           @Override
@@ -548,12 +674,14 @@ public class SignagePageController {
   }
 
   public void longNameNodes(int index) throws SQLException {
-    ArrayList<String> locationNames = new ArrayList<>();
+    ArrayList<String> locationNamesStart = new ArrayList<>();
+    ArrayList<String> locationNamesEnd = new ArrayList<>();
     HashMap<Integer, String> testingLongName = this.getHashMapL1LongName(index);
+    int endFloorIndex = 0;
 
     testingLongName.forEach(
         (i, m) -> {
-          locationNames.add(m);
+          locationNamesStart.add(m);
           // System.out.println("LocationName: " + m);
           //          System.out.println("Employee ID:" + m.getEmpid());
           //          System.out.println("Status:" + m.getStatus());
@@ -562,13 +690,49 @@ public class SignagePageController {
           //          System.out.println();
         });
 
-    Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
+    Collections.sort(locationNamesStart, String.CASE_INSENSITIVE_ORDER);
 
-    locationList = FXCollections.observableArrayList(locationNames);
-
-    startLocDrop.setItems(locationList);
-    endLocDrop.setItems(locationList);
+    locationListStart = FXCollections.observableArrayList(locationNamesStart);
+    startLocDrop.setItems(locationListStart);
   }
+
+  public void longNameEnd(int endFloorIndex) throws SQLException {
+    ArrayList<String> locationNamesEnd = new ArrayList<>();
+    HashMap<Integer, String> LongNameFinal = this.getHashMapL1LongName(endFloorIndex);
+
+    LongNameFinal.forEach(
+        (i, m) -> {
+          locationNamesEnd.add(m);
+          // System.out.println("LocationName: " + m);
+          //          System.out.println("Employee ID:" + m.getEmpid());
+          //          System.out.println("Status:" + m.getStatus());
+          //          System.out.println("Location:" + m.getLocation());
+          //          System.out.println("Serve By:" + m.getServ_by());
+          //          System.out.println();
+        });
+
+    Collections.sort(locationNamesEnd, String.CASE_INSENSITIVE_ORDER);
+    locationListEnd = FXCollections.observableArrayList(locationNamesEnd);
+    endLocDrop.setItems(locationListEnd);
+  }
+
+  public void startingFloor() {
+    ArrayList<String> floors = new ArrayList<>();
+    floors.add("L1");
+    floors.add("L2");
+    floors.add("1");
+    floors.add("2");
+    floors.add("3");
+
+    FloorList = FXCollections.observableArrayList(floors);
+
+    floorStart.setItems(FloorList);
+    floorEnd.setItems(FloorList);
+    floorStart.setValue("L1");
+    floorEnd.setValue("L1");
+  }
+
+  public void listenToMouse() {}
 
   public void exit() {
     Platform.exit();
