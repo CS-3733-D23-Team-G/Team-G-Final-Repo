@@ -1,6 +1,5 @@
 package edu.wpi.teamg.controllers;
 
-
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
@@ -42,7 +41,7 @@ import org.controlsfx.control.SearchableComboBox;
 // Make NodeInfo Disappear More clean
 // If we have an error all nodes should remain displayed
 
-public class pathfindingController {
+public class PathfindingController {
   public Group group;
   @FXML MFXButton goToAdminSign;
   @FXML MFXButton pathFindButton;
@@ -966,4 +965,3 @@ public class pathfindingController {
     Platform.exit();
   }
 }
-
