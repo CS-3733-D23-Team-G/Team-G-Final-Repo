@@ -123,7 +123,10 @@ public class ConferenceRoomRequestDAO implements DAO {
       ps_Req.setString(2, "CR");
       ps_Req.setInt(3, ((ConferenceRoomRequest) obj).getEmpid());
 
-      int nodeID = nodeDAO.getNodeIDbyLongName(((ConferenceRoomRequest) obj).getLocation());
+      int nodeID =
+          nodeDAO.getNodeIDbyLongName(
+              ((ConferenceRoomRequest) obj).getLocation(),
+              new java.sql.Date(System.currentTimeMillis()));
 
       ps_Req.setInt(4, nodeID);
 
