@@ -5,6 +5,8 @@ import static javafx.scene.paint.Color.RED;
 import edu.wpi.teamg.DAOs.AccountDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.awt.*;
 import java.sql.PreparedStatement;
@@ -37,11 +39,14 @@ public class LoginController {
     String pass = password.getText();
 
     AccountDAO accountDAO = new AccountDAO();
+    ResultSet rs = null;
     db.setConnection();
-    query = "select from " + accountDAO.getTable() + " where username = ?";
+    query = "select * from " + accountDAO.getTable() + " where username = ?";
+
     try {
       PreparedStatement ps = db.getConnection().prepareStatement(query);
-      ResultSet rs = ps.executeQuery();
+      ps.setString(1, user);
+      rs = ps.executeQuery();
       String tableUser = "";
       int tableEmp = 0;
       String tablePass = "";

@@ -67,6 +67,7 @@ public class AccountDAO implements DAO {
       ps.setBytes(4, salt);
       account.setAdmin(admin);
       ps.setBoolean(5, account.getAdmin());
+      ps.executeUpdate();
 
     } catch (SQLException e) {
       System.out.println("SQL exception");
