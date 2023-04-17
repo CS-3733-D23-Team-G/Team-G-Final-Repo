@@ -22,7 +22,6 @@ public enum Screen {
   ADMIN_STATUS_PAGE("views/FormStatus.fxml"),
   LOGIN_PAGE("views/Login.fxml"),
   EMPLOYEE_FORMS("views/EmployeeSelfFormView.fxml"),
-  PATHFINDING_PAGE("views/Pathfinding.fxml"),
   ADMIN_SIGNAGE_EDITOR("views/SignageAdmin.fxml"),
   ADMIN_MAP_EDITOR("views/MapEditor.fxml"),
   NODE_EDITOR("views/NodeViewAndEditor");

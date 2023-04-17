@@ -434,7 +434,7 @@ public class NodeDAO implements LocationDAO {
     try {
       ps = db.getConnection().prepareStatement(SQL);
       ps.setString(1, longname);
-      //ps.setDate(2, date);
+      // ps.setDate(2, date);
       rs = ps.executeQuery();
     } catch (SQLException e) {
       System.err.println("SQL exception");

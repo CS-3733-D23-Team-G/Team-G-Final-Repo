@@ -61,7 +61,6 @@ public class SignagePageController {
   @FXML SearchableComboBox startLocDrop;
   @FXML SearchableComboBox endLocDrop;
 
-
   @FXML SearchableComboBox floorStart;
   @FXML SearchableComboBox floorEnd;
 
@@ -77,15 +76,15 @@ public class SignagePageController {
   ObservableList<String> locationListEnd;
   ObservableList<String> FloorList;
 
-
   DAORepo dao = new DAORepo();
 
   @FXML
   public void initialize() throws SQLException {
 
-    serviceRequestChoiceBox.setItems(list);
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
-    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    //    serviceRequestChoiceBox.setItems(list);
+    //    signagePageButton.setOnMouseClicked(event ->
+    // Navigation.navigate(Screen.PATHFINDING_PAGE));
+    //    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
     goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
     tohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
