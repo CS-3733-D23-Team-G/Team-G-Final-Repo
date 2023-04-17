@@ -206,5 +206,8 @@ left_vbox{
     -fx-opacity: 0;
     -fx-padding:-7;
 }
+.request_submit_button{
+    -fx-font-size: 30;
+}
 
 
