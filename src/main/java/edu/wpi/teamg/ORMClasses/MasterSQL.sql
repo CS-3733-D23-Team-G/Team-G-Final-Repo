@@ -103,6 +103,7 @@ create table iteration2.account(
     empID int,
     hashPassword text,
     salt bytea NOT NULL,
+    is_admin bool,
     foreign key (empID) references iteration2.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 
