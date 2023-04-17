@@ -26,8 +26,6 @@ import org.controlsfx.control.SearchableComboBox;
 
 public class FlowersRequestController {
 
-
-
   @FXML ChoiceBox<String> bouquetSizeChoiceBox;
   @FXML CheckComboBox<String> flowerTypeCheckBox;
   @FXML MFXButton submit;
@@ -61,7 +59,6 @@ public class FlowersRequestController {
   ObservableList<String> listSizes =
       FXCollections.observableArrayList(
           "10 Stems (small)", "20 Stems (medium)", "30 Stems (large)");
-
 
   DAORepo dao = new DAORepo();
 
@@ -113,7 +110,6 @@ public class FlowersRequestController {
     //    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT));
 
   }
-
 
   /*
   String reqtype,

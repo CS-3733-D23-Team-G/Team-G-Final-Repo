@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import net.kurobako.gesturefx.GesturePane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MapEditorController" />
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MapEditorController">
+   <center>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="980.0" prefWidth="135.0">
+               <children>
+                  <AnchorPane prefHeight="980.0" prefWidth="135.0">
+                     <children>
+                        <Button fx:id="floor1" layoutX="15.0" layoutY="172.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 1" />
+                        <MFXButton fx:id="add" layoutX="15.0" layoutY="348.0" prefHeight="25.0" prefWidth="102.0" text="Add Node" />
+                        <Button fx:id="floor3" layoutX="16.0" layoutY="238.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 3" />
+                        <Button fx:id="floor2" layoutX="15.0" layoutY="205.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Floor 2" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <AnchorPane>
+               <children>
+                  <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" prefHeight="619.0" prefWidth="1317.0">
+                     <content>
+                        <Group fx:id="group">
+                           <children>
+                              <Pane fx:id="nodePane" />
+                           </children>
+                        </Group>
+                     </content>
+                  </GesturePane>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

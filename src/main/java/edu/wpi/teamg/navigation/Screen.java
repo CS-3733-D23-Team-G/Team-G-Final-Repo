@@ -24,7 +24,6 @@ public enum Screen {
   ADMIN_MAP_EDITOR("views/MapEditor.fxml"),
   NODE_EDITOR("views/NodeViewAndEditor");
 
-
   private final String filename;
 
   Screen(String filename) {
