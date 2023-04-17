@@ -72,19 +72,13 @@ public class AdminFormStatusController {
   @FXML TableColumn<ConferenceRoomRequest, Date> flowerDate;
   @FXML TableColumn<ConferenceRoomRequest, Time> flowerTime;
 
-
-  //  @FXML Button allRequestTableButton;
-  //  @FXML Button mealTableButton;
-  //  @FXML Button roomTableButton;
-  //  @FXML Button flowerTableButton;
-
   @FXML MFXButton allRequestTableButton;
   @FXML MFXButton mealTableButton;
   @FXML MFXButton roomTableButton;
   @FXML MFXButton flowerTableButton;
   //  @FXML MFXButton FurnitureTableButton;
   //  @FXML MFXButton OfficeSupplyTableButton;
-  
+
   ObservableList<Request> testList;
   ObservableList<MealRequest> testMealList;
   ObservableList<ConferenceRoomRequest> testRoomList;

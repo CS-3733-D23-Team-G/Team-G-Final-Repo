@@ -1,139 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AdminFormStatusController">
    <center>
-      <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="980.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
+      <HBox BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="roomTable" layoutX="1.0" prefHeight="980.0" prefWidth="1440.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
-               <columns>
-                  <TableColumn fx:id="roomReqID" prefWidth="100.0" text="Req. ID" />
-                  <TableColumn fx:id="roomEmpID" prefWidth="100.0" text="Emp. ID" />
-                  <TableColumn fx:id="roomLocation1" prefWidth="380.0" text="Location" />
-                  <TableColumn fx:id="roomServeBy" prefWidth="100.0" text="Serve-By" />
-                  <TableColumn fx:id="roomStatus" prefWidth="100.0" text="Status" />
-                  <TableColumn prefWidth="650.0" text="Conference Room Request">
-                     <columns>
-                        <TableColumn fx:id="roomDate" prefWidth="120.0" text="Meeting Date" />
-                        <TableColumn fx:id="roomTime" prefWidth="120.0" text="Meeting Time" />
-                        <TableColumn fx:id="endTime" prefWidth="120.0" text="End Time" />
-                        <TableColumn fx:id="roomPurpose" prefWidth="170.0" text="Purpose" />
-                     </columns>
-                  </TableColumn>
-               </columns>
-            </TableView>
-              <TableView fx:id="mealTable" layoutY="1.0" prefHeight="980.0" prefWidth="1440.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
-                  <columns>
-                      <TableColumn fx:id="mealReqID" prefWidth="70.0" text="Req. ID" />
-                      <TableColumn fx:id="mealEmpID" minWidth="0.0" prefWidth="70.0" text="Emp. ID" />
-                  <TableColumn fx:id="mealLocation1" prefWidth="300.0" text="Location" />
-                      <TableColumn fx:id="mealServeBy" prefWidth="110.0" text="Serve-By" />
-                      <TableColumn fx:id="mealStatus" prefWidth="120.0" text="Status" />
-                  <TableColumn prefWidth="600.0" text="Meal Request">
-                     <columns>
-                        <TableColumn fx:id="mealDate" minWidth="0.0" prefWidth="100.0" text="Date" />
-                        <TableColumn fx:id="mealTime" text="Time" />
-                        <TableColumn fx:id="mealOrder" prefWidth="170.0" text="Order" />
-                        <TableColumn fx:id="mealRecipient" prefWidth="110.0" text="Recipient" />
-                        <TableColumn fx:id="mealNote" minWidth="0.0" prefWidth="120.0" text="Note" />
-                     </columns>
-                  </TableColumn>
-                  </columns>
-              </TableView>
-            <TableView fx:id="flowerTable" prefHeight="980.0" prefWidth="1440.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
-               <columns>
-                  <TableColumn fx:id="flowerReqID" text="Req. ID" />
-                  <TableColumn fx:id="flowerEmpID" text="Emp. ID" />
-                  <TableColumn fx:id="flowerLocation1" prefWidth="280.0" text="Location" />
-                  <TableColumn fx:id="flowerServeBy" prefWidth="130.0" text="Serve-By" />
-                  <TableColumn fx:id="flowerStatus" prefWidth="130.0" text="Status" />
-                  <TableColumn prefWidth="670.0" text="Flowers Request">
-                     <columns>
-                        <TableColumn fx:id="flowerDate" minWidth="0.0" prefWidth="90.0" text="Date" />
-                        <TableColumn fx:id="flowerTime" prefWidth="90.0" text="Time" />
-                        <TableColumn fx:id="flowerType" prefWidth="200.0" text="Flower Type" />
-                        <TableColumn fx:id="flowerNumber" prefWidth="120.0" text="# of Flowers" />
-                        <TableColumn fx:id="flowerRecipient" prefWidth="100.0" text="Recipient" />
-                        <TableColumn fx:id="flowerNote" prefWidth="120.0" text="Note" />
-                     </columns>
-                  </TableColumn>
-               </columns>
-            </TableView>
-            <TableView fx:id="mainTable" layoutX="-108.0" prefHeight="900.0" prefWidth="1388.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
-               <columns>
-                  <TableColumn fx:id="reqID" prefWidth="85.19378662109375" text="Req. ID" />
-                  <TableColumn fx:id="reqType" prefWidth="118.95477294921875" text="Req. Type" />
-                  <TableColumn fx:id="empID" prefWidth="129.044189453125" text="Emp. ID" />
-                  <TableColumn fx:id="location1" minWidth="0.0" prefWidth="414.955810546875" text="Location" />
-                  <TableColumn fx:id="serveBy" minWidth="0.0" prefWidth="109.0440673828125" text="Serve-By" />
-                  <TableColumn fx:id="reqDate" prefWidth="146.76806640625" text="Date" />
-                  <TableColumn fx:id="reqTime" prefWidth="152.335205078125" text="Time" />
-                  <TableColumn fx:id="status" prefWidth="215.75634765625" text="Status" />
-               </columns>
-            </TableView>
-         </children>
-      </AnchorPane>
-   </center>
-   <left>
-      <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="980.0" prefWidth="452.0" BorderPane.alignment="CENTER">
-          <children>
-            <TextArea fx:id="areaInfo" editable="false" layoutX="82.0" layoutY="681.0" prefHeight="87.0" prefWidth="281.0" />
-            <GridPane alignment="CENTER" layoutX="75.0" layoutY="141.0" prefHeight="364.0" prefWidth="549.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="table_view_left">
                <children>
-                  <MFXButton fx:id="allRequestTableButton" rippleAnimateBackground="false" text="All Requests">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </MFXButton>
-                  <MFXButton fx:id="flowerTableButton" text="Flower Requests" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </MFXButton>
-                  <MFXButton fx:id="mealTableButton" text="Meal Requests" GridPane.rowIndex="3">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </MFXButton>
-                  <MFXButton fx:id="roomTableButton" text="Room Requests" GridPane.rowIndex="5">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </MFXButton>
-                  <MFXButton text="Furniture Requests" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </MFXButton>
-                  <MFXButton text="Office Supply Requests" GridPane.rowIndex="4">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </MFXButton>
+                  <HBox styleClass="left_vbox" AnchorPane.bottomAnchor="150.0" AnchorPane.topAnchor="150.0">
+                     <children>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="680.0" prefWidth="560.0">
+                           <children>
+                              <GridPane alignment="CENTER" prefHeight="596.0" prefWidth="549.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <MFXButton fx:id="allRequestTableButton" rippleAnimateBackground="false" text="All Requests">
+                                       <font>
+                                          <Font size="50.0" />
+                                       </font>
+                                    </MFXButton>
+                                    <MFXButton fx:id="flowerTableButton" text="Flower Requests" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="50.0" />
+                                       </font>
+                                    </MFXButton>
+                                    <MFXButton fx:id="mealTableButton" text="Meal Requests" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font size="50.0" />
+                                       </font>
+                                    </MFXButton>
+                                    <MFXButton fx:id="roomTableButton" text="Room Requests" GridPane.rowIndex="5">
+                                       <font>
+                                          <Font size="50.0" />
+                                       </font>
+                                    </MFXButton>
+                                    <MFXButton text="Furniture Requests" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="50.0" />
+                                       </font>
+                                    </MFXButton>
+                                    <MFXButton text="Office Supply Requests" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font size="50.0" />
+                                       </font>
+                                    </MFXButton>
+                                 </children>
+                              </GridPane>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
-            </GridPane>
-          </children>
-      </AnchorPane>
-   </left>
+            </AnchorPane>
+            <AnchorPane prefHeight="960.0" prefWidth="1277.0" styleClass="table_view_right" stylesheets="@style.css">
+               <children>
+                  <TableView fx:id="roomTable" layoutX="1.0" prefHeight="960.0" prefWidth="1350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="roomReqID" prefWidth="100.0" text="Req. ID" />
+                        <TableColumn fx:id="roomEmpID" prefWidth="100.0" text="Emp. ID" />
+                        <TableColumn fx:id="roomLocation1" prefWidth="380.0" text="Location" />
+                        <TableColumn fx:id="roomServeBy" prefWidth="100.0" text="Serve-By" />
+                        <TableColumn fx:id="roomStatus" prefWidth="100.0" text="Status" />
+                        <TableColumn prefWidth="650.0" text="Conference Room Request">
+                           <columns>
+                              <TableColumn fx:id="roomDate" prefWidth="120.0" text="Meeting Date" />
+                              <TableColumn fx:id="roomTime" prefWidth="120.0" text="Meeting Time" />
+                              <TableColumn fx:id="endTime" prefWidth="120.0" text="End Time" />
+                              <TableColumn fx:id="roomPurpose" prefWidth="170.0" text="Purpose" />
+                           </columns>
+                        </TableColumn>
+                     </columns>
+                  </TableView>
+                    <TableView fx:id="mealTable" layoutY="1.0" prefHeight="960.0" prefWidth="1350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <columns>
+                            <TableColumn fx:id="mealReqID" prefWidth="70.0" text="Req. ID" />
+                            <TableColumn fx:id="mealEmpID" minWidth="0.0" prefWidth="70.0" text="Emp. ID" />
+                        <TableColumn fx:id="mealLocation1" prefWidth="300.0" text="Location" />
+                            <TableColumn fx:id="mealServeBy" prefWidth="110.0" text="Serve-By" />
+                            <TableColumn fx:id="mealStatus" prefWidth="120.0" text="Status" />
+                        <TableColumn prefWidth="600.0" text="Meal Request">
+                           <columns>
+                              <TableColumn fx:id="mealDate" minWidth="0.0" prefWidth="100.0" text="Date" />
+                              <TableColumn fx:id="mealTime" text="Time" />
+                              <TableColumn fx:id="mealOrder" prefWidth="170.0" text="Order" />
+                              <TableColumn fx:id="mealRecipient" prefWidth="110.0" text="Recipient" />
+                              <TableColumn fx:id="mealNote" minWidth="0.0" prefWidth="120.0" text="Note" />
+                           </columns>
+                        </TableColumn>
+                        </columns>
+                    </TableView>
+                  <TableView fx:id="flowerTable" prefHeight="960.0" prefWidth="1350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="flowerReqID" text="Req. ID" />
+                        <TableColumn fx:id="flowerEmpID" text="Emp. ID" />
+                        <TableColumn fx:id="flowerLocation1" prefWidth="280.0" text="Location" />
+                        <TableColumn fx:id="flowerServeBy" prefWidth="130.0" text="Serve-By" />
+                        <TableColumn fx:id="flowerStatus" prefWidth="130.0" text="Status" />
+                        <TableColumn prefWidth="670.0" text="Flowers Request">
+                           <columns>
+                              <TableColumn fx:id="flowerDate" minWidth="0.0" prefWidth="90.0" text="Date" />
+                              <TableColumn fx:id="flowerTime" prefWidth="90.0" text="Time" />
+                              <TableColumn fx:id="flowerType" prefWidth="200.0" text="Flower Type" />
+                              <TableColumn fx:id="flowerNumber" prefWidth="120.0" text="# of Flowers" />
+                              <TableColumn fx:id="flowerRecipient" prefWidth="100.0" text="Recipient" />
+                              <TableColumn fx:id="flowerNote" prefWidth="120.0" text="Note" />
+                           </columns>
+                        </TableColumn>
+                     </columns>
+                  </TableView>
+                  <TableView fx:id="mainTable" layoutX="10.0" layoutY="10.0" prefHeight="960.0" prefWidth="1350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="reqID" prefWidth="85.19378662109375" text="Req. ID" />
+                        <TableColumn fx:id="reqType" prefWidth="118.95477294921875" text="Req. Type" />
+                        <TableColumn fx:id="empID" prefWidth="129.044189453125" text="Emp. ID" />
+                        <TableColumn fx:id="location1" minWidth="0.0" prefWidth="414.955810546875" text="Location" />
+                        <TableColumn fx:id="serveBy" minWidth="0.0" prefWidth="109.0440673828125" text="Serve-By" />
+                        <TableColumn fx:id="reqDate" prefWidth="146.76806640625" text="Date" />
+                        <TableColumn fx:id="reqTime" prefWidth="152.335205078125" text="Time" />
+                        <TableColumn fx:id="status" prefWidth="215.75634765625" text="Status" />
+                     </columns>
+                  </TableView>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </center>
 </BorderPane>
