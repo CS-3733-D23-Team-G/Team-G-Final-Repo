@@ -13,6 +13,8 @@ public enum Screen {
 
   SIGNAGE_PAGE("views/SignagePage.fxml"),
 
+  SIGNAGE_SCREENSAVER_PAGE("views/SignageScreenSaver.fxml"),
+
   ADMIN_SIGNAGE_PAGE("views/SignageAdmin.fxml"),
 
   EDIT_SIGNAGE_PAGE("views/SignageEditor.fxml"),

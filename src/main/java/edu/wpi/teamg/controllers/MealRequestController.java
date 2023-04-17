@@ -86,6 +86,7 @@ public class MealRequestController {
         });
 
     mealClearAll.setOnAction(event -> clearAllData());
+
     mealPersonOrderingForData.getText();
     mealNotesData.getText();
     // mealFoodChoice.setItems(foodList);
@@ -269,6 +270,9 @@ public class MealRequestController {
     mealDate.setText("");
     mealTimeOfDeliver.setText("");
     mealFoodChoice.setText("");
+
+    locationSearchDropdown.setValue(null);
+
 
     selectedBurger.setVisible(false);
     selectedBurger.setDisable(true);

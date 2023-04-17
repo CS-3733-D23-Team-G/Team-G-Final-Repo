@@ -110,6 +110,14 @@
     -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
 }
 
+.signage_text{
+    -fx-font-size: 30;
+}
+.signage_background_color{
+    -fx-background-color: #f1f1f1;
+}
+
+
 /* meal request */
 .mealLocationNotes_vbox{
     -fx-pref-height: 690;
@@ -126,9 +134,7 @@
     -fx-pref-width: 759;
 }
 
-
 /*Pathfinding CSS*/
-
 .half_bottom_left{
     -fx-pref-height: 913;
     -fx-pref-width: 576;
@@ -230,6 +236,14 @@
 
 .request_submit_button{
     -fx-font-size: 30;
+}
+
+.signage_clear_button{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 30;
+    -fx-font-size: 13;
+    -fx-text-fill: #FFFFFF;
+    -fx-alignment: center;
 }
 
 
