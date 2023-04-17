@@ -58,19 +58,44 @@ public class SignageScreenSaverController {
     //              }
     //            });
 
+    // HELP, I NEED SOMEBODY
 
-    //HELP, I NEED SOMEBODY
-//    arrow2.setImage(westArrow);
-//    nameLabel2.setText("75 Lobby");
-//    arrow3.setImage(northArrow);
-//    nameLabel3.setText("Bathroom 75 Lobby");
-//    arrow7.setImage(eastArrow);
-//    nameLabel7.setText("Garden Cafe");
-//    arrow8.setImage(eastArrow);
-//    nameLabel8.setText("75 Lobby Information Desk");
+    int[] arrowDirection = null;
+    SignageEditorController controller = new SignageEditorController();
+    arrowDirection = controller.getArrowDirection();
 
-    getArrowDirectionFromEditor();
-    getSavedNamesFromEditor();
+    for (int i = 0; i <= arrowDirection.length - 1; i++) {
+      System.out.println(arrowDirection[i]);
+    }
+
+    int[] testCase = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+    if (controller.getAttribute()) {
+      getArrowDirectionFromEditor();
+      getSavedNamesFromEditor();
+    } else {
+      arrow2.setImage(westArrow);
+      nameLabel2.setText("75 Lobby");
+      arrow3.setImage(northArrow);
+      nameLabel3.setText("Bathroom 75 Lobby");
+      arrow7.setImage(eastArrow);
+      nameLabel7.setText("Garden Cafe");
+      arrow8.setImage(eastArrow);
+      nameLabel8.setText("75 Lobby Information Desk");
+
+      arrow1.setImage(null);
+      arrow4.setImage(null);
+      arrow5.setImage(null);
+      arrow6.setImage(null);
+      arrow9.setImage(null);
+      arrow10.setImage(null);
+      nameLabel1.setText("");
+      nameLabel4.setText("");
+      nameLabel5.setText("");
+      nameLabel6.setText("");
+      nameLabel9.setText("");
+      nameLabel10.setText("");
+    }
   }
 
   public void getArrowDirectionFromEditor() {

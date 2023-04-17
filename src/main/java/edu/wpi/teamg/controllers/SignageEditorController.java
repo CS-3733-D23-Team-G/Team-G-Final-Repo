@@ -55,6 +55,8 @@ public class SignageEditorController {
   @FXML MFXButton clearField9;
   @FXML MFXButton clearField10;
 
+  static boolean attribute = false;
+
   public static String[] locationNameSave = new String[10];
   ObservableList<String> locationList;
 
@@ -77,19 +79,22 @@ public class SignageEditorController {
           }
         });
 
-//HELP, I NEED SOMEBODY
-//    arrow2.setImage(westArrow);
-//    arrowDirectionNumber[1] = 1;
-//    locationNameSave[1] = "75 Lobby";
-//    arrow3.setImage(northArrow);
-//    arrowDirectionNumber[2] = 2;
-//    locationNameSave[2] = "Bathroom 75 Lobby";
-//    arrow7.setImage(eastArrow);
-//    arrowDirectionNumber[6] = 3;
-//    locationNameSave[6] = "Garden Cafe";
-//    arrow8.setImage(eastArrow);
-//    arrowDirectionNumber[7] = 3;
-//    locationNameSave[7] = "75 Lobby Information Desk";
+    // HELP, I NEED SOMEBODY
+
+    if (!attribute) {
+      arrow2.setImage(westArrow);
+      arrowDirectionNumber[1] = 1;
+      locationNameSave[1] = "75 Lobby";
+      arrow3.setImage(northArrow);
+      arrowDirectionNumber[2] = 2;
+      locationNameSave[2] = "Bathroom 75 Lobby";
+      arrow7.setImage(eastArrow);
+      arrowDirectionNumber[6] = 3;
+      locationNameSave[6] = "Garden Cafe";
+      arrow8.setImage(eastArrow);
+      arrowDirectionNumber[7] = 3;
+      locationNameSave[7] = "75 Lobby Information Desk";
+    }
 
     signageDropDown1.setValue(locationNameSave[0]);
     signageDropDown2.setValue(locationNameSave[1]);
@@ -147,16 +152,16 @@ public class SignageEditorController {
     signageDropDown9.setOnAction(event -> saveName(8));
     signageDropDown10.setOnAction(event -> saveName(9));
 
-    clearField1.setOnAction(event -> signageDropDown1.setValue(null));
-    clearField2.setOnAction(event -> signageDropDown2.setValue(null));
-    clearField3.setOnAction(event -> signageDropDown3.setValue(null));
-    clearField4.setOnAction(event -> signageDropDown4.setValue(null));
-    clearField5.setOnAction(event -> signageDropDown5.setValue(null));
-    clearField6.setOnAction(event -> signageDropDown6.setValue(null));
-    clearField7.setOnAction(event -> signageDropDown7.setValue(null));
-    clearField8.setOnAction(event -> signageDropDown8.setValue(null));
-    clearField9.setOnAction(event -> signageDropDown9.setValue(null));
-    clearField10.setOnAction(event -> signageDropDown10.setValue(null));
+    clearField1.setOnAction(event -> clearAll(0));
+    clearField2.setOnAction(event -> clearAll(1));
+    clearField3.setOnAction(event -> clearAll(2));
+    clearField4.setOnAction(event -> clearAll(3));
+    clearField5.setOnAction(event -> clearAll(4));
+    clearField6.setOnAction(event -> clearAll(5));
+    clearField7.setOnAction(event -> clearAll(6));
+    clearField8.setOnAction(event -> clearAll(7));
+    clearField9.setOnAction(event -> clearAll(8));
+    clearField10.setOnAction(event -> clearAll(9));
   }
 
   public void arrowSwap(ImageView image, int index) {
@@ -180,6 +185,7 @@ public class SignageEditorController {
         arrowDirectionNumber[index] = -1;
         break;
     }
+    attribute = true; // Test
   }
 
   public void saveName(int index) {
@@ -224,16 +230,7 @@ public class SignageEditorController {
         locationNameSave[9] = signageDropDown10.getValue().toString();
         break;
     }
-    //    locationNameSave[0] = signageDropDown1.getValue().toString();
-    //    locationNameSave[1] = signageDropDown2.getValue().toString();
-    //    locationNameSave[2] = signageDropDown3.getValue().toString();
-    //    locationNameSave[3] = signageDropDown4.getValue().toString();
-    //    locationNameSave[4] = signageDropDown5.getValue().toString();
-    //    locationNameSave[5] = signageDropDown6.getValue().toString();
-    //    locationNameSave[6] = signageDropDown7.getValue().toString();
-    //    locationNameSave[7] = signageDropDown8.getValue().toString();
-    //    locationNameSave[8] = signageDropDown9.getValue().toString();
-    //    locationNameSave[9] = signageDropDown10.getValue().toString();
+    attribute = true;
   }
 
   public void arrowSetUp(int[] list) {
@@ -259,8 +256,67 @@ public class SignageEditorController {
     }
   }
 
+  public void clearAll(int index) {
+    switch (index) {
+      case 0:
+        signageDropDown1.setValue(null);
+        locationNameSave[0] = "";
+        break;
+
+      case 1:
+        signageDropDown2.setValue(null);
+        locationNameSave[index] = "";
+        break;
+
+      case 2:
+        signageDropDown3.setValue(null);
+        locationNameSave[index] = "";
+        break;
+
+      case 3:
+        signageDropDown4.setValue(null);
+        locationNameSave[index] = "";
+        break;
+
+      case 4:
+        signageDropDown5.setValue(null);
+        locationNameSave[index] = "";
+        break;
+
+      case 5:
+        signageDropDown6.setValue(null);
+        locationNameSave[index] = "";
+        break;
+
+      case 6:
+        signageDropDown7.setValue(null);
+        locationNameSave[index] = "";
+        break;
+
+      case 7:
+        signageDropDown8.setValue(null);
+        locationNameSave[index] = "";
+        break;
+
+      case 8:
+        signageDropDown9.setValue(null);
+        locationNameSave[index] = "";
+        break;
+
+      case 9:
+        signageDropDown10.setValue(null);
+        locationNameSave[index] = "";
+        break;
+    }
+    attribute = true;
+  }
+
   public int[] getArrowDirection() {
     return arrowDirectionNumber;
+  }
+
+  public boolean getAttribute() {
+    return attribute;
   }
 
   public String[] getSavedNames() {
