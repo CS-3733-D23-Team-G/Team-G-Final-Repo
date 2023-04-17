@@ -2,6 +2,8 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
@@ -112,7 +114,7 @@ public class SignageAdminController {
     //    disMap.setOnMouseClicked(event -> showAdminMap());
     //    mapEdit.setOnMouseClicked(event -> editMap());
     //    mapCancel.setOnMouseClicked(event -> cancelMap());
-    //    mapEditorPageBtn.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_MAP_EDITOR));
+    mapEditorPageBtn.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_MAP_EDITOR));
     //    add.setOnMouseClicked(
     //        event -> {
     //          try {
