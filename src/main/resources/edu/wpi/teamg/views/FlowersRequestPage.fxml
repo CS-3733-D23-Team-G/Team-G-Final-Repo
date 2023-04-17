@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.CheckComboBox?>
@@ -18,7 +19,7 @@
     <center>
         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+                <AnchorPane fx:id="EmployeeSearchBox" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                     <children>
                         <AnchorPane layoutX="111.0" layoutY="151.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="143.60000000000002" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="148.39999999999998" AnchorPane.topAnchor="146.0">
                             <styleClass>
@@ -26,28 +27,45 @@
                                 <String fx:value="widget_background" />
                             </styleClass>
                             <children>
-                                <MFXTextField fx:id="roomField" layoutX="86.0" layoutY="139.0" prefHeight="57.0" prefWidth="198.0" />
-                                <MFXTextField fx:id="bouquetNote" layoutX="86.0" layoutY="419.0" prefHeight="194.0" prefWidth="266.0" />
-                                <MFXTextField fx:id="recipient" layoutX="448.0" layoutY="277.0" prefHeight="57.0" prefWidth="198.0" />
-                                <MFXButton fx:id="clearAll" layoutX="378.0" layoutY="573.0" prefHeight="53.0" prefWidth="140.0" text="CLEAR" />
-                                <MFXButton fx:id="submit" layoutX="566.0" layoutY="573.0" prefHeight="53.0" prefWidth="140.0" text="CONFIRM" />
-                                <MFXDatePicker fx:id="deliveryDate" layoutX="442.0" layoutY="142.0" prefHeight="52.0" prefWidth="210.0" />
-                        <Text fill="WHITE" layoutX="86.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROOM" underline="true" wrappingWidth="158.4469451904297">
+                                <MFXTextField fx:id="roomField" layoutX="86.0" layoutY="139.0" prefHeight="57.0" prefWidth="198.0" stylesheets="@style.css">
+                           <textFill>
+                              <Color red="0.9450980424880981" green="0.9450980424880981" blue="0.9450980424880981" opacity="0.8700000047683716" />
+                           </textFill></MFXTextField>
+                                <MFXTextField fx:id="bouquetNote" layoutX="86.0" layoutY="419.0" prefHeight="194.0" prefWidth="266.0">
+                           <textFill>
+                              <Color red="0.9450980424880981" green="0.9450980424880981" blue="0.9450980424880981" opacity="0.8700000047683716" />
+                           </textFill></MFXTextField>
+                                <MFXButton fx:id="clearAll" layoutX="378.0" layoutY="573.0" prefHeight="53.0" prefWidth="140.0" text="Clear" />
+                                <MFXButton fx:id="submit" layoutX="566.0" layoutY="573.0" prefHeight="53.0" prefWidth="140.0" stylesheets="@style.css" text="Confirm" />
+                                <MFXDatePicker fx:id="deliveryDate" layoutX="415.0" layoutY="278.0" prefHeight="52.0" prefWidth="210.0" />
+                        <Text fill="WHITE" layoutX="83.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room" wrappingWidth="158.4469451904297">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="86.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOTES" underline="true" wrappingWidth="116.755859375">
+                        <Text fill="WHITE" layoutX="86.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" wrappingWidth="116.755859375">
                            <font>
                               <Font size="29.0" />
                            </font>
                         </Text>
-                        <MFXTextField layoutX="86.0" layoutY="267.0" prefHeight="61.0" prefWidth="210.0" />
-                        <Text fill="WHITE" layoutX="84.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NUMBER" underline="true">
+                        <MFXTextField layoutX="85.0" layoutY="273.0" prefHeight="61.0" prefWidth="210.0" />
+                        <Text fill="WHITE" layoutX="84.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
+                        <Text layoutX="442.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fill="WHITE" layoutX="416.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="149.94610595703125">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="414.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign To">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <SearchableComboBox fx:id="EmployeeSearchBox" layoutX="417.0" layoutY="433.0" prefHeight="50.0" prefWidth="236.0" />
                             </children>
                         </AnchorPane>
                         <Label fx:id="checkFields" layoutX="82.0" layoutY="105.0" prefHeight="48.0" prefWidth="232.0" text="Flowers Request">
@@ -65,7 +83,7 @@
                                 <String fx:value="widget_background" />
                             </styleClass>
                             <children>
-                                <SearchableComboBox fx:id="locationSearchDropdown" layoutX="306.0" layoutY="230.0" prefHeight="50.0" prefWidth="236.0" />
+                                <SearchableComboBox fx:id="locationSearchDropdown" layoutX="34.0" layoutY="226.0" prefHeight="50.0" prefWidth="236.0" />
                                 <ChoiceBox fx:id="bouquetSizeChoiceBox" layoutX="266.0" layoutY="323.0" prefHeight="85.0" prefWidth="295.0" />
                                 <CheckComboBox fx:id="flowerTypeCheckBox" layoutX="220.0" layoutY="450.0" prefHeight="58.0" prefWidth="376.0" />
                             </children>
