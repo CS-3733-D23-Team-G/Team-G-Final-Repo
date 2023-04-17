@@ -95,6 +95,7 @@ public class AccountDAO implements DAO {
       System.err.println("SQL Exception");
     }
     conn.closeConnection();
+    accountHash.remove(account.getUsername());
   }
 
   @Override

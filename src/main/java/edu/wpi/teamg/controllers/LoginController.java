@@ -11,6 +11,8 @@ public class LoginController {
   @FXML CustomTextField EmployeeIDs;
   @FXML CustomTextField PasswordInput;
 
+  
+
   public void initialize() {
     loginButton.setOnAction(event -> loginCheck());
   }
