@@ -23,7 +23,7 @@ public class LoginController {
       System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah");
     } else {
       System.out.println("naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah");
-      PasswordInput.setText("Incorrect");
+      PasswordInput.setText("Incorrect Username or Password");
     }
   }
 }
