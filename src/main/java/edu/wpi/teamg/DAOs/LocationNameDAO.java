@@ -21,9 +21,7 @@ public class LocationNameDAO implements LocationDAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
-
     SQL = "select * from " + this.getTable();
-
 
     try {
       ps = connection.getConnection().prepareStatement(SQL);
@@ -87,7 +85,6 @@ public class LocationNameDAO implements LocationDAO {
       e.printStackTrace();
 
       System.err.println("SQL exception");
-
     }
     connection.closeConnection();
   }
@@ -98,9 +95,7 @@ public class LocationNameDAO implements LocationDAO {
     PreparedStatement ps;
     LocationName l1 = (LocationName) obj;
 
-
     SQL = "DELETE FROM " + this.getTable() + " WHERE longname=? OR shortname=?";
-
 
     try {
       ps = connection.getConnection().prepareStatement(SQL);

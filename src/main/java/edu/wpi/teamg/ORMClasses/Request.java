@@ -35,5 +35,4 @@ public class Request {
     this.requestDate = deliveryDate;
     this.requestTime = deliveryTime;
   }
-
 }

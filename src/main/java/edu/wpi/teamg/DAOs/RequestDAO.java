@@ -56,7 +56,15 @@ public class RequestDAO implements DAO {
       Time requesttime = rs.getTime("requesttime");
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
 
-      Request cReq = new Request(reqType, requestingEmployee, location, assignedEmployee, status, requestdate, requesttime);
+      Request cReq =
+          new Request(
+              reqType,
+              requestingEmployee,
+              location,
+              assignedEmployee,
+              status,
+              requestdate,
+              requesttime);
 
       cReq.setReqid(reqID);
 

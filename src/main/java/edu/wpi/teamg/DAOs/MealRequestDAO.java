@@ -122,7 +122,6 @@ public class MealRequestDAO implements DAO {
     }
 
     SQL_mealRequest =
-
         "insert into "
             + this.getTable()
             + "(reqid, recipient, mealOrder, note) values (?, ?, ?, ?)";
@@ -183,7 +182,6 @@ public class MealRequestDAO implements DAO {
 
     PreparedStatement ps_mealrequest;
     PreparedStatement ps_request;
-
 
     String SQL_mealrequest = "delete from " + this.getTable() + " where reqId = ?";
 

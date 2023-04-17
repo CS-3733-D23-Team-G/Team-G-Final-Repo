@@ -116,7 +116,6 @@ public class ConRoomRequestController {
     return longNameHashMap;
   }
 
-
   public void storeRoomValues() throws SQLException {
 
     ConferenceRoomRequest conRoom =

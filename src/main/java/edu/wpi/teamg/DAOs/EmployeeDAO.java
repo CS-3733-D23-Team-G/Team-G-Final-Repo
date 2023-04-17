@@ -22,7 +22,6 @@ public class EmployeeDAO implements DAO {
 
     query = "Select * from " + this.getTable();
 
-
     try {
       ps = conn.getConnection().prepareStatement(query);
       rs = ps.executeQuery();
@@ -54,11 +53,9 @@ public class EmployeeDAO implements DAO {
     Employee employee = (Employee) obj;
     conn.setConnection();
     query =
-
         "INSERT INTO "
             + this.getTable()
             + "(empid, firstname, lastname, email, can_serve) VALUES (?,?,?,?,?)";
-
 
     PreparedStatement ps;
     try {
@@ -163,8 +160,5 @@ public class EmployeeDAO implements DAO {
     conn.closeConnection();
 
     return longNameHash;
-
-
-
   }
 }

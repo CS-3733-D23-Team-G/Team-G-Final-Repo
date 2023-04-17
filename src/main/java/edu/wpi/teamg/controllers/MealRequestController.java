@@ -118,7 +118,6 @@ public class MealRequestController {
 
     employeeList = FXCollections.observableArrayList(employeeNames);
 
-
     ArrayList<String> locationNames = new ArrayList<>();
     HashMap<Integer, String> testingLongName = this.getHashMapMLongName();
 
@@ -239,7 +238,7 @@ public class MealRequestController {
     //            + mr.getStatus());
 
     DAORepo dao = new DAORepo();
-    // dao.insertMealRequest(mr);
+    dao.insertMealRequest(mr);
   }
 
   public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {

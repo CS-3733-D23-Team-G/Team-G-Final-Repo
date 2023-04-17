@@ -20,9 +20,7 @@ public class LoginDao implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
-
     query = "select * from " + this.getTable();
-
 
     try {
       ps = conn.getConnection().prepareStatement(query);
@@ -58,7 +56,6 @@ public class LoginDao implements DAO {
 
     query = "insert into " + this.getTable() + "(email, password) values (?, ?)";
 
-
     try {
       ps = conn.getConnection().prepareStatement(query);
       ps.setString(1, ((Login) obj).getEmail());
@@ -80,9 +77,7 @@ public class LoginDao implements DAO {
 
     PreparedStatement ps;
 
-
     query = "delete from " + this.getTable() + " email = ?";
-
 
     try {
       ps = conn.getConnection().prepareStatement(query);
