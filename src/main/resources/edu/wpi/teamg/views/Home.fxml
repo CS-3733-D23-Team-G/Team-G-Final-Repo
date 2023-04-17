@@ -38,7 +38,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
-                  <AnchorPane layoutX="121.0" layoutY="122.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="97.66666666666663">
+                  <AnchorPane layoutX="121.0" layoutY="122.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="120.73333333333335" AnchorPane.rightAnchor="97.66666666666663">
                      <styleClass>
                         <String fx:value="widget_background" />
                         <String fx:value="widget_homepage_pair" />

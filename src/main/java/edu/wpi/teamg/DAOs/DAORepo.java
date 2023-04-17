@@ -190,6 +190,6 @@ public class DAORepo {
   }
 
   public int getNodeIDbyLongName(String longname) throws SQLException {
-    return nodeDao.getNodeIDbyLongName(longname);
+    return nodeDao.getNodeIDbyLongName(longname, new java.sql.Date(System.currentTimeMillis()));
   }
 }

@@ -39,9 +39,15 @@ public class Graph {
       // we then calulate the distance between the two nodes and put it in the A1[][] array
       // since the adj matrix is sysmetric the number in the row x colum and colum x row will be the
       // same.
-      A1[vertice_numS][vertice_numE] = E[i].distance(V[vertice_numS], V[vertice_numE]);
+      if (E[i].distance(V[vertice_numS], V[vertice_numE]) != 0) {
+        A1[vertice_numS][vertice_numE] = E[i].distance(V[vertice_numS], V[vertice_numE]);
 
-      A1[vertice_numE][vertice_numS] = E[i].distance(V[vertice_numE], V[vertice_numS]);
+        A1[vertice_numE][vertice_numS] = E[i].distance(V[vertice_numE], V[vertice_numS]);
+      } else {
+        A1[vertice_numS][vertice_numE] = 1;
+
+        A1[vertice_numE][vertice_numS] = 1;
+      }
     }
     // System.out.println("A1 " + E[i].distance(V[vertice_numS], V[vertice_numE]));
     // System.out.println("A2 " + E[i].distance(V[vertice_numS], V[vertice_numE]));
