@@ -65,6 +65,10 @@
     -fx-max-height: 30;
     -fx-opacity: 0;
 }
+.button_confirm{
+    -fx-background-color:#F6BD38;
+    -fx-font-family: "Poppins-Regular";
+}
 .new_banner{
     -fx-max-height: 178;
     -fx-pref-height: 100;
@@ -106,3 +110,10 @@
 .linear-grad{
     -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
 }
+.scroll-pane-Furn{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 20 20 20 20;
+}
+/* image 11 */
+
+
