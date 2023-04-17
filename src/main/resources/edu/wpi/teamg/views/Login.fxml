@@ -17,7 +17,7 @@
                <children>
                   <Pane prefHeight="70.0" prefWidth="221.0" styleClass="widget_background">
                      <children>
-                        <Text fx:id="EomployeeID" fill="#f6bd38" layoutX="9.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Employee ID">
+                        <Text fx:id="EomployeeID" fill="#f6bd38" layoutX="9.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Username">
                            <font>
                               <Font size="36.0" />
                            </font>
