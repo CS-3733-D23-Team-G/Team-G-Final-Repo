@@ -5,7 +5,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -66,13 +65,19 @@
                            </font>
                         </Text>
                         <SearchableComboBox fx:id="EmployeeSearchBox" layoutX="417.0" layoutY="433.0" prefHeight="50.0" prefWidth="236.0" />
+                        <MFXTextField fx:id="deliveryTime" layoutX="406.0" layoutY="139.0" prefHeight="48.0" prefWidth="214.0" />
+                        <Text fill="WHITE" layoutX="406.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" wrappingWidth="139.7366943359375">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                        </Text>
                             </children>
                         </AnchorPane>
-                        <Label fx:id="checkFields" layoutX="82.0" layoutY="105.0" prefHeight="48.0" prefWidth="232.0" text="Flowers Request">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
+                  <Text layoutX="70.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flower Request" wrappingWidth="272.53672790527344">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Text>
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
