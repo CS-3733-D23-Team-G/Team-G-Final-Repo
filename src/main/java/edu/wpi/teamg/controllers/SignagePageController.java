@@ -421,8 +421,6 @@ public class SignagePageController {
       pathLine.setStroke(Color.rgb(1, 45, 90));
       nodePane.getChildren().add(pathLine);
     }
-
-
   }
 
   public void nextFloor(Node node, ArrayList<String> path, int index) throws SQLException {
