@@ -16,7 +16,7 @@
    <left>
       <Pane prefHeight="400.0" prefWidth="274.0" style="-fx-background-color: linear-gradient(to bottom left, #009FFD, #2A2A72);" stylesheets="style.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="29.0" fitWidth="20.0" layoutX="127.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="127.0" fitWidth="100.0" layoutX="84.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@small_logo.png" />
                </image></ImageView>
