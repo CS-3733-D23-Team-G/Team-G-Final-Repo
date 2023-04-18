@@ -140,6 +140,7 @@ public class FlowersRequestController {
 
     submit.setOnAction(
         event -> {
+          flowerOrder();
           allDataFilled();
         });
     //    deliveryLocation.getText();
@@ -187,7 +188,9 @@ public class FlowersRequestController {
             bouquetNote.getText(),
             recipient.getText());
 
-    // dao.insertFlowerRequest(flower);
+    // System.out.println(Order);
+
+    dao.insertFlowerRequest(flower);
     /*
     System.out.println(
         "Delivery Location: "
@@ -207,11 +210,11 @@ public class FlowersRequestController {
   public void selectSunFlowerOption() {
     if (selectedSunflower.isVisible() == false) {
       selectedSunflower.setVisible(true);
-      Order += "Sunflower, ";
+      // Order += "Sunflower, ";
       System.out.println(Order);
     } else if (selectedSunflower.isVisible() == true) {
       selectedSunflower.setVisible(false);
-      Order.replace("Sunflower, ", "");
+      // Order.replace("Sunflower, ", "");
       System.out.println(Order);
     }
   }
@@ -219,11 +222,11 @@ public class FlowersRequestController {
   public void selectPurpleFlowerOption() {
     if (selectedPurpleflower.isVisible() == false) {
       selectedPurpleflower.setVisible(true);
-      Order += "Purpleflower, ";
-      System.out.println(Order);
+      // Order += "Purpleflower, ";
+      // System.out.println(Order);
     } else if (selectedPurpleflower.isVisible() == true) {
       selectedPurpleflower.setVisible(false);
-      Order.replace("Purpleflower, ", "");
+      // Order.replace("Purpleflower, ", "");
       System.out.println(Order);
     }
   }
@@ -231,12 +234,26 @@ public class FlowersRequestController {
   public void selectRedFlowerOption() {
     if (selectedRedflower.isVisible() == false) {
       selectedRedflower.setVisible(true);
-      Order += "Redflower, ";
+      // Order += "Redflower, ";
       System.out.println(Order);
     } else if (selectedRedflower.isVisible() == true) {
       selectedRedflower.setVisible(false);
-      Order.replace("Redflower, ", "");
+      // Order.replace("Redflower, ", "");
       System.out.println(Order);
+    }
+  }
+
+  public void flowerOrder() {
+    if (selectedRedflower.isVisible()) {
+      Order += "Red Flower, ";
+    }
+
+    if (selectedPurpleflower.isVisible()) {
+      Order += "Purple Flower, ";
+    }
+
+    if (selectedSunflower.isVisible()) {
+      Order += "Sunflower, ";
     }
   }
 
@@ -251,10 +268,6 @@ public class FlowersRequestController {
     }
 
     return longNameHashMap;
-  }
-
-  public int bouquetSizeToInt(String s) {
-    return -1;
   }
 
   // TODO: figure out clear for flowerTypeCheckBox
