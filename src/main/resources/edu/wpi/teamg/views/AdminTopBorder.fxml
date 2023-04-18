@@ -54,25 +54,25 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                </rowConstraints>
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Pathfinding" GridPane.columnIndex="3">
+                  <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Pathfinding" GridPane.columnIndex="3">
                      <font>
                         <Font name="Baskerville Old Face" size="30.0" />
                      </font>
                   </Text>
                   <MFXButton fx:id="statusButton" opacity="0.0" prefWidth="389.0" styleClass="hit_the_griddy" text="Button" GridPane.columnIndex="1" />
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Form Status" GridPane.columnIndex="1">
+                  <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Form Status" GridPane.columnIndex="1">
                      <font>
                         <Font name="Baskerville Old Face" size="30.0" />
                      </font>
                   </Text>
                   <MFXButton fx:id="signagePageButton" opacity="0.0" prefWidth="370.0" styleClass="hit_the_griddy" GridPane.columnIndex="3" />
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Service Request" wrappingWidth="211.5435791015625" GridPane.columnIndex="2">
+                  <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Service Request" wrappingWidth="211.5435791015625" GridPane.columnIndex="2">
                      <font>
                         <Font name="Baskerville Old Face" size="30.0" />
                      </font>
                   </Text>
-                  <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefWidth="276.0" style="-fx-background-color: red;" GridPane.columnIndex="2" />
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Admin Forms">
+                  <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="53.0" prefWidth="276.0" style="-fx-background-color: red;" GridPane.columnIndex="2" />
+                  <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Admin Forms">
                      <font>
                         <Font name="Baskerville Old Face" size="30.0" />
                      </font>

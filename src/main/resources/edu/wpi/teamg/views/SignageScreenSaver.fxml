@@ -116,6 +116,11 @@
                      </font>
                   </Text>
                   <MFXButton fx:id="ClickToPathFinding" opacity="0.0" prefHeight="971.0" prefWidth="1913.0" />
+                  <ImageView fitHeight="126.0" fitWidth="245.0" layoutX="1632.0" layoutY="832.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="800.0">
+                     <image>
+                        <Image url="@../Images/ClickScreenIcon.png" />
+                     </image>
+                  </ImageView>
                     </children>
                 </AnchorPane>
             </children>
