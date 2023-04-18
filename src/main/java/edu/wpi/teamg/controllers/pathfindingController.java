@@ -488,7 +488,6 @@ public class pathfindingController {
     for (int i = 0; i < path.size(); i++) {
       finalPath.add(String.valueOf(nodeArray[Integer.parseInt(path.get(i))].getNodeID()));
     }
-   
 
     setPath(finalPath);
   }
