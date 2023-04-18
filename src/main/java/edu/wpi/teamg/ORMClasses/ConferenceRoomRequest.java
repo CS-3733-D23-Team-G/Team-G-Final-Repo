@@ -14,9 +14,9 @@ public class ConferenceRoomRequest extends Request {
 
   public ConferenceRoomRequest(
       String reqtype,
-      int empid,
+      String empid,
       String location,
-      int serveBy,
+      String serveBy,
       StatusTypeEnum status,
       Date meetingDate,
       Time meetingTime,

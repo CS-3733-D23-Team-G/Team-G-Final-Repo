@@ -1,56 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FlowersRequestConfirmationController">
-   <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="top_banner">
+<BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FlowersRequestConfirmationController">
+   <center>
+      <VBox alignment="TOP_CENTER" stylesheets="@style.css">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchor_pane_sizing">
-               <children>
-                  <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="9.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@bwh-logo.png" />
-                     </image>
-                  </ImageView>
-                  <MFXButton fx:id="exitButton" layoutX="489.0" layoutY="12.0" opacity="0.0" prefHeight="27.0" prefWidth="97.0" text="Exit Application" />
-                  <Text disable="true" layoutX="496.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit Application" />
-               </children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page">
+                <children>
+                  <HBox alignment="CENTER" layoutX="588.0" layoutY="483.0" prefHeight="36.0" prefWidth="687.0">
+                     <children>
+                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Flowers Request Confirmed">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                </children>
             </AnchorPane>
          </children>
-      </HBox>
-      <GridPane styleClass="banner">
-        <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-              <MFXButton fx:id="backToHomeButton" opacity="0.0" prefHeight="64.0" prefWidth="184.0" text="Return to Home Button" />
-              <MFXButton fx:id="signagePageButton" opacity="0.0" prefHeight="64.0" prefWidth="184.0" text="Signage Page Button" GridPane.columnIndex="2" />
-              <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="64.0" prefWidth="214.0" GridPane.columnIndex="1" />
-              <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Return to Home" />
-              <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage Page" GridPane.columnIndex="2" />
-              <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" GridPane.columnIndex="1" />
-         </children>
-      </GridPane>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="functionality_zone">
-          <children>
-              <Text layoutX="227.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flowers Request Confirmed" />
-          </children>
-      </AnchorPane>
-   </children>
-</VBox>
+      </VBox>
+   </center>
+</BorderPane>

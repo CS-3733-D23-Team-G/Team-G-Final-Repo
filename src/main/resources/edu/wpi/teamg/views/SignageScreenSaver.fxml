@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SignageScreenSaverController">
+    <center>
+        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <AnchorPane prefHeight="540.0" prefWidth="971.0" styleClass="rest_of_page">
+                    <children>
+                        <ImageView fx:id="arrow1" fitHeight="50.0" fitWidth="50.0" layoutX="112.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="100.0">
+                            <image>
+                                <Image url="@../Images/NoArrow.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="arrow2" fitHeight="50.0" fitWidth="50.0" layoutX="112.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="250.0">
+                            <image>
+                                <Image url="@../Images/NoArrow.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="arrow3" fitHeight="50.0" fitWidth="50.0" layoutX="112.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="400.0">
+                            <image>
+                                <Image url="@../Images/NoArrow.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="arrow4" fitHeight="50.0" fitWidth="50.0" layoutX="112.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="550.0">
+                            <image>
+                                <Image url="@../Images/NoArrow.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="arrow5" fitHeight="50.0" fitWidth="50.0" layoutX="112.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="700.0">
+                            <image>
+                                <Image url="@../Images/NoArrow.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="arrow6" fitHeight="50.0" fitWidth="50.0" layoutX="801.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="100.0">
+                            <image>
+                                <Image url="@../Images/NoArrow.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="arrow7" fitHeight="50.0" fitWidth="50.0" layoutX="791.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="250.0">
+                            <image>
+                                <Image url="@../Images/NoArrow.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="arrow8" fitHeight="50.0" fitWidth="50.0" layoutX="791.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="400.0">
+                            <image>
+                                <Image url="@../Images/NoArrow.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="arrow9" fitHeight="50.0" fitWidth="50.0" layoutX="791.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="550.0">
+                            <image>
+                                <Image url="@../Images/NoArrow.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="arrow10" fitHeight="50.0" fitWidth="50.0" layoutX="791.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="700.0">
+                            <image>
+                                <Image url="@../Images/NoArrow.png" />
+                            </image>
+                        </ImageView>
+                  <Text fx:id="nameLabel1" layoutX="180.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="615.5651550292969" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="105.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="nameLabel2" layoutX="180.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="615.5650939941406" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="255.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="nameLabel3" layoutX="180.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="615.5651245117188" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="405.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="nameLabel4" layoutX="172.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="615.5651245117188" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="555.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="nameLabel5" layoutX="172.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="615.565185546875" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="705.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="nameLabel6" layoutX="1474.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="615.5650634765625" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="105.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="nameLabel7" layoutX="1249.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="615.5651245117188" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="255.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="nameLabel8" layoutX="1192.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="614.4049682617188" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="405.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="nameLabel9" layoutX="1159.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="615.5650024414062" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="555.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="nameLabel10" layoutX="1161.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="615.5650024414062" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="705.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <MFXButton fx:id="ClickToPathFinding" opacity="0.0" prefHeight="971.0" prefWidth="1913.0" />
+                  <ImageView fitHeight="126.0" fitWidth="245.0" layoutX="1632.0" layoutY="832.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="800.0">
+                     <image>
+                        <Image url="@../Images/ClickScreenIcon.png" />
+                     </image>
+                  </ImageView>
+                    </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>

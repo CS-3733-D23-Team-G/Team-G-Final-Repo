@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
+
+<BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.LoginController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="rest_of_page" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fillWidth="false" layoutX="712.0" layoutY="126.0" prefHeight="675.0" prefWidth="465.0" spacing="5.0">
+               <children>
+                  <Pane prefHeight="70.0" prefWidth="220.0" styleClass="widget_background">
+                     <children>
+                        <Text fx:id="EmployeeID" fill="#f6bd38" layoutX="30.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Username">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Pane>
+                  <CustomTextField fx:id="username" prefHeight="70.0" prefWidth="480.0" styleClass="text_box">
+                     <font>
+                        <Font size="25.0" />
+                     </font></CustomTextField>
+                  <Label fx:id="userInc" text="Incorrect Username or Password" textFill="RED">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font />
+                     </font></Label>
+                  <Pane prefHeight="70.0" prefWidth="220.0" styleClass="widget_background">
+                     <children>
+                        <Text fx:id="Password" fill="#f6bd38" layoutX="35.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Password">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="60.0" />
+                     </VBox.margin>
+                  </Pane>
+                  <MFXPasswordField fx:id="password" hideCharacter="*" prefHeight="70.0" prefWidth="480.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </MFXPasswordField>
+                  <Label fx:id="passInc" text="Incorrect Username or Password" textFill="RED">
+                     <VBox.margin>
+                        <Insets bottom="16.0" />
+                     </VBox.margin></Label>
+                  <Pane prefHeight="70.0" prefWidth="480.0" styleClass="login_background">
+                     <children>
+                        <Text fill="#f6bd38" layoutX="188.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Login">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                        <MFXButton fx:id="loginButton" layoutX="-5.0" layoutY="-2.0" opacity="0.0" prefHeight="66.0" prefWidth="462.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="43.0" />
+                     </VBox.margin>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -21,7 +21,7 @@ public class LocationNameDAO implements LocationDAO {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    SQL = "select * from teamgdb.iteration1.locationname";
+    SQL = "select * from " + this.getTable();
 
     try {
       ps = connection.getConnection().prepareStatement(SQL);
@@ -71,8 +71,7 @@ public class LocationNameDAO implements LocationDAO {
     PreparedStatement ps;
     LocationName l1 = (LocationName) obj;
 
-    SQL =
-        "INSERT INTO teamgdb.iteration1.locationname (longname, shortname, nodetype) VALUES (?,?,?)";
+    SQL = "INSERT INTO " + this.getTable() + " (longname, shortname, nodetype) VALUES (?,?,?)";
 
     try {
       ps = connection.getConnection().prepareStatement(SQL);
@@ -84,7 +83,8 @@ public class LocationNameDAO implements LocationDAO {
       Location.put(l1.getLongName(), l1);
     } catch (SQLException e) {
       e.printStackTrace();
-      System.err.println("SQL exeption");
+
+      System.err.println("SQL exception");
     }
     connection.closeConnection();
   }
@@ -95,7 +95,7 @@ public class LocationNameDAO implements LocationDAO {
     PreparedStatement ps;
     LocationName l1 = (LocationName) obj;
 
-    SQL = "DELETE FROM teamgdb.iteration1.locationname WHERE longname=? OR shortname=?";
+    SQL = "DELETE FROM " + this.getTable() + " WHERE longname=? OR shortname=?";
 
     try {
       ps = connection.getConnection().prepareStatement(SQL);
@@ -112,7 +112,7 @@ public class LocationNameDAO implements LocationDAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration1.locationname";
+    return "teamgdb.iteration2.locationname";
   }
 
   @Override
@@ -120,8 +120,9 @@ public class LocationNameDAO implements LocationDAO {
     connection.setConnection();
 
     try {
-      SQL =
-          "insert into teamgdb.iteration1.locationname (longname,shortname,nodetype) values (?,?,?)";
+
+      SQL = "insert into " + this.getTable() + " (longname,shortname,nodetype) values (?,?,?)";
+
       PreparedStatement ps = connection.getConnection().prepareStatement(SQL);
 
       BufferedReader br = new BufferedReader(new FileReader(filename));

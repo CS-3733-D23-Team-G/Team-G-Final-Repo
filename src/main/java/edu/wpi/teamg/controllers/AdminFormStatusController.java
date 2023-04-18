@@ -2,8 +2,6 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -14,26 +12,20 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class FormStatusController {
+public class AdminFormStatusController {
 
   // Heading
-  @FXML MFXButton backToHomeButton;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
-  @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
 
   // Tables
   @FXML TableView<Request> mainTable;
   @FXML TableView<MealRequest> mealTable;
   @FXML TableView<ConferenceRoomRequest> roomTable;
   @FXML TableView<FlowerRequest> flowerTable;
-
+  @FXML TableView<FurnitureRequest> furnTable;
   // Main Table
   @FXML TableColumn<Request, Integer> empID;
   @FXML TableColumn<Request, String> reqType;
@@ -81,37 +73,43 @@ public class FormStatusController {
   @FXML TableColumn<ConferenceRoomRequest, Date> flowerDate;
   @FXML TableColumn<ConferenceRoomRequest, Time> flowerTime;
 
-  @FXML Button allRequestTableButton;
-  @FXML Button mealTableButton;
-  @FXML Button roomTableButton;
-  @FXML Button flowerTableButton;
+  // furniture Table
+  @FXML TableColumn<FurnitureRequest, Integer> furnEmpID;
+  @FXML TableColumn<FurnitureRequest, String> furnLocation1;
+  @FXML TableColumn<FurnitureRequest, Integer> furnReqID;
+  @FXML TableColumn<FurnitureRequest, Integer> furnServeBy;
+  @FXML TableColumn<FurnitureRequest, StatusTypeEnum> furnStatus;
+  @FXML TableColumn<FurnitureRequest, String> furnType;
+  @FXML TableColumn<FurnitureRequest, String> furnRecipient;
+  @FXML TableColumn<FurnitureRequest, String> furnNote;
 
-  ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
+  @FXML TableColumn<FurnitureRequest, Date> furnDate;
+  @FXML TableColumn<FurnitureRequest, Time> furnTime;
+
+  // Table Change Button
+  @FXML MFXButton allRequestTableButton;
+  @FXML MFXButton mealTableButton;
+  @FXML MFXButton roomTableButton;
+  @FXML MFXButton flowerTableButton;
+  @FXML MFXButton furnTableButton;
+  //  @FXML MFXButton FurnitureTableButton;
+  //  @FXML MFXButton OfficeSupplyTableButton;
 
   ObservableList<Request> testList;
   ObservableList<MealRequest> testMealList;
   ObservableList<ConferenceRoomRequest> testRoomList;
   ObservableList<FlowerRequest> testFlowerList;
+
+  ObservableList<FurnitureRequest> testFurnList;
   DAORepo dao = new DAORepo();
 
   @FXML
   public void initialize() throws SQLException {
-    serviceRequestChoiceBox.setItems(list);
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    exitButton.setOnMouseClicked(event -> exit());
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-
     allRequestTableButton.setOnMouseClicked(event -> loadAllRequestTable());
     mealTableButton.setOnMouseClicked(event -> loadMealTable());
     roomTableButton.setOnMouseClicked(event -> loadRoomTable());
     flowerTableButton.setOnMouseClicked(event -> loadFlowerTable());
+    furnTableButton.setOnMouseClicked(event -> loadFurnitureTable());
 
     ArrayList<Request> request1 = new ArrayList<>();
 
@@ -161,15 +159,28 @@ public class FormStatusController {
           //              System.out.println("Purpose: " + m.getPurpose());
         });
 
+    ArrayList<FurnitureRequest> furns = new ArrayList<>();
+    HashMap<Integer, FurnitureRequest> testingFurns = this.getHashFurns();
+    testingFurns.forEach(
+        (i, m) -> {
+          furns.add(m);
+          //              System.out.println("Reqid: " + m.getReqid());
+          //              System.out.println("Meeting Date: " + m.getMeeting_date());
+          //              System.out.println("Meeting time: " + m.getMeeting_time());
+          //              System.out.println("Purpose: " + m.getPurpose());
+        });
+
     testList = FXCollections.observableArrayList(request1);
     testMealList = FXCollections.observableArrayList(mealRequests1);
     testRoomList = FXCollections.observableArrayList(confroom);
     testFlowerList = FXCollections.observableArrayList(flowerDel);
+    testFurnList = FXCollections.observableArrayList(furns);
 
     mainTable.setItems(testList);
     mealTable.setItems(testMealList);
     roomTable.setItems(testRoomList);
     flowerTable.setItems(testFlowerList);
+    furnTable.setItems(testFurnList);
 
     reqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
     reqType.setCellValueFactory(new PropertyValueFactory<>("reqtype"));
@@ -212,22 +223,17 @@ public class FormStatusController {
     flowerTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
     flowerRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
     flowerNote.setCellValueFactory(new PropertyValueFactory<>("note"));
-  }
 
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
-    }
+    furnReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+    furnEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+    furnLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+    furnServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+    furnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+    furnType.setCellValueFactory(new PropertyValueFactory<>("furnitureType"));
+    furnDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+    furnTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+    furnRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+    furnNote.setCellValueFactory(new PropertyValueFactory<>("note"));
   }
 
   public HashMap getHashMapRequest() throws SQLException {
@@ -279,8 +285,20 @@ public class FormStatusController {
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }
-
     return flowerHashMap;
+  }
+
+  public HashMap getHashFurns() throws SQLException {
+
+    HashMap<Integer, FurnitureRequest> furnsHash = new HashMap<Integer, FurnitureRequest>();
+
+    try {
+      furnsHash = dao.getAllFurniture();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return furnsHash;
   }
 
   public void loadAllRequestTable() {
@@ -288,6 +306,7 @@ public class FormStatusController {
     mealTable.setVisible(false);
     roomTable.setVisible(false);
     flowerTable.setVisible(false);
+    furnTable.setVisible(false);
   }
 
   public void loadMealTable() {
@@ -295,6 +314,7 @@ public class FormStatusController {
     mainTable.setVisible(false);
     roomTable.setVisible(false);
     flowerTable.setVisible(false);
+    furnTable.setVisible(false);
   }
 
   public void loadRoomTable() {
@@ -302,10 +322,20 @@ public class FormStatusController {
     mainTable.setVisible(false);
     mealTable.setVisible(false);
     flowerTable.setVisible(false);
+    furnTable.setVisible(false);
   }
 
   public void loadFlowerTable() {
     flowerTable.setVisible(true);
+    mainTable.setVisible(false);
+    mealTable.setVisible(false);
+    roomTable.setVisible(false);
+    furnTable.setVisible(false);
+  }
+
+  public void loadFurnitureTable() {
+    furnTable.setVisible(true);
+    flowerTable.setVisible(false);
     mainTable.setVisible(false);
     mealTable.setVisible(false);
     roomTable.setVisible(false);

@@ -18,73 +18,67 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import org.controlsfx.control.SearchableComboBox;
 
 public class ConRoomRequestController {
 
   // buttons
-  @FXML MFXButton backToHomeButton;
-  @FXML MFXButton exitButton;
-  @FXML MFXButton signagePageButton;
+
   @FXML MFXButton roomConfirm;
   @FXML MFXButton roomClearAll;
 
   // Text Fields
   @FXML MFXTextField roomMeetingPurpose;
   @FXML MFXDatePicker datePicker;
-  @FXML MFXTextField roomTimeData;
+  @FXML MFXTextField roomStartTime;
   @FXML MFXTextField roomEndTime;
-  @FXML ChoiceBox<String> serviceRequestChoiceBox;
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
+  @FXML SearchableComboBox employeeSearchDropdown;
   @FXML Label checkFields;
 
   ObservableList<String> locationList;
-
-  ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
-  // ObservableList<String> roomTimeDataList =
-  //    FXCollections.observableArrayList(
-  //        "12:00", "12:30", "1:00", "1:30");
-  // ObservableList<String> roomNumberDataList =
-  //    FXCollections.observableArrayList(
-  //        "1", "2", "3", "4", "5", "6");
+  ObservableList<String> employeeList;
 
   DAORepo dao = new DAORepo();
 
   @FXML
   public void initialize() throws SQLException {
-    backToHomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    exitButton.setOnMouseClicked(event -> roomExit());
+
     roomConfirm.setOnMouseClicked(
         event -> {
           allDataFilled();
         });
 
     datePicker.setText("");
-    checkFields.getText();
+    //    checkFields.getText();
 
     roomMeetingPurpose.getText();
     // roomNumber.getText();
-    roomTimeData.getText();
+    roomStartTime.getText();
     // roomNumberData.setValue("noon");
     // roomNumberData.setItems(roomNumberDataList);
     // roomTimeData.setValue("noon");
     // roomTimeData.setItems(roomTimeDataList);
     // roomTimeData.getValue();
     // roomNumberData.getValue();
-    serviceRequestChoiceBox.setItems(list);
-    serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
+    checkFields.setVisible(false);
     roomClearAll.setOnAction(event -> clearAllData());
+
+    ArrayList<String> employeeNames = new ArrayList<>();
+    HashMap<Integer, String> employeeLongName =
+        this.getHashMapEmployeeLongName("Conference Rooms Request");
+
+    employeeLongName.forEach(
+        (i, m) -> {
+          employeeNames.add("ID " + i + ": " + m);
+        });
+
+    Collections.sort(employeeNames, String.CASE_INSENSITIVE_ORDER);
+
+    employeeList = FXCollections.observableArrayList(employeeNames);
 
     ArrayList<String> locationNames = new ArrayList<>();
     HashMap<Integer, String> testingLongName = this.getHashMapCRLongName();
@@ -105,23 +99,22 @@ public class ConRoomRequestController {
     locationList = FXCollections.observableArrayList(locationNames);
 
     // Hung this is where it sets the list - Andrew
+    employeeSearchDropdown.setItems(employeeList);
     locationSearchDropdown.setItems(locationList);
+    checkFields.getText();
   }
 
-  public void loadServiceRequestForm() {
-    if (serviceRequestChoiceBox.getValue().equals("Meal Request Form")) {
-      Navigation.navigate(Screen.MEAL_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Furniture Request Form")) {
-      Navigation.navigate(Screen.FURNITURE_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Conference Room Request Form")) {
-      Navigation.navigate(Screen.ROOM_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Flowers Request Form")) {
-      Navigation.navigate(Screen.FLOWERS_REQUEST);
-    } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
-      Navigation.navigate(Screen.SUPPLIES_REQUEST);
-    } else {
-      return;
+  public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
+
+    HashMap longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getEmployeeFullName(canServe);
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
     }
+
+    return longNameHashMap;
   }
 
   public void storeRoomValues() throws SQLException {
@@ -129,13 +122,13 @@ public class ConRoomRequestController {
     ConferenceRoomRequest conRoom =
         new ConferenceRoomRequest(
             "CR",
-            1,
+            "ID 1: John Doe",
             // assume for now they are going to input a node number, so parseInt
             (String) locationSearchDropdown.getValue(),
-            1,
+            (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
             Date.valueOf(datePicker.getValue()),
-            StringToTime(roomTimeData.getText()),
+            StringToTime(roomStartTime.getText()),
             StringToTime(roomEndTime.getText()),
             roomMeetingPurpose.getText());
 
@@ -146,9 +139,10 @@ public class ConRoomRequestController {
       e.printStackTrace();
     }
 
-    System.out.println("Room Name: " + locationSearchDropdown.getValue());
-    System.out.println(
-        "Room ID: " + dao.getNodeIDbyLongName((String) locationSearchDropdown.getValue()));
+    // System.out.println("Employee Name: " + employeeSearchDropdown.getValue());
+    //    System.out.println(
+    //        "Room ID: " + dao.getNodeIDbyLongName((String) locationSearchDropdown.getValue()));
+
   }
 
   public HashMap<Integer, String> getHashMapCRLongName() throws SQLException {
@@ -167,7 +161,7 @@ public class ConRoomRequestController {
   public void clearAllData() {
     roomMeetingPurpose.setText("");
     datePicker.setText("");
-    roomTimeData.setText("");
+    roomStartTime.setText("");
     roomEndTime.setText("");
     locationSearchDropdown.setValue(null);
     return;
@@ -176,7 +170,7 @@ public class ConRoomRequestController {
   public void allDataFilled() {
     if (!(roomMeetingPurpose.getText().equals("")
         || datePicker.getText().equals("")
-        || roomTimeData.getText().equals("")
+        || roomStartTime.getText().equals("")
         || roomEndTime.getText().equals("")
         || locationSearchDropdown == null)) {
       try {
@@ -186,7 +180,7 @@ public class ConRoomRequestController {
       }
       Navigation.navigate(Screen.ROOM_REQUEST_SUBMIT);
     } else {
-      checkFields.setText("Not All Fields Are Filled");
+      checkFields.setVisible(true);
     }
   }
 
