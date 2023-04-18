@@ -46,10 +46,11 @@
                                        </VBox.margin>
                                     </Text>
                                     <Line endX="6.29925537109375" startX="-111.36810302734375" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="recipient" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox" stylesheets="@style.css">
+                                    <MFXTextField fx:id="recipient" minHeight="-Infinity" prefHeight="30.0" prefWidth="327.0" styleClass="requestTextBox" stylesheets="@style.css">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
-                                       </VBox.margin></MFXTextField>
+                                       </VBox.margin>
+                                    </MFXTextField>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Location">
                                        <font>
                                           <Font size="30.0" />
@@ -103,7 +104,7 @@
                                        </VBox.margin>
                                     </Text>
                                     <Line endX="-49.71794128417969" endY="-4.0149688720703125E-4" startX="-111.59661865234375" startY="-1.52587890625E-5" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXDatePicker fx:id="deliveryDate" prefHeight="50.0" prefWidth="291.0" styleClass="locationSelect_comboSearchBox">
+                                    <MFXDatePicker fx:id="deliveryDate" prefHeight="56.0" prefWidth="337.0" styleClass="locationSelect_comboSearchBox">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin></MFXDatePicker>
@@ -116,10 +117,11 @@
                                        </VBox.margin>
                                     </Text>
                                     <Line endX="-42.5" endY="1.328125" startX="-108.0" startY="1.328125" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="deliveryTime" prefHeight="50.0" prefWidth="294.0" styleClass="requestTextBox">
+                                    <MFXTextField fx:id="deliveryTime" minHeight="-Infinity" prefHeight="30.0" prefWidth="327.0" styleClass="requestTextBox" stylesheets="@style.css">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
-                                       </VBox.margin></MFXTextField>
+                                       </VBox.margin>
+                                    </MFXTextField>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign To">
                                        <font>
                                           <Font size="30.0" />
