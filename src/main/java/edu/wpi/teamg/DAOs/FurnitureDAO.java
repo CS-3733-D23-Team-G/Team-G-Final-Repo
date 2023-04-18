@@ -47,14 +47,14 @@ public class FurnitureDAO implements DAO {
       String reqType = rs.getString("reqtype");
       int empID = rs.getInt("empID");
 
-      String requestingEmp = "ID "+empID+": "+(String)allEmployeeHash.get(empID);
+      String requestingEmp = "ID " + empID + ": " + (String) allEmployeeHash.get(empID);
 
       int location = rs.getInt("location");
 
       String longName = (String) longNameHash.get(location);
 
       int serv_by = rs.getInt("serveby");
-      String assignedEmployee = "ID "+serv_by+": "+(String)employeeHash.get(serv_by);
+      String assignedEmployee = "ID " + serv_by + ": " + (String) employeeHash.get(serv_by);
 
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
       Date requestdate = rs.getDate("requestdate");
@@ -121,8 +121,8 @@ public class FurnitureDAO implements DAO {
       ps_Req.setInt(1, maxID);
       ps_Req.setString(2, "FR");
 
-      String reqEmp = ((FurnitureRequest)obj).getEmpid();
-      String assignedEmp = ((FurnitureRequest)obj).getServeBy();
+      String reqEmp = ((FurnitureRequest) obj).getEmpid();
+      String assignedEmp = ((FurnitureRequest) obj).getServeBy();
 
       String[] split0 = reqEmp.split(":");
       String[] split1 = assignedEmp.split(":");
@@ -130,10 +130,8 @@ public class FurnitureDAO implements DAO {
       int empid = Integer.parseInt(split0[0].substring(3));
       int servby = Integer.parseInt(split1[0].substring(3));
 
-
       ps_Req.setInt(3, empid);
-      int nodeID =
-          nodeDAO.getNodeIDbyLongName(furn.getLocation(), new java.sql.Date(2023 ,01 ,01));
+      int nodeID = nodeDAO.getNodeIDbyLongName(furn.getLocation(), new java.sql.Date(2023, 01, 01));
 
       ps_Req.setInt(4, nodeID);
       ps_Req.setInt(5, servby);

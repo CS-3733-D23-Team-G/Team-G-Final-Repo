@@ -182,10 +182,10 @@ public class FurnitureRequestController {
     FurnitureRequest mr =
         new FurnitureRequest(
             "FR",
-            "",
+            "ID 1: John Doe",
             // assume for now they are going to input a node number, so parseInt
             (String) locationSearchDropdown.getValue(),
-            "",
+            (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
             Date.valueOf(furnDate.getValue()),
             StringToTime(furnTimeOfDeliver.getText()),
