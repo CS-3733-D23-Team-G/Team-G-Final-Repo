@@ -21,7 +21,7 @@ public class FurnitureDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
     SQL =
-        "select * from"
+        "select * from "
             + getRequest()
             + " join "
             + getTable()
