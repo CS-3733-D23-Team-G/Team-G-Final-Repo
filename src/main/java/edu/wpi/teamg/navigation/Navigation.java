@@ -7,8 +7,8 @@ import javafx.scene.Node;
 import javax.swing.*;
 
 public class Navigation {
-  static Boolean AdminCheck;
-  static Boolean EmployeeCheck;
+  static Boolean AdminCheck = false;
+  static Boolean EmployeeCheck = false;
 
   public static void navigate(final Screen screen) {
 
@@ -20,10 +20,7 @@ public class Navigation {
       App.getRootPane().setCenter(loader.load());
 
       if (screen == Screen.SIGNAGE_SCREENSAVER_PAGE) {
-        final FXMLLoader BannerLoaderPatient1 =
-            new FXMLLoader(App.class.getResource("views/PatientBanner.fxml"));
-        final Node PatientBanner1 = BannerLoaderPatient1.load();
-        App.getRootPane().setTop(PatientBanner1);
+        PaitentBanner();
       } else if (screen == Screen.PATHFINDING_PAGE) {
         if (EmployeeCheck) {
           AdminBannerManager();
@@ -32,7 +29,9 @@ public class Navigation {
         }
       } else if (screen == Screen.LOGIN_PAGE) {
         LoginBanner();
-      } else {
+      } else if (screen != Screen.LOGIN_PAGE
+          && screen != Screen.PATHFINDING_PAGE
+          && screen != Screen.SIGNAGE_SCREENSAVER_PAGE) {
         AdminBannerManager();
       }
     } catch (IOException | NullPointerException e) {

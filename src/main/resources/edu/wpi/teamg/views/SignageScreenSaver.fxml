@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -114,6 +115,7 @@
                         <Font size="30.0" />
                      </font>
                   </Text>
+                  <MFXButton fx:id="ClickToPathFinding" opacity="0.0" prefHeight="971.0" prefWidth="1913.0" />
                     </children>
                 </AnchorPane>
             </children>
