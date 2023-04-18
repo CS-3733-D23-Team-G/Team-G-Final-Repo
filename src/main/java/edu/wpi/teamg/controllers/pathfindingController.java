@@ -379,7 +379,7 @@ public class pathfindingController {
   }
 
   public void processAStarAlg() throws SQLException {
-    ArrayList<String> path = new ArrayList<>();
+    ArrayList<String> path;
 
     NodeDAO nodeDAO = new NodeDAO();
     EdgeDAO edgeDAO = new EdgeDAO();
@@ -424,7 +424,7 @@ public class pathfindingController {
 
   public void processBFS() throws SQLException {
 
-    ArrayList<String> path = new ArrayList<>();
+    ArrayList<String> path;
 
     NodeDAO nodeDao = new NodeDAO();
     EdgeDAO edgeDAO = new EdgeDAO();
@@ -435,6 +435,13 @@ public class pathfindingController {
     ArrayList<Node> nodeList = new ArrayList<>(nodeMap.values());
     ArrayList<Edge> edgeList = new ArrayList<>(edgeMap.values());
 
+    //    for (int i = 0; i < nodeList.size(); i++) {
+    //      System.out.println(nodeList.get(i).getNodeID());
+    //    }
+    //
+    //    for (int i = 0; i < edgeList.size(); i++) {
+    //      System.out.println(edgeList.get(i).getEdgeID());
+    //    }
     String L1StartNodeLongName = (String) startLocDrop.getValue();
     String L1EndNodeLongName = (String) endLocDrop.getValue();
 
@@ -443,8 +450,6 @@ public class pathfindingController {
 
     Node[] nodeArray = new Node[nodeList.size()];
     Edge[] edgeArray = new Edge[edgeList.size()];
-
-    Graph graph = new Graph(nodeArray, edgeArray);
 
     for (int i = 0; i < nodeList.size(); i++) {
       nodeArray[i] = nodeList.get(i);
@@ -465,15 +470,27 @@ public class pathfindingController {
       }
     }
 
-    path = graph.depthFirstSearch(graph.createWeightedAdj(), startNode, endNode);
-    setPath(path);
+    System.out.println(startNode);
+    System.out.println(endNode);
+
+    Graph graph = new Graph(nodeArray, edgeArray);
+    path = graph.breadthFirstSearch(graph.createWeightedAdj(), startNode, endNode);
+    // setPath(path);
 
     System.out.println("Start node:" + L1StartNodeID);
     System.out.println("End node:" + L1EndNodeID);
 
+    //        for (String s : path) {
+    //          System.out.println(s);
+    //        }
+
+    ArrayList<String> finalPath = new ArrayList<>();
     for (int i = 0; i < path.size(); i++) {
-      System.out.println("Path:" + path.get(i));
+      finalPath.add(String.valueOf(nodeArray[Integer.parseInt(path.get(i))].getNodeID()));
     }
+   
+
+    setPath(finalPath);
   }
 
   public void processDFS() throws SQLException {
@@ -498,8 +515,6 @@ public class pathfindingController {
     Node[] nodeArray = new Node[nodeList.size()];
     Edge[] edgeArray = new Edge[edgeList.size()];
 
-
-
     for (int i = 0; i < nodeList.size(); i++) {
       nodeArray[i] = nodeList.get(i);
     }
@@ -521,18 +536,22 @@ public class pathfindingController {
 
     Graph graph = new Graph(nodeArray, edgeArray);
     path = graph.breadthFirstSearch(graph.createWeightedAdj(), startNode, endNode);
-    setPath(path);
+    //  setPath(path);
 
     System.out.println("Start node:" + L1StartNodeID);
     System.out.println("End node:" + L1EndNodeID);
 
+    ArrayList<String> finalPath = new ArrayList<>();
     for (int i = 0; i < path.size(); i++) {
-      System.out.println("Path:" + path.get(i));
+      finalPath.add(String.valueOf(nodeArray[Integer.parseInt(path.get(i))].getNodeID()));
     }
+
+    setPath(finalPath);
   }
 
   public void setPath(ArrayList<String> path) throws SQLException {
 
+    System.out.println(path);
     //    if (path.size() == 1) {
     //      results.setText("Error: No Possible Path Found");
     //    } else {
