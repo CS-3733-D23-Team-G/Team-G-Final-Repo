@@ -1,16 +1,24 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
+import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
+import edu.wpi.teamg.ORMClasses.Move;
 import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.awt.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import org.controlsfx.control.PopOver;
 
 public class editPopUpController {
 
@@ -24,6 +32,10 @@ public class editPopUpController {
   @FXML MFXTextField shortName;
 
   @FXML MFXButton delete;
+
+  @FXML MFXButton fmoves;
+
+  @FXML MFXButton locEdit;
 
   public void initialize() {
 
@@ -46,6 +58,25 @@ public class editPopUpController {
           try {
             deleteNode();
           } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+    fmoves.setOnMouseClicked(
+        event -> {
+          try {
+            disMove((Integer.parseInt(nID.getText())));
+          } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    locEdit.setOnMouseClicked(
+        event -> {
+          try {
+            locPop(Integer.parseInt(nID.getText()));
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          } catch (IOException e) {
             throw new RuntimeException(e);
           }
         });
@@ -100,5 +131,47 @@ public class editPopUpController {
             nFloor.getText(),
             nBuilding.getText());
     nodeDAO.delete(node);
+  }
+
+  public void disMove(int nodeID) throws SQLException, IOException {
+    ArrayList<Move> nodeMoves = new ArrayList<>();
+    DAORepo daoRepo = new DAORepo();
+    List move = daoRepo.getAllMoves();
+    for (int i = 0; i < move.size(); i++) {
+      Move moveNode = (Move) move.get(i);
+      if (moveNode.getNodeID() == nodeID) {
+        nodeMoves.add(moveNode);
+      }
+    }
+
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/MovePopOver.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    MovePopOverController controller = loader.getController();
+    controller.setFields(nodeID);
+    controller.displayMove(nodeID, nodeMoves);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void locPop(int nodeID) throws SQLException, IOException {
+
+    NodeDAO nodeDAO = new NodeDAO();
+    HashMap<Integer, Node> nodes = nodeDAO.getAll();
+    Node clickedNode = nodes.get(nodeID);
+
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/locNamePopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    LocNamePopUpController controller = loader.getController();
+    controller.setF(clickedNode);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 }
