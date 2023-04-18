@@ -1,12 +1,17 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.LocationNameDAO;
+import edu.wpi.teamg.DAOs.MoveDAO;
+import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
+import edu.wpi.teamg.ORMClasses.Move;
+import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -62,9 +67,21 @@ public class DeleteLocationNameControllerPopOver {
   }
 
   public void deleteLn() throws SQLException {
+    NodeDAO nodeDAO = new NodeDAO();
+    MoveDAO moveDAO = new MoveDAO();
     LocationNameDAO locationNameDAO = new LocationNameDAO();
+
+    ArrayList<Move> moves = new ArrayList<>(moveDAO.getAll());
+    HashMap<Integer, Node> nodes = nodeDAO.getAll();
     HashMap<String, LocationName> locs = new HashMap<>(locationNameDAO.getAll());
+
     LocationName del = locs.get((String) deleteLongName.getValue());
+
+    for (int i = 0; i < moves.size(); i++) {
+      if (Objects.equals(del.getLongName(), moves.get(i).getLongName())) {
+        nodeDAO.delete(nodes.get(moves.get(i).getNodeID()));
+      }
+    }
 
     locationNameDAO.delete(del);
   }

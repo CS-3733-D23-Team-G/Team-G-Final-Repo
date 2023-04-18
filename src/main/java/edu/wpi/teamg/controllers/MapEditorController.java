@@ -311,27 +311,29 @@ public class MapEditorController {
     }
   }
 
-  private void getNodesWFunctionality(ArrayList<Node> listOfNodes, int i,HashMap<Integer, String> sn,HashMap<Integer, String> ln) throws SQLException {
+  private void getNodesWFunctionality(
+      ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn, HashMap<Integer, String> ln)
+      throws SQLException {
 
-      Node currentNode = listOfNodes.get(i);
-      Label nodeLabel = new Label();
+    Node currentNode = listOfNodes.get(i);
+    Label nodeLabel = new Label();
 
-      LocationNameDAO locationNameDAO = new LocationNameDAO();
-      HashMap<String, LocationName> labelMap = locationNameDAO.getAll();
+    LocationNameDAO locationNameDAO = new LocationNameDAO();
+    HashMap<String, LocationName> labelMap = locationNameDAO.getAll();
 
-      Circle point =
-              new Circle(
-                      listOfNodes.get(i).getXcoord(),
-                      listOfNodes.get(i).getYcoord(),
-                      10,
-                      Color.rgb(1, 45, 90));
-      if (!Objects.equals(labelMap.get(ln.get(currentNode.getNodeID())).getNodeType(), "HALL")) {
-        nodeLabel.setTextFill(Color.BLACK);
-        nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
-        nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
-        nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
-        nodeLabel.toFront();
-      }
+    Circle point =
+        new Circle(
+            listOfNodes.get(i).getXcoord(),
+            listOfNodes.get(i).getYcoord(),
+            10,
+            Color.rgb(1, 45, 90));
+    if (!Objects.equals(labelMap.get(ln.get(currentNode.getNodeID())).getNodeType(), "HALL")) {
+      nodeLabel.setTextFill(Color.BLACK);
+      nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
+      nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
+      nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
+      nodeLabel.toFront();
+    }
     /*
        point.setOnMouseEntered(event ->
 
@@ -341,19 +343,19 @@ public class MapEditorController {
 
     */
 
-      point.setOnMouseClicked(
-              new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                  try {
-                    displayData(currentNode);
-                  } catch (SQLException | IOException e) {
-                    throw new RuntimeException(e);
-                  }
-                }
-              });
-      nodePane.getChildren().add(point);
-      nodePane.getChildren().add(nodeLabel);
+    point.setOnMouseClicked(
+        new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+            try {
+              displayData(currentNode);
+            } catch (SQLException | IOException e) {
+              throw new RuntimeException(e);
+            }
+          }
+        });
+    nodePane.getChildren().add(point);
+    nodePane.getChildren().add(nodeLabel);
   }
 
   public void displayData(Node point) throws IOException, SQLException {
