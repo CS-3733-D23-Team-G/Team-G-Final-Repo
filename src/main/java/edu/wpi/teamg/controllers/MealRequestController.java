@@ -54,28 +54,6 @@ public class MealRequestController {
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
 
-  ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
-
-  ObservableList<String> foodList =
-      FXCollections.observableArrayList(
-          "Fenway Franks",
-          "Choco Taco",
-          "Salt-Based Steak",
-          "Bisquit",
-          "Shrimp Fried Rice",
-          "Beef Wellington",
-          "Spaghetii Taco",
-          "Mac and Cheese Pizza",
-          "Cavatappi",
-          "One Singular Oyster",
-          "CC Buritto Bowl (w/ Siracha)");
-
   DAORepo dao = new DAORepo();
 
   @FXML
@@ -150,9 +128,11 @@ public class MealRequestController {
     if (selectedBurger.isVisible() == false) {
       selectedBurger.setVisible(true);
       Order += "Cheeseburger, ";
+      System.out.println(Order);
     } else if (selectedBurger.isVisible() == true) {
       selectedBurger.setVisible(false);
       Order.replace("Cheeseburger, ", "");
+      System.out.println(Order);
     }
   }
 
@@ -160,9 +140,11 @@ public class MealRequestController {
     if (selectedCornDog.isVisible() == false) {
       selectedCornDog.setVisible(true);
       Order += "Corndog, ";
+      System.out.println(Order);
     } else if (selectedCornDog.isVisible() == true) {
       selectedCornDog.setVisible(false);
       Order.replace("Corndog, ", "");
+      System.out.println(Order);
     }
   }
 
@@ -170,9 +152,11 @@ public class MealRequestController {
     if (selectedFriedRice.isVisible() == false) {
       selectedFriedRice.setVisible(true);
       Order += "Shrimp Fried Rice, ";
+      System.out.println(Order);
     } else if (selectedFriedRice.isVisible() == true) {
       selectedFriedRice.setVisible(false);
       Order.replace("Shrimp Fried Rice, ", "");
+      System.out.println(Order);
     }
   }
 
@@ -223,7 +207,6 @@ public class MealRequestController {
     //            + "\nStatus: "
     //            + mr.getStatus());
 
-    DAORepo dao = new DAORepo();
     dao.insertMealRequest(mr);
   }
 

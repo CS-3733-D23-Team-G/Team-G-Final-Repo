@@ -18,9 +18,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import org.controlsfx.control.CheckComboBox;
-import org.controlsfx.control.IndexedCheckModel;
 import org.controlsfx.control.SearchableComboBox;
 
 public class FlowersRequestController {
@@ -44,12 +45,26 @@ public class FlowersRequestController {
   @FXML MFXDatePicker deliveryDate;
 
   @FXML TextField deliveryTime;
-  @FXML TextField roomField;
+  @FXML TextField recipient;
   @FXML TextField bouquetNote;
+
+  @FXML ImageView selectedSunflower;
+  @FXML ImageView sunflowerOption;
+
+  @FXML ImageView selectedPurpleflower;
+  @FXML ImageView purpleflowerOption;
+  @FXML ImageView selectedRedflower;
+  @FXML ImageView redflowerOption;
+
+  @FXML Label flowerChoice;
+
+  String Order = "";
 
   @FXML SearchableComboBox locationSearchDropdown;
 
   @FXML SearchableComboBox employeeSearchDropdown;
+
+  @FXML Label checkFields;
 
   /*
    TODO: figure out how to get correct datatype to give to DB
@@ -59,8 +74,7 @@ public class FlowersRequestController {
       FXCollections.observableArrayList(
           "Carnations", "Daisies", "Lilacs", "Orchids", "Peonies", "Roses", "Sunflowers");
   ObservableList<String> listSizes =
-      FXCollections.observableArrayList(
-          "10 Stems (small)", "20 Stems (medium)", "30 Stems (large)");
+      FXCollections.observableArrayList("6 Stems (small)", "12 Stems (medium)", "24 Stems (large)");
 
   ObservableList<String> listEmployee =
       FXCollections.observableArrayList(
@@ -72,7 +86,10 @@ public class FlowersRequestController {
   public void initialize() throws SQLException {
 
     bouquetSizeChoiceBox.setItems(listSizes);
-    flowerTypeCheckBox.getItems().addAll(listFlowers);
+
+    checkFields.setVisible(false);
+
+    clearAll.setOnAction(event -> clearFlowers());
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName = this.getHashMapEmployeeLongName("Flowers Request");
@@ -81,6 +98,17 @@ public class FlowersRequestController {
         (i, m) -> {
           employeeNames.add("ID " + i + ": " + m);
         });
+
+    selectedSunflower.setVisible(false);
+    selectedSunflower.setDisable(true);
+    selectedPurpleflower.setVisible(false);
+    selectedPurpleflower.setDisable(true);
+    selectedRedflower.setVisible(false);
+    selectedRedflower.setDisable(true);
+
+    sunflowerOption.setOnMouseClicked(event -> selectSunFlowerOption());
+    purpleflowerOption.setOnMouseClicked(event -> selectPurpleFlowerOption());
+    redflowerOption.setOnMouseClicked(event -> selectRedFlowerOption());
 
     Collections.sort(employeeNames, String.CASE_INSENSITIVE_ORDER);
 
@@ -109,7 +137,7 @@ public class FlowersRequestController {
     locationSearchDropdown.setItems(locationList);
 
     // checkFields.getText();
-    clearAll.setOnAction(event -> clearFlowers());
+
     submit.setOnAction(
         event -> {
           allDataFilled();
@@ -154,12 +182,12 @@ public class FlowersRequestController {
             StatusTypeEnum.blank,
             Date.valueOf(deliveryDate.getValue()),
             StringToTime(deliveryTime.getText()),
-            mutipleFlowers(flowerTypeCheckBox.getCheckModel()),
+            Order,
             flowerConvert(bouquetSizeChoiceBox.getValue()),
             bouquetNote.getText(),
-            roomField.getText());
+            recipient.getText());
 
-    dao.insertFlowerRequest(flower);
+    // dao.insertFlowerRequest(flower);
     /*
     System.out.println(
         "Delivery Location: "
@@ -174,6 +202,42 @@ public class FlowersRequestController {
             + deliveryDate.getText()
             + "\nBouquet Size: "
             + bouquetSizeChoiceBox.getValue());*/
+  }
+
+  public void selectSunFlowerOption() {
+    if (selectedSunflower.isVisible() == false) {
+      selectedSunflower.setVisible(true);
+      Order += "Sunflower, ";
+      System.out.println(Order);
+    } else if (selectedSunflower.isVisible() == true) {
+      selectedSunflower.setVisible(false);
+      Order.replace("Sunflower, ", "");
+      System.out.println(Order);
+    }
+  }
+
+  public void selectPurpleFlowerOption() {
+    if (selectedPurpleflower.isVisible() == false) {
+      selectedPurpleflower.setVisible(true);
+      Order += "Purpleflower, ";
+      System.out.println(Order);
+    } else if (selectedPurpleflower.isVisible() == true) {
+      selectedPurpleflower.setVisible(false);
+      Order.replace("Purpleflower, ", "");
+      System.out.println(Order);
+    }
+  }
+
+  public void selectRedFlowerOption() {
+    if (selectedRedflower.isVisible() == false) {
+      selectedRedflower.setVisible(true);
+      Order += "Redflower, ";
+      System.out.println(Order);
+    } else if (selectedRedflower.isVisible() == true) {
+      selectedRedflower.setVisible(false);
+      Order.replace("Redflower, ", "");
+      System.out.println(Order);
+    }
   }
 
   public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
@@ -196,15 +260,24 @@ public class FlowersRequestController {
   // TODO: figure out clear for flowerTypeCheckBox
   public void clearFlowers() {
     bouquetSizeChoiceBox.setValue("");
-    flowerTypeCheckBox.setCheckModel(null);
-    flowerTypeCheckBox.getCheckModel().clearChecks();
+    //    flowerTypeCheckBox.setCheckModel(null);
+    //    flowerTypeCheckBox.getCheckModel().clearChecks();
     bouquetSizeChoiceBox.setValue(null);
     // deliveryLocation.setText("");
     locationSearchDropdown.setValue(null);
     deliveryTime.setText("");
-    roomField.setText("");
+    recipient.setText("");
     bouquetNote.setText("");
     deliveryDate.setValue(null);
+
+    employeeSearchDropdown.setValue(null);
+
+    selectedSunflower.setVisible(false);
+    selectedSunflower.setDisable(true);
+    selectedPurpleflower.setVisible(false);
+    selectedPurpleflower.setDisable(true);
+    selectedRedflower.setVisible(false);
+    selectedRedflower.setDisable(true);
   }
 
   public HashMap<Integer, String> getHashMapMLongName() throws SQLException {
@@ -222,9 +295,12 @@ public class FlowersRequestController {
 
   public void allDataFilled() {
     if (!(bouquetSizeChoiceBox == null
-        || flowerTypeCheckBox == null
+        || employeeSearchDropdown.getValue() == null
+        || Order.equals("")
+        || deliveryDate.getValue() == null
+        || locationSearchDropdown.getValue() == null
         // || deliveryLocation.getText().equals("")
-        || roomField.getText().equals("")
+        || recipient.getText().equals("")
         || deliveryTime.getText().equals("")
         || bouquetNote.getText().equals(""))) {
       try {
@@ -234,7 +310,7 @@ public class FlowersRequestController {
       }
       Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT);
     } else {
-      // checkFields.setText("Not All Fields Are Filled");
+      checkFields.setVisible(true);
     }
   }
 
@@ -249,13 +325,13 @@ public class FlowersRequestController {
     int i = 0;
     switch (t) {
       case "6 Stems (small)":
-        i = 10;
+        i = 6;
         break;
       case "12 Stems (medium)":
-        i = 20;
+        i = 12;
         break;
       case "24 Stems (large)":
-        i = 30;
+        i = 24;
         break;
       default:
         i = -1;
@@ -263,15 +339,15 @@ public class FlowersRequestController {
     return i;
   }
 
-  public String mutipleFlowers(IndexedCheckModel<String> f1) {
-    String s1 = "";
-    for (int i = 0; i < f1.getItemCount(); i++) {
-      if (!(f1.getCheckedItems().get(i) == null)) {
-        s1 += f1.getCheckedItems().get(i) + ", ";
-      }
-    }
-    return s1;
-  }
+  //  public String mutipleFlowers(IndexedCheckModel<String> f1) {
+  //    String s1 = "";
+  //    for (int i = 0; i < f1.getItemCount(); i++) {
+  //      if (!(f1.getCheckedItems().get(i) == null)) {
+  //        s1 += f1.getCheckedItems().get(i) + ", ";
+  //      }
+  //    }
+  //    return s1;
+  //  }
 
   public void exit() {
     Platform.exit();
