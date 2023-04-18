@@ -353,11 +353,22 @@
 /* banner CSS */
 .banner_login_exit_text {
     -fx-font-family: "Poppins";
-     -fx-font-size: 16;
-     -fx-pref-height: 35;
-  /*   -fx-pref-width: 300; */
-
+    -fx-font-size: 16;
+    -fx-pref-height: 35;
+    /*   -fx-pref-width: 300; */
 }
+
+.add_Buttons{
+    -fx-pref-height: 65;
+    -fx-pref-width: 250;
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 30;
+    -fx-font-size: 20 ;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+
+
 
 
 

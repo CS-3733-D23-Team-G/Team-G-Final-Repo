@@ -32,7 +32,8 @@ public class MovePopOverController {
               + "Location Name: "
               + moveArray.get(i).getLongName()
               + "         Date: "
-              + moveArray.get(i).getDate().toString());
+              + moveArray.get(i).getDate().toString()
+              + "\n");
     }
   }
 }
