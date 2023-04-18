@@ -24,7 +24,21 @@
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
 
-                                    <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="locationSelect_comboSearchBox" text="Add Node">
+                                    <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Node">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin></MFXButton>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="addLoc" prefHeight="70.0" prefWidth="259.0" styleClass="add_Buttons" text="Add Location Name">
                                        <HBox.margin>
                                           <Insets top="10.0" />
                                        </HBox.margin></MFXButton>
@@ -32,15 +46,7 @@
                               </HBox>
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXButton fx:id="addLoc" prefHeight="70.0" prefWidth="191.0" styleClass="locationSelect_comboSearchBox" text="Add Location Name">
-                                       <HBox.margin>
-                                          <Insets top="10.0" />
-                                       </HBox.margin></MFXButton>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                 <children>
-                                    <MFXButton fx:id="addMove" prefHeight="70.0" prefWidth="191.0" styleClass="locationSelect_comboSearchBox" text="Add Move">
+                                    <MFXButton fx:id="addMove" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Move">
                                        <HBox.margin>
                                           <Insets top="10.0" />
                                        </HBox.margin>

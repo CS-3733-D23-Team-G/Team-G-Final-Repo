@@ -45,7 +45,8 @@ public class MapEditorController {
 
   @FXML MFXButton add;
 
-  @FXML MFXButton test;
+  @FXML MFXButton addLoc;
+  @FXML MFXButton addMove;
 
   public void initialize() throws SQLException, IOException {
     pane.setVisible(true);
@@ -56,6 +57,24 @@ public class MapEditorController {
           try {
             addNode();
           } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+    addLoc.setOnMouseClicked(
+        event -> {
+          try {
+            addLocationName();
+          } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+    addMove.setOnMouseClicked(
+        event -> {
+          try {
+            addMoves();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          } catch (SQLException e) {
             throw new RuntimeException(e);
           }
         });
@@ -334,6 +353,30 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     InsertNodeController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void addLocationName() throws IOException, SQLException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/AddLocationName.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    AddLocationNameController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void addMoves() throws IOException, SQLException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/AddMove.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    AddMoveController controller = loader.getController();
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
