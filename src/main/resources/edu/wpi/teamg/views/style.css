@@ -65,6 +65,10 @@
     -fx-max-height: 30;
     -fx-opacity: 0;
 }
+.button_confirm{
+    -fx-background-color:#F6BD38;
+    -fx-font-family: "Poppins-Regular";
+}
 .new_banner{
     -fx-max-height: 178;
     -fx-pref-height: 100;
@@ -109,6 +113,13 @@
 .linear-grad{
     -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
 }
+
+.scroll-pane-Furn{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 20 20 20 20;
+}
+/* image 11 */
+
 
 .signage_text{
     -fx-font-size: 30;
@@ -202,6 +213,7 @@
 .locationSelect_comboSearchBox{
     -fx-background-color: #D9D9D9;
     -fx-font-size: 15;
+    -fx-pref-height: 60;
 }
 
 .getPath_Button{
@@ -271,6 +283,73 @@
     -fx-text-fill: #FFFFFF;
     -fx-alignment: center;
 }
+
+/* request CSS */
+
+.requestFormFieldHeader{
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Poppins-Regular";
+    -fx-font-size: 30;
+}
+
+.requestConfirmButton{
+    -fx-pref-height: 65;
+    -fx-pref-width: 250;
+    -fx-background-color: #F6BD38;
+    -fx-background-radius: 30;
+    -fx-font-size: 25;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+
+.requestClearButton {
+    -fx-pref-height: 65;
+    -fx-pref-width: 250;
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 30;
+    -fx-font-size: 25;
+}
+
+.requestTextBox{
+    -fx-background-color: #D9D9D9;
+    -fx-font-size: 25;
+    -fx-pref-height: 60;
+    -fx-max-height: 60;
+}
+
+/*admin page CSS - 4 tables, import export */
+.admin_page_4_buttons{
+    -fx-pref-height: 65;
+    -fx-pref-width: 300;
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 30;
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+
+
+.allFilledError{
+    -fx-font-size: 25;
+}
+
+
+.admin_page_3_buttons{
+    -fx-pref-height: 65;
+    -fx-pref-width: 300;
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 30;
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+
+.admin_page_text{
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+
 
 
 

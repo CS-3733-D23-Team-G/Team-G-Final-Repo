@@ -5,16 +5,14 @@ import java.sql.Time;
 import lombok.Getter;
 import lombok.Setter;
 
-public class MealRequest extends Request {
-
-  @Getter @Setter private int reqId;
-  @Getter @Setter private String recipient;
-  @Getter @Setter private String order;
+public class FurnitureRequest extends Request {
+  @Getter @Setter private String furnitureType;
   @Getter @Setter private String note;
+  @Getter @Setter private String recipient;
 
-  public MealRequest() {}
+  public FurnitureRequest() {}
 
-  public MealRequest(
+  public FurnitureRequest(
       String reqtype,
       String empid,
       String location,
@@ -23,18 +21,11 @@ public class MealRequest extends Request {
       Date deliveryDate,
       Time deliveryTime,
       String recipient,
-      String order,
+      String furnitureType,
       String note) {
     super(reqtype, empid, location, serveBy, status, deliveryDate, deliveryTime);
-    this.recipient = recipient;
-    this.order = order;
+    this.furnitureType = furnitureType;
     this.note = note;
-  }
-
-  public MealRequest(int reqId, String recipient, String order, String note) {
-    this.reqId = reqId;
     this.recipient = recipient;
-    this.order = order;
-    this.note = note;
   }
 }

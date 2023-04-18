@@ -83,7 +83,8 @@ public class LocationNameDAO implements LocationDAO {
       Location.put(l1.getLongName(), l1);
     } catch (SQLException e) {
       e.printStackTrace();
-      System.err.println("SQL exeption");
+
+      System.err.println("SQL exception");
     }
     connection.closeConnection();
   }
@@ -119,7 +120,9 @@ public class LocationNameDAO implements LocationDAO {
     connection.setConnection();
 
     try {
+
       SQL = "insert into " + this.getTable() + " (longname,shortname,nodetype) values (?,?,?)";
+
       PreparedStatement ps = connection.getConnection().prepareStatement(SQL);
 
       BufferedReader br = new BufferedReader(new FileReader(filename));

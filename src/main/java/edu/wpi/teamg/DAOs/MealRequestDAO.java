@@ -16,6 +16,7 @@ public class MealRequestDAO implements DAO {
   private HashMap<Integer, MealRequest> mealRequestHash = new HashMap<Integer, MealRequest>();
 
   NodeDAO nodeDAO = new NodeDAO();
+  EmployeeDAO employeeDAO = new EmployeeDAO();
 
   @Override
   public HashMap<Integer, MealRequest> getAll() throws SQLException {
@@ -37,32 +38,41 @@ public class MealRequestDAO implements DAO {
       // printSQLException(e);
     }
 
+    HashMap longNameHash = new HashMap<>();
+    longNameHash = NodeDAO.getMandFLLongName();
+
+    HashMap employeeHash = new HashMap<>();
+    employeeHash = employeeDAO.getEmployeeFullName("Meal Request");
+
+    HashMap allEmployeeHash = new HashMap<>();
+    allEmployeeHash = employeeDAO.getAllEmployeeFullName();
+
     while (rs.next()) {
 
       int reqID = rs.getInt("reqID");
+
       int empID = rs.getInt("empID");
+      String requestingEmployee = "ID " + empID + ": " + (String) allEmployeeHash.get(empID);
 
       int location = rs.getInt("location");
-
-      HashMap longNameHash = new HashMap<>();
-
-      longNameHash = NodeDAO.getMandFLLongName();
-
       String longName = (String) longNameHash.get(location);
 
       int serveBy = rs.getInt("serveBy");
+      String assignedEmployee = "ID " + serveBy + ": " + (String) employeeHash.get(serveBy);
+
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
       String recipient = rs.getString("recipient");
       Date requestdate = rs.getDate("requestdate");
       Time requesttime = rs.getTime("requesttime");
       String order = rs.getString("mealOrder");
       String note = rs.getString("note");
+
       MealRequest mealReq =
           new MealRequest(
               "M",
-              empID,
+              requestingEmployee,
               longName,
-              serveBy,
+              assignedEmployee,
               status,
               requestdate,
               requesttime,
@@ -115,6 +125,7 @@ public class MealRequestDAO implements DAO {
         "insert into "
             + this.getTable()
             + "(reqid, recipient, mealOrder, note) values (?, ?, ?, ?)";
+
     SQL_Request =
         "insert into teamgdb.iteration2.request(reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
 
@@ -123,15 +134,25 @@ public class MealRequestDAO implements DAO {
       ps_Request = db.getConnection().prepareStatement(SQL_Request);
       ps_Request.setInt(1, maxID);
       ps_Request.setString(2, "M");
-      ps_Request.setInt(3, ((MealRequest) obj).getEmpid());
+
+      String requestingEmployee = ((MealRequest) obj).getEmpid();
+      String assignedEmployee = ((MealRequest) obj).getServeBy();
+
+      String[] split0 = requestingEmployee.split(":");
+      String[] split1 = assignedEmployee.split(":");
+
+      int empid = Integer.parseInt(split0[0].substring(3));
+      int serveBy = Integer.parseInt(split1[0].substring(3));
+
+      ps_Request.setInt(3, empid);
 
       int nodeID =
           nodeDAO.getNodeIDbyLongName(
-              ((MealRequest) obj).getLocation(), new java.sql.Date(System.currentTimeMillis()));
+              ((MealRequest) obj).getLocation(), new java.sql.Date(2023, 01, 01));
 
       ps_Request.setInt(4, nodeID);
 
-      ps_Request.setInt(5, ((MealRequest) obj).getServeBy());
+      ps_Request.setInt(5, serveBy);
       ps_Request.setObject(6, ((MealRequest) obj).getStatus(), java.sql.Types.OTHER);
       ps_Request.setDate(7, ((MealRequest) obj).getRequestDate());
       ps_Request.setTime(8, ((MealRequest) obj).getRequestTime());
@@ -163,6 +184,7 @@ public class MealRequestDAO implements DAO {
     PreparedStatement ps_request;
 
     String SQL_mealrequest = "delete from " + this.getTable() + " where reqId = ?";
+
     String SQL_request = "delete from teamgdb.iteration2.request where reqId = ?";
 
     try {

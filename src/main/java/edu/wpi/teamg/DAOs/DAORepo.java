@@ -11,13 +11,20 @@ public class DAORepo {
   private EdgeDAO edgeDao = new EdgeDAO();
   private MoveDAO moveDao = new MoveDAO();
   private RequestDAO requestDao = new RequestDAO();
+  private EmployeeDAO employeeDAO = new EmployeeDAO();
   private LocationNameDAO locationNameDao = new LocationNameDAO();
   private ConferenceRoomRequestDAO conferenceRoomRequestDao = new ConferenceRoomRequestDAO();
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
   private FlowerRequestDAO flowerRequestDAO = new FlowerRequestDAO();
 
+  private FurnitureDAO furnitureRequest = new FurnitureDAO();
+
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
+  }
+
+  public HashMap getAllEmployees() throws SQLException {
+    return employeeDAO.getAll();
   }
 
   public HashMap getAllEdges() throws SQLException {
@@ -46,6 +53,10 @@ public class DAORepo {
 
   public HashMap getAllLocationNames() throws SQLException {
     return locationNameDao.getAll();
+  }
+
+  public HashMap getAllFurniture() throws SQLException {
+    return furnitureRequest.getAll();
   }
 
   public void insertNode(Object obj) throws SQLException {
@@ -80,6 +91,10 @@ public class DAORepo {
     locationNameDao.insert(obj);
   }
 
+  public void insertFurniture(Object obj) throws SQLException {
+    furnitureRequest.insert(obj);
+  }
+
   public void deleteNode(Object obj) throws SQLException {
     nodeDao.delete(obj);
   }
@@ -110,6 +125,10 @@ public class DAORepo {
 
   public void deleteFlowerRequest(Object obj) throws SQLException {
     flowerRequestDAO.delete(obj);
+  }
+
+  public void deleteFurnitureRequest(Object obj) throws SQLException {
+    furnitureRequest.delete(obj);
   }
 
   public void importNodeCSV(String path) throws SQLException {
@@ -178,5 +197,9 @@ public class DAORepo {
 
   public int getNodeIDbyLongName(String longname) throws SQLException {
     return nodeDao.getNodeIDbyLongName(longname, new java.sql.Date(System.currentTimeMillis()));
+  }
+
+  public HashMap getEmployeeFullName(String canServe) throws SQLException {
+    return employeeDAO.getEmployeeFullName(canServe);
   }
 }

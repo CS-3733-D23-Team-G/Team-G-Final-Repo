@@ -16,6 +16,9 @@ public class AdminTopBannerController {
   @FXML MFXButton statusButton;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
   @FXML MFXButton HomeButton;
+  @FXML MFXButton Logout;
+
+  @FXML ChoiceBox<String> AdminChoiceBox;
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -23,6 +26,8 @@ public class AdminTopBannerController {
           "Furniture Request Form",
           "Meal Request Form",
           "Office Supplies Request Form");
+  ObservableList<String> Adminlist =
+      FXCollections.observableArrayList("Signage Page Editor", "Signage Page Admin", "Admin Forms");
 
   @FXML
   public void initialize() {
@@ -30,14 +35,28 @@ public class AdminTopBannerController {
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     exitButton.setOnMouseClicked(event -> exit());
     statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_STATUS_PAGE));
-
+    Logout.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    AdminChoiceBox.setItems(Adminlist);
+    AdminChoiceBox.setOnAction(event -> AdminServiceFroms());
   }
 
   public void exit() {
     Platform.exit();
+  }
+
+  public void AdminServiceFroms() {
+    if (serviceRequestChoiceBox.getValue().equals("Signage Page Editor")) {
+      Navigation.navigate(Screen.ADMIN_SIGNAGE_EDITOR);
+    } else if (serviceRequestChoiceBox.getValue().equals("Signage Page Admin")) {
+      Navigation.navigate(Screen.ADMIN_SIGNAGE_EDITOR);
+    } else if (serviceRequestChoiceBox.getValue().equals("Admin Forms")) {
+      Navigation.navigate(Screen.ADMIN_STATUS_PAGE);
+    } else {
+      return;
+    }
   }
 
   public void loadServiceRequestForm() {

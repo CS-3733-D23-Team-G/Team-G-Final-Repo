@@ -18,9 +18,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import org.controlsfx.control.CheckComboBox;
-import org.controlsfx.control.IndexedCheckModel;
 import org.controlsfx.control.SearchableComboBox;
 
 public class FlowersRequestController {
@@ -39,15 +40,31 @@ public class FlowersRequestController {
   // @FXML TextArea notes;
 
   ObservableList<String> locationList;
+  ObservableList<String> employeeList;
 
   @FXML MFXDatePicker deliveryDate;
 
   @FXML TextField deliveryTime;
-  @FXML TextField roomField;
+  @FXML TextField recipient;
   @FXML TextField bouquetNote;
 
+  @FXML ImageView selectedSunflower;
+  @FXML ImageView sunflowerOption;
+
+  @FXML ImageView selectedPurpleflower;
+  @FXML ImageView purpleflowerOption;
+  @FXML ImageView selectedRedflower;
+  @FXML ImageView redflowerOption;
+
+  @FXML Label flowerChoice;
+
+  String Order = "";
+
   @FXML SearchableComboBox locationSearchDropdown;
-  @FXML SearchableComboBox EmployeeSearchBox;
+
+  @FXML SearchableComboBox employeeSearchDropdown;
+
+  @FXML Label checkFields;
 
   /*
    TODO: figure out how to get correct datatype to give to DB
@@ -57,12 +74,7 @@ public class FlowersRequestController {
       FXCollections.observableArrayList(
           "Carnations", "Daisies", "Lilacs", "Orchids", "Peonies", "Roses", "Sunflowers");
   ObservableList<String> listSizes =
-      FXCollections.observableArrayList(
-          "10 Stems (small)", "20 Stems (medium)", "30 Stems (large)");
-
-  ObservableList<String> listEmployee =
-      FXCollections.observableArrayList(
-          "Tom", "Kristine", "Raj", "Professor Wong", "Mo", "Andrew", "Hung");
+      FXCollections.observableArrayList("6 Stems (small)", "12 Stems (medium)", "24 Stems (large)");
 
   DAORepo dao = new DAORepo();
 
@@ -70,8 +82,33 @@ public class FlowersRequestController {
   public void initialize() throws SQLException {
 
     bouquetSizeChoiceBox.setItems(listSizes);
-    flowerTypeCheckBox.getItems().addAll(listFlowers);
-    EmployeeSearchBox.getItems().addAll(listEmployee);
+
+    checkFields.setVisible(false);
+
+    clearAll.setOnAction(event -> clearFlowers());
+
+    ArrayList<String> employeeNames = new ArrayList<>();
+    HashMap<Integer, String> employeeLongName = this.getHashMapEmployeeLongName("Flowers Request");
+
+    employeeLongName.forEach(
+        (i, m) -> {
+          employeeNames.add("ID " + i + ": " + m);
+        });
+
+    selectedSunflower.setVisible(false);
+    selectedSunflower.setDisable(true);
+    selectedPurpleflower.setVisible(false);
+    selectedPurpleflower.setDisable(true);
+    selectedRedflower.setVisible(false);
+    selectedRedflower.setDisable(true);
+
+    sunflowerOption.setOnMouseClicked(event -> selectSunFlowerOption());
+    purpleflowerOption.setOnMouseClicked(event -> selectPurpleFlowerOption());
+    redflowerOption.setOnMouseClicked(event -> selectRedFlowerOption());
+
+    Collections.sort(employeeNames, String.CASE_INSENSITIVE_ORDER);
+
+    employeeList = FXCollections.observableArrayList(employeeNames);
 
     ArrayList<String> locationNames = new ArrayList<>();
     HashMap<Integer, String> testingLongName = this.getHashMapMLongName();
@@ -92,12 +129,14 @@ public class FlowersRequestController {
     locationList = FXCollections.observableArrayList(locationNames);
 
     // Hung this is where it sets the list - Andrew
+    employeeSearchDropdown.setItems(employeeList);
     locationSearchDropdown.setItems(locationList);
 
     // checkFields.getText();
-    clearAll.setOnAction(event -> clearFlowers());
+
     submit.setOnAction(
         event -> {
+          flowerOrder();
           allDataFilled();
         });
     //    deliveryLocation.getText();
@@ -130,19 +169,22 @@ public class FlowersRequestController {
         String roomField
    */
   public void storeFlowerValues() throws SQLException {
+
     FlowerRequest flower =
         new FlowerRequest(
             "FL",
-            1,
+            "ID 1: John Doe",
             (String) locationSearchDropdown.getValue(),
-            1,
+            (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
             Date.valueOf(deliveryDate.getValue()),
             StringToTime(deliveryTime.getText()),
-            mutipleFlowers(flowerTypeCheckBox.getCheckModel()),
+            Order,
             flowerConvert(bouquetSizeChoiceBox.getValue()),
             bouquetNote.getText(),
-            roomField.getText());
+            recipient.getText());
+
+    // System.out.println(Order);
 
     dao.insertFlowerRequest(flower);
     /*
@@ -161,23 +203,90 @@ public class FlowersRequestController {
             + bouquetSizeChoiceBox.getValue());*/
   }
 
-  public int bouquetSizeToInt(String s) {
-    return -1;
+  public void selectSunFlowerOption() {
+    if (selectedSunflower.isVisible() == false) {
+      selectedSunflower.setVisible(true);
+      // Order += "Sunflower, ";
+      System.out.println(Order);
+    } else if (selectedSunflower.isVisible() == true) {
+      selectedSunflower.setVisible(false);
+      // Order.replace("Sunflower, ", "");
+      System.out.println(Order);
+    }
+  }
+
+  public void selectPurpleFlowerOption() {
+    if (selectedPurpleflower.isVisible() == false) {
+      selectedPurpleflower.setVisible(true);
+      // Order += "Purpleflower, ";
+      // System.out.println(Order);
+    } else if (selectedPurpleflower.isVisible() == true) {
+      selectedPurpleflower.setVisible(false);
+      // Order.replace("Purpleflower, ", "");
+      System.out.println(Order);
+    }
+  }
+
+  public void selectRedFlowerOption() {
+    if (selectedRedflower.isVisible() == false) {
+      selectedRedflower.setVisible(true);
+      // Order += "Redflower, ";
+      System.out.println(Order);
+    } else if (selectedRedflower.isVisible() == true) {
+      selectedRedflower.setVisible(false);
+      // Order.replace("Redflower, ", "");
+      System.out.println(Order);
+    }
+  }
+
+  public void flowerOrder() {
+    if (selectedRedflower.isVisible()) {
+      Order += "Red Flower, ";
+    }
+
+    if (selectedPurpleflower.isVisible()) {
+      Order += "Purple Flower, ";
+    }
+
+    if (selectedSunflower.isVisible()) {
+      Order += "Sunflower, ";
+    }
+  }
+
+  public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
+
+    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getEmployeeFullName(canServe);
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return longNameHashMap;
   }
 
   // TODO: figure out clear for flowerTypeCheckBox
   public void clearFlowers() {
     bouquetSizeChoiceBox.setValue("");
-    flowerTypeCheckBox.setCheckModel(null);
-    EmployeeSearchBox.setValue(null);
-    flowerTypeCheckBox.getCheckModel().clearChecks();
+    //    flowerTypeCheckBox.setCheckModel(null);
+    //    flowerTypeCheckBox.getCheckModel().clearChecks();
     bouquetSizeChoiceBox.setValue(null);
     // deliveryLocation.setText("");
     locationSearchDropdown.setValue(null);
     deliveryTime.setText("");
-    roomField.setText("");
+    recipient.setText("");
     bouquetNote.setText("");
     deliveryDate.setValue(null);
+
+    employeeSearchDropdown.setValue(null);
+
+    selectedSunflower.setVisible(false);
+    selectedSunflower.setDisable(true);
+    selectedPurpleflower.setVisible(false);
+    selectedPurpleflower.setDisable(true);
+    selectedRedflower.setVisible(false);
+    selectedRedflower.setDisable(true);
   }
 
   public HashMap<Integer, String> getHashMapMLongName() throws SQLException {
@@ -195,9 +304,12 @@ public class FlowersRequestController {
 
   public void allDataFilled() {
     if (!(bouquetSizeChoiceBox == null
-        || flowerTypeCheckBox == null
+        || employeeSearchDropdown.getValue() == null
+        || Order.equals("")
+        || deliveryDate.getValue() == null
+        || locationSearchDropdown.getValue() == null
         // || deliveryLocation.getText().equals("")
-        || roomField.getText().equals("")
+        || recipient.getText().equals("")
         || deliveryTime.getText().equals("")
         || bouquetNote.getText().equals(""))) {
       try {
@@ -207,7 +319,7 @@ public class FlowersRequestController {
       }
       Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT);
     } else {
-      // checkFields.setText("Not All Fields Are Filled");
+      checkFields.setVisible(true);
     }
   }
 
@@ -221,14 +333,14 @@ public class FlowersRequestController {
   public int flowerConvert(String t) {
     int i = 0;
     switch (t) {
-      case "10 Stems (small)":
-        i = 10;
+      case "6 Stems (small)":
+        i = 6;
         break;
-      case "20 Stems (medium)":
-        i = 20;
+      case "12 Stems (medium)":
+        i = 12;
         break;
-      case "30 Stems (large)":
-        i = 30;
+      case "24 Stems (large)":
+        i = 24;
         break;
       default:
         i = -1;
@@ -236,15 +348,15 @@ public class FlowersRequestController {
     return i;
   }
 
-  public String mutipleFlowers(IndexedCheckModel<String> f1) {
-    String s1 = "";
-    for (int i = 0; i < f1.getItemCount(); i++) {
-      if (!(f1.getCheckedItems().get(i) == null)) {
-        s1 += f1.getCheckedItems().get(i) + ", ";
-      }
-    }
-    return s1;
-  }
+  //  public String mutipleFlowers(IndexedCheckModel<String> f1) {
+  //    String s1 = "";
+  //    for (int i = 0; i < f1.getItemCount(); i++) {
+  //      if (!(f1.getCheckedItems().get(i) == null)) {
+  //        s1 += f1.getCheckedItems().get(i) + ", ";
+  //      }
+  //    }
+  //    return s1;
+  //  }
 
   public void exit() {
     Platform.exit();

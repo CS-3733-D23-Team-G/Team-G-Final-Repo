@@ -19,6 +19,7 @@ public class AccountDAO implements DAO {
     conn.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
+
     query = "Select * from " + this.getTable();
 
     try {
@@ -52,10 +53,12 @@ public class AccountDAO implements DAO {
   public void insertAccount(Object obj, String pass, Boolean admin) throws SQLException {
     Account account = (Account) obj;
     conn.setConnection();
+
     query =
         "INSERT INTO "
             + this.getTable()
             + "(username,empid,hashPassword,salt,is_admin) VALUES (?,?,?,?,?)";
+
     PreparedStatement ps;
     try {
       ps = conn.getConnection().prepareStatement(query);

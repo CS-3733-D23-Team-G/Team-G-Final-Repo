@@ -1,10 +1,11 @@
 drop table if exists iteration2.MealRequest;
 drop table if exists iteration2.ConferenceRoomRequest;
+drop table if exists iteration2.FurnitureRequest;
 drop table if exists iteration2.flowerrequest;
 drop table if exists iteration2.Account;
 drop table if exists iteration2.Request;
 drop table if exists iteration2.Employee;
-drop type if exists iteration2.enum1;
+drop type if exists  iteration2.enum1;
 drop table if exists iteration2.Move;
 drop table if exists iteration2.Edge;
 drop table if exists iteration2.LocationName;
@@ -73,10 +74,12 @@ create table iteration2.Request (
 );
 
 create table iteration2.ConferenceRoomRequest(
-                                         reqID int primary key,
-                                         endTime time,
-                                         purpose varchar(255),
-                                         foreign key (reqID) references iteration2.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+
+                 reqID int primary key,
+                 endTime time,
+                 purpose varchar(255),
+                 foreign key (reqID) references iteration2.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+
 
 );
 
@@ -97,6 +100,14 @@ create table iteration2.flowerrequest(
     note varchar(225),
     foreign key (reqID) references iteration2.request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
 );
+create table iteration2.FurnitureRequest(
+    reqID int primary key,
+    furnitureType varchar(200),
+    note varchar(225),
+    recipient varchar(200),
+    foreign key (reqID) references iteration2.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
 
 create table iteration2.account(
     username text  primary key,
@@ -109,14 +120,27 @@ create table iteration2.account(
 
 INSERT INTO iteration2.Employee (empID, firstName, lastName, email, can_serve)
 VALUES
-    (1, 'John', 'Doe', 'johndoe@example.com', 'Conference Room Request'),
+    (1, 'John', 'Doe', 'johndoe@example.com', 'Meal Request'),
     (2, 'Jane', 'Doe', 'janedoe@example.com', 'Meal Request'),
-    (3, 'Bob', 'Smith', 'bobsmith@example.com', 'Flower Request'),
-    (4, 'Alice', 'Johnson', 'alicejohnson@example.com', 'Office Supplies Request'),
-    (5, 'Bruce','Wayne' ,'batman@example.com' , 'Furniture Request'),
-    (6, 'Itta','Patell','Ipatell@example.com','Conference Request'),
-    (7, 'Diana','Wells','Dwells@example.com','Conference Request'),
-    (8, 'Mark', 'Specter', 'moonknight@example.com', 'Conference Request');
+    (3, 'Bob', 'Smith', 'bobsmith@example.com', 'Meal Request'),
+    (4, 'Alice', 'Johnson', 'alicejohnson@example.com', 'Meal Request'),
+    (5, 'Bruce','Wayne' ,'batman@example.com' , 'Conference Room Request'),
+    (6, 'Itta','Patell','Ipatell@example.com','Conference Room Request'),
+    (7, 'Diana','Wells','Dwells@example.com','Conference Room Request'),
+    (8, 'Mark', 'Specter', 'moonknight@example.com', 'Conference Room Request'),
+    (9, 'John', 'Doe', 'johndoe@example.com', 'Flowers Request'),
+    (10, 'Jane', 'Doe', 'janedoe@example.com', 'Flowers Request'),
+    (11, 'Aaron', 'Mar', 'teamGoat1@example.com', 'Flowers Request'),
+    (12, 'Thomas', 'McDonagh', 'teamGoat@example.com', 'Flowers Request'),
+    (13, 'Rishi','Patel' ,'batman@example.com' , 'Office Supplies Request'),
+    (14, 'Barry','Allen','theflash@example.com','Office Supplies Request'),
+    (15, 'Hal','Jordan','greenlantern@example.com','Office Supplies Request'),
+    (16, 'Clark', 'Kent', 'superman@example.com', 'Office Supplies Request'),
+    (17, 'Diana', 'Prince', 'wonderwoman@example.com', 'Furniture Request'),
+    (18, 'Tom', 'Brady', 'eggballgoat@example.com', 'Furniture Request'),
+    (19, 'Messi', 'Lionel', 'GOAT@example.com', 'Furniture Request'),
+    (20, 'Ronaldo', 'Cristiano', 'goat@example.com', 'Furniture Request');
+
 
 -- Table: iteration2.Account
 INSERT INTO iteration2.Account (empID, password, is_admin)
@@ -129,18 +153,18 @@ VALUES
 -- Table: iteration2.Request
 INSERT INTO iteration2.request (reqID, reqType, empID, location, serveBy, status, requestDate, requestTime)
 VALUES
-    (1, 'M', 1, 105, 1, 'blank', '2023-04-15', '13:00:00'),
-    (2, 'M', 2, 110, 2, 'processing', '2023-04-15', '13:00:00'),
-    (3, 'M', 3, 115, 3, 'done', '2023-04-15', '13:00:00'),
-    (4, 'M', 4, 120, 4, 'blank', '2023-04-15', '13:00:00'),
-    (5, 'CR', 5, 105, 1, 'blank', '2023-04-15', '13:00:00'),
-    (6, 'CR', 6, 110, 2, 'processing', '2023-04-16', '14:30:00'),
-    (7, 'CR', 7, 115, 3, 'done', '2023-04-17', '10:00:00'),
-    (8, 'CR', 8, 120, 4, 'blank', '2023-04-18', '15:00:00'),
-    (9, 'FL', 1, 115, 3, 'processing', '2023-04-17', '10:00:00'),
-    (10, 'FL', 2, 115, 3, 'blank', '2023-04-17', '10:00:00'),
-    (11, 'FL', 3, 115, 3, 'done', '2023-04-17', '10:00:00'),
-    (12, 'FL', 4, 115, 3, 'processing', '2023-04-17', '10:00:00');
+    (1, 'M', 12, 1290, 1, 'blank', '2023-04-15', '13:00:00'),
+    (2, 'M', 11, 1295, 2, 'processing', '2023-04-15', '13:00:00'),
+    (3, 'M', 10, 1300, 3, 'done', '2023-04-15', '13:00:00'),
+    (4, 'M', 9, 1305, 4, 'blank', '2023-04-15', '13:00:00'),
+    (5, 'CR', 8, 1335, 5, 'blank', '2023-04-15', '13:00:00'),
+    (6, 'CR', 7, 1685, 6, 'processing', '2023-04-16', '14:30:00'),
+    (7, 'CR', 6, 1690, 7, 'done', '2023-04-17', '10:00:00'),
+    (8, 'CR', 5, 1695, 8, 'blank', '2023-04-18', '15:00:00'),
+    (9, 'FL', 4, 1345, 9, 'processing', '2023-04-17', '10:00:00'),
+    (10, 'FL', 3, 1350, 10, 'blank', '2023-04-17', '10:00:00'),
+    (11, 'FL', 2, 1355, 11, 'done', '2023-04-17', '10:00:00'),
+    (12, 'FL', 1, 1360, 12, 'processing', '2023-04-17', '10:00:00');
 
 -- Table: iteration2.MealRequest
 INSERT INTO iteration2.mealrequest (reqID, recipient, mealOrder, note)
@@ -166,3 +190,13 @@ VALUES
     (11, 'Daisy, Tulip', 20, 'Sarah', 'Congratulations on your new job!'),
     (12, 'Lily, Rose', 15, 'Michael', 'With deepest sympathy');
 
+-- Query All Location Names for Meal and Flower Delivery Request
+SELECT Move.nodeID, LocationName.longName, LocationName.nodetype
+FROM iteration2.Move
+JOIN iteration2.LocationName ON Move.longName = LocationName.longName
+WHERE LocationName.nodeType = 'CONF'
+   OR LocationName.nodeType = 'DEPT'
+   OR LocationName.nodeType = 'INFO'
+   OR LocationName.nodeType = 'SERV'
+   OR LocationName.nodeType = 'LABS'
+   OR LocationName.nodeType = 'RETL'
