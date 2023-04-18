@@ -82,6 +82,7 @@ public class MealRequestController {
   public void initialize() throws SQLException {
     mealSubmitButton.setOnMouseClicked(
         event -> {
+          MealOrder();
           allDataFilled();
         });
 
@@ -149,30 +150,42 @@ public class MealRequestController {
   public void selectBurgerOption() {
     if (selectedBurger.isVisible() == false) {
       selectedBurger.setVisible(true);
-      Order += "Cheeseburger, ";
+      //  Order += "Cheeseburger, ";
     } else if (selectedBurger.isVisible() == true) {
       selectedBurger.setVisible(false);
-      Order.replace("Cheeseburger, ", "");
+      //  Order.replace("Cheeseburger, ", "");
     }
   }
 
   public void selectCorndogOption() {
     if (selectedCornDog.isVisible() == false) {
       selectedCornDog.setVisible(true);
-      Order += "Corndog, ";
+      //  Order += "Corndog, ";
     } else if (selectedCornDog.isVisible() == true) {
       selectedCornDog.setVisible(false);
-      Order.replace("Corndog, ", "");
+      // Order.replace("Corndog, ", "");
     }
   }
 
   public void selectFriedRiceOption() {
     if (selectedFriedRice.isVisible() == false) {
       selectedFriedRice.setVisible(true);
-      Order += "Shrimp Fried Rice, ";
+      // Order += "Shrimp Fried Rice, ";
     } else if (selectedFriedRice.isVisible() == true) {
       selectedFriedRice.setVisible(false);
-      Order.replace("Shrimp Fried Rice, ", "");
+      //  Order.replace("Shrimp Fried Rice, ", "");
+    }
+  }
+
+  public void MealOrder() {
+    if (selectedBurger.isVisible()) {
+      Order += "Cheese Burger, ";
+    }
+    if (selectedCornDog.isVisible()) {
+      Order += "CornDog, ";
+    }
+    if (selectedFriedRice.isVisible()) {
+      Order += "Shrimp Fried Rice, ";
     }
   }
 
@@ -192,7 +205,7 @@ public class MealRequestController {
             Order,
             mealNotesData.getText());
 
-    System.out.println(Order);
+  //  System.out.println (Order);
 
     //    mr.setEmpid(1);
     //    mr.setServ_by(1);
