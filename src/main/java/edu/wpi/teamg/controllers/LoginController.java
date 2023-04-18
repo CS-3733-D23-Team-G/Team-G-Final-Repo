@@ -7,6 +7,7 @@ import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,14 +15,13 @@ import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
-import org.controlsfx.control.textfield.CustomTextField;
 
 public class LoginController {
   @FXML MFXButton loginButton;
-  @FXML CustomTextField username;
+  @FXML MFXTextField username;
   @FXML MFXPasswordField password;
 
-  @FXML Label userInc;
+  // @FXML Label userInc;
 
   @FXML Label passInc;
 
@@ -29,7 +29,7 @@ public class LoginController {
   String query;
 
   public void initialize() {
-    userInc.setVisible(false);
+    // userInc.setVisible(false);
     passInc.setVisible(false);
     loginButton.setOnAction(event -> loginCheck());
   }
@@ -84,10 +84,10 @@ public class LoginController {
   }
 
   public void incorrectPassword() {
-    userInc.setFont(Font.font(20));
+    // userInc.setFont(Font.font(20));
     passInc.setFont(Font.font(20));
 
-    userInc.setVisible(true);
+    // .setVisible(true);
     passInc.setVisible(true);
   }
 }

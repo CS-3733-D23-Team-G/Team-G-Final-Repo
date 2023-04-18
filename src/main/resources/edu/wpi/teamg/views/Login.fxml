@@ -3,57 +3,74 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.LoginController">
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="980.0" prefWidth="860.0" style="-fx-background-color: linear-gradient(to bottom left, #009FFD, #2A2A72);">
+            <AnchorPane prefHeight="980.0" prefWidth="860.0" style="-fx-background-color: linear-gradient(to bottom left, #009FFD, #2A2A72);" styleClass="half_bottom_left">
                <children>
-                  <ImageView fitHeight="385.0" fitWidth="374.0" layoutX="251.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="loginImage" fitHeight="385.0" fitWidth="374.0" layoutX="210.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../../../../Downloads/key.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="16.0" layoutY="515.0" prefHeight="86.0" prefWidth="781.0" style="-fx-font-size: 50px; -fx-font-weight: bolder;" text="Brigham and Women's Hospital" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="16.0" layoutY="515.0" prefHeight="86.0" prefWidth="781.0" style="-fx-font-size: 50px; -fx-font-weight: bolder;" text="Brigham and Women's Hospital" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="15.0" layoutY="585.0" prefHeight="79.0" prefWidth="788.0" style="-fx-font-size: 40px;" text="Founding Member,  Mass General Brigham" textFill="WHITE" />
+                  <Label alignment="CENTER" layoutX="12.0" layoutY="579.0" prefHeight="79.0" prefWidth="769.0" style="-fx-font-size: 40px;" text="Founding Member,  Mass General Brigham" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="980.0" prefWidth="1064.0" style="-fx-background-color: white;">
+            <AnchorPane prefHeight="980.0" prefWidth="1064.0" style="-fx-background-color: white;" styleClass="half_bottom_right">
                <children>
-                  <AnchorPane layoutX="195.0" layoutY="142.0">
+                  <AnchorPane layoutX="195.0" layoutY="142.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <children>
-                        <Label fx:id="loginLabel" alignment="CENTER" layoutX="185.0" layoutY="69.0" prefHeight="122.0" prefWidth="339.0" style="-fx-background-size: 40px; -fx-font-size: 60px; -fx-text-alignment: center;" text="Login">
-                           <font>
-                              <Font name="System Font" size="48.0" />
-                           </font>
-                        </Label>
-                        <MFXTextField fx:id="userNameBox" layoutX="2.0" layoutY="214.0" prefHeight="87.0" prefWidth="745.0" promptText="Username">
-                           <font>
-                              <Font size="38.0" />
-                           </font>
-                        </MFXTextField>
-                        <MFXPasswordField fx:id="passwordBox" layoutX="1.0" layoutY="375.0" prefHeight="110.0" prefWidth="750.0" promptText="Password">
-                           <font>
-                              <Font size="38.0" />
-                           </font>
-                        </MFXPasswordField>
-                        <MFXButton fx:id="loginButton" layoutX="7.0" layoutY="552.0" prefHeight="95.0" prefWidth="746.0" style="-fx-font-size: 40px; -fx-background-radius: 20px; -fx-background-color: linear-gradient(to bottom left, #009FFD, #2A2A72);" text="Login" textFill="WHITE">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </MFXButton>
+                        <VBox alignment="CENTER" prefHeight="770.0" prefWidth="907.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label fx:id="loginLabel" alignment="CENTER" prefHeight="122.0" prefWidth="339.0" style="-fx-background-size: 40px; -fx-font-size: 60px; -fx-text-alignment: center;" text="Login">
+                                 <font>
+                                    <Font name="System Font" size="48.0" />
+                                 </font>
+                              </Label>
+                              <MFXTextField fx:id="username" prefHeight="87.0" prefWidth="745.0" promptText="Username">
+                                 <font>
+                                    <Font size="38.0" />
+                                 </font>
+                              </MFXTextField>
+                              <MFXPasswordField fx:id="password" prefHeight="110.0" prefWidth="750.0" promptText="Password">
+                                 <font>
+                                    <Font size="38.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </MFXPasswordField>
+                              <Label fx:id="passInc" prefHeight="60.0" prefWidth="500.0" style="-fx-font-size: 20px;" text="Username or password is incorrect." textFill="#f20f0f" visible="false">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="-225.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <MFXButton fx:id="loginButton" prefHeight="95.0" prefWidth="746.0" style="-fx-font-size: 40px; -fx-background-radius: 20px; -fx-background-color: linear-gradient(to bottom left, #009FFD, #2A2A72);" text="Login" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </MFXButton>
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </children>
