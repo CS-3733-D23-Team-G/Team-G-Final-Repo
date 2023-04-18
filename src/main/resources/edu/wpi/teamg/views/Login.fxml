@@ -21,7 +21,7 @@
                <children>
                   <ImageView fx:id="loginImage" fitHeight="385.0" fitWidth="374.0" layoutX="210.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/key.png" />
+                        <Image url="@../Images/key.png" />
                      </image>
                   </ImageView>
                   <Label alignment="CENTER" layoutX="16.0" layoutY="515.0" prefHeight="86.0" prefWidth="781.0" style="-fx-font-size: 50px; -fx-font-weight: bolder;" text="Brigham and Women's Hospital" textFill="WHITE">
