@@ -48,10 +48,10 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                             </Text>
-                                            <Line endX="24.5" startX="-100.0" stroke="#f6bd38" />
-                                    <MFXTextField fx:id="mealPersonOrderingForData" minHeight="-Infinity" prefHeight="30.0" prefWidth="394.0" styleClass="locationSelect_comboSearchBox">
+                                            <Line endX="24.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXTextField fx:id="mealPersonOrderingForData" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="locationSelect_comboSearchBox">
                                        <VBox.margin>
-                                          <Insets top="15.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </MFXTextField>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Delivery Location">
@@ -62,10 +62,10 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="126.57804870605469" startX="-100.0" stroke="#f6bd38" />
+                                    <Line endX="126.57804870605469" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <SearchableComboBox fx:id="locationSearchDropdown" prefHeight="32.0" prefWidth="200.0">
                                        <VBox.margin>
-                                          <Insets top="15.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                        <styleClass>
                                           <String fx:value="text_box" />
@@ -80,10 +80,10 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-22.5" startX="-100.0" stroke="#f6bd38" />
-                                    <MFXTextField fx:id="mealNotesData" prefHeight="162.0" prefWidth="386.0">
+                                    <Line endX="-22.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXTextField fx:id="mealNotesData" prefHeight="200.0" prefWidth="386.0">
                                        <VBox.margin>
-                                          <Insets top="15.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </MFXTextField>
                                  </children>
@@ -101,10 +101,10 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-42.70710754394531" endY="7.748603820800781E-7" startX="-100.0" stroke="#f6bd38" />
+                                    <Line endX="-42.70710754394531" endY="7.748603820800781E-7" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXDatePicker fx:id="mealDate" minHeight="-Infinity" prefHeight="30.0" prefWidth="324.0" styleClass="locationSelect_comboSearchBox">
                                        <VBox.margin>
-                                          <Insets top="15.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </MFXDatePicker>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Time">
@@ -115,10 +115,10 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-35.70710754394531" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" />
+                                    <Line endX="-35.70710754394531" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="mealTimeOfDeliver" minHeight="-Infinity" prefHeight="30.0" prefWidth="317.0" styleClass="locationSelect_comboSearchBox">
                                        <VBox.margin>
-                                          <Insets top="15.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </MFXTextField>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Assign To">
@@ -129,10 +129,10 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="26.292892456054688" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" />
+                                    <Line endX="26.292892456054688" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css">
                                        <VBox.margin>
-                                          <Insets top="15.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </SearchableComboBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">

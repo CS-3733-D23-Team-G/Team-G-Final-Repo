@@ -54,28 +54,6 @@ public class MealRequestController {
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
 
-  ObservableList<String> list =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");
-
-  ObservableList<String> foodList =
-      FXCollections.observableArrayList(
-          "Fenway Franks",
-          "Choco Taco",
-          "Salt-Based Steak",
-          "Bisquit",
-          "Shrimp Fried Rice",
-          "Beef Wellington",
-          "Spaghetii Taco",
-          "Mac and Cheese Pizza",
-          "Cavatappi",
-          "One Singular Oyster",
-          "CC Buritto Bowl (w/ Siracha)");
-
   DAORepo dao = new DAORepo();
 
   @FXML
@@ -163,12 +141,14 @@ public class MealRequestController {
     } else if (selectedCornDog.isVisible() == true) {
       selectedCornDog.setVisible(false);
       // Order.replace("Corndog, ", "");
+
     }
   }
 
   public void selectFriedRiceOption() {
     if (selectedFriedRice.isVisible() == false) {
       selectedFriedRice.setVisible(true);
+
       // Order += "Shrimp Fried Rice, ";
     } else if (selectedFriedRice.isVisible() == true) {
       selectedFriedRice.setVisible(false);
@@ -235,7 +215,6 @@ public class MealRequestController {
     //            + "\nStatus: "
     //            + mr.getStatus());
 
-    DAORepo dao = new DAORepo();
     dao.insertMealRequest(mr);
   }
 
