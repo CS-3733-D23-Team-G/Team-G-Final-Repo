@@ -13,6 +13,7 @@ public class FurnitureDAO implements DAO {
   private String SQL_Request;
   private String SQL_MAXID;
   NodeDAO nodeDAO = new NodeDAO();
+  EmployeeDAO employeeDAO = new EmployeeDAO();
 
   @Override
   public HashMap<Integer, FurnitureRequest> getAll() throws SQLException {
@@ -32,19 +33,29 @@ public class FurnitureDAO implements DAO {
       System.err.println("SQL Exception");
       e.printStackTrace();
     }
+    HashMap longNameHash = new HashMap<>();
+    longNameHash = NodeDAO.getMandFLLongName();
+
+    HashMap employeeHash = new HashMap<>();
+    employeeHash = employeeDAO.getEmployeeFullName("Furniture Request");
+
+    HashMap allEmployeeHash = new HashMap<>();
+    allEmployeeHash = employeeDAO.getAllEmployeeFullName();
+
     while (rs.next()) {
       int reqID = rs.getInt("reqID");
       String reqType = rs.getString("reqtype");
       int empID = rs.getInt("empID");
 
-      int location = rs.getInt("location");
-      HashMap longNameHash = new HashMap<>();
+      String requestingEmp = "ID "+empID+": "+(String)allEmployeeHash.get(empID);
 
-      longNameHash = NodeDAO.getMandFLLongName();
+      int location = rs.getInt("location");
 
       String longName = (String) longNameHash.get(location);
 
       int serv_by = rs.getInt("serveby");
+      String assignedEmployee = "ID "+serv_by+": "+(String)employeeHash.get(serv_by);
+
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
       Date requestdate = rs.getDate("requestdate");
       Time requesttime = rs.getTime("requesttime");
@@ -54,9 +65,9 @@ public class FurnitureDAO implements DAO {
       FurnitureRequest furnitureRequest =
           new FurnitureRequest(
               reqType,
-              "",
+              requestingEmp,
               longName,
-              "",
+              assignedEmployee,
               status,
               requestdate,
               requesttime,
@@ -109,11 +120,23 @@ public class FurnitureDAO implements DAO {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
       ps_Req.setInt(1, maxID);
       ps_Req.setString(2, "FR");
-      ps_Req.setInt(3, 1);
+
+      String reqEmp = ((FurnitureRequest)obj).getEmpid();
+      String assignedEmp = ((FurnitureRequest)obj).getServeBy();
+
+      String[] split0 = reqEmp.split(":");
+      String[] split1 = assignedEmp.split(":");
+
+      int empid = Integer.parseInt(split0[0].substring(3));
+      int servby = Integer.parseInt(split1[0].substring(3));
+
+
+      ps_Req.setInt(3, empid);
       int nodeID =
-          nodeDAO.getNodeIDbyLongName(furn.getLocation(), new java.sql.Date(2023 - 01 - 01));
+          nodeDAO.getNodeIDbyLongName(furn.getLocation(), new java.sql.Date(2023 ,01 ,01));
+
       ps_Req.setInt(4, nodeID);
-      ps_Req.setInt(5, 1);
+      ps_Req.setInt(5, servby);
       ps_Req.setObject(6, furn.getStatus(), java.sql.Types.OTHER);
       ps_Req.setDate(7, furn.getRequestDate());
       ps_Req.setTime(8, furn.getRequestTime());
@@ -125,6 +148,7 @@ public class FurnitureDAO implements DAO {
       ps_Furniture.setString(3, furn.getNote());
       ps_Furniture.setString(4, furn.getRecipient());
       ps_Furniture.executeUpdate();
+
     } catch (SQLException e) {
       System.err.println("SQL Exception");
       e.printStackTrace();
