@@ -11,7 +11,7 @@ public enum Screen {
 
   PATHFINDING_PAGE("views/pathfinding.fxml"),
 
-  SIGNAGE_PAGE("views/SignagePage.fxml"),
+  SIGNAGE_PAGE("views/SignageScreenSaver.fxml"),
 
   SIGNAGE_SCREENSAVER_PAGE("views/SignageScreenSaver.fxml"),
 

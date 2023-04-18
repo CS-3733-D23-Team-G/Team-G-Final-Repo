@@ -20,7 +20,6 @@ public class DAORepo {
   private LoginDao loginDAO = new LoginDao();
   private FurnitureDAO furnitureRequest = new FurnitureDAO();
 
-
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
   }
@@ -64,6 +63,7 @@ public class DAORepo {
   public HashMap getAllFurniture() throws SQLException {
     return furnitureRequest.getAll();
   }
+
   public void insertNode(Object obj) throws SQLException {
     nodeDao.insert(obj);
   }
@@ -103,7 +103,6 @@ public class DAORepo {
   public void insertFurniture(Object obj) throws SQLException {
     furnitureRequest.insert(obj);
   }
-
 
   public void deleteNode(Object obj) throws SQLException {
     nodeDao.delete(obj);

@@ -42,7 +42,6 @@ public class ConRoomRequestController {
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
 
-
   DAORepo dao = new DAORepo();
 
   @FXML
@@ -116,7 +115,6 @@ public class ConRoomRequestController {
 
     return longNameHashMap;
   }
-
 
   public void storeRoomValues() throws SQLException {
 

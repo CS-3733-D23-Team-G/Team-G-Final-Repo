@@ -17,6 +17,7 @@ import javafx.scene.text.Font;
 import org.controlsfx.control.textfield.CustomTextField;
 
 public class LoginController {
+
   @FXML MFXButton loginButton;
   @FXML CustomTextField username;
   @FXML MFXPasswordField password;
@@ -57,13 +58,15 @@ public class LoginController {
 
         tablePass = rs.getString("hashpassword");
         tableSalt = rs.getBytes("salt");
-        // tableAdmin = rs.getBoolean("is_admin");
+        tableAdmin = rs.getBoolean("is_admin");
       }
 
       Account account = new Account();
       account.setPassword(pass);
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
+        Navigation.setLoggedin();
+        if (tableAdmin) Navigation.setAdmin();
         Navigation.navigate(Screen.HOME);
       } else {
         incorrectPassword();

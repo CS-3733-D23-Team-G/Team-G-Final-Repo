@@ -92,7 +92,6 @@ public class SignageAdminController {
   //  @FXML MFXButton mapEdit;
   //  @FXML MFXButton mapCancel;
 
-
   //  @FXML MFXButton add;
 
   @FXML MFXButton mapEditorPageBtn;
