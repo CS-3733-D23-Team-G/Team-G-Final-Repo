@@ -5,16 +5,17 @@ import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
 import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javafx.fxml.FXML;
 
 public class LocNamePopUpController {
-  @FXML TextArea nodID;
-  @FXML TextArea shortName;
-  @FXML TextArea longName;
-  @FXML TextArea nType;
+  @FXML MFXTextField nodID;
+  @FXML MFXTextField shortName;
+  @FXML MFXTextField longName;
+  @FXML MFXTextField nType;
 
   @FXML MFXButton sub;
 
