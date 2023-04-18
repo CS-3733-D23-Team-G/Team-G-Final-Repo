@@ -16,16 +16,16 @@ public class MealRequest extends Request {
 
   public MealRequest(
       String reqtype,
-      int empid,
+      String empid,
       String location,
-      int serve_by,
+      String serveBy,
       StatusTypeEnum status,
       Date deliveryDate,
       Time deliveryTime,
       String recipient,
       String order,
       String note) {
-    super(reqtype, empid, location, serve_by, status, deliveryDate, deliveryTime);
+    super(reqtype, empid, location, serveBy, status, deliveryDate, deliveryTime);
     this.recipient = recipient;
     this.order = order;
     this.note = note;

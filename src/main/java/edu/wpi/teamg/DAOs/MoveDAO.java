@@ -49,6 +49,7 @@ public class MoveDAO implements LocationMoveDao {
   @Override
   public void update(Object obj, String colName, Object value) {
     db.setConnection();
+
     PreparedStatement ps;
     sql =
         "update teamgdb.iteration2.move set "
@@ -57,13 +58,12 @@ public class MoveDAO implements LocationMoveDao {
     try {
       ps = db.getConnection().prepareStatement(sql);
       switch (colName) {
-          /*
-          case "nodeid":
-            ps.setInt(1,((Move)obj).getNodeID());
-            break;
-          case "longname":
-            ps.setString(1,((Move)obj).getLongName());
-            break;*/
+        case "nodeid":
+          ps.setInt(1, ((Move) obj).getNodeID());
+          break;
+        case "longname":
+          ps.setString(1, ((Move) obj).getLongName());
+          break;
         case "date":
           ps.setDate(1, ((Move) obj).getDate());
           break;

@@ -31,20 +31,17 @@ public class ConRoomRequestController {
   // Text Fields
   @FXML MFXTextField roomMeetingPurpose;
   @FXML MFXDatePicker datePicker;
-  @FXML MFXTextField roomTimeData;
+  @FXML MFXTextField roomStartTime;
   @FXML MFXTextField roomEndTime;
 
   // Hung This is the name and list associated with test searchable list
   @FXML SearchableComboBox locationSearchDropdown;
+  @FXML SearchableComboBox employeeSearchDropdown;
   @FXML Label checkFields;
 
-  ObservableList<String> locationList =
-      FXCollections.observableArrayList(
-          "Conference Room Request Form",
-          "Flowers Request Form",
-          "Furniture Request Form",
-          "Meal Request Form",
-          "Office Supplies Request Form");;
+  ObservableList<String> locationList;
+  ObservableList<String> employeeList;
+
 
   DAORepo dao = new DAORepo();
 
@@ -61,7 +58,7 @@ public class ConRoomRequestController {
 
     roomMeetingPurpose.getText();
     // roomNumber.getText();
-    roomTimeData.getText();
+    roomStartTime.getText();
     // roomNumberData.setValue("noon");
     // roomNumberData.setItems(roomNumberDataList);
     // roomTimeData.setValue("noon");
@@ -70,6 +67,19 @@ public class ConRoomRequestController {
     // roomNumberData.getValue();
 
     roomClearAll.setOnAction(event -> clearAllData());
+
+    ArrayList<String> employeeNames = new ArrayList<>();
+    HashMap<Integer, String> employeeLongName =
+        this.getHashMapEmployeeLongName("Conference Rooms Request");
+
+    employeeLongName.forEach(
+        (i, m) -> {
+          employeeNames.add("ID " + i + ": " + m);
+        });
+
+    Collections.sort(employeeNames, String.CASE_INSENSITIVE_ORDER);
+
+    employeeList = FXCollections.observableArrayList(employeeNames);
 
     ArrayList<String> locationNames = new ArrayList<>();
     HashMap<Integer, String> testingLongName = this.getHashMapCRLongName();
@@ -90,21 +100,36 @@ public class ConRoomRequestController {
     locationList = FXCollections.observableArrayList(locationNames);
 
     // Hung this is where it sets the list - Andrew
+    employeeSearchDropdown.setItems(employeeList);
     locationSearchDropdown.setItems(locationList);
   }
+
+  public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
+
+    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+
+    try {
+      longNameHashMap = dao.getEmployeeFullName(canServe);
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return longNameHashMap;
+  }
+
 
   public void storeRoomValues() throws SQLException {
 
     ConferenceRoomRequest conRoom =
         new ConferenceRoomRequest(
             "CR",
-            1,
+            "ID 1: John Doe",
             // assume for now they are going to input a node number, so parseInt
             (String) locationSearchDropdown.getValue(),
-            1,
+            (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
             Date.valueOf(datePicker.getValue()),
-            StringToTime(roomTimeData.getText()),
+            StringToTime(roomStartTime.getText()),
             StringToTime(roomEndTime.getText()),
             roomMeetingPurpose.getText());
 
@@ -115,9 +140,10 @@ public class ConRoomRequestController {
       e.printStackTrace();
     }
 
-    System.out.println("Room Name: " + locationSearchDropdown.getValue());
-    System.out.println(
-        "Room ID: " + dao.getNodeIDbyLongName((String) locationSearchDropdown.getValue()));
+    // System.out.println("Employee Name: " + employeeSearchDropdown.getValue());
+    //    System.out.println(
+    //        "Room ID: " + dao.getNodeIDbyLongName((String) locationSearchDropdown.getValue()));
+
   }
 
   public HashMap<Integer, String> getHashMapCRLongName() throws SQLException {
@@ -136,7 +162,7 @@ public class ConRoomRequestController {
   public void clearAllData() {
     roomMeetingPurpose.setText("");
     datePicker.setText("");
-    roomTimeData.setText("");
+    roomStartTime.setText("");
     roomEndTime.setText("");
     locationSearchDropdown.setValue(null);
     return;
@@ -145,7 +171,7 @@ public class ConRoomRequestController {
   public void allDataFilled() {
     if (!(roomMeetingPurpose.getText().equals("")
         || datePicker.getText().equals("")
-        || roomTimeData.getText().equals("")
+        || roomStartTime.getText().equals("")
         || roomEndTime.getText().equals("")
         || locationSearchDropdown == null)) {
       try {

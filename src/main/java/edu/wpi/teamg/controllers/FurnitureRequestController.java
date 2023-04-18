@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.FurnitureRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -15,12 +16,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import org.controlsfx.control.SearchableComboBox;
+
 
 public class FurnitureRequestController {
   @FXML MFXButton furnSubmitButton;
@@ -128,6 +129,7 @@ public class FurnitureRequestController {
     locationSearchDropdown.setItems(locationList);
     checkFields.getText();
   }
+
 
   public void exit() {
     Platform.exit();

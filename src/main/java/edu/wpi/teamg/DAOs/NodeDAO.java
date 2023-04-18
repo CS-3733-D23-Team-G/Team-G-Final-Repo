@@ -70,6 +70,7 @@ public class NodeDAO implements LocationDAO {
           "INSERT INTO "
               + this.getTable()
               + " (nodeid, xcoord, ycoord, floor, building) VALUES (?,?,?,?,?)";
+
       PreparedStatement ps = db.getConnection().prepareStatement(SQL);
 
       BufferedReader br = new BufferedReader(new FileReader(path));
@@ -424,16 +425,17 @@ public class NodeDAO implements LocationDAO {
     return longNameHash;
   }
 
-  public int getNodeIDbyLongName(String longname) throws SQLException {
+  public int getNodeIDbyLongName(String longname, Date date) throws SQLException {
     db.setConnection();
     PreparedStatement ps;
 
     ResultSet rs = null;
-    SQL = "select nodeid from iteration2.Move where longname = ?";
+    SQL = "select nodeid from iteration2.Move where longname = ?"; // AND where date>=?
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
       ps.setString(1, longname);
+      // ps.setDate(2, date);
       rs = ps.executeQuery();
     } catch (SQLException e) {
       System.err.println("SQL exception");

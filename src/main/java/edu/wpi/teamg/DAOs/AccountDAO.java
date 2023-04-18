@@ -2,6 +2,7 @@ package edu.wpi.teamg.DAOs;
 
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,13 +12,14 @@ public class AccountDAO implements DAO {
 
   private String query;
   private DBConnection conn = new DBConnection();
-  private HashMap<Integer, Account> accountHash = new HashMap<Integer, Account>();
+  private HashMap<String, Account> accountHash = new HashMap<String, Account>();
 
   @Override
   public HashMap getAll() throws SQLException {
     conn.setConnection();
     PreparedStatement ps;
     ResultSet rs = null;
+
     query = "Select * from " + this.getTable();
 
     try {
@@ -29,12 +31,14 @@ public class AccountDAO implements DAO {
 
     while (rs.next()) {
 
-      int empid = rs.getInt("empid");
-      String password = rs.getString("firstname");
+      String userName = rs.getString("username");
+      int empID = rs.getInt("empid");
+      String hashPassword = rs.getString("hashPassword");
+      byte[] salt = rs.getBytes("salt");
       boolean is_admin = rs.getBoolean("is_admin");
 
-      Account account = new Account(empid, password, is_admin);
-      accountHash.put(account.getEmpid(), account);
+      Account account = new Account(userName, hashPassword, is_admin);
+      accountHash.put(account.getUsername(), account);
     }
     conn.closeConnection();
     return accountHash;
@@ -44,39 +48,58 @@ public class AccountDAO implements DAO {
   public void update(Object obj, String colName, Object obj2) throws SQLException {}
 
   @Override
-  public void insert(Object obj) throws SQLException {
+  public void insert(Object obj) throws SQLException {};
+
+  public void insertAccount(Object obj, String pass, Boolean admin) throws SQLException {
     Account account = (Account) obj;
     conn.setConnection();
-    query = "INSERT INTO " + this.getTable() + "(empid,password,is_admin) VALUES (?,?,?)";
+
+    query =
+        "INSERT INTO "
+            + this.getTable()
+            + "(username,empid,hashPassword,salt,is_admin) VALUES (?,?,?,?,?)";
+
     PreparedStatement ps;
     try {
       ps = conn.getConnection().prepareStatement(query);
-      ps.setInt(1, account.getEmpID());
-      ps.setString(2, account.getPassword());
-      ps.setString(3, account.getCan_serve());
+      ps.setString(1, account.getUsername());
+      ps.setInt(2, account.getEmpID());
+      account.setPassword(pass);
+      byte[] salt = account.getSalt();
+      ps.setString(3, account.getHashedPassword(salt));
+      ps.setBytes(4, salt);
+      account.setAdmin(admin);
+      ps.setBoolean(5, account.getAdmin());
+      ps.executeUpdate();
+
     } catch (SQLException e) {
       System.out.println("SQL exception");
       e.printStackTrace();
+    } catch (NoSuchAlgorithmException e) {
+      throw new RuntimeException(e);
     }
-
+    accountHash.put(account.getUsername(), account);
     conn.closeConnection();
   }
 
   @Override
-  public void delete(Object obj) throws SQLException {
+  public void delete(Object obj) throws SQLException {}
+
+  public void deleteAccount(Object obj) throws SQLException {
 
     Account account = (Account) obj;
     conn.setConnection();
+    query = "DELETE FROM " + this.getTable() + " WHERE username = ?";
     PreparedStatement ps = conn.getConnection().prepareStatement(query);
 
-    query = "DELETE FROM " + this.getTable() + " WHERE empID = ?";
-
     try {
-      ps.setInt(1, account.getEmpID());
+      ps.setString(1, account.getUsername());
+      ps.executeUpdate();
     } catch (SQLException e) {
       System.err.println("SQL Exception");
     }
     conn.closeConnection();
+    accountHash.remove(account.getUsername());
   }
 
   @Override

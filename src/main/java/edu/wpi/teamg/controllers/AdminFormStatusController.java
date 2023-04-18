@@ -2,6 +2,7 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.*;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -11,7 +12,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,7 +25,6 @@ public class AdminFormStatusController {
   @FXML TableView<MealRequest> mealTable;
   @FXML TableView<ConferenceRoomRequest> roomTable;
   @FXML TableView<FlowerRequest> flowerTable;
-
   // Main Table
   @FXML TableColumn<Request, Integer> empID;
   @FXML TableColumn<Request, String> reqType;
@@ -73,10 +72,12 @@ public class AdminFormStatusController {
   @FXML TableColumn<ConferenceRoomRequest, Date> flowerDate;
   @FXML TableColumn<ConferenceRoomRequest, Time> flowerTime;
 
-  @FXML Button allRequestTableButton;
-  @FXML Button mealTableButton;
-  @FXML Button roomTableButton;
-  @FXML Button flowerTableButton;
+  @FXML MFXButton allRequestTableButton;
+  @FXML MFXButton mealTableButton;
+  @FXML MFXButton roomTableButton;
+  @FXML MFXButton flowerTableButton;
+  //  @FXML MFXButton FurnitureTableButton;
+  //  @FXML MFXButton OfficeSupplyTableButton;
 
   ObservableList<Request> testList;
   ObservableList<MealRequest> testMealList;
@@ -241,7 +242,6 @@ public class AdminFormStatusController {
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }
-
     return flowerHashMap;
   }
 
