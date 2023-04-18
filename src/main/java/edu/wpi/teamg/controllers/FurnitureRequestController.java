@@ -68,8 +68,8 @@ public class FurnitureRequestController {
   public void initialize() throws SQLException {
     furnSubmitButton.setOnMouseClicked(
         event -> {
-          allDataFilled();
           furnOrder();
+          allDataFilled();
           Navigation.navigate(Screen.FURNITURE_REQUEST_SUBMIT);
         });
 
@@ -136,34 +136,43 @@ public class FurnitureRequestController {
   public void selectChairOption() {
     if (selectedChair.isVisible()) {
       selectedChair.setVisible(false);
-      Order.replaceAll("Chair,", "");
+      //  Order.replaceAll("Chair,", "");
     } else {
       selectedChair.setVisible(true);
-      Order += "Chair, ";
+      // Order += "Chair, ";
     }
   }
 
   public void selectCouchOption() {
     if (selectedCouch.isVisible() == false) {
       selectedCouch.setVisible(true);
-      Order += "Couch, ";
+      // Order += "Couch, ";
     } else if (selectedCouch.isVisible() == true) {
       selectedCouch.setVisible(false);
-      Order.replaceAll("Couch, ", "");
+      //   Order.replaceAll("Couch, ", "");
     }
   }
 
   public void selectTableOption() {
     if (selectedTable.isVisible() == false) {
       selectedTable.setVisible(true);
-      Order += "Table, ";
+      // Order += "Table, ";
     } else if (selectedTable.isVisible() == true) {
       selectedTable.setVisible(false);
-      Order.replaceAll("Table, ", "");
+      //  Order.replaceAll("Table, ", "");
     }
   }
 
   public void furnOrder() {
+    if (selectedChair.isVisible()) {
+      Order += "Chair, ";
+    }
+    if (selectedCouch.isVisible()) {
+      Order += "Couch, ";
+    }
+    if (selectedTable.isVisible()) {
+      Order += "Table, ";
+    }
     furnChoice.setText(Order);
     // System.out.println(mealFoodChoice.getText());
   }
