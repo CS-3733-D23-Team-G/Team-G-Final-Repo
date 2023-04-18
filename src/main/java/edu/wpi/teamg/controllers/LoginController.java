@@ -64,6 +64,8 @@ public class LoginController {
       account.setPassword(pass);
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
+        if (tableAdmin) Navigation.setAdmin();
+        Navigation.setLoggedin();
         Navigation.navigate(Screen.HOME);
       } else {
         incorrectPassword();

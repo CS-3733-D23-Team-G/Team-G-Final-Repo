@@ -83,11 +83,9 @@ public class FlowersRequestController {
 
     bouquetSizeChoiceBox.setItems(listSizes);
 
-
     checkFields.setVisible(false);
 
     clearAll.setOnAction(event -> clearFlowers());
-
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName = this.getHashMapEmployeeLongName("Flowers Request");

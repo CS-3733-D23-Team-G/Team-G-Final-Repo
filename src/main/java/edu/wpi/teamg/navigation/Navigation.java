@@ -7,6 +7,9 @@ import javafx.scene.Node;
 import javax.swing.*;
 
 public class Navigation {
+  static Boolean AdminCheck;
+  static Boolean EmployeeCheck;
+
   public static void navigate(final Screen screen) {
 
     final String filename = screen.getFilename();
@@ -16,21 +19,60 @@ public class Navigation {
 
       App.getRootPane().setCenter(loader.load());
 
-      if (screen != Screen.SIGNAGE_PAGE && screen != Screen.LOGIN_PAGE) {
-        final FXMLLoader BannerLoader1 =
-            new FXMLLoader(App.class.getResource("views/TopBorder.fxml"));
-        final Node MainBanner = BannerLoader1.load();
-        App.getRootPane().setTop(MainBanner);
+      if (screen == Screen.SIGNAGE_SCREENSAVER_PAGE) {
+        final FXMLLoader BannerLoaderPatient1 =
+            new FXMLLoader(App.class.getResource("views/PatientBanner.fxml"));
+        final Node PatientBanner1 = BannerLoaderPatient1.load();
+        App.getRootPane().setTop(PatientBanner1);
+      } else if (screen == Screen.PATHFINDING_PAGE) {
+        if (EmployeeCheck) {
+          AdminBannerManager();
+        } else {
+          PaitentBanner();
+        }
       } else if (screen == Screen.LOGIN_PAGE) {
-        final FXMLLoader BannerLoader2 =
-            new FXMLLoader(App.class.getResource("views/LoginBanner.fxml"));
-        final Node LoginBanner = BannerLoader2.load();
-        App.getRootPane().setTop(LoginBanner);
+        LoginBanner();
       } else {
-        App.getRootPane().setTop(null);
+        AdminBannerManager();
       }
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }
+  }
+
+  public static void AdminBannerManager() throws IOException {
+    if (AdminCheck) {
+      final FXMLLoader BannerLoaderAdmin =
+          new FXMLLoader(App.class.getResource("views/AdminTopBorder.fxml"));
+      final Node AdminBanner = BannerLoaderAdmin.load();
+      App.getRootPane().setTop(AdminBanner);
+    } else {
+      final FXMLLoader BannerLoader1 =
+          new FXMLLoader(App.class.getResource("views/TopBorder.fxml"));
+      final Node MainBanner = BannerLoader1.load();
+      App.getRootPane().setTop(MainBanner);
+    }
+  }
+
+  public static void PaitentBanner() throws IOException {
+    final FXMLLoader BannerLoaderPatient =
+        new FXMLLoader(App.class.getResource("views/PatientBanner.fxml"));
+    final Node PatientBanner = BannerLoaderPatient.load();
+    App.getRootPane().setTop(PatientBanner);
+  }
+
+  public static void LoginBanner() throws IOException {
+    final FXMLLoader BannerLoaderLogin =
+        new FXMLLoader(App.class.getResource("views/LoginBanner.fxml"));
+    final Node LoginBanner = BannerLoaderLogin.load();
+    App.getRootPane().setTop(LoginBanner);
+  }
+
+  public static void setAdmin() {
+    AdminCheck = true;
+  }
+
+  public static void setLoggedin() {
+    EmployeeCheck = true;
   }
 }
