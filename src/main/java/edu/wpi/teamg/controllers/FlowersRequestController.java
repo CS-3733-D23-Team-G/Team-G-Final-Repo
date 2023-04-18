@@ -70,7 +70,6 @@ public class FlowersRequestController {
 
     bouquetSizeChoiceBox.setItems(listSizes);
     flowerTypeCheckBox.getItems().addAll(listFlowers);
-    EmployeeSearchBox.getItems().addAll(listEmployee);
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName = this.getHashMapEmployeeLongName("Flowers Request");

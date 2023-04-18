@@ -17,9 +17,7 @@ public class DAORepo {
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
   private FlowerRequestDAO flowerRequestDAO = new FlowerRequestDAO();
 
-  private LoginDao loginDAO = new LoginDao();
   private FurnitureDAO furnitureRequest = new FurnitureDAO();
-
 
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
@@ -57,13 +55,10 @@ public class DAORepo {
     return locationNameDao.getAll();
   }
 
-  public HashMap getAllLogins() throws SQLException {
-    return loginDAO.getAll();
-  }
-
   public HashMap getAllFurniture() throws SQLException {
     return furnitureRequest.getAll();
   }
+
   public void insertNode(Object obj) throws SQLException {
     nodeDao.insert(obj);
   }
@@ -96,14 +91,9 @@ public class DAORepo {
     locationNameDao.insert(obj);
   }
 
-  public void insertLogin(Object obj) throws SQLException {
-    loginDAO.insert(obj);
-  }
-
   public void insertFurniture(Object obj) throws SQLException {
     furnitureRequest.insert(obj);
   }
-
 
   public void deleteNode(Object obj) throws SQLException {
     nodeDao.delete(obj);
@@ -211,9 +201,5 @@ public class DAORepo {
 
   public HashMap getEmployeeFullName(String canServe) throws SQLException {
     return employeeDAO.getEmployeeFullName(canServe);
-  }
-
-  public HashMap getEmployeeFullName(String can_serve) {
-    return employeeDAO.getEmplyeeFullName(can_serve);
   }
 }

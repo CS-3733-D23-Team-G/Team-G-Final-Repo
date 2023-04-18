@@ -14,9 +14,9 @@ public class FurnitureRequest extends Request {
 
   public FurnitureRequest(
       String reqtype,
-      int empid,
+      String empid,
       String location,
-      int serveBy,
+      String serveBy,
       StatusTypeEnum status,
       Date deliveryDate,
       Time deliveryTime,

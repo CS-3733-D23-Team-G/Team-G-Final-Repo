@@ -54,9 +54,9 @@ public class FurnitureDAO implements DAO {
       FurnitureRequest furnitureRequest =
           new FurnitureRequest(
               reqType,
-              empID,
+              "",
               longName,
-              serv_by,
+              "",
               status,
               requestdate,
               requesttime,
@@ -109,10 +109,11 @@ public class FurnitureDAO implements DAO {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
       ps_Req.setInt(1, maxID);
       ps_Req.setString(2, "FR");
-      ps_Req.setInt(3, furn.getEmpid());
-      int nodeID = nodeDAO.getNodeIDbyLongName(furn.getLocation());
+      ps_Req.setInt(3, 1);
+      int nodeID =
+          nodeDAO.getNodeIDbyLongName(furn.getLocation(), new java.sql.Date(2023 - 01 - 01));
       ps_Req.setInt(4, nodeID);
-      ps_Req.setInt(5, furn.getServeBy());
+      ps_Req.setInt(5, 1);
       ps_Req.setObject(6, furn.getStatus(), java.sql.Types.OTHER);
       ps_Req.setDate(7, furn.getRequestDate());
       ps_Req.setTime(8, furn.getRequestTime());

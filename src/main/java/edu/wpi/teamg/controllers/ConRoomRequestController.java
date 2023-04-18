@@ -42,7 +42,6 @@ public class ConRoomRequestController {
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
 
-
   DAORepo dao = new DAORepo();
 
   @FXML
@@ -106,7 +105,7 @@ public class ConRoomRequestController {
 
   public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
 
-    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+    HashMap longNameHashMap = new HashMap<Integer, String>();
 
     try {
       longNameHashMap = dao.getEmployeeFullName(canServe);
@@ -116,7 +115,6 @@ public class ConRoomRequestController {
 
     return longNameHashMap;
   }
-
 
   public void storeRoomValues() throws SQLException {
 
