@@ -193,7 +193,7 @@
                      <content>
                         <Pane prefHeight="779.0">
                            <children>
-                              <ImageView fx:id="sunflowerOption" fitWidth="600.0" layoutX="100.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="sunflowerOption" fitWidth="600.0" layoutX="90.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/UnClickedSunflowerImage.png" />
                                  </image>
@@ -201,7 +201,7 @@
                                     <Rectangle2D />
                                  </viewport>
                               </ImageView>
-                              <ImageView fx:id="selectedSunflower" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="selectedSunflower" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/ClickedSunflowerImage.png" />
                                  </image>
@@ -209,7 +209,7 @@
                                     <Rectangle2D />
                                  </viewport>
                               </ImageView>
-                              <ImageView fx:id="purpleflowerOption" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="purpleflowerOption" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/UnclickedPurpleflower.png" />
                                  </image>
@@ -217,7 +217,7 @@
                                     <Rectangle2D />
                                  </viewport>
                               </ImageView>
-                              <ImageView fx:id="selectedPurpleflower" fitWidth="600.0" layoutX="100.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="selectedPurpleflower" fitWidth="600.0" layoutX="90.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/ClickedPurpleflower.png" />
                                  </image>
@@ -225,7 +225,7 @@
                                     <Rectangle2D />
                                  </viewport>
                               </ImageView>
-                              <ImageView fx:id="redflowerOption" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="redflowerOption" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/UnClickedRedflower.png" />
                                  </image>
@@ -233,7 +233,7 @@
                                     <Rectangle2D />
                                  </viewport>
                               </ImageView>
-                              <ImageView fx:id="selectedRedflower" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="selectedRedflower" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/ClickedRedflower.png" />
                                  </image>
