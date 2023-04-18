@@ -70,8 +70,9 @@ public class FurnitureRequestController {
         event -> {
           furnOrder();
           allDataFilled();
-          Navigation.navigate(Screen.FURNITURE_REQUEST_SUBMIT);
         });
+
+    checkFields.setVisible(false);
 
     furnClearAll.setOnAction(event -> clearAllData());
 
@@ -243,7 +244,7 @@ public class FurnitureRequestController {
       }
       Navigation.navigate(Screen.FURNITURE_REQUEST_SUBMIT);
     } else {
-      checkFields.setText("Not All Fields Are Filled");
+      checkFields.setVisible(true);
     }
   }
 
