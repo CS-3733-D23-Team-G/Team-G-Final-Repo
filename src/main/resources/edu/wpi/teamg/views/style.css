@@ -349,6 +349,13 @@
     -fx-alignment: center;
 }
 
+/* banner CSS */
+.banner_login_exit_text {
+    -fx-font-family: "Poppins";
+     -fx-font-size: 16;
+     -fx-pref-height: 35;
+  /*   -fx-pref-width: 300; */
 
+}
 
 
