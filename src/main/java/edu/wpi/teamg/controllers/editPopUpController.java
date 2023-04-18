@@ -131,6 +131,8 @@ public class editPopUpController {
             nFloor.getText(),
             nBuilding.getText());
     nodeDAO.delete(node);
+
+    App.refresh();
   }
 
   public void disMove(int nodeID) throws SQLException, IOException {

@@ -182,17 +182,19 @@ public class MapEditorController {
           }
         });
     // Scaling is currently the issue with the node map
+    //
+    //    NodeDAO nodeDAO = new NodeDAO();
+    //
+    //    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
+    //    ArrayList<edu.wpi.teamg.ORMClasses.Node> listOfNodes = new ArrayList<>(nodes.values());
 
-    NodeDAO nodeDAO = new NodeDAO();
-
-    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
-    ArrayList<edu.wpi.teamg.ORMClasses.Node> listOfNodes = new ArrayList<>(nodes.values());
-    HashMap<Integer, String> ln = nodeDAO.getLongNames("L1");
-    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
+    ArrayList<Node> listOfNodes = allNodeList;
+    //    HashMap<Integer, String> ln = nodeDAO.getLongNames("L1");
+    //    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
 
     for (int i = 0; i < listOfNodes.size(); i++) {
       if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-        getNodesWFunctionality(listOfNodes, i, sn, ln);
+        getNodesWFunctionality(listOfNodes, i, sn);
       }
     }
     //    test.setOnMouseClicked(
@@ -252,34 +254,35 @@ public class MapEditorController {
   }
 
   public void newNodes(int index) throws SQLException {
-    NodeDAO nodeDAO = new NodeDAO();
+    //    NodeDAO nodeDAO = new NodeDAO();
+    //
+    //    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
+    //    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
+    //    HashMap<Integer, String> snL2 = nodeDAO.getShortName("L2");
+    //    HashMap<Integer, String> sn1 = nodeDAO.getShortName("1 ");
+    //    HashMap<Integer, String> sn2 = nodeDAO.getShortName("2 ");
+    //    HashMap<Integer, String> sn3 = nodeDAO.getShortName("3 ");
+    //    HashMap<Integer, String> ln = nodeDAO.getLongNames("L1");
+    //    HashMap<Integer, String> lnL2 = nodeDAO.getLongNames("L2");
+    //    HashMap<Integer, String> ln1 = nodeDAO.getLongNames("1 ");
+    //    HashMap<Integer, String> ln2 = nodeDAO.getLongNames("2 ");
+    //    HashMap<Integer, String> ln3 = nodeDAO.getLongNames("3 ");
 
-    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
-    ArrayList<edu.wpi.teamg.ORMClasses.Node> listOfNodes = new ArrayList<>(nodes.values());
-    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
-    HashMap<Integer, String> snL2 = nodeDAO.getShortName("L2");
-    HashMap<Integer, String> sn1 = nodeDAO.getShortName("1 ");
-    HashMap<Integer, String> sn2 = nodeDAO.getShortName("2 ");
-    HashMap<Integer, String> sn3 = nodeDAO.getShortName("3 ");
-    HashMap<Integer, String> ln = nodeDAO.getLongNames("L1");
-    HashMap<Integer, String> lnL2 = nodeDAO.getLongNames("L2");
-    HashMap<Integer, String> ln1 = nodeDAO.getLongNames("1 ");
-    HashMap<Integer, String> ln2 = nodeDAO.getLongNames("2 ");
-    HashMap<Integer, String> ln3 = nodeDAO.getLongNames("3 ");
+    ArrayList<Node> listOfNodes = allNodeList;
 
     nodePane.getChildren().clear();
     switch (index) {
       case 0:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-            getNodesWFunctionality(listOfNodes, i, sn, ln);
+            getNodesWFunctionality(listOfNodes, i, sn);
           }
         }
         break;
       case 1:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L2")) {
-            getNodesWFunctionality(listOfNodes, i, snL2, lnL2);
+            getNodesWFunctionality(listOfNodes, i, snL2);
           }
         }
         break;
@@ -287,7 +290,7 @@ public class MapEditorController {
       case 2:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
-            getNodesWFunctionality(listOfNodes, i, sn1, ln1);
+            getNodesWFunctionality(listOfNodes, i, sn1);
           }
         }
 
@@ -295,7 +298,7 @@ public class MapEditorController {
       case 3:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "2 ")) {
-            getNodesWFunctionality(listOfNodes, i, sn2, ln2);
+            getNodesWFunctionality(listOfNodes, i, sn2);
           }
         }
 
@@ -303,7 +306,7 @@ public class MapEditorController {
       case 4:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "3 ")) {
-            getNodesWFunctionality(listOfNodes, i, sn3, ln3);
+            getNodesWFunctionality(listOfNodes, i, sn3);
           }
         }
 
@@ -312,14 +315,13 @@ public class MapEditorController {
   }
 
   private void getNodesWFunctionality(
-      ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn, HashMap<Integer, String> ln)
-      throws SQLException {
+      ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn) throws SQLException {
 
     Node currentNode = listOfNodes.get(i);
     Label nodeLabel = new Label();
-
-    LocationNameDAO locationNameDAO = new LocationNameDAO();
-    HashMap<String, LocationName> labelMap = locationNameDAO.getAll();
+    //
+    //    LocationNameDAO locationNameDAO = new LocationNameDAO();
+    //    HashMap<String, LocationName> labelMap = locationNameDAO.getAll();
 
     Circle point =
         new Circle(
@@ -327,13 +329,12 @@ public class MapEditorController {
             listOfNodes.get(i).getYcoord(),
             10,
             Color.rgb(1, 45, 90));
-    if (!Objects.equals(labelMap.get(ln.get(currentNode.getNodeID())).getNodeType(), "HALL")) {
-      nodeLabel.setTextFill(Color.BLACK);
-      nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
-      nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
-      nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
-      nodeLabel.toFront();
-    }
+    nodeLabel.setTextFill(Color.BLACK);
+    nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
+    nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
+    nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
+    nodeLabel.toFront();
+
     /*
        point.setOnMouseEntered(event ->
 

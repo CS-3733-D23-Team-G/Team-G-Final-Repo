@@ -72,7 +72,7 @@
             </AnchorPane>
             <AnchorPane styleClass="table_view_right" HBox.hgrow="ALWAYS">
                <children>
-                  <StackPane prefHeight="980.0" prefWidth="1450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <StackPane prefHeight="980.0" prefWidth="1450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
                      <children>
                         <TableView fx:id="moveTable" styleClass="table-text">
                            <columns>

@@ -62,6 +62,22 @@
                            <font>
                               <Font size="50.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets bottom="25.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="editTableForm" styleClass="table_view_Button" text="Edit Tables">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="25.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="cancelTableForm" styleClass="table_view_Button" text="Cancel Tables">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
                         </MFXButton>
                      </children>
                   </VBox>
