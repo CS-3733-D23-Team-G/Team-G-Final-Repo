@@ -63,10 +63,6 @@ public class FlowersRequestController {
       FXCollections.observableArrayList(
           "10 Stems (small)", "20 Stems (medium)", "30 Stems (large)");
 
-  ObservableList<String> listEmployee =
-      FXCollections.observableArrayList(
-          "Tom", "Kristine", "Raj", "Professor Wong", "Mo", "Andrew", "Hung");
-
   DAORepo dao = new DAORepo();
 
   @FXML

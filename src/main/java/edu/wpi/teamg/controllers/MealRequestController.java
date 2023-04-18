@@ -32,6 +32,7 @@ public class MealRequestController {
   // TextFields
   @FXML MFXTextField mealTimeOfDeliver;
 
+
   @FXML MFXTextField mealPersonOrderingForData;
   @FXML MFXTextField mealNotesData;
 
@@ -89,7 +90,6 @@ public class MealRequestController {
     checkFields.setVisible(false);
 
     mealClearAll.setOnAction(event -> clearAllData());
-
     mealPersonOrderingForData.getText();
     mealNotesData.getText();
     // mealFoodChoice.setItems(foodList);

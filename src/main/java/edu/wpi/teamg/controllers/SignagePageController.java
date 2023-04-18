@@ -61,6 +61,7 @@ public class SignagePageController {
   @FXML SearchableComboBox startLocDrop;
   @FXML SearchableComboBox endLocDrop;
 
+
   @FXML SearchableComboBox floorStart;
   @FXML SearchableComboBox floorEnd;
 

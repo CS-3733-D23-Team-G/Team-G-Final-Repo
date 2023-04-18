@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class EmployeeDAO implements DAO {
 
@@ -160,5 +161,6 @@ public class EmployeeDAO implements DAO {
     conn.closeConnection();
 
     return longNameHash;
+
   }
 }

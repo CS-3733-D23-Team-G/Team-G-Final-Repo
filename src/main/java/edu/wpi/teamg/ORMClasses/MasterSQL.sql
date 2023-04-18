@@ -1,5 +1,6 @@
 drop table if exists iteration2.MealRequest;
 drop table if exists iteration2.ConferenceRoomRequest;
+drop table if exists iteration2.FurnitureRequest;
 drop table if exists iteration2.flowerrequest;
 drop table if exists iteration2.Account;
 drop table if exists iteration2.Request;
@@ -98,6 +99,14 @@ create table iteration2.flowerrequest(
     recipient varchar(50),
     note varchar(225),
     foreign key (reqID) references iteration2.request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+create table iteration2.FurnitureRequest(
+    reqID int primary key,
+    furnitureType varchar(200),
+    note varchar(225),
+    recipient varchar(200),
+    foreign key (reqID) references iteration2.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
+
 );
 
 create table iteration2.account(

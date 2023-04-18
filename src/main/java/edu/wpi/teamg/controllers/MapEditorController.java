@@ -331,3 +331,4 @@ public class MapEditorController {
     Platform.exit();
   }
 }
+

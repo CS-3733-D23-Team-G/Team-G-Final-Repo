@@ -1,15 +1,238 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
-<VBox alignment="TOP_CENTER" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FurnitureRequestController">
-   <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="functionality_zone">
-          <children>
-              <Text layoutX="238.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Furniture Request Page" />
-          </children>
-      </AnchorPane>
-   </children>
-</VBox>
+<BorderPane prefHeight="10.0" prefWidth="10.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FurnitureRequestController">
+    <center>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" stylesheets="@style.css">
+                    <children>
+
+                        <AnchorPane layoutX="123.0" layoutY="111.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+
+                            <styleClass>
+                                <String fx:value="widget_background" />
+                                <String fx:value="widget_homepage_pair" />
+                            </styleClass>
+                            <children>
+
+                                <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <VBox prefHeight="200.0" prefWidth="198.0" styleClass="mealLocationNotes_vbox">
+                                            <children>
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Recipient">
+                                                    <font>
+                                                        <Font size="22.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" top="15.0" />
+                                                    </VBox.margin>
+                                                </Text>
+                                                <Line endX="-11.107086181640625" startX="-100.0" stroke="#f6bd38" />
+                                                <MFXTextField fx:id="furnRecipient" minHeight="-Infinity" prefHeight="30.0" prefWidth="394.0" styleClass="text_box">
+                                                    <VBox.margin>
+                                                        <Insets top="15.0" />
+                                                    </VBox.margin>
+                                                </MFXTextField>
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Delivery Location">
+                                                    <font>
+                                                        <Font size="22.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" top="15.0" />
+                                                    </VBox.margin>
+                                                </Text>
+                                                <Line endX="67.5" startX="-100.0" stroke="#f6bd38" />
+                                                <SearchableComboBox fx:id="locationSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="text_box">
+                                                    <VBox.margin>
+                                                        <Insets top="15.0" />
+                                                    </VBox.margin>
+                                                </SearchableComboBox>
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Notes">
+                                                    <font>
+                                                        <Font size="22.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" top="15.0" />
+                                                    </VBox.margin>
+                                                </Text>
+                                                <Line endX="-43.5" startX="-100.0" stroke="#f6bd38" />
+                                                <MFXTextField fx:id="furnNotesData" prefHeight="162.0" prefWidth="386.0">
+                                                    <VBox.margin>
+                                                        <Insets top="15.0" />
+                                                    </VBox.margin>
+                                                </MFXTextField>
+                                            </children>
+                                            <padding>
+                                                <Insets left="25.0" right="25.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox prefHeight="200.0" prefWidth="436.0" styleClass="mealLocationNotes_vbox">
+                                            <children>
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Date">
+                                                    <font>
+                                                        <Font size="22.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" top="15.0" />
+                                                    </VBox.margin>
+                                                </Text>
+                                                <Line endX="-56.0" startX="-100.0" stroke="#f6bd38" />
+                                                <MFXDatePicker fx:id="furnDate" minHeight="-Infinity" prefHeight="30.0" prefWidth="324.0" styleClass="text_box">
+                                                    <VBox.margin>
+                                                        <Insets top="15.0" />
+                                                    </VBox.margin>
+                                                </MFXDatePicker>
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Time">
+                                                    <font>
+                                                        <Font size="22.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" top="15.0" />
+                                                    </VBox.margin>
+                                                </Text>
+                                                <Line endX="-52.0" startX="-100.0" stroke="#f6bd38" />
+                                                <MFXTextField fx:id="furnTimeOfDeliver" minHeight="-Infinity" prefHeight="30.0" prefWidth="317.0" styleClass="text_box">
+                                                    <VBox.margin>
+                                                        <Insets top="15.0" />
+                                                    </VBox.margin>
+                                                </MFXTextField>
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Assign To">
+                                                    <font>
+                                                        <Font size="22.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" top="15.0" />
+                                                    </VBox.margin>
+                                                </Text>
+                                                <Line endX="-9.086990356445312" startX="-100.0" stroke="#f6bd38" />
+                                                <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="text_box">
+                                                    <VBox.margin>
+                                                        <Insets top="15.0" />
+                                                    </VBox.margin>
+                                                </SearchableComboBox>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                    <children>
+                                                        <MFXButton fx:id="furnClearAll" prefHeight="46.0" prefWidth="217.0" text="Clear">
+                                                            <HBox.margin>
+                                                                <Insets />
+                                                            </HBox.margin>
+                                                        </MFXButton>
+                                                        <MFXButton fx:id="furnSubmitButton" prefHeight="46.0" prefWidth="210.0" text="Confirm">
+                                                            <HBox.margin>
+                                                                <Insets left="15.0" />
+                                                            </HBox.margin>
+                                                        </MFXButton>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets top="50.0" />
+                                                    </VBox.margin>
+                                                </HBox>
+                                                <Label fx:id="checkFields" prefHeight="17.0" prefWidth="252.0" textFill="#d01616" />
+                                            </children>
+                                            <padding>
+                                                <Insets left="25.0" right="25.0" />
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                        <Text layoutX="123.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Furniture Request Form" AnchorPane.topAnchor="50.0">
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" stylesheets="@style.css">
+                    <children>
+                        <MFXScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" maxHeight="743.0" maxWidth="745.0" prefHeight="743.0" prefWidth="742.0" stylesheets="@style.css" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                            <styleClass>
+                                <String fx:value="scroll-pane-Furn" />
+                                <String fx:value="widget_homepage_pair" />
+                            </styleClass>
+                            <content>
+                                <Pane prefHeight="779.0">
+                                    <children>
+                                        <ImageView fx:id="chairOption" fitHeight="200.0" fitWidth="400.0" layoutX="80.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Images/Chair.png" />
+                                            </image>
+                                            <viewport>
+                                                <Rectangle2D />
+                                            </viewport>
+                                        </ImageView>
+                                        <ImageView fx:id="selectedChair" fitHeight="200.0" fitWidth="400.0" layoutX="80.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Images/Confirm_chair.png" />
+                                            </image>
+                                            <viewport>
+                                                <Rectangle2D />
+                                            </viewport>
+                                        </ImageView>
+                                        <ImageView fx:id="couchOption" fitHeight="200.0" fitWidth="400.0" layoutX="80.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Images/Couch.png" />
+                                            </image>
+                                            <viewport>
+                                                <Rectangle2D />
+                                            </viewport>
+                                        </ImageView>
+                                        <ImageView fx:id="selectedCouch" fitHeight="200.0" fitWidth="400.0" layoutX="80.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Images/Confirm_Couch.png" />
+                                            </image>
+                                            <viewport>
+                                                <Rectangle2D />
+                                            </viewport>
+                                        </ImageView>
+                                        <ImageView fx:id="tableOption" fitHeight="200.0" fitWidth="400.0" layoutX="80.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Images/table.png" />
+                                            </image>
+                                            <viewport>
+                                                <Rectangle2D />
+                                            </viewport>
+                                        </ImageView>
+                                        <ImageView fx:id="selectedTable" fitHeight="200.0" fitWidth="400.0" layoutX="80.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Images/Confirm_Table.png" />
+                                            </image>
+                                            <viewport>
+                                                <Rectangle2D />
+                                            </viewport>
+                                        </ImageView>
+                                        <Label fx:id="furnChoice" layoutX="362.0" layoutY="806.0" text="Label" visible="false" />
+                                    </children>
+                                </Pane>
+
+                            </content>
+                        </MFXScrollPane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>
