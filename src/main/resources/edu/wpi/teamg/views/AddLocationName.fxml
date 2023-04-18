@@ -9,12 +9,6 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AddLocationNameController">
    <children>
-      <HBox alignment="CENTER" prefWidth="200.0">
-         <children>
-            <Label prefWidth="200.0" text="NodeID" />
-            <MFXTextField fx:id="locNodeID" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
       <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER">
          <children>
             <Label prefWidth="200.0" text="Short Name" />

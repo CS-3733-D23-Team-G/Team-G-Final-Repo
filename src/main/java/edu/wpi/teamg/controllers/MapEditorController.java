@@ -48,6 +48,8 @@ public class MapEditorController {
   @FXML MFXButton addLoc;
   @FXML MFXButton addMove;
 
+  @FXML MFXButton deleteLoc;
+
   public void initialize() throws SQLException, IOException {
     pane.setVisible(true);
     nodePane.setVisible(true);
@@ -72,9 +74,15 @@ public class MapEditorController {
         event -> {
           try {
             addMoves();
-          } catch (IOException e) {
+          } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
-          } catch (SQLException e) {
+          }
+        });
+    deleteLoc.setOnMouseClicked(
+        event -> {
+          try {
+            deleteLocation();
+          } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
           }
         });
@@ -377,6 +385,18 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     AddMoveController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void deleteLocation() throws IOException, SQLException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/DeleteLocationNamePopOver.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    DeleteLocationNameControllerPopOver controller = loader.getController();
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());

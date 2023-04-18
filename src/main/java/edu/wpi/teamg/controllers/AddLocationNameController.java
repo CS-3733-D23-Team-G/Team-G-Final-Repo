@@ -9,8 +9,6 @@ import javafx.fxml.FXML;
 
 public class AddLocationNameController {
 
-  @FXML MFXTextField locNodeID;
-
   @FXML MFXTextField locShortName;
 
   @FXML MFXTextField locLongName;
@@ -20,7 +18,6 @@ public class AddLocationNameController {
   @FXML MFXButton locSub;
 
   public void initialize() {
-    locNodeID.setEditable(true);
     locShortName.setEditable(true);
     locLongName.setEditable(true);
     locNodeType.setEditable(true);
@@ -38,7 +35,6 @@ public class AddLocationNameController {
   public void addLocName() throws SQLException {
 
     LocationNameDAO locationNameDAO = new LocationNameDAO();
-    int NodeID = Integer.parseInt(locNodeID.getText());
     String shortName = locShortName.getText();
     String longName = locLongName.getText();
     String nodeType = locNodeType.getText();
