@@ -1,6 +1,7 @@
 package edu.wpi.teamg.ORMClasses;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -127,11 +128,15 @@ public class Graph {
     // Create an empty ArrayList to store the path
     ArrayList<String> path = new ArrayList<>();
     // Call the recursive helper function
-    depthFirstSearchHelper(adjacencyMatrix, startNode, endNode, visited, path);
-    return path;
+    boolean found = depthFirstSearchHelper(adjacencyMatrix, startNode, endNode, visited, path);
+    if (found) {
+      return path;
+    } else {
+      return new ArrayList<String>();
+    }
   }
 
-  public static void depthFirstSearchHelper(
+  public static boolean depthFirstSearchHelper(
       int[][] adjacencyMatrix,
       int currentNode,
       int endNode,
@@ -143,20 +148,21 @@ public class Graph {
     path.add(String.valueOf(currentNode));
     // Check if the current node is the end node
     if (currentNode == endNode) {
-      return;
+      return true;
     }
     // Recursively visit all unvisited adjacent nodes
     for (int i = 0; i < adjacencyMatrix.length; i++) {
       if (adjacencyMatrix[currentNode][i] != 0 && !visited[i]) {
-        depthFirstSearchHelper(adjacencyMatrix, i, endNode, visited, path);
+        boolean found = depthFirstSearchHelper(adjacencyMatrix, i, endNode, visited, path);
         // If the end node has been found, return
-        if (visited[endNode]) {
-          return;
+        if (found) {
+          return true;
         }
       }
     }
     // If the end node has not been found, remove the current node from the path
     path.remove(String.valueOf(currentNode));
+    return false;
   }
 
   public static ArrayList<String> breadthFirstSearch(
@@ -165,7 +171,9 @@ public class Graph {
     Queue<Integer> queue = new LinkedList<>();
     // Create a boolean array to keep track of visited nodes
     boolean[] visited = new boolean[adjacencyMatrix.length];
-    // Create an array list to store the path
+    // Create an array to store the parent node of each visited node
+    int[] parent = new int[adjacencyMatrix.length];
+    // Create an array list to store the absolute path
     ArrayList<String> path = new ArrayList<>();
 
     // Add the start node to the queue and mark it as visited
@@ -175,11 +183,16 @@ public class Graph {
     while (!queue.isEmpty()) {
       // Get the next node in the queue
       int currentNode = queue.remove();
-      // Add the current node to the path
-      path.add(String.valueOf(currentNode));
 
-      // If we've reached the end node, return the path
+      // If we've reached the end node, construct the absolute path and return it
       if (currentNode == endNode) {
+        int node = endNode;
+        while (node != startNode) {
+          path.add(String.valueOf(node));
+          node = parent[node];
+        }
+        path.add(String.valueOf(startNode));
+        Collections.reverse(path);
         return path;
       }
 
@@ -188,6 +201,7 @@ public class Graph {
         if (adjacencyMatrix[currentNode][neighbor] > 0 && !visited[neighbor]) {
           queue.add(neighbor);
           visited[neighbor] = true;
+          parent[neighbor] = currentNode;
         }
       }
     }
