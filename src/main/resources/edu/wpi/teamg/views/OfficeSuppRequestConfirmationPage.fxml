@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.OfficeSuppRequestConfirmationController">
-    <children>
-        <Text layoutX="197.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Office Supplies Request Confirmed" />
-        <ChoiceBox fx:id="serviceRequestChoiceBox" layoutX="192.0" layoutY="40.0" opacity="0.0" prefHeight="64.0" prefWidth="214.0" />
-        <Text disable="true" fill="WHITE" layoutX="237.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Forms" />
-    </children>
-</AnchorPane>
+<BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.OfficeSuppRequestConfirmationController">
+    <center>
+        <VBox alignment="TOP_CENTER" stylesheets="@style.css">
+            <children>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page">
+                    <children>
+                        <HBox alignment="CENTER" layoutX="588.0" layoutY="483.0" prefHeight="36.0" prefWidth="687.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Office Supplies Request Confirmed">
+                                    <font>
+                                        <Font size="30.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
