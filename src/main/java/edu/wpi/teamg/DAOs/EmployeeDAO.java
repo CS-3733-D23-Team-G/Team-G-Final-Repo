@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class EmployeeDAO implements DAO {
 
@@ -92,5 +93,24 @@ public class EmployeeDAO implements DAO {
   public String getTable() {
 
     return "teamgdb.iteration2.employee";
+  }
+
+  public HashMap getEmplyeeFullName(String can_serve) {
+    try {
+      getAll();
+    } catch (SQLException e) {
+      System.err.println("SQL Exception");
+      e.printStackTrace();
+    }
+    HashMap<Integer, String> temp = new HashMap<>();
+    for (Map.Entry<Integer, Employee> holder : employeeHash.entrySet()) {
+      if (holder.getValue().getCan_serve().equals(can_serve)) {
+        temp.put(
+            holder.getValue().getEmpID(),
+            holder.getValue().getFirstName() + " " + holder.getValue().getLastName());
+      }
+    }
+
+    return temp;
   }
 }

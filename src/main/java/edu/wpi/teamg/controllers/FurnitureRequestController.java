@@ -32,7 +32,7 @@ public class FurnitureRequestController {
   // TextFields
   @FXML MFXTextField furnTimeOfDeliver;
 
-   @FXML MFXTextField furnRecipient;
+  @FXML MFXTextField furnRecipient;
 
   @FXML MFXTextField furnNotesData;
 
@@ -62,21 +62,6 @@ public class FurnitureRequestController {
           "Furniture Request Form",
           "Meal Request Form",
           "Office Supplies Request Form");
-
-  ObservableList<String> foodList =
-      FXCollections.observableArrayList(
-          "Fenway Franks",
-          "Choco Taco",
-          "Salt-Based Steak",
-          "Bisquit",
-          "Shrimp Fried Rice",
-          "Beef Wellington",
-          "Spaghetii Taco",
-          "Mac and Cheese Pizza",
-          "Cavatappi",
-          "One Singular Oyster",
-          "CC Buritto Bowl (w/ Siracha)");
-
   DAORepo dao = new DAORepo();
 
   @FXML
@@ -149,12 +134,12 @@ public class FurnitureRequestController {
   }
 
   public void selectChairOption() {
-    if (selectedChair.isVisible() == false) {
+    if (selectedChair.isVisible()) {
+      selectedChair.setVisible(false);
+      Order.replaceAll("Chair,", "");
+    } else {
       selectedChair.setVisible(true);
       Order += "Chair, ";
-    } else if (selectedChair.isVisible() == true) {
-      selectedChair.setVisible(false);
-      Order.replace("Chair, ", "");
     }
   }
 
@@ -164,7 +149,7 @@ public class FurnitureRequestController {
       Order += "Couch, ";
     } else if (selectedCouch.isVisible() == true) {
       selectedCouch.setVisible(false);
-      Order.replace("Couch, ", "");
+      Order.replaceAll("Couch, ", "");
     }
   }
 
@@ -174,20 +159,11 @@ public class FurnitureRequestController {
       Order += "Table, ";
     } else if (selectedTable.isVisible() == true) {
       selectedTable.setVisible(false);
-      Order.replace("Table, ", "");
+      Order.replaceAll("Table, ", "");
     }
   }
 
   public void furnOrder() {
-    if (selectedChair.isVisible()) {
-      Order += "Chair, ";
-    }
-    if (selectedCouch.isVisible()) {
-      Order += "Couch, ";
-    }
-    if (selectedTable.isVisible()) {
-      Order += "Table, ";
-    }
     furnChoice.setText(Order);
     // System.out.println(mealFoodChoice.getText());
   }
@@ -196,7 +172,7 @@ public class FurnitureRequestController {
 
     FurnitureRequest mr =
         new FurnitureRequest(
-            "F",
+            "FR",
             1,
             // assume for now they are going to input a node number, so parseInt
             (String) locationSearchDropdown.getValue(),
@@ -204,55 +180,20 @@ public class FurnitureRequestController {
             StatusTypeEnum.blank,
             Date.valueOf(furnDate.getValue()),
             StringToTime(furnTimeOfDeliver.getText()),
-                //furnRecipient.getText(),
+            furnRecipient.getText(),
             Order,
-            "Yellow", // Color is Unsure if Is Needed
             furnNotesData.getText());
 
     System.out.println(Order);
 
-    //    mr.setEmpid(1);
-    //    mr.setServ_by(1);
-    //    mr.setStatus(StatusTypeEnum.blank);
-    //
-    //    mr.setLocation(Integer.parseInt(mealDeliveryLocationData.getText()));
-    //    mr.setRecipient(mealPersonOrderingForData.getText());
-    //    mr.setNote(mealNotesData.getText());
-    //    mr.setDeliveryDate(Date.valueOf(mealDate.getValue()));
-    //    mr.setDeliveryTime(StringToTime(mealTimeOfDeliver.getText()));
-    //    mr.setOrder(mealFoodChoice.getValue());
-
-    //    System.out.println(
-    //        "Employee ID: "
-    //            + mr.getEmpid()
-    //            + "\nDelivery Location: "
-    //            + mr.getLocation()
-    //            + "\nOrder: "
-    //            + mr.getOrder()
-    //            + "\nNote: "
-    //            + mr.getNote()
-    //            + "\nRecipient: "
-    //            + mr.getRecipient()
-    //            + "\nDelivery Date: "
-    //            + mr.getDeliveryDate()
-    //            + "\nDelivery Time: "
-    //            + mr.getDeliveryTime()
-    //            + "\nStatus: "
-    //            + mr.getStatus());
-
     DAORepo dao = new DAORepo();
-    dao.insertMealRequest(mr);
+    dao.insertFurniture(mr);
   }
 
   public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
 
     HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
-
-    try {
-      longNameHashMap = dao.getEmployeeFullName(canServe);
-    } catch (SQLException e) {
-      System.err.print(e.getErrorCode());
-    }
+    longNameHashMap = dao.getEmployeeFullName(canServe);
 
     return longNameHashMap;
   }

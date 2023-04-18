@@ -46,11 +46,10 @@ public class FurnitureDAO implements DAO {
 
       int serv_by = rs.getInt("serveby");
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
-      String recipient = rs.getString("recipient");
       Date requestdate = rs.getDate("requestdate");
       Time requesttime = rs.getTime("requesttime");
       String furnitureType = rs.getString("furnituretype");
-      String color = rs.getString("color");
+      String recipient = rs.getString("recipient");
       String note = rs.getString("note");
       FurnitureRequest furnitureRequest =
           new FurnitureRequest(
@@ -61,8 +60,8 @@ public class FurnitureDAO implements DAO {
               status,
               requestdate,
               requesttime,
+              recipient,
               furnitureType,
-              color,
               note);
       furnitureRequest.setReqid(reqID);
       furnitureRequestHashMap.put(reqID, furnitureRequest);
@@ -76,14 +75,14 @@ public class FurnitureDAO implements DAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    db.getConnection();
+    db.setConnection();
     PreparedStatement ps_MaxID;
     PreparedStatement ps_Furniture;
     PreparedStatement ps_Req;
     ResultSet rs = null;
     FurnitureRequest furn = (FurnitureRequest) obj;
 
-    SQL_MAXID = "select reqid from " + getRequest() + "order by desc limit 1";
+    SQL_MAXID = "select reqid from " + this.getRequest() + " order by reqid desc limit 1";
     try {
       ps_MaxID = db.getConnection().prepareStatement(SQL_MAXID);
       rs = ps_MaxID.executeQuery();
@@ -96,7 +95,10 @@ public class FurnitureDAO implements DAO {
       maxID = rs.getInt("reqID");
       maxID++;
     }
-    SQL = "insert into " + getTable() + "(reqid, furnitureType, color, note) values(?,?,?,?)";
+    SQL =
+        "insert into "
+            + this.getTable()
+            + " (reqid, furnitureType, note, recipient) values(?,?,?,?)";
 
     SQL_Request =
         "insert into "
@@ -110,8 +112,8 @@ public class FurnitureDAO implements DAO {
       ps_Req.setInt(3, furn.getEmpid());
       int nodeID = nodeDAO.getNodeIDbyLongName(furn.getLocation());
       ps_Req.setInt(4, nodeID);
-      ps_Req.setString(5, furn.getServe_By());
-      ps_Req.setObject(6, furn.getStatus());
+      ps_Req.setInt(5, furn.getServeBy());
+      ps_Req.setObject(6, furn.getStatus(), java.sql.Types.OTHER);
       ps_Req.setDate(7, furn.getRequestDate());
       ps_Req.setTime(8, furn.getRequestTime());
       ps_Req.executeUpdate();
@@ -119,8 +121,8 @@ public class FurnitureDAO implements DAO {
       ps_Furniture = db.getConnection().prepareStatement(SQL);
       ps_Furniture.setInt(1, maxID);
       ps_Furniture.setString(2, furn.getFurnitureType());
-      ps_Furniture.setString(3, furn.getColor());
-      ps_Furniture.setString(4, furn.getNote());
+      ps_Furniture.setString(3, furn.getNote());
+      ps_Furniture.setString(4, furn.getRecipient());
       ps_Furniture.executeUpdate();
     } catch (SQLException e) {
       System.err.println("SQL Exception");

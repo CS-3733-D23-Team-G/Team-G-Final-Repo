@@ -7,8 +7,10 @@ import lombok.Setter;
 
 public class FurnitureRequest extends Request {
   @Getter @Setter private String furnitureType;
-  @Getter @Setter private String color;
   @Getter @Setter private String note;
+  @Getter @Setter private String recipient;
+
+  public FurnitureRequest() {}
 
   public FurnitureRequest(
       String reqtype,
@@ -18,12 +20,12 @@ public class FurnitureRequest extends Request {
       StatusTypeEnum status,
       Date deliveryDate,
       Time deliveryTime,
+      String recipient,
       String furnitureType,
-      String color,
       String note) {
     super(reqtype, empid, location, serveBy, status, deliveryDate, deliveryTime);
     this.furnitureType = furnitureType;
-    this.color = color;
     this.note = note;
+    this.recipient = recipient;
   }
 }

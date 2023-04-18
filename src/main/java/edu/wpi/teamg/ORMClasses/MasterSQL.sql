@@ -102,8 +102,8 @@ create table iteration2.flowerrequest(
 create table iteration2.FurnitureRequest(
     reqID int primary key,
     furnitureType varchar(200),
-    color varchar(50),
     note varchar(225),
+    recipient varchar(200),
     foreign key (reqID) references iteration2.Request(reqID) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
