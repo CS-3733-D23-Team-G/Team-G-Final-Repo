@@ -73,6 +73,10 @@ public class LoginController {
       incorrectPassword();
       System.err.println("SQL Exception on Account");
       e.printStackTrace();
+    } catch (NullPointerException e) {
+      incorrectPassword();
+      System.err.println("Chose neither username nor password that existed in the db");
+      e.printStackTrace();
     }
   }
 
