@@ -965,3 +965,4 @@ public class pathfindingController {
     Platform.exit();
   }
 }
+
