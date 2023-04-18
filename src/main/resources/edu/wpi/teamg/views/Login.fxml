@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,7 +30,10 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Pane>
-                  <CustomTextField fx:id="username" prefHeight="70.0" prefWidth="480.0" styleClass="text_box" />
+                  <CustomTextField fx:id="username" prefHeight="70.0" prefWidth="480.0" styleClass="text_box">
+                     <font>
+                        <Font size="25.0" />
+                     </font></CustomTextField>
                   <Label fx:id="userInc" text="Incorrect Username or Password" textFill="RED">
                      <VBox.margin>
                         <Insets />
@@ -49,7 +53,11 @@
                         <Insets bottom="5.0" top="60.0" />
                      </VBox.margin>
                   </Pane>
-                  <CustomTextField fx:id="password" prefHeight="70.0" prefWidth="480.0" styleClass="text_box" />
+                  <MFXPasswordField fx:id="password" hideCharacter="*" prefHeight="70.0" prefWidth="480.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </MFXPasswordField>
                   <Label fx:id="passInc" text="Incorrect Username or Password" textFill="RED">
                      <VBox.margin>
                         <Insets bottom="16.0" />

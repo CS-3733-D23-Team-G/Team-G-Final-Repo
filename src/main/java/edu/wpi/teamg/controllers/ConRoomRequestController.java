@@ -105,7 +105,7 @@ public class ConRoomRequestController {
 
   public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
 
-    HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
+    HashMap longNameHashMap = new HashMap<Integer, String>();
 
     try {
       longNameHashMap = dao.getEmployeeFullName(canServe);

@@ -76,10 +76,6 @@ public class FlowersRequestController {
   ObservableList<String> listSizes =
       FXCollections.observableArrayList("6 Stems (small)", "12 Stems (medium)", "24 Stems (large)");
 
-  ObservableList<String> listEmployee =
-      FXCollections.observableArrayList(
-          "Tom", "Kristine", "Raj", "Professor Wong", "Mo", "Andrew", "Hung");
-
   DAORepo dao = new DAORepo();
 
   @FXML
@@ -87,9 +83,11 @@ public class FlowersRequestController {
 
     bouquetSizeChoiceBox.setItems(listSizes);
 
+
     checkFields.setVisible(false);
 
     clearAll.setOnAction(event -> clearFlowers());
+
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName = this.getHashMapEmployeeLongName("Flowers Request");

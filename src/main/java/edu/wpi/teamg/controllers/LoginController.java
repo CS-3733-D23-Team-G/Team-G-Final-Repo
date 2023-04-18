@@ -6,6 +6,7 @@ import edu.wpi.teamg.ORMClasses.Account;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import java.awt.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ import org.controlsfx.control.textfield.CustomTextField;
 public class LoginController {
   @FXML MFXButton loginButton;
   @FXML CustomTextField username;
-  @FXML CustomTextField password;
+  @FXML MFXPasswordField password;
 
   @FXML Label userInc;
 
@@ -71,6 +72,10 @@ public class LoginController {
     } catch (SQLException e) {
       incorrectPassword();
       System.err.println("SQL Exception on Account");
+      e.printStackTrace();
+    } catch (NullPointerException e) {
+      incorrectPassword();
+      System.err.println("Chose neither username nor password that existed in the db");
       e.printStackTrace();
     }
   }
