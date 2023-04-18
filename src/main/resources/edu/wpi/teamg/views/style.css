@@ -1,13 +1,14 @@
 @font-face {
     font-family: url('Poppins-Regular.ttf');
 }
+
 .homepage{
     -fx-background-image: url(international-bwh-1428x1110.jpeg);
     -fx-background-size: contain;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 100%,100%;
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #F1F1F1;
     -fx-pref-height: 260;
     -fx-pref-width: 600;
     -fx-alignment: CENTER;
@@ -353,7 +354,8 @@
 /* banner CSS */
 .banner_login_exit_text {
     -fx-font-family: "Poppins";
-    -fx-font-size: 16;
+
+    -fx-font-size: 20;
     -fx-pref-height: 35;
     /*   -fx-pref-width: 300; */
 }
