@@ -1,5 +1,8 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.fxml.FXML;
@@ -8,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 public class SignageScreenSaverController {
+  @FXML MFXButton ClickToPathFinding;
 
   //  @FXML ImageView westArrow;
   //  @FXML ImageView northArrow;
@@ -45,7 +49,7 @@ public class SignageScreenSaverController {
   ArrayList<ImageView> arrows;
 
   public void initialize() {
-
+    ClickToPathFinding.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     arrows =
         new ArrayList<>(
             Arrays.asList(

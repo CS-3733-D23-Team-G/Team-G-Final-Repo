@@ -57,13 +57,15 @@ public class LoginController {
 
         tablePass = rs.getString("hashpassword");
         tableSalt = rs.getBytes("salt");
-        // tableAdmin = rs.getBoolean("is_admin");
+        tableAdmin = rs.getBoolean("is_admin");
       }
 
       Account account = new Account();
       account.setPassword(pass);
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
+        if (tableAdmin) Navigation.setAdmin();
+        Navigation.setLoggedin();
         Navigation.navigate(Screen.HOME);
       } else {
         incorrectPassword();
