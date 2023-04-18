@@ -1,8 +1,6 @@
 package edu.wpi.teamg.ORMClasses;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class Graph {
   private edu.wpi.teamg.ORMClasses.Node[] V;
@@ -12,6 +10,8 @@ public class Graph {
     V = N;
     E = ed;
   }
+
+  public Graph() {}
 
   public int[][] createWeightedAdj() {
     int[][] A1 = new int[V.length][V.length];
@@ -152,6 +152,74 @@ public class Graph {
     s.add(Integer.toString(V[current].getNodeID()));
   }
 
+  public int[][] createAdjacencyMatrix(ArrayList<Node> nodes, ArrayList<Edge> edges) {
+    int numNodes = nodes.size();
+    int[][] adjacencyMatrix = new int[numNodes][numNodes];
+
+    // Initialize the adjacency matrix with zeros
+    for (int i = 0; i < numNodes; i++) {
+      for (int j = 0; j < numNodes; j++) {
+        adjacencyMatrix[i][j] = 0;
+      }
+    }
+
+    for (int i = 0; i < E.length; i++) {
+      int start = E[i].getStartNode();
+      int end = E[i].getEndNode();
+
+      for (Edge edge : edges) {
+        int sourceIndex = start;
+        int destinationIndex = end;
+        adjacencyMatrix[sourceIndex][destinationIndex] = 1;
+        adjacencyMatrix[destinationIndex][sourceIndex] = 1;
+      }
+    }
+    return adjacencyMatrix;
+  }
+  // Set the values of the adjacency matrix based on the edges
+
+  //  public static ArrayList<String> depthFirstSearch(
+  //      int[][] adjacencyMatrix, int startNode, int endNode) {
+  //    // Create a boolean array to keep track of visited nodes
+  //    boolean[] visited = new boolean[adjacencyMatrix.length];
+  //    // Create an empty ArrayList to store the path
+  //    ArrayList<String> path = new ArrayList<>();
+  //    // Call the recursive helper function
+  //    depthFirstSearchHelper(adjacencyMatrix, startNode, endNode, visited, path);
+  //    return path;
+  //  }
+  //
+  //  private static boolean depthFirstSearchHelper(
+  //      int[][] adjacencyMatrix,
+  //      int currentNode,
+  //      int endNode,
+  //      boolean[] visited,
+  //      ArrayList<String> path) {
+  //    // Mark the current node as visited and add it to the path
+  //    visited[currentNode] = true;
+  //    path.add(Integer.toString(currentNode));
+  //    // Check if the current node is the end node
+  //    if (currentNode == endNode) {
+  //      return true;
+  //    }
+  //    // Iterate through all the adjacent nodes
+  //    for (int i = 0; i < adjacencyMatrix.length; i++) {
+  //      // Check if there is an edge between the current node and the adjacent node
+  //      if (adjacencyMatrix[currentNode][i] == 1) {
+  //        // Check if the adjacent node has not been visited yet
+  //        if (!visited[i]) {
+  //          // Call the helper function recursively with the adjacent node as the new current node
+  //          if (depthFirstSearchHelper(adjacencyMatrix, i, endNode, visited, path)) {
+  //            return true;
+  //          }
+  //        }
+  //      }
+  //    }
+  //    // If the end node is not found, remove the current node from the path and return false
+  //    path.remove(path.size() - 1);
+  //    return false;
+  //  }
+
   public static ArrayList<String> depthFirstSearch(
       int[][] adjacencyMatrix, int startNode, int endNode) {
     // Create a boolean array to keep track of visited nodes
@@ -163,88 +231,54 @@ public class Graph {
     return path;
   }
 
-  private static boolean depthFirstSearchHelper(
+  public static void depthFirstSearchHelper(
       int[][] adjacencyMatrix,
       int currentNode,
       int endNode,
       boolean[] visited,
       ArrayList<String> path) {
-    // Mark the current node as visited and add it to the path
+    // Mark the current node as visited
     visited[currentNode] = true;
-    path.add(Integer.toString(currentNode));
+    // Add the current node to the path
+    path.add(String.valueOf(currentNode));
     // Check if the current node is the end node
     if (currentNode == endNode) {
-      return true;
+      return;
     }
-    // Iterate through all the adjacent nodes
+    // Recursively visit all unvisited adjacent nodes
     for (int i = 0; i < adjacencyMatrix.length; i++) {
-      // Check if there is an edge between the current node and the adjacent node
-      if (adjacencyMatrix[currentNode][i] == 1) {
-        // Check if the adjacent node has not been visited yet
-        if (!visited[i]) {
-          // Call the helper function recursively with the adjacent node as the new current node
-          if (depthFirstSearchHelper(adjacencyMatrix, i, endNode, visited, path)) {
-            return true;
-          }
+      if (adjacencyMatrix[currentNode][i] != 0 && !visited[i]) {
+        depthFirstSearchHelper(adjacencyMatrix, i, endNode, visited, path);
+        // If the end node has been found, return
+        if (visited[endNode]) {
+          return;
         }
       }
     }
-    // If the end node is not found, remove the current node from the path and return false
-    path.remove(path.size() - 1);
-    return false;
-  }
-
-  public static ArrayList<String> breadthFirstSearch(
-      int[][] adjacencyMatrix, int startNode, int endNode) {
-    // Create a boolean array to keep track of visited nodes
-    boolean[] visited = new boolean[adjacencyMatrix.length];
-    // Create a queue for BFS
-    Queue<Integer> queue = new LinkedList<>();
-    // Create an empty ArrayList to store the path
-    ArrayList<String> path = new ArrayList<>();
-    // Mark the start node as visited and enqueue it
-    visited[startNode] = true;
-    queue.add(startNode);
-    // Run BFS until the queue is empty
-    while (!queue.isEmpty()) {
-      // Dequeue a node from the queue and add it to the path
-      int currentNode = queue.poll();
-      path.add(Integer.toString(currentNode));
-      // Check if the current node is the end node
-      if (currentNode == endNode) {
-        return path;
-      }
-      // Iterate through all the adjacent nodes
-      for (int i = 0; i < adjacencyMatrix.length; i++) {
-        // Check if there is an edge between the current node and the adjacent node
-        if (adjacencyMatrix[currentNode][i] == 1) {
-          // Check if the adjacent node has not been visited yet
-          if (!visited[i]) {
-            // Mark the adjacent node as visited and enqueue it
-            visited[i] = true;
-            queue.add(i);
-          }
-        }
-      }
-    }
-    // If the end node is not found, return an empty path
-    return new ArrayList<>();
+    // If the end node has not been found, remove the current node from the path
+    path.remove(String.valueOf(currentNode));
   }
 
   public static void main(String[] args) {
-    // Create an adjacency matrix for a simple graph
+    // Define an adjacency matrix to represent a graph
     int[][] adjacencyMatrix = {
       {0, 1, 1, 0},
-      {1, 0, 1, 0},
-      {1, 1, 0, 1},
-      {0, 0, 1, 0}
+      {1, 0, 0, 1},
+      {1, 0, 0, 1},
+      {0, 1, 1, 0}
     };
-    // Test the depthFirstSearch method with different start and end nodes
-    ArrayList<String> path = depthFirstSearch(adjacencyMatrix, 0, 3);
-    System.out.println("Path from node 0 to node 3: " + path);
-    path = depthFirstSearch(adjacencyMatrix, 1, 2);
-    System.out.println("Path from node 1 to node 2: " + path);
-    path = depthFirstSearch(adjacencyMatrix, 2, 0);
-    System.out.println("Path from node 2 to node 0: " + path);
+
+    // Define the start and end nodes
+    int startNode = 0;
+    int endNode = 3;
+
+    // Call the depthFirstSearch method
+    ArrayList<String> path = depthFirstSearch(adjacencyMatrix, startNode, endNode);
+
+    // Print the path
+    System.out.println("Path from node " + startNode + " to node " + endNode + ":");
+    for (String node : path) {
+      System.out.print(node + " ");
+    }
   }
 }
