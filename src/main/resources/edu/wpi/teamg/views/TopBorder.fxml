@@ -29,7 +29,7 @@
          <children>
             <AnchorPane styleClass="hit_the_griddy">
                <children>
-                  <Text fill="#f6bd38" layoutX="380.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="aaag" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="73.01025390625" AnchorPane.topAnchor="15.0">
+                  <Text fill="#f6bd38" layoutX="380.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Log Out" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="73.01025390625" AnchorPane.topAnchor="15.0">
                      <font>
                         <Font size="14.0" />
                      </font>
