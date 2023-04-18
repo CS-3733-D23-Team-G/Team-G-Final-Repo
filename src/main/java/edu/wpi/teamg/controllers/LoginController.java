@@ -57,7 +57,7 @@ public class LoginController {
 
         tablePass = rs.getString("hashpassword");
         tableSalt = rs.getBytes("salt");
-        // tableAdmin = rs.getBoolean("is_admin");
+        tableAdmin = rs.getBoolean("is_admin");
       }
 
       Account account = new Account();
