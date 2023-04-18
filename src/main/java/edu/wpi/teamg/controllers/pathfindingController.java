@@ -6,8 +6,6 @@ import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.Edge;
 import edu.wpi.teamg.ORMClasses.Graph;
 import edu.wpi.teamg.ORMClasses.Node;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -78,7 +76,7 @@ public class pathfindingController {
   @FXML
   public void initialize() throws SQLException {
 
-    goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
+    //  goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
 
     aStarCheckBox.setSelected(true);
 
