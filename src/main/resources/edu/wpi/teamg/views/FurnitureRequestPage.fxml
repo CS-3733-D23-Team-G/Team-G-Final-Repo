@@ -49,7 +49,7 @@
                                                     </VBox.margin>
                                                 </Text>
                                                 <Line endX="24.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                                <MFXTextField fx:id="furnRecipient" minHeight="-Infinity" prefHeight="30.0" prefWidth="394.0" styleClass="locationSelect_comboSearchBox">
+                                                <MFXTextField fx:id="furnRecipient" minHeight="-Infinity" prefHeight="30.0" prefWidth="394.0" styleClass="requestTextBox">
                                                     <VBox.margin>
                                                         <Insets right="15.0" top="15.0" />
                                                     </VBox.margin>
@@ -112,7 +112,7 @@
                                                     </VBox.margin>
                                                 </Text>
                                                 <Line endX="-37.12132263183594" endY="-2.574920654296875E-5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                                <MFXTextField fx:id="furnTimeOfDeliver" minHeight="-Infinity" prefHeight="30.0" prefWidth="317.0" styleClass="locationSelect_comboSearchBox">
+                                                <MFXTextField fx:id="furnTimeOfDeliver" minHeight="-Infinity" prefHeight="30.0" prefWidth="317.0" styleClass="requestTextBox">
                                                     <VBox.margin>
                                                         <Insets right="15.0" top="15.0" />
                                                     </VBox.margin>

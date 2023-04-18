@@ -148,7 +148,7 @@ public class MealRequestDAO implements DAO {
 
       int nodeID =
           nodeDAO.getNodeIDbyLongName(
-              ((MealRequest) obj).getLocation(), new java.sql.Date(2023 - 01 - 01));
+              ((MealRequest) obj).getLocation(), new java.sql.Date(2023, 01, 01));
 
       ps_Request.setInt(4, nodeID);
 

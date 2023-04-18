@@ -310,6 +310,12 @@
     -fx-font-size: 25;
 }
 
+.requestTextBox{
+    -fx-background-color: #D9D9D9;
+    -fx-font-size: 25;
+    -fx-pref-height: 60;
+}
+
 /*admin page CSS - 4 tables, import export */
 .admin_page_4_buttons{
     -fx-pref-height: 65;
