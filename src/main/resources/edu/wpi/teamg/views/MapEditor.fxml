@@ -24,12 +24,27 @@
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
 
-                                    <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="locationSelect_comboSearchBox" text="Add Node" />
+                                    <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="locationSelect_comboSearchBox" text="Add Node">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin></MFXButton>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXButton fx:id="test" prefHeight="70.0" prefWidth="191.0" styleClass="locationSelect_comboSearchBox" text="Test" />
+                                    <MFXButton fx:id="addLoc" prefHeight="70.0" prefWidth="191.0" styleClass="locationSelect_comboSearchBox" text="Add Location Name">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin></MFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="addMove" prefHeight="70.0" prefWidth="191.0" styleClass="locationSelect_comboSearchBox" text="Add Move">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
                                  </children>
                               </HBox>
                            </children></VBox>
