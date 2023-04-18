@@ -185,7 +185,7 @@
                            <children>
                               <ImageView fx:id="burgerOption" fitWidth="600.0" layoutX="100.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Images/UnClickedCheeseburgerImage.png" />
+                                    <Image url="@../Images/BurgerUnchecked2.0.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -193,7 +193,7 @@
                               </ImageView>
                               <ImageView fx:id="selectedBurger" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Images/ClickedBugerImage.png" />
+                                    <Image url="@../Images/BurgerChecked2.0.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -201,7 +201,7 @@
                               </ImageView>
                               <ImageView fx:id="corndogOption" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Images/UnClickedCornDogImage.png" />
+                                    <Image url="@../Images/CorndogUnchecked2.0.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -209,7 +209,7 @@
                               </ImageView>
                               <ImageView fx:id="selectedCornDog" fitWidth="600.0" layoutX="100.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Images/ClickedCornDogImage.png" />
+                                    <Image url="@../Images/CorndogChecked2.0.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -217,7 +217,7 @@
                               </ImageView>
                               <ImageView fx:id="friedRiceOption" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Images/UnClickedShirmpFriedRiceImage.png" />
+                                    <Image url="@../Images/ShrimpFriedRiceUnchecked2.0.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -225,7 +225,7 @@
                               </ImageView>
                               <ImageView fx:id="selectedFriedRice" fitHeight="200.0" fitWidth="600.0" layoutX="100.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Images/ClickedShrimpFriedRiceImage.png" />
+                                    <Image url="@../Images/ShrimpFriedRiceChecked2.0.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
