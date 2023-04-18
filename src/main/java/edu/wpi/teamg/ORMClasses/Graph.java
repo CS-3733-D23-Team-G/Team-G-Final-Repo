@@ -1,6 +1,8 @@
 package edu.wpi.teamg.ORMClasses;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Graph {
   private edu.wpi.teamg.ORMClasses.Node[] V;
@@ -10,6 +12,8 @@ public class Graph {
     V = N;
     E = ed;
   }
+
+
 
   public int[][] createWeightedAdj() {
     int[][] A1 = new int[V.length][V.length];
@@ -116,6 +120,82 @@ public class Graph {
     printMySolution(start, parent, end, solution);
 
     return solution;
+  }
+
+  public static ArrayList<String> depthFirstSearch(
+      int[][] adjacencyMatrix, int startNode, int endNode) {
+    // Create a boolean array to keep track of visited nodes
+    boolean[] visited = new boolean[adjacencyMatrix.length];
+    // Create an empty ArrayList to store the path
+    ArrayList<String> path = new ArrayList<>();
+    // Call the recursive helper function
+    depthFirstSearchHelper(adjacencyMatrix, startNode, endNode, visited, path);
+    return path;
+  }
+
+  public static void depthFirstSearchHelper(
+      int[][] adjacencyMatrix,
+      int currentNode,
+      int endNode,
+      boolean[] visited,
+      ArrayList<String> path) {
+    // Mark the current node as visited
+    visited[currentNode] = true;
+    // Add the current node to the path
+    path.add(String.valueOf(currentNode));
+    // Check if the current node is the end node
+    if (currentNode == endNode) {
+      return;
+    }
+    // Recursively visit all unvisited adjacent nodes
+    for (int i = 0; i < adjacencyMatrix.length; i++) {
+      if (adjacencyMatrix[currentNode][i] != 0 && !visited[i]) {
+        depthFirstSearchHelper(adjacencyMatrix, i, endNode, visited, path);
+        // If the end node has been found, return
+        if (visited[endNode]) {
+          return;
+        }
+      }
+    }
+    // If the end node has not been found, remove the current node from the path
+    path.remove(String.valueOf(currentNode));
+  }
+
+  public static ArrayList<String> breadthFirstSearch(
+      int[][] adjacencyMatrix, int startNode, int endNode) {
+    // Create a queue to keep track of the nodes to visit
+    Queue<Integer> queue = new LinkedList<>();
+    // Create a boolean array to keep track of visited nodes
+    boolean[] visited = new boolean[adjacencyMatrix.length];
+    // Create an array list to store the path
+    ArrayList<String> path = new ArrayList<>();
+
+    // Add the start node to the queue and mark it as visited
+    queue.add(startNode);
+    visited[startNode] = true;
+
+    while (!queue.isEmpty()) {
+      // Get the next node in the queue
+      int currentNode = queue.remove();
+      // Add the current node to the path
+      path.add(String.valueOf(currentNode));
+
+      // If we've reached the end node, return the path
+      if (currentNode == endNode) {
+        return path;
+      }
+
+      // Add all unvisited neighbors of the current node to the queue
+      for (int neighbor = 0; neighbor < adjacencyMatrix.length; neighbor++) {
+        if (adjacencyMatrix[currentNode][neighbor] > 0 && !visited[neighbor]) {
+          queue.add(neighbor);
+          visited[neighbor] = true;
+        }
+      }
+    }
+
+    // If we haven't found a path to the end node, return an empty path
+    return new ArrayList<String>();
   }
 
   // HELPER FUNCTION FOR OUR A* alg
