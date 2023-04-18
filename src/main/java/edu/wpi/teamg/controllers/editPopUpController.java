@@ -159,8 +159,8 @@ public class editPopUpController {
 
   public void locPop(int nodeID) throws SQLException, IOException {
 
-    DAORepo daoRepo = new DAORepo();
-    HashMap<Integer, Node> nodes = daoRepo.getAllNodes();
+    NodeDAO nodeDAO = new NodeDAO();
+    HashMap<Integer, Node> nodes = nodeDAO.getAll();
     Node clickedNode = nodes.get(nodeID);
 
     final PopOver window = new PopOver();

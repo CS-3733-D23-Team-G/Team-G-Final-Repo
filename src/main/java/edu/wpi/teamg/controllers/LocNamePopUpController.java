@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
@@ -35,11 +36,20 @@ public class LocNamePopUpController {
         });
   }
 
-  public void setF(Node node) {
+  public void setF(Node node) throws SQLException {
+    NodeDAO nodeDAO = new NodeDAO();
+    DAORepo daoRepo = new DAORepo();
+    LocationNameDAO loc = new LocationNameDAO();
+
+    HashMap<String, LocationName> locationName = loc.getAll();
+
+    HashMap<Integer, String> ln = daoRepo.getAllLongName();
+    HashMap<Integer, String> sn = nodeDAO.getShortName(node.getFloor());
+
     nodID.setText(String.valueOf(node.getNodeID()));
-    nodID.setText(node.getLongName());
-    nodID.setText(node.getShortName());
-    nodID.setText(node.getNodeType());
+    longName.setText(ln.get(node.getNodeID()));
+    shortName.setText(sn.get(node.getNodeID()));
+    nType.setText(locationName.get(ln.get(node.getNodeID())).getNodeType());
   }
 
   public void editPopUp() throws SQLException {
