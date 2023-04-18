@@ -151,8 +151,7 @@ public class ConferenceRoomRequestDAO implements DAO {
 
       int nodeID =
           nodeDAO.getNodeIDbyLongName(
-              ((ConferenceRoomRequest) obj).getLocation(),
-              new java.sql.Date(System.currentTimeMillis()));
+              ((ConferenceRoomRequest) obj).getLocation(), new java.sql.Date(2023, 01, 01));
 
       ps_Req.setInt(4, nodeID);
 

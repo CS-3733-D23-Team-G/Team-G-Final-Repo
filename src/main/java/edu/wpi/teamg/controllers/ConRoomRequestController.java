@@ -64,7 +64,7 @@ public class ConRoomRequestController {
     // roomTimeData.setItems(roomTimeDataList);
     // roomTimeData.getValue();
     // roomNumberData.getValue();
-
+    checkFields.setVisible(false);
     roomClearAll.setOnAction(event -> clearAllData());
 
     ArrayList<String> employeeNames = new ArrayList<>();
@@ -101,6 +101,7 @@ public class ConRoomRequestController {
     // Hung this is where it sets the list - Andrew
     employeeSearchDropdown.setItems(employeeList);
     locationSearchDropdown.setItems(locationList);
+    checkFields.getText();
   }
 
   public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
@@ -179,7 +180,7 @@ public class ConRoomRequestController {
       }
       Navigation.navigate(Screen.ROOM_REQUEST_SUBMIT);
     } else {
-      checkFields.setText("Not All Fields Are Filled");
+      checkFields.setVisible(true);
     }
   }
 

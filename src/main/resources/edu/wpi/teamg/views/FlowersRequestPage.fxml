@@ -46,7 +46,7 @@
                                        </VBox.margin>
                                     </Text>
                                     <Line endX="6.29925537109375" startX="-111.36810302734375" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="recipient" prefHeight="0.0" prefWidth="284.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css">
+                                    <MFXTextField fx:id="recipient" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox" stylesheets="@style.css">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin></MFXTextField>
@@ -116,7 +116,7 @@
                                        </VBox.margin>
                                     </Text>
                                     <Line endX="-42.5" endY="1.328125" startX="-108.0" startY="1.328125" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="deliveryTime" prefHeight="50.0" prefWidth="294.0" styleClass="locationSelect_comboSearchBox">
+                                    <MFXTextField fx:id="deliveryTime" prefHeight="50.0" prefWidth="294.0" styleClass="requestTextBox">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin></MFXTextField>
