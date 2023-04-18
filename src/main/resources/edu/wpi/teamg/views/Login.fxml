@@ -24,12 +24,16 @@
                         <Image url="@../Images/key.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" layoutX="16.0" layoutY="515.0" prefHeight="86.0" prefWidth="781.0" style="-fx-font-size: 50px; -fx-font-weight: bolder;" text="Brigham and Women's Hospital" textFill="WHITE">
+                  <Label alignment="CENTER" layoutY="515.0" prefHeight="86.0" prefWidth="797.0" style="-fx-font-size: 50px; -fx-font-weight: bolder;" text="Brigham and Women's Hospital" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="12.0" layoutY="579.0" prefHeight="79.0" prefWidth="769.0" style="-fx-font-size: 40px;" text="Founding Member,  Mass General Brigham" textFill="WHITE" />
+                  <Label alignment="CENTER" layoutY="579.0" prefHeight="79.0" prefWidth="797.0" style="-fx-font-size: 40px;" text="Founding Member,  Mass General Brigham" textFill="WHITE">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="980.0" prefWidth="1064.0" style="-fx-background-color: white;" styleClass="half_bottom_right">
