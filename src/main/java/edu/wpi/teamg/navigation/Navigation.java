@@ -74,4 +74,9 @@ public class Navigation {
   public static void setLoggedin() {
     EmployeeCheck = true;
   }
+
+  public static void Logout() {
+    AdminCheck = false;
+    EmployeeCheck = false;
+  }
 }

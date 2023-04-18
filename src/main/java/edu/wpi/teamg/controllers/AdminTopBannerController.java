@@ -16,6 +16,7 @@ public class AdminTopBannerController {
   @FXML MFXButton statusButton;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
   @FXML MFXButton HomeButton;
+  @FXML MFXButton Logout;
 
   @FXML ChoiceBox<String> AdminChoiceBox;
   ObservableList<String> list =
@@ -34,7 +35,7 @@ public class AdminTopBannerController {
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     exitButton.setOnMouseClicked(event -> exit());
     statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_STATUS_PAGE));
-
+    Logout.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));

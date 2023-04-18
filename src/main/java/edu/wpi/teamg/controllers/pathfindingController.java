@@ -498,8 +498,6 @@ public class pathfindingController {
     Node[] nodeArray = new Node[nodeList.size()];
     Edge[] edgeArray = new Edge[edgeList.size()];
 
-
-
     for (int i = 0; i < nodeList.size(); i++) {
       nodeArray[i] = nodeList.get(i);
     }

@@ -13,8 +13,6 @@ public class Graph {
     E = ed;
   }
 
-
-
   public int[][] createWeightedAdj() {
     int[][] A1 = new int[V.length][V.length];
     // populate the adj matrix with zeros or inf (change as needed)
