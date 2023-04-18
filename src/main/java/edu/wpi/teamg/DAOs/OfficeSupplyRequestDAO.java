@@ -89,6 +89,68 @@ public class OfficeSupplyRequestDAO implements DAO{
 
     @Override
     public void insert(Object obj) throws SQLException {
+        db.setConnection();
+        PreparedStatement ps_maxid;
+        PreparedStatement ps_supply;
+        PreparedStatement ps_req;
+        ResultSet rs = null;
+        OfficeSupplyRequest supplyRequest = (OfficeSupplyRequest) obj;
+
+        SQL_MAXID = "select reqid from teamgdb.iteration2.request order by reqid desc limit 1";
+        try{
+            ps_maxid = db.getConnection().prepareStatement(SQL_MAXID);
+            rs=ps_maxid.executeQuery();
+
+        }catch (SQLException e){
+            System.err.println("SQL Exception");
+            e.printStackTrace();
+        }
+
+        int maxid = 0;
+        while(rs.next()){
+            maxid=rs.getInt("reqID");
+            maxid++;
+        }
+        SQL="insert into "+this.getTable()+" (reqid, supplytype, note, recipient) values(?,?,?,?)";
+        SQL_REQUEST = "insert into teamgdb.iteration2.request (reqid,reqtype,empid,location,serveBy,status,requestdate,requesttime) values (?,?,?,?,?,?,?,?)";
+
+        try{
+            ps_req = db.getConnection().prepareStatement(SQL_REQUEST);
+            ps_req.setInt(1,maxid);
+            ps_req.setString(2,"OS");
+
+            String reqEmp = ((OfficeSupplyRequest) obj).getEmpid();
+            String assignedEmp = ((OfficeSupplyRequest)obj).getServeBy();
+
+            String[] split0 = reqEmp.split(":");
+            String[] split1 = assignedEmp.split(":");
+            int nodeID = nodeDAO.getNodeIDbyLongName(supplyRequest.getLocation(), new java.sql.Date(2023, 01, 01));
+
+            int empid = Integer.parseInt(split0[0].substring(3));
+            int servby = Integer.parseInt(split1[0].substring(3));
+
+            ps_req.setInt(3,empid);
+            ps_req.setInt(4,nodeID);
+            ps_req.setInt(5,servby);
+            ps_req.setObject(6,supplyRequest.getStatus(),java.sql.Types.OTHER);
+            ps_req.setDate(7,supplyRequest.getRequestDate());
+            ps_req.setTime(8,supplyRequest.getRequestTime());
+            ps_req.executeUpdate();
+
+            ps_supply = db.getConnection().prepareStatement(SQL);
+            ps_supply.setInt(1,maxid);
+            ps_supply.setString(2,supplyRequest.getSupplyType());
+            ps_supply.setString(3,supplyRequest.getNote());
+            ps_supply.setString(4,supplyRequest.getRecipient());
+            ps_supply.executeUpdate();
+
+        }catch (SQLException e){
+            System.err.println("SQL exception");
+            e.printStackTrace();
+        }
+
+        supplyRequestHashMap.put(supplyRequest.getReqid(),supplyRequest);
+        db.closeConnection();
 
     }
 
