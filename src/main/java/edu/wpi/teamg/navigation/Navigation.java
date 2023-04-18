@@ -20,6 +20,7 @@ public class Navigation {
       App.getRootPane().setCenter(loader.load());
 
       if (screen == Screen.SIGNAGE_SCREENSAVER_PAGE) {
+        Logout();
         PaitentBanner();
       } else if (screen == Screen.PATHFINDING_PAGE) {
         if (EmployeeCheck) {
