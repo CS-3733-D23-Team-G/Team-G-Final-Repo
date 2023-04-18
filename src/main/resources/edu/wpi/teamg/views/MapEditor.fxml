@@ -27,6 +27,11 @@
                                     <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="locationSelect_comboSearchBox" text="Add Node" />
                                  </children>
                               </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="test" prefHeight="70.0" prefWidth="191.0" styleClass="locationSelect_comboSearchBox" text="Test" />
+                                 </children>
+                              </HBox>
                            </children></VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="button_vbox">
                            <children>

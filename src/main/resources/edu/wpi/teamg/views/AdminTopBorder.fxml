@@ -29,21 +29,21 @@
          <children>
             <AnchorPane styleClass="hit_the_griddy">
                <children>
-                  <Text fill="#f6bd38" layoutX="380.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Log out" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="73.01025390625" AnchorPane.topAnchor="15.0">
+                  <Text fill="#f6bd38" layoutX="380.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Log out" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="73.01025390625" AnchorPane.topAnchor="15.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="#f6bd38" layoutX="437.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Exit" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="25.9951171875" AnchorPane.topAnchor="15.0">
+                  <Text fill="#f6bd38" layoutX="437.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Exit" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="25.9951171875" AnchorPane.topAnchor="15.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <MFXButton fx:id="Logout" layoutX="367.0" layoutY="3.0" opacity="0.0" prefHeight="45.0" prefWidth="63.0" text="Button" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="3.0" />
-                  <MFXButton fx:id="exitButton" layoutX="425.0" layoutY="3.0" opacity="0.0" prefHeight="40.0" prefWidth="41.0" AnchorPane.bottomAnchor="2.3333333333333357" AnchorPane.rightAnchor="13.666666666666664" AnchorPane.topAnchor="3.0" />
+                  <MFXButton fx:id="Logout" layoutX="367.0" layoutY="3.0" opacity="0.0" prefHeight="30.0" prefWidth="63.0" styleClass="banner_login_exit_text" stylesheets="@style.css" text="Button" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="3.0" />
+                  <MFXButton fx:id="exitButton" layoutX="425.0" layoutY="3.0" opacity="0.0" prefHeight="40.0" prefWidth="41.0" styleClass="banner_login_exit_text" stylesheets="@style.css" AnchorPane.bottomAnchor="2.3333333333333357" AnchorPane.rightAnchor="13.666666666666664" AnchorPane.topAnchor="3.0" />
                </children>
             </AnchorPane>
-            <GridPane alignment="CENTER_LEFT" hgap="5.0" styleClass="hit_the_griddy">
+            <GridPane alignment="CENTER_LEFT" hgap="5.0" prefWidth="1086.0" styleClass="hit_the_griddy">
                <columnConstraints>
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -77,7 +77,7 @@
                         <Font name="Baskerville Old Face" size="30.0" />
                      </font>
                   </Text>
-                  <ChoiceBox fx:id="AdminChoiceBox" opacity="0.0" prefHeight="72.0" prefWidth="289.0" />
+                  <ChoiceBox fx:id="AdminChoiceBox" maxWidth="-Infinity" opacity="0.0" prefHeight="50.0" prefWidth="300.0" />
                </children>
             </GridPane>
          </children>
