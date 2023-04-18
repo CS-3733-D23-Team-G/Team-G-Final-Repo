@@ -35,6 +35,8 @@ public class editPopUpController {
 
   @FXML MFXButton fmoves;
 
+  @FXML MFXButton locEdit;
+
   public void initialize() {
 
     nID.setEditable(false);
@@ -62,8 +64,19 @@ public class editPopUpController {
     fmoves.setOnMouseClicked(
         event -> {
           try {
-            displayMove((Integer.parseInt(nID.getText())));
+            disMove((Integer.parseInt(nID.getText())));
           } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    locEdit.setOnMouseClicked(
+        event -> {
+          try {
+            locPop(Integer.parseInt(nID.getText()));
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          } catch (IOException e) {
             throw new RuntimeException(e);
           }
         });
@@ -120,7 +133,7 @@ public class editPopUpController {
     nodeDAO.delete(node);
   }
 
-  public void displayMove(int nodeID) throws SQLException, IOException {
+  public void disMove(int nodeID) throws SQLException, IOException {
     ArrayList<Move> nodeMoves = new ArrayList<>();
     DAORepo daoRepo = new DAORepo();
     List move = daoRepo.getAllMoves();
@@ -137,7 +150,26 @@ public class editPopUpController {
 
     window.setArrowSize(0);
     MovePopOverController controller = loader.getController();
-    controller.displayMove((Integer.parseInt(nID.getText())));
+    controller.setFields(nodeID);
+    controller.displayMove(nodeID, nodeMoves);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void locPop(int nodeID) throws SQLException, IOException {
+
+    DAORepo daoRepo = new DAORepo();
+    HashMap<Integer, Node> nodes = daoRepo.getAllNodes();
+    Node clickedNode = nodes.get(nodeID);
+
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/locNamePopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    LocNamePopUpController controller = loader.getController();
+    controller.setF(clickedNode);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());

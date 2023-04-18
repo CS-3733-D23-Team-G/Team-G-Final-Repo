@@ -45,7 +45,9 @@ public class MapEditorController {
 
   @FXML MFXButton add;
 
-  public void initialize() throws SQLException {
+  @FXML MFXButton test;
+
+  public void initialize() throws SQLException, IOException {
     pane.setVisible(true);
     nodePane.setVisible(true);
     group.setVisible(true);
@@ -163,6 +165,16 @@ public class MapEditorController {
         getNodesWFunctionality(listOfNodes, i);
       }
     }
+    //    test.setOnMouseClicked(
+    //        event -> {
+    //          try {
+    //            disMove(listOfNodes.get(0).getNodeID());
+    //          } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //          } catch (IOException e) {
+    //            throw new RuntimeException(e);
+    //          }
+    //        });
   }
 
   public void goToL1(ArrayList<ImageView> imgs) throws SQLException {
