@@ -80,7 +80,7 @@ public class RequestDAO implements DAO {
     db.setConnection();
 
     PreparedStatement ps;
-    sql = "update teamgdb.iteration2.request set " + colName + " = ? where reqid = ?";
+    sql = "update teamgdb.iteration3.request set " + colName + " = ? where reqid = ?";
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -116,6 +116,6 @@ public class RequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration2.request";
+    return "teamgdb.iteration3.request";
   }
 }

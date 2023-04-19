@@ -25,10 +25,10 @@ public class OfficeSupplyRequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
     SQL =
-        "select * from teamgdb.iteration2.request"
+        "select * from teamgdb.iteration3.request"
             + " join "
             + this.getTable()
-            + " on teamgdb.iteration2.request.reqid= teamgdb.iteration2.officesupplyrequest.reqid";
+            + " on teamgdb.iteration3.request.reqid= teamgdb.iteration3.officesupplyrequest.reqid";
     try {
       ps = db.getConnection().prepareStatement(SQL);
       rs = ps.executeQuery();
@@ -98,7 +98,7 @@ public class OfficeSupplyRequestDAO implements DAO {
     ResultSet rs = null;
     OfficeSupplyRequest supplyRequest = (OfficeSupplyRequest) obj;
 
-    SQL_MAXID = "select reqid from teamgdb.iteration2.request order by reqid desc limit 1";
+    SQL_MAXID = "select reqid from teamgdb.iteration3.request order by reqid desc limit 1";
     try {
       ps_maxid = db.getConnection().prepareStatement(SQL_MAXID);
       rs = ps_maxid.executeQuery();
@@ -116,7 +116,7 @@ public class OfficeSupplyRequestDAO implements DAO {
     SQL =
         "insert into " + this.getTable() + " (reqid, supplytype, note, recipient) values(?,?,?,?)";
     SQL_REQUEST =
-        "insert into teamgdb.iteration2.request (reqid,reqtype,empid,location,serveBy,status,requestdate,requesttime) values (?,?,?,?,?,?,?,?)";
+        "insert into teamgdb.iteration3.request (reqid,reqtype,empid,location,serveBy,status,requestdate,requesttime) values (?,?,?,?,?,?,?,?)";
 
     try {
       ps_req = db.getConnection().prepareStatement(SQL_REQUEST);
@@ -163,6 +163,6 @@ public class OfficeSupplyRequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration2.officesupplyrequest";
+    return "teamgdb.iteration3.officesupplyrequest";
   }
 }
