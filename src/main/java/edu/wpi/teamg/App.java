@@ -259,11 +259,94 @@ public class App extends Application {
       throw new RuntimeException(e);
     }
 
+
+    try {
+      sn3 = nodeDAO.getShortName("3 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+
     try {
       l1Labels = nodeDAO.getSNgivenFloorExceptHall("L1");
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
+
+
+      try {
+        l2Labels = NodeDAO.getSNgivenFloorExceptHall("L2");
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+
+
+    try {
+        F1Labels = NodeDAO.getSNgivenFloorExceptHall("1 ");
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+
+
+
+    try {
+        F2Labels = NodeDAO.getSNgivenFloorExceptHall("2 ");
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+
+
+
+
+
+    try {
+        F3Labels = NodeDAO.getSNgivenFloorExceptHall("3 ");
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+
+
+
+     daoRepo = new DAORepo();
+
+
+
+    try {
+        L1Floor = daoRepo.getL1LongNames();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+
+
+
+    try {
+        L2Floor = daoRepo.getL2LongNames();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+
+
+      try {
+        Floor1 = daoRepo.getF1LongNames();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+
+
+      try {
+        Floor2 = daoRepo.getLongNames("2 ");
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+
+
+
+      try {
+        Floor3 = daoRepo.getLongNames("3 ");
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+
   }
 
   @Override

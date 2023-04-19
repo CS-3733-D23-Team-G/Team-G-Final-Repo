@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.DAOs.MoveDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
@@ -84,5 +85,6 @@ public class AddMoveController {
     MoveDAO moveDAO = new MoveDAO();
 
     moveDAO.insert(newMove);
+    App.refresh();
   }
 }
