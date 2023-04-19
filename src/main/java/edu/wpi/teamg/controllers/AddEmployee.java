@@ -2,6 +2,9 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.AccountDAO;
 import edu.wpi.teamg.DAOs.EmployeeDAO;
+import edu.wpi.teamg.ORMClasses.Employee;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
@@ -44,5 +47,22 @@ public class AddEmployee {
     serveDrop.setItems(serveList);
   };
 
-  private void allDataFilled() {}
+  private void allDataFilled() {
+      if(!(FirstName.getText().equals(""))
+        || lastName.getText().equals("")
+        || emailName.getText().equals("")
+        || userName.getText().equals("")
+        || Password.getText().equals("")
+        || serveDrop == null){
+          try{
+              storeEmployeeData();
+          } catch (SQLException e) {
+              e.printStackTrace();
+          }
+          Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE);
+      }
+  }
+  private void storeEmployeeData() throws SQLException{
+      Employee emp = new Employee();
+  }
 }
