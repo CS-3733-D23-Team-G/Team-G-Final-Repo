@@ -333,6 +333,7 @@ public class AdminFormStatusController {
 
     mainTable.setEditable(true);
 
+
     status.setCellFactory(
         TextFieldTableCell.forTableColumn(
             new StringConverter<StatusTypeEnum>() {
@@ -432,8 +433,8 @@ public class AdminFormStatusController {
     //          obj.setRequestTime(Date.valueOf(String.valueOf(event.getNewValue())));
     //          requestDAO.update(obj, "requestdate", event.getNewValue());
     //        });
-
-    furnTable.setEditable(true);
+//
+//    furnTable.setEditable(true);
 
     //    furnLocation1.setCellValueFactory(TextFieldTableCell.forTableColumn());
     //    furnLocation1.setOnEditCommit(event -> {
@@ -471,11 +472,11 @@ public class AdminFormStatusController {
     //              nodeDAO.update(obj, "xcoord", event.getNewValue());
     //            });
     //
-
-    flowerTable.setEditable(true);
-
-    mealTable.setEditable(true);
-    roomTable.setEditable(true);
+//
+//    flowerTable.setEditable(true);
+//
+//    mealTable.setEditable(true);
+//    roomTable.setEditable(true);
   }
 
   public void cancelEditOfTables() {
