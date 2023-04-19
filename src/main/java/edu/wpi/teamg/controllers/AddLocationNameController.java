@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -41,5 +42,6 @@ public class AddLocationNameController {
 
     LocationName locName = new LocationName(shortName, longName, nodeType);
     locationNameDAO.insert(locName);
+    App.refresh();
   }
 }

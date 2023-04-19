@@ -370,6 +370,13 @@
     -fx-alignment: center;
 }
 
+.table-text {
+    -fx-font-size: 20;
+    -fx-pref-height: 40;
+    -fx-alignment: center;
+}
+
+
 
 
 

@@ -1,8 +1,14 @@
 package edu.wpi.teamg;
 
+import edu.wpi.teamg.DAOs.DAORepo;
+import edu.wpi.teamg.DAOs.NodeDAO;
+import edu.wpi.teamg.ORMClasses.*;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -30,6 +36,222 @@ public class App extends Application {
 
   public static Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
 
+  public static NodeDAO nodeDAO = new NodeDAO();
+
+  public static HashMap<Integer, Node> allNodes;
+
+  static {
+    try {
+      allNodes = nodeDAO.getAll();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static ArrayList<Node> allNodeList = new ArrayList<>(allNodes.values());
+
+  public static HashMap<Integer, String> sn;
+
+  static {
+    try {
+      sn = nodeDAO.getShortName("L1");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> snL2;
+
+  static {
+    try {
+      snL2 = nodeDAO.getShortName("L2");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> sn1;
+
+  static {
+    try {
+      sn1 = nodeDAO.getShortName("1 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> sn2;
+
+  static {
+    try {
+      sn2 = nodeDAO.getShortName("2 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> sn3;
+
+  static {
+    try {
+      sn3 = nodeDAO.getShortName("3 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> l1Labels;
+
+  static {
+    try {
+      l1Labels = NodeDAO.getSNgivenFloorExceptHall("L1");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> l2Labels;
+
+  static {
+    try {
+      l2Labels = NodeDAO.getSNgivenFloorExceptHall("L2");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> F1Labels;
+
+  static {
+    try {
+      F1Labels = NodeDAO.getSNgivenFloorExceptHall("1 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> F2Labels;
+
+  static {
+    try {
+      F2Labels = NodeDAO.getSNgivenFloorExceptHall("2 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> F3Labels;
+
+  static {
+    try {
+      F3Labels = NodeDAO.getSNgivenFloorExceptHall("3 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static DAORepo daoRepo = new DAORepo();
+
+  public static HashMap<Integer, String> L1Floor;
+
+  static {
+    try {
+      L1Floor = daoRepo.getL1LongNames();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> L2Floor;
+
+  static {
+    try {
+      L2Floor = daoRepo.getL2LongNames();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> Floor1;
+
+  static {
+    try {
+      Floor1 = daoRepo.getF1LongNames();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> Floor2;
+
+  static {
+    try {
+      Floor2 = daoRepo.getLongNames("2 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> Floor3;
+
+  static {
+    try {
+      Floor3 = daoRepo.getLongNames("3 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, Request> testingRequest;
+
+  static {
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, MealRequest> testingMealHash;
+
+  static {
+    try {
+      testingMealHash = getHashMapMeal();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, ConferenceRoomRequest> testingConfRoom;
+
+  static {
+    try {
+      testingConfRoom = getHashConfRoom();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, FlowerRequest> testingFlower;
+
+  static {
+    try {
+      testingFlower = getHashMapFlowerRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, FurnitureRequest> testingFurns;
+
+  static {
+    try {
+      testingFurns = getHashFurns();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   @Override
   public void init() {
     log.info("Starting Up");
@@ -50,6 +272,204 @@ public class App extends Application {
     primaryStage.show();
 
     Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
+  }
+
+  public static void refresh() throws SQLException {
+
+    nodeDAO = new NodeDAO();
+
+    allNodes = new HashMap<>(nodeDAO.getAll());
+
+    allNodeList = new ArrayList<>(allNodes.values());
+
+    try {
+      sn = nodeDAO.getShortName("L1");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      snL2 = nodeDAO.getShortName("L2");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      sn1 = nodeDAO.getShortName("1 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      sn2 = nodeDAO.getShortName("2 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      sn3 = nodeDAO.getShortName("3 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      l1Labels = nodeDAO.getSNgivenFloorExceptHall("L1");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      l2Labels = NodeDAO.getSNgivenFloorExceptHall("L2");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      F1Labels = NodeDAO.getSNgivenFloorExceptHall("1 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      F2Labels = NodeDAO.getSNgivenFloorExceptHall("2 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      F3Labels = NodeDAO.getSNgivenFloorExceptHall("3 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    daoRepo = new DAORepo();
+
+    try {
+      L1Floor = daoRepo.getL1LongNames();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      L2Floor = daoRepo.getL2LongNames();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      Floor1 = daoRepo.getF1LongNames();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      Floor2 = daoRepo.getLongNames("2 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      Floor3 = daoRepo.getLongNames("3 ");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static void requestRefresh() {
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      testingMealHash = getHashMapMeal();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      testingConfRoom = getHashConfRoom();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      testingFlower = getHashMapFlowerRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      testingFurns = getHashFurns();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap getHashMapRequest() throws SQLException {
+
+    HashMap<Integer, Request> requestHashMap = new HashMap<Integer, Request>();
+
+    try {
+      requestHashMap = daoRepo.getAllRequest();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return requestHashMap;
+  }
+
+  public static HashMap getHashMapMeal() throws SQLException {
+
+    HashMap mealRequestHashMap = new HashMap<Integer, MealRequest>();
+
+    try {
+      mealRequestHashMap = daoRepo.getAllMealRequest();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return mealRequestHashMap;
+  }
+
+  public static HashMap getHashConfRoom() throws SQLException {
+
+    HashMap<Integer, ConferenceRoomRequest> confRoomHash =
+        new HashMap<Integer, ConferenceRoomRequest>();
+
+    try {
+      confRoomHash = daoRepo.getAllConferenceRequest();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return confRoomHash;
+  }
+
+  public static HashMap getHashMapFlowerRequest() throws SQLException {
+
+    HashMap<Integer, FlowerRequest> flowerHashMap = new HashMap<Integer, FlowerRequest>();
+
+    try {
+      flowerHashMap = daoRepo.getALLFlowerRequest();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+    return flowerHashMap;
+  }
+
+  public static HashMap getHashFurns() throws SQLException {
+
+    HashMap<Integer, FurnitureRequest> furnsHash = new HashMap<Integer, FurnitureRequest>();
+
+    try {
+      furnsHash = daoRepo.getAllFurniture();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return furnsHash;
   }
 
   @Override

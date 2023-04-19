@@ -119,6 +119,7 @@ public class editPopUpController {
     nodeDAO.update(node, "floor", nFloor.getText());
     nodeDAO.update(node, "building", nBuilding.getText());
     locationNameDAO.update(knownLoc, "shortname", shortName.getText());
+    App.refresh();
   }
 
   public void deleteNode() throws SQLException {
@@ -131,6 +132,8 @@ public class editPopUpController {
             nFloor.getText(),
             nBuilding.getText());
     nodeDAO.delete(node);
+
+    App.refresh();
   }
 
   public void disMove(int nodeID) throws SQLException, IOException {

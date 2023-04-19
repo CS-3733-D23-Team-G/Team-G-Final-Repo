@@ -1,9 +1,15 @@
 package edu.wpi.teamg.controllers;
 
+import static edu.wpi.teamg.App.*;
+
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
-import edu.wpi.teamg.DAOs.LocationNameDAO;
+
+import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
-import edu.wpi.teamg.ORMClasses.*;
+import edu.wpi.teamg.ORMClasses.Edge;
+import edu.wpi.teamg.ORMClasses.Graph;
+import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -21,7 +27,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -167,12 +172,6 @@ public class pathfindingController {
         });
 
     // goToL1();
-
-    Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
-    Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2.png");
-    Image mapFloor1 = new Image("edu/wpi/teamg/Images/01_thefirstfloor.png");
-    Image mapFloor2 = new Image("edu/wpi/teamg/Images/02_thesecondfloor.png");
-    Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
 
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
@@ -365,15 +364,13 @@ public class pathfindingController {
 
     // Scaling is currently the issue with the node map
 
-    NodeDAO nodeDAO = new NodeDAO();
-
-    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
-    ArrayList<edu.wpi.teamg.ORMClasses.Node> listOfNodes = new ArrayList<>(nodes.values());
-    HashMap<Integer, String> ln = nodeDAO.getLongNames("L1");
+    // HashMap<Integer, Node> nodes = App.;
+    ArrayList<Node> listOfNodes = allNodeList;
+    // HashMap<Integer, String> ln = nodeDAO.getLongNames("L1");
     HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
     for (int i = 0; i < listOfNodes.size(); i++) {
       if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-        getNodesWFunctionality(listOfNodes, i, sn, ln);
+        getNodesWFunctionality(listOfNodes, i, sn);
       }
     }
   }
@@ -398,18 +395,44 @@ public class pathfindingController {
     switch (floor) {
       case "L1":
         goToL1(imageViewsList);
+        l1.setDisable(true);
+        l2.setDisable(false);
+        floor1.setDisable(false);
+        floor2.setDisable(false);
+        floor3.setDisable(false);
+
         break;
       case "L2":
         goToL2(imageViewsList);
+        l1.setDisable(false);
+        l2.setDisable(true);
+        floor1.setDisable(false);
+        floor2.setDisable(false);
+        floor3.setDisable(false);
         break;
       case "1 ":
         goToFloor1(imageViewsList);
+        l1.setDisable(false);
+        l2.setDisable(false);
+        floor1.setDisable(true);
+        floor2.setDisable(false);
+        floor3.setDisable(false);
         break;
       case "2 ":
         goToFloor2(imageViewsList);
+        l1.setDisable(false);
+        l2.setDisable(false);
+        floor1.setDisable(false);
+        floor2.setDisable(true);
+        floor3.setDisable(false);
         break;
       case "3 ":
         goToFloor3(imageViewsList);
+        l1.setDisable(false);
+        l2.setDisable(false);
+        floor1.setDisable(false);
+        floor2.setDisable(false);
+        floor3.setDisable(true);
         break;
     }
 
@@ -508,19 +531,49 @@ public class pathfindingController {
     String floor = node.getFloor();
     switch (floor) {
       case "L1":
-        goToL1(imageViewsList);
+        // goToL1(imageViewsList);
+        floorButtons(imageViewsList, 0);
+        l1.setDisable(true);
+        l2.setDisable(false);
+        floor1.setDisable(false);
+        floor2.setDisable(false);
+        floor3.setDisable(false);
         break;
       case "L2":
-        goToL2(imageViewsList);
+        // goToL2(imageViewsList);
+        floorButtons(imageViewsList, 1);
+        l1.setDisable(false);
+        l2.setDisable(true);
+        floor1.setDisable(false);
+        floor2.setDisable(false);
+        floor3.setDisable(false);
         break;
       case "1 ":
-        goToFloor1(imageViewsList);
+        // goToFloor1(imageViewsList);
+        floorButtons(imageViewsList, 2);
+        l1.setDisable(false);
+        l2.setDisable(false);
+        floor1.setDisable(true);
+        floor2.setDisable(false);
+        floor3.setDisable(false);
         break;
       case "2 ":
-        goToFloor2(imageViewsList);
+        // goToFloor2(imageViewsList);
+        floorButtons(imageViewsList, 3);
+        l1.setDisable(false);
+        l2.setDisable(false);
+        floor1.setDisable(false);
+        floor2.setDisable(true);
+        floor3.setDisable(false);
         break;
       case "3 ":
-        goToFloor3(imageViewsList);
+        // goToFloor3(imageViewsList);
+        floorButtons(imageViewsList, 3);
+        l1.setDisable(false);
+        l2.setDisable(false);
+        floor1.setDisable(false);
+        floor2.setDisable(false);
+        floor3.setDisable(true);
         break;
     }
 
@@ -702,34 +755,42 @@ public class pathfindingController {
   }
 
   public void newNodes(int index) throws SQLException {
-    NodeDAO nodeDAO = new NodeDAO();
+    //    NodeDAO nodeDAO = new NodeDAO();
+    //
+    //    HashMap<Integer, Node> nodes = nodeDAO.getAll();
+    //    ArrayList<Node> listOfNodes = new ArrayList<>(nodes.values());
+    ArrayList<Node> listOfNodes = allNodeList;
 
-    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
-    ArrayList<edu.wpi.teamg.ORMClasses.Node> listOfNodes = new ArrayList<>(nodes.values());
-    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
-    HashMap<Integer, String> snL2 = nodeDAO.getShortName("L2");
-    HashMap<Integer, String> sn1 = nodeDAO.getShortName("1 ");
-    HashMap<Integer, String> sn2 = nodeDAO.getShortName("2 ");
-    HashMap<Integer, String> sn3 = nodeDAO.getShortName("3 ");
-    HashMap<Integer, String> ln = nodeDAO.getLongNames("L1");
-    HashMap<Integer, String> lnL2 = nodeDAO.getLongNames("L2");
-    HashMap<Integer, String> ln1 = nodeDAO.getLongNames("1 ");
-    HashMap<Integer, String> ln2 = nodeDAO.getLongNames("2 ");
-    HashMap<Integer, String> ln3 = nodeDAO.getLongNames("3 ");
+    //    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
+    //    HashMap<Integer, String> snL2 = nodeDAO.getShortName("L2");
+    //    HashMap<Integer, String> sn1 = nodeDAO.getShortName("1 ");
+    //    HashMap<Integer, String> sn2 = nodeDAO.getShortName("2 ");
+    //    HashMap<Integer, String> sn3 = nodeDAO.getShortName("3 ");
+    //    HashMap<Integer, String> ln = nodeDAO.getLongNames("L1");
+    //    HashMap<Integer, String> lnL2 = nodeDAO.getLongNames("L2");
+    //    HashMap<Integer, String> ln1 = nodeDAO.getLongNames("1 ");
+    //    HashMap<Integer, String> ln2 = nodeDAO.getLongNames("2 ");
+    //    HashMap<Integer, String> ln3 = nodeDAO.getLongNames("3 ");
+
+    //    ArrayList<String> shortNoHallL1 =  new ArrayList<>(l1Labels.values());
+    //    ArrayList<String> shortNoHallL2 =  new ArrayList<>(l1Labels.values());
+    //    ArrayList<String> shortNoHallF1 =  new ArrayList<>(l1Labels.values());
+    //    ArrayList<String> shortNoHallF2 =  new ArrayList<>(l1Labels.values());
+    //    ArrayList<String> shortNoHallF3 =  new ArrayList<>(l1Labels.values());
 
     nodePane.getChildren().clear();
     switch (index) {
       case 0:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-            getNodesWFunctionality(listOfNodes, i, sn, ln);
+            getNodesWFunctionality(listOfNodes, i, l1Labels);
           }
         }
         break;
       case 1:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L2")) {
-            getNodesWFunctionality(listOfNodes, i, snL2, lnL2);
+            getNodesWFunctionality(listOfNodes, i, l2Labels);
           }
         }
         break;
@@ -737,7 +798,7 @@ public class pathfindingController {
       case 2:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
-            getNodesWFunctionality(listOfNodes, i, sn1, ln1);
+            getNodesWFunctionality(listOfNodes, i, F1Labels);
           }
         }
 
@@ -745,7 +806,7 @@ public class pathfindingController {
       case 3:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "2 ")) {
-            getNodesWFunctionality(listOfNodes, i, sn2, ln2);
+            getNodesWFunctionality(listOfNodes, i, F2Labels);
           }
         }
 
@@ -753,7 +814,7 @@ public class pathfindingController {
       case 4:
         for (int i = 0; i < listOfNodes.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "3 ")) {
-            getNodesWFunctionality(listOfNodes, i, sn3, ln3);
+            getNodesWFunctionality(listOfNodes, i, F3Labels);
           }
         }
 
@@ -762,13 +823,9 @@ public class pathfindingController {
   }
 
   private void getNodesWFunctionality(
-      ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn, HashMap<Integer, String> ln)
-      throws SQLException {
+      ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn) throws SQLException {
     Node currentNode = listOfNodes.get(i);
     Label nodeLabel = new Label();
-
-    LocationNameDAO locationNameDAO = new LocationNameDAO();
-    HashMap<String, LocationName> labelMap = locationNameDAO.getAll();
 
     Circle point =
         new Circle(
@@ -776,13 +833,12 @@ public class pathfindingController {
             listOfNodes.get(i).getYcoord(),
             10,
             Color.rgb(1, 45, 90));
-    if (!Objects.equals(labelMap.get(ln.get(currentNode.getNodeID())).getNodeType(), "HALL")) {
-      nodeLabel.setTextFill(Color.BLACK);
-      nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
-      nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
-      nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
-      nodeLabel.toFront();
-    }
+
+    nodeLabel.setTextFill(Color.BLACK);
+    nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
+    nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
+    nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
+    nodeLabel.toFront();
     /*
        point.setOnMouseEntered(event ->
 
@@ -836,39 +892,19 @@ public class pathfindingController {
     HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
 
     if (index == 0) {
-      try {
-        longNameHashMap = dao.getL1LongNames();
-      } catch (SQLException e) {
-        System.err.print(e.getErrorCode());
-      }
+      longNameHashMap = App.L1Floor;
     }
     if (index == 1) {
-      try {
-        longNameHashMap = dao.getL2LongNames();
-      } catch (SQLException e) {
-        System.err.print(e.getErrorCode());
-      }
+      longNameHashMap = App.L2Floor;
     }
     if (index == 2) {
-      try {
-        longNameHashMap = dao.getF1LongNames();
-      } catch (SQLException e) {
-        System.err.print(e.getErrorCode());
-      }
+      longNameHashMap = App.Floor1;
     }
     if (index == 3) {
-      try {
-        longNameHashMap = dao.getLongNames("2 ");
-      } catch (SQLException e) {
-        System.err.print(e.getErrorCode());
-      }
+      longNameHashMap = App.Floor2;
     }
     if (index == 4) {
-      try {
-        longNameHashMap = dao.getLongNames("3 ");
-      } catch (SQLException e) {
-        System.err.print(e.getErrorCode());
-      }
+      longNameHashMap = Floor3;
     }
 
     return longNameHashMap;

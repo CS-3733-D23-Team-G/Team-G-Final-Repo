@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
@@ -75,5 +76,7 @@ public class LocNamePopUpController {
     locationNameDAO.update(oldLoc, "shortname", shortName.getText());
     locationNameDAO.update(oldLoc, "node", nodID.getText());
     locationNameDAO.update(oldLoc, "longname", longName.getText());
+
+    App.refresh();
   }
 }

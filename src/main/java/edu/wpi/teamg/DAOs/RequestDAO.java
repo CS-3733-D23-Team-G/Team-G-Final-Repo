@@ -76,7 +76,37 @@ public class RequestDAO implements DAO {
   }
 
   @Override
-  public void update(Object obj, String colName, Object value) throws SQLException {}
+  public void update(Object obj, String colName, Object value) throws SQLException {
+    db.setConnection();
+
+    PreparedStatement ps;
+    sql = "update teamgdb.iteration2.request set " + colName + " = ? where reqid = ?";
+
+    try {
+      ps = db.getConnection().prepareStatement(sql);
+
+      switch (colName) {
+        case "status":
+          ps.setObject(1, ((Request) obj).getStatus(), java.sql.Types.OTHER);
+          break;
+        case "empid":
+          ps.setInt(1, (Integer) value);
+          break;
+        case "serveby":
+          ps.setInt(1, (Integer) value);
+          break;
+        case "location":
+          ps.setInt(1, (Integer) value);
+          break;
+      }
+      ps.setInt(2, ((Request) obj).getReqid());
+      ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+      System.err.println("SQL exception");
+    }
+    db.closeConnection();
+  }
 
   @Override
   public void insert(Object obj) throws SQLException {}

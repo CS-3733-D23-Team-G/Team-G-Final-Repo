@@ -394,6 +394,8 @@ public class NodeDAO implements LocationDAO {
     return longNameHash;
   }
 
+  // passing in a nodeID --> nodeType
+
   public static HashMap<Integer, String> getAllLongName() throws SQLException {
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
@@ -423,6 +425,43 @@ public class NodeDAO implements LocationDAO {
     db.closeConnection();
 
     return longNameHash;
+  }
+
+  public static HashMap<Integer, String> getSNgivenFloorExceptHall(String floor)
+      throws SQLException {
+    HashMap<Integer, String> shortNameHash = new HashMap<>();
+
+    db.setConnection();
+    PreparedStatement ps;
+
+    ResultSet rs = null;
+
+    SQL =
+        "SELECT move.nodeid, locationname.nodetype, locationname.shortname\n"
+            + "FROM iteration2.Move INNER JOIN iteration2.LocationName ON Move.longName = LocationName.longName\n"
+            + "                      INNER JOIN iteration2.node ON node.nodeid = move.nodeid\n"
+            + "WHERE nodetype <> 'HALL' AND node.floor = ?;";
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
+      ps.setString(1, floor);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      // printSQLException(e);
+    }
+
+    while (rs.next()) {
+
+      int node_id = rs.getInt("nodeid");
+      String shortname = rs.getString("shortname");
+
+      shortNameHash.put(node_id, shortname);
+    }
+
+    db.closeConnection();
+
+    return shortNameHash;
   }
 
   public int getNodeIDbyLongName(String longname, Date date) throws SQLException {

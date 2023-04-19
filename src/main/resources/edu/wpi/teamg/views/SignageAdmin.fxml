@@ -72,9 +72,9 @@
             </AnchorPane>
             <AnchorPane styleClass="table_view_right" HBox.hgrow="ALWAYS">
                <children>
-                  <StackPane prefHeight="980.0" prefWidth="1450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <StackPane prefHeight="980.0" prefWidth="1450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
                      <children>
-                        <TableView fx:id="moveTable">
+                        <TableView fx:id="moveTable" styleClass="table-text">
                            <columns>
                               <TableColumn fx:id="moveNodeID" prefWidth="100.0" text="NodeID" />
                               <TableColumn fx:id="moveDate" prefWidth="655.1977233886719" text="Date" />
@@ -84,7 +84,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <TableView fx:id="edgeTable">
+                        <TableView fx:id="edgeTable" styleClass="table-text">
                            <columns>
                               <TableColumn fx:id="edgeEdgeID" prefWidth="55.0" text="EdgeID" />
                               <TableColumn fx:id="edgeEndNode" prefWidth="55.0" text="EndNode" />
@@ -94,7 +94,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <TableView fx:id="nodeLocTable">
+                        <TableView fx:id="nodeLocTable" styleClass="table-text">
                            <columns>
                               <TableColumn fx:id="locLongName" prefWidth="55.0" text="LongName" />
                               <TableColumn fx:id="locShortName" prefWidth="55.0" text="ShortName" />
@@ -104,7 +104,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <TableView fx:id="nodeTable">
+                        <TableView fx:id="nodeTable" styleClass="table-text">
                            <columns>
                               <TableColumn fx:id="nodeNodeID" prefWidth="100.0" text="NodeID" />
                               <TableColumn fx:id="nodeXcoord" prefWidth="100.0" text="x-coord" />
