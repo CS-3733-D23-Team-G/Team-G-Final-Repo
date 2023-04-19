@@ -261,51 +261,71 @@ public class SignageEditorController {
       case 0:
         signageDropDown1.setValue(null);
         locationNameSave[0] = "";
+        arrowDirectionNumber[0] = 0;
+        arrow1.setImage(noArrow);
         break;
 
       case 1:
         signageDropDown2.setValue(null);
         locationNameSave[index] = "";
+        arrow2.setImage(noArrow);
+        arrowDirectionNumber[1] = 0;
         break;
 
       case 2:
         signageDropDown3.setValue(null);
         locationNameSave[index] = "";
+        arrow3.setImage(noArrow);
+        arrowDirectionNumber[2] = 0;
         break;
 
       case 3:
         signageDropDown4.setValue(null);
         locationNameSave[index] = "";
+        arrow4.setImage(noArrow);
+        arrowDirectionNumber[3] = 0;
         break;
 
       case 4:
         signageDropDown5.setValue(null);
         locationNameSave[index] = "";
+        arrow5.setImage(noArrow);
+        arrowDirectionNumber[4] = 0;
         break;
 
       case 5:
         signageDropDown6.setValue(null);
         locationNameSave[index] = "";
+        arrow6.setImage(noArrow);
+        arrowDirectionNumber[5] = 0;
         break;
 
       case 6:
         signageDropDown7.setValue(null);
         locationNameSave[index] = "";
+        arrow7.setImage(noArrow);
+        arrowDirectionNumber[6] = 0;
         break;
 
       case 7:
         signageDropDown8.setValue(null);
         locationNameSave[index] = "";
+        arrow8.setImage(noArrow);
+        arrowDirectionNumber[7] = 0;
         break;
 
       case 8:
         signageDropDown9.setValue(null);
         locationNameSave[index] = "";
+        arrow9.setImage(noArrow);
+        arrowDirectionNumber[8] = 0;
         break;
 
       case 9:
         signageDropDown10.setValue(null);
         locationNameSave[index] = "";
+        arrow10.setImage(noArrow);
+        arrowDirectionNumber[9] = 0;
         break;
     }
     attribute = true;
