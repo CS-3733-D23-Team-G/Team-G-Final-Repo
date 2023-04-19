@@ -4,11 +4,12 @@ import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Node;
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
 
 public class NodeDAO implements LocationDAO {
-  private HashMap<Integer, Node> nodeHash = new HashMap<Integer, Node>();
+  private static HashMap<Integer, Node> nodeHash = new HashMap<Integer, Node>();
   private static DBConnection db = new DBConnection();
   private static String SQL;
   private HashMap<Integer, Node> Nodes = new HashMap<>();
@@ -526,5 +527,45 @@ public class NodeDAO implements LocationDAO {
     db.closeConnection();
 
     return longNameHash;
+  }
+
+  public static HashMap<Integer, Node> getNodeIDsGivenShortnames(ArrayList<String> shortNames)
+      throws SQLException {
+    db.setConnection();
+
+    PreparedStatement ps;
+    ResultSet rs = null;
+
+    SQL =
+        "select node.nodeid, "
+            + "node.xcoord, node.ycoord, node.floor, node.building, locationname.shortname "
+            + "from iteration3.move join iteration3.locationname on move.longname = locationname.longname "
+            + "join iteration3.node on move.nodeid = node.nodeid "
+            + "where locationname.shortname in (?)";
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
+      ps.setObject(1, shortNames);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      // printSQLException(e);
+    }
+
+    while (rs.next()) {
+
+      int node_id = rs.getInt("nodeid");
+      int xcoord = rs.getInt("xcoord");
+      int ycoord = rs.getInt("ycoord");
+      String floor = rs.getString("floor");
+      String building = rs.getString("building");
+
+      Node node = new Node(node_id, xcoord, ycoord, floor, building);
+
+      nodeHash.put(node.getNodeID(), node);
+    }
+    db.closeConnection();
+
+    return nodeHash;
   }
 }
