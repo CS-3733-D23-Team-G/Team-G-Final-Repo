@@ -56,6 +56,8 @@ public class MapEditorController {
 
   @FXML MFXToggleButton toggleEdge;
 
+  @FXML MFXButton addEdge;
+
   boolean lineGen;
   int floor = 0;
 
@@ -105,6 +107,15 @@ public class MapEditorController {
           if (toggleEdge.isSelected()) {
             lineGen = true;
             edgeDisplay(floor);
+          }
+        });
+
+    addEdge.setOnMouseClicked(
+        event -> {
+          try {
+            addEdge();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
           }
         });
     //    Image mapL1 =
@@ -587,6 +598,18 @@ public class MapEditorController {
     window.setArrowSize(0);
     EdgeDataPopOverController controller = loader.getController();
     controller.setEdgeFields(edge, A, B);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void addEdge() throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/addEdgePopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    AddEdgePopUpController controller = loader.getController();
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());

@@ -56,6 +56,15 @@
                               </HBox>
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
+                                    <MFXButton fx:id="addEdge" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Edge">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
                                     <MFXButton fx:id="deleteLoc" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Location Name">
                                        <HBox.margin>
                                           <Insets top="150.0" />
