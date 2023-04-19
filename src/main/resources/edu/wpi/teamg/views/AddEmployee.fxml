@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.SearchableComboBox?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                     <styleClass>
+                        <String fx:value="widget_background" />
+                        <String fx:value="widget_homepage_pair" />
+                     </styleClass>
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="198.0" styleClass="mealLocationNotes_vbox">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="First Name">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="50.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="64.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXTextField fx:id="FirstName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets right="15.0" top="15.0" />
+                                       </VBox.margin>
+                                    </MFXTextField>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Last Name">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="50.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="64.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXTextField fx:id="lastName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets right="15.0" top="15.0" />
+                                       </VBox.margin>
+                                    </MFXTextField>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Email">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="50.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="-10.166671752929688" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXTextField fx:id="emailName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets right="15.0" top="15.0" />
+                                       </VBox.margin>
+                                    </MFXTextField>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Can Serve">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="50.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="53.21202087402344" endY="0.9558281898498535" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <SearchableComboBox fx:id="serveDrop" prefHeight="32.0" prefWidth="200.0">
+                                       <styleClass>
+                                          <String fx:value="text_box" />
+                                          <String fx:value="requestTextBox" />
+                                       </styleClass>
+                                       <VBox.margin>
+                                          <Insets right="15.0" top="15.0" />
+                                       </VBox.margin>
+                                    </SearchableComboBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="50.0" right="25.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="436.0" styleClass="mealLocationNotes_vbox">
+                                 <padding>
+                                    <Insets left="50.0" right="25.0" />
+                                 </padding>
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Username">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="50.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="64.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXTextField fx:id="userName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets right="15.0" top="15.0" />
+                                       </VBox.margin>
+                                    </MFXTextField>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Password">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="50.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="64.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXTextField fx:id="Password" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets right="15.0" top="15.0" />
+                                       </VBox.margin>
+                                    </MFXTextField>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <MFXButton fx:id="empClear" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear" />
+                                          <MFXButton fx:id="empSubmit" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" />
+         </children>
+      </HBox>
+   </center>
+</BorderPane>
