@@ -696,7 +696,7 @@ public class pathfindingController {
     String floor = node.getFloor();
     switch (floor) {
       case "L1":
-        goToL1(imageViewsList);
+        // goToL1(imageViewsList);
         floorButtons(imageViewsList, 0);
         l1.setDisable(true);
         l2.setDisable(false);
@@ -705,7 +705,7 @@ public class pathfindingController {
         floor3.setDisable(false);
         break;
       case "L2":
-        goToL2(imageViewsList);
+        // goToL2(imageViewsList);
         floorButtons(imageViewsList, 1);
         l1.setDisable(false);
         l2.setDisable(true);
@@ -714,7 +714,7 @@ public class pathfindingController {
         floor3.setDisable(false);
         break;
       case "1 ":
-        goToFloor1(imageViewsList);
+        // goToFloor1(imageViewsList);
         floorButtons(imageViewsList, 2);
         l1.setDisable(false);
         l2.setDisable(false);
@@ -723,7 +723,7 @@ public class pathfindingController {
         floor3.setDisable(false);
         break;
       case "2 ":
-        goToFloor2(imageViewsList);
+        // goToFloor2(imageViewsList);
         floorButtons(imageViewsList, 3);
         l1.setDisable(false);
         l2.setDisable(false);
@@ -732,7 +732,8 @@ public class pathfindingController {
         floor3.setDisable(false);
         break;
       case "3 ":
-        goToFloor3(imageViewsList);
+        // goToFloor3(imageViewsList);
+        floorButtons(imageViewsList, 3);
         l1.setDisable(false);
         l2.setDisable(false);
         floor1.setDisable(false);
