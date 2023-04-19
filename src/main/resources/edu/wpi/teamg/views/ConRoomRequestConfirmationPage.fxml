@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -22,6 +24,21 @@
                         </Text>
                      </children>
                   </HBox>
+                  <ImageView fx:id="confettiEffect1" fitHeight="595.0" fitWidth="578.0" layoutX="71.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Confetti.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="confettiEffect2" fitHeight="595.0" fitWidth="578.0" layoutX="677.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Confetti.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="confettiEffect3" fitHeight="595.0" fitWidth="578.0" layoutX="1275.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Confetti.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
