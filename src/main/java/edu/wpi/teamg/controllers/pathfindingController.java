@@ -386,6 +386,7 @@ public class pathfindingController {
     Circle fPoint = new Circle();
     Polygon triangle = new Polygon();
     Circle start = new Circle();
+    Circle end = new Circle();
 
     String floor = nodes.get(Integer.parseInt(path.get(0))).getFloor();
     switch (floor) {
@@ -491,6 +492,13 @@ public class pathfindingController {
           start = point;
           nodePane.getChildren().add(start);
           pathForFloor.add(path.get(i));
+        } else if (i + 1 == path.size()) {
+          point.setFill(Color.rgb(0, 156, 166));
+          point.setRadius(20);
+
+          end = point;
+          nodePane.getChildren().add(end);
+          pathForFloor.add(path.get(i));
         } else {
           nodePane.getChildren().add(point);
           pathForFloor.add(path.get(i));
@@ -514,6 +522,7 @@ public class pathfindingController {
 
     triangle.toFront();
     start.toFront();
+    end.toFront();
   }
 
   public void nextFloor(Node node, ArrayList<String> path, int index) throws SQLException {

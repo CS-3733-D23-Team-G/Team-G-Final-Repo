@@ -6,9 +6,11 @@ import static edu.wpi.teamg.Main.*;
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
+import edu.wpi.teamg.ORMClasses.Edge;
 import edu.wpi.teamg.ORMClasses.LocationName;
 import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -29,6 +31,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
 
@@ -50,6 +53,11 @@ public class MapEditorController {
   @FXML MFXButton addMove;
 
   @FXML MFXButton deleteLoc;
+
+  @FXML MFXToggleButton toggleEdge;
+
+  boolean lineGen;
+  int floor = 0;
 
   public void initialize() throws SQLException, IOException {
     pane.setVisible(true);
@@ -88,6 +96,17 @@ public class MapEditorController {
           }
         });
 
+    toggleEdge.setOnAction(
+        event -> {
+          if (!toggleEdge.isSelected()) {
+            nodePane.getChildren().removeIf(node -> node instanceof Line);
+            lineGen = false;
+          }
+          if (toggleEdge.isSelected()) {
+            lineGen = true;
+            edgeDisplay(floor);
+          }
+        });
     //    Image mapL1 =
 
     ImageView mapView = new ImageView(mapL1);
@@ -188,6 +207,9 @@ public class MapEditorController {
     //    HashMap<Integer, edu.wpi.teamg.ORMClasses.Node> nodes = nodeDAO.getAll();
     //    ArrayList<edu.wpi.teamg.ORMClasses.Node> listOfNodes = new ArrayList<>(nodes.values());
 
+    if (lineGen) {
+      edgeDisplay(0);
+    }
     ArrayList<Node> listOfNodes = allNodeList;
     //    HashMap<Integer, String> ln = nodeDAO.getLongNames("L1");
     //    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
@@ -197,6 +219,7 @@ public class MapEditorController {
         getNodesWFunctionality(listOfNodes, i, sn);
       }
     }
+
     //    test.setOnMouseClicked(
     //        event -> {
     //          try {
@@ -215,6 +238,12 @@ public class MapEditorController {
     }
     imgs.get(0).setVisible(true);
 
+    nodePane.getChildren().clear();
+
+    floor = 0;
+    if (lineGen) {
+      edgeDisplay(0);
+    }
     newNodes(0);
   }
 
@@ -222,6 +251,14 @@ public class MapEditorController {
     for (int i = 0; i < imgs.size(); i++) {
       imgs.get(i).setVisible(false);
     }
+
+    nodePane.getChildren().clear();
+
+    floor = 1;
+    if (lineGen) {
+      edgeDisplay(1);
+    }
+
     imgs.get(1).setVisible(true);
     newNodes(1);
   }
@@ -232,6 +269,11 @@ public class MapEditorController {
     }
     imgs.get(2).setVisible(true);
 
+    nodePane.getChildren().clear();
+    floor = 2;
+    if (lineGen) {
+      edgeDisplay(2);
+    }
     newNodes(2);
   }
 
@@ -241,6 +283,12 @@ public class MapEditorController {
     }
     imgs.get(3).setVisible(true);
 
+    nodePane.getChildren().clear();
+
+    floor = 3;
+    if (lineGen) {
+      edgeDisplay(3);
+    }
     newNodes(3);
   }
 
@@ -250,6 +298,12 @@ public class MapEditorController {
     }
     imgs.get(4).setVisible(true);
 
+    nodePane.getChildren().clear();
+
+    floor = 4;
+    if (lineGen) {
+      edgeDisplay(4);
+    }
     newNodes(4);
   }
 
@@ -270,7 +324,6 @@ public class MapEditorController {
 
     ArrayList<Node> listOfNodes = allNodeList;
 
-    nodePane.getChildren().clear();
     switch (index) {
       case 0:
         for (int i = 0; i < listOfNodes.size(); i++) {
@@ -312,6 +365,91 @@ public class MapEditorController {
 
         break;
     }
+  }
+
+  public void edgeDisplay(int index) {
+
+    switch (index) {
+      case 0:
+        for (int i = 0; i < listOfEdges.size(); i++) {
+          if (Objects.equals(
+                  allNodes.get(listOfEdges.get(i).getStartNode()).getFloor(),
+                  allNodes.get(listOfEdges.get(i).getEndNode()).getFloor())
+              && Objects.equals(allNodes.get(listOfEdges.get(i).getStartNode()).getFloor(), "L1")) {
+            getEdgeDisplay(listOfEdges, i);
+          }
+        }
+
+        break;
+      case 1:
+        for (int i = 0; i < listOfEdges.size(); i++) {
+          if (Objects.equals(
+                  allNodes.get(listOfEdges.get(i).getStartNode()).getFloor(),
+                  allNodes.get(listOfEdges.get(i).getEndNode()).getFloor())
+              && Objects.equals(allNodes.get(listOfEdges.get(i).getStartNode()).getFloor(), "L2")) {
+            getEdgeDisplay(listOfEdges, i);
+          }
+        }
+
+        break;
+
+      case 2:
+        for (int i = 0; i < listOfEdges.size(); i++) {
+          if (Objects.equals(
+                  allNodes.get(listOfEdges.get(i).getStartNode()).getFloor(),
+                  allNodes.get(listOfEdges.get(i).getEndNode()).getFloor())
+              && Objects.equals(allNodes.get(listOfEdges.get(i).getStartNode()).getFloor(), "1 ")) {
+            getEdgeDisplay(listOfEdges, i);
+          }
+        }
+
+        break;
+
+      case 3:
+        for (int i = 0; i < listOfEdges.size(); i++) {
+          if (Objects.equals(
+                  allNodes.get(listOfEdges.get(i).getStartNode()).getFloor(),
+                  allNodes.get(listOfEdges.get(i).getEndNode()).getFloor())
+              && Objects.equals(allNodes.get(listOfEdges.get(i).getStartNode()).getFloor(), "2 ")) {
+            getEdgeDisplay(listOfEdges, i);
+          }
+        }
+
+        break;
+
+      case 4:
+        for (int i = 0; i < listOfEdges.size(); i++) {
+          if (Objects.equals(
+                  allNodes.get(listOfEdges.get(i).getStartNode()).getFloor(),
+                  allNodes.get(listOfEdges.get(i).getEndNode()).getFloor())
+              && Objects.equals(allNodes.get(listOfEdges.get(i).getStartNode()).getFloor(), "3 ")) {
+            getEdgeDisplay(listOfEdges, i);
+          }
+        }
+
+        break;
+    }
+  }
+
+  public void getEdgeDisplay(ArrayList<Edge> edgeArray, int i) {
+
+    Node node1 = allNodes.get(edgeArray.get(i).getStartNode());
+    Node node2 = allNodes.get(edgeArray.get(i).getEndNode());
+    Line pathLine =
+        new Line(node1.getXcoord(), node1.getYcoord(), node2.getXcoord(), node2.getYcoord());
+    pathLine.setStrokeWidth(10);
+    pathLine.setStroke(Color.rgb(1, 45, 90));
+    pathLine.setOnMouseClicked(
+        event -> {
+          try {
+            displayEdgeData(edgeArray.get(i), node1, node2);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    nodePane.getChildren().add(pathLine);
+    pathLine.toFront();
   }
 
   private void getNodesWFunctionality(
@@ -436,6 +574,19 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     DeleteLocationNameControllerPopOver controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void displayEdgeData(Edge edge, Node A, Node B) throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/EdgeDataPopOver.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    EdgeDataPopOverController controller = loader.getController();
+    controller.setEdgeFields(edge, A, B);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());

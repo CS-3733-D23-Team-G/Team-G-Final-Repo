@@ -1,6 +1,7 @@
 package edu.wpi.teamg;
 
 import edu.wpi.teamg.DAOs.DAORepo;
+import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.*;
 import edu.wpi.teamg.navigation.Navigation;
@@ -36,7 +37,31 @@ public class App extends Application {
 
   public static Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
 
+  public static EdgeDAO edgeDao = new EdgeDAO();
+
+  public static HashMap<String, Edge> edgeMap;
+
+  static {
+    try {
+      edgeMap = edgeDao.getAll();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static ArrayList<Edge> listOfEdges = new ArrayList<>(edgeMap.values());
+
   public static NodeDAO nodeDAO = new NodeDAO();
+
+  public static HashMap<Integer, String> ln;
+
+  static {
+    try {
+      ln = new HashMap<>(nodeDAO.getAllLongName());
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   public static HashMap<Integer, Node> allNodes;
 
@@ -402,6 +427,12 @@ public class App extends Application {
 
     try {
       testingFurns = getHashFurns();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      ln = new HashMap<>(nodeDAO.getAllLongName());
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }

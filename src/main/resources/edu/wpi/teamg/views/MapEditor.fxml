@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -60,6 +61,15 @@
                                           <Insets top="150.0" />
                                        </HBox.margin>
                                     </MFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXToggleButton fx:id="toggleEdge" prefHeight="41.0" prefWidth="30.0" text="Toggle Edges">
+                                       <HBox.margin>
+                                          <Insets top="25.0" />
+                                       </HBox.margin>
+                                    </MFXToggleButton>
                                  </children>
                               </HBox>
                            </children></VBox>
