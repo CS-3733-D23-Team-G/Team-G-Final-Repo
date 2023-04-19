@@ -9,7 +9,6 @@ import edu.wpi.teamg.ORMClasses.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -773,9 +772,7 @@ public class pathfindingController {
 
     ArrayList<Node> listOfGoodNodes;
 
-    for(int i = 0; i < listOfNodes.size(); i ++){
-
-    }
+    for (int i = 0; i < listOfNodes.size(); i++) {}
 
     //    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
     //    HashMap<Integer, String> snL2 = nodeDAO.getShortName("L2");
@@ -794,14 +791,11 @@ public class pathfindingController {
     //    ArrayList<String> shortNoHallF2 =  new ArrayList<>(l1Labels.values());
     //    ArrayList<String> shortNoHallF3 =  new ArrayList<>(l1Labels.values());
 
-    //Need to convert Labels array from shortname strings to node id
+    // Need to convert Labels array from shortname strings to node id
 
     nodePane.getChildren().clear();
     switch (index) {
       case 0:
-
-
-
         for (int i = 0; i < l1Labels.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
             getNodesWFunctionality(listOfNodes, i, l1Labels);
@@ -849,8 +843,6 @@ public class pathfindingController {
     Node currentNode = listOfNodes.get(i);
     Label nodeLabel = new Label();
 
-
-
     Circle point =
         new Circle(
             listOfNodes.get(i).getXcoord(),
@@ -886,9 +878,8 @@ public class pathfindingController {
 
     System.out.println(sn.get(listOfNodes.get(i).getNodeID()));
 
-      nodePane.getChildren().add(point);
-      nodePane.getChildren().add(nodeLabel);
-
+    nodePane.getChildren().add(point);
+    nodePane.getChildren().add(nodeLabel);
   }
 
   public void displayData(Node point) throws SQLException {
