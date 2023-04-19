@@ -376,6 +376,9 @@
     -fx-alignment: center;
 }
 
+.dropdown{
+    -fx-font-size: 20;
+}
 
 
 

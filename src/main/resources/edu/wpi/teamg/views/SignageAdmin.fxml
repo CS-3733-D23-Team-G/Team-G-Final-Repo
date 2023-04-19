@@ -20,7 +20,7 @@
                <children>
                   <HBox prefHeight="979.0" prefWidth="576.0" styleClass="left_vbox">
                      <children>
-                        <VBox alignment="BASELINE_CENTER" fillWidth="false" maxWidth="-Infinity" prefHeight="838.0" prefWidth="571.0">
+                        <VBox alignment="CENTER" fillWidth="false" maxWidth="-Infinity" prefHeight="838.0" prefWidth="571.0">
                            <children>
                               <MFXButton fx:id="nodesButton" minHeight="-Infinity" minWidth="-Infinity" styleClass="admin_page_4_buttons" text="Nodes">
                                  <VBox.margin>
@@ -40,15 +40,15 @@
                                  </VBox.margin></MFXButton>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Import">
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets />
                                  </VBox.margin></Text>
                   
-                                                      <ChoiceBox fx:id="importDrop" prefHeight="36.0" prefWidth="150.0" />
+                                                      <ChoiceBox fx:id="importDrop" prefHeight="36.0" prefWidth="290.0" styleClass="locationSelect_comboSearchBox" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Export">
                                  <VBox.margin>
-                                    <Insets top="20.0" />
+                                    <Insets />
                                  </VBox.margin></Text>
-                              <ChoiceBox fx:id="exportDrop" prefHeight="36.0" prefWidth="150.0">
+                              <ChoiceBox fx:id="exportDrop" prefHeight="36.0" prefWidth="295.0" styleClass="locationSelect_comboSearchBox">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin></ChoiceBox>

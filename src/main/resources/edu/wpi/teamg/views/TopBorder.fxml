@@ -85,7 +85,10 @@
                         <Insets top="40.0" />
                      </GridPane.margin>
                   </Line>
-                  <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="65.0" prefWidth="403.0" styleClass="hit_the_griddy" GridPane.columnIndex="1" />
+                  <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="50.0" prefWidth="275.0" styleClass="dropdown" GridPane.columnIndex="1">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></ChoiceBox>
                   <MFXButton fx:id="statusButton" opacity="0.0" prefWidth="389.0" styleClass="hit_the_griddy" text="Button" />
                   <MFXButton fx:id="signagePageButton" opacity="0.0" prefWidth="370.0" styleClass="hit_the_griddy" GridPane.columnIndex="2" />
                </children>
