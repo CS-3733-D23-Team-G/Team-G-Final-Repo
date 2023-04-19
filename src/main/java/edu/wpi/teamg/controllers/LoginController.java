@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
 
 public class LoginController {
@@ -32,6 +33,12 @@ public class LoginController {
     // userInc.setVisible(false);
     passInc.setVisible(false);
     loginButton.setOnAction(event -> loginCheck());
+    password.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+            loginCheck();
+          }
+        });
   }
 
   public void loginCheck() {
