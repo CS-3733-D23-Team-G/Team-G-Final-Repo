@@ -1,11 +1,17 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.DAORepo;
+import edu.wpi.teamg.ORMClasses.OfficeSupplyRequest;
+import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -146,16 +152,52 @@ public class OfficeSuppRequestController {
   }
 
   private void allDataFilled() {
-    
+    if (!(supplyRecipient.getText().equals("")
+        || recipientNotes.getText().equals("")
+        || supplyDate.getText().equals("")
+        || supplyDeliverTime.getText().equals("")
+        || Order.equals("")
+        || locationSearchDropdown.getValue() == null
+        || employeeSearchDropdown.getValue() == null)) {
+      try {
+        storeSupplyVal();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      Navigation.navigate(Screen.SUPPLIES_REQUEST_SUBMIT);
+    } else {
+      checkFields.setVisible(true);
+    }
+  }
+
+  private void storeSupplyVal() throws SQLException {
+    OfficeSupplyRequest os =
+        new OfficeSupplyRequest(
+            "OS",
+            "ID 1: John Doe",
+            (String) locationSearchDropdown.getValue(),
+            (String) employeeSearchDropdown.getValue(),
+            StatusTypeEnum.blank,
+            Date.valueOf(supplyDate.getValue()),
+            StringToTime(supplyDeliverTime.getText()),
+            supplyRecipient.getText(),
+            Order,
+            recipientNotes.getText());
+    // System.out.println(Order);
+    DAORepo dao = new DAORepo();
+    dao.insertSupply(os);
+  }
+
+  private Time StringToTime(String text) {
+    String[] hourMin = text.split(":", 2);
+    Time t = new Time(Integer.parseInt(hourMin[0]), Integer.parseInt(hourMin[1]), 00);
+    return t;
   }
 
   private void supplyOrder() {
-    if(selectedPens.isVisible())
-      Order+="Pens, ";
-    if(selectedStapler.isVisible())
-      Order+="Stapler, ";
-    if(selectedTape.isVisible())
-      Order+="Tape, ";
+    if (selectedPens.isVisible()) Order += "Pens, ";
+    if (selectedStapler.isVisible()) Order += "Stapler, ";
+    if (selectedTape.isVisible()) Order += "Tape, ";
 
     supplyChoice.setText(Order);
   }
