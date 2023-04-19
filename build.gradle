@@ -67,6 +67,7 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac-aarch64'
+    implementation group: 'javax.mail', name: 'mail', version: '1.4.1'
 
 
     testImplementation(
