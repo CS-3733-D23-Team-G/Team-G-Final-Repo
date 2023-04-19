@@ -9,6 +9,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +27,8 @@ public class LoginController {
 
   @FXML Label passInc;
 
+  // @FXML MFXButton addAccounts;
+
   DBConnection db = new DBConnection();
   String query;
 
@@ -33,6 +36,16 @@ public class LoginController {
     // userInc.setVisible(false);
     passInc.setVisible(false);
     loginButton.setOnAction(event -> loginCheck());
+    //  addAccounts.setOnMouseClicked(
+    //        event -> {
+    //          try {
+    //            addAccount();
+    //          } catch (NoSuchAlgorithmException e) {
+    //            throw new RuntimeException(e);
+    //          } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //          }
+    //        });
     password.setOnKeyPressed(
         event -> {
           if (event.getCode() == KeyCode.ENTER) {
@@ -96,5 +109,21 @@ public class LoginController {
 
     // .setVisible(true);
     passInc.setVisible(true);
+  }
+
+  public void addAccount() throws NoSuchAlgorithmException, SQLException {
+    Account admin = new Account("admin", "admin", true);
+    Account staff = new Account("staff", "staff", true);
+    byte[] saltAdmin = admin.getSalt();
+    byte[] saltStaff = staff.getSalt();
+
+    admin.setEmpID(0);
+    staff.setEmpID(1);
+    String hashedAdmin = admin.getHashedPassword(saltAdmin);
+    String hashedStaff = admin.getHashedPassword(saltStaff);
+
+    AccountDAO accountDAO = new AccountDAO();
+    accountDAO.insertAccount(admin, hashedAdmin, true);
+    accountDAO.insertAccount(staff, hashedStaff, false);
   }
 }

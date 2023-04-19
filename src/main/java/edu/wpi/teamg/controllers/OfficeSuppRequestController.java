@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.OfficeSupplyRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -186,6 +187,7 @@ public class OfficeSuppRequestController {
     // System.out.println(Order);
     DAORepo dao = new DAORepo();
     dao.insertSupply(os);
+    App.requestRefresh();
   }
 
   private Time StringToTime(String text) {

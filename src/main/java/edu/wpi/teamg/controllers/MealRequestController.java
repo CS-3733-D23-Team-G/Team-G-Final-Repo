@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -216,6 +217,7 @@ public class MealRequestController {
     //            + mr.getStatus());
 
     dao.insertMealRequest(mr);
+    App.requestRefresh();
   }
 
   public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {

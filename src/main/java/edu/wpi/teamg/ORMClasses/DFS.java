@@ -55,7 +55,7 @@ public class DFS implements Algorithm {
     }
 
     Graph graph = new Graph(nodeArray, edgeArray);
-    path = graph.breadthFirstSearch(graph.createWeightedAdj(), startNode, endNode);
+    path = graph.depthFirstSearch(graph.createWeightedAdj(), startNode, endNode);
     //  setPath(path);
 
     System.out.println("Start node:" + L1StartNodeID);

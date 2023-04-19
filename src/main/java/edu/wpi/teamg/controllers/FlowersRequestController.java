@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -187,6 +188,7 @@ public class FlowersRequestController {
     // System.out.println(Order);
 
     dao.insertFlowerRequest(flower);
+    App.requestRefresh();
     /*
     System.out.println(
         "Delivery Location: "

@@ -3,10 +3,8 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
-import edu.wpi.teamg.DAOs.MoveDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
-import edu.wpi.teamg.ORMClasses.Move;
 import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -63,14 +61,11 @@ public class LocNamePopUpController {
 
     HashMap<Integer, Node> nodes = nodeDAO.getAll();
 
-
     Node ourNode = nodes.get(Integer.parseInt(nodID.getText()));
     HashMap<Integer, String> ln = nodeDAO.getAllLongName();
     HashMap<String, LocationName> locs = locationNameDAO.getAll();
 
-
     String oldLong = ln.get(ourNode.getNodeID());
-
 
     String oldShort = locs.get(oldLong).getShortName();
     String oldType = locs.get(oldLong).getNodeType();

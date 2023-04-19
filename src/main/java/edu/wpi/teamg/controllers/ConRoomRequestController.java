@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -134,6 +135,7 @@ public class ConRoomRequestController {
 
     try {
       dao.insertConferenceRoomRequest(conRoom);
+      App.requestRefresh();
     } catch (SQLException e) {
       System.err.println("SQL Exception");
       e.printStackTrace();

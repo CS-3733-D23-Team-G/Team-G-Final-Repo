@@ -3,14 +3,17 @@ drop table if exists iteration2.ConferenceRoomRequest;
 drop table if exists iteration2.FurnitureRequest;
 drop table if exists iteration2.officesupplyrequest;
 drop table if exists iteration2.flowerrequest;
-drop table if exists iteration2.Account;
 drop table if exists iteration2.Request;
-drop table if exists iteration2.Employee;
 drop type if exists  iteration2.enum1;
 drop table if exists iteration2.Move;
 drop table if exists iteration2.Edge;
 drop table if exists iteration2.LocationName;
 drop table if exists iteration2.Node;
+
+
+drop table if exists iteration2.Account;
+drop table if exists iteration2.Employee;
+
 
 create table iteration2.Node(
                                         nodeID int primary key,
