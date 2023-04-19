@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 
 public class TopBannerController {
   @FXML MFXButton signagePageButton;
@@ -17,6 +18,9 @@ public class TopBannerController {
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
   @FXML MFXButton loginButton;
   @FXML MFXButton HomeButton;
+  @FXML Label FormStatusButton;
+  @FXML Label ServiceRequestButton;
+  @FXML Label PathfindingButton;
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -36,6 +40,18 @@ public class TopBannerController {
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    FormStatusButton.setOnMouseEntered(
+        event -> FormStatusButton.setStyle("-fx-border-width: 0 0 5 0;"));
+    ServiceRequestButton.setOnMouseEntered(
+        event -> ServiceRequestButton.setStyle("-fx-border-width: 0 0 5 0;"));
+    PathfindingButton.setOnMouseEntered(
+        event -> PathfindingButton.setStyle("-fx-border-width: 0 0 5 0;"));
+    FormStatusButton.setOnMouseExited(
+        event -> FormStatusButton.setStyle("-fx-border-width: 0 0 3 0;"));
+    ServiceRequestButton.setOnMouseExited(
+        event -> ServiceRequestButton.setStyle("-fx-border-width: 0 0 3 0;"));
+    PathfindingButton.setOnMouseExited(
+        event -> PathfindingButton.setStyle("-fx-border-width: 0 0 3 0;"));
   }
 
   public void exit() {

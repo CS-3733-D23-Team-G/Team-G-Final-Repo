@@ -60,12 +60,18 @@
 }
 .banner_text{
     -fx-text-fill: #FFFFFF;
+    -fx-fill: #FFFFFF;
     -fx-font-family: "Poppins-Regular";
+    -fx-font-size: 30;
+    -fx-border-color: #F6BD38;
+    -fx-border-width: 0 0 3 0;
 }
+
 .button_banner{
     -fx-max-height: 30;
     -fx-opacity: 0;
 }
+
 .button_confirm{
     -fx-background-color:#F6BD38;
     -fx-font-family: "Poppins-Regular";
