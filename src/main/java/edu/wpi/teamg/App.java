@@ -406,10 +406,7 @@ public class App extends Application {
     }
   }
 
-
-
-
-  public  static void mealRefresh(){
+  public static void mealRefresh() {
     try {
       testingRequest = getHashMapRequest();
     } catch (SQLException e) {
@@ -422,8 +419,7 @@ public class App extends Application {
     }
   }
 
-
-  public  static void confRefresh(){
+  public static void confRefresh() {
     try {
       testingRequest = getHashMapRequest();
     } catch (SQLException e) {
@@ -436,8 +432,7 @@ public class App extends Application {
     }
   }
 
-
-  public  static void flowerRefresh(){
+  public static void flowerRefresh() {
     try {
       testingRequest = getHashMapRequest();
     } catch (SQLException e) {
@@ -450,8 +445,7 @@ public class App extends Application {
     }
   }
 
-
-  public  static void fernsRefresh(){
+  public static void fernsRefresh() {
     try {
       testingRequest = getHashMapRequest();
     } catch (SQLException e) {
@@ -470,7 +464,6 @@ public class App extends Application {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
-
   }
 
   public static HashMap getHashMapRequest() throws SQLException {
