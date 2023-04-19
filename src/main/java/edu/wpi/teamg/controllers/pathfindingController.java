@@ -9,6 +9,8 @@ import edu.wpi.teamg.ORMClasses.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +23,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -65,6 +68,8 @@ public class pathfindingController {
   @FXML MFXCheckbox aStarCheckBox;
   @FXML MFXCheckbox bfsCheckBox;
   @FXML MFXCheckbox dfsCheckBox;
+
+  @FXML DatePicker date;
 
   ObservableList<String> locationListStart;
   ObservableList<String> locationListEnd;
@@ -153,13 +158,13 @@ public class pathfindingController {
           try {
             if (aStarCheckBox.isSelected()) {
               algo = new Astar();
-              setPath(algo.process(startLocDrop, endLocDrop));
+              setPath(algo.process(startLocDrop, endLocDrop, Date.valueOf(date.getValue())));
             } else if (dfsCheckBox.isSelected()) {
               algo = new DFS();
-              setPath(algo.process(startLocDrop, endLocDrop));
+              setPath(algo.process(startLocDrop, endLocDrop, Date.valueOf(date.getValue())));
             } else if (bfsCheckBox.isSelected()) {
               algo = new BFS();
-              setPath(algo.process(startLocDrop, endLocDrop));
+              setPath(algo.process(startLocDrop, endLocDrop, Date.valueOf(date.getValue())));
             }
           } catch (SQLException e) {
             System.err.println("SQL Exception");
@@ -766,6 +771,12 @@ public class pathfindingController {
     //    ArrayList<Node> listOfNodes = new ArrayList<>(nodes.values());
     ArrayList<Node> listOfNodes = allNodeList;
 
+    ArrayList<Node> listOfGoodNodes;
+
+    for(int i = 0; i < listOfNodes.size(); i ++){
+
+    }
+
     //    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
     //    HashMap<Integer, String> snL2 = nodeDAO.getShortName("L2");
     //    HashMap<Integer, String> sn1 = nodeDAO.getShortName("1 ");
@@ -783,17 +794,22 @@ public class pathfindingController {
     //    ArrayList<String> shortNoHallF2 =  new ArrayList<>(l1Labels.values());
     //    ArrayList<String> shortNoHallF3 =  new ArrayList<>(l1Labels.values());
 
+    //Need to convert Labels array from shortname strings to node id
+
     nodePane.getChildren().clear();
     switch (index) {
       case 0:
-        for (int i = 0; i < listOfNodes.size(); i++) {
+
+
+
+        for (int i = 0; i < l1Labels.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
             getNodesWFunctionality(listOfNodes, i, l1Labels);
           }
         }
         break;
       case 1:
-        for (int i = 0; i < listOfNodes.size(); i++) {
+        for (int i = 0; i < l2Labels.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "L2")) {
             getNodesWFunctionality(listOfNodes, i, l2Labels);
           }
@@ -801,7 +817,7 @@ public class pathfindingController {
         break;
 
       case 2:
-        for (int i = 0; i < listOfNodes.size(); i++) {
+        for (int i = 0; i < F1Labels.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
             getNodesWFunctionality(listOfNodes, i, F1Labels);
           }
@@ -809,7 +825,7 @@ public class pathfindingController {
 
         break;
       case 3:
-        for (int i = 0; i < listOfNodes.size(); i++) {
+        for (int i = 0; i < F2Labels.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "2 ")) {
             getNodesWFunctionality(listOfNodes, i, F2Labels);
           }
@@ -817,7 +833,7 @@ public class pathfindingController {
 
         break;
       case 4:
-        for (int i = 0; i < listOfNodes.size(); i++) {
+        for (int i = 0; i < F3Labels.size(); i++) {
           if (Objects.equals(listOfNodes.get(i).getFloor(), "3 ")) {
             getNodesWFunctionality(listOfNodes, i, F3Labels);
           }
@@ -829,8 +845,11 @@ public class pathfindingController {
 
   private void getNodesWFunctionality(
       ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn) throws SQLException {
+
     Node currentNode = listOfNodes.get(i);
     Label nodeLabel = new Label();
+
+
 
     Circle point =
         new Circle(
@@ -864,8 +883,12 @@ public class pathfindingController {
             }
           }
         });
-    nodePane.getChildren().add(point);
-    nodePane.getChildren().add(nodeLabel);
+
+    System.out.println(sn.get(listOfNodes.get(i).getNodeID()));
+
+      nodePane.getChildren().add(point);
+      nodePane.getChildren().add(nodeLabel);
+
   }
 
   public void displayData(Node point) throws SQLException {

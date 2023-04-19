@@ -398,6 +398,70 @@ public class App extends Application {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
+
+    try {
+      ln = new HashMap<>(nodeDAO.getAllLongName());
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+
+
+  public  static void mealRefresh(){
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    try {
+      testingMealHash = getHashMapMeal();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public  static void confRefresh(){
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    try {
+      testingConfRoom = getHashConfRoom();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public  static void flowerRefresh(){
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    try {
+      testingFlower = getHashMapFlowerRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public  static void fernsRefresh(){
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    try {
+      testingFurns = getHashFurns();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public static void requestRefresh() {
@@ -407,35 +471,6 @@ public class App extends Application {
       throw new RuntimeException(e);
     }
 
-    try {
-      testingMealHash = getHashMapMeal();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-
-    try {
-      testingConfRoom = getHashConfRoom();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-
-    try {
-      testingFlower = getHashMapFlowerRequest();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-
-    try {
-      testingFurns = getHashFurns();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-
-    try {
-      ln = new HashMap<>(nodeDAO.getAllLongName());
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
   }
 
   public static HashMap getHashMapRequest() throws SQLException {

@@ -2,21 +2,29 @@ package edu.wpi.teamg.ORMClasses;
 
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.EdgeDAO;
+import edu.wpi.teamg.DAOs.MoveDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
+
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import org.controlsfx.control.SearchableComboBox;
 
 public class Astar implements Algorithm {
   DAORepo dao = new DAORepo();
 
   @Override
-  public ArrayList<String> process(SearchableComboBox startLocDrop, SearchableComboBox endLocDrop)
+  public ArrayList<String> process(SearchableComboBox startLocDrop, SearchableComboBox endLocDrop, Date date)
       throws SQLException {
     ArrayList<String> path;
 
     NodeDAO nodeDAO = new NodeDAO();
     EdgeDAO edgeDAO = new EdgeDAO();
+
+    //This is where accounting for moveStarts
+    //MoveDAO moveDAO = new MoveDAO();
+
     ArrayList<Node> allNodes = new ArrayList<>(nodeDAO.getAll().values());
     ArrayList<Edge> allEdges = new ArrayList<>(edgeDAO.getAll().values());
 
