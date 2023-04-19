@@ -4,6 +4,7 @@ import static edu.wpi.teamg.App.*;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
+
 import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.Edge;
@@ -74,6 +75,7 @@ public class pathfindingController {
   ObservableList<String> FloorList;
 
   DAORepo dao = new DAORepo();
+  Algorithm algo;
 
   @FXML
   public void initialize() throws SQLException {
@@ -154,15 +156,18 @@ public class pathfindingController {
         event -> {
           try {
             if (aStarCheckBox.isSelected()) {
-              processAStarAlg();
+              algo = new Astar();
+              setPath(algo.process(startLocDrop, endLocDrop));
             } else if (dfsCheckBox.isSelected()) {
-              processDFS();
+              algo = new DFS();
+              setPath(algo.process(startLocDrop, endLocDrop));
             } else if (bfsCheckBox.isSelected()) {
-              processBFS();
+              algo = new BFS();
+              setPath(algo.process(startLocDrop, endLocDrop));
             }
-
           } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.err.println("SQL Exception");
+            e.printStackTrace();
           }
         });
 
@@ -368,176 +373,6 @@ public class pathfindingController {
         getNodesWFunctionality(listOfNodes, i, sn);
       }
     }
-  }
-
-  public void processAStarAlg() throws SQLException {
-    ArrayList<String> path;
-
-    NodeDAO nodeDAO = new NodeDAO();
-    EdgeDAO edgeDAO = new EdgeDAO();
-    ArrayList<Node> allNodes = new ArrayList<>(nodeDAO.getAll().values());
-    ArrayList<Edge> allEdges = new ArrayList<>(edgeDAO.getAll().values());
-
-    String L1StartNodeLongName = (String) startLocDrop.getValue();
-    String L1EndNodeLongName = (String) endLocDrop.getValue();
-
-    int L1StartNodeID = dao.getNodeIDbyLongName(L1StartNodeLongName);
-    int L1EndNodeID = dao.getNodeIDbyLongName(L1EndNodeLongName);
-
-    Node[] nodeArray = new Node[allNodes.size()];
-    for (int i = 0; i < allNodes.size(); i++) {
-      nodeArray[i] = allNodes.get(i);
-    }
-    Edge[] edgeArray = new Edge[allEdges.size()];
-    for (int i = 0; i < allEdges.size(); i++) {
-      edgeArray[i] = allEdges.get(i);
-    }
-
-    int startNode = 0;
-    int endNode = 0;
-    for (int i = 0; i < allNodes.size(); i++) {
-
-      if (nodeArray[i].getNodeID() == L1StartNodeID) {
-        startNode = i;
-      }
-      if (nodeArray[i].getNodeID() == L1EndNodeID) {
-        endNode = i;
-      }
-    }
-
-    Graph G1 = new Graph(nodeArray, edgeArray);
-    int[][] Adj = G1.createWeightedAdj();
-
-    System.out.println(nodeArray[0].getNodeID());
-    path = G1.aStarAlg(Adj, startNode, endNode);
-
-    setPath(path);
-  }
-
-  public void processBFS() throws SQLException {
-
-    ArrayList<String> path;
-
-    NodeDAO nodeDao = new NodeDAO();
-    EdgeDAO edgeDAO = new EdgeDAO();
-
-    HashMap<Integer, Node> nodeMap = nodeDao.getAll();
-    HashMap<String, Edge> edgeMap = edgeDAO.getAll();
-
-    ArrayList<Node> nodeList = new ArrayList<>(nodeMap.values());
-    ArrayList<Edge> edgeList = new ArrayList<>(edgeMap.values());
-
-    //    for (int i = 0; i < nodeList.size(); i++) {
-    //      System.out.println(nodeList.get(i).getNodeID());
-    //    }
-    //
-    //    for (int i = 0; i < edgeList.size(); i++) {
-    //      System.out.println(edgeList.get(i).getEdgeID());
-    //    }
-    String L1StartNodeLongName = (String) startLocDrop.getValue();
-    String L1EndNodeLongName = (String) endLocDrop.getValue();
-
-    int L1StartNodeID = dao.getNodeIDbyLongName(L1StartNodeLongName);
-    int L1EndNodeID = dao.getNodeIDbyLongName(L1EndNodeLongName);
-
-    Node[] nodeArray = new Node[nodeList.size()];
-    Edge[] edgeArray = new Edge[edgeList.size()];
-
-    for (int i = 0; i < nodeList.size(); i++) {
-      nodeArray[i] = nodeList.get(i);
-    }
-    for (int i = 0; i < edgeList.size(); i++) {
-      edgeArray[i] = edgeList.get(i);
-    }
-
-    int startNode = 0;
-    int endNode = 0;
-    for (int i = 0; i < nodeList.size(); i++) {
-
-      if (nodeArray[i].getNodeID() == L1StartNodeID) {
-        startNode = i;
-      }
-      if (nodeArray[i].getNodeID() == L1EndNodeID) {
-        endNode = i;
-      }
-    }
-
-    System.out.println(startNode);
-    System.out.println(endNode);
-
-    Graph graph = new Graph(nodeArray, edgeArray);
-    path = graph.breadthFirstSearch(graph.createWeightedAdj(), startNode, endNode);
-    // setPath(path);
-
-    System.out.println("Start node:" + L1StartNodeID);
-    System.out.println("End node:" + L1EndNodeID);
-
-    //        for (String s : path) {
-    //          System.out.println(s);
-    //        }
-
-    ArrayList<String> finalPath = new ArrayList<>();
-    for (int i = 0; i < path.size(); i++) {
-      finalPath.add(String.valueOf(nodeArray[Integer.parseInt(path.get(i))].getNodeID()));
-    }
-
-    setPath(finalPath);
-  }
-
-  public void processDFS() throws SQLException {
-
-    ArrayList<String> path = new ArrayList<>();
-
-    NodeDAO nodeDao = new NodeDAO();
-    EdgeDAO edgeDAO = new EdgeDAO();
-
-    HashMap<Integer, Node> nodeMap = nodeDao.getAll();
-    HashMap<String, Edge> edgeMap = edgeDAO.getAll();
-
-    ArrayList<Node> nodeList = new ArrayList<>(nodeMap.values());
-    ArrayList<Edge> edgeList = new ArrayList<>(edgeMap.values());
-
-    String L1StartNodeLongName = (String) startLocDrop.getValue();
-    String L1EndNodeLongName = (String) endLocDrop.getValue();
-
-    int L1StartNodeID = dao.getNodeIDbyLongName(L1StartNodeLongName);
-    int L1EndNodeID = dao.getNodeIDbyLongName(L1EndNodeLongName);
-
-    Node[] nodeArray = new Node[nodeList.size()];
-    Edge[] edgeArray = new Edge[edgeList.size()];
-
-    for (int i = 0; i < nodeList.size(); i++) {
-      nodeArray[i] = nodeList.get(i);
-    }
-    for (int i = 0; i < edgeList.size(); i++) {
-      edgeArray[i] = edgeList.get(i);
-    }
-
-    int startNode = 0;
-    int endNode = 0;
-    for (int i = 0; i < nodeList.size(); i++) {
-
-      if (nodeArray[i].getNodeID() == L1StartNodeID) {
-        startNode = i;
-      }
-      if (nodeArray[i].getNodeID() == L1EndNodeID) {
-        endNode = i;
-      }
-    }
-
-    Graph graph = new Graph(nodeArray, edgeArray);
-    path = graph.breadthFirstSearch(graph.createWeightedAdj(), startNode, endNode);
-    //  setPath(path);
-
-    System.out.println("Start node:" + L1StartNodeID);
-    System.out.println("End node:" + L1EndNodeID);
-
-    ArrayList<String> finalPath = new ArrayList<>();
-    for (int i = 0; i < path.size(); i++) {
-      finalPath.add(String.valueOf(nodeArray[Integer.parseInt(path.get(i))].getNodeID()));
-    }
-
-    setPath(finalPath);
   }
 
   public void setPath(ArrayList<String> path) throws SQLException {

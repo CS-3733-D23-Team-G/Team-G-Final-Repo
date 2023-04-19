@@ -16,8 +16,8 @@ public class DAORepo {
   private ConferenceRoomRequestDAO conferenceRoomRequestDao = new ConferenceRoomRequestDAO();
   private MealRequestDAO mealRequestDao = new MealRequestDAO();
   private FlowerRequestDAO flowerRequestDAO = new FlowerRequestDAO();
-
   private FurnitureDAO furnitureRequest = new FurnitureDAO();
+  private OfficeSupplyRequestDAO officeSupplyRequest = new OfficeSupplyRequestDAO();
 
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
@@ -59,6 +59,10 @@ public class DAORepo {
     return furnitureRequest.getAll();
   }
 
+  public HashMap getAllSupply() throws SQLException {
+    return officeSupplyRequest.getAll();
+  }
+
   public void insertNode(Object obj) throws SQLException {
     nodeDao.insert(obj);
   }
@@ -95,6 +99,10 @@ public class DAORepo {
     furnitureRequest.insert(obj);
   }
 
+  public void insertSupply(Object obj) throws SQLException {
+    officeSupplyRequest.insert(obj);
+  }
+
   public void deleteNode(Object obj) throws SQLException {
     nodeDao.delete(obj);
   }
@@ -129,6 +137,10 @@ public class DAORepo {
 
   public void deleteFurnitureRequest(Object obj) throws SQLException {
     furnitureRequest.delete(obj);
+  }
+
+  public void deleteSupplyReq(Object obj) throws SQLException {
+    officeSupplyRequest.delete(obj);
   }
 
   public void importNodeCSV(String path) throws SQLException {

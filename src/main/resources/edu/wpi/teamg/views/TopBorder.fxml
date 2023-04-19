@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -29,7 +31,7 @@
          <children>
             <AnchorPane styleClass="hit_the_griddy">
                <children>
-                  <Text fill="#f6bd38" layoutX="380.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Log Out" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="73.01025390625" AnchorPane.topAnchor="15.0">
+                  <Text fill="#f6bd38" layoutX="380.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Log Out" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="73.01025390625" AnchorPane.topAnchor="15.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -53,25 +55,46 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                </rowConstraints>
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Pathfinding" GridPane.columnIndex="2">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Pathfinding" textAlignment="CENTER" GridPane.columnIndex="2">
                      <font>
                         <Font name="Baskerville Old Face" size="30.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Form Status">
+                  <Line endX="100.0" startX="-60.0" stroke="#f6bd38" strokeWidth="3.0">
+                     <GridPane.margin>
+                        <Insets top="40.0" />
+                     </GridPane.margin>
+                  </Line>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Form Status" textAlignment="CENTER">
                      <font>
                         <Font name="Baskerville Old Face" size="30.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="ServiceRequest" wrappingWidth="242.876953125" GridPane.columnIndex="1">
+                  <Line endX="100.0" startX="-93.5" stroke="#f6bd38" strokeWidth="3.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="40.0" />
+                     </GridPane.margin>
+                  </Line>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="ServiceRequest" textAlignment="CENTER" wrappingWidth="242.876953125" GridPane.columnIndex="1">
                      <font>
                         <Font name="Baskerville Old Face" size="30.0" />
                      </font>
                   </Text>
+                  <Line endX="100.0" startX="-49.09539031982422" startY="0.3786797523498535" stroke="#f6bd38" strokeWidth="3.0" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets top="40.0" />
+                     </GridPane.margin>
+                  </Line>
                   <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="65.0" prefWidth="403.0" styleClass="hit_the_griddy" GridPane.columnIndex="1" />
                   <MFXButton fx:id="statusButton" opacity="0.0" prefWidth="389.0" styleClass="hit_the_griddy" text="Button" />
                   <MFXButton fx:id="signagePageButton" opacity="0.0" prefWidth="370.0" styleClass="hit_the_griddy" GridPane.columnIndex="2" />
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="100.0" right="100.0" />
+               </VBox.margin>
             </GridPane>
          </children>
       </VBox>
