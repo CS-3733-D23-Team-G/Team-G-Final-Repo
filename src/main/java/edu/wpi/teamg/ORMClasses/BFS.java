@@ -3,7 +3,6 @@ package edu.wpi.teamg.ORMClasses;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
-
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,7 +13,8 @@ public class BFS implements Algorithm {
   DAORepo dao = new DAORepo();
 
   @Override
-  public ArrayList<String> process(SearchableComboBox startLocDrop, SearchableComboBox endLocDrop, Date date)
+  public ArrayList<String> process(
+      SearchableComboBox startLocDrop, SearchableComboBox endLocDrop, Date date)
       throws SQLException {
 
     ArrayList<String> path;
@@ -22,8 +22,8 @@ public class BFS implements Algorithm {
     NodeDAO nodeDao = new NodeDAO();
     EdgeDAO edgeDAO = new EdgeDAO();
 
-    //This is where accounting for moveStarts
-    //MoveDAO moveDAO = new MoveDAO();
+    // This is where accounting for moveStarts
+    // MoveDAO moveDAO = new MoveDAO();
 
     HashMap<Integer, Node> nodeMap = nodeDao.getAll();
     HashMap<String, Edge> edgeMap = edgeDAO.getAll();

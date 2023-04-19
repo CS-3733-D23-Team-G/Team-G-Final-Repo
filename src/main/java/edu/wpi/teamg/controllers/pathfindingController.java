@@ -9,7 +9,6 @@ import edu.wpi.teamg.ORMClasses.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -366,13 +365,14 @@ public class pathfindingController {
     // Scaling is currently the issue with the node map
 
     // HashMap<Integer, Node> nodes = App.;
-    ArrayList<Node> listOfNodes = allNodeList;
-    // HashMap<Integer, String> ln = nodeDAO.getLongNames("L1");
-    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
-    for (int i = 0; i < listOfNodes.size(); i++) {
-      if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-        getNodesWFunctionality(listOfNodes, i, sn);
-      }
+    ArrayList<String> labelsL1 = new ArrayList<>(l1Labels.values());
+    HashMap<Integer, Node> goodNodesL1 = nodeDAO.getNodeIDsGivenShortnames(labelsL1);
+    ArrayList<Node> goodNodesListL1 = new ArrayList<>(goodNodesL1.values());
+    for (int i = 0; i < goodNodesListL1.size(); i++) {
+      //      if (Objects.equals(goodNodesListL1.get(i).getFloor(), "L1")) {
+      //        getNodesWFunctionality(goodNodesListL1, i, l1Labels);
+      //      }
+      getNodesWFunctionality(goodNodesListL1, i, l1Labels);
     }
   }
 
@@ -773,9 +773,7 @@ public class pathfindingController {
 
     ArrayList<Node> listOfGoodNodes;
 
-    for(int i = 0; i < listOfNodes.size(); i ++){
-
-    }
+    for (int i = 0; i < listOfNodes.size(); i++) {}
 
     //    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
     //    HashMap<Integer, String> snL2 = nodeDAO.getShortName("L2");
@@ -794,49 +792,76 @@ public class pathfindingController {
     //    ArrayList<String> shortNoHallF2 =  new ArrayList<>(l1Labels.values());
     //    ArrayList<String> shortNoHallF3 =  new ArrayList<>(l1Labels.values());
 
-    //Need to convert Labels array from shortname strings to node id
+    // Need to convert Labels array from shortname strings to node id
 
     nodePane.getChildren().clear();
     switch (index) {
       case 0:
+        ArrayList<String> labelsL1 = new ArrayList<>(l1Labels.values());
+        HashMap<Integer, Node> goodNodesL1 = nodeDAO.getNodeIDsGivenShortnames(labelsL1);
+        ArrayList<Node> goodNodesListL1 = new ArrayList<>(goodNodesL1.values());
 
+        for (int i = 0; i < goodNodesListL1.size(); i++) {
+          //          if (Objects.equals(goodNodesL1.get(i).getFloor(), "L1")) {
+          //            getNodesWFunctionality(goodNodesListL1, i, l1Labels);
+          //          }
 
-
-        for (int i = 0; i < l1Labels.size(); i++) {
-          if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
-            getNodesWFunctionality(listOfNodes, i, l1Labels);
-          }
+          getNodesWFunctionality(goodNodesListL1, i, l1Labels);
         }
         break;
       case 1:
-        for (int i = 0; i < l2Labels.size(); i++) {
-          if (Objects.equals(listOfNodes.get(i).getFloor(), "L2")) {
-            getNodesWFunctionality(listOfNodes, i, l2Labels);
-          }
+        ArrayList<String> labelsL2 = new ArrayList<>(l2Labels.values());
+        HashMap<Integer, Node> goodNodesL2 = nodeDAO.getNodeIDsGivenShortnames(labelsL2);
+        ArrayList<Node> goodNodesListL2 = new ArrayList<>(goodNodesL2.values());
+
+        for (int i = 0; i < goodNodesListL2.size(); i++) {
+          //          if (Objects.equals(listOfNodes.get(i).getFloor(), "L2")) {
+          //            getNodesWFunctionality(goodNodesListL2, i, l2Labels);
+          //          }
+
+          getNodesWFunctionality(goodNodesListL2, i, l2Labels);
         }
         break;
 
       case 2:
-        for (int i = 0; i < F1Labels.size(); i++) {
-          if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
-            getNodesWFunctionality(listOfNodes, i, F1Labels);
-          }
+        ArrayList<String> labels1 = new ArrayList<>(F1Labels.values());
+        HashMap<Integer, Node> goodNodes1 = nodeDAO.getNodeIDsGivenShortnames(labels1);
+        ArrayList<Node> goodNodesList1 = new ArrayList<>(goodNodes1.values());
+
+        for (int i = 0; i < goodNodesList1.size(); i++) {
+          //          if (Objects.equals(listOfNodes.get(i).getFloor(), "1 ")) {
+          //            getNodesWFunctionality(goodNodesList1, i, F1Labels);
+          //          }
+
+          getNodesWFunctionality(goodNodesList1, i, F1Labels);
         }
 
         break;
       case 3:
-        for (int i = 0; i < F2Labels.size(); i++) {
-          if (Objects.equals(listOfNodes.get(i).getFloor(), "2 ")) {
-            getNodesWFunctionality(listOfNodes, i, F2Labels);
-          }
+        ArrayList<String> labels2 = new ArrayList<>(F2Labels.values());
+        HashMap<Integer, Node> goodNodes2 = nodeDAO.getNodeIDsGivenShortnames(labels2);
+        ArrayList<Node> goodNodesList2 = new ArrayList<>(goodNodes2.values());
+
+        for (int i = 0; i < goodNodesList2.size(); i++) {
+          //          if (Objects.equals(goodNodesList2.get(i).getFloor(), "2 ")) {
+          //              getNodesWFunctionality(goodNodesList2, i, F2Labels);
+          //          }
+
+          getNodesWFunctionality(goodNodesList2, i, F2Labels);
         }
 
         break;
       case 4:
-        for (int i = 0; i < F3Labels.size(); i++) {
-          if (Objects.equals(listOfNodes.get(i).getFloor(), "3 ")) {
-            getNodesWFunctionality(listOfNodes, i, F3Labels);
-          }
+        ArrayList<String> labels3 = new ArrayList<>(F3Labels.values());
+        HashMap<Integer, Node> goodNodes3 = nodeDAO.getNodeIDsGivenShortnames(labels3);
+        ArrayList<Node> goodNodesList3 = new ArrayList<>(goodNodes3.values());
+
+        for (int i = 0; i < goodNodesList3.size(); i++) {
+          //          if (Objects.equals(goodNodes3.get(i).getFloor(), "3 ")) {
+          //            getNodesWFunctionality(goodNodesList3, i, F3Labels);
+          //          }
+
+          getNodesWFunctionality(goodNodesList3, i, F3Labels);
         }
 
         break;
@@ -848,8 +873,6 @@ public class pathfindingController {
 
     Node currentNode = listOfNodes.get(i);
     Label nodeLabel = new Label();
-
-
 
     Circle point =
         new Circle(
@@ -886,9 +909,8 @@ public class pathfindingController {
 
     System.out.println(sn.get(listOfNodes.get(i).getNodeID()));
 
-      nodePane.getChildren().add(point);
-      nodePane.getChildren().add(nodeLabel);
-
+    nodePane.getChildren().add(point);
+    nodePane.getChildren().add(nodeLabel);
   }
 
   public void displayData(Node point) throws SQLException {
