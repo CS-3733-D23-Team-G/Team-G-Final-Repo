@@ -48,21 +48,22 @@ public class AddEmployee {
   };
 
   private void allDataFilled() {
-      if(!(FirstName.getText().equals(""))
+    if (!(FirstName.getText().equals(""))
         || lastName.getText().equals("")
         || emailName.getText().equals("")
         || userName.getText().equals("")
         || Password.getText().equals("")
-        || serveDrop == null){
-          try{
-              storeEmployeeData();
-          } catch (SQLException e) {
-              e.printStackTrace();
-          }
-          Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE);
+        || serveDrop == null) {
+      try {
+        storeEmployeeData();
+      } catch (SQLException e) {
+        e.printStackTrace();
       }
+      Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE);
+    }
   }
-  private void storeEmployeeData() throws SQLException{
-      Employee emp = new Employee();
+
+  private void storeEmployeeData() throws SQLException {
+    Employee emp = new Employee();
   }
 }
