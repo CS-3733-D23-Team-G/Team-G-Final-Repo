@@ -133,64 +133,20 @@ public class AdminFormStatusController {
         });
     cancelTableForm.setOnMouseClicked(event -> cancelEditOfTables());
 
-    ArrayList<Request> request1 = new ArrayList<>();
+    HashMap<Integer, Request> testingRequest = App.testingRequest;
+    ArrayList<Request> request1 = new ArrayList<>(testingRequest.values());
 
-    HashMap<Integer, Request> testingRequest = this.getHashMapRequest();
-    testingRequest.forEach(
-        (i, m) -> {
-          request1.add(m);
-          //          System.out.println("Request ID:" + m.getReqid());
-          //          System.out.println("Employee ID:" + m.getEmpid());
-          //          System.out.println("Status:" + m.getStatus());
-          //          System.out.println("Location:" + m.getLocation());
-          //          System.out.println("Serve By:" + m.getServ_by());
-          //          System.out.println();
-        });
+    HashMap<Integer, MealRequest> testingMealHash = App.testingMealHash;
+    ArrayList<MealRequest> mealRequests1 = new ArrayList<>(testingMealHash.values());
 
-    ArrayList<MealRequest> mealRequests1 = new ArrayList<>();
-    HashMap<Integer, MealRequest> testingMealHash = this.getHashMapMeal();
-    testingMealHash.forEach(
-        (i, m) -> {
-          mealRequests1.add(m);
-          //              System.out.println("Request ID:" + m.getReqid());
-          //              System.out.println("Employee ID:" + m.getEmpid());
-          //              System.out.println("Delivery date:" + m.getDeliveryDate());
-          //              System.out.println("Delivery time:" + m.getDeliveryTime());
-          //              System.out.println("note:" + m.getNote());
-          //              System.out.println("meal:" + m.getEmpid());
-          //              System.out.println();
-        });
-    ArrayList<ConferenceRoomRequest> confroom = new ArrayList<>();
-    HashMap<Integer, ConferenceRoomRequest> testingConfRoom = this.getHashConfRoom();
-    testingConfRoom.forEach(
-        (i, m) -> {
-          confroom.add(m);
-          //              System.out.println("Reqid: " + m.getReqid());
-          //              System.out.println("Meeting Date: " + m.getMeeting_date());
-          //              System.out.println("Meeting time: " + m.getMeeting_time());
-          //              System.out.println("Purpose: " + m.getPurpose());
-        });
-    ArrayList<FlowerRequest> flowerDel = new ArrayList<>();
-    HashMap<Integer, FlowerRequest> testingFlower = this.getHashMapFlowerRequest();
-    testingFlower.forEach(
-        (i, m) -> {
-          flowerDel.add(m);
-          System.out.println("Reqid: " + m.getReqid());
-          //              System.out.println("Meeting Date: " + m.getMeeting_date());
-          //              System.out.println("Meeting time: " + m.getMeeting_time());
-          //              System.out.println("Purpose: " + m.getPurpose());
-        });
+    HashMap<Integer, ConferenceRoomRequest> testingConfRoom = App.testingConfRoom;
+    ArrayList<ConferenceRoomRequest> confroom = new ArrayList<>(testingConfRoom.values());
 
-    ArrayList<FurnitureRequest> furns = new ArrayList<>();
-    HashMap<Integer, FurnitureRequest> testingFurns = this.getHashFurns();
-    testingFurns.forEach(
-        (i, m) -> {
-          furns.add(m);
-          //              System.out.println("Reqid: " + m.getReqid());
-          //              System.out.println("Meeting Date: " + m.getMeeting_date());
-          //              System.out.println("Meeting time: " + m.getMeeting_time());
-          //              System.out.println("Purpose: " + m.getPurpose());
-        });
+    HashMap<Integer, FlowerRequest> testingFlower = App.testingFlower;
+    ArrayList<FlowerRequest> flowerDel = new ArrayList<>(testingFlower.values());
+
+    HashMap<Integer, FurnitureRequest> testingFurns = App.testingFurns;
+    ArrayList<FurnitureRequest> furns = new ArrayList<>(testingFurns.values());
 
     testList = FXCollections.observableArrayList(request1);
     testMealList = FXCollections.observableArrayList(mealRequests1);
@@ -258,70 +214,70 @@ public class AdminFormStatusController {
     furnNote.setCellValueFactory(new PropertyValueFactory<>("note"));
   }
 
-  public HashMap getHashMapRequest() throws SQLException {
-
-    HashMap<Integer, Request> requestHashMap = new HashMap<Integer, Request>();
-
-    try {
-      requestHashMap = dao.getAllRequest();
-    } catch (SQLException e) {
-      System.err.print(e.getErrorCode());
-    }
-
-    return requestHashMap;
-  }
-
-  public HashMap getHashMapMeal() throws SQLException {
-
-    HashMap mealRequestHashMap = new HashMap<Integer, MealRequest>();
-
-    try {
-      mealRequestHashMap = dao.getAllMealRequest();
-    } catch (SQLException e) {
-      System.err.print(e.getErrorCode());
-    }
-
-    return mealRequestHashMap;
-  }
-
-  public HashMap getHashConfRoom() throws SQLException {
-
-    HashMap<Integer, ConferenceRoomRequest> confRoomHash =
-        new HashMap<Integer, ConferenceRoomRequest>();
-
-    try {
-      confRoomHash = dao.getAllConferenceRequest();
-    } catch (SQLException e) {
-      System.err.print(e.getErrorCode());
-    }
-
-    return confRoomHash;
-  }
-
-  public HashMap getHashMapFlowerRequest() throws SQLException {
-
-    HashMap<Integer, FlowerRequest> flowerHashMap = new HashMap<Integer, FlowerRequest>();
-
-    try {
-      flowerHashMap = dao.getALLFlowerRequest();
-    } catch (SQLException e) {
-      System.err.print(e.getErrorCode());
-    }
-    return flowerHashMap;
-  }
-
-  public HashMap getHashFurns() throws SQLException {
-
-    HashMap<Integer, FurnitureRequest> furnsHash = new HashMap<Integer, FurnitureRequest>();
-
-    try {
-      furnsHash = dao.getAllFurniture();
-    } catch (SQLException e) {
-      System.err.print(e.getErrorCode());
-    }
-
-    return furnsHash;
-  }
+  //  public HashMap getHashMapRequest() throws SQLException {
+  //
+  //    HashMap<Integer, Request> requestHashMap = new HashMap<Integer, Request>();
+  //
+  //    try {
+  //      requestHashMap = dao.getAllRequest();
+  //    } catch (SQLException e) {
+  //      System.err.print(e.getErrorCode());
+  //    }
+  //
+  //    return requestHashMap;
+  //  }
+  //
+  //  public HashMap getHashMapMeal() throws SQLException {
+  //
+  //    HashMap mealRequestHashMap = new HashMap<Integer, MealRequest>();
+  //
+  //    try {
+  //      mealRequestHashMap = dao.getAllMealRequest();
+  //    } catch (SQLException e) {
+  //      System.err.print(e.getErrorCode());
+  //    }
+  //
+  //    return mealRequestHashMap;
+  //  }
+  //
+  //  public HashMap getHashConfRoom() throws SQLException {
+  //
+  //    HashMap<Integer, ConferenceRoomRequest> confRoomHash =
+  //        new HashMap<Integer, ConferenceRoomRequest>();
+  //
+  //    try {
+  //      confRoomHash = dao.getAllConferenceRequest();
+  //    } catch (SQLException e) {
+  //      System.err.print(e.getErrorCode());
+  //    }
+  //
+  //    return confRoomHash;
+  //  }
+  //
+  //  public HashMap getHashMapFlowerRequest() throws SQLException {
+  //
+  //    HashMap<Integer, FlowerRequest> flowerHashMap = new HashMap<Integer, FlowerRequest>();
+  //
+  //    try {
+  //      flowerHashMap = dao.getALLFlowerRequest();
+  //    } catch (SQLException e) {
+  //      System.err.print(e.getErrorCode());
+  //    }
+  //    return flowerHashMap;
+  //  }
+  //
+  //  public HashMap getHashFurns() throws SQLException {
+  //
+  //    HashMap<Integer, FurnitureRequest> furnsHash = new HashMap<Integer, FurnitureRequest>();
+  //
+  //    try {
+  //      furnsHash = dao.getAllFurniture();
+  //    } catch (SQLException e) {
+  //      System.err.print(e.getErrorCode());
+  //    }
+  //
+  //    return furnsHash;
+  //  }
 
   public void loadAllRequestTable() {
     mainTable.setVisible(true);
@@ -395,10 +351,8 @@ public class AdminFormStatusController {
           Request obj = event.getRowValue();
           obj.setStatus(StatusTypeEnum.valueOf(String.valueOf(event.getNewValue())));
           try {
-            requestDAO.update(
-                obj,
-                "status",
-                event.getNewValue()); // let me cook, enum sucks but I have been struggling with it
+            requestDAO.update(obj, "status", event.getNewValue());
+            App.requestRefresh(); // let me cook, enum sucks but I have been struggling with it
             // the
           } catch (SQLException e) {
             throw new RuntimeException(e);

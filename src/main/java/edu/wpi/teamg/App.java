@@ -1,9 +1,8 @@
 package edu.wpi.teamg;
 
 import edu.wpi.teamg.DAOs.DAORepo;
-import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
-import edu.wpi.teamg.ORMClasses.Node;
+import edu.wpi.teamg.ORMClasses.*;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import java.io.IOException;
@@ -203,7 +202,55 @@ public class App extends Application {
     }
   }
 
-  public static LocationNameDAO locationNameDAO = new LocationNameDAO();
+  public static HashMap<Integer, Request> testingRequest;
+
+  static {
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, MealRequest> testingMealHash;
+
+  static {
+    try {
+      testingMealHash = getHashMapMeal();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, ConferenceRoomRequest> testingConfRoom;
+
+  static {
+    try {
+      testingConfRoom = getHashConfRoom();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, FlowerRequest> testingFlower;
+
+  static {
+    try {
+      testingFlower = getHashMapFlowerRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, FurnitureRequest> testingFurns;
+
+  static {
+    try {
+      testingFurns = getHashFurns();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   @Override
   public void init() {
@@ -326,6 +373,103 @@ public class App extends Application {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public static void requestRefresh() {
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      testingMealHash = getHashMapMeal();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      testingConfRoom = getHashConfRoom();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      testingFlower = getHashMapFlowerRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    try {
+      testingFurns = getHashFurns();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap getHashMapRequest() throws SQLException {
+
+    HashMap<Integer, Request> requestHashMap = new HashMap<Integer, Request>();
+
+    try {
+      requestHashMap = daoRepo.getAllRequest();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return requestHashMap;
+  }
+
+  public static HashMap getHashMapMeal() throws SQLException {
+
+    HashMap mealRequestHashMap = new HashMap<Integer, MealRequest>();
+
+    try {
+      mealRequestHashMap = daoRepo.getAllMealRequest();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return mealRequestHashMap;
+  }
+
+  public static HashMap getHashConfRoom() throws SQLException {
+
+    HashMap<Integer, ConferenceRoomRequest> confRoomHash =
+        new HashMap<Integer, ConferenceRoomRequest>();
+
+    try {
+      confRoomHash = daoRepo.getAllConferenceRequest();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return confRoomHash;
+  }
+
+  public static HashMap getHashMapFlowerRequest() throws SQLException {
+
+    HashMap<Integer, FlowerRequest> flowerHashMap = new HashMap<Integer, FlowerRequest>();
+
+    try {
+      flowerHashMap = daoRepo.getALLFlowerRequest();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+    return flowerHashMap;
+  }
+
+  public static HashMap getHashFurns() throws SQLException {
+
+    HashMap<Integer, FurnitureRequest> furnsHash = new HashMap<Integer, FurnitureRequest>();
+
+    try {
+      furnsHash = daoRepo.getAllFurniture();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return furnsHash;
   }
 
   @Override
