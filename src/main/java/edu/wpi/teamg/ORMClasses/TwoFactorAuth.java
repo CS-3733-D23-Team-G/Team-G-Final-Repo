@@ -15,7 +15,9 @@ import org.yaml.snakeyaml.Yaml;
 public class TwoFactorAuth {
   final String mailHost = "smtp.gmail.com";
   String sender = "brighmanwomenautosender@gmail.com";
-  @Getter @Setter String recipient;
+  @Getter
+  @Setter
+  String recipient;
   int code;
 
   public TwoFactorAuth() {
@@ -34,14 +36,14 @@ public class TwoFactorAuth {
     props.put("mail.smtp.port", 587);
 
     javax.mail.Session session =
-        Session.getInstance(
-            props,
-            new Authenticator() {
-              @Override
-              protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(sender, password);
-              }
-            });
+            Session.getInstance(
+                    props,
+                    new Authenticator() {
+                      @Override
+                      protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(sender, password);
+                      }
+                    });
 
     try {
       MimeMessage mimeMessage = new MimeMessage(session);
@@ -57,7 +59,7 @@ public class TwoFactorAuth {
   private List<String> getEmailCred() {
     List<String> creds = new LinkedList<>();
     InputStream is =
-        this.getClass().getClassLoader().getResourceAsStream("edu/wpi/teamg/emailCreds.yml");
+            this.getClass().getClassLoader().getResourceAsStream("edu/wpi/teamg/emailCreds.yml");
     Yaml yaml = new Yaml();
     Map<String, Object> data = yaml.load(is);
     creds.add(data.get("emailPass").toString());

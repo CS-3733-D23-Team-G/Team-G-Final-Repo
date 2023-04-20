@@ -797,7 +797,6 @@ public class pathfindingController {
     nodePane.getChildren().clear();
     switch (index) {
       case 0:
-
         ArrayList<String> labelsL1 = new ArrayList<>(l1Labels.values());
         HashMap<Integer, Node> goodNodesL1 = nodeDAO.getNodeIDsGivenShortnames(labelsL1);
         ArrayList<Node> goodNodesListL1 = new ArrayList<>(goodNodesL1.values());
@@ -808,7 +807,6 @@ public class pathfindingController {
           //          }
 
           getNodesWFunctionality(goodNodesListL1, i, l1Labels);
-
         }
         break;
       case 1:
