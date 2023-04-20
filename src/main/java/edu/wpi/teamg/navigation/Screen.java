@@ -28,6 +28,7 @@ public enum Screen {
   EMPLOYEE_FORMS("views/EmployeeSelfFormView.fxml"),
   ADMIN_SIGNAGE_EDITOR("views/SignageAdmin.fxml"),
   ADMIN_MAP_EDITOR("views/MapEditor.fxml"),
+  ADD_EMPLOYEE("views/AddEmployee.fxml"),
   NODE_EDITOR("views/NodeViewAndEditor");
 
   private final String filename;

@@ -113,7 +113,7 @@ public class LoginController {
 
   public void addAccount() throws NoSuchAlgorithmException, SQLException {
     Account admin = new Account("admin", "admin", true);
-    Account staff = new Account("staff", "staff", true);
+    Account staff = new Account("staff", "staff", false);
     byte[] saltAdmin = admin.getSalt();
     byte[] saltStaff = staff.getSalt();
 
