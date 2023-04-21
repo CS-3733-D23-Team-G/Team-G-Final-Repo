@@ -468,6 +468,17 @@ Popup
 .dropdown{
     -fx-font-size: 20;
 }
+.about_page{
+    -fx-background-color: #012D5A;
+    -fx-pref-width: 475;
+    -fx-pref-height: 350;
+}
+.about_text{
+    -fx-font-size: 12;
+    -fx-text-fill: #FFFF;
+    -fx-pref-height: 15;
+    -fx-pref-width: 515;
+}
 
 
 
