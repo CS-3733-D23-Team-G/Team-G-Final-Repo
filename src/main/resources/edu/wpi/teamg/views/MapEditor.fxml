@@ -16,11 +16,11 @@
    <center>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="980.0" prefWidth="656.0" styleClass="half_bottom_left" stylesheets="@style.css">
+            <AnchorPane prefHeight="980.0" prefWidth="656.0" styleClass="half_bottom_left" stylesheets="@mapEditor.css">
                <children>
-                  <HBox layoutX="69.0" layoutY="228.0" prefHeight="486.0" prefWidth="502.0" styleClass="left_vbox" stylesheets="@style.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="150.0">
+                  <HBox layoutX="69.0" layoutY="228.0" prefHeight="486.0" prefWidth="502.0" styleClass="left_vbox" stylesheets="@mapEditor.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="150.0">
                      <children>
-                        <VBox prefHeight="980.0" prefWidth="135.0" styleClass="locationSelect_vbox">
+                        <VBox prefHeight="606.0" prefWidth="393.0" styleClass="locationSelect_vbox">
                            <children>
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
@@ -81,8 +81,10 @@
                                     </MFXToggleButton>
                                  </children>
                               </HBox>
+                              <MFXButton fx:id="deleteLoc12" prefHeight="70.0" prefWidth="192.0" styleClass="add_Buttons" text="Align" />
+                              <MFXButton fx:id="deleteLoc11" prefHeight="60.0" prefWidth="216.0" styleClass="add_Buttons" text="Align" />
                            </children></VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="button_vbox">
+                        <VBox prefHeight="680.0" prefWidth="92.0" styleClass="button_vbox">
                            <children>
                               <MFXButton fx:id="floor3" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F3" textAlignment="CENTER" textFill="#f6bd38">
                                  <VBox.margin>
@@ -133,11 +135,12 @@
                         </VBox>
                      </children>
                   </HBox>
+                  <MFXButton fx:id="deleteLoc1" layoutX="380.0" layoutY="884.0" prefHeight="46.0" prefWidth="204.0" styleClass="add_Buttons" text="Align" />
                </children>
             </AnchorPane>
             <AnchorPane styleClass="half_bottom_right">
                <children>
-                  <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" layoutX="2.0" layoutY="-26.0" prefHeight="980.0" prefWidth="1356.0" styleClass="gesture_pane_pathfinding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" layoutX="2.0" layoutY="-26.0" prefHeight="980.0" prefWidth="1356.0" styleClass="finding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
                         <Group fx:id="group">
                            <children>
