@@ -224,7 +224,7 @@ public class ConferenceRoomRequestDAO implements DAO {
         Time time = Time.valueOf(data[1]);
         String purpose = data[2];
         ConferenceRoomRequest confRoom = new ConferenceRoomRequest(id,time,purpose);
-        insert(confRoom);
+        this.insert(confRoom);
       }
 
     } catch (IOException e) {
