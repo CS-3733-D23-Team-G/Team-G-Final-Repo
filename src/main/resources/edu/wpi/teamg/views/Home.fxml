@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -38,6 +39,7 @@
                         <Font size="25.0" />
                      </font>
                   </Text>
+                  <Label fx:id="EmpName" layoutX="119.0" layoutY="50.0" prefHeight="45.0" prefWidth="184.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
