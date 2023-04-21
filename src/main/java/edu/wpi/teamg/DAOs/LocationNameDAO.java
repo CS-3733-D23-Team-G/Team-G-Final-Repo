@@ -5,6 +5,7 @@ import edu.wpi.teamg.ORMClasses.LocationName;
 import java.io.*;
 import java.sql.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
 
@@ -44,6 +45,55 @@ public class LocationNameDAO implements LocationDAO {
     connection.closeConnection();
 
     return Location;
+  }
+
+  public ArrayList getLNgivenRequestType(String requestType) throws SQLException {
+
+    ArrayList<String> LNgivenReqType = new ArrayList<>();
+
+    db.setConnection();
+
+    PreparedStatement ps;
+
+    ResultSet rs = null;
+
+    switch (requestType) {
+      default:
+        SQL =
+            "SELECT LocationName.longName\n"
+                + "           FROM iteration3.LocationName\n"
+                + "            WHERE LocationName.nodeType = 'CONF'\n"
+                + "                OR LocationName.nodeType = 'DEPT'\n"
+                + "                OR LocationName.nodeType = 'INFO'\n"
+                + "                OR LocationName.nodeType = 'SERV'\n"
+                + "                OR LocationName.nodeType = 'LABS'\n"
+                + "                OR LocationName.nodeType = 'RETL';";
+        break;
+      case "CR":
+        SQL =
+            "SELECT LocationName.longName\n"
+                + "           FROM iteration3.LocationName\n"
+                + "            WHERE LocationName.nodeType = 'CONF';";
+        break;
+    }
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      // printSQLException(e);
+    }
+
+    while (rs.next()) {
+      String longname = rs.getString("longname");
+
+      LNgivenReqType.add(longname);
+    }
+
+    db.closeConnection();
+
+    return LNgivenReqType;
   }
 
   @Override
@@ -112,7 +162,7 @@ public class LocationNameDAO implements LocationDAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration2.locationname";
+    return "teamgdb.iteration3.locationname";
   }
 
   @Override

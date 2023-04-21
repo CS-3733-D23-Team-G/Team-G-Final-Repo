@@ -62,9 +62,10 @@ public class EmployeeDAO implements DAO {
       ps = conn.getConnection().prepareStatement(query);
       ps.setInt(1, employee.getEmpID());
       ps.setString(2, employee.getFirstName());
-      ps.setString(2, employee.getLastName());
-      ps.setString(1, employee.getEmail());
-      ps.setString(1, employee.getCan_serve());
+      ps.setString(3, employee.getLastName());
+      ps.setString(4, employee.getEmail());
+      ps.setString(5, employee.getCan_serve());
+      ps.executeUpdate();
     } catch (SQLException e) {
       System.out.println("SQL exception");
       e.printStackTrace();
@@ -91,7 +92,7 @@ public class EmployeeDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration2.employee";
+    return "teamgdb.iteration3.employee";
   }
 
   public static HashMap<Integer, String> getEmployeeFullName(String canServe) throws SQLException {
@@ -105,7 +106,7 @@ public class EmployeeDAO implements DAO {
 
     query =
         "SELECT empid, firstname, lastname\n"
-            + "FROM iteration2.employee\n"
+            + "FROM iteration3.employee\n"
             + "WHERE can_serve = ?;";
 
     try {
@@ -139,7 +140,7 @@ public class EmployeeDAO implements DAO {
 
     ResultSet rs = null;
 
-    query = "SELECT empid, firstname, lastname\n" + "FROM iteration2.employee;";
+    query = "SELECT empid, firstname, lastname\n" + "FROM iteration3.employee;";
 
     try {
       ps = conn.getConnection().prepareStatement(query);

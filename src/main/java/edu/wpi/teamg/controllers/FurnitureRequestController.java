@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.FurnitureRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -198,6 +199,7 @@ public class FurnitureRequestController {
 
     DAORepo dao = new DAORepo();
     dao.insertFurniture(mr);
+    App.requestRefresh();
   }
 
   public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {

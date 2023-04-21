@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
@@ -54,26 +55,31 @@ public class LocNamePopUpController {
 
   public void editPopUp() throws SQLException {
 
-    NodeDAO nodeDAO = new NodeDAO();
+    NodeDAO nodeDAO = App.nodeDAO;
+
+    LocationNameDAO locationNameDAO = new LocationNameDAO();
 
     HashMap<Integer, Node> nodes = nodeDAO.getAll();
+
     Node ourNode = nodes.get(Integer.parseInt(nodID.getText()));
+    HashMap<Integer, String> ln = nodeDAO.getAllLongName();
+    HashMap<String, LocationName> locs = locationNameDAO.getAll();
 
-    String oldLong = ourNode.getLongName();
-    String oldShort = ourNode.getShortName();
-    String oldNodeType = ourNode.getNodeType();
+    String oldLong = ln.get(ourNode.getNodeID());
 
+    String oldShort = locs.get(oldLong).getShortName();
+    String oldType = locs.get(oldLong).getNodeType();
     //        String newLong = longName.getText();
     //        String newShort = shortName.getText();
     //        String newNodeType = nodID.getText();
 
-    LocationNameDAO locationNameDAO = new LocationNameDAO();
-
-    LocationName oldLoc = new LocationName(oldLong, oldShort, oldNodeType);
+    LocationName oldLoc = new LocationName(oldLong, oldShort, oldType);
     //        LocationName updatedLoc = new LocationName(newLong,newShort,newNodeType);
 
     locationNameDAO.update(oldLoc, "shortname", shortName.getText());
-    locationNameDAO.update(oldLoc, "node", nodID.getText());
+    locationNameDAO.update(oldLoc, "nodetype", nType.getText());
     locationNameDAO.update(oldLoc, "longname", longName.getText());
+
+    App.refresh();
   }
 }

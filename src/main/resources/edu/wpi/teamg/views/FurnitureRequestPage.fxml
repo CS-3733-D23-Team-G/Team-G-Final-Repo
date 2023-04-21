@@ -63,7 +63,7 @@
                                                     </VBox.margin>
                                                 </Text>
                                                 <Line endX="126.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                                <SearchableComboBox fx:id="locationSearchDropdown" prefHeight="32.0" prefWidth="395.0" styleClass="locationSelect_comboSearchBox">
+                                                <SearchableComboBox fx:id="locationSearchDropdown" prefHeight="32.0" prefWidth="395.0" styleClass="requestTextBox">
                                                     <VBox.margin>
                                                         <Insets right="15.0" top="15.0" />
                                                     </VBox.margin>
@@ -126,7 +126,7 @@
                                                     </VBox.margin>
                                                 </Text>
                                                 <Line endX="24.878677368164062" endY="-1.242640495300293" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                                <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="locationSelect_comboSearchBox">
+                                                <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="requestTextBox">
                                                     <VBox.margin>
                                                         <Insets right="15.0" top="15.0" />
                                                     </VBox.margin>

@@ -72,7 +72,7 @@ public class SignageScreenSaverController {
       System.out.println(arrowDirection[i]);
     }
 
-    int[] testCase = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    // int[] testCase = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     if (controller.getAttribute()) {
       getArrowDirectionFromEditor();

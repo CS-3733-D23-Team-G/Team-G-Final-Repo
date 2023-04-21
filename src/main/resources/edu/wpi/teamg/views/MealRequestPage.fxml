@@ -69,7 +69,7 @@
                                        </VBox.margin>
                                        <styleClass>
                                           <String fx:value="text_box" />
-                                          <String fx:value="locationSelect_comboSearchBox" />
+                                          <String fx:value="requestTextBox" />
                                        </styleClass>
                                     </SearchableComboBox>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Notes">
@@ -81,10 +81,13 @@
                                        </VBox.margin>
                                     </Text>
                                     <Line endX="-22.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="mealNotesData" prefHeight="200.0" prefWidth="386.0">
+                                    <MFXTextField fx:id="mealNotesData" alignment="TOP_LEFT" prefColumnCount="1" prefHeight="200.0" prefWidth="386.0" styleClass="notes_textbox">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
                                     </MFXTextField>
                                  </children>
                                  <padding>
@@ -130,7 +133,7 @@
                                        </VBox.margin>
                                     </Text>
                                     <Line endX="26.292892456054688" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css">
+                                    <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="requestTextBox" stylesheets="@style.css">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>

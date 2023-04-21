@@ -123,7 +123,7 @@ public class EdgeDAO implements LocationDAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration2.edge";
+    return "teamgdb.iteration3.edge";
   }
 
   @Override

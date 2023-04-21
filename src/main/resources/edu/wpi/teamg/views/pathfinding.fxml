@@ -3,8 +3,10 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -72,16 +74,25 @@
                                     <Insets top="25.0" />
                                  </VBox.margin>
                               </HBox>
-                              <MFXButton fx:id="pathFindButton" alignment="CENTER" contentDisplay="CENTER" prefWidth="416.0" styleClass="getPath_Button" text="GET PATH">
-                                 <VBox.margin>
-                                    <Insets left="75.0" top="50.0" />
-                                 </VBox.margin>
-                              </MFXButton>
-                              <MFXButton fx:id="goToAdminSign" alignment="CENTER" contentDisplay="CENTER" prefWidth="416.0" styleClass="getPath_Button" text="ADMIN PAGE">
-                                 <VBox.margin>
-                                    <Insets left="75.0" top="25.0" />
-                                 </VBox.margin>
-                              </MFXButton>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <DatePicker fx:id="date" prefHeight="44.0" prefWidth="204.0" promptText="Date" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="pathFindButton" alignment="CENTER" contentDisplay="CENTER" prefWidth="416.0" styleClass="getPath_Button" text="GET PATH">
+                                       <HBox.margin>
+                                          <Insets top="15.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXToggleButton fx:id="dSN" text="Display Short Names" />
+                                 </children>
+                              </HBox>
                            </children>
                            <HBox.margin>
                               <Insets left="25.0" />

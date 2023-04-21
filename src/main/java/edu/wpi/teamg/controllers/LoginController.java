@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.AccountDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
@@ -7,31 +8,51 @@ import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
-import org.controlsfx.control.textfield.CustomTextField;
 
 public class LoginController {
   @FXML MFXButton loginButton;
-  @FXML CustomTextField username;
+  @FXML MFXTextField username;
   @FXML MFXPasswordField password;
 
-  @FXML Label userInc;
+  // @FXML Label userInc;
 
   @FXML Label passInc;
+
+  // @FXML MFXButton addAccounts;
 
   DBConnection db = new DBConnection();
   String query;
 
   public void initialize() {
-    userInc.setVisible(false);
+    // userInc.setVisible(false);
     passInc.setVisible(false);
     loginButton.setOnAction(event -> loginCheck());
+    //  addAccounts.setOnMouseClicked(
+    //        event -> {
+    //          try {
+    //            addAccount();
+    //          } catch (NoSuchAlgorithmException e) {
+    //            throw new RuntimeException(e);
+    //          } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //          }
+    //        });
+    password.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+            loginCheck();
+          }
+        });
   }
 
   public void loginCheck() {
@@ -54,11 +75,12 @@ public class LoginController {
       boolean tableAdmin = false;
 
       while (rs.next()) {
-
+        tableEmp = rs.getInt("empid");
         tablePass = rs.getString("hashpassword");
         tableSalt = rs.getBytes("salt");
         tableAdmin = rs.getBoolean("is_admin");
       }
+
 
       Account account = new Account();
       account.setPassword(pass);
@@ -67,7 +89,9 @@ public class LoginController {
         Navigation.Logout();
         if (tableAdmin) Navigation.setAdmin();
         Navigation.setLoggedin();
+        App.employee.setEmpID(tableEmp);
         Navigation.navigate(Screen.HOME);
+        System.out.println();
       } else {
         incorrectPassword();
       }
@@ -84,10 +108,26 @@ public class LoginController {
   }
 
   public void incorrectPassword() {
-    userInc.setFont(Font.font(20));
+    // userInc.setFont(Font.font(20));
     passInc.setFont(Font.font(20));
 
-    userInc.setVisible(true);
+    // .setVisible(true);
     passInc.setVisible(true);
+  }
+
+  public void addAccount() throws NoSuchAlgorithmException, SQLException {
+    Account admin = new Account("admin", "admin", true);
+    Account staff = new Account("staff", "staff", false);
+    byte[] saltAdmin = admin.getSalt();
+    byte[] saltStaff = staff.getSalt();
+
+    admin.setEmpID(0);
+    staff.setEmpID(1);
+    String hashedAdmin = admin.getHashedPassword(saltAdmin);
+    String hashedStaff = admin.getHashedPassword(saltStaff);
+
+    AccountDAO accountDAO = new AccountDAO();
+    accountDAO.insertAccount(admin, hashedAdmin, true);
+    accountDAO.insertAccount(staff, hashedStaff, false);
   }
 }

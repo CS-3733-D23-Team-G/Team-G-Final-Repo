@@ -34,7 +34,7 @@ public class TopBannerController {
 
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-    loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOGIN_PAGE));
+    loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
