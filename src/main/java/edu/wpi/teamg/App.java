@@ -41,6 +41,8 @@ public class App extends Application {
 
   public static HashMap<String, Edge> edgeMap;
 
+  public static Employee employee = new Employee();
+
   static {
     try {
       edgeMap = edgeDao.getAll();

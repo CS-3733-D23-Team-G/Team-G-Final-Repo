@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.AccountDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
@@ -74,11 +75,12 @@ public class LoginController {
       boolean tableAdmin = false;
 
       while (rs.next()) {
-
+        tableEmp = rs.getInt("empid");
         tablePass = rs.getString("hashpassword");
         tableSalt = rs.getBytes("salt");
         tableAdmin = rs.getBoolean("is_admin");
       }
+
 
       Account account = new Account();
       account.setPassword(pass);
@@ -87,7 +89,9 @@ public class LoginController {
         Navigation.Logout();
         if (tableAdmin) Navigation.setAdmin();
         Navigation.setLoggedin();
+        App.employee.setEmpID(tableEmp);
         Navigation.navigate(Screen.HOME);
+        System.out.println();
       } else {
         incorrectPassword();
       }
