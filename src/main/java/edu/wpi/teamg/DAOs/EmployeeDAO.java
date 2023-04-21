@@ -62,9 +62,10 @@ public class EmployeeDAO implements DAO {
       ps = conn.getConnection().prepareStatement(query);
       ps.setInt(1, employee.getEmpID());
       ps.setString(2, employee.getFirstName());
-      ps.setString(2, employee.getLastName());
-      ps.setString(1, employee.getEmail());
-      ps.setString(1, employee.getCan_serve());
+      ps.setString(3, employee.getLastName());
+      ps.setString(4, employee.getEmail());
+      ps.setString(5, employee.getCan_serve());
+      ps.executeUpdate();
     } catch (SQLException e) {
       System.out.println("SQL exception");
       e.printStackTrace();

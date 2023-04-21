@@ -531,6 +531,8 @@ public class NodeDAO implements LocationDAO {
 
   public static HashMap<Integer, Node> getNodeIDsGivenShortnames(ArrayList<String> shortNames)
       throws SQLException {
+
+    HashMap<Integer, Node> filteredNodeHash = new HashMap();
     db.setConnection();
 
     PreparedStatement ps;
@@ -541,14 +543,32 @@ public class NodeDAO implements LocationDAO {
             + "node.xcoord, node.ycoord, node.floor, node.building, locationname.shortname "
             + "from iteration3.move join iteration3.locationname on move.longname = locationname.longname "
             + "join iteration3.node on move.nodeid = node.nodeid "
-            + "where locationname.shortname in (?)";
+            + "where locationname.shortname in ";
+
+    for (int i = 0; i < shortNames.size(); i++) {
+      if (i == 0) {
+        SQL += ("(");
+      }
+
+      if (i != shortNames.size() - 1) {
+        SQL += "'" + shortNames.get(i) + "'" + ", ";
+      } else {
+        SQL += "'" + shortNames.get(i) + "'";
+      }
+
+      if (i == (shortNames.size() - 1)) {
+        SQL += (")");
+      }
+    }
+
+    System.out.println(SQL);
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
-      ps.setObject(1, shortNames);
       rs = ps.executeQuery();
     } catch (SQLException e) {
       System.err.println("SQL exception");
+      e.printStackTrace();
       // printSQLException(e);
     }
 
@@ -562,10 +582,10 @@ public class NodeDAO implements LocationDAO {
 
       Node node = new Node(node_id, xcoord, ycoord, floor, building);
 
-      nodeHash.put(node.getNodeID(), node);
+      filteredNodeHash.put(node.getNodeID(), node);
     }
     db.closeConnection();
 
-    return nodeHash;
+    return filteredNodeHash;
   }
 }
