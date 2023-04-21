@@ -4,11 +4,16 @@ import static edu.wpi.teamg.App.*;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
+import edu.wpi.teamg.DAOs.LocationNameDAO;
+import edu.wpi.teamg.DAOs.MoveDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXToggleButton;
+import java.awt.*;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,6 +25,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.DatePicker;
@@ -33,7 +39,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.PopOver;
 import org.controlsfx.control.SearchableComboBox;
 
 // Touch Ups
@@ -70,6 +79,8 @@ public class pathfindingController {
 
   @FXML DatePicker date;
 
+  @FXML MFXToggleButton dSN;
+
   ObservableList<String> locationListStart;
   ObservableList<String> locationListEnd;
   ObservableList<String> FloorList;
@@ -77,12 +88,17 @@ public class pathfindingController {
   DAORepo dao = new DAORepo();
   Algorithm algo;
 
+  boolean snLab = true;
+
+  int floor = 0;
+
   @FXML
   public void initialize() throws SQLException {
 
     //  goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
 
     aStarCheckBox.setSelected(true);
+    dSN.setSelected(true);
 
     aStarCheckBox.setOnAction(
         event -> {
@@ -105,6 +121,21 @@ public class pathfindingController {
           if (dfsCheckBox.isSelected()) {
             aStarCheckBox.setSelected(false);
             bfsCheckBox.setSelected(false);
+          }
+        });
+    dSN.setOnAction(
+        event -> {
+          if (!dSN.isSelected()) {
+            nodePane.getChildren().removeIf(node -> node instanceof Text);
+            snLab = false;
+          }
+          if (dSN.isSelected()) {
+            snLab = true;
+            try {
+              newNodes(floor);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
           }
         });
 
@@ -172,7 +203,6 @@ public class pathfindingController {
         });
 
     // goToL1();
-
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
     ImageView mapViewFloor1 = new ImageView(mapFloor1);
@@ -236,8 +266,10 @@ public class pathfindingController {
           floor1.setDisable(false);
           floor2.setDisable(false);
           floor3.setDisable(false);
+          floor = 0;
           try {
             floorButtons(imageViewsList, 0);
+
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -249,6 +281,7 @@ public class pathfindingController {
           floor1.setDisable(false);
           floor2.setDisable(false);
           floor3.setDisable(false);
+          floor = 1;
           try {
             floorButtons(imageViewsList, 1);
           } catch (SQLException e) {
@@ -262,6 +295,7 @@ public class pathfindingController {
           floor1.setDisable(true);
           floor2.setDisable(false);
           floor3.setDisable(false);
+          floor = 2;
           try {
             floorButtons(imageViewsList, 2);
           } catch (SQLException e) {
@@ -275,6 +309,7 @@ public class pathfindingController {
           floor1.setDisable(false);
           floor2.setDisable(true);
           floor3.setDisable(false);
+          floor = 3;
           try {
             floorButtons(imageViewsList, 3);
           } catch (SQLException e) {
@@ -288,6 +323,7 @@ public class pathfindingController {
           floor1.setDisable(false);
           floor2.setDisable(false);
           floor3.setDisable(true);
+          floor = 4;
           try {
             floorButtons(imageViewsList, 4);
           } catch (SQLException e) {
@@ -873,6 +909,7 @@ public class pathfindingController {
 
     Node currentNode = listOfNodes.get(i);
     Label nodeLabel = new Label();
+    Text txt = new Text();
 
     Circle point =
         new Circle(
@@ -881,11 +918,15 @@ public class pathfindingController {
             10,
             Color.rgb(1, 45, 90));
 
-    nodeLabel.setTextFill(Color.BLACK);
-    nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
-    nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
-    nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
-    nodeLabel.toFront();
+    // nodeLabel.setTextFill(Color.BLACK);
+    txt.setFill(Color.BLACK);
+    txt.setTextAlignment(TextAlignment.LEFT);
+    // nodeLabel.setPrefSize(10, 10);
+    txt.setFont(new Font(20));
+    txt.setText(sn.get(listOfNodes.get(i).getNodeID()));
+    txt.setLayoutX(listOfNodes.get(i).getXcoord() - 30);
+    txt.setLayoutY(listOfNodes.get(i).getYcoord() + 30);
+    txt.toFront();
     /*
        point.setOnMouseEntered(event ->
 
@@ -903,6 +944,8 @@ public class pathfindingController {
               displayData(currentNode);
             } catch (SQLException e) {
               throw new RuntimeException(e);
+            } catch (IOException e) {
+              throw new RuntimeException(e);
             }
           }
         });
@@ -910,31 +953,56 @@ public class pathfindingController {
     System.out.println(sn.get(listOfNodes.get(i).getNodeID()));
 
     nodePane.getChildren().add(point);
-    nodePane.getChildren().add(nodeLabel);
+    nodePane.getChildren().add(txt);
   }
 
-  public void displayData(Node point) throws SQLException {
+  public void displayData(Node point) throws SQLException, IOException {
 
-    nodePane.getChildren().removeIf(node -> node instanceof TextArea);
-    TextArea displayNode = new TextArea();
-    NodeDAO nodeDAO = new NodeDAO();
-    String floor = point.getFloor();
+    MoveDAO moveDAO = new MoveDAO();
 
-    HashMap<Integer, String> sn = nodeDAO.getLongNames(floor);
+    ArrayList<Move> move = new ArrayList<>(moveDAO.getAll());
+    Move aMove = new Move();
 
-    displayNode.setFont(Font.font(35));
+    for (int i = 0; i < move.size(); i++) {
+      if (move.get(i).getNodeID() == point.getNodeID()) {
+        aMove = move.get(i);
+      }
+    }
 
-    displayNode.setText(sn.get(point.getNodeID()));
+    LocationNameDAO locationNameDAO = new LocationNameDAO();
+    HashMap<String, LocationName> locNam = locationNameDAO.getAll();
 
-    displayNode.setLayoutX(point.getXcoord());
-    displayNode.setLayoutY(point.getYcoord());
-    displayNode.setPrefWidth(550);
-    displayNode.setPrefHeight(100);
-    displayNode.setVisible(true);
-    displayNode.toFront();
-    displayNode.setEditable(false);
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/PathfindingPopOver.fxml"));
+    window.setContentNode(loader.load());
 
-    nodePane.getChildren().add(displayNode);
+    window.setArrowSize(0);
+    PathfindingOverController controller = loader.getController();
+    controller.setFields(aMove.getLongName(), locNam.get(aMove.getLongName()).getShortName());
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    //    nodePane.getChildren().removeIf(node -> node instanceof TextArea);
+    //    TextArea displayNode = new TextArea();
+    //    NodeDAO nodeDAO = new NodeDAO();
+    //    String floor = point.getFloor();
+    //
+    //    HashMap<Integer, String> sn = nodeDAO.getLongNames(floor);
+    //
+    //    displayNode.setFont(Font.font(35));
+    //
+    //    displayNode.setText(sn.get(point.getNodeID()));
+    //
+    //    displayNode.setLayoutX(point.getXcoord());
+    //    displayNode.setLayoutY(point.getYcoord());
+    //    displayNode.setPrefWidth(550);
+    //    displayNode.setPrefHeight(100);
+    //    displayNode.setVisible(true);
+    //    displayNode.toFront();
+    //    displayNode.setEditable(false);
+    //
+    //    nodePane.getChildren().add(displayNode);
   }
 
   public HashMap<Integer, String> getHashMapL1LongName(int index) throws SQLException {
