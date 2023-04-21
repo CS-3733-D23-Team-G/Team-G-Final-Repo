@@ -70,7 +70,7 @@ public class ConRoomRequestController {
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName =
-        this.getHashMapEmployeeLongName("Conference Rooms Request");
+        this.getHashMapEmployeeLongName("Conference Room Request");
 
     employeeLongName.forEach(
         (i, m) -> {
