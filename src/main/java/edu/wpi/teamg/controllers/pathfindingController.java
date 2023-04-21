@@ -8,10 +8,8 @@ import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.DAOs.MoveDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.*;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXCheckbox;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXToggleButton;
+import io.github.palexdev.materialfx.controls.*;
+
 import java.awt.*;
 import java.io.IOException;
 import java.sql.Date;
@@ -77,9 +75,11 @@ public class pathfindingController {
   @FXML MFXCheckbox bfsCheckBox;
   @FXML MFXCheckbox dfsCheckBox;
 
-  @FXML DatePicker date;
+  @FXML MFXDatePicker date;
 
   @FXML MFXToggleButton dSN;
+
+  @FXML MFXToggleButton toggN;
 
   ObservableList<String> locationListStart;
   ObservableList<String> locationListEnd;
@@ -89,6 +89,7 @@ public class pathfindingController {
   Algorithm algo;
 
   boolean snLab = true;
+  boolean togg = false;
 
   int floor = 0;
 
@@ -131,6 +132,22 @@ public class pathfindingController {
           }
           if (dSN.isSelected()) {
             snLab = true;
+            try {
+              newNodes(floor);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+        });
+
+    toggN.setOnAction(
+        event -> {
+          if (!toggN.isSelected()) {
+            nodePane.getChildren().removeIf(node -> node instanceof Circle);
+            togg = false;
+          }
+          if (toggN.isSelected()) {
+            togg = true;
             try {
               newNodes(floor);
             } catch (SQLException e) {
@@ -268,6 +285,7 @@ public class pathfindingController {
           floor3.setDisable(false);
           floor = 0;
           try {
+
             floorButtons(imageViewsList, 0);
 
           } catch (SQLException e) {
@@ -283,7 +301,9 @@ public class pathfindingController {
           floor3.setDisable(false);
           floor = 1;
           try {
+
             floorButtons(imageViewsList, 1);
+
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -297,7 +317,9 @@ public class pathfindingController {
           floor3.setDisable(false);
           floor = 2;
           try {
+
             floorButtons(imageViewsList, 2);
+
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -311,7 +333,9 @@ public class pathfindingController {
           floor3.setDisable(false);
           floor = 3;
           try {
+
             floorButtons(imageViewsList, 3);
+
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -325,7 +349,9 @@ public class pathfindingController {
           floor3.setDisable(true);
           floor = 4;
           try {
+
             floorButtons(imageViewsList, 4);
+
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -398,9 +424,6 @@ public class pathfindingController {
           }
         });
 
-    // Scaling is currently the issue with the node map
-
-    // HashMap<Integer, Node> nodes = App.;
     ArrayList<String> labelsL1 = new ArrayList<>(l1Labels.values());
     HashMap<Integer, Node> goodNodesL1 = nodeDAO.getNodeIDsGivenShortnames(labelsL1);
     ArrayList<Node> goodNodesListL1 = new ArrayList<>(goodNodesL1.values());
@@ -911,22 +934,32 @@ public class pathfindingController {
     Label nodeLabel = new Label();
     Text txt = new Text();
 
-    Circle point =
-        new Circle(
-            listOfNodes.get(i).getXcoord(),
-            listOfNodes.get(i).getYcoord(),
-            10,
-            Color.rgb(1, 45, 90));
+    if (togg) {
+      Circle point =
+          new Circle(
+              listOfNodes.get(i).getXcoord(),
+              listOfNodes.get(i).getYcoord(),
+              10,
+              Color.rgb(1, 45, 90));
+
+      nodePane.getChildren().add(point);
+
+      point.setOnMouseClicked(
+          new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+              try {
+                displayData(currentNode);
+              } catch (SQLException e) {
+                throw new RuntimeException(e);
+              } catch (IOException e) {
+                throw new RuntimeException(e);
+              }
+            }
+          });
+    }
 
     // nodeLabel.setTextFill(Color.BLACK);
-    txt.setFill(Color.BLACK);
-    txt.setTextAlignment(TextAlignment.LEFT);
-    // nodeLabel.setPrefSize(10, 10);
-    txt.setFont(new Font(20));
-    txt.setText(sn.get(listOfNodes.get(i).getNodeID()));
-    txt.setLayoutX(listOfNodes.get(i).getXcoord() - 30);
-    txt.setLayoutY(listOfNodes.get(i).getYcoord() + 30);
-    txt.toFront();
     /*
        point.setOnMouseEntered(event ->
 
@@ -936,23 +969,17 @@ public class pathfindingController {
 
     */
 
-    point.setOnMouseClicked(
-        new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
-            try {
-              displayData(currentNode);
-            } catch (SQLException e) {
-              throw new RuntimeException(e);
-            } catch (IOException e) {
-              throw new RuntimeException(e);
-            }
-          }
-        });
+    if (snLab) {
+      txt.setFill(Color.BLACK);
+      txt.setTextAlignment(TextAlignment.LEFT);
+      // nodeLabel.setPrefSize(10, 10);
+      txt.setFont(new Font(20));
+      txt.setText(sn.get(listOfNodes.get(i).getNodeID()));
+      txt.setLayoutX(listOfNodes.get(i).getXcoord() - 30);
+      txt.setLayoutY(listOfNodes.get(i).getYcoord() + 30);
+      txt.toFront();
+    }
 
-    System.out.println(sn.get(listOfNodes.get(i).getNodeID()));
-
-    nodePane.getChildren().add(point);
     nodePane.getChildren().add(txt);
   }
 
@@ -1029,45 +1056,61 @@ public class pathfindingController {
   }
 
   public void longNameNodes(int index) throws SQLException {
-    ArrayList<String> locationNamesStart = new ArrayList<>();
-    ArrayList<String> locationNamesEnd = new ArrayList<>();
-    HashMap<Integer, String> testingLongName = this.getHashMapL1LongName(index);
+
+    HashMap<Integer, String> LongNameFinal = this.getHashMapL1LongName(index);
+    ArrayList<String> locationNamesStart = new ArrayList<>(LongNameFinal.values());
+
+    ArrayList<String> finalLocNames = new ArrayList<>();
+
+    /// Get Long names for a floor
+    // Get a Hashmap
+    // If Hashmap.getnodetype != to hall add it
+
+    for (int i = 0; i < locationNamesStart.size(); i++) {
+      if (!Objects.equals(locMap.get(locationNamesStart.get(i)).getNodeType(), "HALL")) {
+        finalLocNames.add(locationNamesStart.get(i));
+      }
+    }
+
+    //    HashMap<Integer, String> testingLongName = this.getHashMapL1LongName(index);
     int endFloorIndex = 0;
 
-    testingLongName.forEach(
-        (i, m) -> {
-          locationNamesStart.add(m);
-          // System.out.println("LocationName: " + m);
-          //          System.out.println("Employee ID:" + m.getEmpid());
-          //          System.out.println("Status:" + m.getStatus());
-          //          System.out.println("Location:" + m.getLocation());
-          //          System.out.println("Serve By:" + m.getServ_by());
-          //          System.out.println();
-        });
+    //    LongNameFinal.forEach(
+    //        (i, m) -> {
+    //
+    //          goodNodesList.add(m);
+    //          // System.out.println("LocationName: " + m);
+    //          //          System.out.println("Employee ID:" + m.getEmpid());
+    //          //          System.out.println("Status:" + m.getStatus());
+    //          //          System.out.println("Location:" + m.getLocation());
+    //          //          System.out.println("Serve By:" + m.getServ_by());
+    //          //          System.out.println();
+    //        });
+    //
+    Collections.sort(finalLocNames, String.CASE_INSENSITIVE_ORDER);
 
-    Collections.sort(locationNamesStart, String.CASE_INSENSITIVE_ORDER);
-
-    locationListStart = FXCollections.observableArrayList(locationNamesStart);
+    locationListStart = FXCollections.observableArrayList(finalLocNames);
     startLocDrop.setItems(locationListStart);
   }
 
   public void longNameEnd(int endFloorIndex) throws SQLException {
-    ArrayList<String> locationNamesEnd = new ArrayList<>();
     HashMap<Integer, String> LongNameFinal = this.getHashMapL1LongName(endFloorIndex);
+    ArrayList<String> locationNamesStart = new ArrayList<>(LongNameFinal.values());
 
-    LongNameFinal.forEach(
-        (i, m) -> {
-          locationNamesEnd.add(m);
-          // System.out.println("LocationName: " + m);
-          //          System.out.println("Employee ID:" + m.getEmpid());
-          //          System.out.println("Status:" + m.getStatus());
-          //          System.out.println("Location:" + m.getLocation());
-          //          System.out.println("Serve By:" + m.getServ_by());
-          //          System.out.println();
-        });
+    ArrayList<String> finalLocNames = new ArrayList<>();
 
-    Collections.sort(locationNamesEnd, String.CASE_INSENSITIVE_ORDER);
-    locationListEnd = FXCollections.observableArrayList(locationNamesEnd);
+    /// Get Long names for a floor
+    // Get a Hashmap
+    // If Hashmap.getnodetype != to hall add it
+
+    for (int i = 0; i < locationNamesStart.size(); i++) {
+      if (!Objects.equals(locMap.get(locationNamesStart.get(i)).getNodeType(), "HALL")) {
+        finalLocNames.add(locationNamesStart.get(i));
+      }
+    }
+
+    Collections.sort(finalLocNames, String.CASE_INSENSITIVE_ORDER);
+    locationListEnd = FXCollections.observableArrayList(finalLocNames);
     endLocDrop.setItems(locationListEnd);
   }
 
