@@ -3,6 +3,11 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -208,7 +213,23 @@ public class ConferenceRoomRequestDAO implements DAO {
 
   @Override
   public void importCSV(String path) throws SQLException {
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(path));
+      String line = null;
+      br.readLine();
 
+      while((line = br.readLine())!=null){
+        String[] data = line.split(",");
+        int id = Integer.parseInt(data[0]);
+        Time time = Time.valueOf(data[1]);
+        String purpose = data[2];
+        ConferenceRoomRequest confRoom = new ConferenceRoomRequest(id,time,purpose);
+        insert(confRoom);
+      }
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
