@@ -14,7 +14,6 @@ public class RequestDAO implements DAO {
 
   private static HashMap<Integer, Request> outstandingRequestHash = new HashMap<Integer, Request>();
 
-
   private static NodeDAO nodeDao = new NodeDAO();
 
   static EmployeeDAO employeeDAO = new EmployeeDAO();
@@ -129,12 +128,13 @@ public class RequestDAO implements DAO {
     ResultSet rs = null;
 
     PreparedStatement ps;
-    oRequestSQL = "select * from iteration3.request where serveby = ? and (status = 'blank' or status = 'processing');";
+    oRequestSQL =
+        "select * from iteration3.request where serveby = ? and (status = 'blank' or status = 'processing');";
 
     try {
       ps = db.getConnection().prepareStatement(oRequestSQL);
       ps.setInt(1, serveby);
-      ps.executeQuery();
+      rs = ps.executeQuery();
     } catch (SQLException e) {
       e.printStackTrace();
       System.err.println("SQL exception");
@@ -164,23 +164,21 @@ public class RequestDAO implements DAO {
       StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
 
       Request cReq =
-              new Request(
-                      reqType,
-                      requestingEmployee,
-                      location,
-                      assignedEmployee,
-                      status,
-                      requestdate,
-                      requesttime);
+          new Request(
+              reqType,
+              requestingEmployee,
+              location,
+              assignedEmployee,
+              status,
+              requestdate,
+              requesttime);
 
       cReq.setReqid(reqID);
 
       outstandingRequestHash.put(reqID, cReq);
-
     }
 
     db.closeConnection();
     return outstandingRequestHash;
-
   }
 }
