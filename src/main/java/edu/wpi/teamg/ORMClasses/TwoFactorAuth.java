@@ -13,7 +13,7 @@ import lombok.Setter;
 import org.yaml.snakeyaml.Yaml;
 
 public class TwoFactorAuth {
-  final String mailHost = "smtp.gmail.com";
+  final String mailHost = "smtp.wpi.edu";
   String sender = "brighmanwomenautosender@gmail.com";
   @Getter @Setter String recipient;
   int code;
@@ -24,7 +24,7 @@ public class TwoFactorAuth {
 
   public void sendEmail() throws MessagingException {
     String message = "Your 6 digit code is: " + code;
-    setRecipient("rganguli0753@gmail.com");
+    setRecipient("tdmcdonagh@wpi.edu");
     String password = getEmailCred().get(0);
     Properties props = new Properties();
     props.put("mail.smtp.auth", "true");
