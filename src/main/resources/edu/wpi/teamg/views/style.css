@@ -473,11 +473,13 @@ Popup
     -fx-pref-width: 475;
     -fx-pref-height: 350;
 }
-.about_text{
-    -fx-font-size: 12;
-    -fx-text-fill: #FFFF;
-    -fx-pref-height: 15;
-    -fx-pref-width: 515;
+.about_textarea{
+    -fx-font-size: 20;
+    -fx-background-color: #012D5A;
+    -fx-text-fill: #FFFFFF;
+    -fx-pref-height: 590;
+    -fx-pref-width: 1140;
+    -fx-text-alignment: Top_Left;
 }
 
 
