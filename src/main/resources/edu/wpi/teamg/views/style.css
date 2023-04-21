@@ -469,6 +469,13 @@ Popup
     -fx-font-size: 20;
 }
 
+.welcomeText_home{
+    -fx-font-size: 36;
+}
 
+.welcomeText_user{
+    -fx-font-size: 36;
+    -fx-font-weight: 800;
+}
 
 

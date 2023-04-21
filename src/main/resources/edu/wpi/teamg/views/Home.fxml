@@ -33,11 +33,20 @@
 
                      </children>
                   </AnchorPane>
-                  <Text layoutX="33.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Welcome">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Text>
+                  <HBox prefHeight="26.0" prefWidth="306.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcomeText_home" text="Welcome,">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="empName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcomeText_user">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
