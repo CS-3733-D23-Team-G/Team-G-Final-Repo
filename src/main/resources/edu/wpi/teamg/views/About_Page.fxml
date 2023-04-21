@@ -17,8 +17,8 @@
                         <Font size="72.0" />
                      </font>
                   </Label>
-                  <Label fx:id="About_label" layoutX="34.0" layoutY="93.0" prefHeight="586.0" prefWidth="1136.0" styleClass="about_textarea" />
-                  <Line endX="63.0" endY="1.0" layoutX="697.0" layoutY="70.0" startX="-53.0" stroke="#f6bd38" strokeWidth="2.0" />
+                  <Label fx:id="About_label" alignment="TOP_LEFT" layoutX="34.0" layoutY="93.0" prefHeight="586.0" prefWidth="1136.0" styleClass="about_textarea" />
+                  <Line endX="63.0" endY="1.0" layoutX="697.0" layoutY="70.0" startX="-53.0" stroke="#f6bd38" strokeWidth="3.0" />
                </children>
             </AnchorPane>
          </children>
