@@ -161,6 +161,11 @@ public class FlowerRequestDAO implements DAO {
   public void delete(Object obj) throws SQLException {}
 
   @Override
+  public void importCSV(String path) throws SQLException {
+
+  }
+
+  @Override
   public String getTable() {
     return "teamgdb.iteration3.flowerrequest";
   }

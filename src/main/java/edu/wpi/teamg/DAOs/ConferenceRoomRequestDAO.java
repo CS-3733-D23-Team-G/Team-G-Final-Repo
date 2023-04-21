@@ -207,6 +207,11 @@ public class ConferenceRoomRequestDAO implements DAO {
   }
 
   @Override
+  public void importCSV(String path) throws SQLException {
+
+  }
+
+  @Override
   public String getTable() {
     return "teamgdb.iteration3.conferenceroomrequest";
   }

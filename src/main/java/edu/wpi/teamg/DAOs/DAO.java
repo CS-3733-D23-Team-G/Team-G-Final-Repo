@@ -70,5 +70,7 @@ public interface DAO<T, K> {
     db.closeConnection();
   }
 
+  void importCSV(String path) throws SQLException;
+
   public String getTable();
 }

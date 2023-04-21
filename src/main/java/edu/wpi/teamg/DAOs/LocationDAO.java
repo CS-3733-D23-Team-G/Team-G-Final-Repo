@@ -77,5 +77,5 @@ public interface LocationDAO<T> extends DAO {
     db.closeConnection();
   }
 
-  void importCSV(String path) throws SQLException;
+
 }
