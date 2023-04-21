@@ -76,7 +76,10 @@
                                     <MFXTextField fx:id="bouquetNote" prefHeight="200.0" prefWidth="271.0">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
-                                       </VBox.margin></MFXTextField>
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font></MFXTextField>
                                     <Label fx:id="checkFields" prefHeight="17.0" prefWidth="377.0" styleClass="allFilledError" stylesheets="@style.css" text="Not All Fields Are Filled." textFill="#d01616">
                                        <font>
                                           <Font size="30.0" />

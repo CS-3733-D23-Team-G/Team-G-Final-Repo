@@ -42,7 +42,7 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="119.87867736816406" endY="-0.9558439254760742" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <Line endX="96.87867736816406" endY="0.9558587074279785" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <SearchableComboBox fx:id="locationSearchDropdown" prefHeight="32.0" prefWidth="200.0">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
@@ -77,7 +77,7 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="33.87867736816406" endY="-1.242640495300293" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <Line endX="4.8786773681640625" endY="1.2426323890686035" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="roomMeetingPurpose" prefHeight="200.0" prefWidth="386.0">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
@@ -115,7 +115,7 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="35.87867736816406" endY="0.4142022132873535" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <Line endX="19.878677368164062" endY="-1.6736984252929688E-4" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="roomEndTime" minHeight="-Infinity" prefHeight="30.0" prefWidth="317.0" styleClass="requestTextBox">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
