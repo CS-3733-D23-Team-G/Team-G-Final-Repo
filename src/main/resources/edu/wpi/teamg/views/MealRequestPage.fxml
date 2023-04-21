@@ -81,10 +81,13 @@
                                        </VBox.margin>
                                     </Text>
                                     <Line endX="-22.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="mealNotesData" prefHeight="200.0" prefWidth="386.0">
+                                    <MFXTextField fx:id="mealNotesData" alignment="TOP_LEFT" prefColumnCount="1" prefHeight="200.0" prefWidth="386.0" styleClass="notes_textbox">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
                                     </MFXTextField>
                                  </children>
                                  <padding>

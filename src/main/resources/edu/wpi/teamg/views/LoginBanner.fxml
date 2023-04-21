@@ -30,7 +30,7 @@
                                 <Font size="14.0" />
                             </font>
                         </Text>
-                        <MFXButton fx:id="exitButton" layoutX="425.0" layoutY="3.0" opacity="0.0" prefHeight="40.0" prefWidth="41.0" AnchorPane.bottomAnchor="2.3333333333333357" AnchorPane.rightAnchor="13.666666666666664" AnchorPane.topAnchor="3.0" />
+                        <MFXButton fx:id="exitButton" layoutX="425.0" layoutY="3.0" opacity="0.0" prefHeight="55.0" prefWidth="54.0" styleClass="banner_login_exit_text" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="3.0" />
                     </children>
                 </AnchorPane>
             </children>

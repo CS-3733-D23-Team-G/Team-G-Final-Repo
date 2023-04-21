@@ -89,6 +89,9 @@
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
                                     </MFXTextField>
                                  </children>
                                  <padding>

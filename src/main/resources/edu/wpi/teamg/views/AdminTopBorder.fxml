@@ -41,11 +41,11 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <MFXButton fx:id="Logout" layoutX="981.0" layoutY="5.0" opacity="0.0" prefHeight="30.0" prefWidth="63.0" styleClass="banner_login_exit_text" stylesheets="@style.css" text="Button" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="5.0">
+                  <MFXButton fx:id="exitButton" layoutX="1058.0" layoutY="5.0" opacity="0.0" prefHeight="40.0" prefWidth="41.0" styleClass="banner_login_exit_text" stylesheets="@style.css" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="5.0" />
+                  <MFXButton fx:id="Logout" layoutX="981.0" layoutY="5.0" opacity="0.0" prefHeight="46.0" prefWidth="75.0" styleClass="banner_login_exit_text" stylesheets="@style.css" text="Button" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font size="30.0" />
                      </font></MFXButton>
-                  <MFXButton fx:id="exitButton" layoutX="1058.0" layoutY="5.0" opacity="0.0" prefHeight="40.0" prefWidth="41.0" styleClass="banner_login_exit_text" stylesheets="@style.css" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="5.0" />
                </children>
             </AnchorPane>
             <GridPane alignment="CENTER_LEFT" hgap="5.0" prefWidth="1086.0" styleClass="hit_the_griddy">
