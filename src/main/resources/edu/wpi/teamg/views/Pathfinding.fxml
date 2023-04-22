@@ -3,10 +3,10 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -76,7 +76,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
-                                    <DatePicker fx:id="date" prefHeight="44.0" prefWidth="204.0" promptText="Date" />
+                                    <MFXDatePicker fx:id="date" prefHeight="38.0" prefWidth="265.0" text="Date" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
@@ -91,6 +91,11 @@
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
                                     <MFXToggleButton fx:id="dSN" text="Display Short Names" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXToggleButton fx:id="toggN" text="Toggle Nodes" />
                                  </children>
                               </HBox>
                            </children>
