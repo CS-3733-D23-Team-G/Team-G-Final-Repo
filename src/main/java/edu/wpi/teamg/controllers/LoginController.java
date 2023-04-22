@@ -2,6 +2,7 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.AccountDAO;
+import edu.wpi.teamg.DAOs.EmployeeDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
 import edu.wpi.teamg.navigation.Navigation;
@@ -32,6 +33,7 @@ public class LoginController {
 
   DBConnection db = new DBConnection();
   String query;
+  String employeeQuery;
 
   public void initialize() {
     // userInc.setVisible(false);
@@ -60,7 +62,11 @@ public class LoginController {
     String pass = password.getText();
 
     AccountDAO accountDAO = new AccountDAO();
+    EmployeeDAO employeeDAO = new EmployeeDAO();
+
     ResultSet rs = null;
+    ResultSet rs1 = null;
+
     db.setConnection();
     query = "select * from " + accountDAO.getTable() + " where username = ?";
 
@@ -81,17 +87,37 @@ public class LoginController {
         tableAdmin = rs.getBoolean("is_admin");
       }
 
-
       Account account = new Account();
       account.setPassword(pass);
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
         Navigation.Logout();
         if (tableAdmin) Navigation.setAdmin();
+
+        // if logged in, create employee ORM with user info
+        employeeQuery = "select * from " + employeeDAO.getTable() + " where empid = ?";
+        try {
+          PreparedStatement ps1 = db.getConnection().prepareStatement(employeeQuery);
+          ps1.setInt(1, tableEmp);
+          rs1 = ps1.executeQuery();
+        } catch (SQLException e) {
+          System.err.println("SQL Exception on Account");
+          e.printStackTrace();
+        }
+
+        while (rs1.next()) {
+          App.employee.setEmpID(rs1.getInt("empid"));
+          App.employee.setCan_serve(rs1.getString("can_serve"));
+          App.employee.setEmail(rs1.getString("email"));
+          App.employee.setFirstName(rs1.getString("firstname"));
+          App.employee.setLastName(rs1.getString("lastname"));
+        }
+
         Navigation.setLoggedin();
         App.employee.setEmpID(tableEmp);
+        PatientTopBannerController topBanner = new PatientTopBannerController();
         Navigation.navigate(Screen.HOME);
-        System.out.println();
+        topBanner.window.hide();
       } else {
         incorrectPassword();
       }
