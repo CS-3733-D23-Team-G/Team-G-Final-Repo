@@ -4,6 +4,15 @@
     -mfx-color: #012D5A;
 }
 
+.mfx-text-field .text-field {
+    -fx-highlight-fill: #F6BD38; /* Selected text highlight */
+    -fx-prompt-text-fill: -mfx-text-me; /* Prompt text color */
+}
+
+.mfx-text-field:focus-within {
+    -fx-border-color: -mfx-color;
+}
+
 /********************
 Date Picker
 ********************/
@@ -497,6 +506,30 @@ Popup
     -fx-font-size: 20;
 }
 
+/* homepage text */
+
+.welcomeText_home{
+    -fx-font-size: 36;
+}
+
+.welcomeText_user{
+    -fx-font-size: 36;
+    -fx-font-weight: 800;
+}
+
+.requestText{
+     -fx-font-weight: bold;
+     -fx-font-color: #FFFFFF;
+     -fx-font-size: 30;
+}
+
+.requestText_reqID{
+     -fx-font-size: 24;
+
+     -position: absolute;
+     -up: 0;
+     -left: 0;
+}
 
 
 

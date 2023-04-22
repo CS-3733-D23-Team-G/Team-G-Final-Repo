@@ -4,6 +4,7 @@ import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.AccountDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
+import edu.wpi.teamg.ORMClasses.TwoFactorAuth;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -18,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
+import javax.mail.MessagingException;
 
 public class LoginController {
   @FXML MFXButton loginButton;
@@ -32,6 +34,7 @@ public class LoginController {
 
   DBConnection db = new DBConnection();
   String query;
+  String employeeQuery;
 
   public void initialize() {
     // userInc.setVisible(false);
@@ -60,7 +63,9 @@ public class LoginController {
     String pass = password.getText();
 
     AccountDAO accountDAO = new AccountDAO();
+
     ResultSet rs = null;
+
     db.setConnection();
     query = "select * from " + accountDAO.getTable() + " where username = ?";
 
@@ -75,22 +80,30 @@ public class LoginController {
       boolean tableAdmin = false;
 
       while (rs.next()) {
+        tableUser = rs.getString("username");
         tableEmp = rs.getInt("empid");
         tablePass = rs.getString("hashpassword");
         tableSalt = rs.getBytes("salt");
         tableAdmin = rs.getBoolean("is_admin");
       }
 
+
+
+      db.closeConnection();
+
       Account account = new Account();
       account.setPassword(pass);
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
-        Navigation.Logout();
-        if (tableAdmin) Navigation.setAdmin();
-        Navigation.setLoggedin();
-        App.employee.setEmpID(tableEmp);
-        Navigation.navigate(Screen.HOME);
-        System.out.println();
+        password.setEditable(false);
+        TwoFactorAuth twoFac = new TwoFactorAuth();
+        twoFac.sendEmail(tableUser);
+
+        App.setUser(tableUser);
+        App.setAdmin(tableAdmin);
+        App.setEmp(tableEmp);
+        App.setCode(twoFac.getCode());
+        Navigation.navigate(Screen.TWO_FAC);
       } else {
         incorrectPassword();
       }
@@ -103,6 +116,8 @@ public class LoginController {
       incorrectPassword();
       System.err.println("Chose neither username nor password that existed in the db");
       e.printStackTrace();
+    } catch (MessagingException e) {
+      throw new RuntimeException(e);
     }
   }
 

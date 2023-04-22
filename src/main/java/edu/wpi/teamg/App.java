@@ -533,6 +533,44 @@ public class App extends Application {
     return furnsHash;
   }
 
+  static int code;
+  static int empid;
+  static String user;
+
+  static boolean admin;
+
+  public static void setAdmin(boolean admin) {
+    App.admin = admin;
+  }
+
+  public static boolean getAdmin() {
+    return App.admin;
+  }
+
+  public static void setCode(int code) {
+    App.code = code;
+  }
+
+  public static void setEmp(int id) {
+    App.empid = id;
+  }
+
+  public static int getCode() {
+    return App.code;
+  }
+
+  public static int getEmp() {
+    return App.empid;
+  }
+
+  public static void setUser(String username) {
+    App.user = username;
+  }
+
+  public static String getUser() {
+    return App.user;
+  }
+
   @Override
   public void stop() {
     log.info("Shutting Down");

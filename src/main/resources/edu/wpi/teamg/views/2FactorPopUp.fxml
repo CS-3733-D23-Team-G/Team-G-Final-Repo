@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="436.0" prefWidth="308.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.FactorPopUp">
+   <children>
+      <Text layoutX="40.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your 6 Digit Code" wrappingWidth="224.619140625">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <MFXTextField fx:id="factorText" layoutX="24.0" layoutY="128.0" prefHeight="74.0" prefWidth="262.0" styleClass="welcomeText_user" stylesheets="@style.css" />
+      <Label fx:id="factorIncorrect" layoutX="83.0" layoutY="323.0" prefHeight="63.0" prefWidth="146.0" text="Your code was incorrect" textAlignment="CENTER" textFill="#e10909" />
+      <MFXButton fx:id="factorSubmit" layoutX="28.0" layoutY="251.0" prefHeight="50.0" prefWidth="112.0" styleClass="requestConfirmButton" stylesheets="@style.css" text="Confirm" />
+   </children>
+</AnchorPane>
