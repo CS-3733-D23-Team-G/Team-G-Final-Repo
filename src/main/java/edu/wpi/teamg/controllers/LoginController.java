@@ -86,7 +86,7 @@ public class LoginController {
         tableSalt = rs.getBytes("salt");
         tableAdmin = rs.getBoolean("is_admin");
       }
-
+      db.closeConnection();
       Account account = new Account();
       account.setPassword(pass);
 
@@ -95,7 +95,6 @@ public class LoginController {
         TwoFactorAuth twoFac = new TwoFactorAuth();
         twoFac.sendEmail(tableUser);
 
-        FactorPopUp popUp = new FactorPopUp();
         App.setUser(tableUser);
         App.setAdmin(tableAdmin);
         App.setEmp(tableEmp);

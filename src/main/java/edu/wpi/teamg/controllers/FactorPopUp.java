@@ -73,7 +73,7 @@ public class FactorPopUp {
       App.employee.setFirstName(rs1.getString("firstname"));
       App.employee.setLastName(rs1.getString("lastname"));
     }
-
+    db.closeConnection();
     Navigation.setLoggedin();
     App.employee.setEmpID(tableEmp);
     PatientTopBannerController topBanner = new PatientTopBannerController();
