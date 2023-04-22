@@ -81,7 +81,6 @@ public class LoginController {
         tableAdmin = rs.getBoolean("is_admin");
       }
 
-
       Account account = new Account();
       account.setPassword(pass);
 

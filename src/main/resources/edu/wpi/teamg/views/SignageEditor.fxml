@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import java.lang.String?>
-
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-
 <?import org.controlsfx.control.SearchableComboBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SignageEditorController">
@@ -19,76 +17,77 @@
          <children>
             <AnchorPane prefHeight="540.0" prefWidth="971.0">
                <children>
-                  <SearchableComboBox fx:id="signageDropDown1" layoutX="182.0" layoutY="144.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="105.0" />
-                  <SearchableComboBox fx:id="signageDropDown2" layoutX="180.0" layoutY="191.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="255.0" />
-                  <SearchableComboBox fx:id="signageDropDown3" layoutX="180.0" layoutY="238.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="405.0" />
-                  <SearchableComboBox fx:id="signageDropDown4" layoutX="180.0" layoutY="321.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="555.0" />
-                  <SearchableComboBox fx:id="signageDropDown5" layoutX="180.0" layoutY="380.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="705.0" />
-                  <SearchableComboBox fx:id="signageDropDown6" layoutX="442.0" layoutY="120.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="105.0" />
-                  <SearchableComboBox fx:id="signageDropDown7" layoutX="1269.0" layoutY="167.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="1269.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="255.0" />
-                  <SearchableComboBox fx:id="signageDropDown8" layoutX="1270.0" layoutY="214.0" prefHeight="30.0" prefWidth="350.0" AnchorPane.leftAnchor="1270.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="405.0" />
-                  <SearchableComboBox fx:id="signageDropDown9" layoutX="1268.0" layoutY="297.0" prefHeight="32.0" prefWidth="352.0" AnchorPane.leftAnchor="1268.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="555.0" />
-                  <SearchableComboBox fx:id="signageDropDown10" layoutX="1270.0" layoutY="356.0" prefHeight="32.0" prefWidth="350.0" AnchorPane.leftAnchor="1270.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="705.0" />
-                  <ImageView fx:id="arrow1" fitHeight="50.0" fitWidth="50.0" layoutX="112.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="100.0">
+                  <SearchableComboBox fx:id="signageDropDown1" layoutX="182.0" layoutY="144.0" prefHeight="30.0" prefWidth="0.0" styleClass="signage_leftDropDown_button" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="195.0" />
+                  <SearchableComboBox fx:id="signageDropDown2" layoutX="180.0" layoutY="191.0" prefHeight="30.0" prefWidth="0.0" styleClass="signage_leftDropDown_button" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="345.0" />
+                  <SearchableComboBox fx:id="signageDropDown3" layoutX="180.0" layoutY="238.0" prefHeight="30.0" prefWidth="0.0" styleClass="signage_leftDropDown_button" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="495.0" />
+                  <SearchableComboBox fx:id="signageDropDown4" layoutX="180.0" layoutY="321.0" prefHeight="30.0" prefWidth="0.0" styleClass="signage_leftDropDown_button" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="645.0" />
+                  <SearchableComboBox fx:id="signageDropDown5" layoutX="180.0" layoutY="380.0" prefHeight="30.0" prefWidth="0.0" styleClass="signage_leftDropDown_button" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="795.0" />
+                  <SearchableComboBox fx:id="signageDropDown6" layoutX="1519.0" layoutY="109.0" prefHeight="30.0" prefWidth="0.0" styleClass="signage_rightDropDown_button" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="195.0" />
+                  <SearchableComboBox fx:id="signageDropDown7" layoutX="1268.0" layoutY="259.0" prefHeight="30.0" prefWidth="0.0" styleClass="signage_rightDropDown_button" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="345.0" />
+                  <SearchableComboBox fx:id="signageDropDown8" layoutX="1269.0" layoutY="409.0" prefHeight="30.0" prefWidth="0.0" styleClass="signage_rightDropDown_button" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="495.0" />
+                  <SearchableComboBox fx:id="signageDropDown9" layoutX="1267.0" layoutY="659.0" prefHeight="32.0" prefWidth="0.0" styleClass="signage_rightDropDown_button" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="645.0" />
+                  <SearchableComboBox fx:id="signageDropDown10" layoutX="1269.0" layoutY="809.0" prefHeight="32.0" prefWidth="0.0" styleClass="signage_rightDropDown_button" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="795.0" />
+                  <ImageView fx:id="arrow1" fitHeight="100.0" fitWidth="100.0" layoutX="230.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="175.0">
                      <image>
                         <Image url="@../Images/NoArrow.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="arrow2" fitHeight="50.0" fitWidth="50.0" layoutX="112.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="250.0">
+                  <ImageView fx:id="arrow2" fitHeight="100.0" fitWidth="100.0" layoutX="230.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="325.0">
                      <image>
                         <Image url="@../Images/NoArrow.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="arrow3" fitHeight="50.0" fitWidth="50.0" layoutX="112.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="400.0">
+                  <ImageView fx:id="arrow3" fitHeight="100.0" fitWidth="100.0" layoutX="230.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="475.0">
                      <image>
                         <Image url="@../Images/NoArrow.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="arrow4" fitHeight="50.0" fitWidth="50.0" layoutX="112.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="550.0">
+                  <ImageView fx:id="arrow4" fitHeight="100.0" fitWidth="100.0" layoutX="230.0" layoutY="627.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="625.0">
                      <image>
                         <Image url="@../Images/NoArrow.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="arrow5" fitHeight="50.0" fitWidth="50.0" layoutX="112.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="700.0">
+                  <ImageView fx:id="arrow5" fitHeight="100.0" fitWidth="100.0" layoutX="230.0" layoutY="777.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="775.0">
                      <image>
                         <Image url="@../Images/NoArrow.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="arrow6" fitHeight="50.0" fitWidth="50.0" layoutX="801.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="100.0">
+                  <ImageView fx:id="arrow6" fitHeight="100.0" fitWidth="100.0" layoutX="1590.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="175.0">
                      <image>
                         <Image url="@../Images/NoArrow.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="arrow7" fitHeight="50.0" fitWidth="50.0" layoutX="791.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="250.0">
+                  <ImageView fx:id="arrow7" fitHeight="100.0" fitWidth="100.0" layoutX="1590.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="325.0">
                      <image>
                         <Image url="@../Images/NoArrow.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="arrow8" fitHeight="50.0" fitWidth="50.0" layoutX="791.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="400.0">
+                  <ImageView fx:id="arrow8" fitHeight="100.0" fitWidth="100.0" layoutX="1590.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="475.0">
                      <image>
                         <Image url="@../Images/NoArrow.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="arrow9" fitHeight="50.0" fitWidth="50.0" layoutX="791.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="550.0">
+                  <ImageView fx:id="arrow9" fitHeight="100.0" fitWidth="100.0" layoutX="1590.0" layoutY="627.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="625.0">
                      <image>
                         <Image url="@../Images/NoArrow.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="arrow10" fitHeight="50.0" fitWidth="50.0" layoutX="791.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="700.0">
+                  <ImageView fx:id="arrow10" fitHeight="100.0" fitWidth="100.0" layoutX="1590.0" layoutY="777.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="775.0">
                      <image>
                         <Image url="@../Images/NoArrow.png" />
                      </image>
                   </ImageView>
-                  <MFXButton fx:id="clearField1" buttonType="RAISED" layoutX="161.0" layoutY="103.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="105.0" />
-                  <MFXButton fx:id="clearField2" buttonType="RAISED" layoutX="161.0" layoutY="258.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="255.0" />
-                  <MFXButton fx:id="clearField3" buttonType="RAISED" layoutX="161.0" layoutY="408.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="405.0" />
-                  <MFXButton fx:id="clearField4" buttonType="RAISED" layoutX="161.0" layoutY="558.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="555.0" />
-                  <MFXButton fx:id="clearField5" buttonType="RAISED" layoutX="161.0" layoutY="708.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="705.0" />
-                  <MFXButton fx:id="clearField6" buttonType="RAISED" layoutX="875.0" layoutY="86.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="105.0" />
-                  <MFXButton fx:id="clearField7" buttonType="RAISED" layoutX="875.0" layoutY="241.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="255.0" />
-                  <MFXButton fx:id="clearField8" buttonType="RAISED" layoutX="875.0" layoutY="391.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="405.0" />
-                  <MFXButton fx:id="clearField9" buttonType="RAISED" layoutX="875.0" layoutY="541.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="555.0" />
-                  <MFXButton fx:id="clearField10" buttonType="RAISED" layoutX="875.0" layoutY="691.0" prefHeight="34.0" prefWidth="56.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="705.0" />
+                  <MFXButton fx:id="clearField1" buttonType="RAISED" layoutX="161.0" layoutY="103.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="205.0" />
+                  <MFXButton fx:id="clearField2" buttonType="RAISED" layoutX="161.0" layoutY="258.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="355.0" />
+                  <MFXButton fx:id="clearField3" buttonType="RAISED" layoutX="161.0" layoutY="408.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="505.0" />
+                  <MFXButton fx:id="clearField4" buttonType="RAISED" layoutX="161.0" layoutY="558.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="655.0" />
+                  <MFXButton fx:id="clearField5" buttonType="RAISED" layoutX="161.0" layoutY="708.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="805.0" />
+                  <MFXButton fx:id="clearField6" buttonType="RAISED" layoutX="875.0" layoutY="86.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="205.0" />
+                  <MFXButton fx:id="clearField7" buttonType="RAISED" layoutX="875.0" layoutY="241.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="355.0" />
+                  <MFXButton fx:id="clearField8" buttonType="RAISED" layoutX="875.0" layoutY="391.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="505.0" />
+                  <MFXButton fx:id="clearField9" buttonType="RAISED" layoutX="875.0" layoutY="541.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="655.0" />
+                  <MFXButton fx:id="clearField10" buttonType="RAISED" layoutX="875.0" layoutY="691.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="805.0" />
+                  <MFXDatePicker fx:id="date" layoutX="118.0" layoutY="92.0" prefHeight="33.0" prefWidth="295.0" styleClass="signage_datePicker" AnchorPane.leftAnchor="110.0" />
                </children>
                <styleClass>
                   <String fx:value="rest_of_page" />

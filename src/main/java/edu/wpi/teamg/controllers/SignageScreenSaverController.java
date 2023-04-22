@@ -48,6 +48,9 @@ public class SignageScreenSaverController {
 
   ArrayList<ImageView> arrows;
 
+  @FXML Text dateText;
+  public String date;
+
   public void initialize() {
     ClickToPathFinding.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     arrows =
@@ -77,7 +80,9 @@ public class SignageScreenSaverController {
     if (controller.getAttribute()) {
       getArrowDirectionFromEditor();
       getSavedNamesFromEditor();
+      getSavedDate();
     } else {
+      getSavedDate();
       arrow2.setImage(westArrow);
       nameLabel2.setText("75 Lobby");
       arrow3.setImage(northArrow);
@@ -143,5 +148,10 @@ public class SignageScreenSaverController {
     nameLabel8.setText(savedNames[7]);
     nameLabel9.setText(savedNames[8]);
     nameLabel10.setText(savedNames[9]);
+  }
+
+  public void getSavedDate() {
+    SignageEditorController controller = new SignageEditorController();
+    dateText.setText(controller.getDate());
   }
 }
