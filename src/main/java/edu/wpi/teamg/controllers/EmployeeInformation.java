@@ -7,22 +7,14 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
 public class EmployeeInformation {
-  @FXML
-  Text EmployeeName;
-  @FXML
-  Text EmployeeFirstName;
-  @FXML
-  Text EmployeeLastName;
-  @FXML
-  Text EmployeeEmail;
-  @FXML
-  MFXButton edit;
-  @FXML
-  MFXButton Save;
-  @FXML
-  MFXTextField EmpEmailTF;
-  @FXML
-  Text EMPID;
+  @FXML Text EmployeeName;
+  @FXML Text EmployeeFirstName;
+  @FXML Text EmployeeLastName;
+  @FXML Text EmployeeEmail;
+  @FXML MFXButton edit;
+  @FXML MFXButton Save;
+  @FXML MFXTextField EmpEmailTF;
+  @FXML Text EMPID;
 
   public void initialize() {
     getEmployeeInformation();
@@ -43,23 +35,23 @@ public class EmployeeInformation {
   public void editEmployeeInformation() {
     EmpEmailTF.setVisible(true);
     EmpEmailTF.setEditable(true);
+    EmployeeEmail.setVisible(false);
     // Save.setVisible(true);
-    edit.setVisible(false);
     // Save.setOnAction(event -> saveEmployeeInformation());
   }
 
-//  public void saveEdit() throws SQLException {
-//    EmployeeDAO employeeDAO = new EmployeeDAO();
-//    HashMap<Integer, Employee> emp = employeeDAO.getAll();
-//    EmpEmailTF.setVisible(false);
-//    EmpEmailTF.setEditable(false);
-//    edit.setVisible(true);
-//    // Save.setVisible(false);
-//    App.employee.setEmail(EmpEmailTF.getText());
-//    EmployeeEmail.setText("" + App.employee.getEmail());
-//    //  EmployeeDAO.update(App.employee);
-//
-//  }
-//}
-  //Me actively trying to figure out how to update the database with the new information
+  //  public void saveEdit() throws SQLException {
+  //    EmployeeDAO employeeDAO = new EmployeeDAO();
+  //    HashMap<Integer, Employee> emp = employeeDAO.getAll();
+  //    EmpEmailTF.setVisible(false);
+  //    EmpEmailTF.setEditable(false);
+  //    edit.setVisible(true);
+  //    // Save.setVisible(false);
+  //    App.employee.setEmail(EmpEmailTF.getText());
+  //    EmployeeEmail.setText("" + App.employee.getEmail());
+  //    //  EmployeeDAO.update(App.employee);
+  //
+  //  }
+  // }
+  // Me actively trying to figure out how to update the database with the new information
 }
