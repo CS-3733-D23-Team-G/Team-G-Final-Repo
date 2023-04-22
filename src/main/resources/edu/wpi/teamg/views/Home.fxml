@@ -56,7 +56,7 @@
                <children>
                   <MFXScrollPane AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <content>
-                        <VBox fx:id="forms" prefHeight="780.0" prefWidth="760.0">
+                        <VBox fx:id="forms" prefHeight="780.0" prefWidth="743.0">
                            <children>
                               <Text fill="WHITE" layoutX="40.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Forms:">
                                  <font>

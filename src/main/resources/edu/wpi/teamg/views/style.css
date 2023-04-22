@@ -478,6 +478,8 @@ Popup
     -fx-font-size: 20;
 }
 
+/* homepage text */
+
 .welcomeText_home{
     -fx-font-size: 36;
 }
@@ -486,4 +488,20 @@ Popup
     -fx-font-size: 36;
     -fx-font-weight: 800;
 }
+
+.requestText{
+     -fx-font-weight: bold;
+     -fx-font-color: #FFFFFF;
+     -fx-font-size: 30;
+}
+
+.requestText_reqID{
+     -fx-font-size: 24;
+
+     -position: absolute;
+     -up: 0;
+     -left: 0;
+}
+
+
 
