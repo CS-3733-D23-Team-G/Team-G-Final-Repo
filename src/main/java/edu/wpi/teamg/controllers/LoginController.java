@@ -115,7 +115,9 @@ public class LoginController {
 
         Navigation.setLoggedin();
         App.employee.setEmpID(tableEmp);
+        PatientTopBannerController topBanner = new PatientTopBannerController();
         Navigation.navigate(Screen.HOME);
+        topBanner.window.hide();
       } else {
         incorrectPassword();
       }
