@@ -51,7 +51,7 @@
                         </Text>
                      </children>
                   </HBox>
-                  <MFXButton fx:id="EmployeeinfoHyperlink" layoutX="178.0" layoutY="25.0" prefHeight="43.0" prefWidth="184.0" text="Button" />
+                  <MFXButton fx:id="EmployeeinfoHyperlink" layoutX="178.0" layoutY="25.0" opacity="0.0" prefHeight="43.0" prefWidth="184.0" text="Button" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
