@@ -43,7 +43,7 @@ public class App extends Application {
 
   public static MoveDAO moveDAO = new MoveDAO();
 
-  public static ArrayList move;
+  public static ArrayList<Move> move;
 
   public static LocationNameDAO loc = new LocationNameDAO();
 
@@ -428,7 +428,7 @@ public class App extends Application {
 
     moveDAO = new MoveDAO();
 
-    move = new ArrayList<>(moveDAO.getAll());
+    move = new ArrayList<Move>(moveDAO.getAll());
 
     loc = new LocationNameDAO();
 
