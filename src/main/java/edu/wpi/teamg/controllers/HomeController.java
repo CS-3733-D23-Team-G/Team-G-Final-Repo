@@ -44,7 +44,7 @@ public class HomeController {
 
       newAnchorPane.getChildren().add(newTest);
       forms.getChildren().add(newAnchorPane);
-      EmployeeinfoHyperlink.setOnMouseClicked(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
     }
+    EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
   }
 }
