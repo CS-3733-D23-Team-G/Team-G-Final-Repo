@@ -34,7 +34,7 @@ public class HomeController {
         (i, m) -> {
           Text requestID = new Text("#" + i);
           requestID.setLayoutX(20);
-          requestID.setLayoutY(30);
+          requestID.setLayoutY(35);
           requestID.setStyle("-fx-font-size: 24;");
           String type = m.getReqtype();
           String thisType = "";
@@ -87,7 +87,8 @@ public class HomeController {
                   + "-fx-background-radius: 10;"
                   + " -fx-pref-width: 360;"
                   + " -fx-pref-height: 150;"
-                  + " -fx-padding: 10;"
+                  // top right bottom left
+                  + " -fx-padding: 10 10 10 10;"
                   + " -fx-border-insets: 10;"
                   + " -fx-background-insets: 10;");
 
