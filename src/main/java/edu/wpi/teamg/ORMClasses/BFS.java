@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
-
 import org.controlsfx.control.SearchableComboBox;
 
 public class BFS implements Algorithm {

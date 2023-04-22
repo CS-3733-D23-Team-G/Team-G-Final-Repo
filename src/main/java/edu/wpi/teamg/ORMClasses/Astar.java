@@ -29,7 +29,6 @@ public class Astar implements Algorithm {
     String L1StartNodeLongName = (String) startLocDrop.getValue();
     String L1EndNodeLongName = (String) endLocDrop.getValue();
 
-
     int L1StartNodeID = 0;
     int L1EndNodeID = 0;
     for (int i = 0; i < movin.size(); i++) {

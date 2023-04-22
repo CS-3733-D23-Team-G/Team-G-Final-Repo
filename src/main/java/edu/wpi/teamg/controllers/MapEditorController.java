@@ -506,6 +506,11 @@ public class MapEditorController {
         });
     nodePane.getChildren().add(point);
     nodePane.getChildren().add(nodeLabel);
+
+    point.setOnMouseDragged(event -> recordDrag(event, point));
+
+    // point.setOnMouseReleased(event -> recordDrag());
+
   }
 
   public void displayData(Node point) throws IOException, SQLException {
@@ -613,6 +618,14 @@ public class MapEditorController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void recordDrag(MouseEvent event, Circle point) {
+    double xVal = event.getX();
+    double yVal = event.getY();
+
+    point.setCenterX(xVal);
+    point.setCenterY(yVal);
   }
 
   public void exit() {
