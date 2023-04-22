@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.DictionaryController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <MFXTextField fx:id="input" layoutX="234.0" layoutY="151.0" />
+            <Text fx:id="outputText" layoutX="167.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <MFXButton fx:id="inputButton" layoutX="300.0" layoutY="265.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
