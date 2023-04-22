@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class OfficeSupplyRequest extends Request {
+  @Getter @Setter private int reqid;
   @Getter @Setter private String supplyType;
   @Getter @Setter private String note;
   @Getter @Setter private String recipient;
@@ -27,5 +28,12 @@ public class OfficeSupplyRequest extends Request {
     this.supplyType = supplyType;
     this.recipient = recipient;
     this.note = note;
+  }
+
+  public OfficeSupplyRequest(int reqid, String supplyType, String note, String recipient) {
+    this.reqid = reqid;
+    this.supplyType = supplyType;
+    this.note = note;
+    this.recipient = recipient;
   }
 }

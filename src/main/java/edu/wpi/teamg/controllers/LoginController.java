@@ -2,9 +2,9 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.AccountDAO;
-import edu.wpi.teamg.DAOs.EmployeeDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
+import edu.wpi.teamg.ORMClasses.TwoFactorAuth;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
+import javax.mail.MessagingException;
 
 public class LoginController {
   @FXML MFXButton loginButton;
@@ -62,10 +63,8 @@ public class LoginController {
     String pass = password.getText();
 
     AccountDAO accountDAO = new AccountDAO();
-    EmployeeDAO employeeDAO = new EmployeeDAO();
 
     ResultSet rs = null;
-    ResultSet rs1 = null;
 
     db.setConnection();
     query = "select * from " + accountDAO.getTable() + " where username = ?";
@@ -81,43 +80,26 @@ public class LoginController {
       boolean tableAdmin = false;
 
       while (rs.next()) {
+        tableUser = rs.getString("username");
         tableEmp = rs.getInt("empid");
         tablePass = rs.getString("hashpassword");
         tableSalt = rs.getBytes("salt");
         tableAdmin = rs.getBoolean("is_admin");
       }
-
+      db.closeConnection();
       Account account = new Account();
       account.setPassword(pass);
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
-        Navigation.Logout();
-        if (tableAdmin) Navigation.setAdmin();
+        password.setEditable(false);
+        TwoFactorAuth twoFac = new TwoFactorAuth();
+        twoFac.sendEmail(tableUser);
 
-        // if logged in, create employee ORM with user info
-        employeeQuery = "select * from " + employeeDAO.getTable() + " where empid = ?";
-        try {
-          PreparedStatement ps1 = db.getConnection().prepareStatement(employeeQuery);
-          ps1.setInt(1, tableEmp);
-          rs1 = ps1.executeQuery();
-        } catch (SQLException e) {
-          System.err.println("SQL Exception on Account");
-          e.printStackTrace();
-        }
-
-        while (rs1.next()) {
-          App.employee.setEmpID(rs1.getInt("empid"));
-          App.employee.setCan_serve(rs1.getString("can_serve"));
-          App.employee.setEmail(rs1.getString("email"));
-          App.employee.setFirstName(rs1.getString("firstname"));
-          App.employee.setLastName(rs1.getString("lastname"));
-        }
-
-        Navigation.setLoggedin();
-        App.employee.setEmpID(tableEmp);
-        PatientTopBannerController topBanner = new PatientTopBannerController();
-        Navigation.navigate(Screen.HOME);
-        topBanner.window.hide();
+        App.setUser(tableUser);
+        App.setAdmin(tableAdmin);
+        App.setEmp(tableEmp);
+        App.setCode(twoFac.getCode());
+        Navigation.navigate(Screen.TWO_FAC);
       } else {
         incorrectPassword();
       }
@@ -130,6 +112,8 @@ public class LoginController {
       incorrectPassword();
       System.err.println("Chose neither username nor password that existed in the db");
       e.printStackTrace();
+    } catch (MessagingException e) {
+      throw new RuntimeException(e);
     }
   }
 
