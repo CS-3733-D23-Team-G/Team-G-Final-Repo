@@ -2,6 +2,7 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
+import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.OfficeSupplyRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
@@ -172,10 +173,20 @@ public class OfficeSuppRequestController {
   }
 
   private void storeSupplyVal() throws SQLException {
+
+    HashMap<Integer, Employee> employeeHash = repo.getAllEmployees();
+
+    Employee signedIn = employeeHash.get(App.employee.getEmpID());
+
     OfficeSupplyRequest os =
         new OfficeSupplyRequest(
             "OS",
-            "ID 1: John Doe",
+            "ID "
+                + App.employee.getEmpID()
+                + ": "
+                + signedIn.getFirstName()
+                + " "
+                + signedIn.getLastName(),
             (String) locationSearchDropdown.getValue(),
             (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,

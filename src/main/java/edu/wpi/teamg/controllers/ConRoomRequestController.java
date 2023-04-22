@@ -3,6 +3,7 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
+import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
@@ -120,11 +121,19 @@ public class ConRoomRequestController {
 
   public void storeRoomValues() throws SQLException {
 
+    HashMap<Integer, Employee> employeeHash = dao.getAllEmployees();
+
+    Employee signedIn = employeeHash.get(App.employee.getEmpID());
+
     ConferenceRoomRequest conRoom =
         new ConferenceRoomRequest(
             "CR",
-            "ID 1: John Doe",
-            // assume for now they are going to input a node number, so parseInt
+            "ID "
+                + App.employee.getEmpID()
+                + ": "
+                + signedIn.getFirstName()
+                + " "
+                + signedIn.getLastName(),
             (String) locationSearchDropdown.getValue(),
             (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
@@ -135,7 +144,7 @@ public class ConRoomRequestController {
 
     try {
       dao.insertConferenceRoomRequest(conRoom);
-      App.requestRefresh();
+      App.confRefresh();
     } catch (SQLException e) {
       System.err.println("SQL Exception");
       e.printStackTrace();

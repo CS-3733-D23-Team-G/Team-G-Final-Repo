@@ -2,6 +2,7 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
+import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
@@ -171,10 +172,19 @@ public class FlowersRequestController {
    */
   public void storeFlowerValues() throws SQLException {
 
+    HashMap<Integer, Employee> employeeHash = dao.getAllEmployees();
+
+    Employee signedIn = employeeHash.get(App.employee.getEmpID());
+
     FlowerRequest flower =
         new FlowerRequest(
             "FL",
-            "ID 1: John Doe",
+            "ID "
+                + App.employee.getEmpID()
+                + ": "
+                + signedIn.getFirstName()
+                + " "
+                + signedIn.getLastName(),
             (String) locationSearchDropdown.getValue(),
             (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
@@ -188,7 +198,7 @@ public class FlowersRequestController {
     // System.out.println(Order);
 
     dao.insertFlowerRequest(flower);
-    App.requestRefresh();
+    App.flowerRefresh();
     /*
     System.out.println(
         "Delivery Location: "

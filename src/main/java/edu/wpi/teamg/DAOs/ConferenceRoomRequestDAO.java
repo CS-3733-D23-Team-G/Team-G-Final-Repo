@@ -48,7 +48,7 @@ public class ConferenceRoomRequestDAO implements DAO {
     longNameHash = NodeDAO.getCRLongName();
 
     HashMap employeeHash = new HashMap<>();
-    employeeHash = employeeDAO.getEmployeeFullName("Conference Rooms Request");
+    employeeHash = employeeDAO.getEmployeeFullName("Conference Room Request");
 
     HashMap allEmployeeHash = new HashMap<>();
     allEmployeeHash = employeeDAO.getAllEmployeeFullName();

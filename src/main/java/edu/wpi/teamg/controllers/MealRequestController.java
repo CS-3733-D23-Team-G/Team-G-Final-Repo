@@ -2,6 +2,7 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
+import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
@@ -171,10 +172,19 @@ public class MealRequestController {
 
   public void storeMealValues() throws SQLException {
 
+    HashMap<Integer, Employee> employeeHash = dao.getAllEmployees();
+
+    Employee signedIn = employeeHash.get(App.employee.getEmpID());
+
     MealRequest mr =
         new MealRequest(
             "M",
-            "ID 1: John Doe",
+            "ID "
+                + App.employee.getEmpID()
+                + ": "
+                + signedIn.getFirstName()
+                + " "
+                + signedIn.getLastName(),
             // assume for now they are going to input a node number, so parseInt
             (String) locationSearchDropdown.getValue(),
             (String) employeeSearchDropdown.getValue(),
@@ -217,7 +227,7 @@ public class MealRequestController {
     //            + mr.getStatus());
 
     dao.insertMealRequest(mr);
-    App.requestRefresh();
+    App.mealRefresh();
   }
 
   public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
