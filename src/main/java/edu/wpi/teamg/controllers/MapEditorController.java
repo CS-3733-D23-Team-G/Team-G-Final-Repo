@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
@@ -57,6 +56,8 @@ public class MapEditorController {
   @FXML MFXToggleButton toggleEdge;
 
   @FXML MFXButton addEdge;
+
+  boolean moved = false;
 
   boolean lineGen;
   int floor = 0;
@@ -493,22 +494,50 @@ public class MapEditorController {
 
     */
 
-    point.setOnMouseClicked(
-        new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
-            try {
-              displayData(currentNode);
-            } catch (SQLException | IOException e) {
-              throw new RuntimeException(e);
-            }
-          }
-        });
-    nodePane.getChildren().add(point);
-    nodePane.getChildren().add(nodeLabel);
+    //    point.setOnMouseClicked(
+    //        new EventHandler<MouseEvent>() {
+    //          @Override
+    //          public void handle(MouseEvent event) {
+    //            try {
+    //
+    //
+    //
+    //            } catch (SQLException | IOException e) {
+    //              throw new RuntimeException(e);
+    //            }
+    //          }
+    //        });
 
     point.setOnMouseDragged(event -> recordDrag(event, point));
 
+    point.setOnMouseReleased(
+        event -> {
+          pane.setGestureEnabled(true);
+
+          try {
+            if (moved) {
+              confirmPop(
+                  currentNode.getXcoord(),
+                  currentNode.getYcoord(),
+                  (int) point.getCenterX(),
+                  (int) point.getCenterY(),
+                  currentNode);
+            }
+            if (!moved) {
+              displayData(currentNode);
+            }
+
+            moved = false;
+
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    nodePane.getChildren().add(point);
+    nodePane.getChildren().add(nodeLabel);
     // point.setOnMouseReleased(event -> recordDrag());
 
   }
@@ -621,11 +650,29 @@ public class MapEditorController {
   }
 
   public void recordDrag(MouseEvent event, Circle point) {
+
+    pane.setGestureEnabled(false);
+
     double xVal = event.getX();
     double yVal = event.getY();
 
     point.setCenterX(xVal);
     point.setCenterY(yVal);
+
+    moved = true;
+  }
+
+  public void confirmPop(int x1, int y1, int x2, int y2, Node potentialUpdate) throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/ConfirmPopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    ConfirmPopUpController controller = loader.getController();
+    controller.setFields(x1, y1, x2, y2, potentialUpdate, window);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void exit() {
