@@ -30,10 +30,10 @@ public class FurnitureRequest extends Request {
     this.recipient = recipient;
   }
 
-    public FurnitureRequest(int id, String furnitureType, String note, String recipient) {
-    this.reqid=id;
+  public FurnitureRequest(int id, String furnitureType, String note, String recipient) {
+    this.reqid = id;
     this.furnitureType = furnitureType;
-    this.note=note;
-    this.recipient=recipient;
-    }
+    this.note = note;
+    this.recipient = recipient;
+  }
 }

@@ -76,6 +76,4 @@ public interface LocationDAO<T> extends DAO {
 
     db.closeConnection();
   }
-
-
 }

@@ -1,10 +1,8 @@
 package edu.wpi.teamg.DAOs;
 
 import edu.wpi.teamg.DBConnection;
-import edu.wpi.teamg.ORMClasses.FurnitureRequest;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -219,13 +217,13 @@ public class MealRequestDAO implements DAO {
       String line = null;
       br.readLine();
 
-      while((line = br.readLine())!=null){
+      while ((line = br.readLine()) != null) {
         String[] data = line.split(",");
         int id = Integer.parseInt(data[0]);
         String order = data[1];
         String note = data[2];
         String recipient = data[3];
-        MealRequest mealReq = new MealRequest(id,recipient,order,note);
+        MealRequest mealReq = new MealRequest(id, recipient, order, note);
         this.insert(mealReq);
       }
 

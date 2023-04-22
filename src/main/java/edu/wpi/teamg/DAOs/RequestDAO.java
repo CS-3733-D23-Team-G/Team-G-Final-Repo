@@ -3,9 +3,7 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Request;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
@@ -124,14 +122,17 @@ public class RequestDAO implements DAO {
   @Override
   public void importCSV(String path) throws SQLException {
     db.setConnection();
-    sql="insert into "+this.getTable()+" (reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+    sql =
+        "insert into "
+            + this.getTable()
+            + " (reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
-    try{
+    try {
       BufferedReader br = new BufferedReader(new FileReader(path));
       String line = null;
       br.readLine();
 
-      while((line=br.readLine())!=null){
+      while ((line = br.readLine()) != null) {
         String[] data = line.split(",");
         int id = Integer.parseInt(data[0]);
         String type = data[1];
@@ -150,7 +151,6 @@ public class RequestDAO implements DAO {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-
   }
 
   @Override

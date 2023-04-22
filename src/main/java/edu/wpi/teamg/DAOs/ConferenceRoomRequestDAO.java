@@ -3,9 +3,7 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
@@ -218,12 +216,12 @@ public class ConferenceRoomRequestDAO implements DAO {
       String line = null;
       br.readLine();
 
-      while((line = br.readLine())!=null){
+      while ((line = br.readLine()) != null) {
         String[] data = line.split(",");
         int id = Integer.parseInt(data[0]);
         Time time = Time.valueOf(data[1]);
         String purpose = data[2];
-        ConferenceRoomRequest confRoom = new ConferenceRoomRequest(id,time,purpose);
+        ConferenceRoomRequest confRoom = new ConferenceRoomRequest(id, time, purpose);
         this.insert(confRoom);
       }
 

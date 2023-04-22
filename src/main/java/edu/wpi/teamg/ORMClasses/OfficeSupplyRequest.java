@@ -30,10 +30,10 @@ public class OfficeSupplyRequest extends Request {
     this.note = note;
   }
 
-  public OfficeSupplyRequest(int reqid, String supplyType, String note, String recipient){
-    this.reqid=reqid;
-    this.supplyType=supplyType;
-    this.note=note;
-    this.recipient=recipient;
+  public OfficeSupplyRequest(int reqid, String supplyType, String note, String recipient) {
+    this.reqid = reqid;
+    this.supplyType = supplyType;
+    this.note = note;
+    this.recipient = recipient;
   }
 }

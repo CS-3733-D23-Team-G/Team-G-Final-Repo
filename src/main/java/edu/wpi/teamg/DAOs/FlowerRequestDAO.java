@@ -3,9 +3,7 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
@@ -172,21 +170,20 @@ public class FlowerRequestDAO implements DAO {
       String line = null;
       br.readLine();
 
-      while((line= br.readLine())!=null){
+      while ((line = br.readLine()) != null) {
         String[] data = line.split(",");
         int id = Integer.parseInt(data[0]);
-        String types=data[1];
+        String types = data[1];
         int num = Integer.parseInt(data[2]);
         String recipient = data[3];
         String note = data[4];
-        FlowerRequest flowerReq = new FlowerRequest(id,types,num,recipient,note);
+        FlowerRequest flowerReq = new FlowerRequest(id, types, num, recipient, note);
         this.insert(flowerReq);
       }
 
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-
   }
 
   @Override

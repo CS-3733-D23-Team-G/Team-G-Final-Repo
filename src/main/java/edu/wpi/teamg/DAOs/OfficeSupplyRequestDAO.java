@@ -3,9 +3,7 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.OfficeSupplyRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Date;
@@ -173,13 +171,13 @@ public class OfficeSupplyRequestDAO implements DAO {
       String line = null;
       br.readLine();
 
-      while((line=br.readLine())!=null){
+      while ((line = br.readLine()) != null) {
         String[] data = line.split(",");
         int id = Integer.parseInt(data[0]);
         String type = data[1];
         String note = data[2];
         String recipient = data[3];
-        OfficeSupplyRequest supplyRequest = new OfficeSupplyRequest(id,type,note,recipient);
+        OfficeSupplyRequest supplyRequest = new OfficeSupplyRequest(id, type, note, recipient);
         this.insert(supplyRequest);
       }
 
