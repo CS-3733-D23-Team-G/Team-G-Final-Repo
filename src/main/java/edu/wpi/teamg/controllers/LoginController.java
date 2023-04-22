@@ -86,7 +86,11 @@ public class LoginController {
         tableSalt = rs.getBytes("salt");
         tableAdmin = rs.getBoolean("is_admin");
       }
+
+
+
       db.closeConnection();
+
       Account account = new Account();
       account.setPassword(pass);
 
