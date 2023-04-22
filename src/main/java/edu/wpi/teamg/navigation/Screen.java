@@ -30,7 +30,9 @@ public enum Screen {
   ADMIN_MAP_EDITOR("views/MapEditor.fxml"),
   ADD_EMPLOYEE("views/AddEmployee.fxml"),
   TWO_FAC("views/2FactorPopUp.fxml"),
-  NODE_EDITOR("views/NodeViewAndEditor");
+  NODE_EDITOR("views/NodeViewAndEditor"),
+
+  ALERT_PAGE("views/AlertPage.fxml");
 
   private final String filename;
 
