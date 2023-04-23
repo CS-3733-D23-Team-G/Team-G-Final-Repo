@@ -57,7 +57,7 @@ public class Dijkstra implements Algorithm {
     int[][] Adj = G1.createWeightedAdj();
 
     System.out.println(nodeArray[0].getNodeID());
-    //startNode and endNode are the index of where they are in the nodeArray[]
+    // startNode and endNode are the index of where they are in the nodeArray[]
     path = G1.Dijkstra(Adj, startNode, endNode);
 
     return path;
