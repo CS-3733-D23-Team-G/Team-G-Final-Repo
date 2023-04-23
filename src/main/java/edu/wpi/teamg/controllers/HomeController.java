@@ -6,6 +6,9 @@ import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.RequestDAO;
 import edu.wpi.teamg.ORMClasses.Request;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javafx.fxml.FXML;
@@ -17,6 +20,7 @@ import javafx.scene.text.Text;
 
 public class HomeController {
   @FXML Text empName;
+  @FXML MFXButton EmployeeinfoHyperlink;
   @FXML VBox forms;
 
   // TODO if there are no requests, add a message saying currently no requests.
@@ -96,5 +100,6 @@ public class HomeController {
           newAnchorPane.getChildren().add(circle);
           forms.getChildren().add(newAnchorPane);
         });
+    EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
   }
 }
