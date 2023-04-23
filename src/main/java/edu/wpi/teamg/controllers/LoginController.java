@@ -2,9 +2,12 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.AccountDAO;
+import edu.wpi.teamg.DAOs.EmployeeDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
 import edu.wpi.teamg.ORMClasses.TwoFactorAuth;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -69,6 +72,7 @@ public class LoginController {
     AccountDAO accountDAO = new AccountDAO();
 
     ResultSet rs = null;
+    ResultSet rs1 = null;
 
     db.setConnection();
     query = "select * from " + accountDAO.getTable() + " where username = ?";
@@ -95,52 +99,52 @@ public class LoginController {
       account.setPassword(pass);
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
+        if (username.getText().equals("admin") || username.getText().equals("staff")) {
+          Navigation.Logout();
+          if (tableAdmin) {
 
-        //        Navigation.Logout();
-        //        if (tableAdmin) {
-        //
-        //          Navigation.setAdmin();
-        //        }
+            Navigation.setAdmin();
+          }
+          EmployeeDAO employeeDAO = new EmployeeDAO();
 
-        //        EmployeeDAO employeeDAO = new EmployeeDAO();
-        //
-        //        // if logged in, create employee ORM with user info
-        //        employeeQuery = "select * from " + employeeDAO.getTable() + " where empid = ?";
-        //        try {
-        //          PreparedStatement ps1 = db.getConnection().prepareStatement(employeeQuery);
-        //          ps1.setInt(1, tableEmp);
-        //          rs1 = ps1.executeQuery();
-        //        } catch (SQLException e) {
-        //          System.err.println("SQL Exception on Account");
-        //          e.printStackTrace();
-        //        }
-        //
-        //        while (rs1.next()) {
-        //          App.employee.setEmpID(rs1.getInt("empid"));
-        //          App.employee.setCan_serve(rs1.getString("can_serve"));
-        //          App.employee.setEmail(rs1.getString("email"));
-        //          App.employee.setFirstName(rs1.getString("firstname"));
-        //          App.employee.setLastName(rs1.getString("lastname"));
-        //        }
-        //
-        //        Navigation.setLoggedin();
-        //        App.employee.setEmpID(tableEmp);
-        //        PatientTopBannerController topBanner = new PatientTopBannerController();
-        //
-        //        db.closeConnection();
-        //        Navigation.navigate(Screen.HOME);
-        //        topBanner.window.hide();
+          // if logged in, create employee ORM with user info
+          String employeeQuery = "select * from " + employeeDAO.getTable() + " where empid = ?";
+          try {
+            PreparedStatement ps1 = db.getConnection().prepareStatement(employeeQuery);
+            ps1.setInt(1, tableEmp);
+            rs1 = ps1.executeQuery();
+          } catch (SQLException e) {
+            System.err.println("SQL Exception on Account");
+            e.printStackTrace();
+          }
 
-        password.setEditable(false);
-        TwoFactorAuth twoFac = new TwoFactorAuth();
-        twoFac.sendEmail(tableUser);
+          while (rs1.next()) {
+            App.employee.setEmpID(rs1.getInt("empid"));
+            App.employee.setCan_serve(rs1.getString("can_serve"));
+            App.employee.setEmail(rs1.getString("email"));
+            App.employee.setFirstName(rs1.getString("firstname"));
+            App.employee.setLastName(rs1.getString("lastname"));
+          }
 
-        App.setUser(tableUser);
-        App.setAdmin(tableAdmin);
-        App.setEmp(tableEmp);
-        App.setCode(twoFac.getCode());
-        twoFactor();
-        // Navigation.navigate(Screen.TWO_FAC);
+          Navigation.setLoggedin();
+          App.employee.setEmpID(tableEmp);
+          PatientTopBannerController topBanner = new PatientTopBannerController();
+
+          db.closeConnection();
+          Navigation.navigate(Screen.HOME);
+          topBanner.window.hide();
+        } else {
+          password.setEditable(false);
+          TwoFactorAuth twoFac = new TwoFactorAuth();
+          twoFac.sendEmail(tableUser);
+
+          App.setUser(tableUser);
+          App.setAdmin(tableAdmin);
+          App.setEmp(tableEmp);
+          App.setCode(twoFac.getCode());
+          twoFactor();
+          // Navigation.navigate(Screen.TWO_FAC);
+        }
 
       } else {
         incorrectPassword();

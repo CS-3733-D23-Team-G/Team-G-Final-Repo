@@ -8,6 +8,7 @@ import java.util.Arrays;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
 public class SignageScreenSaverController {
@@ -152,6 +153,8 @@ public class SignageScreenSaverController {
 
   public void getSavedDate() {
     SignageEditorController controller = new SignageEditorController();
-    dateText.setText(controller.getDate());
+    dateText.setText(controller.getDate() + ".");
+    dateText.setFill(Paint.valueOf("linear-gradient(to bottom left, #009FFD, #2A2A72)"));
+    dateText.setStyle("-fx-font-weight: 800");
   }
 }
