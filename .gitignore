@@ -1,5 +1,5 @@
-creds.yml
-./creds.yml
+src/main/resources/creds.yml
+src/main/resources/creds.yml
 emailCreds.yml
 ./emailCreds.yml
 derby.log
