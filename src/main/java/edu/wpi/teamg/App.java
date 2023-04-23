@@ -36,7 +36,7 @@ public class App extends Application {
   public static Image mapFloor2 = new Image("edu/wpi/teamg/Images/02_thesecondfloor.png");
 
   public static Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
-
+  public static DAORepo daoRepo = new DAORepo();
   public static EdgeDAO edgeDao = new EdgeDAO();
 
   public static HashMap<String, Edge> edgeMap;
@@ -176,8 +176,6 @@ public class App extends Application {
       throw new RuntimeException(e);
     }
   }
-
-  public static DAORepo daoRepo = new DAORepo();
 
   public static HashMap<Integer, String> L1Floor;
 

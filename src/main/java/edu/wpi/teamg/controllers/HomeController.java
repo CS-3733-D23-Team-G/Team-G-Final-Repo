@@ -6,6 +6,9 @@ import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.RequestDAO;
 import edu.wpi.teamg.ORMClasses.Request;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javafx.fxml.FXML;
@@ -17,6 +20,7 @@ import javafx.scene.text.Text;
 
 public class HomeController {
   @FXML Text empName;
+  @FXML MFXButton EmployeeinfoHyperlink;
   @FXML VBox forms;
 
   // TODO if there are no requests, add a message saying currently no requests.
@@ -64,7 +68,6 @@ public class HomeController {
             case blank:
               color = "#B12B00;";
               break;
-
             case processing:
               color = "#0067B1;";
               break;
@@ -76,8 +79,8 @@ public class HomeController {
           request.setStyle("-fx-font-size: 30;");
 
           Circle circle = new Circle(20);
-          circle.setLayoutX(715);
-          circle.setLayoutY(65);
+          circle.setLayoutX(675);
+          circle.setLayoutY(70);
           circle.setStyle("-fx-fill: " + color);
 
           AnchorPane newAnchorPane = new AnchorPane();
@@ -85,17 +88,18 @@ public class HomeController {
           newAnchorPane.setStyle(
               "-fx-background-color: #C0C0C0;"
                   + "-fx-background-radius: 10;"
-                  + " -fx-pref-width: 360;"
-                  + " -fx-pref-height: 150;"
+                  + " -fx-pref-width: 335;"
+                  + "-fx-pref-height: 150;"
                   // top right bottom left
-                  + " -fx-padding: 10 10 10 10;"
-                  + " -fx-border-insets: 10;"
-                  + " -fx-background-insets: 10;");
+                  + " -fx-padding: 10 25 10 25;"
+                  + " -fx-border-insets: 10 25 10 25;"
+                  + " -fx-background-insets: 10 25 10 25;");
 
           newAnchorPane.getChildren().add(requestID);
           newAnchorPane.getChildren().add(request);
           newAnchorPane.getChildren().add(circle);
           forms.getChildren().add(newAnchorPane);
         });
+    EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
   }
 }
