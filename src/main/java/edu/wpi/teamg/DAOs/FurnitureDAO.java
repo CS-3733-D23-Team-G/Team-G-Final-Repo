@@ -122,19 +122,32 @@ public class FurnitureDAO implements DAO {
       ps_Req.setString(2, "FR");
 
       String reqEmp = ((FurnitureRequest) obj).getEmpid();
-      String assignedEmp = ((FurnitureRequest) obj).getServeBy();
 
       String[] split0 = reqEmp.split(":");
-      String[] split1 = assignedEmp.split(":");
 
       int empid = Integer.parseInt(split0[0].substring(3));
-      int servby = Integer.parseInt(split1[0].substring(3));
 
       ps_Req.setInt(3, empid);
       int nodeID = nodeDAO.getNodeIDbyLongName(furn.getLocation(), new java.sql.Date(2023, 01, 01));
 
       ps_Req.setInt(4, nodeID);
-      ps_Req.setInt(5, servby);
+
+      String assignedEmployee = furn.getServeBy();
+
+      String[] split1 = new String[2];
+      int serveBy = 0;
+
+      if (assignedEmployee != null) {
+        split1 = assignedEmployee.split(":");
+        serveBy = Integer.parseInt(split1[0].substring(3));
+      }
+
+      if (serveBy == 0) {
+        ps_Req.setObject(5, null);
+      } else {
+        ps_Req.setInt(5, serveBy);
+      }
+
       ps_Req.setObject(6, furn.getStatus(), java.sql.Types.OTHER);
       ps_Req.setDate(7, furn.getRequestDate());
       ps_Req.setTime(8, furn.getRequestTime());

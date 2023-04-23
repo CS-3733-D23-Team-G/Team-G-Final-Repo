@@ -23,6 +23,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.SearchableComboBox;
 
@@ -66,7 +69,12 @@ public class FlowersRequestController {
 
   @FXML SearchableComboBox employeeSearchDropdown;
 
+  @FXML VBox vboxWithAssignTo;
+
   @FXML Label checkFields;
+
+  @FXML Line assignToLine;
+  @FXML Text assignToText;
 
   /*
    TODO: figure out how to get correct datatype to give to DB
@@ -88,6 +96,13 @@ public class FlowersRequestController {
     checkFields.setVisible(false);
 
     clearAll.setOnAction(event -> clearFlowers());
+
+    if (!App.employee.getIs_admin()) {
+
+      vboxWithAssignTo.getChildren().remove(assignToLine);
+      vboxWithAssignTo.getChildren().remove(assignToText);
+      vboxWithAssignTo.getChildren().remove(employeeSearchDropdown);
+    }
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName = this.getHashMapEmployeeLongName("Flowers Request");
@@ -316,14 +331,12 @@ public class FlowersRequestController {
 
   public void allDataFilled() {
     if (!(bouquetSizeChoiceBox == null
-        || employeeSearchDropdown.getValue() == null
         || Order.equals("")
         || deliveryDate.getValue() == null
         || locationSearchDropdown.getValue() == null
         // || deliveryLocation.getText().equals("")
         || recipient.getText().equals("")
-        || deliveryTime.getText().equals("")
-        || bouquetNote.getText().equals(""))) {
+        || deliveryTime.getText().equals(""))) {
       try {
         storeFlowerValues();
       } catch (SQLException e) {

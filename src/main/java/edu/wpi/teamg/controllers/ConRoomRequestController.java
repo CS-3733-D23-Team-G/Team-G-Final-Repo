@@ -21,6 +21,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import org.controlsfx.control.SearchableComboBox;
 
 public class ConRoomRequestController {
@@ -41,6 +44,11 @@ public class ConRoomRequestController {
   @FXML SearchableComboBox employeeSearchDropdown;
   @FXML Label checkFields;
 
+  @FXML Line assignToLine;
+  @FXML Text assignToText;
+
+  @FXML VBox vboxWithAssignTo;
+
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
 
@@ -56,6 +64,12 @@ public class ConRoomRequestController {
 
     datePicker.setText("");
     //    checkFields.getText();
+
+    if (!App.employee.getIs_admin()) {
+      vboxWithAssignTo.getChildren().remove(assignToLine);
+      vboxWithAssignTo.getChildren().remove(assignToText);
+      vboxWithAssignTo.getChildren().remove(employeeSearchDropdown);
+    }
 
     roomMeetingPurpose.getText();
     // roomNumber.getText();

@@ -41,5 +41,7 @@ public class HomeController {
       newAnchorPane.getChildren().add(newTest);
       forms.getChildren().add(newAnchorPane);
     }
+
+    System.out.println(App.employee.getIs_admin());
   }
 }

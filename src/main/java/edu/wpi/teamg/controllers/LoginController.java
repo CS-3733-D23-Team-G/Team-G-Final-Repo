@@ -92,7 +92,10 @@ public class LoginController {
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
         Navigation.Logout();
-        if (tableAdmin) Navigation.setAdmin();
+        if (tableAdmin) {
+          App.employee.setIs_admin(true);
+          Navigation.setAdmin();
+        }
 
         // if logged in, create employee ORM with user info
         employeeQuery = "select * from " + employeeDAO.getTable() + " where empid = ?";

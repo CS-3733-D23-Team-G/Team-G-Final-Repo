@@ -24,6 +24,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javax.swing.*;
+
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import org.controlsfx.control.SearchableComboBox;
 
 public class OfficeSuppRequestController {
@@ -42,7 +46,15 @@ public class OfficeSuppRequestController {
   @FXML Label supplyChoice;
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML SearchableComboBox employeeSearchDropdown;
+  @FXML
+  VBox vboxWithAssignTo;
+
   @FXML Label checkFields;
+
+  @FXML
+  Line assignToLine;
+  @FXML
+  Text assignToText;
 
   String Order = "";
 
@@ -67,6 +79,14 @@ public class OfficeSuppRequestController {
         });
     checkFields.setVisible(false);
     supplyClear.setOnAction(event -> clearAllData());
+
+    if (!App.employee.getIs_admin()) {
+
+      vboxWithAssignTo.getChildren().remove(assignToLine);
+      vboxWithAssignTo.getChildren().remove(assignToText);
+      vboxWithAssignTo.getChildren().remove(employeeSearchDropdown);
+    }
+
 
     supplyRecipient.getText();
     recipientNotes.getText();
@@ -155,12 +175,10 @@ public class OfficeSuppRequestController {
 
   private void allDataFilled() {
     if (!(supplyRecipient.getText().equals("")
-        || recipientNotes.getText().equals("")
         || supplyDate.getText().equals("")
         || supplyDeliverTime.getText().equals("")
         || Order.equals("")
-        || locationSearchDropdown.getValue() == null
-        || employeeSearchDropdown.getValue() == null)) {
+        || locationSearchDropdown.getValue() == null)) {
       try {
         storeSupplyVal();
       } catch (SQLException e) {

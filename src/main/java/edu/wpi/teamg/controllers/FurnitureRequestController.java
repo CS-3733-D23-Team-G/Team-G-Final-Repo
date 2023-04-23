@@ -22,6 +22,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import org.controlsfx.control.SearchableComboBox;
 
 public class FurnitureRequestController {
@@ -52,6 +55,10 @@ public class FurnitureRequestController {
   @FXML SearchableComboBox employeeSearchDropdown;
   @FXML Label checkFields;
 
+  @FXML Line assignToLine;
+  @FXML Text assignToText;
+  @FXML VBox vboxWithAssignTo;
+
   String Order = "";
 
   ObservableList<String> locationList;
@@ -73,6 +80,12 @@ public class FurnitureRequestController {
           furnOrder();
           allDataFilled();
         });
+
+    if (!App.employee.getIs_admin()) {
+      vboxWithAssignTo.getChildren().remove(assignToLine);
+      vboxWithAssignTo.getChildren().remove(assignToText);
+      vboxWithAssignTo.getChildren().remove(employeeSearchDropdown);
+    }
 
     checkFields.setVisible(false);
 
@@ -242,12 +255,10 @@ public class FurnitureRequestController {
 
   public void allDataFilled() {
     if (!(furnRecipient.getText().equals("")
-        || furnNotesData.getText().equals("")
         || furnDate.getText().equals("")
         || furnTimeOfDeliver.getText().equals("")
         || Order.equals("")
-        || locationSearchDropdown.getValue() == null
-        || employeeSearchDropdown.getValue() == null)) {
+        || locationSearchDropdown.getValue() == null)) {
 
       try {
         storeFurnValues();
