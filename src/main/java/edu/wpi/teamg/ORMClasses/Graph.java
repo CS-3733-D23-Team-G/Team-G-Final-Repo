@@ -120,7 +120,9 @@ public class Graph {
 
     return solution;
   }
-  public ArrayList<String> Dijkstra(int[][] aMatrix, int start, int end){
+
+  public ArrayList<String> Dijkstra(int[][] aMatrix, int start, int end) {
+    ArrayList<String> solution = new ArrayList<>();
     // Number of vertices in the example. For us, it will be 48
     int vertex = V.length;
     // Sets up our distances, so we can process our nodes into our dis array with "inf" values
@@ -147,7 +149,9 @@ public class Graph {
       // Adds our inf to the table, so we are left with our
       // (0, inf, inf, inf, inf, inf, inf, inf)
       dis.add(totalDistance);
-    }
+      solution.add(Integer.toString(V[v].getNodeID()));
+    } //
+
     // Stores a -1 in the beginning of the parent array
     // This will be used to indicate the end of our list of nodes later
     parent[start] = -1;
@@ -171,12 +175,11 @@ public class Graph {
             parent[j] = uStarV;
             // replace the distance in list to our new minimum
             dis.set(j, uStarD + aMatrix[uStarV][j]);
+            solution.set(j, Integer.toString(V[j].getNodeID()));
           }
         }
       }
     }
-    ArrayList<String> solution = new ArrayList<>();
-    solution=storeSolutionD(start, parent, end, solution);
 
     return solution;
   }
@@ -307,15 +310,4 @@ public class Graph {
     // System.out.print(V[current].getNodeID() + " ");
     s.add(Integer.toString(V[current].getNodeID()));
   }
-  public ArrayList<String> storeSolutionD(int start, int[] parentNodes, int end, ArrayList<String> s){
-    for(int i=0; i<parentNodes.length;i++){
-      if(parentNodes[i]==end){
-        s.add(Integer.toString(parentNodes[i]));
-        return s;
-      }
-      s.add(Integer.toString(parentNodes[i]));
-    }
-    return s;
-  }
-
 }

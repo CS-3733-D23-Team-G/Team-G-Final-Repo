@@ -52,7 +52,7 @@
                                     <Insets />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
+                              <HBox prefHeight="82.0" prefWidth="145.0" styleClass="algoSelect_hbox">
                                  <children>
                                     <MFXCheckbox fx:id="aStarCheckBox" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="A*">
                                        <HBox.margin>
@@ -74,6 +74,15 @@
                                     <Insets top="25.0" />
                                  </VBox.margin>
                               </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <MFXCheckbox fx:id="Dijkstracheckbox" alignment="CENTER" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="Dijkstra">
+                                       <HBox.margin>
+                                          <Insets left="125.0" top="25.0" />
+                                       </HBox.margin>
+                                    </MFXCheckbox>
+                                 </children>
+                              </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
                                     <DatePicker fx:id="date" prefHeight="44.0" prefWidth="204.0" promptText="Date" />
@@ -90,7 +99,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXToggleButton fx:id="dSN" text="Display Short Names" />
+                                    <MFXToggleButton fx:id="dSN" alignment="CENTER" contentDisplay="CENTER" text="Display Short Names" textAlignment="CENTER" />
                                  </children>
                               </HBox>
                            </children>

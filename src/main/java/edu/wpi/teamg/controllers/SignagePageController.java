@@ -78,7 +78,7 @@ public class SignagePageController {
   ObservableList<String> FloorList;
 
   DAORepo dao = new DAORepo();
-  public static LocalDate LD= new LocalDate();
+  public static LocalDate LD = LocalDate.now();
 
   @FXML
   public void initialize() throws SQLException {
