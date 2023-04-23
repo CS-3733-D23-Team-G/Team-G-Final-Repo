@@ -65,6 +65,8 @@ public class MapEditorController {
   Node nodeCon1 = new Node();
   Node nodeCon2 = new Node();
 
+  ArrayList<ImageView> img = new ArrayList<>();
+
   public void initialize() throws SQLException, IOException {
     pane.setVisible(true);
     nodePane.setVisible(true);
@@ -174,6 +176,8 @@ public class MapEditorController {
     imageViewsList.add(mapViewFloor1);
     imageViewsList.add(mapViewFloor2);
     imageViewsList.add(mapViewFloor3);
+
+    img = imageViewsList;
 
     l1.setOnMouseClicked(
         event -> {
@@ -298,7 +302,9 @@ public class MapEditorController {
     }
     imgs.get(3).setVisible(true);
 
-    nodePane.getChildren().clear();
+    if (nodePane != null) {
+      nodePane.getChildren().clear();
+    }
 
     floor = 3;
     if (lineGen) {
@@ -467,8 +473,8 @@ public class MapEditorController {
     pathLine.toFront();
   }
 
-  private void getNodesWFunctionality(
-      ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn) throws SQLException {
+  void getNodesWFunctionality(ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn)
+      throws SQLException {
 
     Node currentNode = listOfNodes.get(i);
     Label nodeLabel = new Label();
@@ -535,7 +541,9 @@ public class MapEditorController {
                   currentNode.getYcoord(),
                   (int) point.getCenterX(),
                   (int) point.getCenterY(),
-                  currentNode);
+                  currentNode,
+                  img,
+                  currentNode.getFloor());
             }
             if (!moved) {
 
@@ -694,17 +702,41 @@ public class MapEditorController {
     moved = true;
   }
 
-  public void confirmPop(int x1, int y1, int x2, int y2, Node potentialUpdate) throws IOException {
+  public void confirmPop(
+      int x1, int y1, int x2, int y2, Node potentialUpdate, ArrayList<ImageView> imgs, String index)
+      throws IOException {
     final PopOver window = new PopOver();
     var loader = new FXMLLoader(App.class.getResource("views/ConfirmPopUp.fxml"));
     window.setContentNode(loader.load());
 
     window.setArrowSize(0);
     ConfirmPopUpController controller = loader.getController();
-    controller.setFields(x1, y1, x2, y2, potentialUpdate, window);
+    controller.setFields(x1, y1, x2, y2, potentialUpdate, window, imgs, index);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public int findIndex(String currentFloor) {
+    int floorIndex = 0;
+    switch (currentFloor) {
+      case "L2":
+        floorIndex = 1;
+        break;
+      case "1 ":
+        floorIndex = 2;
+        break;
+
+      case "2 ":
+        floorIndex = 3;
+        break;
+
+      case "3 ":
+        floorIndex = 4;
+        break;
+    }
+
+    return floorIndex;
   }
 
   public void exit() {

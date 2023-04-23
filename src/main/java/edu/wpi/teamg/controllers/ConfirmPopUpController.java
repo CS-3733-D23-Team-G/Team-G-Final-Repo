@@ -1,7 +1,6 @@
 package edu.wpi.teamg.controllers;
 
-import static edu.wpi.teamg.App.nodeDAO;
-import static edu.wpi.teamg.App.refresh;
+import static edu.wpi.teamg.App.*;
 
 import edu.wpi.teamg.ORMClasses.Node;
 import edu.wpi.teamg.navigation.Navigation;
@@ -9,7 +8,9 @@ import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import org.controlsfx.control.PopOver;
 
 public class ConfirmPopUpController {
@@ -26,6 +27,9 @@ public class ConfirmPopUpController {
 
   PopOver window;
 
+  ArrayList<ImageView> map;
+  String floor;
+
   public void initialize() {
     confirm.setOnMouseClicked(
         event -> {
@@ -35,7 +39,14 @@ public class ConfirmPopUpController {
             throw new RuntimeException(e);
           }
         });
-    cancel.setOnMouseClicked(event -> cancelUpdate());
+    cancel.setOnMouseClicked(
+        event -> {
+          try {
+            cancelUpdate();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
 
     x1.setEditable(false);
     y1.setEditable(false);
@@ -43,9 +54,19 @@ public class ConfirmPopUpController {
     y2.setEditable(false);
   }
 
-  public void setFields(int X1, int Y1, int X2, int Y2, Node updateTheNode, PopOver window) {
+  public void setFields(
+      int X1,
+      int Y1,
+      int X2,
+      int Y2,
+      Node updateTheNode,
+      PopOver window,
+      ArrayList<ImageView> img,
+      String i) {
     this.potentialUpdate = updateTheNode;
     this.window = window;
+    this.map = img;
+    this.floor = i;
 
     x1.setText(String.valueOf(X1));
     y1.setText(String.valueOf(Y1));
@@ -61,8 +82,21 @@ public class ConfirmPopUpController {
     window.hide();
   }
 
-  public void cancelUpdate() {
+  public void cancelUpdate() throws SQLException {
     Navigation.navigate(Screen.ADMIN_MAP_EDITOR);
+    MapEditorController controller = new MapEditorController();
+
+    int flNum = controller.findIndex(floor);
+
+    controller.newNodes(flNum);
+
+    //    for (int i = 0; i < allNodeList.size(); i++) {
+    //      if (Objects.equals(allNodeList.get(i).getFloor(), floor)) {
+    //        controller.getNodesWFunctionality(allNodeList, i, sn);
+    //      }
+    //    }
+
+    controller.goToFloor2(map);
     window.hide();
   }
 }
