@@ -2,7 +2,9 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.DAOs.DAORepo;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -55,6 +57,8 @@ public class SignageEditorController {
   @FXML MFXButton clearField9;
   @FXML MFXButton clearField10;
 
+  @FXML MFXDatePicker date;
+
   static boolean attribute = false;
 
   public static String[] locationNameSave = new String[10];
@@ -63,6 +67,7 @@ public class SignageEditorController {
   ArrayList<ImageView> arrows;
 
   public static int[] arrowDirectionNumber = new int[10];
+  public static LocalDate dateSave = LocalDate.now();
 
   @FXML
   public void initialize() throws SQLException {
@@ -79,8 +84,6 @@ public class SignageEditorController {
           }
         });
 
-    // HELP, I NEED SOMEBODY
-
     if (!attribute) {
       arrow2.setImage(westArrow);
       arrowDirectionNumber[1] = 1;
@@ -95,6 +98,8 @@ public class SignageEditorController {
       arrowDirectionNumber[7] = 3;
       locationNameSave[7] = "75 Lobby Information Desk";
     }
+
+    date.setValue(dateSave);
 
     signageDropDown1.setValue(locationNameSave[0]);
     signageDropDown2.setValue(locationNameSave[1]);
@@ -162,6 +167,8 @@ public class SignageEditorController {
     clearField8.setOnAction(event -> clearAll(7));
     clearField9.setOnAction(event -> clearAll(8));
     clearField10.setOnAction(event -> clearAll(9));
+
+    date.setOnAction(event -> saveTheDate());
   }
 
   public void arrowSwap(ImageView image, int index) {
@@ -331,6 +338,10 @@ public class SignageEditorController {
     attribute = true;
   }
 
+  public void saveTheDate() {
+    dateSave = date.getValue();
+  }
+
   public int[] getArrowDirection() {
     return arrowDirectionNumber;
   }
@@ -341,5 +352,9 @@ public class SignageEditorController {
 
   public String[] getSavedNames() {
     return locationNameSave;
+  }
+
+  public String getDate() {
+    return dateSave.toString();
   }
 }

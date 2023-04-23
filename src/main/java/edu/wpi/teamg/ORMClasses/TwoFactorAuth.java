@@ -1,6 +1,10 @@
 package edu.wpi.teamg.ORMClasses;
 
+import edu.wpi.teamg.DBConnection;
 import java.io.InputStream;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -16,15 +20,36 @@ public class TwoFactorAuth {
   final String mailHost = "smtp.wpi.edu";
   String sender = "brighmanwomenautosender@gmail.com";
   @Getter @Setter String recipient;
-  int code;
+  @Getter int code;
 
   public TwoFactorAuth() {
     code = (int) (Math.random() * 900000 + 100000);
   }
 
-  public void sendEmail() throws MessagingException {
+  public void sendEmail(String user) throws MessagingException, SQLException {
+    DBConnection db = new DBConnection();
+    db.setConnection();
+    String email = null;
+    int id = 0;
+    String retrieveAccount = "select * from teamgdb.iteration3.account where username = ?";
+    PreparedStatement ps = db.getConnection().prepareStatement(retrieveAccount);
+    ps.setString(1, user);
+    ResultSet rs = ps.executeQuery();
+    while (rs.next()) {
+      id = rs.getInt("empid");
+    }
+
+    String retrieveEmployee = "select * from teamgdb.iteration3.employee where empid = ?";
+    PreparedStatement ps2 = db.getConnection().prepareStatement(retrieveEmployee);
+    ps2.setInt(1, id);
+    ResultSet rs2 = ps2.executeQuery();
+    while (rs2.next()) {
+      email = rs2.getString("email");
+    }
+    db.closeConnection();
+
     String message = "Your 6 digit code is: " + code;
-    setRecipient("tdmcdonagh@wpi.edu");
+    setRecipient(email);
     String password = getEmailCred().get(0);
     Properties props = new Properties();
     props.put("mail.smtp.auth", "true");

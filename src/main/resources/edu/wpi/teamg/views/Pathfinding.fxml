@@ -28,10 +28,10 @@
                         <VBox prefHeight="486.0" prefWidth="418.0" styleClass="locationSelect_vbox">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="locationLabel" text="STARTING LOCATION:" />
-                              <HBox styleClass="algoSelect_hbox">
+                              <HBox prefHeight="51.0" prefWidth="389.0" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXComboBox fx:id="floorStart" alignment="CENTER" prefHeight="70.0" prefWidth="135.0" styleClass="locationSelect_comboSearchBox" />
-                                    <SearchableComboBox fx:id="startLocDrop" prefHeight="47.0" prefWidth="338.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css">
+                                    <MFXComboBox fx:id="floorStart" alignment="TOP_LEFT" borderGap="0.0" floatingTextGap="0.0" graphicTextGap="0.0" measureUnitGap="0.0" prefHeight="6.0" prefWidth="157.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css" />
+                                    <SearchableComboBox fx:id="startLocDrop" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css">
                                        <HBox.margin>
                                           <Insets left="25.0" />
                                        </HBox.margin>
@@ -41,8 +41,8 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="locationLabel" text="DESTINATION:" />
                               <HBox prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXComboBox fx:id="floorEnd" alignment="CENTER" prefHeight="64.0" prefWidth="135.0" styleClass="locationSelect_comboSearchBox" />
-                                    <SearchableComboBox fx:id="endLocDrop" prefHeight="60.0" prefWidth="241.0" styleClass="locationSelect_comboSearchBox">
+                                    <MFXComboBox fx:id="floorEnd" alignment="TOP_LEFT" prefHeight="103.0" prefWidth="135.0" styleClass="locationSelect_comboSearchBox" />
+                                    <SearchableComboBox fx:id="endLocDrop" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="229.0" styleClass="locationSelect_comboSearchBox">
                                        <HBox.margin>
                                           <Insets left="25.0" />
                                        </HBox.margin>
@@ -76,7 +76,9 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
+
                                     <MFXDatePicker fx:id="date" prefHeight="38.0" prefWidth="265.0" text="Date" />
+
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">

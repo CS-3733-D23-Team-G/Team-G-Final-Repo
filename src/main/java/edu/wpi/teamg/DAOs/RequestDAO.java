@@ -3,6 +3,9 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Request;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.HashMap;
 
@@ -12,9 +15,11 @@ public class RequestDAO implements DAO {
   private String sql;
   private HashMap<Integer, Request> requestHash = new HashMap<Integer, Request>();
 
-  private NodeDAO nodeDao = new NodeDAO();
+  private static HashMap<Integer, Request> outstandingRequestHash = new HashMap<Integer, Request>();
 
-  EmployeeDAO employeeDAO = new EmployeeDAO();
+  private static NodeDAO nodeDao = new NodeDAO();
+
+  static EmployeeDAO employeeDAO = new EmployeeDAO();
 
   @Override
   public HashMap<Integer, Request> getAll() throws SQLException {
@@ -50,7 +55,7 @@ public class RequestDAO implements DAO {
       String location = (String) longNameHash.get(rs.getInt("location"));
 
       int serveBy = rs.getInt("serveBy");
-      String assignedEmployee = "ID " + empID + ": " + (String) allEmployeeHash.get(serveBy);
+      String assignedEmployee = "ID " + serveBy + ": " + (String) allEmployeeHash.get(serveBy);
 
       Date requestdate = rs.getDate("requestdate");
       Time requesttime = rs.getTime("requesttime");
@@ -115,7 +120,102 @@ public class RequestDAO implements DAO {
   public void delete(Object obj) throws SQLException {}
 
   @Override
+  public void importCSV(String path) throws SQLException {
+    db.setConnection();
+    sql =
+        "insert into "
+            + this.getTable()
+            + " (reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+    PreparedStatement ps = db.getConnection().prepareStatement(sql);
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(path));
+      String line = null;
+      br.readLine();
+
+      while ((line = br.readLine()) != null) {
+        String[] data = line.split(",");
+        int id = Integer.parseInt(data[0]);
+        String type = data[1];
+        int eID = Integer.parseInt(data[2]);
+        int loc = Integer.parseInt(data[3]);
+        int by = Integer.parseInt(data[4]);
+        String status = data[5];
+        Date date = Date.valueOf(data[6]);
+        Time time = Time.valueOf(data[7]);
+
+        ps.addBatch();
+      }
+      br.close();
+      ps.executeUpdate();
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override
   public String getTable() {
     return "teamgdb.iteration3.request";
+  }
+
+  public static HashMap getOutstandingRequest(int serveby) throws SQLException {
+    db.setConnection();
+
+    String oRequestSQL;
+    ResultSet rs = null;
+
+    PreparedStatement ps;
+    oRequestSQL =
+        "select * from iteration3.request where serveby = ? and (status = 'blank' or status = 'processing');";
+
+    try {
+      ps = db.getConnection().prepareStatement(oRequestSQL);
+      ps.setInt(1, serveby);
+      rs = ps.executeQuery();
+    } catch (SQLException e) {
+      e.printStackTrace();
+      System.err.println("SQL exception");
+    }
+
+    HashMap longNameHash = new HashMap<>();
+    longNameHash = nodeDao.getAllLongName();
+
+    HashMap allEmployeeHash = new HashMap<>();
+    allEmployeeHash = employeeDAO.getAllEmployeeFullName();
+
+    while (rs.next()) {
+
+      int reqID = rs.getInt("reqid");
+      String reqType = rs.getString("reqtype");
+
+      int empID = rs.getInt("empid");
+      String requestingEmployee = "ID " + empID + ": " + (String) allEmployeeHash.get(empID);
+
+      String location = (String) longNameHash.get(rs.getInt("location"));
+
+      int serveBy = rs.getInt("serveBy");
+      String assignedEmployee = "ID " + empID + ": " + (String) allEmployeeHash.get(serveBy);
+
+      Date requestdate = rs.getDate("requestdate");
+      Time requesttime = rs.getTime("requesttime");
+      StatusTypeEnum status = StatusTypeEnum.valueOf(rs.getString("status"));
+
+      Request cReq =
+          new Request(
+              reqType,
+              requestingEmployee,
+              location,
+              assignedEmployee,
+              status,
+              requestdate,
+              requesttime);
+
+      cReq.setReqid(reqID);
+
+      outstandingRequestHash.put(reqID, cReq);
+    }
+
+    db.closeConnection();
+    return outstandingRequestHash;
   }
 }

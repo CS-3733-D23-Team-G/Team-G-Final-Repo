@@ -46,7 +46,15 @@ public class EmployeeDAO implements DAO {
   }
 
   @Override
-  public void update(Object obj, String colName, Object obj2) throws SQLException {}
+  public void update(Object obj, String colName, Object obj2) throws SQLException {
+    conn.setConnection();
+    query = "update " + this.getTable() + " set " + colName + " = ? where empid = ?";
+    PreparedStatement ps = conn.getConnection().prepareStatement(query);
+    ps.setString(1, (String) obj2);
+    ps.setInt(2, ((Employee) obj).getEmpID());
+    ps.executeUpdate();
+    conn.closeConnection();
+  }
 
   @Override
   public void insert(Object obj) throws SQLException {
@@ -89,6 +97,9 @@ public class EmployeeDAO implements DAO {
     }
     conn.closeConnection();
   }
+
+  @Override
+  public void importCSV(String path) throws SQLException {}
 
   @Override
   public String getTable() {
