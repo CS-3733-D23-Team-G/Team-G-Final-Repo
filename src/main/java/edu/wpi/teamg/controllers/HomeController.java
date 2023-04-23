@@ -36,7 +36,7 @@ public class HomeController {
 
     hash.forEach(
         (i, m) -> {
-          Text requestID = new Text("#" + i);
+          Text requestID = new Text("Request #" + i + ": " + m.getStatus());
           requestID.setLayoutX(20);
           requestID.setLayoutY(35);
           requestID.setStyle("-fx-font-size: 24;");
@@ -74,9 +74,14 @@ public class HomeController {
           }
 
           Text request = new Text(thisType + "Request");
-          request.setLayoutX(15);
-          request.setLayoutY(75);
-          request.setStyle("-fx-font-size: 30;");
+          request.setLayoutX(20);
+          request.setLayoutY(85);
+          request.setStyle("-fx-font-size: 24;");
+
+          Text date = new Text("Do By: " + m.getRequestDate());
+          date.setLayoutX(470);
+          date.setLayoutY(85);
+          date.setStyle("-fx-font-size: 24;" + "-fx-alignment: right");
 
           Circle circle = new Circle(20);
           circle.setLayoutX(675);
@@ -98,6 +103,7 @@ public class HomeController {
           newAnchorPane.getChildren().add(requestID);
           newAnchorPane.getChildren().add(request);
           newAnchorPane.getChildren().add(circle);
+          newAnchorPane.getChildren().add(date);
           forms.getChildren().add(newAnchorPane);
         });
     EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
