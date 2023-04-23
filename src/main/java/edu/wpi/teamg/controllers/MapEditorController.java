@@ -1,7 +1,6 @@
 package edu.wpi.teamg.controllers;
 
 import static edu.wpi.teamg.App.*;
-import static edu.wpi.teamg.Main.*;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
@@ -22,7 +21,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -61,6 +59,11 @@ public class MapEditorController {
 
   boolean lineGen;
   int floor = 0;
+
+  int nodeClickCount = 0;
+
+  Node nodeCon1 = new Node();
+  Node nodeCon2 = new Node();
 
   public void initialize() throws SQLException, IOException {
     pane.setVisible(true);
@@ -508,6 +511,17 @@ public class MapEditorController {
     //          }
     //        });
 
+    point.setOnContextMenuRequested(
+        event -> {
+          try {
+            displayData(currentNode);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
     point.setOnMouseDragged(event -> recordDrag(event, point));
 
     point.setOnMouseReleased(
@@ -524,14 +538,23 @@ public class MapEditorController {
                   currentNode);
             }
             if (!moved) {
-              displayData(currentNode);
+
+              if (nodeClickCount == 0) {
+                nodeCon1 = currentNode;
+                nodeClickCount = nodeClickCount + 1;
+              }
+              if (nodeClickCount == 1) {
+                nodeCon2 = currentNode;
+
+                if (nodeCon1 != nodeCon2) {
+                  addEdgeOffClicks(nodeCon1, nodeCon2);
+                }
+              }
             }
 
             moved = false;
 
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          } catch (SQLException e) {
+          } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
           }
         });
@@ -540,6 +563,15 @@ public class MapEditorController {
     nodePane.getChildren().add(nodeLabel);
     // point.setOnMouseReleased(event -> recordDrag());
 
+  }
+
+  public void addEdgeOffClicks(Node nodeCon1, Node nodeCon2) throws SQLException {
+    Edge newEdge = new Edge(nodeCon1.getNodeID(), nodeCon2.getNodeID());
+
+    edgeDao.insert(newEdge);
+    nodeClickCount = 0;
+    System.out.println("edge added" + nodeCon1.getNodeID() + "      " + nodeCon2.getNodeID());
+    refresh();
   }
 
   public void displayData(Node point) throws IOException, SQLException {
