@@ -123,13 +123,10 @@ public class FlowerRequestDAO implements DAO {
       ps_Req.setString(2, "FL");
 
       String requestingEmployee = ((FlowerRequest) obj).getEmpid();
-      String assignedEmployee = ((FlowerRequest) obj).getServeBy();
 
       String[] split0 = requestingEmployee.split(":");
-      String[] split1 = assignedEmployee.split(":");
 
       int empid = Integer.parseInt(split0[0].substring(3));
-      int serveBy = Integer.parseInt(split1[0].substring(3));
 
       ps_Req.setInt(3, empid);
 
@@ -138,7 +135,23 @@ public class FlowerRequestDAO implements DAO {
               ((FlowerRequest) obj).getLocation(), new java.sql.Date(2023, 01, 01));
 
       ps_Req.setInt(4, nodeID);
-      ps_Req.setInt(5, serveBy);
+
+      String assignedEmployee = ((FlowerRequest) obj).getServeBy();
+
+      String[] split1 = new String[2];
+      int serveBy = 0;
+
+      if (assignedEmployee != null) {
+        split1 = assignedEmployee.split(":");
+        serveBy = Integer.parseInt(split1[0].substring(3));
+      }
+
+      if (serveBy == 0) {
+        ps_Req.setObject(5, null);
+      } else {
+        ps_Req.setInt(5, serveBy);
+      }
+
       ps_Req.setObject(6, ((FlowerRequest) obj).getStatus(), java.sql.Types.OTHER);
       ps_Req.setDate(7, ((FlowerRequest) obj).getRequestDate());
       ps_Req.setTime(8, ((FlowerRequest) obj).getRequestTime());

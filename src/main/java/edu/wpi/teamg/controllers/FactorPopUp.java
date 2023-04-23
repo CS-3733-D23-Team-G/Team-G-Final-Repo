@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 
 public class FactorPopUp {
   @FXML Label factorIncorrect;
@@ -22,12 +23,28 @@ public class FactorPopUp {
   boolean tableAdmin;
   int tableEmp;
 
+  PatientTopBannerController topBanner = new PatientTopBannerController();
+  LoginController loginController = new LoginController();
+
   @FXML
   public void initialize() {
+
     tableEmp = App.getEmp();
     tableAdmin = App.getAdmin();
     user = App.getUser();
     factorText.setEditable(true);
+
+    factorText.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+            try {
+              checkCode();
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+        });
+
     factorSubmit.setOnAction(
         event -> {
           try {
@@ -36,7 +53,10 @@ public class FactorPopUp {
             throw new RuntimeException(e);
           }
         });
+
     factorIncorrect.setVisible(false);
+
+    topBanner.window.getRoot().setDisable(true);
   }
 
   private void checkCode() throws SQLException {
@@ -52,8 +72,13 @@ public class FactorPopUp {
     db.setConnection();
     ResultSet rs1 = null;
     EmployeeDAO employeeDAO = new EmployeeDAO();
+
     Navigation.Logout();
-    if (tableAdmin) Navigation.setAdmin();
+
+    if (tableAdmin) {
+      Navigation.setAdmin();
+      App.employee.setIs_admin(true);
+    }
 
     // if logged in, create employee ORM with user info
     String employeeQuery = "select * from " + employeeDAO.getTable() + " where empid = ?";
@@ -73,12 +98,15 @@ public class FactorPopUp {
       App.employee.setFirstName(rs1.getString("firstname"));
       App.employee.setLastName(rs1.getString("lastname"));
     }
+
     db.closeConnection();
     Navigation.setLoggedin();
-    App.employee.setEmpID(tableEmp);
-    PatientTopBannerController topBanner = new PatientTopBannerController();
-    Navigation.navigate(Screen.HOME);
+
+    // App.employee.setEmpID(tableEmp);
+
     topBanner.window.hide();
+    loginController.window.hide();
+    Navigation.navigate(Screen.HOME);
   }
 
   public void incorrectCode() {

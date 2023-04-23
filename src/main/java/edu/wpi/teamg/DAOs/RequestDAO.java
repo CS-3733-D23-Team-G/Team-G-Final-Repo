@@ -55,7 +55,7 @@ public class RequestDAO implements DAO {
       String location = (String) longNameHash.get(rs.getInt("location"));
 
       int serveBy = rs.getInt("serveBy");
-      String assignedEmployee = "ID " + empID + ": " + (String) allEmployeeHash.get(serveBy);
+      String assignedEmployee = "ID " + serveBy + ": " + (String) allEmployeeHash.get(serveBy);
 
       Date requestdate = rs.getDate("requestdate");
       Time requesttime = rs.getTime("requesttime");

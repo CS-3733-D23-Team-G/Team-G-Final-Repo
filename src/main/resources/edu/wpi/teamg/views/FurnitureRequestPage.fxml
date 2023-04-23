@@ -77,17 +77,20 @@
                                                     </VBox.margin>
                                                 </Text>
                                                 <Line endX="-22.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                                <MFXTextField fx:id="furnNotesData" prefHeight="200.0" prefWidth="386.0">
+                                                <MFXTextField fx:id="furnNotesData" prefHeight="200.0" prefWidth="386.0" styleClass="not">
                                                     <VBox.margin>
                                                         <Insets right="15.0" top="15.0" />
                                                     </VBox.margin>
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
                                                 </MFXTextField>
                                             </children>
                                             <padding>
                                                 <Insets left="50.0" right="25.0" />
                                             </padding>
                                         </VBox>
-                                        <VBox prefHeight="200.0" prefWidth="436.0" styleClass="mealLocationNotes_vbox">
+                                        <VBox fx:id="vboxWithAssignTo" prefHeight="200.0" prefWidth="436.0" styleClass="mealLocationNotes_vbox">
                                             <children>
                                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Date">
                                                     <font>
@@ -117,7 +120,7 @@
                                                         <Insets right="15.0" top="15.0" />
                                                     </VBox.margin>
                                                 </MFXTextField>
-                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Assign To">
+                                                <Text fx:id="assignToText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Assign To">
                                                     <font>
                                                         <Font size="22.0" />
                                                     </font>
@@ -125,7 +128,7 @@
                                                         <Insets bottom="5.0" top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                                <Line endX="24.878677368164062" endY="-1.242640495300293" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                                <Line fx:id="assignToLine" endX="24.878677368164062" endY="-1.242640495300293" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                                 <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="requestTextBox">
                                                     <VBox.margin>
                                                         <Insets right="15.0" top="15.0" />

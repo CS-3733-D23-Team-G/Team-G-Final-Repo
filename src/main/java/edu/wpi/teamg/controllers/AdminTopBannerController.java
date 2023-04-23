@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -47,7 +48,11 @@ public class AdminTopBannerController {
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     exitButton.setOnMouseClicked(event -> exit());
     statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_STATUS_PAGE));
-    Logout.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
+    Logout.setOnMouseClicked(
+        event -> {
+          Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
+          App.employee.setIs_admin(false);
+        });
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
