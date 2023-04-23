@@ -2,18 +2,59 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.DictionaryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.DictionaryController">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <MFXTextField fx:id="input" layoutX="234.0" layoutY="151.0" />
-            <Text fx:id="outputText" layoutX="167.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <MFXButton fx:id="inputButton" layoutX="300.0" layoutY="265.0" />
+            <AnchorPane layoutX="206.0" layoutY="214.0" prefHeight="273.0" prefWidth="815.0" styleClass="widget_background" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="150.0">
+               <children>
+                  <MFXTextField fx:id="input" layoutX="101.0" layoutY="26.0" prefHeight="77.0" prefWidth="567.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </MFXTextField>
+                  <MFXButton fx:id="inputButton" layoutX="547.0" layoutY="169.0" prefHeight="72.0" prefWidth="143.0" text="Search">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="requestConfirmButton" />
+                     </styleClass>
+                  </MFXButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="210.0" layoutY="489.0" prefHeight="416.0" prefWidth="1576.0" styleClass="widget_background" AnchorPane.leftAnchor="200.0">
+               <children>
+                  <Text fx:id="outputText" fill="WHITE" layoutX="70.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Above" wrappingWidth="1480.8030319213867">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Word" fill="WHITE" layoutX="64.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="typeOfWord" fill="WHITE" layoutX="64.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <Text layoutX="121.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Merriam Webser Medical Dictionary">
+               <font>
+                  <Font size="46.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </center>

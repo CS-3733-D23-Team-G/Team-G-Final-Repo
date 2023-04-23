@@ -298,7 +298,7 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
 
-    Navigation.navigate(Screen.DICTIONARY);
+    Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
   }
 
   public static void refresh() throws SQLException {

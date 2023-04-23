@@ -14,6 +14,9 @@ import org.json.simple.parser.JSONParser;
 
 public class DictionaryController {
   @FXML Text outputText;
+  @FXML Text typeOfWord;
+  @FXML Text Word;
+  //  @FXML Text synonyms;
   @FXML MFXButton inputButton;
 
   @FXML MFXTextField input;
@@ -64,12 +67,15 @@ public class DictionaryController {
         // Get the first JSON object in the JSON array
         System.out.println(dataObject.get(0));
 
-        JSONObject countryData = (JSONObject) dataObject.get(0);
+        JSONObject JSONOut = (JSONObject) dataObject.get(0);
 
-        output = countryData.get("shortdef").toString();
+        output = JSONOut.get("shortdef").toString();
         int letters = output.length();
         output = output.substring(1, (output.length() - 1));
-        outputText.wrappingWidthProperty().set(200);
+        //        synonyms.setText(countryData.get("stems").toString());
+        typeOfWord.setText(JSONOut.get("fl").toString());
+        Word.setText(input.getText());
+        outputText.wrappingWidthProperty().set(1470);
         outputText.setText(output);
         conn.disconnect();
       }
