@@ -29,8 +29,8 @@ public enum Screen {
   ADMIN_SIGNAGE_EDITOR("views/SignageAdmin.fxml"),
   ADMIN_MAP_EDITOR("views/MapEditor.fxml"),
   ADD_EMPLOYEE("views/AddEmployee.fxml"),
-  ABOUT_PAGE("views/About_Page.fxml"),
   NODE_EDITOR("views/NodeViewAndEditor");
+
   private final String filename;
 
   Screen(String filename) {

@@ -12,6 +12,7 @@ import javafx.scene.control.ChoiceBox;
 public class TopBannerController {
   @FXML MFXButton signagePageButton;
   @FXML MFXButton exitButton;
+
   @FXML MFXButton statusButton;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
   @FXML MFXButton loginButton;
