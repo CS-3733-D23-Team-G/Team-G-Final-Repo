@@ -8,6 +8,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -81,14 +82,14 @@
                                        </VBox.margin>
                                     </Text>
                                     <Line endX="-22.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="mealNotesData" alignment="TOP_LEFT" prefColumnCount="1" prefHeight="200.0" prefWidth="386.0" styleClass="notes_textbox">
+                                    <TextArea fx:id="mealNotesData" prefHeight="200.0" prefWidth="200.0" styleClass="notes" stylesheets="@style.css" wrapText="true">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                        <font>
                                           <Font size="25.0" />
                                        </font>
-                                    </MFXTextField>
+                                    </TextArea>
                                  </children>
                                  <padding>
                                     <Insets left="50.0" right="25.0" />
@@ -105,7 +106,7 @@
                                        </VBox.margin>
                                     </Text>
                                     <Line endX="-42.70710754394531" endY="7.748603820800781E-7" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXDatePicker fx:id="mealDate" minHeight="-Infinity" prefHeight="30.0" prefWidth="324.0" styleClass="locationSelect_comboSearchBox">
+                                    <MFXDatePicker fx:id="mealDate" prefHeight="60.0" prefWidth="281.0" style="-fx-background-color: #D9D9D9;">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
@@ -119,7 +120,7 @@
                                        </VBox.margin>
                                     </Text>
                                     <Line endX="-35.70710754394531" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="mealTimeOfDeliver" minHeight="-Infinity" prefHeight="30.0" prefWidth="317.0" styleClass="requestTextBox">
+                                    <MFXTextField fx:id="mealTimeOfDeliver" minHeight="-Infinity" prefHeight="47.0" prefWidth="281.0" styleClass="requestTextBox">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
