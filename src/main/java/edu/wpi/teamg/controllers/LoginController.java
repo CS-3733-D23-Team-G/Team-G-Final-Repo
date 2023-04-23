@@ -2,6 +2,7 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.AccountDAO;
+import edu.wpi.teamg.DAOs.EmployeeDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
 import edu.wpi.teamg.ORMClasses.TwoFactorAuth;
@@ -65,6 +66,7 @@ public class LoginController {
     AccountDAO accountDAO = new AccountDAO();
 
     ResultSet rs = null;
+    ResultSet rs1 = null;
 
     db.setConnection();
     query = "select * from " + accountDAO.getTable() + " where username = ?";
@@ -87,10 +89,6 @@ public class LoginController {
         tableAdmin = rs.getBoolean("is_admin");
       }
 
-
-
-      db.closeConnection();
-
       Account account = new Account();
       account.setPassword(pass);
 
@@ -101,6 +99,8 @@ public class LoginController {
           App.employee.setIs_admin(true);
           Navigation.setAdmin();
         }
+
+        EmployeeDAO employeeDAO = new EmployeeDAO();
 
         // if logged in, create employee ORM with user info
         employeeQuery = "select * from " + employeeDAO.getTable() + " where empid = ?";
@@ -124,6 +124,8 @@ public class LoginController {
         Navigation.setLoggedin();
         App.employee.setEmpID(tableEmp);
         PatientTopBannerController topBanner = new PatientTopBannerController();
+
+        db.closeConnection();
         Navigation.navigate(Screen.HOME);
         topBanner.window.hide();
 

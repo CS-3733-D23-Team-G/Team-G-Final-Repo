@@ -1,7 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
 import edu.wpi.teamg.DBConnection;
-import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.OfficeSupplyRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import java.io.BufferedReader;
@@ -136,7 +135,6 @@ public class OfficeSupplyRequestDAO implements DAO {
 
       int empid = Integer.parseInt(split0[0].substring(3));
 
-
       ps_req.setInt(3, empid);
       ps_req.setInt(4, nodeID);
 
@@ -155,7 +153,6 @@ public class OfficeSupplyRequestDAO implements DAO {
       } else {
         ps_req.setInt(5, serveBy);
       }
-
 
       ps_req.setObject(6, supplyRequest.getStatus(), java.sql.Types.OTHER);
       ps_req.setDate(7, supplyRequest.getRequestDate());

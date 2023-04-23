@@ -96,6 +96,5 @@ public class HomeController {
           newAnchorPane.getChildren().add(circle);
           forms.getChildren().add(newAnchorPane);
         });
-
   }
 }

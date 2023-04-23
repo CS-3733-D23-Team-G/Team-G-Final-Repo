@@ -23,11 +23,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javax.swing.*;
-
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import javax.swing.*;
 import org.controlsfx.control.SearchableComboBox;
 
 public class OfficeSuppRequestController {
@@ -46,15 +45,12 @@ public class OfficeSuppRequestController {
   @FXML Label supplyChoice;
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML SearchableComboBox employeeSearchDropdown;
-  @FXML
-  VBox vboxWithAssignTo;
+  @FXML VBox vboxWithAssignTo;
 
   @FXML Label checkFields;
 
-  @FXML
-  Line assignToLine;
-  @FXML
-  Text assignToText;
+  @FXML Line assignToLine;
+  @FXML Text assignToText;
 
   String Order = "";
 
@@ -86,7 +82,6 @@ public class OfficeSuppRequestController {
       vboxWithAssignTo.getChildren().remove(assignToText);
       vboxWithAssignTo.getChildren().remove(employeeSearchDropdown);
     }
-
 
     supplyRecipient.getText();
     recipientNotes.getText();
