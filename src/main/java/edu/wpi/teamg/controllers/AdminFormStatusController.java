@@ -1,8 +1,7 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
-import edu.wpi.teamg.DAOs.DAORepo;
-import edu.wpi.teamg.DAOs.RequestDAO;
+import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.awt.*;
@@ -17,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -107,6 +107,11 @@ public class AdminFormStatusController {
   @FXML MFXButton editTableForm;
   @FXML MFXButton cancelTableForm;
 
+  @FXML ChoiceBox<String> exportService;
+  ObservableList<String> serviceList =
+      FXCollections.observableArrayList(
+          "Conference Room", "Flowers", "Meal", "Furniture", "Office Supply");
+
   ObservableList<Request> testList;
   ObservableList<MealRequest> testMealList;
   ObservableList<ConferenceRoomRequest> testRoomList;
@@ -119,6 +124,17 @@ public class AdminFormStatusController {
 
   @FXML
   public void initialize() throws SQLException {
+    exportService.setItems(serviceList);
+    exportService.setOnAction(
+        event -> {
+          try {
+            fileExporter();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
     allRequestTableButton.setOnMouseClicked(event -> loadAllRequestTable());
     mealTableButton.setOnMouseClicked(event -> loadMealTable());
     roomTableButton.setOnMouseClicked(event -> loadRoomTable());
@@ -213,6 +229,32 @@ public class AdminFormStatusController {
     furnTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
     furnRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
     furnNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+  }
+
+  private void fileExporter() throws SQLException, IOException {
+    switch (exportService.getValue()) {
+      case "Conference Room":
+        ConferenceRoomRequestDAO dao = new ConferenceRoomRequestDAO();
+        dao.exportCSV();
+        break;
+      case "Flowers":
+        FlowerRequestDAO flowerDao = new FlowerRequestDAO();
+        flowerDao.exportCSV();
+        break;
+      case "Meal":
+        MealRequestDAO mealDao = new MealRequestDAO();
+        mealDao.exportCSV();
+        break;
+      case "Furniture":
+        FurnitureDAO furnDao = new FurnitureDAO();
+        furnDao.exportCSV();
+        break;
+      case "Office Supply":
+        OfficeSupplyRequestDAO officeSupplyRequestDAO = new OfficeSupplyRequestDAO();
+        officeSupplyRequestDAO.exportCSV();
+      default:
+        break;
+    }
   }
 
   //  public HashMap getHashMapRequest() throws SQLException {

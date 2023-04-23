@@ -3,6 +3,9 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.HashMap;
 
@@ -216,6 +219,28 @@ public class MealRequestDAO implements DAO {
     }
 
     db.closeConnection();
+  }
+
+  @Override
+  public void importCSV(String path) throws SQLException {
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(path));
+      String line = null;
+      br.readLine();
+
+      while ((line = br.readLine()) != null) {
+        String[] data = line.split(",");
+        int id = Integer.parseInt(data[0]);
+        String order = data[1];
+        String note = data[2];
+        String recipient = data[3];
+        MealRequest mealReq = new MealRequest(id, recipient, order, note);
+        this.insert(mealReq);
+      }
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override

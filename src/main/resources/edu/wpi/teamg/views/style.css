@@ -221,7 +221,7 @@ Popup
 
 
 .signage_text{
-    -fx-font-size: 30;
+    -fx-font-size: 40;
 }
 .signage_background_color{
     -fx-background-color: #f1f1f1;
@@ -376,11 +376,39 @@ Popup
 
 
 .signage_clear_button{
-    -fx-background-color: #012D5A;
+    -fx-background-color: #D0D0D0;
     -fx-background-radius: 30;
-    -fx-font-size: 13;
-    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 26;
+    -fx-text-fill: #000000;
+    -fx-border-color: #000000;
+    -fx-border-radius:30;
     -fx-alignment: center;
+}
+
+
+.signage_leftDropDown_button{
+    -fx-background-color: #D0D0D0;
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+    -fx-border-color: #000000;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-text-fill: #0067b1;
+    -fx-text-alignment: left;
+}
+
+.signage_rightDropDown_button{
+    -fx-background-color: #D0D0D0;
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+    -fx-border-color: #000000;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-text-fill: #0067b1;
+    -fx-text-alignment: right;
+}
+.signage_datePicker{
+    -fx-background-color: #D0D0D0;
 }
 
 /* request CSS */
@@ -478,6 +506,8 @@ Popup
     -fx-font-size: 20;
 }
 
+/* homepage text */
+
 .welcomeText_home{
     -fx-font-size: 36;
 }
@@ -486,4 +516,20 @@ Popup
     -fx-font-size: 36;
     -fx-font-weight: 800;
 }
+
+.requestText{
+     -fx-font-weight: bold;
+     -fx-font-color: #FFFFFF;
+     -fx-font-size: 30;
+}
+
+.requestText_reqID{
+     -fx-font-size: 24;
+
+     -position: absolute;
+     -up: 0;
+     -left: 0;
+}
+
+
 
