@@ -94,7 +94,7 @@
                                     <Insets left="50.0" right="25.0" />
                                  </padding>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="436.0" styleClass="mealLocationNotes_vbox">
+                              <VBox fx:id="vboxWithAssignTo" prefHeight="200.0" prefWidth="436.0" styleClass="mealLocationNotes_vbox">
                                  <children>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Date">
                                        <font>
@@ -124,7 +124,7 @@
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </MFXTextField>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Assign To">
+                                    <Text fx:id="assignToText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Assign To">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
@@ -132,7 +132,7 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="26.292892456054688" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <Line fx:id="assignToLine" endX="26.292892456054688" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="requestTextBox" stylesheets="@style.css">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />

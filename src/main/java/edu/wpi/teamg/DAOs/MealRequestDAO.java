@@ -139,13 +139,9 @@ public class MealRequestDAO implements DAO {
       ps_Request.setString(2, "M");
 
       String requestingEmployee = ((MealRequest) obj).getEmpid();
-      String assignedEmployee = ((MealRequest) obj).getServeBy();
-
       String[] split0 = requestingEmployee.split(":");
-      String[] split1 = assignedEmployee.split(":");
 
       int empid = Integer.parseInt(split0[0].substring(3));
-      int serveBy = Integer.parseInt(split1[0].substring(3));
 
       ps_Request.setInt(3, empid);
 
@@ -155,7 +151,22 @@ public class MealRequestDAO implements DAO {
 
       ps_Request.setInt(4, nodeID);
 
-      ps_Request.setInt(5, serveBy);
+      String assignedEmployee = ((MealRequest) obj).getServeBy();
+
+      String[] split1 = new String[2];
+      int serveBy = 0;
+
+      if (assignedEmployee != null) {
+        split1 = assignedEmployee.split(":");
+        serveBy = Integer.parseInt(split1[0].substring(3));
+      }
+
+      if (serveBy == 0) {
+        ps_Request.setObject(5, null);
+      } else {
+        ps_Request.setInt(5, serveBy);
+      }
+
       ps_Request.setObject(6, ((MealRequest) obj).getStatus(), java.sql.Types.OTHER);
       ps_Request.setDate(7, ((MealRequest) obj).getRequestDate());
       ps_Request.setTime(8, ((MealRequest) obj).getRequestTime());

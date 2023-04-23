@@ -95,6 +95,38 @@ public class LoginController {
       account.setPassword(pass);
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
+
+        Navigation.Logout();
+        if (tableAdmin) {
+          App.employee.setIs_admin(true);
+          Navigation.setAdmin();
+        }
+
+        // if logged in, create employee ORM with user info
+        employeeQuery = "select * from " + employeeDAO.getTable() + " where empid = ?";
+        try {
+          PreparedStatement ps1 = db.getConnection().prepareStatement(employeeQuery);
+          ps1.setInt(1, tableEmp);
+          rs1 = ps1.executeQuery();
+        } catch (SQLException e) {
+          System.err.println("SQL Exception on Account");
+          e.printStackTrace();
+        }
+
+        while (rs1.next()) {
+          App.employee.setEmpID(rs1.getInt("empid"));
+          App.employee.setCan_serve(rs1.getString("can_serve"));
+          App.employee.setEmail(rs1.getString("email"));
+          App.employee.setFirstName(rs1.getString("firstname"));
+          App.employee.setLastName(rs1.getString("lastname"));
+        }
+
+        Navigation.setLoggedin();
+        App.employee.setEmpID(tableEmp);
+        PatientTopBannerController topBanner = new PatientTopBannerController();
+        Navigation.navigate(Screen.HOME);
+        topBanner.window.hide();
+
         password.setEditable(false);
         TwoFactorAuth twoFac = new TwoFactorAuth();
         twoFac.sendEmail(tableUser);
@@ -104,6 +136,7 @@ public class LoginController {
         App.setEmp(tableEmp);
         App.setCode(twoFac.getCode());
         Navigation.navigate(Screen.TWO_FAC);
+
       } else {
         incorrectPassword();
       }

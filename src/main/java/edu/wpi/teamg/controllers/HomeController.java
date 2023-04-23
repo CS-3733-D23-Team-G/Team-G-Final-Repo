@@ -64,7 +64,6 @@ public class HomeController {
             case blank:
               color = "#B12B00;";
               break;
-
             case processing:
               color = "#0067B1;";
               break;
@@ -97,5 +96,6 @@ public class HomeController {
           newAnchorPane.getChildren().add(circle);
           forms.getChildren().add(newAnchorPane);
         });
+
   }
 }

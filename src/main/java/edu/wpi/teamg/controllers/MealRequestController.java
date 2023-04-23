@@ -2,6 +2,7 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
+import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
@@ -21,6 +22,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import org.controlsfx.control.SearchableComboBox;
 
 public class MealRequestController {
@@ -49,6 +53,9 @@ public class MealRequestController {
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML SearchableComboBox employeeSearchDropdown;
   @FXML Label checkFields;
+  @FXML Line assignToLine;
+  @FXML Text assignToText;
+  @FXML VBox vboxWithAssignTo;
 
   String Order = "";
 
@@ -64,6 +71,12 @@ public class MealRequestController {
           MealOrder();
           allDataFilled();
         });
+
+    if (!App.employee.getIs_admin()) {
+      vboxWithAssignTo.getChildren().remove(assignToLine);
+      vboxWithAssignTo.getChildren().remove(assignToText);
+      vboxWithAssignTo.getChildren().remove(employeeSearchDropdown);
+    }
 
     checkFields.setVisible(false);
 
@@ -171,10 +184,19 @@ public class MealRequestController {
 
   public void storeMealValues() throws SQLException {
 
+    HashMap<Integer, Employee> employeeHash = dao.getAllEmployees();
+
+    Employee signedIn = employeeHash.get(App.employee.getEmpID());
+
     MealRequest mr =
         new MealRequest(
             "M",
-            "ID 1: John Doe",
+            "ID "
+                + App.employee.getEmpID()
+                + ": "
+                + signedIn.getFirstName()
+                + " "
+                + signedIn.getLastName(),
             // assume for now they are going to input a node number, so parseInt
             (String) locationSearchDropdown.getValue(),
             (String) employeeSearchDropdown.getValue(),
@@ -217,7 +239,7 @@ public class MealRequestController {
     //            + mr.getStatus());
 
     dao.insertMealRequest(mr);
-    App.requestRefresh();
+    App.mealRefresh();
   }
 
   public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
@@ -255,12 +277,10 @@ public class MealRequestController {
 
   public void allDataFilled() {
     if (!(mealPersonOrderingForData.getText().equals("")
-        || mealNotesData.getText().equals("")
         || mealDate.getText().equals("")
         || mealTimeOfDeliver.getText().equals("")
         || Order.equals("")
-        || locationSearchDropdown.getValue() == null
-        || employeeSearchDropdown.getValue() == null)) {
+        || locationSearchDropdown.getValue() == null)) {
 
       try {
         storeMealValues();

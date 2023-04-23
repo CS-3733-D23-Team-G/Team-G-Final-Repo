@@ -1,6 +1,7 @@
 package edu.wpi.teamg.DAOs;
 
 import edu.wpi.teamg.DBConnection;
+import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.OfficeSupplyRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import java.io.BufferedReader;
@@ -127,19 +128,35 @@ public class OfficeSupplyRequestDAO implements DAO {
       ps_req.setString(2, "OS");
 
       String reqEmp = ((OfficeSupplyRequest) obj).getEmpid();
-      String assignedEmp = ((OfficeSupplyRequest) obj).getServeBy();
 
       String[] split0 = reqEmp.split(":");
-      String[] split1 = assignedEmp.split(":");
+
       int nodeID =
           nodeDAO.getNodeIDbyLongName(supplyRequest.getLocation(), new java.sql.Date(2023, 01, 01));
 
       int empid = Integer.parseInt(split0[0].substring(3));
-      int servby = Integer.parseInt(split1[0].substring(3));
+
 
       ps_req.setInt(3, empid);
       ps_req.setInt(4, nodeID);
-      ps_req.setInt(5, servby);
+
+      String assignedEmployee = ((OfficeSupplyRequest) obj).getServeBy();
+
+      String[] split1 = new String[2];
+      int serveBy = 0;
+
+      if (assignedEmployee != null) {
+        split1 = assignedEmployee.split(":");
+        serveBy = Integer.parseInt(split1[0].substring(3));
+      }
+
+      if (serveBy == 0) {
+        ps_req.setObject(5, null);
+      } else {
+        ps_req.setInt(5, serveBy);
+      }
+
+
       ps_req.setObject(6, supplyRequest.getStatus(), java.sql.Types.OTHER);
       ps_req.setDate(7, supplyRequest.getRequestDate());
       ps_req.setTime(8, supplyRequest.getRequestTime());
