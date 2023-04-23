@@ -122,7 +122,6 @@ public class Graph {
   }
 
   public ArrayList<String> Dijkstra(int[][] aMatrix, int start, int end) {
-    ArrayList<String> solution = new ArrayList<>();
     // Number of vertices in the example. For us, it will be 48
     int vertex = V.length;
     // Sets up our distances, so we can process our nodes into our dis array with "inf" values
@@ -133,27 +132,15 @@ public class Graph {
     ArrayList<Integer> dis = new ArrayList<>();
     // Here we will push parent nodes into an array, so we can get the path itself
     int[] parent = new int[vertex];
-    // MAXES OUT EVERY NODE BUT THE STARTING NODE
-    // So think of our table from the video If we start from node 0
-    // (0, inf, inf, inf, inf, inf, inf, inf)
     for (int v = 0; v < vertex; v++) {
       totalDistance = Integer.MAX_VALUE; // Java version of infinity is MAX_VALUE
       parent[v] = Integer.MAX_VALUE;
-      // When we are at our beginning node we set it to 0
-      // So, we know where to start
       if (v == start) {
         totalDistance = 0;
       }
-      // Here we haven't visited any nodes yet, so we are marking all the nodes false
       verVisited.add(false);
-      // Adds our inf to the table, so we are left with our
-      // (0, inf, inf, inf, inf, inf, inf, inf)
       dis.add(totalDistance);
-      solution.add(Integer.toString(V[v].getNodeID()));
-    } //
-
-    // Stores a -1 in the beginning of the parent array
-    // This will be used to indicate the end of our list of nodes later
+    }
     parent[start] = -1;
     for (int i = 0; i < Math.abs(vertex) - 1; i++) {
       // uStarV = next nearest vertex
@@ -162,9 +149,6 @@ public class Graph {
       int uStarD = dis.get(uStarV);
       // Mark we visited our nearest node
       verVisited.set(uStarV, true);
-      // CHECKS TO SEE IF (THE CURRENT NODE WE ARE AT + A CONNECTED WEIGHTED EDGE) IS LESS THAN A
-      // PATH WE ALREADY HAVE
-      // For every thing in the row of the vertex
       for (int j = 0; j < vertex; j++) {
         // If we have a connection
         if (aMatrix[uStarV][j] != 0) {
@@ -175,15 +159,14 @@ public class Graph {
             parent[j] = uStarV;
             // replace the distance in list to our new minimum
             dis.set(j, uStarD + aMatrix[uStarV][j]);
-            solution.set(j, Integer.toString(V[j].getNodeID()));
           }
         }
       }
     }
-
+    ArrayList<String> solution = new ArrayList<>();
+    printMySolution(start, parent, end, solution);
     return solution;
   }
-
   public static ArrayList<String> depthFirstSearch(
       int[][] adjacencyMatrix, int startNode, int endNode) {
     // Create a boolean array to keep track of visited nodes
