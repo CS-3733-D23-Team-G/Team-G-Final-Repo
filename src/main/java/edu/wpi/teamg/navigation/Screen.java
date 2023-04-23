@@ -33,7 +33,6 @@ public enum Screen {
   TWO_FAC("views/2FactorPopUp.fxml"),
   NODE_EDITOR("views/NodeViewAndEditor");
 
-
   private final String filename;
 
   Screen(String filename) {

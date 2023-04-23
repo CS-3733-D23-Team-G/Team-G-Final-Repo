@@ -1,8 +1,11 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
+import edu.wpi.teamg.DAOs.EmployeeDAO;
+import edu.wpi.teamg.ORMClasses.Employee;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
@@ -12,7 +15,7 @@ public class EmployeeInformation {
   @FXML Text EmployeeLastName;
   @FXML Text EmployeeEmail;
   @FXML MFXButton edit;
-  @FXML MFXButton Save;
+  @FXML MFXButton save;
   @FXML MFXTextField EmpEmailTF;
   @FXML Text EMPID;
 
@@ -20,6 +23,15 @@ public class EmployeeInformation {
     getEmployeeInformation();
     edit.setOnAction(event -> editEmployeeInformation());
     // Save.setOnMouseClicked(event -> saveEdit());
+    EmpEmailTF.setVisible(false);
+    save.setOnAction(
+        event -> {
+          try {
+            saveEdit();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
   }
 
   public void getEmployeeInformation() {
@@ -40,18 +52,16 @@ public class EmployeeInformation {
     // Save.setOnAction(event -> saveEmployeeInformation());
   }
 
-  //  public void saveEdit() throws SQLException {
-  //    EmployeeDAO employeeDAO = new EmployeeDAO();
-  //    HashMap<Integer, Employee> emp = employeeDAO.getAll();
-  //    EmpEmailTF.setVisible(false);
-  //    EmpEmailTF.setEditable(false);
-  //    edit.setVisible(true);
-  //    // Save.setVisible(false);
-  //    App.employee.setEmail(EmpEmailTF.getText());
-  //    EmployeeEmail.setText("" + App.employee.getEmail());
-  //    //  EmployeeDAO.update(App.employee);
-  //
-  //  }
-  // }
-  // Me actively trying to figure out how to update the database with the new information
+  public void saveEdit() throws SQLException {
+    Employee employee = new Employee();
+    employee.setEmpID(Integer.parseInt(EMPID.getText()));
+    EmployeeDAO employeeDAO = new EmployeeDAO();
+    ;
+    employeeDAO.update(employee, "email", EmpEmailTF.getText());
+    EmployeeEmail.setText("" + EmpEmailTF.getText());
+    EmpEmailTF.setVisible(false);
+    EmployeeEmail.setVisible(true);
+  }
 }
+  // Me actively trying to figure out how to update the database with the new information
+    //  public void saveEmployeeInformation() {   //  EmployeeDAO employeeDAO = new EmployeeDAO();
