@@ -10,7 +10,6 @@ import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -78,7 +77,6 @@ public class SignagePageController {
   ObservableList<String> FloorList;
 
   DAORepo dao = new DAORepo();
-  public static LocalDate LD= new LocalDate();
 
   @FXML
   public void initialize() throws SQLException {
