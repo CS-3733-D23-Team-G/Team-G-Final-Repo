@@ -8,12 +8,14 @@ import edu.wpi.teamg.ORMClasses.Request;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javafx.fxml.FXML;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 public class HomeController {
@@ -32,19 +34,72 @@ public class HomeController {
     RequestDAO requestDAO = new RequestDAO();
     HashMap<Integer, Request> hash = getOutstandingRequest(App.employee.getEmpID());
 
-    // i will eventually be number of blank and processing requests
-    for (int i = 0; i < hash.size(); i++) {
+    hash.forEach(
+        (i, m) -> {
+          Text requestID = new Text("#" + i);
+          requestID.setLayoutX(20);
+          requestID.setLayoutY(35);
+          requestID.setStyle("-fx-font-size: 24;");
+          String type = m.getReqtype();
+          String thisType = "";
 
-      Text newTest = new Text("This is VBOX test");
+          switch (type) {
+            case "M":
+              thisType = "Meal ";
+              break;
+            case "CR":
+              thisType = "Conference Room ";
+              break;
 
-      HBox newAnchorPane = new HBox();
+            case "FL":
+              thisType = "Flower ";
+              break;
+            case "FR":
+              thisType = "Furniture ";
+              break;
+            case "OS":
+              thisType = "Office Supply ";
+              break;
+          }
 
-      newAnchorPane.setStyle(
-          "-fx-background-color: #C0C0C0;-fx-background-radius: 10; -fx-pref-width: 360; -fx-pref-height: 150; fx-padding: 10; -fx-border-insets: 10; -fx-background-insets: 10;");
+          StatusTypeEnum status = m.getStatus();
+          String color = "";
+          switch (status) {
+            case blank:
+              color = "#B12B00;";
+              break;
+            case processing:
+              color = "#0067B1;";
+              break;
+          }
 
-      newAnchorPane.getChildren().add(newTest);
-      forms.getChildren().add(newAnchorPane);
-    }
-    EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
+          Text request = new Text(thisType + "Request");
+          request.setLayoutX(15);
+          request.setLayoutY(75);
+          request.setStyle("-fx-font-size: 30;");
+
+          Circle circle = new Circle(20);
+          circle.setLayoutX(675);
+          circle.setLayoutY(70);
+          circle.setStyle("-fx-fill: " + color);
+
+          AnchorPane newAnchorPane = new AnchorPane();
+
+          newAnchorPane.setStyle(
+              "-fx-background-color: #C0C0C0;"
+                  + "-fx-background-radius: 10;"
+                  + " -fx-pref-width: 335;"
+                  + "-fx-pref-height: 150;"
+                  // top right bottom left
+                  + " -fx-padding: 10 25 10 25;"
+                  + " -fx-border-insets: 10 25 10 25;"
+                  + " -fx-background-insets: 10 25 10 25;");
+
+          newAnchorPane.getChildren().add(requestID);
+          newAnchorPane.getChildren().add(request);
+          newAnchorPane.getChildren().add(circle);
+          forms.getChildren().add(newAnchorPane);
+        });
+      EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
   }
 }

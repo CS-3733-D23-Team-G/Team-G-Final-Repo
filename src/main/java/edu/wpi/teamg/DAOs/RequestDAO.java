@@ -3,6 +3,9 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Request;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.HashMap;
 
@@ -52,7 +55,7 @@ public class RequestDAO implements DAO {
       String location = (String) longNameHash.get(rs.getInt("location"));
 
       int serveBy = rs.getInt("serveBy");
-      String assignedEmployee = "ID " + empID + ": " + (String) allEmployeeHash.get(serveBy);
+      String assignedEmployee = "ID " + serveBy + ": " + (String) allEmployeeHash.get(serveBy);
 
       Date requestdate = rs.getDate("requestdate");
       Time requesttime = rs.getTime("requesttime");
@@ -115,6 +118,40 @@ public class RequestDAO implements DAO {
 
   @Override
   public void delete(Object obj) throws SQLException {}
+
+  @Override
+  public void importCSV(String path) throws SQLException {
+    db.setConnection();
+    sql =
+        "insert into "
+            + this.getTable()
+            + " (reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+    PreparedStatement ps = db.getConnection().prepareStatement(sql);
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(path));
+      String line = null;
+      br.readLine();
+
+      while ((line = br.readLine()) != null) {
+        String[] data = line.split(",");
+        int id = Integer.parseInt(data[0]);
+        String type = data[1];
+        int eID = Integer.parseInt(data[2]);
+        int loc = Integer.parseInt(data[3]);
+        int by = Integer.parseInt(data[4]);
+        String status = data[5];
+        Date date = Date.valueOf(data[6]);
+        Time time = Time.valueOf(data[7]);
+
+        ps.addBatch();
+      }
+      br.close();
+      ps.executeUpdate();
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   @Override
   public String getTable() {
