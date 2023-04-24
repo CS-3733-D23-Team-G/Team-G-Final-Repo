@@ -1,7 +1,9 @@
+
 src/main/resources/creds.yml
 src/main/resources/creds.yml
+
 emailCreds.yml
-./emailCreds.yml
+.resources/edu/wpi/teamg/emailCreds.yml
 derby.log
 *.lock
 

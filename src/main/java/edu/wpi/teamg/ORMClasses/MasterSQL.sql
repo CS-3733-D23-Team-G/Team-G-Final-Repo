@@ -16,11 +16,11 @@ drop table if exists iteration3.Employee;
 
 
 create table iteration3.Node(
-                                        nodeID int primary key,
-                                        xcoord int,
-                                        ycoord int,
-                                        floor char(2),
-                                        building varchar(40)
+                nodeID int primary key,
+                xcoord int,
+                ycoord int,
+                floor char(2),
+                building varchar(40)
 );
 
 create table iteration3.Edge(

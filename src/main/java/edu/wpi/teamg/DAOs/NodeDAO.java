@@ -488,6 +488,7 @@ public class NodeDAO implements LocationDAO {
       node_id = rs.getInt("nodeid");
     }
 
+    db.closeConnection();
     return node_id;
   }
 

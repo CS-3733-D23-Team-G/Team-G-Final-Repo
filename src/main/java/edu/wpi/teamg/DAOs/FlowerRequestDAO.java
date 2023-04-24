@@ -3,6 +3,9 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -120,13 +123,10 @@ public class FlowerRequestDAO implements DAO {
       ps_Req.setString(2, "FL");
 
       String requestingEmployee = ((FlowerRequest) obj).getEmpid();
-      String assignedEmployee = ((FlowerRequest) obj).getServeBy();
 
       String[] split0 = requestingEmployee.split(":");
-      String[] split1 = assignedEmployee.split(":");
 
       int empid = Integer.parseInt(split0[0].substring(3));
-      int serveBy = Integer.parseInt(split1[0].substring(3));
 
       ps_Req.setInt(3, empid);
 
@@ -135,7 +135,23 @@ public class FlowerRequestDAO implements DAO {
               ((FlowerRequest) obj).getLocation(), new java.sql.Date(2023, 01, 01));
 
       ps_Req.setInt(4, nodeID);
-      ps_Req.setInt(5, serveBy);
+
+      String assignedEmployee = ((FlowerRequest) obj).getServeBy();
+
+      String[] split1 = new String[2];
+      int serveBy = 0;
+
+      if (assignedEmployee != null) {
+        split1 = assignedEmployee.split(":");
+        serveBy = Integer.parseInt(split1[0].substring(3));
+      }
+
+      if (serveBy == 0) {
+        ps_Req.setObject(5, null);
+      } else {
+        ps_Req.setInt(5, serveBy);
+      }
+
       ps_Req.setObject(6, ((FlowerRequest) obj).getStatus(), java.sql.Types.OTHER);
       ps_Req.setDate(7, ((FlowerRequest) obj).getRequestDate());
       ps_Req.setTime(8, ((FlowerRequest) obj).getRequestTime());
@@ -159,6 +175,29 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public void delete(Object obj) throws SQLException {}
+
+  @Override
+  public void importCSV(String path) throws SQLException {
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(path));
+      String line = null;
+      br.readLine();
+
+      while ((line = br.readLine()) != null) {
+        String[] data = line.split(",");
+        int id = Integer.parseInt(data[0]);
+        String types = data[1];
+        int num = Integer.parseInt(data[2]);
+        String recipient = data[3];
+        String note = data[4];
+        FlowerRequest flowerReq = new FlowerRequest(id, types, num, recipient, note);
+        this.insert(flowerReq);
+      }
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   @Override
   public String getTable() {

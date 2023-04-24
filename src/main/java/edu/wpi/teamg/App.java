@@ -36,7 +36,7 @@ public class App extends Application {
   public static Image mapFloor2 = new Image("edu/wpi/teamg/Images/02_thesecondfloor.png");
 
   public static Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
-
+  public static DAORepo daoRepo = new DAORepo();
   public static EdgeDAO edgeDao = new EdgeDAO();
 
   public static HashMap<String, Edge> edgeMap;
@@ -176,8 +176,6 @@ public class App extends Application {
       throw new RuntimeException(e);
     }
   }
-
-  public static DAORepo daoRepo = new DAORepo();
 
   public static HashMap<Integer, String> L1Floor;
 
@@ -531,6 +529,44 @@ public class App extends Application {
     }
 
     return furnsHash;
+  }
+
+  static int code;
+  static int empid;
+  static String user;
+
+  static boolean admin;
+
+  public static void setAdmin(boolean admin) {
+    App.admin = admin;
+  }
+
+  public static boolean getAdmin() {
+    return App.admin;
+  }
+
+  public static void setCode(int code) {
+    App.code = code;
+  }
+
+  public static void setEmp(int id) {
+    App.empid = id;
+  }
+
+  public static int getCode() {
+    return App.code;
+  }
+
+  public static int getEmp() {
+    return App.empid;
+  }
+
+  public static void setUser(String username) {
+    App.user = username;
+  }
+
+  public static String getUser() {
+    return App.user;
   }
 
   @Override

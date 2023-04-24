@@ -140,7 +140,7 @@ public class EdgeDAO implements LocationDAO {
       br.readLine();
 
       while ((line = br.readLine()) != null) {
-        String data[] = line.split(",");
+        String[] data = line.split(",");
 
         int sNode = Integer.parseInt(data[0]);
         int eNode = Integer.parseInt(data[1]);
