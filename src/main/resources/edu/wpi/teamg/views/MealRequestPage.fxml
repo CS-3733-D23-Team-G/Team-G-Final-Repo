@@ -6,7 +6,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -185,60 +184,59 @@
                         <String fx:value="widget_homepage_pair" />
                      </styleClass>
                      <content>
-                        <Pane prefHeight="779.0">
+                        <VBox alignment="BOTTOM_CENTER">
                            <children>
-                              <ImageView fx:id="burgerOption" fitWidth="600.0" layoutX="90.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Images/BurgerUnchecked2.0.png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
-                              </ImageView>
-                              <ImageView fx:id="selectedBurger" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Images/BurgerChecked2.0.png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
-                              </ImageView>
-                              <ImageView fx:id="corndogOption" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Images/CorndogUnchecked2.0.png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
-                              </ImageView>
-                              <ImageView fx:id="selectedCornDog" fitWidth="600.0" layoutX="90.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Images/CorndogChecked2.0.png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
-                              </ImageView>
-                              <ImageView fx:id="friedRiceOption" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Images/ShrimpFriedRiceUnchecked2.0.png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
-                              </ImageView>
-                              <ImageView fx:id="selectedFriedRice" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Images/ShrimpFriedRiceChecked2.0.png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
-                              </ImageView>
-                              <Label fx:id="mealFoodChoice" layoutX="362.0" layoutY="806.0" text="Label" visible="false" />
+                              <VBox maxHeight="600.0" prefHeight="600.0" prefWidth="718.0" styleClass="meal-request-box">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="125.0" prefWidth="200.0">
+                                       <children>
+                                          <MFXButton styleClass="meal-choice-buttons">
+                                             <HBox.margin>
+                                                <Insets right="15.0" />
+                                             </HBox.margin>
+                                          </MFXButton>
+                                          <MFXButton styleClass="meal-choice-buttons">
+                                             <HBox.margin>
+                                                <Insets right="15.0" />
+                                             </HBox.margin>
+                                          </MFXButton>
+                                          <MFXButton styleClass="meal-choice-buttons">
+                                             <HBox.margin>
+                                                <Insets right="15.0" />
+                                             </HBox.margin>
+                                          </MFXButton>
+                                          <MFXButton styleClass="meal-choice-buttons">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </MFXButton>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="475.0" prefWidth="758.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="359.0">
+                                             <children>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" styleClass="meal-selection">
+                                                   <children>
+                                                      <ImageView fitHeight="150.0" fitWidth="125.0" layoutX="161.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </Pane>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="359.0" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
                            </children>
-                        </Pane>
-
+                        </VBox>
                      </content>
                   </MFXScrollPane>
                     </children>

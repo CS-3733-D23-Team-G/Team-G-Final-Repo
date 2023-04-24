@@ -601,7 +601,27 @@ Popup
     -fx-background-insets: 1.5, 0.0, 0.0;
     -fx-background-radius: 2.0em;
 }
-
+.meal-choice-buttons{
+     -fx-pref-height: 75;
+     -fx-pref-width: 150;
+     -fx-background-color: #F6BD38;
+     -fx-background-radius: 15;
+     -fx-font-size: 25;
+     -fx-text-fill: #000000;
+     -fx-alignment: center;
+ }
+.meal-request-box{
+    -fx-border-color:#F6BD38;
+    -fx-border-width: 10 10 10 10;
+    -fx-border-radius: 10 10 10 10;
+}
+.meal-selection{
+    -fx-pref-height: 150;
+    -fx-pref-width: 300;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 15;
+    -fx-font-size: 25;
+}
 
 
 
