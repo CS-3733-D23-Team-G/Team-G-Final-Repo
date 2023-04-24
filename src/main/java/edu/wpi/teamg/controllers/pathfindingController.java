@@ -447,7 +447,7 @@ public class pathfindingController {
         });
 
     ArrayList<String> labelsL1 = new ArrayList<>(l1Labels.values());
-    HashMap<Integer, Node> goodNodesL1 = nodeDAO.getNodeIDsGivenShortnames(labelsL1);
+    HashMap<Integer, Node> goodNodesL1 = nodeDAO.getNodeIDsGivenShortnames(labelsL1, "L1");
     ArrayList<Node> goodNodesListL1 = new ArrayList<>(goodNodesL1.values());
     for (int i = 0; i < goodNodesListL1.size(); i++) {
       //      if (Objects.equals(goodNodesListL1.get(i).getFloor(), "L1")) {
@@ -838,6 +838,7 @@ public class pathfindingController {
         break;
       case "3 ":
         floorIndex = 4;
+        break;
     }
 
     return floorIndex;
@@ -877,7 +878,7 @@ public class pathfindingController {
     switch (index) {
       case 0:
         ArrayList<String> labelsL1 = new ArrayList<>(l1Labels.values());
-        HashMap<Integer, Node> goodNodesL1 = nodeDAO.getNodeIDsGivenShortnames(labelsL1);
+        HashMap<Integer, Node> goodNodesL1 = nodeDAO.getNodeIDsGivenShortnames(labelsL1, "L1");
         ArrayList<Node> goodNodesListL1 = new ArrayList<>(goodNodesL1.values());
 
         for (int i = 0; i < goodNodesListL1.size(); i++) {
@@ -890,7 +891,7 @@ public class pathfindingController {
         break;
       case 1:
         ArrayList<String> labelsL2 = new ArrayList<>(l2Labels.values());
-        HashMap<Integer, Node> goodNodesL2 = nodeDAO.getNodeIDsGivenShortnames(labelsL2);
+        HashMap<Integer, Node> goodNodesL2 = nodeDAO.getNodeIDsGivenShortnames(labelsL2, "L2");
         ArrayList<Node> goodNodesListL2 = new ArrayList<>(goodNodesL2.values());
 
         for (int i = 0; i < goodNodesListL2.size(); i++) {
@@ -904,7 +905,7 @@ public class pathfindingController {
 
       case 2:
         ArrayList<String> labels1 = new ArrayList<>(F1Labels.values());
-        HashMap<Integer, Node> goodNodes1 = nodeDAO.getNodeIDsGivenShortnames(labels1);
+        HashMap<Integer, Node> goodNodes1 = nodeDAO.getNodeIDsGivenShortnames(labels1, "1 ");
         ArrayList<Node> goodNodesList1 = new ArrayList<>(goodNodes1.values());
 
         for (int i = 0; i < goodNodesList1.size(); i++) {
@@ -918,7 +919,7 @@ public class pathfindingController {
         break;
       case 3:
         ArrayList<String> labels2 = new ArrayList<>(F2Labels.values());
-        HashMap<Integer, Node> goodNodes2 = nodeDAO.getNodeIDsGivenShortnames(labels2);
+        HashMap<Integer, Node> goodNodes2 = nodeDAO.getNodeIDsGivenShortnames(labels2, "2 ");
         ArrayList<Node> goodNodesList2 = new ArrayList<>(goodNodes2.values());
 
         for (int i = 0; i < goodNodesList2.size(); i++) {
@@ -932,7 +933,7 @@ public class pathfindingController {
         break;
       case 4:
         ArrayList<String> labels3 = new ArrayList<>(F3Labels.values());
-        HashMap<Integer, Node> goodNodes3 = nodeDAO.getNodeIDsGivenShortnames(labels3);
+        HashMap<Integer, Node> goodNodes3 = nodeDAO.getNodeIDsGivenShortnames(labels3, "3 ");
         ArrayList<Node> goodNodesList3 = new ArrayList<>(goodNodes3.values());
 
         for (int i = 0; i < goodNodesList3.size(); i++) {
@@ -1108,15 +1109,15 @@ public class pathfindingController {
         break;
 
       case 2:
-        floor = "F1";
+        floor = "1 ";
         break;
 
       case 3:
-        floor = "F2";
+        floor = "2 ";
         break;
 
       case 4:
-        floor = "F3";
+        floor = "3 ";
         break;
     }
 
@@ -1207,15 +1208,15 @@ public class pathfindingController {
         break;
 
       case 2:
-        floor = "F1";
+        floor = "1 ";
         break;
 
       case 3:
-        floor = "F2";
+        floor = "2 ";
         break;
 
       case 4:
-        floor = "F3";
+        floor = "3 ";
         break;
     }
 
@@ -1319,15 +1320,15 @@ public class pathfindingController {
         break;
 
       case 2:
-        floor = "F1";
+        floor = "1 ";
         break;
 
       case 3:
-        floor = "F2";
+        floor = "2 ";
         break;
 
       case 4:
-        floor = "F3";
+        floor = "3 ";
         break;
     }
 
