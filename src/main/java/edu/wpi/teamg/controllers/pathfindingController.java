@@ -227,8 +227,8 @@ public class pathfindingController {
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
             } else if (bfsCheckBox.isSelected()) {
               algo = new BFS();
-                updateMove(floor);
-                setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              updateMove(floor);
+              setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
 
             } else if (Dijkstracheckbox.isSelected()) {
               algo = new Dijkstra();

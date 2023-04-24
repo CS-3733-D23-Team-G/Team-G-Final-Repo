@@ -3,9 +3,9 @@ package edu.wpi.teamg.ORMClasses;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 import org.controlsfx.control.SearchableComboBox;
 
 public class Dijkstra implements Algorithm {
@@ -13,7 +13,7 @@ public class Dijkstra implements Algorithm {
 
   @Override
   public ArrayList<String> process(
-      SearchableComboBox startLocDrop, SearchableComboBox endLocDrop, Date date)
+      SearchableComboBox startLocDrop, SearchableComboBox endLocDrop, ArrayList<Move> movin)
       throws SQLException {
     ArrayList<String> path;
 
@@ -29,8 +29,16 @@ public class Dijkstra implements Algorithm {
     String L1StartNodeLongName = (String) startLocDrop.getValue();
     String L1EndNodeLongName = (String) endLocDrop.getValue();
 
-    int L1StartNodeID = dao.getNodeIDbyLongName(L1StartNodeLongName);
-    int L1EndNodeID = dao.getNodeIDbyLongName(L1EndNodeLongName);
+    int L1StartNodeID = 0;
+    int L1EndNodeID = 0;
+    for (int i = 0; i < movin.size(); i++) {
+      if (Objects.equals(movin.get(i).getLongName(), startLocDrop.getValue().toString())) {
+        L1StartNodeID = movin.get(i).getNodeID();
+      }
+      if (Objects.equals(movin.get(i).getLongName(), endLocDrop.getValue().toString())) {
+        L1EndNodeID = movin.get(i).getNodeID();
+      }
+    }
 
     Node[] nodeArray = new Node[allNodes.size()];
     for (int i = 0; i < allNodes.size(); i++) {
@@ -57,7 +65,6 @@ public class Dijkstra implements Algorithm {
     int[][] Adj = G1.createWeightedAdj();
 
     System.out.println(nodeArray[0].getNodeID());
-    // startNode and endNode are the index of where they are in the nodeArray[]
     path = G1.Dijkstra(Adj, startNode, endNode);
 
     return path;
