@@ -1,7 +1,5 @@
 package edu.wpi.teamg.controllers;
 
-import static edu.wpi.teamg.DAOs.RequestDAO.getOutstandingRequest;
-
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.RequestDAO;
 import edu.wpi.teamg.ORMClasses.Request;
