@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -115,13 +116,22 @@
                         <Font size="30.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="126.0" fitWidth="245.0" layoutX="1632.0" layoutY="832.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="800.0">
+                  <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="1632.0" layoutY="832.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="800.0">
                      <image>
                         <Image url="@../Images/ClickScreenIcon.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="dateText" layoutX="163.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="signage_text" text="Text" />
-                  <MFXButton fx:id="ClickToPathFinding" opacity="0.0" prefHeight="971.0" prefWidth="1913.0" text="Button" />
+                  <HBox layoutX="162.0" prefHeight="55.0" prefWidth="272.0" AnchorPane.bottomAnchor="845.0" AnchorPane.leftAnchor="150.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text" text="Hello! It's">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text" text="Text" />
+                     </children>
+                  </HBox>
+                  <MFXButton fx:id="ClickToPathFinding" layoutX="-52.0" layoutY="10.0" opacity="0.0" prefHeight="981.0" prefWidth="1920.0" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
             </children>

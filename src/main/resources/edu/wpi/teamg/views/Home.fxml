@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
@@ -43,42 +44,36 @@
                               <Font size="25.0" />
                            </font>
                         </Text>
-                        <Text fx:id="empName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcomeText_user">
+                        <Text fx:id="empName" disable="true" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcomeText_user">
                            <font>
                               <Font size="25.0" />
                            </font>
                         </Text>
                      </children>
                   </HBox>
+                  <MFXButton fx:id="EmployeeinfoHyperlink" layoutX="178.0" layoutY="25.0" opacity="0.0" prefHeight="43.0" prefWidth="184.0" text="Button" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
                   <MFXScrollPane AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <content>
-                        <VBox fx:id="forms" prefHeight="780.0" prefWidth="743.0">
-                           <children>
-                              <Text fill="WHITE" layoutX="40.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Forms:">
-                                 <font>
-                                    <Font size="36.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="40.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <Line endX="88.017578125" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
-                                 <VBox.margin>
-                                    <Insets left="40.0" />
-                                 </VBox.margin>
-                              </Line>
-                           </children>
-                        </VBox>
+                        <VBox fx:id="forms" prefHeight="780.0" prefWidth="743.0" />
                      </content>
                      <styleClass>
                         <String fx:value="scroll-pane-Furn" />
                         <String fx:value="widget_homepage_pair" />
                      </styleClass>
+                     <padding>
+                        <Insets top="50.0" />
+                     </padding>
                   </MFXScrollPane>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Forms:" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="100.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Line endX="88.017578125" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="145.0" />
                </children>
                <HBox.margin>
                   <Insets bottom="2.0" />

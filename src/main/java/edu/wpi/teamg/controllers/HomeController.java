@@ -1,11 +1,12 @@
 package edu.wpi.teamg.controllers;
 
-import static edu.wpi.teamg.DAOs.RequestDAO.getOutstandingRequest;
-
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.RequestDAO;
 import edu.wpi.teamg.ORMClasses.Request;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import javafx.scene.text.Text;
 
 public class HomeController {
   @FXML Text empName;
+  @FXML MFXButton EmployeeinfoHyperlink;
   @FXML VBox forms;
 
   // TODO if there are no requests, add a message saying currently no requests.
@@ -28,14 +30,14 @@ public class HomeController {
     empName.setFill(Color.valueOf("#012D5A"));
 
     RequestDAO requestDAO = new RequestDAO();
-    HashMap<Integer, Request> hash = getOutstandingRequest(App.employee.getEmpID());
+    HashMap<Integer, Request> hash = requestDAO.getOutstandingRequest(App.employee.getEmpID());
 
     hash.forEach(
         (i, m) -> {
-          Text requestID = new Text("#" + i);
-          requestID.setLayoutX(20);
-          requestID.setLayoutY(35);
-          requestID.setStyle("-fx-font-size: 24;");
+          Text requestID = new Text("Request #" + i + ": " + m.getStatus());
+          requestID.setLayoutX(50);
+          requestID.setLayoutY(45);
+          requestID.setStyle("-fx-font-size: 30; -fx-font-weight: 600");
           String type = m.getReqtype();
           String thisType = "";
 
@@ -70,13 +72,18 @@ public class HomeController {
           }
 
           Text request = new Text(thisType + "Request");
-          request.setLayoutX(15);
-          request.setLayoutY(75);
-          request.setStyle("-fx-font-size: 30;");
+          request.setLayoutX(50);
+          request.setLayoutY(90);
+          request.setStyle("-fx-font-size: 30; -fx-font-weight: 600");
 
-          Circle circle = new Circle(20);
-          circle.setLayoutX(675);
-          circle.setLayoutY(70);
+          Text date = new Text("Do By: " + m.getRequestDate());
+          date.setLayoutX(375);
+          date.setLayoutY(90);
+          date.setStyle("-fx-font-size: 30; -fx-font-weight: 600;" + "-fx-alignment: right");
+
+          Circle circle = new Circle(25);
+          circle.setLayoutX(670);
+          circle.setLayoutY(80);
           circle.setStyle("-fx-fill: " + color);
 
           AnchorPane newAnchorPane = new AnchorPane();
@@ -94,7 +101,10 @@ public class HomeController {
           newAnchorPane.getChildren().add(requestID);
           newAnchorPane.getChildren().add(request);
           newAnchorPane.getChildren().add(circle);
+          newAnchorPane.getChildren().add(date);
           forms.getChildren().add(newAnchorPane);
         });
+
+    EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
   }
 }

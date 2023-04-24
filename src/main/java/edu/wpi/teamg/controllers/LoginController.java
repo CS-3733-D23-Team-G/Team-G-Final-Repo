@@ -102,8 +102,8 @@ public class LoginController {
         if (username.getText().equals("admin") || username.getText().equals("staff")) {
           Navigation.Logout();
           if (tableAdmin) {
-
             Navigation.setAdmin();
+            App.employee.setIs_admin(true);
           }
           EmployeeDAO employeeDAO = new EmployeeDAO();
 
@@ -142,11 +142,14 @@ public class LoginController {
           App.setAdmin(tableAdmin);
           App.setEmp(tableEmp);
           App.setCode(twoFac.getCode());
+
+          db.closeConnection();
           twoFactor();
           // Navigation.navigate(Screen.TWO_FAC);
         }
 
       } else {
+        db.closeConnection();
         incorrectPassword();
       }
 
