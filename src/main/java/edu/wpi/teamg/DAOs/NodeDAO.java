@@ -573,6 +573,7 @@ public class NodeDAO implements LocationDAO {
       // printSQLException(e);
     }
 
+    // Just Debugged it right below this comment is the issue. It should have stopped at 63
     while (rs.next()) {
 
       int node_id = rs.getInt("nodeid");
