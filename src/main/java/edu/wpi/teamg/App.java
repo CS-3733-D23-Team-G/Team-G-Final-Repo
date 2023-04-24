@@ -1,8 +1,6 @@
 package edu.wpi.teamg;
 
-import edu.wpi.teamg.DAOs.DAORepo;
-import edu.wpi.teamg.DAOs.EdgeDAO;
-import edu.wpi.teamg.DAOs.NodeDAO;
+import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
@@ -43,7 +41,28 @@ public class App extends Application {
 
   public static Employee employee = new Employee();
 
+  public static MoveDAO moveDAO = new MoveDAO();
+
+  public static ArrayList<Move> move;
+
+  public static LocationNameDAO loc = new LocationNameDAO();
+
+  public static HashMap<String, LocationName> locMap;
+
   static {
+    try {
+      locMap = loc.getAll();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  static {
+    try {
+      move = new ArrayList<>(moveDAO.getAll());
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
     try {
       edgeMap = edgeDao.getAll();
     } catch (SQLException e) {
@@ -404,7 +423,17 @@ public class App extends Application {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
+
+    moveDAO = new MoveDAO();
+
+    move = new ArrayList<Move>(moveDAO.getAll());
+
+    loc = new LocationNameDAO();
+
+    locMap = new HashMap<>(loc.getAll());
   }
+
+  /// FIX REFRESH
 
   public static void mealRefresh() {
     try {

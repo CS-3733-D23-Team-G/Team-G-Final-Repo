@@ -1,7 +1,6 @@
 package edu.wpi.teamg.controllers;
 
 import static edu.wpi.teamg.App.*;
-import static edu.wpi.teamg.Main.*;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
@@ -18,12 +17,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -58,8 +55,17 @@ public class MapEditorController {
 
   @FXML MFXButton addEdge;
 
+  boolean moved = false;
+
   boolean lineGen;
   int floor = 0;
+
+  int nodeClickCount = 0;
+
+  Node nodeCon1 = new Node();
+  Node nodeCon2 = new Node();
+
+  ArrayList<ImageView> img = new ArrayList<>();
 
   public void initialize() throws SQLException, IOException {
     pane.setVisible(true);
@@ -170,6 +176,8 @@ public class MapEditorController {
     imageViewsList.add(mapViewFloor1);
     imageViewsList.add(mapViewFloor2);
     imageViewsList.add(mapViewFloor3);
+
+    img = imageViewsList;
 
     l1.setOnMouseClicked(
         event -> {
@@ -294,7 +302,9 @@ public class MapEditorController {
     }
     imgs.get(3).setVisible(true);
 
-    nodePane.getChildren().clear();
+    if (nodePane != null) {
+      nodePane.getChildren().clear();
+    }
 
     floor = 3;
     if (lineGen) {
@@ -463,8 +473,8 @@ public class MapEditorController {
     pathLine.toFront();
   }
 
-  private void getNodesWFunctionality(
-      ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn) throws SQLException {
+  void getNodesWFunctionality(ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn)
+      throws SQLException {
 
     Node currentNode = listOfNodes.get(i);
     Label nodeLabel = new Label();
@@ -493,19 +503,83 @@ public class MapEditorController {
 
     */
 
-    point.setOnMouseClicked(
-        new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
-            try {
-              displayData(currentNode);
-            } catch (SQLException | IOException e) {
-              throw new RuntimeException(e);
-            }
+    //    point.setOnMouseClicked(
+    //        new EventHandler<MouseEvent>() {
+    //          @Override
+    //          public void handle(MouseEvent event) {
+    //            try {
+    //
+    //
+    //
+    //            } catch (SQLException | IOException e) {
+    //              throw new RuntimeException(e);
+    //            }
+    //          }
+    //        });
+
+    point.setOnContextMenuRequested(
+        event -> {
+          try {
+            displayData(currentNode);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
           }
         });
+
+    point.setOnMouseDragged(event -> recordDrag(event, point));
+
+    point.setOnMouseReleased(
+        event -> {
+          pane.setGestureEnabled(true);
+
+          try {
+            if (moved) {
+              confirmPop(
+                  currentNode.getXcoord(),
+                  currentNode.getYcoord(),
+                  (int) point.getCenterX(),
+                  (int) point.getCenterY(),
+                  currentNode,
+                  img,
+                  currentNode.getFloor());
+            }
+            if (!moved) {
+
+              if (nodeClickCount == 0) {
+                nodeCon1 = currentNode;
+                nodeClickCount = nodeClickCount + 1;
+              }
+              if (nodeClickCount == 1) {
+                nodeCon2 = currentNode;
+
+                if (nodeCon1 != nodeCon2) {
+                  addEdgeOffClicks(nodeCon1, nodeCon2);
+                }
+              }
+            }
+
+            moved = false;
+
+          } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
     nodePane.getChildren().add(point);
     nodePane.getChildren().add(nodeLabel);
+    // point.setOnMouseReleased(event -> recordDrag());
+
+  }
+
+  public void addEdgeOffClicks(Node nodeCon1, Node nodeCon2) throws SQLException {
+    Edge newEdge = new Edge(nodeCon1.getNodeID(), nodeCon2.getNodeID());
+
+    edgeDao.insert(newEdge);
+    nodeClickCount = 0;
+    System.out.println("edge added" + nodeCon1.getNodeID() + "      " + nodeCon2.getNodeID());
+    refresh();
   }
 
   public void displayData(Node point) throws IOException, SQLException {
@@ -613,6 +687,56 @@ public class MapEditorController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void recordDrag(MouseEvent event, Circle point) {
+
+    pane.setGestureEnabled(false);
+
+    double xVal = event.getX();
+    double yVal = event.getY();
+
+    point.setCenterX(xVal);
+    point.setCenterY(yVal);
+
+    moved = true;
+  }
+
+  public void confirmPop(
+      int x1, int y1, int x2, int y2, Node potentialUpdate, ArrayList<ImageView> imgs, String index)
+      throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/ConfirmPopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    ConfirmPopUpController controller = loader.getController();
+    controller.setFields(x1, y1, x2, y2, potentialUpdate, window, imgs, index);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public int findIndex(String currentFloor) {
+    int floorIndex = 0;
+    switch (currentFloor) {
+      case "L2":
+        floorIndex = 1;
+        break;
+      case "1 ":
+        floorIndex = 2;
+        break;
+
+      case "2 ":
+        floorIndex = 3;
+        break;
+
+      case "3 ":
+        floorIndex = 4;
+        break;
+    }
+
+    return floorIndex;
   }
 
   public void exit() {
