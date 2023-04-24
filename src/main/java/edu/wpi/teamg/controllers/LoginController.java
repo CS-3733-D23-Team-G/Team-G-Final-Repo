@@ -142,11 +142,14 @@ public class LoginController {
           App.setAdmin(tableAdmin);
           App.setEmp(tableEmp);
           App.setCode(twoFac.getCode());
+
+          db.closeConnection();
           twoFactor();
           // Navigation.navigate(Screen.TWO_FAC);
         }
 
       } else {
+        db.closeConnection();
         incorrectPassword();
       }
 
