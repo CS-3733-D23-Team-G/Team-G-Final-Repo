@@ -70,14 +70,19 @@ public class DictionaryController {
         JSONObject JSONOut = (JSONObject) dataObject.get(0);
 
         spanishOutput = JSONOut.get("shortdef").toString();
-        System.out.println(spanishOutput);
+
+        JSONObject metaJSON = (JSONObject) JSONOut.get("meta");
         int letters = spanishOutput.length();
-        //        spanishOutput = spanishOutput.substring(1, (spanishOutput.length() - 1));
-        //        synonyms.setText(countryData.get("stems").toString());
-        spanishOutput = spanishOutput.substring(0, spanishOutput.indexOf(","));
-        if (spanishOutput != null) {
+        if (spanishOutput.contains(",")) {
+          spanishOutput = spanishOutput.substring(2, spanishOutput.indexOf(","));
+        } else spanishOutput = spanishOutput.substring(2, letters - 2);
+        System.out.println(spanishOutput);
+        boolean langCheck = metaJSON.get("lang").toString().equals("es");
+        if (langCheck) {
           DictionaryLookup(spanishOutput);
-        } else DictionaryLookup(searchValSpan);
+        } else {
+          DictionaryLookup(searchValSpan);
+        }
         conn.disconnect();
       }
     } catch (Exception e) {
@@ -115,15 +120,15 @@ public class DictionaryController {
         }
         // Close the scanner
         scanner.close();
-
-        System.out.println(informationString);
+        //        System.out.println("doctor");
+        //        System.out.println(informationString);
 
         // JSON simple library Setup with Maven is used to convert strings to JSON
         JSONParser parse = new JSONParser();
         JSONArray dataObject = (JSONArray) parse.parse(String.valueOf(informationString));
 
         // Get the first JSON object in the JSON array
-        System.out.println(dataObject.get(0));
+        //        System.out.println(dataObject.get(0));
 
         JSONObject JSONOut = (JSONObject) dataObject.get(0);
 
@@ -132,7 +137,7 @@ public class DictionaryController {
         output = output.substring(1, (output.length() - 1));
         //        synonyms.setText(countryData.get("stems").toString());
         typeOfWord.setText(JSONOut.get("fl").toString());
-        Word.setText(input.getText());
+        Word.setText(searchInput);
         Word.setStyle("-fx-underline: true");
         outputText.wrappingWidthProperty().set(1470);
         outputText.setText(output);
