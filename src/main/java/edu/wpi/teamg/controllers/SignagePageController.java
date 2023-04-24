@@ -80,6 +80,7 @@ public class SignagePageController {
   DAORepo dao = new DAORepo();
   public static LocalDate LD = LocalDate.now();
 
+
   @FXML
   public void initialize() throws SQLException {
 
