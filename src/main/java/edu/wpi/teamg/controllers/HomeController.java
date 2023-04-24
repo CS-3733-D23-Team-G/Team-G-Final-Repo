@@ -4,9 +4,6 @@ import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.RequestDAO;
 import edu.wpi.teamg.ORMClasses.Request;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javafx.fxml.FXML;
@@ -18,8 +15,9 @@ import javafx.scene.text.Text;
 
 public class HomeController {
   @FXML Text empName;
-  @FXML MFXButton EmployeeinfoHyperlink;
+  // @FXML MFXButton EmployeeinfoHyperlink;
   @FXML VBox forms;
+  @FXML VBox notifications;
 
   // TODO if there are no requests, add a message saying currently no requests.
 
@@ -105,6 +103,43 @@ public class HomeController {
           forms.getChildren().add(newAnchorPane);
         });
 
-    EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
+    // Basis for the notifications, fake data for now.
+    for (int i = 0; i < 5; i++) {
+      Text notif = new Text("Notification");
+      notif.setLayoutX(50);
+      notif.setLayoutY(90);
+      notif.setStyle("-fx-font-size: 30; -fx-font-weight: 600");
+
+      Text message = new Text("Please reset your password!");
+      message.setLayoutX(250);
+      message.setLayoutY(90);
+      message.setStyle("-fx-font-size: 30; -fx-font-weight: 600;" + "-fx-alignment: right");
+
+      Circle circle = new Circle(25);
+      circle.setLayoutX(670);
+      circle.setLayoutY(80);
+
+      circle.setStyle("-fx-fill:red");
+
+      AnchorPane notifAnchorPane = new AnchorPane();
+
+      notifAnchorPane.setStyle(
+          "-fx-background-color: #C0C0C0;"
+              + "-fx-background-radius: 10;"
+              + " -fx-pref-width: 335;"
+              + "-fx-pref-height: 150;"
+              // top right bottom left
+              + " -fx-padding: 10 25 10 25;"
+              + " -fx-border-insets: 10 25 10 25;"
+              + " -fx-background-insets: 10 25 10 25;");
+
+      //        notifAnchorPane.getChildren().add(requestID);
+      notifAnchorPane.getChildren().add(notif);
+      notifAnchorPane.getChildren().add(circle);
+      notifAnchorPane.getChildren().add(message);
+      notifications.getChildren().add(notifAnchorPane);
+    }
+
+    // EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
   }
 }
