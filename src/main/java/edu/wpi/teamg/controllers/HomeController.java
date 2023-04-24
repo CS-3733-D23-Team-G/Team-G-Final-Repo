@@ -32,7 +32,7 @@ public class HomeController {
     empName.setFill(Color.valueOf("#012D5A"));
 
     RequestDAO requestDAO = new RequestDAO();
-    HashMap<Integer, Request> hash = getOutstandingRequest(App.employee.getEmpID());
+    HashMap<Integer, Request> hash = requestDAO.getOutstandingRequest(App.employee.getEmpID());
 
     hash.forEach(
         (i, m) -> {
@@ -106,6 +106,7 @@ public class HomeController {
           newAnchorPane.getChildren().add(date);
           forms.getChildren().add(newAnchorPane);
         });
+
     EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
   }
 }
