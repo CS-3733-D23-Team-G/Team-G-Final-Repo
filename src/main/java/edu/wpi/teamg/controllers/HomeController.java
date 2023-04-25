@@ -110,7 +110,7 @@ public class HomeController {
 
           StackPane stack = new StackPane();
           stack.getChildren().addAll(rect, bubbleText);
-          stack.setLayoutX(600);
+          stack.setLayoutX(550);
           stack.setLayoutY(52);
 
           //     pane.setStyle("-fx-background-color: " + color);
