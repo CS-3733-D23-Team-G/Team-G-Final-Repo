@@ -4,6 +4,14 @@
     -mfx-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
 }
 
+.mfx-checkbox .box .mark {
+    -mfx-color: #F6BD38;
+}
+
+.mfx-check-list-cell .data-label {
+    -fx-font-size: 15;
+}
+
 .mfx-text-field .text-field {
     -fx-highlight-fill: #F6BD38; /* Selected text highlight */
     -fx-prompt-text-fill: -mfx-text-me; /* Prompt text color */
@@ -22,7 +30,7 @@ Date Picker
 }
 
 .mfx-date-picker:focus-within .icon {
-    -mfx-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
+    -mfx-color:  linear-gradient(to bottom left, #009FFD, #012D5A);
 }
 
 /********************
@@ -41,6 +49,11 @@ Popup
 .mfx-combo-box-cell:hover,
 .mfx-combo-box-cell:hover {
     -fx-background-color: #F1F1F1;
+}
+
+.mfx-combo-box-cell:selected,
+.mfx-combo-box-cell:selected {
+    -fx-background-color: #009FFD;
 }
 
 .mfx-date-picker .date-picker-popup .months-combo .virtual-flow .mfx-combo-box-cell:selected,
@@ -160,7 +173,7 @@ Popup
     -fx-max-width: 1920;
 }
 .half_bottom_page{
-    -fx-pref-height: 913;
+    -fx-pref-height: 980;
     -fx-pref-width: 960;
 
 }
@@ -447,7 +460,16 @@ Popup
     -fx-text-fill: #000000;
     -fx-alignment: center;
 }
-
+/*admin page CSS - 4 tables, import export */
+.admin_page_4_buttons{
+    -fx-pref-height: 65;
+    -fx-pref-width: 300;
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 30;
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
 .admin_page_text{
     -fx-font-size: 30;
     -fx-text-fill: #000000;
@@ -478,6 +500,7 @@ Popup
     -fx-pref-height: 40;
     -fx-alignment: center;
 }
+
 
 .dropdown{
     -fx-font-size: 20;
@@ -622,6 +645,48 @@ Popup
     -fx-background-radius: 15;
     -fx-font-size: 25;
 }
+
+.add_Nodes{
+    -fx-pref-height: 65;
+    -fx-pref-width: 250;
+    -fx-background-color: #118AB2;
+    -fx-background-radius: 30;
+    -fx-font-size: 20 ;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+. add_Edges{
+    -fx-pref-height: 65;
+    -fx-pref-width: 250;
+    -fx-background-color: #ef476f;
+    -fx-background-radius: 30;
+    -fx-font-size: 20 ;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+
+
+}
+
+.add_Locs{
+    -fx-pref-height: 65;
+    -fx-pref-width: 250;
+    -fx-background-color: #06d6a0;
+    -fx-background-radius: 30;
+    -fx-font-size: 20 ;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+
+.add_Move{
+    -fx-pref-height: 65;
+    -fx-pref-width: 250;
+    -fx-background-color: #ffd116;
+    -fx-background-radius: 30;
+    -fx-font-size: 20 ;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+
 
 
 

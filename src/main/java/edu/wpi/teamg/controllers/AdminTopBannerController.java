@@ -25,11 +25,17 @@ public class AdminTopBannerController {
           "Conference Room Request Form",
           "Flowers Request Form",
           "Furniture Request Form",
+          "Maintenance Request Form",
           "Meal Request Form",
           "Office Supplies Request Form");
   ObservableList<String> AdminList =
       FXCollections.observableArrayList(
-          "Signage Page Editor", "Table View", "All Form Status", "Map Editor", "Add Employee");
+          "Signage Page Editor",
+          "Table View",
+          "All Form Status",
+          "Map Editor",
+          "Add Employee",
+          "Send Notification");
 
   @FXML
   public void initialize() {
@@ -70,6 +76,8 @@ public class AdminTopBannerController {
       Navigation.navigate(Screen.ADMIN_MAP_EDITOR);
     } else if (AdminChoiceBox.getValue().equals("Add Employee")) {
       Navigation.navigate(Screen.ADD_EMPLOYEE);
+    } else if (AdminChoiceBox.getValue().equals("Send Notification")) {
+      Navigation.navigate((Screen.NOTIFICATION_PAGE));
     } else {
       return;
     }
@@ -86,6 +94,8 @@ public class AdminTopBannerController {
       Navigation.navigate(Screen.FLOWERS_REQUEST);
     } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
       Navigation.navigate(Screen.SUPPLIES_REQUEST);
+    } else if (serviceRequestChoiceBox.getValue().equals("Maintenance Request Form")) {
+      Navigation.navigate(Screen.MAINTENANCE_REQUEST);
     } else {
       return;
     }
