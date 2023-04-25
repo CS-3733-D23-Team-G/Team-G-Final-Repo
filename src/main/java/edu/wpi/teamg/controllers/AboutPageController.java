@@ -1,5 +1,9 @@
 package edu.wpi.teamg.controllers;
 
+
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
+
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.awt.*;
 import javafx.fxml.FXML;
@@ -10,7 +14,9 @@ public class AboutPageController {
   @FXML MFXButton Credits;
 
   public void initialize() {
-    // Credits.setOnMouseClicked(event->(Navigation.navigate(Credits);));
+
+    Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
+
     String about_text =
         "WPI Computer Science Department, CS3733-D23 Software Engineering, Prof. Wilson Wong, \n"
             + "Teach Coach: Luke Deratzou, Ian Wright, Micheal O'Connor, Qui Nguyen. \n"
