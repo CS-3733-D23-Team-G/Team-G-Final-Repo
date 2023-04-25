@@ -81,6 +81,8 @@ public class pathfindingController {
 
   @FXML MFXToggleButton toggN;
 
+  @FXML MFXButton txtDirections;
+
   ObservableList<String> locationListStart;
   ObservableList<String> locationListEnd;
   ObservableList<String> FloorList;
@@ -93,6 +95,8 @@ public class pathfindingController {
   boolean snLab = true;
   boolean togg = false;
 
+  ArrayList<String> txtPath;
+
   int floor = 0;
 
   @FXML
@@ -103,6 +107,15 @@ public class pathfindingController {
     aStarCheckBox.setSelected(true);
     dSN.setSelected(true);
 
+    txtDirections.setVisible(false);
+    txtDirections.setOnMouseClicked(
+        event -> {
+          try {
+            getDirections(txtPath);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
     aStarCheckBox.setOnAction(
         event -> {
           if (aStarCheckBox.isSelected()) {
@@ -219,20 +232,25 @@ public class pathfindingController {
             if (aStarCheckBox.isSelected()) {
               algo = new Astar();
               updateMove(floor);
+              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
             } else if (dfsCheckBox.isSelected()) {
 
               algo = new DFS();
               updateMove(floor);
+              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+
             } else if (bfsCheckBox.isSelected()) {
               algo = new BFS();
               updateMove(floor);
+              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
 
             } else if (Dijkstracheckbox.isSelected()) {
               algo = new Dijkstra();
               updateMove(floor);
+              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
             }
           } catch (SQLException e) {
@@ -460,6 +478,7 @@ public class pathfindingController {
   public void setPath(ArrayList<String> path) throws SQLException {
 
     System.out.println(path);
+    txtPath = path;
     //    if (path.size() == 1) {
     //      results.setText("Error: No Possible Path Found");
     //    } else {
@@ -1395,7 +1414,18 @@ public class pathfindingController {
     movesForAlgos = finalLocNames;
   }
 
-  public void listenToMouse() {}
+  public void getDirections(ArrayList<String> path) throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/DirectionsPopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    DirectionsPopUpController controller = loader.getController();
+    controller.setF(window, path, movesForAlgos);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
 
   public void exit() {
     Platform.exit();

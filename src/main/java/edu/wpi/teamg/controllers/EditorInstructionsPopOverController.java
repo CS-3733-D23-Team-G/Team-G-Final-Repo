@@ -38,8 +38,8 @@ public class EditorInstructionsPopOverController {
             + "To add an edge, click the add edge button. From there, you will be able to create a new edge by clicking 2 nodes\n"
             + "To delete an edge just look up the edge ID in the dropdown and click delete\n\n"
             + "Location Names:\n"
-            + "To add, modify, or delete location names, just simply click the labeled button, look up the long name and modify or review the fields. Click submit to submit changes\n"
-            + "Moves:\n\n"
+            + "To add, modify, or delete location names, just simply click the labeled button, look up the long name and modify or review the fields. Click submit to submit changes\n\n"
+            + "Moves:\n"
             + "To add or delete moves, just click on the specified buttons and fill out the fields.\n"
             + "To see future moves at a specific location, Right click a node and select future moves\n");
   }
