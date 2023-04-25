@@ -35,9 +35,9 @@ public enum Screen {
   TWO_FAC("views/2FactorPopUp.fxml"),
   NODE_EDITOR("views/NodeViewAndEditor.fxml"),
 
-  DICTIONARY("views/Dictionary.fxml");
+  DICTIONARY("views/Dictionary.fxml"),
 
-  CREDITS("views/Credits.fxml")
+  CREDITS("views/Credits.fxml");
 
   private final String filename;
 
