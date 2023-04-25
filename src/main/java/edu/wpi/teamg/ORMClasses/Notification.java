@@ -18,14 +18,12 @@ public class Notification {
   public Notification() {}
 
   public Notification(
-      int alertID,
       int empid,
       String message,
       String notiftype,
       String recipients,
       Date notifDate,
       Time notifTime) {
-    this.alertID = alertID; // TODO figure this out
     this.notiftype = notiftype;
     this.empid = empid; // TODO figure this out
     this.message = message;

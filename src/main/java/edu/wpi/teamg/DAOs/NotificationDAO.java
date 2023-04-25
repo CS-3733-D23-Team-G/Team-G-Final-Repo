@@ -82,7 +82,9 @@ public class NotificationDAO implements DAO {
       Time notifTime = rs.getTime("notiftime");
 
       Notification notif =
-          new Notification(alertID, empid, message, notiftype, recipients, notifDate, notifTime);
+          new Notification(empid, message, notiftype, recipients, notifDate, notifTime);
+
+      notif.setAlertID(alertID);
 
       filteredNotifHash.put(alertID, notif);
     }
