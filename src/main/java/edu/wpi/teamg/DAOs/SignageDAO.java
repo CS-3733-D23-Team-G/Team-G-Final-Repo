@@ -44,7 +44,18 @@ public class SignageDAO implements DAO{
 
     @Override
     public void insert(Object obj) throws SQLException {
+        db.setConnection();
 
+        PreparedStatement ps;
+        sql= "insert into "+this.getTable()+" (kiosknum, date, arrow) values (?,?,?)";
+        ps = db.getConnection().prepareStatement(sql);
+        ps.setInt(1,((Signage)obj).getKioskNum());
+        ps.setDate(2,((Signage)obj).getDate());
+        ps.setString(3,((Signage)obj).getArrow());
+        ps.executeUpdate();
+        signageHash.put(((Signage)obj).getKioskNum(),(Signage) obj);
+
+        db.closeConnection();
     }
 
     @Override
