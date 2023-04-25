@@ -40,7 +40,7 @@ public class TopBannerController {
     loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     dictionaryButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
-    About_Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.ABOUT_PAGE));
+    About_Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
   }
 
   public void exit() {
