@@ -1,10 +1,14 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
+import edu.wpi.teamg.DAOs.EmployeeDAO;
+import edu.wpi.teamg.DAOs.NotificationDAO;
 import edu.wpi.teamg.DAOs.RequestDAO;
+import edu.wpi.teamg.ORMClasses.Notification;
 import edu.wpi.teamg.ORMClasses.Request;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -138,46 +142,70 @@ public class HomeController {
           forms.getChildren().add(newAnchorPane);
         });
 
-    // Basis for the notifications, fake data for now.
-    for (int i = 0; i < 5; i++) {
-      Text notif = new Text("From: ______");
-      notif.setLayoutX(50);
-      notif.setLayoutY(45);
-      notif.setStyle("-fx-font-size: 20; -fx-font-weight: 800; -fx-font-family: Poppins");
-      //      notif.setLayoutX(50);
-      //      notif.setLayoutY(90);
-      //      notif.setStyle("-fx-font-size: 30; -fx-font-weight: 600; -fx-font-family: Poppins");
+    NotificationDAO notifDao = new NotificationDAO();
+    ArrayList<Notification> notifHash = notifDao.getAllNotificationOf(App.employee.getEmpID());
 
-      Text message = new Text("Please reset your password!");
-      message.setLayoutX(50);
-      message.setLayoutY(85);
-      message.setStyle("-fx-font-size: 26; -fx-font-weight: 800; -fx-font-family: Poppins");
+    EmployeeDAO employeeDAO = new EmployeeDAO();
+    HashMap<Integer, String> allEmployeeHash = employeeDAO.getAllEmployeeFullName();
 
-      Text notifDate = new Text("Date: XX/XX/XXXX");
-      notifDate.setLayoutX(50);
-      notifDate.setLayoutY(120);
-      notifDate.setStyle(
-          "-fx-font-size: 20; -fx-font-weight: 500;"
-              + "-fx-alignment: right; -fx-font-family: Poppins");
+    notifHash.forEach(
+        (i) -> {
+          Text notif = new Text("From: " + allEmployeeHash.get(i.getEmpid()));
 
-      AnchorPane notifAnchorPane = new AnchorPane();
+          notif.setLayoutX(50);
+          notif.setLayoutY(45);
+          notif.setStyle("-fx-font-size: 20; -fx-font-weight: 800; -fx-font-family: Poppins");
+          //      notif.setLayoutX(50);
+          //      notif.setLayoutY(90);
+          //      notif.setStyle("-fx-font-size: 30; -fx-font-weight: 600; -fx-font-family:
+          // Poppins");
 
-      notifAnchorPane.setStyle(
-          "-fx-background-color: #C0C0C0;"
-              + "-fx-background-radius: 10;"
-              + " -fx-pref-width: 335;"
-              + "-fx-pref-height: 150;"
-              // top right bottom left
-              + " -fx-padding: 10 25 10 25;"
-              + " -fx-border-insets: 10 25 10 25;"
-              + " -fx-background-insets: 10 25 10 25;");
+          String notifType = i.getNotiftype().toLowerCase();
+          String color = "";
+          Text message = null;
 
-      //        notifAnchorPane.getChildren().add(requestID);
-      notifAnchorPane.getChildren().add(notif);
-      notifAnchorPane.getChildren().add(notifDate);
-      notifAnchorPane.getChildren().add(message);
-      notifications.getChildren().add(notifAnchorPane);
-    }
+          switch (notifType) {
+            case "alert":
+              message = new Text("ALERT: " + i.getMessage());
+              color = "#E19797;";
+              break;
+            default:
+              message = new Text(i.getMessage());
+              color = "#C0C0C0;";
+              break;
+          }
+
+          message.setLayoutX(50);
+          message.setLayoutY(85);
+          message.setStyle("-fx-font-size: 26; -fx-font-weight: 800; -fx-font-family: Poppins");
+
+          Text notifDate = new Text("Date: " + i.getNotifDate());
+          notifDate.setLayoutX(50);
+          notifDate.setLayoutY(120);
+          notifDate.setStyle(
+              "-fx-font-size: 20; -fx-font-weight: 500;"
+                  + "-fx-alignment: right; -fx-font-family: Poppins");
+
+          AnchorPane notifAnchorPane = new AnchorPane();
+
+          notifAnchorPane.setStyle(
+              "-fx-background-color: "
+                  + color
+                  + ";"
+                  + "-fx-background-radius: 10;"
+                  + "-fx-pref-width: 335;"
+                  + "-fx-pref-height: 150;"
+                  // top right bottom left
+                  + " -fx-padding: 10 25 10 25;"
+                  + " -fx-border-insets: 10 25 10 25;"
+                  + " -fx-background-insets: 10 25 10 25;");
+
+          //        notifAnchorPane.getChildren().add(requestID);
+          notifAnchorPane.getChildren().add(notif);
+          notifAnchorPane.getChildren().add(notifDate);
+          notifAnchorPane.getChildren().add(message);
+          notifications.getChildren().add(notifAnchorPane);
+        });
 
     // EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
   }

@@ -16,27 +16,23 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
-                  <MFXScrollPane layoutX="200.0" layoutY="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                  <MFXScrollPane layoutX="200.0" layoutY="170.0" maxHeight="710.0" prefHeight="710.0" prefWidth="760.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <content>
-                        <VBox fx:id="notifications" prefHeight="780.0" prefWidth="743.0">
-                           <children>
-                              <VBox>
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Notifications:">
-                                       <font>
-                                          <Font size="36.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </VBox>
+                        <VBox fx:id="notifications" prefHeight="777.0" prefWidth="743.0" />
                      </content>
                      <styleClass>
                         <String fx:value="scroll-pane-Furn" />
                         <String fx:value="widget_homepage_pair" />
                      </styleClass>
+                     <padding>
+                        <Insets top="80.0" />
+                     </padding>
                   </MFXScrollPane>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Notifications:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="120.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
                   <HBox prefHeight="26.0" prefWidth="306.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcomeText_home" text="Welcome,">
@@ -57,28 +53,24 @@
                <children>
                   <MFXScrollPane AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <content>
-                        <VBox fx:id="forms" prefHeight="780.0" prefWidth="743.0">
-                           <children>
-                              <VBox>
-                                 <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Forms:">
-                                       <font>
-                                          <Font size="36.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </VBox>
+                        <VBox fx:id="forms" prefHeight="780.0" prefWidth="743.0" />
                      </content>
                      <styleClass>
                         <String fx:value="scroll-pane-Furn" />
                         <String fx:value="widget_homepage_pair" />
                      </styleClass>
+                     <padding>
+                        <Insets top="80.0" />
+                     </padding>
                   </MFXScrollPane>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your To Do's:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="120.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
                </children>
                <HBox.margin>
-                  <Insets bottom="2.0" />
+                  <Insets />
                </HBox.margin>
             </AnchorPane>
          </children>
