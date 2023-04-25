@@ -3,6 +3,10 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Signage;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,7 +90,35 @@ public class SignageDAO implements DAO{
 
     @Override
     public void importCSV(String path) throws SQLException {
+        db.setConnection();
 
+        PreparedStatement ps;
+        sql = "insert into "+this.getTable()+" (kiosknum, date, arrow) values (?,?,?)";
+        ps=db.getConnection().prepareStatement(sql);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            String line = null;
+            br.readLine();
+            while((line=br.readLine())!=null){
+                String[] data = line.split(",");
+                String kiosk = data[0];
+                String date = data[1];
+                String directions = data[2];
+
+                ps.setInt(1,Integer.parseInt(kiosk));
+                ps.setDate(2,Date.valueOf(date));
+                ps.setString(3,directions);
+                ps.addBatch();
+            }
+
+            br.close();
+            ps.executeBatch();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        db.closeConnection();
     }
 
     @Override
