@@ -8,6 +8,7 @@ public enum Screen {
   FLOWERS_REQUEST("views/FlowersRequestPage.fxml"),
   FURNITURE_REQUEST("views/FurnitureRequestPage.fxml"),
   SUPPLIES_REQUEST("views/OfficeSuppRequestPage.fxml"),
+  MAINTENANCE_REQUEST("views/MaintenanceRequestPage.fxml"),
 
   PATHFINDING_PAGE("views/pathfinding.fxml"),
 
@@ -23,6 +24,7 @@ public enum Screen {
   FLOWERS_REQUEST_SUBMIT("views/FlowersRequestConfirmationPage.fxml"),
   FURNITURE_REQUEST_SUBMIT("views/FurnitureRequestConfirmationPage.fxml"),
   SUPPLIES_REQUEST_SUBMIT("views/OfficeSuppRequestConfirmationPage.fxml"),
+  MAINTENANCE_REQUEST_SUBMIT("views/MaintenanceRequestConfirmationPage.fxml"),
   ADMIN_STATUS_PAGE("views/AdminFormStatus.fxml"),
   LOGIN_PAGE("views/Login.fxml"),
   EMPLOYEE_FORMS("views/EmployeeSelfFormView.fxml"),

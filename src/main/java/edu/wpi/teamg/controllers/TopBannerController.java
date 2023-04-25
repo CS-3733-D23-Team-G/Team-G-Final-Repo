@@ -24,6 +24,7 @@ public class TopBannerController {
           "Conference Room Request Form",
           "Flowers Request Form",
           "Furniture Request Form",
+          "Maintenance Request Form",
           "Meal Request Form",
           "Office Supplies Request Form");
 
@@ -56,6 +57,8 @@ public class TopBannerController {
       Navigation.navigate(Screen.FLOWERS_REQUEST);
     } else if (serviceRequestChoiceBox.getValue().equals("Office Supplies Request Form")) {
       Navigation.navigate(Screen.SUPPLIES_REQUEST);
+    } else if (serviceRequestChoiceBox.getValue().equals("Maintenance Request Form")) {
+      Navigation.navigate(Screen.MAINTENANCE_REQUEST);
     } else {
       return;
     }

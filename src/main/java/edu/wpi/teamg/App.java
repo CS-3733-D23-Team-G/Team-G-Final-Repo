@@ -296,12 +296,21 @@ public class App extends Application {
     }
   }
 
-  public static HashMap<Integer, OfficeSupplyRequest> testingOSupps;
 
+  public static HashMap<Integer, OfficeSupplyRequest> testingOSupps;
   static {
     try {
       testingOSupps = getHashOSupps();
-    } catch (SQLException e) {
+       } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, MaintenanceRequest> testingMaintain;
+  static {
+    try {
+      testingMaintain = getHashMaintain(); 
+   } catch (SQLException e) {
       throw new RuntimeException(e);
     }
   }
@@ -507,6 +516,7 @@ public class App extends Application {
     }
   }
 
+
   public static void oSuppsRefresh() {
     try {
       testingRequest = getHashMapRequest();
@@ -515,6 +525,20 @@ public class App extends Application {
     }
     try {
       testingOSupps = getHashOSupps();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+  
+  
+  public static void maintainRefresh() {
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    try {
+      testingMaintain = getHashMaintain();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -593,6 +617,7 @@ public class App extends Application {
     return furnsHash;
   }
 
+
   public static HashMap getHashOSupps() throws SQLException {
 
     HashMap<Integer, OfficeSupplyRequest> oSuppsHash = new HashMap<Integer, OfficeSupplyRequest>();
@@ -602,9 +627,29 @@ public class App extends Application {
     } catch (SQLException e) {
       System.err.print(e.getErrorCode());
     }
-
     return oSuppsHash;
   }
+  
+  
+  
+  public static HashMap getHashMaintain() throws SQLException {
+
+    HashMap<Integer, MaintenanceRequest> maintainHash = new HashMap<Integer, MaintenanceRequest>();
+
+    try {
+      maintainHash = daoRepo.getAllMaintenance();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+    return maintainHash;
+  }
+  
+  
+  
+  
+  
+  
+  
 
   static int code;
   static int empid;
