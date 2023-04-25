@@ -90,6 +90,9 @@ public class MealRequestController {
           MealOrder();
           allDataFilled();
         });
+    mealButton.setOnMouseClicked(event -> MealPressed());
+    snackButton.setOnMouseClicked(event -> SnackPressed());
+    drinkButton.setOnMouseClicked(event -> DrinkPressed());
 
     if (!App.employee.getIs_admin()) {
       vboxWithAssignTo.getChildren().remove(assignToLine);
@@ -138,17 +141,17 @@ public class MealRequestController {
   }
 
   public void MealPressed() {
-    Image burger = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+    Image burger = new Image(App.class.getResourceAsStream("Images/burger.jpg"));
 
-    Image dog = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+    Image dog = new Image(App.class.getResourceAsStream("Images/dog.jpg"));
 
-    Image pizza = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+    Image pizza = new Image(App.class.getResourceAsStream("Images/pizza.jpg"));
 
-    Image sushi = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+    Image sushi = new Image(App.class.getResourceAsStream("Images/sushi.jpg"));
 
-    Image taco = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+    Image taco = new Image(App.class.getResourceAsStream("Images/taco.jpg"));
 
-    Image sandwich = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+    Image sandwich = new Image(App.class.getResourceAsStream("Images/sandwich.jpg"));
     text1.setText("Burger");
     text2.setText("dog");
     text3.setText("pizza");
@@ -161,6 +164,58 @@ public class MealRequestController {
     image4.setImage(sushi);
     image5.setImage(taco);
     image6.setImage(sandwich);
+  }
+
+  public void DrinkPressed() {
+    Image OJ = new Image(App.class.getResourceAsStream("Images/OJ.jpg"));
+
+    Image coffee = new Image(App.class.getResourceAsStream("Images/coffee.jpg"));
+
+    Image water = new Image(App.class.getResourceAsStream("Images/water.jpg"));
+
+    Image soda = new Image(App.class.getResourceAsStream("Images/soda.jpg"));
+
+    Image smoothie = new Image(App.class.getResourceAsStream("Images/smoothie.jpg"));
+
+    Image tea = new Image(App.class.getResourceAsStream("Images/tea.jpg"));
+    text1.setText("OJ");
+    text2.setText("coffee");
+    text3.setText("pizza");
+    text4.setText("water");
+    text5.setText("smoothie");
+    text6.setText("tea");
+    image1.setImage(OJ);
+    image2.setImage(coffee);
+    image3.setImage(water);
+    image4.setImage(soda);
+    image5.setImage(smoothie);
+    image6.setImage(tea);
+  }
+
+  public void SnackPressed() {
+    Image frenchfries = new Image(App.class.getResourceAsStream("Images/frenchfries.jpg"));
+
+    Image chips = new Image(App.class.getResourceAsStream("Images/chips.jpg"));
+
+    Image bacon = new Image(App.class.getResourceAsStream("Images/bacon.jpg"));
+
+    Image avocadotoast = new Image(App.class.getResourceAsStream("Images/avocadotoast.jpg"));
+
+    Image goldfish = new Image(App.class.getResourceAsStream("Images/goldfish.jpg"));
+
+    Image pretzels = new Image(App.class.getResourceAsStream("Images/pretzels.jpg"));
+    text1.setText("frenchfries");
+    text2.setText("chips");
+    text3.setText("bacon");
+    text4.setText("avocado toast");
+    text5.setText("goldfish");
+    text6.setText("pretzels");
+    image1.setImage(frenchfries);
+    image2.setImage(chips);
+    image3.setImage(bacon);
+    image4.setImage(avocadotoast);
+    image5.setImage(goldfish);
+    image6.setImage(pretzels);
   }
 
   public void exit() {
