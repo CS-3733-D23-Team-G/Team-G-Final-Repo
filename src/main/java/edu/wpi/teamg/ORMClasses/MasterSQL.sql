@@ -10,6 +10,7 @@ drop table if exists iteration3.Edge;
 drop table if exists iteration3.LocationName;
 drop table if exists iteration3.Node;
 drop table if exists iteration3.notification;
+drop table if exists iteration3.signage;
 drop table if exists iteration3.account;
 drop table if exists iteration3.Employee;
 
@@ -43,6 +44,11 @@ create table iteration3.Move(
                                         PRIMARY KEY (nodeID, longName, date),
                                         foreign key (nodeID) references iteration3.node(nodeID) ON DELETE CASCADE ON UPDATE CASCADE,
                                         foreign key (longName) references iteration3.LocationName(longName) ON DELETE CASCADE ON UPDATE CASCADE
+);
+create table iteration3.signage(
+                                   kiosknum int primary key,
+                                   date Date,
+                                   arrow text
 );
 
 create type iteration3.enum1 as enum('blank', 'processing', 'done');
@@ -130,6 +136,8 @@ create table iteration3.notification(
     recipients text,
     message text,
     foreign key (empID) references iteration3.employee(empID) on delete cascade on update cascade);
+
+
 
 
 INSERT INTO iteration3.Employee (empID, firstName, lastName, email, can_serve)
