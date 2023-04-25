@@ -58,11 +58,11 @@ public class MapEditorController {
 
   @FXML MFXButton addEdge;
 
-  @FXML MFXButton align;
+  @FXML MFXButton alignButton;
 
-  @FXML MFXButton horizontal;
+  @FXML MFXButton horizontalButton;
 
-  @FXML MFXButton vertical;
+  @FXML MFXButton verticalButton;
 
   @FXML Label alignLabel;
 
@@ -128,13 +128,24 @@ public class MapEditorController {
           }
         });
 
-
+    ArrayList <Node> alignedNodes = new ArrayList<Node>();
     alignLabel.setVisible(false);
 
 
-    align.setOnMouseClicked(
+    alignButton.setOnMouseClicked(
             event -> {
-              if(vertical.)
+              alignLabel.setVisible(true);
+              if(verticalButton.isPressed()){
+                //add items to list
+
+              alignVertical(alignedNodes);
+              }
+              else if(horizontalButton.isPressed()){
+                // add items to list
+
+                alignHorizontal(alignedNodes);
+              }
+
             }
 
     );
@@ -410,7 +421,7 @@ public class MapEditorController {
     Node startnode = nodes.get(0);
     int ycoord = startnode.getYcoord();
     for(int i = 1; i < nodes.size(); i ++){
-      nodes.get(i).setXcoord(ycoord);
+      nodes.get(i).setYcoord(ycoord);
     }
   }
 
