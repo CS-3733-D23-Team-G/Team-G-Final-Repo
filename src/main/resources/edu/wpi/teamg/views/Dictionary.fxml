@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -34,11 +35,15 @@
             </AnchorPane>
             <AnchorPane layoutX="210.0" layoutY="356.0" prefHeight="549.0" prefWidth="1576.0" styleClass="widget_background" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0">
                <children>
-                  <Text fx:id="outputText" fill="WHITE" layoutX="70.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="1480.8030319213867">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Text>
+                  <ScrollPane layoutX="70.0" layoutY="149.0" prefHeight="380.0" prefWidth="1483.0" styleClass="blueBack">
+                     <content>
+                        <Text fx:id="outputText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="1480.8030319213867">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                     </content>
+                  </ScrollPane>
                   <Text fx:id="Word" fill="WHITE" layoutX="64.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text">
                      <font>
                         <Font size="41.0" />
