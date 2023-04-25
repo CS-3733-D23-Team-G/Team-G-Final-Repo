@@ -160,7 +160,7 @@ Popup
     -fx-max-width: 1920;
 }
 .half_bottom_page{
-    -fx-pref-height: 913;
+    -fx-pref-height: 980;
     -fx-pref-width: 960;
 
 }
@@ -458,7 +458,16 @@ Popup
     -fx-text-fill: #000000;
     -fx-alignment: center;
 }
-
+/*admin page CSS - 4 tables, import export */
+.admin_page_4_buttons{
+    -fx-pref-height: 65;
+    -fx-pref-width: 300;
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 30;
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
 .admin_page_text{
     -fx-font-size: 30;
     -fx-text-fill: #000000;
@@ -489,6 +498,7 @@ Popup
     -fx-pref-height: 40;
     -fx-alignment: center;
 }
+
 
 .dropdown{
     -fx-font-size: 20;
