@@ -84,7 +84,7 @@
                               </HBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <MFXButton fx:id="alignNodesButton" prefHeight="54.0" prefWidth="226.0" styleClass="add_Buttons" text="Align Nodes" />
+                                    <MFXButton fx:id="alignButton" prefHeight="54.0" prefWidth="226.0" styleClass="add_Buttons" text="Align Nodes" />
                                     <Label fx:id="alignmentLabel" text="Select the nodes you would like to align" />
                                  </children>
                               </VBox>

@@ -54,7 +54,7 @@ public class MapEditorController {
   @FXML MFXToggleButton toggleEdge;
 
   @FXML MFXButton addEdge;
-  
+
   @FXML MFXButton alignButton;
 
   @FXML MFXButton horizontalButton;
@@ -75,7 +75,13 @@ public class MapEditorController {
 
   ArrayList<ImageView> img = new ArrayList<>();
 
+  ArrayList<Node> alignedNodes = new ArrayList<Node>();
+  ArrayList<Circle> allCircles = new ArrayList<Circle>();
+
+  boolean isAlignClicked = false;
+
   public void initialize() throws SQLException, IOException {
+
     pane.setVisible(true);
     nodePane.setVisible(true);
     group.setVisible(true);
@@ -132,29 +138,23 @@ public class MapEditorController {
             throw new RuntimeException(e);
           }
         });
-
-    ArrayList <Node> alignedNodes = new ArrayList<Node>();
-    alignLabel.setVisible(false);
-
-
     alignButton.setOnMouseClicked(
-            event -> {
-              alignLabel.setVisible(true);
-              if(verticalButton.isPressed()){
-                //add items to list
+        event -> {
+          isAlignClicked = true;
+        });
+    horizontalButton.setOnMouseClicked(
+        event -> {
+          alignCirclesHorizontal(allCircles);
+          isAlignClicked = false;
+          allCircles.clear();
+        });
 
-              alignVertical(alignedNodes);
-              }
-              else if(horizontalButton.isPressed()){
-                // add items to list
-
-                alignHorizontal(alignedNodes);
-              }
-
-            }
-
-    );
-
+    verticalButton.setOnMouseClicked(
+        event -> {
+          alignCirclesVertical(allCircles);
+          isAlignClicked = false;
+          allCircles.clear();
+        });
 
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
@@ -279,6 +279,36 @@ public class MapEditorController {
     //            throw new RuntimeException(e);
     //          }
     //        });
+  }
+
+  public void alignCirclesVertical(ArrayList<Circle> circles) {
+    double firstX = circles.get(0).getCenterX();
+    for (Circle circle : circles) {
+      circle.setCenterX(firstX);
+    }
+  }
+
+  public void alignCirclesHorizontal(ArrayList<Circle> circles) {
+    double firstY = circles.get(0).getCenterY();
+    for (Circle circle : circles) {
+      circle.setCenterY(firstY);
+    }
+  }
+
+  public void alignNodesVertical(ArrayList<Node> nodes) {
+
+    int xcoord = nodes.get(0).getXcoord();
+    for (Node node : nodes) {
+      node.setXcoord(xcoord);
+    }
+  }
+
+  public void alignNodesHorizontal(ArrayList<Node> nodes) {
+
+    int ycoord = nodes.get(0).getYcoord();
+    for (Node node : nodes) {
+      node.setXcoord(ycoord);
+    }
   }
 
   public void goToL1(ArrayList<ImageView> imgs) throws SQLException {
@@ -418,22 +448,6 @@ public class MapEditorController {
     }
   }
 
-  public void alignVertical(ArrayList<Node> nodes){
-    Node startnode = nodes.get(0);
-    int xcoord = startnode.getXcoord();
-    for(int i = 1; i < nodes.size(); i ++){
-          nodes.get(i).setXcoord(xcoord);
-    }
-  }
-
-  public void alignHorizontal(ArrayList<Node> nodes){
-    Node startnode = nodes.get(0);
-    int ycoord = startnode.getYcoord();
-    for(int i = 1; i < nodes.size(); i ++){
-      nodes.get(i).setYcoord(ycoord);
-    }
-  }
-
   public void edgeDisplay(int index) {
 
     switch (index) {
@@ -524,7 +538,7 @@ public class MapEditorController {
 
     Node currentNode = listOfNodes.get(i);
     Label nodeLabel = new Label();
-    //
+
     //    LocationNameDAO locationNameDAO = new LocationNameDAO();
     //    HashMap<String, LocationName> labelMap = locationNameDAO.getAll();
 
@@ -539,6 +553,13 @@ public class MapEditorController {
     nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
     nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
     nodeLabel.toFront();
+
+    point.setOnMouseClicked(
+        event -> {
+          if (isAlignClicked) {
+            allCircles.add(point);
+          }
+        });
 
     /*
        point.setOnMouseEntered(event ->
