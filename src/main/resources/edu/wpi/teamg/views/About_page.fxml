@@ -17,7 +17,7 @@
                   <Label fx:id="Credits" layoutX="558.0" layoutY="24.0" styleClass="banner_text" text="About" />
                   <Line endX="77.0" endY="-1.0" layoutX="575.0" layoutY="70.0" startX="-29.0" startY="-1.0" stroke="#f6bd38" strokeWidth="3.0" />
                   <Text fx:id="Text_about" fill="#f8f3f3" layoutX="11.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="about_text" wrappingWidth="1282.13671875" />
-                  <MFXButton layoutX="1025.0" layoutY="796.0" styleClass="requestConfirmButton" text="Credits &gt;" />
+                  <MFXButton layoutX="1025.0" layoutY="796.0" styleClass="requestConfirmButton" text="Credits &gt;" AnchorPane.leftAnchor="1025.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="796.0" />
                </children>
             </AnchorPane>
          </children>
