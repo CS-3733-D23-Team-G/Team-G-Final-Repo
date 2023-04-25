@@ -71,6 +71,8 @@ public class MapEditorController {
 
   @FXML MFXToggleButton toggSn;
 
+  @FXML MFXButton help;
+
   boolean moved = false;
 
   boolean lineGen;
@@ -207,6 +209,14 @@ public class MapEditorController {
           alignCirclesVertical(allCircles);
           isAlignClicked = false;
           allCircles.clear();
+        });
+    help.setOnMouseClicked(
+        event -> {
+          try {
+            getHelp();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
         });
 
     ImageView mapView = new ImageView(mapL1);
@@ -896,6 +906,19 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     LocNamePopUpController controller = loader.getController();
+    controller.setW(window);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void getHelp() throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/EditorInstructionsPopOver.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    EditorInstructionsPopOverController controller = loader.getController();
     controller.setW(window);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
