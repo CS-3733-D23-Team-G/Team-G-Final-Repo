@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import org.controlsfx.control.SearchableComboBox?>
 
 <BorderPane prefHeight="10.0" prefWidth="10.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MaintenanceRequestController">
     <center>
@@ -60,15 +60,11 @@
                                                     </VBox.margin>
                                                 </Text>
                                                 <Line endX="164.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                                <SearchableComboBox fx:id="locationSearchDropdown" prefHeight="32.0" prefWidth="200.0">
-                                                    <VBox.margin>
-                                                        <Insets right="15.0" top="15.0" />
-                                                    </VBox.margin>
-                                                    <styleClass>
-                                                        <String fx:value="text_box" />
-                                                        <String fx:value="requestTextBox" />
-                                                    </styleClass>
-                                                </SearchableComboBox>
+                                    <MFXFilterComboBox fx:id="locationSearchDropdown" maxHeight="63.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="285.0" styleClass="requestTextBox_MFX">
+                                       <VBox.margin>
+                                          <Insets right="15.0" top="15.0" />
+                                       </VBox.margin>
+                                    </MFXFilterComboBox>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Phone Number">
                                        <font>
                                           <Font size="22.0" />
@@ -77,7 +73,7 @@
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="164.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
+                                    <Line endX="97.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
                                        <VBox.margin>
                                           <Insets top="10.0" />
                                        </VBox.margin>
@@ -102,8 +98,8 @@
                                                         <Insets bottom="5.0" top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                                <Line endX="102.87867736816406" endY="-3.3473968505859375E-4" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                                <MFXDatePicker fx:id="maintainDate" prefHeight="60.0" prefWidth="281.0" style="-fx-background-color: #D9D9D9;">
+                                                <Line endX="102.87867736816406" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                                <MFXDatePicker fx:id="maintainDate" prefHeight="60.0" prefWidth="281.0" style="-fx-background-color: #D9D9D9;" styleClass="requestTextBox_MFX">
                                                     <VBox.margin>
                                                         <Insets right="15.0" top="15.0" />
                                                     </VBox.margin>
@@ -116,7 +112,7 @@
                                                         <Insets bottom="5.0" top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                                <Line endX="111.87867736816406" endY="0.4142022132873535" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                                <Line endX="111.87867736816406" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                                 <MFXTextField fx:id="maintainTime" minHeight="-Infinity" prefHeight="47.0" prefWidth="281.0" styleClass="requestTextBox">
                                                     <VBox.margin>
                                                         <Insets right="15.0" top="15.0" />
@@ -130,12 +126,12 @@
                                                         <Insets bottom="5.0" top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                                <Line fx:id="assignToLine" endX="26.292892456054688" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                                <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="requestTextBox" stylesheets="@style.css">
-                                                    <VBox.margin>
-                                                        <Insets right="15.0" top="15.0" />
-                                                    </VBox.margin>
-                                                </SearchableComboBox>
+                                                <Line fx:id="assignToLine" endX="26.292892456054688" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXFilterComboBox fx:id="employeeSearchDropdown" maxHeight="63.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="315.0" styleClass="requestTextBox_MFX">
+                                       <VBox.margin>
+                                          <Insets right="15.0" top="15.0" />
+                                       </VBox.margin>
+                                    </MFXFilterComboBox>
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                     <children>
                                                         <MFXButton fx:id="maintainClearButton" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear">
@@ -195,7 +191,7 @@
                                     <Insets top="50.0" />
                                  </VBox.margin>
                               </Text>
-                              <Line endX="64.87867736816406" endY="-1.242640495300293" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
+                              <Line endX="70.94996643066406" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -227,6 +223,9 @@
                                        </HBox.margin>
                                     </MFXCheckbox>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </HBox>
                               <Text fx:id="textTree1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Specified Issue" visible="false">
                                  <font>
@@ -234,7 +233,7 @@
                                  </font>
                               </Text>
                               <Line fx:id="lineTree1" endX="95.00123596191406" endY="1.2426323890686035" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" visible="false" />
-                              <HBox prefHeight="159.0" prefWidth="683.0">
+                              <HBox prefHeight="159.0" prefWidth="618.0">
                                  <children>
                                     <MFXCheckbox fx:id="checkTree1" text="check1" textFill="WHITE" visible="false">
                                        <font>
@@ -269,20 +268,26 @@
                                        </HBox.margin>
                                     </MFXCheckbox>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </HBox>
                               <Text fx:id="textTree2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Explain the Problem" visible="false">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
                               </Text>
-                              <Line fx:id="lineTree2" endX="141.66432189941406" endY="1.2426323890686035" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" visible="false" />
+                              <Line fx:id="lineTree2" endX="161.74098205566406" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" visible="false" />
                               <HBox prefHeight="247.0" prefWidth="683.0">
                                  <children>
-                                    <TextArea fx:id="finalTreeLevel" prefHeight="197.0" prefWidth="683.0" visible="false">
+                                    <TextArea fx:id="finalTreeLevel" prefHeight="197.0" prefWidth="683.0" styleClass="notes" visible="false">
                                        <HBox.margin>
                                           <Insets top="10.0" />
                                        </HBox.margin></TextArea>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets right="25.0" />
+                                 </VBox.margin>
                               </HBox>
                            </children>
                         </VBox>

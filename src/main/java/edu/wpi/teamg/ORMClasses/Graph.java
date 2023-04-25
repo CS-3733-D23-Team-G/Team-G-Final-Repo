@@ -121,6 +121,53 @@ public class Graph {
     return solution;
   }
 
+  public ArrayList<String> Dijkstra(int[][] aMatrix, int start, int end) {
+    // Number of vertices in the example. For us, it will be 48
+    int vertex = V.length;
+    // Sets up our distances, so we can process our nodes into our dis array with "inf" values
+    int totalDistance = 0;
+    // If the vertex has been visited
+    ArrayList<Boolean> verVisited = new ArrayList<>();
+    // Here we have a list of the minimum path to each vertex
+    ArrayList<Integer> dis = new ArrayList<>();
+    // Here we will push parent nodes into an array, so we can get the path itself
+    int[] parent = new int[vertex];
+    for (int v = 0; v < vertex; v++) {
+      totalDistance = Integer.MAX_VALUE; // Java version of infinity is MAX_VALUE
+      parent[v] = Integer.MAX_VALUE;
+      if (v == start) {
+        totalDistance = 0;
+      }
+      verVisited.add(false);
+      dis.add(totalDistance);
+    }
+    parent[start] = -1;
+    for (int i = 0; i < Math.abs(vertex) - 1; i++) {
+      // uStarV = next nearest vertex
+      int uStarV = smallestDistance(dis, verVisited);
+      // uStarD = is the distance to get to our current node
+      int uStarD = dis.get(uStarV);
+      // Mark we visited our nearest node
+      verVisited.set(uStarV, true);
+      for (int j = 0; j < vertex; j++) {
+        // If we have a connection
+        if (aMatrix[uStarV][j] != 0) {
+          // if the total distance to our node + the added distance is less than the distance in our
+          // chart
+          if (uStarD + aMatrix[uStarV][j] < dis.get(j)) {
+            // Add to Parent which will be our list of nodes
+            parent[j] = uStarV;
+            // replace the distance in list to our new minimum
+            dis.set(j, uStarD + aMatrix[uStarV][j]);
+          }
+        }
+      }
+    }
+    ArrayList<String> solution = new ArrayList<>();
+    printMySolution(start, parent, end, solution);
+    return solution;
+  }
+
   public static ArrayList<String> depthFirstSearch(
       int[][] adjacencyMatrix, int startNode, int endNode) {
     // Create a boolean array to keep track of visited nodes

@@ -291,7 +291,7 @@ public class AdminFormStatusController {
     suppRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
     suppNote.setCellValueFactory(new PropertyValueFactory<>("note"));
 
-    maintenanceReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+    maintenanceReqID.setCellValueFactory(new PropertyValueFactory<>("reqId"));
     maintenanceEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
     maintenanceLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
     maintenanceServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
@@ -301,7 +301,7 @@ public class AdminFormStatusController {
     maintenanceDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
     maintenanceTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
     maintenanceRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
-    maintenanceNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+    maintenanceNote.setCellValueFactory(new PropertyValueFactory<>("notes"));
     maintenancePhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
   }
 

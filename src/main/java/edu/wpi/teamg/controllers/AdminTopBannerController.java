@@ -20,6 +20,8 @@ public class AdminTopBannerController {
   @FXML MFXButton Logout;
 
   @FXML ChoiceBox<String> AdminChoiceBox;
+  @FXML MFXButton dictionaryButton;
+  @FXML MFXButton About_Credits;
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -39,13 +41,8 @@ public class AdminTopBannerController {
 
   @FXML
   public void initialize() {
-    //    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-
-    //    serviceRequestChoiceBox.setValue("Service Request");
-    //    statusButton.setText("Form Status");
-    //    AdminChoiceBox.setValue("Admin Forms");
-    //    signagePageButton.setText("PathFinding");
-
+    dictionaryButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
+    About_Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.ABOUT_PAGE));
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     exitButton.setOnMouseClicked(event -> exit());
     statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_STATUS_PAGE));

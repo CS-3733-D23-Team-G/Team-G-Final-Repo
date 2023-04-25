@@ -4,6 +4,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 <?import net.kurobako.gesturefx.GesturePane?>
-<?import org.controlsfx.control.SearchableComboBox?>
 
 <BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.pathfindingController">
    <center>
@@ -31,28 +31,28 @@
                               <HBox prefHeight="51.0" prefWidth="389.0" styleClass="algoSelect_hbox">
                                  <children>
                                     <MFXComboBox fx:id="floorStart" alignment="TOP_LEFT" borderGap="0.0" floatingTextGap="0.0" graphicTextGap="0.0" measureUnitGap="0.0" prefHeight="6.0" prefWidth="157.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css" />
-                                    <SearchableComboBox fx:id="startLocDrop" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="250.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css">
+                                    <MFXFilterComboBox fx:id="startLocDrop" minHeight="-Infinity" minWidth="-Infinity" prefWidth="229.0" styleClass="locationSelect_comboSearchBox">
                                        <HBox.margin>
                                           <Insets left="25.0" />
                                        </HBox.margin>
-                                    </SearchableComboBox>
+                                    </MFXFilterComboBox>
                                  </children>
                               </HBox>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="locationLabel" text="DESTINATION:" />
                               <HBox prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
                                     <MFXComboBox fx:id="floorEnd" alignment="TOP_LEFT" prefHeight="103.0" prefWidth="135.0" styleClass="locationSelect_comboSearchBox" />
-                                    <SearchableComboBox fx:id="endLocDrop" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="229.0" styleClass="locationSelect_comboSearchBox">
+                                    <MFXFilterComboBox fx:id="endLocDrop" minHeight="-Infinity" minWidth="-Infinity" prefWidth="229.0" styleClass="locationSelect_comboSearchBox">
                                        <HBox.margin>
                                           <Insets left="25.0" />
                                        </HBox.margin>
-                                    </SearchableComboBox>
+                                    </MFXFilterComboBox>
                                  </children>
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
+                              <HBox prefHeight="82.0" prefWidth="145.0" styleClass="algoSelect_hbox">
                                  <children>
                                     <MFXCheckbox fx:id="aStarCheckBox" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="A*">
                                        <HBox.margin>
@@ -74,6 +74,15 @@
                                     <Insets top="25.0" />
                                  </VBox.margin>
                               </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <MFXCheckbox fx:id="Dijkstracheckbox" alignment="CENTER" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="Dijkstra">
+                                       <HBox.margin>
+                                          <Insets left="125.0" top="25.0" />
+                                       </HBox.margin>
+                                    </MFXCheckbox>
+                                 </children>
+                              </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
 
@@ -92,7 +101,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXToggleButton fx:id="dSN" text="Display Short Names" />
+                                    <MFXToggleButton fx:id="dSN" alignment="CENTER" contentDisplay="CENTER" text="Display Short Names" textAlignment="CENTER" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
