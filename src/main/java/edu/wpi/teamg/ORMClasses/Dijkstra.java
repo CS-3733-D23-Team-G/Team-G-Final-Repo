@@ -3,17 +3,17 @@ package edu.wpi.teamg.ORMClasses;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
-import org.controlsfx.control.SearchableComboBox;
 
 public class Dijkstra implements Algorithm {
   DAORepo dao = new DAORepo();
 
   @Override
   public ArrayList<String> process(
-      SearchableComboBox startLocDrop, SearchableComboBox endLocDrop, ArrayList<Move> movin)
+      MFXFilterComboBox startLocDrop, MFXFilterComboBox endLocDrop, ArrayList<Move> movin)
       throws SQLException {
     ArrayList<String> path;
 

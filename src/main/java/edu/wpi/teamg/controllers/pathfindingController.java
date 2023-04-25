@@ -40,7 +40,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
-import org.controlsfx.control.SearchableComboBox;
 
 // Touch Ups
 // Make NodeInfo Disappear More clean
@@ -64,8 +63,8 @@ public class pathfindingController {
 
   private ArrayList<ImageView> imageViewsList = new ArrayList<>();
 
-  @FXML SearchableComboBox startLocDrop;
-  @FXML SearchableComboBox endLocDrop;
+  @FXML MFXFilterComboBox startLocDrop;
+  @FXML MFXFilterComboBox endLocDrop;
 
   @FXML MFXComboBox floorStart;
   @FXML MFXComboBox floorEnd;
