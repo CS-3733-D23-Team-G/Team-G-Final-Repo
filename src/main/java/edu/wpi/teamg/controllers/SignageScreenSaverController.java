@@ -18,12 +18,13 @@ public class SignageScreenSaverController {
   //  @FXML ImageView northArrow;
   //  @FXML ImageView southArrow;
   //  @FXML ImageView eastArrow;
-
   Image westArrow = new Image("edu/wpi/teamg/Images/WestArrow.png");
   Image eastArrow = new Image("edu/wpi/teamg/Images/EastArrow.png");
   Image southArrow = new Image("edu/wpi/teamg/Images/SouthArrow.png");
   Image northArrow = new Image("edu/wpi/teamg/Images/NorthArrow.png");
   Image noArrow = new Image("edu/wpi/teamg/Images/NoArrow.png");
+
+  @FXML MFXButton snakeButton;
 
   @FXML ImageView arrow1 = new ImageView(noArrow);
   @FXML ImageView arrow2 = new ImageView(noArrow);
@@ -105,6 +106,8 @@ public class SignageScreenSaverController {
       nameLabel6.setText("");
       nameLabel9.setText("");
       nameLabel10.setText("");
+
+      snakeButton.setOnMouseClicked(event -> letsAGo());
     }
   }
 
@@ -158,13 +161,7 @@ public class SignageScreenSaverController {
     dateText.setStyle("-fx-font-weight: 800");
   }
 
-
-
-
-
-
-
-
-
-
+  public void letsAGo() {
+    new GameFrame();
+  }
 }

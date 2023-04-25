@@ -132,6 +132,7 @@
                      </children>
                   </HBox>
                   <MFXButton fx:id="ClickToPathFinding" layoutX="-52.0" layoutY="10.0" opacity="0.0" prefHeight="981.0" prefWidth="1920.0" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <MFXButton fx:id="snakeButton" layoutX="312.0" layoutY="80.0" opacity="0.0" prefHeight="47.0" prefWidth="241.0" />
                     </children>
                 </AnchorPane>
             </children>

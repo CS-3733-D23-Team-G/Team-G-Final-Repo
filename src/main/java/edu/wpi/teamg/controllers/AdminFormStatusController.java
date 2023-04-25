@@ -97,7 +97,6 @@ public class AdminFormStatusController {
   @FXML TableColumn<FurnitureRequest, Date> furnDate;
   @FXML TableColumn<FurnitureRequest, Time> furnTime;
 
-
   // office supply Table
   @FXML TableColumn<FurnitureRequest, String> suppEmpID;
   @FXML TableColumn<FurnitureRequest, String> suppLocation1;
@@ -125,7 +124,6 @@ public class AdminFormStatusController {
   @FXML TableColumn<MaintenanceRequest, Date> maintenanceDate;
   @FXML TableColumn<MaintenanceRequest, Time> maintenanceTime;
 
-
   // Table Change Button
   @FXML MFXButton allRequestTableButton;
   @FXML MFXButton mealTableButton;
@@ -134,7 +132,6 @@ public class AdminFormStatusController {
   @FXML MFXButton furnTableButton;
   @FXML MFXButton suppTableButton;
   @FXML MFXButton maintenanceTableButton;
-
 
   @FXML MFXButton editTableForm;
   @FXML MFXButton cancelTableForm;
@@ -151,10 +148,8 @@ public class AdminFormStatusController {
 
   ObservableList<FurnitureRequest> testFurnList;
 
-
   ObservableList<OfficeSupplyRequest> testSuppList;
   ObservableList<MaintenanceRequest> testMaintainList;
-
 
   DAORepo dao = new DAORepo();
 
@@ -180,7 +175,7 @@ public class AdminFormStatusController {
     furnTableButton.setOnMouseClicked(event -> loadFurnitureTable());
     suppTableButton.setOnMouseClicked(event -> loadOfficeSupplyTable());
     maintenanceTableButton.setOnMouseClicked(event -> loadMaintenanceTable());
-    
+
     editTableForm.setOnMouseClicked(
         event -> {
           try {
@@ -206,13 +201,11 @@ public class AdminFormStatusController {
     HashMap<Integer, FurnitureRequest> testingFurns = App.testingFurns;
     ArrayList<FurnitureRequest> furns = new ArrayList<>(testingFurns.values());
 
-
     HashMap<Integer, OfficeSupplyRequest> testingSupp = App.testingOSupps;
     ArrayList<OfficeSupplyRequest> oSupp = new ArrayList<>(testingSupp.values());
 
     HashMap<Integer, MaintenanceRequest> testingMaintain = App.testingMaintain;
     ArrayList<MaintenanceRequest> maintains = new ArrayList<>(testingMaintain.values());
-
 
     testList = FXCollections.observableArrayList(request1);
     testMealList = FXCollections.observableArrayList(mealRequests1);
@@ -224,7 +217,6 @@ public class AdminFormStatusController {
 
     testMaintainList = FXCollections.observableArrayList(maintains);
 
-
     mainTable.setItems(testList);
     mealTable.setItems(testMealList);
     roomTable.setItems(testRoomList);
@@ -234,7 +226,6 @@ public class AdminFormStatusController {
     suppTable.setItems(testSuppList);
 
     maintenanceTable.setItems(testMaintainList);
-
 
     reqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
     reqType.setCellValueFactory(new PropertyValueFactory<>("reqtype"));
@@ -289,7 +280,6 @@ public class AdminFormStatusController {
     furnRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
     furnNote.setCellValueFactory(new PropertyValueFactory<>("note"));
 
-
     suppReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
     suppEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
     suppLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
@@ -313,7 +303,6 @@ public class AdminFormStatusController {
     maintenanceRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
     maintenanceNote.setCellValueFactory(new PropertyValueFactory<>("note"));
     maintenancePhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-
   }
 
   private void fileExporter() throws SQLException, IOException {
