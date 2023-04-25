@@ -65,6 +65,15 @@
                               </HBox>
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
+                                    <MFXButton fx:id="locNameMod" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Modify Location Name">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
                                     <MFXButton fx:id="deleteLoc" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Location Name">
                                        <HBox.margin>
                                           <Insets top="150.0" />
@@ -75,6 +84,15 @@
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
                                     <MFXButton fx:id="deleteMove" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Move">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="delEdge" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Edge">
                                        <HBox.margin>
                                           <Insets top="10.0" />
                                        </HBox.margin>

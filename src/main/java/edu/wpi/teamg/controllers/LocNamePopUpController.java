@@ -1,32 +1,37 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
-import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
-import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
-import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.controlsfx.control.PopOver;
+import org.controlsfx.control.SearchableComboBox;
 
 public class LocNamePopUpController {
-  @FXML MFXTextField nodID;
   @FXML MFXTextField shortName;
-  @FXML MFXTextField longName;
+  @FXML SearchableComboBox longName;
   @FXML MFXTextField nType;
 
   @FXML MFXButton sub;
 
+  PopOver wind = new PopOver();
+  ObservableList<String> locNames;
+
+  LocationName loc = new LocationName();
+
   public void initialize() {
-    nodID.setEditable(false);
     shortName.setEditable(true);
-    longName.setEditable(true);
     nType.setEditable(true);
 
+    setF();
     sub.setOnMouseClicked(
         event -> {
           try {
@@ -35,51 +40,51 @@ public class LocNamePopUpController {
             throw new RuntimeException(e);
           }
         });
+
+    longName
+        .getSelectionModel()
+        .selectedItemProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              if (longName.getValue() != null) {
+                fillLocNames();
+              }
+            });
   }
 
-  public void setF(Node node) throws SQLException {
-    NodeDAO nodeDAO = new NodeDAO();
-    DAORepo daoRepo = new DAORepo();
-    LocationNameDAO loc = new LocationNameDAO();
+  public void setF() {
 
-    HashMap<String, LocationName> locationName = loc.getAll();
+    ArrayList<LocationName> loc = new ArrayList<>(App.locMap.values());
+    ArrayList<String> finalLocations = new ArrayList<>();
 
-    HashMap<Integer, String> ln = daoRepo.getAllLongName();
-    HashMap<Integer, String> sn = nodeDAO.getShortName(node.getFloor());
+    for (int i = 0; i < loc.size(); i++) {
+      finalLocations.add(loc.get(i).getLongName());
+    }
 
-    nodID.setText(String.valueOf(node.getNodeID()));
-    longName.setText(ln.get(node.getNodeID()));
-    shortName.setText(sn.get(node.getNodeID()));
-    nType.setText(locationName.get(ln.get(node.getNodeID())).getNodeType());
+    Collections.sort(finalLocations, String.CASE_INSENSITIVE_ORDER);
+    locNames = FXCollections.observableArrayList(finalLocations);
+
+    longName.setItems(locNames);
+  }
+
+  public void setW(PopOver window){
+    this.wind = window;
+  }
+
+  public void fillLocNames() {
+    loc = App.locMap.get(longName.getValue().toString());
+
+    shortName.setText(loc.getShortName());
+    nType.setText(loc.getNodeType());
   }
 
   public void editPopUp() throws SQLException {
-
-    NodeDAO nodeDAO = App.nodeDAO;
-
     LocationNameDAO locationNameDAO = new LocationNameDAO();
 
-    HashMap<Integer, Node> nodes = nodeDAO.getAll();
+    locationNameDAO.update(loc, "shortname", shortName.getText());
+    locationNameDAO.update(loc, "nodetype", nType.getText());
 
-    Node ourNode = nodes.get(Integer.parseInt(nodID.getText()));
-    HashMap<Integer, String> ln = nodeDAO.getAllLongName();
-    HashMap<String, LocationName> locs = locationNameDAO.getAll();
-
-    String oldLong = ln.get(ourNode.getNodeID());
-
-    String oldShort = locs.get(oldLong).getShortName();
-    String oldType = locs.get(oldLong).getNodeType();
-    //        String newLong = longName.getText();
-    //        String newShort = shortName.getText();
-    //        String newNodeType = nodID.getText();
-
-    LocationName oldLoc = new LocationName(oldLong, oldShort, oldType);
-    //        LocationName updatedLoc = new LocationName(newLong,newShort,newNodeType);
-
-    locationNameDAO.update(oldLoc, "shortname", shortName.getText());
-    locationNameDAO.update(oldLoc, "nodetype", nType.getText());
-    locationNameDAO.update(oldLoc, "longname", longName.getText());
-
+    wind.hide();
     App.refresh();
   }
 }

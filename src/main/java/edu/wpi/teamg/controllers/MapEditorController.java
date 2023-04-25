@@ -56,6 +56,11 @@ public class MapEditorController {
   @FXML MFXButton addEdge;
 
   @FXML MFXButton deleteMove;
+
+  @FXML MFXButton delEdge;
+
+  @FXML MFXButton locNameMod;
+
   boolean moved = false;
 
   boolean lineGen;
@@ -67,6 +72,8 @@ public class MapEditorController {
   Node nodeCon2 = new Node();
 
   ArrayList<ImageView> img = new ArrayList<>();
+
+  boolean editEdge = false;
 
   public void initialize() throws SQLException, IOException {
     pane.setVisible(true);
@@ -119,17 +126,33 @@ public class MapEditorController {
 
     addEdge.setOnMouseClicked(
         event -> {
-          try {
-            addEdge();
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
+          editEdge = true;
         });
 
     deleteMove.setOnMouseClicked(
         event -> {
           try {
             deleteAMove();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    delEdge.setOnMouseClicked(
+        event -> {
+          try {
+            deleteEdge();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    locNameMod.setOnMouseClicked(
+        event -> {
+          try {
+            locPop();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
@@ -557,15 +580,18 @@ public class MapEditorController {
             }
             if (!moved) {
 
-              if (nodeClickCount == 0) {
-                nodeCon1 = currentNode;
-                nodeClickCount = nodeClickCount + 1;
-              }
-              if (nodeClickCount == 1) {
-                nodeCon2 = currentNode;
+              if (editEdge) {
+                if (nodeClickCount == 0) {
+                  nodeCon1 = currentNode;
+                  nodeClickCount = nodeClickCount + 1;
+                }
+                if (nodeClickCount == 1) {
+                  nodeCon2 = currentNode;
 
-                if (nodeCon1 != nodeCon2) {
-                  addEdgeOffClicks(nodeCon1, nodeCon2);
+                  if (nodeCon1 != nodeCon2) {
+                    addEdgeOffClicks(nodeCon1, nodeCon2);
+                    editEdge = false;
+                  }
                 }
               }
             }
@@ -589,6 +615,7 @@ public class MapEditorController {
     edgeDao.insert(newEdge);
     nodeClickCount = 0;
     System.out.println("edge added" + nodeCon1.getNodeID() + "      " + nodeCon2.getNodeID());
+
     refresh();
   }
 
@@ -687,13 +714,14 @@ public class MapEditorController {
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
-  public void addEdge() throws IOException {
+  public void deleteEdge() throws IOException {
     final PopOver window = new PopOver();
-    var loader = new FXMLLoader(App.class.getResource("views/addEdgePopUp.fxml"));
+    var loader = new FXMLLoader(App.class.getResource("views/DeleteEdgePopOver.fxml"));
     window.setContentNode(loader.load());
 
     window.setArrowSize(0);
-    AddEdgePopUpController controller = loader.getController();
+    DeleteEdgeController controller = loader.getController();
+    controller.setWind(window);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
@@ -735,6 +763,20 @@ public class MapEditorController {
     window.setArrowSize(0);
     DeleteMovePopUpController controller = loader.getController();
     controller.passOver(window);
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void locPop() throws SQLException, IOException {
+
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/locNamePopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    LocNamePopUpController controller = loader.getController();
+    controller.setW(window);
+
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
