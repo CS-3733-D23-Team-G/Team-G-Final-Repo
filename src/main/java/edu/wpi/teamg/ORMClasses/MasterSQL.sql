@@ -46,11 +46,12 @@ create table iteration3.Move(
                                         foreign key (longName) references iteration3.LocationName(longName) ON DELETE CASCADE ON UPDATE CASCADE
 );
 create table iteration3.signage(
-                                   kiosknum int primary key,
+                                   kiosknum int,
                                    specDate Date,
                                    arrow text,
                                    month text,
-                                   is_spec bool
+                                   is_spec bool,
+                                   primary key (kiosknum,arrow,month)
 );
 
 create type iteration3.enum1 as enum('blank', 'processing', 'done');
@@ -206,6 +207,37 @@ VALUES
     (10, 'Tulip, Rose', 5, 'Emily', 'Get well soon!'),
     (11, 'Daisy, Tulip', 20, 'Sarah', 'Congratulations on your new job!'),
     (12, 'Lily, Rose', 15, 'Michael', 'With deepest sympathy');
+
+
+insert into iteration3.signage (kiosknum, specdate, arrow, month, is_spec) values
+    (1,null, 'information_R_6','MAY-23',false),
+    (1,null, 'Shapiro Admitting_R_7','MAY-23',false),
+    (1,null, 'Shapiro Procedural Check-in_R_8','MAY-23',false),
+    (1,null, 'Watkins Clinics A & B (this floor)_L_1','MAY-23',false),
+    (1,null, 'Watkins Clinic C (up to 3rd floor)_L_2','MAY-23',false),
+    (1,null, 'Rehabilitation Services(down to first floor)_L_4','MAY-23',false),
+    (2,null, 'Watkins Clinics A & B (this floor)_U_1','MAY-23',false),
+    (2,null, 'Watkins Clinic C (EP & Echo) (up to 3rd fl)_U_6','MAY-23',false),
+    (2,null, 'Brigham Circle Medical Associates (up to 3rd floor)_U_2','MAY-23',false),
+    (2,null, 'L2PRU (down to Lower Level "L2")_D_5','MAY-23',false);
+insert into iteration3.signage (kiosknum, specdate, arrow, month, is_spec) values
+    (1,null, 'Stop here for_N_N','JUL-23',false),
+    (1,null, 'Information_N_N','JUL-23',false),
+    (1,null, 'Shapiro Admitting_N_N','JUL-23',false),
+    (1,null, 'Shapiro Procedural Check-in_N_N','JUL-23',false),
+    (2,null, 'Watkins Clinics A & B (this floor)_U_1','JUL-23',false),
+    (2,null, 'Watkins Clinic C (EP & Echo) (up to 3rd fl)_U_6','JUL-23',false),
+    (2,null, 'Brigham Circle Medical Associates (up to 3rd floor)_U_2','JUL-23',false),
+    (2,null, 'L2PRU (down to Lower Level "L2")_D_5','JUL-23',false);
+insert into iteration3.signage (kiosknum, specdate, arrow, month, is_spec) values
+    (1,null, 'Stop here for_N_N','NOV-23',false),
+    (1,null, 'Information_N_N','NOV-23',false),
+    (1,null, 'Shapiro Admitting_N_N','NOV-23',false),
+    (1,null, 'Shapiro Procedural Check-in_N_N','NOV-23',false),
+    (2,null, 'Watkins Clinic & EP (this floor)_U_1','NOV-23',false),
+    (2,null, 'Echocardiography (this floor)_R_8','NOV-23',false),
+    (2,null, 'Brigham Circle Medical Associates (Hale Building)_L_3','NOV-23',false),
+    (2,null, 'L2PRU (down to Lower Level "L2")_D_5','NOV-23',false);
 
 -- Query All Location Names for Meal and Flower Delivery Request
 SELECT Move.nodeID, LocationName.longName, LocationName.nodetype
