@@ -27,7 +27,12 @@
                               <Font size="48.0" />
                            </font></Text>
                         <Line endX="136.5780029296875" layoutX="415.0" layoutY="91.0" startX="-214.806884765625" stroke="#f6bd38" strokeWidth="3.0" />
-                        <Text fx:id="EMPID" fill="WHITE" layoutX="330.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                        <Text fx:id="EMPID" fill="WHITE" layoutX="410.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="232.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EmployeeID#">
                            <font>
                               <Font size="30.0" />
                            </font>
