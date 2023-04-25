@@ -76,7 +76,6 @@ public class MaintenanceRequestController {
   public void initialize() throws SQLException {
     maintainSubmitButton.setOnMouseClicked(
         event -> {
-          // MaintenanceRequest();
           allDataFilled();
         });
 
@@ -396,7 +395,7 @@ public class MaintenanceRequestController {
       } catch (SQLException e) {
         throw new RuntimeException(e);
       }
-      Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT); // TODO need to change to MaintenanceRequest
+      Navigation.navigate(Screen.MAINTENANCE_REQUEST_SUBMIT);
     } else {
       checkFields.setVisible(true);
     }

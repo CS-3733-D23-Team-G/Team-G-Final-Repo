@@ -364,6 +364,7 @@ public class AdminFormStatusController {
     roomTable.setVisible(false);
     flowerTable.setVisible(false);
     furnTable.setVisible(false);
+    maintenanceTable.setVisible(false);
   }
 
   public void loadMealTable() {
@@ -576,6 +577,7 @@ public class AdminFormStatusController {
     mainTable.setEditable(false);
     mealTable.setEditable(false);
     roomTable.setEditable(false);
+    maintenanceTable.setEditable(false);
   }
 
   public int extractEmpIDAndSeveBy(String empIDorSB) {

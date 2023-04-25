@@ -176,19 +176,7 @@
                         </TableColumn>
                      </columns>
                   </TableView>
-                  <TableView fx:id="mainTable" layoutX="1.0" layoutY="1.0" prefHeight="899.5" prefWidth="1370.5" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <columns>
-                        <TableColumn fx:id="reqID" prefWidth="85.0" text="Req. ID" />
-                        <TableColumn fx:id="reqType" prefWidth="118.95477294921875" text="Req. Type" />
-                        <TableColumn fx:id="empID" prefWidth="160.0" text="Emp. ID" />
-                        <TableColumn fx:id="location1" minWidth="0.0" prefWidth="400.0" text="Location" />
-                        <TableColumn fx:id="serveBy" minWidth="0.0" prefWidth="250.0" text="Serve-By" />
-                        <TableColumn fx:id="reqDate" prefWidth="146.76806640625" text="Date" />
-                        <TableColumn fx:id="reqTime" prefWidth="152.335205078125" text="Time" />
-                        <TableColumn fx:id="status" prefWidth="215.75634765625" text="Status" />
-                     </columns>
-                  </TableView>
-                  <TableView fx:id="maintenanceTable" layoutX="20.0" layoutY="20.0" prefHeight="899.5" prefWidth="1387.0" styleClass="table-text">
+                  <TableView fx:id="maintenanceTable" layoutX="20.0" layoutY="20.0" prefHeight="880.0" prefWidth="1417.0" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="maintenanceReqID" prefWidth="85.0" text="Req. ID" />
                         <TableColumn fx:id="maintenanceEmpID" prefWidth="160.0" text="Emp. ID" />
@@ -206,6 +194,18 @@
                               <TableColumn fx:id="maintenanceNote" prefWidth="400.0" text="Note" />
                            </columns>
                         </TableColumn>
+                     </columns>
+                  </TableView>
+                  <TableView fx:id="mainTable" layoutX="1.0" layoutY="1.0" prefHeight="899.5" prefWidth="1370.5" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="reqID" prefWidth="85.0" text="Req. ID" />
+                        <TableColumn fx:id="reqType" prefWidth="118.95477294921875" text="Req. Type" />
+                        <TableColumn fx:id="empID" prefWidth="160.0" text="Emp. ID" />
+                        <TableColumn fx:id="location1" minWidth="0.0" prefWidth="400.0" text="Location" />
+                        <TableColumn fx:id="serveBy" minWidth="0.0" prefWidth="250.0" text="Serve-By" />
+                        <TableColumn fx:id="reqDate" prefWidth="146.76806640625" text="Date" />
+                        <TableColumn fx:id="reqTime" prefWidth="152.335205078125" text="Time" />
+                        <TableColumn fx:id="status" prefWidth="215.75634765625" text="Status" />
                      </columns>
                   </TableView>
                </children>
