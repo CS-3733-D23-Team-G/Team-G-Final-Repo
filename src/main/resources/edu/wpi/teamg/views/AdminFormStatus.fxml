@@ -36,7 +36,7 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="flowerTableButton" styleClass="table_view_Button" text="Flower Requests">
+                        <MFXButton fx:id="flowerTableButton" styleClass="table_view_Button" text="Office Supply ">
                            <font>
                               <Font size="50.0" />
                            </font>
@@ -52,7 +52,7 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
-                        <MFXButton styleClass="table_view_Button" text="Office Supply Requests">
+                        <MFXButton fx:id="suppTableButton" styleClass="table_view_Button" text="Office Supply Requests">
                            <font>
                               <Font size="50.0" />
                            </font>
@@ -158,7 +158,7 @@
                         </TableColumn>
                      </columns>
                   </TableView>
-                  <TableView fx:id="furnTable" layoutX="10.0" layoutY="10.0" prefHeight="899.5" prefWidth="1370.5" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="furnTable" layoutX="10.0" layoutY="10.0" prefHeight="880.0" prefWidth="1350.0" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="furnReqID" prefWidth="85.0" text="Req. ID" />
                         <TableColumn fx:id="furnEmpID" prefWidth="160.0" text="Emp. ID" />
@@ -173,6 +173,24 @@
                               <TableColumn fx:id="furnRecipient" prefWidth="150.0" text="Recipient" />
                               <TableColumn fx:id="furnNote" prefWidth="400.0" text="Note" />
                            </columns>
+                        </TableColumn>
+                     </columns>
+                  </TableView>
+                  <TableView fx:id="suppTable" layoutX="20.0" layoutY="20.0" prefHeight="880.0" prefWidth="1380.0" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="suppReqID" prefWidth="85.0" text="Req. ID" />
+                        <TableColumn fx:id="suppEmpID" prefWidth="160.0" text="Emp. ID" />
+                        <TableColumn fx:id="suppLocation1" prefWidth="400.0" text="Location" />
+                        <TableColumn fx:id="suppServeBy" prefWidth="250.0" text="Serve-By" />
+                        <TableColumn fx:id="suppStatus" prefWidth="130.0" text="Status" />
+                        <TableColumn prefWidth="670.0" text="Office Supply Request">
+                           <columns>
+                              <TableColumn fx:id="suppDate" minWidth="0.0" prefWidth="120.0" text="Date" />
+                              <TableColumn fx:id="suppTime" prefWidth="120.0" text="Time" />
+                              <TableColumn fx:id="suppType" prefWidth="250.0" text="SupplyType" />
+                              <TableColumn fx:id="suppRecipient" prefWidth="150.0" text="Recipient" />
+                              <TableColumn fx:id="suppNote" prefWidth="400.0" text="Note" />
+                          </columns>
                         </TableColumn>
                      </columns>
                   </TableView>

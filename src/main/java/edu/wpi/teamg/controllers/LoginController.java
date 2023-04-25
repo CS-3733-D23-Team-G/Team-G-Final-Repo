@@ -102,8 +102,8 @@ public class LoginController {
         if (username.getText().equals("admin") || username.getText().equals("staff")) {
           Navigation.Logout();
           if (tableAdmin) {
-
             Navigation.setAdmin();
+            App.employee.setIs_admin(true);
           }
           EmployeeDAO employeeDAO = new EmployeeDAO();
 

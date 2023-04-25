@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="400.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.ConfirmPopUpController">
+   <children>
+      <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER" />
+      <HBox alignment="CENTER" prefWidth="200.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="323.0" text="Are you sure you would like to make the following changes?" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefWidth="200.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="19.0" text="X: " />
+            <MFXTextField minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="67.0" fx:id="x1" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="91.0" text="To" />
+            <Label prefHeight="17.0" prefWidth="17.0" text="X:" />
+            <MFXTextField minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="67.0" fx:id="x2" />
+         </children></HBox>
+      <HBox alignment="CENTER" prefWidth="200.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="19.0" text="Y: " />
+            <MFXTextField fx:id="y1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="67.0" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="91.0" text="To" />
+            <Label prefHeight="17.0" prefWidth="17.0" text="Y:" />
+            <MFXTextField fx:id="y2" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="67.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+         <children>
+            <MFXButton fx:id="cancel" text="Cancel" />
+            <MFXButton fx:id="confirm" text="Yes">
+               <HBox.margin>
+                  <Insets left="275.0" />
+               </HBox.margin>
+            </MFXButton>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+   </padding>
+</VBox>
