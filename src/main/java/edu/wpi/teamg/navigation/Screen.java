@@ -32,8 +32,8 @@ public enum Screen {
   EMPLOYEE_INFO("views/EmployeeInformation.fxml"),
   TWO_FAC("views/2FactorPopUp.fxml"),
   NODE_EDITOR("views/NodeViewAndEditor"),
-
-  ALERT_PAGE("views/AlertPage.fxml");
+  NOTIFICATION_PAGE("views/AddNotification.fxml");
+  // ALERT_PAGE("views/AlertPage.fxml");
 
   private final String filename;
 
