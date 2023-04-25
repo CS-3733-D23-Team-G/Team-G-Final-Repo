@@ -1,7 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
 import edu.wpi.teamg.DBConnection;
-import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.MaintenanceRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import java.sql.*;
@@ -26,7 +25,7 @@ public class MaintenanceRequestDAO implements DAO {
             + getTable()
             + " on iteration3.request.reqid = "
             + getTable()
-            + ".requid";
+            + ".reqid";
     try {
       ps = db.getConnection().prepareStatement(SQL_maintenceRequest);
       rs = ps.executeQuery();
@@ -39,7 +38,7 @@ public class MaintenanceRequestDAO implements DAO {
     longNameHash = NodeDAO.getMandFLLongName();
 
     HashMap employeeHash = new HashMap<>();
-    employeeHash = employeeDAO.getEmployeeFullName("Flowers Request");
+    employeeHash = employeeDAO.getEmployeeFullName("Maintenance Request");
 
     HashMap allEmployeeHash = new HashMap<>();
     allEmployeeHash = employeeDAO.getAllEmployeeFullName();
@@ -119,9 +118,9 @@ public class MaintenanceRequestDAO implements DAO {
     try {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
       ps_Req.setInt(1, maxID);
-      ps_Req.setString(2, "FL");
+      ps_Req.setString(2, "MA");
 
-      String requestingEmployee = ((FlowerRequest) obj).getEmpid();
+      String requestingEmployee = ((MaintenanceRequest) obj).getEmpid();
 
       String[] split0 = requestingEmployee.split(":");
 
@@ -131,11 +130,11 @@ public class MaintenanceRequestDAO implements DAO {
 
       int nodeID =
           nodeDAO.getNodeIDbyLongName(
-              ((FlowerRequest) obj).getLocation(), new java.sql.Date(2023, 01, 01));
+              ((MaintenanceRequest) obj).getLocation(), new java.sql.Date(2023, 01, 01));
 
       ps_Req.setInt(4, nodeID);
 
-      String assignedEmployee = ((FlowerRequest) obj).getServeBy();
+      String assignedEmployee = ((MaintenanceRequest) obj).getServeBy();
 
       String[] split1 = new String[2];
       int serveBy = 0;
@@ -151,9 +150,9 @@ public class MaintenanceRequestDAO implements DAO {
         ps_Req.setInt(5, serveBy);
       }
 
-      ps_Req.setObject(6, ((FlowerRequest) obj).getStatus(), java.sql.Types.OTHER);
-      ps_Req.setDate(7, ((FlowerRequest) obj).getRequestDate());
-      ps_Req.setTime(8, ((FlowerRequest) obj).getRequestTime());
+      ps_Req.setObject(6, ((MaintenanceRequest) obj).getStatus(), java.sql.Types.OTHER);
+      ps_Req.setDate(7, ((MaintenanceRequest) obj).getRequestDate());
+      ps_Req.setTime(8, ((MaintenanceRequest) obj).getRequestTime());
       ps_Req.executeUpdate();
 
       ps_getMain = db.getConnection().prepareStatement(SQL_maintenceRequest);
