@@ -2,6 +2,7 @@ package edu.wpi.teamg;
 
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
+import edu.wpi.teamg.controllers.GameFrame;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import java.io.IOException;
@@ -688,6 +689,11 @@ public class App extends Application {
   public static String getUser() {
     return App.user;
   }
+
+  public void playGame() {
+    new GameFrame();
+  }
+
 
   @Override
   public void stop() {

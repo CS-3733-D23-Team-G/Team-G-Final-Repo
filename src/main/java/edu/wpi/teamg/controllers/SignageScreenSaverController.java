@@ -157,4 +157,14 @@ public class SignageScreenSaverController {
     dateText.setFill(Paint.valueOf("linear-gradient(to bottom left, #009FFD, #2A2A72)"));
     dateText.setStyle("-fx-font-weight: 800");
   }
+
+
+
+
+
+
+
+
+
+
 }
