@@ -51,8 +51,4 @@ public class MaintenanceRequest extends Request {
     this.specified = specified;
     this.notes = notes;
   }
-
-  public void setReqID(int reqId) {
-    this.reqId = reqId;
-  }
 }

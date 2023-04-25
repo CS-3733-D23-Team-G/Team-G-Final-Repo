@@ -77,7 +77,7 @@ public class MaintenanceRequestDAO implements DAO {
               type,
               specifed,
               note);
-      mainRequest.setReqID(reqID);
+      mainRequest.setReqId(reqID);
       maintenanceRequestHashMap.put(reqID, mainRequest);
     }
     db.closeConnection();
@@ -170,7 +170,6 @@ public class MaintenanceRequestDAO implements DAO {
     }
     maintenanceRequestHashMap.put(maintenanceRequest.getReqId(), maintenanceRequest);
     db.closeConnection();
-
   }
 
   @Override
