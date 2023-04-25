@@ -172,6 +172,9 @@ public class MealRequestDAO implements DAO {
       ps_Request.setTime(8, ((MealRequest) obj).getRequestTime());
       ps_Request.executeUpdate();
 
+      db.closeConnection();
+      db.setConnection();
+
       ps_mealRequest = db.getConnection().prepareStatement(SQL_mealRequest);
       ps_mealRequest.setInt(1, maxID);
       ps_mealRequest.setString(2, ((MealRequest) obj).getRecipient());
