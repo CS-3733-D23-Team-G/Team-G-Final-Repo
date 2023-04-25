@@ -74,9 +74,14 @@ public class SignageEditorController {
   public static int[] arrowDirectionNumber = new int[10];
   public static LocalDate dateSave = LocalDate.now();
 
+  ObservableList<String> monthChoice =
+      FXCollections.observableArrayList(
+          "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+
   @FXML
   public void initialize() throws SQLException {
     DAORepo dao = new DAORepo();
+    monthDrop.setItems(monthChoice);
     arrows =
         new ArrayList<>(
             Arrays.asList(
@@ -88,6 +93,7 @@ public class SignageEditorController {
             arrowSetUp(arrowDirectionNumber);
           }
         });
+    daySpecify.setOnAction(event -> date.setVisible(true));
 
     //    if (!attribute) {
     //      arrow2.setImage(westArrow);
