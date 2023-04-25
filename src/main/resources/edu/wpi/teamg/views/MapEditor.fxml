@@ -4,10 +4,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
-
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.TitledPane?>
-
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -39,8 +37,23 @@
                                                    <children>
                                                       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
                                                          <children>
-                              
+
                                                                                                                                                                                                                                                             <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Node" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <MFXButton fx:id="alignButton" prefHeight="54.0" prefWidth="226.0" styleClass="add_Buttons" text="Align Nodes" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="verticalButton" prefHeight="70.0" prefWidth="192.0" styleClass="add_Buttons" text="Vertical" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="horizontalButton" prefHeight="60.0" prefWidth="216.0" styleClass="add_Buttons" text="Horizontal" />
                                                          </children>
                                                       </HBox>
                                                    </children>
@@ -140,29 +153,7 @@
                               </HBox>
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
-
-                                    <MFXButton fx:id="addMove" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Move">
-                                       <HBox.margin>
-                                          <Insets top="10.0" />
-                                       </HBox.margin>
-                                    </MFXButton>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                 <children>
-                                    <MFXButton fx:id="addEdge" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Edge">
-                                       <HBox.margin>
-                                          <Insets top="10.0" />
-                                       </HBox.margin>
-                                    </MFXButton>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" styleClass="algoSelect_hbox" stylesheets="@mapEditor.css">
-                                 <children>
-                                    <MFXButton fx:id="deleteLoc" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Location Name">
-
                                     <MFXToggleButton fx:id="toggleEdge" prefHeight="41.0" prefWidth="30.0" text="Toggle Edges">
-
                                        <HBox.margin>
                                           <Insets top="25.0" />
                                        </HBox.margin>
@@ -176,18 +167,6 @@
                                           <Insets top="25.0" />
                                        </HBox.margin>
                                     </MFXToggleButton>
-                                 </children>
-                              </HBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <MFXButton fx:id="alignButton" prefHeight="54.0" prefWidth="226.0" styleClass="add_Buttons" text="Align Nodes" />
-                                    <Label fx:id="alignmentLabel" text="Select the nodes you would like to align" />
-                                 </children>
-                              </VBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
-                                 <children>
-                                    <MFXButton fx:id="verticalButton" prefHeight="70.0" prefWidth="192.0" styleClass="add_Buttons" text="Vertical" />
-                                    <MFXButton fx:id="horizontalButton" prefHeight="60.0" prefWidth="216.0" styleClass="add_Buttons" text="Horizontal" />
                                  </children>
                               </HBox>
                            </children></VBox>

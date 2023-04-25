@@ -55,7 +55,6 @@ public class MapEditorController {
 
   @FXML MFXButton addEdge;
 
-
   @FXML MFXButton alignButton;
 
   @FXML MFXButton horizontalButton;
@@ -63,7 +62,6 @@ public class MapEditorController {
   @FXML MFXButton verticalButton;
 
   @FXML Label alignLabel;
-
 
   @FXML MFXButton deleteMove;
 
@@ -90,7 +88,6 @@ public class MapEditorController {
 
   boolean isAlignClicked = false;
 
- 
   boolean editEdge = false;
 
   boolean shortNameToggle = true;
@@ -614,7 +611,6 @@ public class MapEditorController {
             listOfNodes.get(i).getYcoord(),
             10,
             Color.rgb(1, 45, 90));
-
 
     point.setOnMouseClicked(
         event -> {

@@ -4,8 +4,6 @@ import static edu.wpi.teamg.App.*;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.ORMClasses.Node;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
