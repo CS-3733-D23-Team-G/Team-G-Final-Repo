@@ -445,6 +445,7 @@ Popup
 
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 30;
+    -fx-spacing: 1.5;
     -fx-text-alignment: left;
 }
 

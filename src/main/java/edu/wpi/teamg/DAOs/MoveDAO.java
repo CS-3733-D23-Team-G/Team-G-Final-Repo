@@ -113,7 +113,7 @@ public class MoveDAO implements LocationMoveDao {
 
       ps.setInt(1, move.getNodeID());
       ps.setString(2, move.getLongName());
-      ps.setDate(3,move.getDate());
+      ps.setDate(3, move.getDate());
     } catch (SQLException e) {
       System.err.println("SQL Exception");
     }

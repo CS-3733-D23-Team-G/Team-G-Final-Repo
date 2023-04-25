@@ -1,17 +1,21 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.navigation.Navigation;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
+import java.awt.*;
+
 public class AboutPageController {
-  @FXML
-  Text Text_about;
+  @FXML Text Text_about;
+  @FXML MFXButton Credits;
 
   public void initialize() {
+    //Credits.setOnMouseClicked(event->(Navigation.navigate(Credits);));
     String about_text =
-        "WPI Computer Science Department, CS3733-D23 Software Engineering, Prof. Wilson Wong,\n"
-            + "Teach Coach: Luke Deratzou, Ian Wright, Micheal O’Connor, Qui Nguyen. \n"
+        "WPI Computer Science Department, CS3733-D23 Software Engineering, Prof. Wilson Wong, \n"
+            + "Teach Coach: Luke Deratzou, Ian Wright, Micheal O'Connor, Qui Nguyen. \n"
             + "Lead Software Engineer: Thomas McDonagh, Aaron Mar\n"
             + "Assistant Lead Software Engineer:  Nathan Shemesh, Rajesh Ganguli\n"
             + "Scrum Master: Rishi Patel\n"
@@ -20,7 +24,8 @@ public class AboutPageController {
             + "Product Onwer: Andrew Simonini\n"
             + "Full-time Engineer: Mohamed Barry, Viet Hung Pham\n"
             + "\n"
-            + "Thank you to the Brigham and Women’s Hospital and their representative, Andrew Shinn, for their time and input with the project\n ";
+            + "Thank you to the Brigham and Women's Hospital and their representative, Andrew Shinn, for their time and input with the project\n ";
     Text_about.setText(about_text);
+
   }
 }

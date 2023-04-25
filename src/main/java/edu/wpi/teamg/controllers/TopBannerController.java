@@ -19,6 +19,7 @@ public class TopBannerController {
   @FXML MFXButton loginButton;
   @FXML MFXButton HomeButton;
   @FXML MFXButton dictionaryButton;
+  @FXML MFXButton About_Credits;
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -39,6 +40,7 @@ public class TopBannerController {
     loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     dictionaryButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
+    About_Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.ABOUT_PAGE));
   }
 
   public void exit() {
