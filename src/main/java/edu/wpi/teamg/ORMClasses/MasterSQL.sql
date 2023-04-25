@@ -209,6 +209,19 @@ VALUES
     (12, 'Lily, Rose', 15, 'Michael', 'With deepest sympathy');
 
 
+
+
+insert into iteration3.signage (kiosknum, specdate, arrow, month, is_spec) values
+    (1,null, 'information_R_6','APR-23',false),
+    (1,null, 'Shapiro Admitting_R_7','APR-23',false),
+    (1,null, 'Shapiro Procedural Check-in_R_8','APR-23',false),
+    (1,null, 'Watkins Clinics A & B (this floor)_L_1','APR-23',false),
+    (1,null, 'Watkins Clinic C (up to 3rd floor)_L_2','APR-23',false),
+    (1,null, 'Rehabilitation Services(down to first floor)_L_4','APR-23',false),
+    (2,null, 'Watkins Clinics A & B (this floor)_U_1','APR-23',false),
+    (2,null, 'Watkins Clinic C (EP & Echo) (up to 3rd fl)_U_6','APR-23',false),
+    (2,null, 'Brigham Circle Medical Associates (up to 3rd floor)_U_2','APR-23',false),
+    (2,null, 'L2PRU (down to Lower Level "L2")_D_5','APR-23',false);
 insert into iteration3.signage (kiosknum, specdate, arrow, month, is_spec) values
     (1,null, 'information_R_6','MAY-23',false),
     (1,null, 'Shapiro Admitting_R_7','MAY-23',false),

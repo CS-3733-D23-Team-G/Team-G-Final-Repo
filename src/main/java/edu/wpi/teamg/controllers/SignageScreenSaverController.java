@@ -66,8 +66,6 @@ public class SignageScreenSaverController {
     //              }
     //            });
 
-    // HELP, I NEED SOMEBODY
-
     int[] arrowDirection = null;
     SignageEditorController controller = new SignageEditorController();
     arrowDirection = controller.getArrowDirection();
