@@ -529,8 +529,8 @@ public class NodeDAO implements LocationDAO {
     return longNameHash;
   }
 
-  public static HashMap<Integer, Node> getNodeIDsGivenShortnames(ArrayList<String> shortNames)
-      throws SQLException {
+  public static HashMap<Integer, Node> getNodeIDsGivenShortnames(
+      ArrayList<String> shortNames, String floorFilter) throws SQLException {
 
     HashMap<Integer, Node> filteredNodeHash = new HashMap();
     db.setConnection();
@@ -543,7 +543,7 @@ public class NodeDAO implements LocationDAO {
             + "node.xcoord, node.ycoord, node.floor, node.building, locationname.shortname "
             + "from iteration3.move join iteration3.locationname on move.longname = locationname.longname "
             + "join iteration3.node on move.nodeid = node.nodeid "
-            + "where locationname.shortname in ";
+            + "where node.floor = ? and locationname.shortname in ";
 
     for (int i = 0; i < shortNames.size(); i++) {
       if (i == 0) {
@@ -565,6 +565,7 @@ public class NodeDAO implements LocationDAO {
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
+      ps.setString(1, floorFilter);
       rs = ps.executeQuery();
     } catch (SQLException e) {
       System.err.println("SQL exception");
@@ -572,6 +573,7 @@ public class NodeDAO implements LocationDAO {
       // printSQLException(e);
     }
 
+    // Just Debugged it right below this comment is the issue. It should have stopped at 63
     while (rs.next()) {
 
       int node_id = rs.getInt("nodeid");

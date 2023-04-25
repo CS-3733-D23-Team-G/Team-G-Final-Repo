@@ -441,6 +441,16 @@ public class App extends Application {
     loc = new LocationNameDAO();
 
     locMap = new HashMap<>(loc.getAll());
+
+    edgeDao = new EdgeDAO();
+
+    listOfEdges = new ArrayList<>(edgeMap.values());
+
+    try {
+      edgeMap = edgeDao.getAll();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   /// FIX REFRESH
