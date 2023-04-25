@@ -3,6 +3,7 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.awt.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ public class TopBannerController {
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
   @FXML MFXButton loginButton;
   @FXML MFXButton HomeButton;
+  @FXML MFXButton dictionaryButton;
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -36,6 +38,7 @@ public class TopBannerController {
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    dictionaryButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
   }
 
   public void exit() {

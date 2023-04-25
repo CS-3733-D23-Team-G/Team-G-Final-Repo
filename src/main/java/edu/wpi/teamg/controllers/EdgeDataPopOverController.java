@@ -18,6 +18,8 @@ public class EdgeDataPopOverController {
 
   @FXML MFXTextField endLn;
 
+  Edge otherEdge;
+
   public void initialize() {
     edgeID.setEditable(false);
     startNode.setEditable(false);

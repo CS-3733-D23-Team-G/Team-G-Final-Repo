@@ -8,6 +8,7 @@ import java.util.Arrays;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
 public class SignageScreenSaverController {
@@ -48,6 +49,9 @@ public class SignageScreenSaverController {
 
   ArrayList<ImageView> arrows;
 
+  @FXML Text dateText;
+  public String date;
+
   public void initialize() {
     ClickToPathFinding.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     arrows =
@@ -77,7 +81,9 @@ public class SignageScreenSaverController {
     if (controller.getAttribute()) {
       getArrowDirectionFromEditor();
       getSavedNamesFromEditor();
+      getSavedDate();
     } else {
+      getSavedDate();
       arrow2.setImage(westArrow);
       nameLabel2.setText("75 Lobby");
       arrow3.setImage(northArrow);
@@ -143,5 +149,12 @@ public class SignageScreenSaverController {
     nameLabel8.setText(savedNames[7]);
     nameLabel9.setText(savedNames[8]);
     nameLabel10.setText(savedNames[9]);
+  }
+
+  public void getSavedDate() {
+    SignageEditorController controller = new SignageEditorController();
+    dateText.setText(controller.getDate() + ".");
+    dateText.setFill(Paint.valueOf("linear-gradient(to bottom left, #009FFD, #2A2A72)"));
+    dateText.setStyle("-fx-font-weight: 800");
   }
 }

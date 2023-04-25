@@ -3,6 +3,9 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -48,7 +51,7 @@ public class ConferenceRoomRequestDAO implements DAO {
     longNameHash = NodeDAO.getCRLongName();
 
     HashMap employeeHash = new HashMap<>();
-    employeeHash = employeeDAO.getEmployeeFullName("Conference Rooms Request");
+    employeeHash = employeeDAO.getEmployeeFullName("Conference Room Request");
 
     HashMap allEmployeeHash = new HashMap<>();
     allEmployeeHash = employeeDAO.getAllEmployeeFullName();
@@ -139,13 +142,10 @@ public class ConferenceRoomRequestDAO implements DAO {
       ps_Req.setString(2, "CR");
 
       String requestingEmployee = ((ConferenceRoomRequest) obj).getEmpid();
-      String assignedEmployee = ((ConferenceRoomRequest) obj).getServeBy();
 
       String[] split0 = requestingEmployee.split(":");
-      String[] split1 = assignedEmployee.split(":");
 
       int empid = Integer.parseInt(split0[0].substring(3));
-      int serveBy = Integer.parseInt(split1[0].substring(3));
 
       ps_Req.setInt(3, empid);
 
@@ -155,7 +155,22 @@ public class ConferenceRoomRequestDAO implements DAO {
 
       ps_Req.setInt(4, nodeID);
 
-      ps_Req.setInt(5, serveBy);
+      String assignedEmployee = ((ConferenceRoomRequest) obj).getServeBy();
+
+      String[] split1 = new String[2];
+      int serveBy = 0;
+
+      if (assignedEmployee != null) {
+        split1 = assignedEmployee.split(":");
+        serveBy = Integer.parseInt(split1[0].substring(3));
+      }
+
+      if (serveBy == 0) {
+        ps_Req.setObject(5, null);
+      } else {
+        ps_Req.setInt(5, serveBy);
+      }
+
       ps_Req.setObject(6, ((ConferenceRoomRequest) obj).getStatus(), java.sql.Types.OTHER);
       ps_Req.setDate(7, ((ConferenceRoomRequest) obj).getRequestDate());
       ps_Req.setTime(8, ((ConferenceRoomRequest) obj).getRequestTime());
@@ -204,6 +219,27 @@ public class ConferenceRoomRequestDAO implements DAO {
     }
 
     db.closeConnection();
+  }
+
+  @Override
+  public void importCSV(String path) throws SQLException {
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(path));
+      String line = null;
+      br.readLine();
+
+      while ((line = br.readLine()) != null) {
+        String[] data = line.split(",");
+        int id = Integer.parseInt(data[0]);
+        Time time = Time.valueOf(data[1]);
+        String purpose = data[2];
+        ConferenceRoomRequest confRoom = new ConferenceRoomRequest(id, time, purpose);
+        this.insert(confRoom);
+      }
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
