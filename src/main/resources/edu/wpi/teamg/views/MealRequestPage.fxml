@@ -195,17 +195,17 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="125.0" prefWidth="200.0">
                                        <children>
-                                          <MFXButton styleClass="meal-choice-buttons" text="Meals">
+                                          <MFXButton fx:id="mealButton" styleClass="meal-choice-buttons" text="Meals">
                                              <HBox.margin>
                                                 <Insets right="15.0" />
                                              </HBox.margin>
                                           </MFXButton>
-                                          <MFXButton styleClass="meal-choice-buttons" text="Snacks">
+                                          <MFXButton fx:id="snackButton" styleClass="meal-choice-buttons" text="Snacks">
                                              <HBox.margin>
                                                 <Insets right="15.0" />
                                              </HBox.margin>
                                           </MFXButton>
-                                          <MFXButton styleClass="meal-choice-buttons" text="Drinks">
+                                          <MFXButton fx:id="drinkButton" styleClass="meal-choice-buttons" text="Drinks">
                                              <HBox.margin>
                                                 <Insets right="15.0" />
                                              </HBox.margin>
@@ -221,12 +221,12 @@
                                        <children>
                                           <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="359.0">
                                              <children>
-                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
+                                                <Pane fx:id="pane1" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
                                                    <children>
-                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Text fx:id="text1" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fx:id="image1" fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                            <Image url="@burger.jpg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
@@ -234,12 +234,12 @@
                                                       <Insets bottom="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </Pane>
-                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
+                                                <Pane fx:id="pane2" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
                                                    <children>
-                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Text fx:id="text3" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fx:id="image3" fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                            <Image url="@burger.jpg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
@@ -247,12 +247,12 @@
                                                       <Insets bottom="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </Pane>
-                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
+                                                <Pane fx:id="pane3" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
                                                    <children>
-                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Text fx:id="text5" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fx:id="image5" fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                            <Image url="@burger.jpg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
@@ -264,12 +264,12 @@
                                           </VBox>
                                           <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="359.0">
                                              <children>
-                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
+                                                <Pane fx:id="pane4" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
                                                    <children>
-                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Text fx:id="text2" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fx:id="image2" fitHeight="120.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                            <Image url="@burger.jpg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
@@ -277,12 +277,12 @@
                                                       <Insets bottom="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </Pane>
-                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
+                                                <Pane fx:id="pane5" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
                                                    <children>
-                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Text fx:id="text4" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fx:id="image4" fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                            <Image url="@burger.jpg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
@@ -290,12 +290,12 @@
                                                       <Insets bottom="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </Pane>
-                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
+                                                <Pane fx:id="pane6" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
                                                    <children>
-                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Text fx:id="text6" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fx:id="image6" fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                            <Image url="@burger.jpg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>

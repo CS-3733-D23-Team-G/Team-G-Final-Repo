@@ -22,7 +22,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
@@ -40,16 +42,31 @@ public class MealRequestController {
 
   @FXML MFXTextField mealPersonOrderingForData;
   @FXML TextArea mealNotesData;
+  @FXML ImageView image1;
+  @FXML ImageView image2;
+  @FXML ImageView image3;
+  @FXML ImageView image4;
+  @FXML ImageView image5;
+  @FXML ImageView image6;
+  @FXML Text text1;
+  @FXML Text text2;
+  @FXML Text text3;
+  @FXML Text text4;
+  @FXML Text text5;
+  @FXML Text text6;
+  @FXML Pane pane1;
+  @FXML Pane pane2;
+  @FXML Pane pane3;
+  @FXML Pane pane4;
+  @FXML Pane pane5;
+  @FXML Pane pane6;
 
-  @FXML ImageView selectedBurger;
-  @FXML ImageView burgerOption;
-  @FXML ImageView selectedCornDog;
-  @FXML ImageView corndogOption;
-  @FXML ImageView selectedFriedRice;
-  @FXML ImageView friedRiceOption;
+  @FXML MFXButton mealButton;
+  @FXML MFXButton snackButton;
+  @FXML MFXButton drinkButton;
 
   // @FXML ChoiceBox<String> mealFoodChoice;
-  @FXML Label mealFoodChoice;
+  //  @FXML Label mealFoodChoice;
 
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML SearchableComboBox employeeSearchDropdown;
@@ -67,6 +84,7 @@ public class MealRequestController {
 
   @FXML
   public void initialize() throws SQLException {
+    MealPressed();
     mealSubmitButton.setOnMouseClicked(
         event -> {
           MealOrder();
@@ -85,19 +103,9 @@ public class MealRequestController {
     mealPersonOrderingForData.getText();
     mealNotesData.getText();
     // mealFoodChoice.setItems(foodList);
-    mealFoodChoice.getText();
+    //    mealFoodChoice.getText();
     mealDate.getValue();
     mealTimeOfDeliver.getText();
-
-    selectedBurger.setVisible(false);
-    selectedBurger.setDisable(true);
-    selectedCornDog.setVisible(false);
-    selectedCornDog.setDisable(true);
-    selectedFriedRice.setVisible(false);
-    selectedFriedRice.setDisable(true);
-    burgerOption.setOnMouseClicked(event -> selectBurgerOption());
-    friedRiceOption.setOnMouseClicked(event -> selectFriedRiceOption());
-    corndogOption.setOnMouseClicked(event -> selectCorndogOption());
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName = this.getHashMapEmployeeLongName("Meal Request");
@@ -117,12 +125,6 @@ public class MealRequestController {
     testingLongName.forEach(
         (i, m) -> {
           locationNames.add(m);
-          //          System.out.println("Request ID:" + m.getReqid());
-          //          System.out.println("Employee ID:" + m.getEmpid());
-          //          System.out.println("Status:" + m.getStatus());
-          //          System.out.println("Location:" + m.getLocation());
-          //          System.out.println("Serve By:" + m.getServ_by());
-          //          System.out.println();
         });
 
     Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
@@ -135,53 +137,37 @@ public class MealRequestController {
     checkFields.getText();
   }
 
+  public void MealPressed() {
+    Image burger = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+
+    Image dog = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+
+    Image pizza = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+
+    Image sushi = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+
+    Image taco = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+
+    Image sandwich = new Image(App.class.getResourceAsStream("views/burger.jpg"));
+    text1.setText("Burger");
+    text2.setText("dog");
+    text3.setText("pizza");
+    text4.setText("sushi");
+    text5.setText("taco");
+    text6.setText("sandwich");
+    image1.setImage(burger);
+    image2.setImage(dog);
+    image3.setImage(pizza);
+    image4.setImage(sushi);
+    image5.setImage(taco);
+    image6.setImage(sandwich);
+  }
+
   public void exit() {
     Platform.exit();
   }
 
-  public void selectBurgerOption() {
-    if (selectedBurger.isVisible() == false) {
-      selectedBurger.setVisible(true);
-      //  Order += "Cheeseburger, ";
-    } else if (selectedBurger.isVisible() == true) {
-      selectedBurger.setVisible(false);
-      //  Order.replace("Cheeseburger, ", "");
-    }
-  }
-
-  public void selectCorndogOption() {
-    if (selectedCornDog.isVisible() == false) {
-      selectedCornDog.setVisible(true);
-      //  Order += "Corndog, ";
-    } else if (selectedCornDog.isVisible() == true) {
-      selectedCornDog.setVisible(false);
-      // Order.replace("Corndog, ", "");
-
-    }
-  }
-
-  public void selectFriedRiceOption() {
-    if (selectedFriedRice.isVisible() == false) {
-      selectedFriedRice.setVisible(true);
-
-      // Order += "Shrimp Fried Rice, ";
-    } else if (selectedFriedRice.isVisible() == true) {
-      selectedFriedRice.setVisible(false);
-      //  Order.replace("Shrimp Fried Rice, ", "");
-    }
-  }
-
-  public void MealOrder() {
-    if (selectedBurger.isVisible()) {
-      Order += "Cheese Burger, ";
-    }
-    if (selectedCornDog.isVisible()) {
-      Order += "CornDog, ";
-    }
-    if (selectedFriedRice.isVisible()) {
-      Order += "Shrimp Fried Rice, ";
-    }
-  }
+  public void MealOrder() {}
 
   public void storeMealValues() throws SQLException {
 
@@ -207,37 +193,6 @@ public class MealRequestController {
             mealPersonOrderingForData.getText(),
             Order,
             mealNotesData.getText());
-
-    //  System.out.println (Order);
-
-    //    mr.setEmpid(1);
-    //    mr.setServ_by(1);
-    //    mr.setStatus(StatusTypeEnum.blank);
-    //
-    //    mr.setLocation(Integer.parseInt(mealDeliveryLocationData.getText()));
-    //    mr.setRecipient(mealPersonOrderingForData.getText());
-    //    mr.setNote(mealNotesData.getText());
-    //    mr.setDeliveryDate(Date.valueOf(mealDate.getValue()));
-    //    mr.setDeliveryTime(StringToTime(mealTimeOfDeliver.getText()));
-    //    mr.setOrder(mealFoodChoice.getValue());
-
-    //    System.out.println(
-    //        "Employee ID: "
-    //            + mr.getEmpid()
-    //            + "\nDelivery Location: "
-    //            + mr.getLocation()
-    //            + "\nOrder: "
-    //            + mr.getOrder()
-    //            + "\nNote: "
-    //            + mr.getNote()
-    //            + "\nRecipient: "
-    //            + mr.getRecipient()
-    //            + "\nDelivery Date: "
-    //            + mr.getDeliveryDate()
-    //            + "\nDelivery Time: "
-    //            + mr.getDeliveryTime()
-    //            + "\nStatus: "
-    //            + mr.getStatus());
 
     dao.insertMealRequest(mr);
     App.mealRefresh();
@@ -300,17 +255,9 @@ public class MealRequestController {
     mealNotesData.setText("");
     mealDate.setText("");
     mealTimeOfDeliver.setText("");
-    mealFoodChoice.setText("");
+    //    mealFoodChoice.setText("");
 
     locationSearchDropdown.setValue(null);
-
-    selectedBurger.setVisible(false);
-    selectedBurger.setDisable(true);
-    selectedCornDog.setVisible(false);
-    selectedCornDog.setDisable(true);
-    selectedFriedRice.setVisible(false);
-    selectedFriedRice.setDisable(true);
-
     employeeSearchDropdown.setValue(null);
     return;
   }
