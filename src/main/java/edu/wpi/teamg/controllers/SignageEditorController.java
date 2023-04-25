@@ -112,9 +112,9 @@ public class SignageEditorController {
     monthDrop.setItems(monthChoice);
     yearDrop.setItems(yearChoice);
     kioskDrop.setItems(kioskChoice);
-    for (MFXFilterComboBox box : comboBoxes) {
-      box.setValue("");
-    }
+    //    for (MFXFilterComboBox box : comboBoxes) {
+    //      box.setValue("");
+    //    }
     arrows =
         new ArrayList<>(
             Arrays.asList(
@@ -422,7 +422,7 @@ public class SignageEditorController {
     };
     for (MFXFilterComboBox box : comboBoxes) {
       StringBuilder sb = new StringBuilder();
-      if (box.getText().equals("")) {
+      if (box == null) {
         continue;
       }
 
