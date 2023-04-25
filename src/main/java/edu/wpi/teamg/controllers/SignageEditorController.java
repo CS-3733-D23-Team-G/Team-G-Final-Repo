@@ -3,6 +3,7 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.DAOs.DAORepo;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -56,8 +57,12 @@ public class SignageEditorController {
   @FXML MFXButton clearField8;
   @FXML MFXButton clearField9;
   @FXML MFXButton clearField10;
+  @FXML MFXButton submitSignage;
+  @FXML MFXButton daySpecify;
 
   @FXML MFXDatePicker date;
+
+  @FXML MFXFilterComboBox monthDrop;
 
   static boolean attribute = false;
 
