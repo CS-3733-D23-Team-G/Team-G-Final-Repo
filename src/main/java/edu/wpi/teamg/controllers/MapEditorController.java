@@ -58,6 +58,15 @@ public class MapEditorController {
 
   @FXML MFXButton addEdge;
 
+  @FXML MFXButton align;
+
+  @FXML MFXButton horizontal;
+
+  @FXML MFXButton vertical;
+
+  @FXML Label alignLabel;
+
+
   boolean lineGen;
   int floor = 0;
 
@@ -118,7 +127,18 @@ public class MapEditorController {
             throw new RuntimeException(e);
           }
         });
-    //    Image mapL1 =
+
+
+    alignLabel.setVisible(false);
+
+
+    align.setOnMouseClicked(
+            event -> {
+              if(vertical.)
+            }
+
+    );
+
 
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
@@ -375,6 +395,22 @@ public class MapEditorController {
         }
 
         break;
+    }
+  }
+
+  public void alignVertical(ArrayList<Node> nodes){
+    Node startnode = nodes.get(0);
+    int xcoord = startnode.getXcoord();
+    for(int i = 1; i < nodes.size(); i ++){
+          nodes.get(i).setXcoord(xcoord);
+    }
+  }
+
+  public void alignHorizontal(ArrayList<Node> nodes){
+    Node startnode = nodes.get(0);
+    int ycoord = startnode.getYcoord();
+    for(int i = 1; i < nodes.size(); i ++){
+      nodes.get(i).setXcoord(ycoord);
     }
   }
 

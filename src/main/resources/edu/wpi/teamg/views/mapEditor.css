@@ -41,8 +41,8 @@
 }
 
 .locationSelect_vbox{
-    -fx-pref-height: 560;
-    -fx-pref-width: 400;
+    -fx-pref-height: 600;
+    -fx-pref-width: 500;
 }
 
 .algoCheckBox{
@@ -53,7 +53,7 @@
 }
 
 .algoSelect_hbox{
-    -fx-pref-height: 60;
+    -fx-pref-height: 30;
     -fx-pref-width: 400;
 }
 

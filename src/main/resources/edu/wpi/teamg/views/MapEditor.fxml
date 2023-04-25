@@ -4,6 +4,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -18,7 +19,7 @@
          <children>
             <AnchorPane prefHeight="980.0" prefWidth="656.0" styleClass="half_bottom_left" stylesheets="@mapEditor.css">
                <children>
-                  <HBox layoutX="69.0" layoutY="228.0" prefHeight="486.0" prefWidth="502.0" styleClass="left_vbox" stylesheets="@mapEditor.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="150.0">
+                  <HBox layoutX="69.0" layoutY="228.0" prefHeight="486.0" prefWidth="642.0" styleClass="left_vbox" stylesheets="@mapEditor.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="150.0">
                      <children>
                         <VBox prefHeight="606.0" prefWidth="393.0" styleClass="locationSelect_vbox">
                            <children>
@@ -63,7 +64,7 @@
                                     </MFXButton>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox" stylesheets="@mapEditor.css">
                                  <children>
                                     <MFXButton fx:id="deleteLoc" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Location Name">
                                        <HBox.margin>
@@ -81,8 +82,18 @@
                                     </MFXToggleButton>
                                  </children>
                               </HBox>
-                              <MFXButton fx:id="deleteLoc12" prefHeight="70.0" prefWidth="192.0" styleClass="add_Buttons" text="Align" />
-                              <MFXButton fx:id="deleteLoc11" prefHeight="60.0" prefWidth="216.0" styleClass="add_Buttons" text="Align" />
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <MFXButton fx:id="alignNodesButton" prefHeight="54.0" prefWidth="226.0" styleClass="add_Buttons" text="Align Nodes" />
+                                    <Label fx:id="alignmentLabel" text="Select the nodes you would like to align" />
+                                 </children>
+                              </VBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <MFXButton fx:id="verticalButton" prefHeight="70.0" prefWidth="192.0" styleClass="add_Buttons" text="Vertical" />
+                                    <MFXButton fx:id="horizontalButton" prefHeight="60.0" prefWidth="216.0" styleClass="add_Buttons" text="Horizontal" />
+                                 </children>
+                              </HBox>
                            </children></VBox>
                         <VBox prefHeight="680.0" prefWidth="92.0" styleClass="button_vbox">
                            <children>
@@ -135,7 +146,6 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <MFXButton fx:id="deleteLoc1" layoutX="380.0" layoutY="884.0" prefHeight="46.0" prefWidth="204.0" styleClass="add_Buttons" text="Align" />
                </children>
             </AnchorPane>
             <AnchorPane styleClass="half_bottom_right">
