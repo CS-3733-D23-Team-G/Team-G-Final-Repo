@@ -313,7 +313,7 @@ public class App extends Application {
 
     final Scene scene = new Scene(root);
     primaryStage.setScene(scene);
-    primaryStage.show();  
+    primaryStage.show();
 
     Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
   }
