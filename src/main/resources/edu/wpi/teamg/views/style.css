@@ -4,6 +4,14 @@
     -mfx-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
 }
 
+.mfx-checkbox .box .mark {
+    -mfx-color: #F6BD38;
+}
+
+.mfx-check-list-cell .data-label {
+    -fx-font-size: 15;
+}
+
 .mfx-text-field .text-field {
     -fx-highlight-fill: #F6BD38; /* Selected text highlight */
     -fx-prompt-text-fill: -mfx-text-me; /* Prompt text color */
@@ -22,7 +30,7 @@ Date Picker
 }
 
 .mfx-date-picker:focus-within .icon {
-    -mfx-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
+    -mfx-color:  linear-gradient(to bottom left, #009FFD, #012D5A);
 }
 
 /********************
@@ -41,6 +49,11 @@ Popup
 .mfx-combo-box-cell:hover,
 .mfx-combo-box-cell:hover {
     -fx-background-color: #F1F1F1;
+}
+
+.mfx-combo-box-cell:selected,
+.mfx-combo-box-cell:selected {
+    -fx-background-color: #009FFD;
 }
 
 .mfx-date-picker .date-picker-popup .months-combo .virtual-flow .mfx-combo-box-cell:selected,

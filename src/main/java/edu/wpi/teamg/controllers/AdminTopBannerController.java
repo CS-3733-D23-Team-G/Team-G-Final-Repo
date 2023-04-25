@@ -29,7 +29,12 @@ public class AdminTopBannerController {
           "Office Supplies Request Form");
   ObservableList<String> AdminList =
       FXCollections.observableArrayList(
-          "Signage Page Editor", "Table View", "All Form Status", "Map Editor", "Add Employee");
+          "Signage Page Editor",
+          "Table View",
+          "All Form Status",
+          "Map Editor",
+          "Add Employee",
+          "Send Notification");
 
   @FXML
   public void initialize() {
@@ -70,6 +75,8 @@ public class AdminTopBannerController {
       Navigation.navigate(Screen.ADMIN_MAP_EDITOR);
     } else if (AdminChoiceBox.getValue().equals("Add Employee")) {
       Navigation.navigate(Screen.ADD_EMPLOYEE);
+    } else if (AdminChoiceBox.getValue().equals("Send Notification")) {
+      Navigation.navigate((Screen.NOTIFICATION_PAGE));
     } else {
       return;
     }
