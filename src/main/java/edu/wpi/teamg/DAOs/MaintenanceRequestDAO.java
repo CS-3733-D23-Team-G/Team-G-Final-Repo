@@ -154,7 +154,7 @@ public class MaintenanceRequestDAO implements DAO {
       ps_Req.setDate(7, ((MaintenanceRequest) obj).getRequestDate());
       ps_Req.setTime(8, ((MaintenanceRequest) obj).getRequestTime());
       ps_Req.executeUpdate();
-
+      db.closeConnection();
       db.setConnection();
       ps_getMain = db.getConnection().prepareStatement(SQL_maintenceRequest);
       ps_getMain.setInt(1, maxID);
@@ -170,7 +170,7 @@ public class MaintenanceRequestDAO implements DAO {
     }
     maintenanceRequestHashMap.put(maintenanceRequest.getReqId(), maintenanceRequest);
     db.closeConnection();
-    db.closeConnection();
+
   }
 
   @Override
