@@ -91,14 +91,14 @@
                   <MFXButton fx:id="clearField9" buttonType="RAISED" layoutX="875.0" layoutY="541.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="655.0" />
                   <MFXButton fx:id="clearField10" buttonType="RAISED" layoutX="875.0" layoutY="691.0" prefHeight="45.0" prefWidth="105.0" styleClass="signage_clear_button" text="Clear" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="805.0" />
                   <MFXDatePicker fx:id="date" layoutX="118.0" layoutY="92.0" prefHeight="33.0" prefWidth="295.0" styleClass="signage_datePicker" visible="false" AnchorPane.leftAnchor="110.0" />
-                  <MFXButton fx:id="submitSignage" layoutX="1540.0" layoutY="60.0" prefHeight="83.0" prefWidth="261.0" styleClass="signage_clear_button" text="Submit" />
-                  <MFXFilterComboBox fx:id="monthDrop" layoutX="740.0" layoutY="57.0" prefHeight="89.0" prefWidth="281.0" styleClass="signage_leftDropDown_button" />
-                  <Text layoutX="540.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONTH:" wrappingWidth="190.13671875">
+                  <MFXButton fx:id="submitSignage" layoutX="1515.0" layoutY="76.0" minHeight="10.0" minWidth="10.0" prefHeight="75.0" prefWidth="180.0" styleClass="signage_submit_button" text="Submit" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="70.0" />
+                  <MFXFilterComboBox fx:id="monthDrop" layoutX="730.0" layoutY="75.0" minHeight="10.0" minWidth="10.0" prefHeight="55.0" prefWidth="281.0" styleClass="signage_monthDropDown_button" AnchorPane.rightAnchor="900.0" AnchorPane.topAnchor="75.0" />
+                  <Text layoutX="540.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONTH:" wrappingWidth="190.13671875" AnchorPane.rightAnchor="1180.0" AnchorPane.topAnchor="75.0">
                      <font>
                         <Font size="48.0" />
                      </font>
                   </Text>
-                  <MFXButton fx:id="daySpecify" layoutX="1169.0" layoutY="60.0" prefHeight="83.0" prefWidth="261.0" styleClass="signage_clear_button" text="Specify Day" />
+                  <MFXButton fx:id="daySpecify" layoutX="1169.0" layoutY="68.0" minHeight="10.0" minWidth="10.0" prefHeight="75.0" prefWidth="180.0" styleClass="signage_clear_button" text="Specify Day" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="70.0" />
                </children>
                <styleClass>
                   <String fx:value="rest_of_page" />
