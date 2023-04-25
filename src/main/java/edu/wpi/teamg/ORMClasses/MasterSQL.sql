@@ -3,6 +3,7 @@ drop table if exists iteration3.ConferenceRoomRequest;
 drop table if exists iteration3.FurnitureRequest;
 drop table if exists iteration3.officesupplyrequest;
 drop table if exists iteration3.flowerrequest;
+drop table if exists iteration3.MaintenanceRequest;
 drop table if exists iteration3.Request;
 drop type if exists  iteration3.enum1;
 drop table if exists iteration3.Move;
@@ -112,6 +113,16 @@ create table iteration3.officesupplyrequest(
     note varchar(225),
     recipient varchar(200),
     foreign key (reqID) references  iteration3.request(reqid) on delete cascade on update cascade
+);
+create table iteration3.MaintenanceRequest(
+    reqId int primary key,
+    recipient varchar(100),
+    phoneNumber varchar(100),
+    type varchar(100),
+    specified varchar(200),
+    note varchar(225),
+    foreign key (reqId) references iteration3.request(reqid) on delete cascade on update cascade
+
 );
 
 create table iteration3.account(
