@@ -31,6 +31,8 @@ public enum Screen {
   ADMIN_SIGNAGE_EDITOR("views/SignageAdmin.fxml"),
   ADMIN_MAP_EDITOR("views/MapEditor.fxml"),
   ADD_EMPLOYEE("views/AddEmployee.fxml"),
+
+  ABOUT_PAGE("views/About_page.fxml"),
   EMPLOYEE_INFO("views/EmployeeInformation.fxml"),
   TWO_FAC("views/2FactorPopUp.fxml"),
 
@@ -39,7 +41,9 @@ public enum Screen {
 
   NODE_EDITOR("views/NodeViewAndEditor.fxml"),
 
-  DICTIONARY("views/Dictionary.fxml");
+  DICTIONARY("views/Dictionary.fxml"),
+
+  CREDITS("views/Credits.fxml");
 
   private final String filename;
 

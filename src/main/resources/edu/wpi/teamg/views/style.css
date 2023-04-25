@@ -449,6 +449,18 @@ Popup
 .allFilledError{
     -fx-font-size: 25;
 }
+.about_backround{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 20 20 20 20;
+
+}
+.about_text{
+
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 30;
+    -fx-spacing: 1.5;
+    -fx-text-alignment: left;
+}
 
 
 .admin_page_3_buttons{
@@ -623,6 +635,11 @@ Popup
     -fx-background-color: rgb(137, 137, 137);
     -fx-background-insets: 1.5, 0.0, 0.0;
     -fx-background-radius: 2.0em;
+}
+about_text{
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 36;
+    -fx-font-family: "Poppins-Regular";
 }
 
 

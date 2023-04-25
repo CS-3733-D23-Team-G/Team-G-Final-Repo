@@ -109,9 +109,11 @@ public class MoveDAO implements LocationMoveDao {
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
     try {
+
       ps.setInt(1, move.getNodeID());
       ps.setString(2, move.getLongName());
       ps.setDate(3, move.getDate());
+
       ps.executeUpdate();
     } catch (SQLException e) {
       System.err.println("SQL Exception");
