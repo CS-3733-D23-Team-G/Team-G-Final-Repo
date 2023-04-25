@@ -31,7 +31,9 @@ public enum Screen {
   ADD_EMPLOYEE("views/AddEmployee.fxml"),
   EMPLOYEE_INFO("views/EmployeeInformation.fxml"),
   TWO_FAC("views/2FactorPopUp.fxml"),
-  NODE_EDITOR("views/NodeViewAndEditor");
+  NODE_EDITOR("views/NodeViewAndEditor.fxml"),
+
+  DICTIONARY("views/Dictionary.fxml");
 
   private final String filename;
 
