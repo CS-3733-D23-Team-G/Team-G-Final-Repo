@@ -39,7 +39,19 @@ public class SignageDAO implements DAO{
 
     @Override
     public void update(Object obj, String colName, Object obj2) throws SQLException {
+        db.setConnection();
 
+        PreparedStatement ps;
+        sql ="update "+this.getTable()+" set "+ colName+" = ? where kiosknum = ?";
+        int kiosk = ((Signage)obj).getKioskNum();
+        ps = db.getConnection().prepareStatement(sql);
+
+        ps.setObject(1,obj2);
+        ps.setInt(2,kiosk);
+        ps.executeUpdate();
+        ps.close();
+
+        db.closeConnection();
     }
 
     @Override
