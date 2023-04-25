@@ -112,7 +112,7 @@ public class MaintenanceRequestDAO implements DAO {
     SQL_maintenceRequest =
         "insert into "
             + getTable()
-            + "(reqid, recipient, phoneNumber, type, specified, notes) values (?,?,?,?,?,?)";
+            + "(reqid, recipient, phoneNumber, type, specified, note) values (?,?,?,?,?,?)";
     SQL_Request =
         "insert into teamgdb.iteration3.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
     try {
@@ -155,8 +155,9 @@ public class MaintenanceRequestDAO implements DAO {
       ps_Req.setTime(8, ((MaintenanceRequest) obj).getRequestTime());
       ps_Req.executeUpdate();
 
+      db.setConnection();
       ps_getMain = db.getConnection().prepareStatement(SQL_maintenceRequest);
-      ps_getMain.setInt(1, maintenanceRequest.getReqId());
+      ps_getMain.setInt(1, maxID);
       ps_getMain.setString(2, maintenanceRequest.getRecipient());
       ps_getMain.setString(3, maintenanceRequest.getPhoneNumber());
       ps_getMain.setString(4, maintenanceRequest.getType());
@@ -168,6 +169,7 @@ public class MaintenanceRequestDAO implements DAO {
       e.printStackTrace();
     }
     maintenanceRequestHashMap.put(maintenanceRequest.getReqId(), maintenanceRequest);
+    db.closeConnection();
     db.closeConnection();
   }
 
