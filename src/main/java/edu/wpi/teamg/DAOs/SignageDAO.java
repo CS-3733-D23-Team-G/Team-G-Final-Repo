@@ -60,7 +60,16 @@ public class SignageDAO implements DAO{
 
     @Override
     public void delete(Object obj) throws SQLException {
+        db.setConnection();
 
+        PreparedStatement ps;
+        sql="delete from "+this.getTable()+" where kiosknum = ?";
+        ps=db.getConnection().prepareStatement(sql);
+        ps.setInt(1,((Signage)obj).getKioskNum());
+        ps.executeUpdate();
+        signageHash.remove(((Signage)obj).getKioskNum());
+
+        db.closeConnection();
     }
 
     @Override
