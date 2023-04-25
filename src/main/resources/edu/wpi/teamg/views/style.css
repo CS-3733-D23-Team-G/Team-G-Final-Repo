@@ -436,6 +436,17 @@ Popup
 .allFilledError{
     -fx-font-size: 25;
 }
+.about_backround{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 20 20 20 20;
+
+}
+.about_text{
+
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 30;
+    -fx-text-alignment: left;
+}
 
 
 .admin_page_3_buttons{
