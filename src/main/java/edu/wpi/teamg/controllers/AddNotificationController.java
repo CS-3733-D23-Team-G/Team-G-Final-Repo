@@ -1,11 +1,15 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.EmployeeDAO;
 import edu.wpi.teamg.DAOs.NotificationDAO;
+import edu.wpi.teamg.ORMClasses.Notification;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.*;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
@@ -97,16 +101,39 @@ public class AddNotificationController {
 
     selectedRecipients.forEach(
         (i, m) -> {
-          recipients.updateAndGet(v -> v + m);
+          String employee = (String) m;
+          String[] split1 = new String[2];
+
+          String serveBy = "";
+
+          split1 = employee.split(":");
+
+          serveBy = split1[0].substring(3);
+
+          String finalServeBy = serveBy;
+
+          recipients.updateAndGet(v -> v + finalServeBy + ",");
         });
 
     System.out.println(recipients);
 
-    //
-    //    Notification notification = new Notification(App.employee.getEmpID(),
-    // notifMessage.getText(), notifType.getText(), );
-    //
-    //    notifDao.insert(notification);
+    Notification notification =
+        new Notification(
+            App.employee.getEmpID(),
+            notifMessage.getText(),
+            notifType.getText(),
+            recipients.toString(),
+            Date.valueOf(notifDate.getValue()),
+            StringToTime(notifTime.getText()));
+
+    notifDao.insert(notification);
+  }
+
+  public Time StringToTime(String s) {
+
+    String[] hourMin = s.split(":", 2);
+    Time t = new Time(Integer.parseInt(hourMin[0]), Integer.parseInt(hourMin[1]), 00);
+    return t;
   }
 
   public void clearNotif() {
