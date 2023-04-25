@@ -35,8 +35,8 @@ public class HomeController {
         (i, m) -> {
           Text requestID = new Text("Ticket #" + i);
           requestID.setLayoutX(50);
-          requestID.setLayoutY(55);
-          requestID.setStyle("-fx-font-size: 16; -fx-font-weight: 800; -fx-font-family: Poppins");
+          requestID.setLayoutY(45);
+          requestID.setStyle("-fx-font-size: 20; -fx-font-weight: 800; -fx-font-family: Poppins");
           String type = m.getReqtype();
           String thisType = "";
 
@@ -73,18 +73,18 @@ public class HomeController {
           Text request = new Text(thisType + "Request");
           request.setLayoutX(50);
           request.setLayoutY(85);
-          request.setStyle("-fx-font-size: 24; -fx-font-weight: 800; -fx-font-family: Poppins");
+          request.setStyle("-fx-font-size: 26; -fx-font-weight: 800; -fx-font-family: Poppins");
 
           Text date = new Text("Do By: " + m.getRequestDate());
           date.setLayoutX(50);
-          date.setLayoutY(110);
+          date.setLayoutY(120);
           date.setStyle(
-              "-fx-font-size: 16; -fx-font-weight: 500;"
+              "-fx-font-size: 20; -fx-font-weight: 500;"
                   + "-fx-alignment: right; -fx-font-family: Poppins");
 
           Text bubbleText = new Text(String.valueOf(m.getStatus()));
           bubbleText.setStyle(
-              "-fx-font-size: 16; -fx-font-weight: 500;"
+              "-fx-font-size: 20; -fx-font-weight: 500;"
                   + "-fx-alignment: center; -fx-font-family: Poppins");
           bubbleText.setLayoutX(640);
           bubbleText.setLayoutY(87);
@@ -110,7 +110,7 @@ public class HomeController {
 
           StackPane stack = new StackPane();
           stack.getChildren().addAll(rect, bubbleText);
-          stack.setLayoutX(550);
+          stack.setLayoutX(535);
           stack.setLayoutY(52);
 
           //     pane.setStyle("-fx-background-color: " + color);
