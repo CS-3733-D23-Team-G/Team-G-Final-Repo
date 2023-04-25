@@ -84,25 +84,24 @@ public class SignageScreenSaverController {
       getSavedDate();
     } else {
       getSavedDate();
-      arrow2.setImage(westArrow);
-      nameLabel2.setText("75 Lobby");
-      arrow3.setImage(northArrow);
-      nameLabel3.setText("Bathroom 75 Lobby");
-      arrow7.setImage(eastArrow);
-      nameLabel7.setText("Garden Cafe");
-      arrow8.setImage(eastArrow);
-      nameLabel8.setText("75 Lobby Information Desk");
-
       arrow1.setImage(null);
+      arrow2.setImage(null);
+      arrow3.setImage(null);
       arrow4.setImage(null);
       arrow5.setImage(null);
       arrow6.setImage(null);
+      arrow7.setImage(null);
+      arrow8.setImage(null);
       arrow9.setImage(null);
       arrow10.setImage(null);
       nameLabel1.setText("");
+      nameLabel2.setText("");
+      nameLabel3.setText("");
       nameLabel4.setText("");
       nameLabel5.setText("");
       nameLabel6.setText("");
+      nameLabel7.setText("");
+      nameLabel8.setText("");
       nameLabel9.setText("");
       nameLabel10.setText("");
     }

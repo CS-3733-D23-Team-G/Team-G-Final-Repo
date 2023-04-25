@@ -84,20 +84,20 @@ public class SignageEditorController {
           }
         });
 
-    if (!attribute) {
-      arrow2.setImage(westArrow);
-      arrowDirectionNumber[1] = 1;
-      locationNameSave[1] = "75 Lobby";
-      arrow3.setImage(northArrow);
-      arrowDirectionNumber[2] = 2;
-      locationNameSave[2] = "Bathroom 75 Lobby";
-      arrow7.setImage(eastArrow);
-      arrowDirectionNumber[6] = 3;
-      locationNameSave[6] = "Garden Cafe";
-      arrow8.setImage(eastArrow);
-      arrowDirectionNumber[7] = 3;
-      locationNameSave[7] = "75 Lobby Information Desk";
-    }
+    //    if (!attribute) {
+    //      arrow2.setImage(westArrow);
+    //      arrowDirectionNumber[1] = 1;
+    //      locationNameSave[1] = "75 Lobby";
+    //      arrow3.setImage(northArrow);
+    //      arrowDirectionNumber[2] = 2;
+    //      locationNameSave[2] = "Bathroom 75 Lobby";
+    //      arrow7.setImage(eastArrow);
+    //      arrowDirectionNumber[6] = 3;
+    //      locationNameSave[6] = "Garden Cafe";
+    //      arrow8.setImage(eastArrow);
+    //      arrowDirectionNumber[7] = 3;
+    //      locationNameSave[7] = "75 Lobby Information Desk";
+    //    }
 
     date.setValue(dateSave);
 
