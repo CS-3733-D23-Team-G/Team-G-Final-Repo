@@ -68,6 +68,7 @@ public class MaintenanceRequestController {
   ObservableList<String> employeeList;
 
   static String typeOfMaintain;
+  static String specifiedMaintain;
 
   DAORepo dao = new DAORepo();
 
@@ -268,6 +269,8 @@ public class MaintenanceRequestController {
     }
 
     if (type == "1") {
+      typeOfMaintain = checkTree1.getText();
+
       checkTree2.setSelected(false);
       checkTree3.setSelected(false);
       checkTree4.setSelected(false);
@@ -277,6 +280,8 @@ public class MaintenanceRequestController {
       finalTreeLevel.setVisible(true);
     }
     if (type == "2") {
+      typeOfMaintain = checkTree2.getText();
+
       checkTree1.setSelected(false);
       checkTree3.setSelected(false);
       checkTree4.setSelected(false);
@@ -286,6 +291,7 @@ public class MaintenanceRequestController {
       finalTreeLevel.setVisible(true);
     }
     if (type == "3") {
+      typeOfMaintain = checkTree3.getText();
       checkTree2.setSelected(false);
       checkTree1.setSelected(false);
       checkTree4.setSelected(false);
@@ -295,6 +301,7 @@ public class MaintenanceRequestController {
       finalTreeLevel.setVisible(true);
     }
     if (type == "4") {
+      typeOfMaintain = checkTree4.getText();
       checkTree2.setSelected(false);
       checkTree1.setSelected(false);
       checkTree3.setSelected(false);
@@ -328,7 +335,7 @@ public class MaintenanceRequestController {
             StringToTime(maintainTime.getText()),
             maintainRecipient.getText(),
             maintainPhoneNumber.getText(),
-                typeOfMaintain);
+                typeOfMaintain, specifiedMaintain, finalTreeLevel.getText());
 
     dao.insertMealRequest(mr); // TODO need to change to MaintenanceRequest
     App.mealRefresh(); // TODO need to change to MaintenanceRequest
