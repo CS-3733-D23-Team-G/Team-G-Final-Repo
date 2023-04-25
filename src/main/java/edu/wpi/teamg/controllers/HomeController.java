@@ -140,43 +140,25 @@ public class HomeController {
 
     // Basis for the notifications, fake data for now.
     for (int i = 0; i < 5; i++) {
-      Text notif = new Text("Notification");
+      Text notif = new Text("From: ______");
       notif.setLayoutX(50);
       notif.setLayoutY(45);
-      notif.setStyle("-fx-font-size: 30; -fx-font-weight: 600; -fx-font-family: Poppins");
+      notif.setStyle("-fx-font-size: 20; -fx-font-weight: 800; -fx-font-family: Poppins");
       //      notif.setLayoutX(50);
       //      notif.setLayoutY(90);
       //      notif.setStyle("-fx-font-size: 30; -fx-font-weight: 600; -fx-font-family: Poppins");
 
       Text message = new Text("Please reset your password!");
       message.setLayoutX(50);
-      message.setLayoutY(90);
-      message.setStyle("-fx-font-size: 30; -fx-font-weight: 600; -fx-font-family: Poppins");
-      //      message.setLayoutX(250);
-      //      message.setLayoutY(90);
-      //      message.setStyle(
-      //          "-fx-font-size: 30; -fx-font-weight: 600;"
-      //              + "-fx-alignment: right; -fx-font-family: Poppins");
+      message.setLayoutY(85);
+      message.setStyle("-fx-font-size: 26; -fx-font-weight: 800; -fx-font-family: Poppins");
 
-      //      Text status = new Text("Processing");
-      //      status.setStyle(
-      //          "-fx-font-size: 18; -fx-font-weight: 100;"
-      //              + "-fx-alignment: center; -fx-font-family: Poppins");
-      //      status.setLayoutX(625);
-      //      status.setLayoutY(83);
-      //      //        status.setLayoutX(675);
-      //      //        status.setLayoutY(75);
-      //      status.toFront();
-      //
-      //      Pane pane = new Pane();
-      //      pane.setStyle(
-      //          "-fx-background-color: #97E198;"
-      //              + "-fx-background-radius: 10;"
-      //              + " -fx-pref-width: 150;"
-      //              + "-fx-pref-height: 40;");
-      //
-      //      pane.setLayoutX(600);
-      //      pane.setLayoutY(55);
+      Text notifDate = new Text("Date: XX/XX/XXXX");
+      notifDate.setLayoutX(50);
+      notifDate.setLayoutY(120);
+      notifDate.setStyle(
+          "-fx-font-size: 20; -fx-font-weight: 500;"
+              + "-fx-alignment: right; -fx-font-family: Poppins");
 
       AnchorPane notifAnchorPane = new AnchorPane();
 
@@ -192,6 +174,7 @@ public class HomeController {
 
       //        notifAnchorPane.getChildren().add(requestID);
       notifAnchorPane.getChildren().add(notif);
+      notifAnchorPane.getChildren().add(notifDate);
       notifAnchorPane.getChildren().add(message);
       notifications.getChildren().add(notifAnchorPane);
     }
