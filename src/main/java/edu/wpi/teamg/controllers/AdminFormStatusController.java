@@ -34,6 +34,7 @@ public class AdminFormStatusController {
   @FXML TableView<ConferenceRoomRequest> roomTable;
   @FXML TableView<FlowerRequest> flowerTable;
   @FXML TableView<FurnitureRequest> furnTable;
+  @FXML TableView<MaintenanceRequest> maintenanceTable;
 
   // Main Table
   @FXML TableColumn<Request, String> empID;
@@ -95,14 +96,27 @@ public class AdminFormStatusController {
   @FXML TableColumn<FurnitureRequest, Date> furnDate;
   @FXML TableColumn<FurnitureRequest, Time> furnTime;
 
+  // maintenance Table
+  @FXML TableColumn<MaintenanceRequest, String> maintenanceEmpID;
+  @FXML TableColumn<MaintenanceRequest, String> maintenanceLocation1;
+  @FXML TableColumn<MaintenanceRequest, Integer> maintenanceReqID;
+  @FXML TableColumn<MaintenanceRequest, String> maintenanceServeBy;
+  @FXML TableColumn<MaintenanceRequest, StatusTypeEnum> maintenanceStatus;
+  @FXML TableColumn<MaintenanceRequest, String> maintenanceType;
+  @FXML TableColumn<MaintenanceRequest, String> maintenanceSpecified;
+  @FXML TableColumn<MaintenanceRequest, String> maintenanceRecipient;
+  @FXML TableColumn<MaintenanceRequest, String> maintenanceNote;
+  @FXML TableColumn<MaintenanceRequest, String> maintenancePhoneNumber;
+  @FXML TableColumn<MaintenanceRequest, Date> maintenanceDate;
+  @FXML TableColumn<MaintenanceRequest, Time> maintenanceTime;
+
   // Table Change Button
   @FXML MFXButton allRequestTableButton;
   @FXML MFXButton mealTableButton;
   @FXML MFXButton roomTableButton;
   @FXML MFXButton flowerTableButton;
   @FXML MFXButton furnTableButton;
-  //  @FXML MFXButton FurnitureTableButton;
-  //  @FXML MFXButton OfficeSupplyTableButton;
+  @FXML MFXButton maintenanceTableButton;
 
   @FXML MFXButton editTableForm;
   @FXML MFXButton cancelTableForm;
@@ -118,6 +132,9 @@ public class AdminFormStatusController {
   ObservableList<FlowerRequest> testFlowerList;
 
   ObservableList<FurnitureRequest> testFurnList;
+
+  ObservableList<MaintenanceRequest> testMaintainList;
+
   DAORepo dao = new DAORepo();
 
   String LocationUpdate = new String();
@@ -140,6 +157,7 @@ public class AdminFormStatusController {
     roomTableButton.setOnMouseClicked(event -> loadRoomTable());
     flowerTableButton.setOnMouseClicked(event -> loadFlowerTable());
     furnTableButton.setOnMouseClicked(event -> loadFurnitureTable());
+    maintenanceTableButton.setOnMouseClicked(event -> loadMaintenanceTable());
     editTableForm.setOnMouseClicked(
         event -> {
           try {
@@ -165,17 +183,22 @@ public class AdminFormStatusController {
     HashMap<Integer, FurnitureRequest> testingFurns = App.testingFurns;
     ArrayList<FurnitureRequest> furns = new ArrayList<>(testingFurns.values());
 
+    HashMap<Integer, MaintenanceRequest> testingMaintain = App.testingMaintain;
+    ArrayList<MaintenanceRequest> maintains = new ArrayList<>(testingMaintain.values());
+
     testList = FXCollections.observableArrayList(request1);
     testMealList = FXCollections.observableArrayList(mealRequests1);
     testRoomList = FXCollections.observableArrayList(confroom);
     testFlowerList = FXCollections.observableArrayList(flowerDel);
     testFurnList = FXCollections.observableArrayList(furns);
+    testMaintainList = FXCollections.observableArrayList(maintains);
 
     mainTable.setItems(testList);
     mealTable.setItems(testMealList);
     roomTable.setItems(testRoomList);
     flowerTable.setItems(testFlowerList);
     furnTable.setItems(testFurnList);
+    maintenanceTable.setItems(testMaintainList);
 
     reqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
     reqType.setCellValueFactory(new PropertyValueFactory<>("reqtype"));
@@ -229,6 +252,19 @@ public class AdminFormStatusController {
     furnTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
     furnRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
     furnNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+    maintenanceReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+    maintenanceEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+    maintenanceLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+    maintenanceServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+    maintenanceStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+    maintenanceType.setCellValueFactory(new PropertyValueFactory<>("type"));
+    maintenanceSpecified.setCellValueFactory(new PropertyValueFactory<>("specified"));
+    maintenanceDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+    maintenanceTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+    maintenanceRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+    maintenanceNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+    maintenancePhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
   }
 
   private void fileExporter() throws SQLException, IOException {
@@ -336,6 +372,7 @@ public class AdminFormStatusController {
     roomTable.setVisible(false);
     flowerTable.setVisible(false);
     furnTable.setVisible(false);
+    maintenanceTable.setVisible(false);
   }
 
   public void loadRoomTable() {
@@ -344,6 +381,7 @@ public class AdminFormStatusController {
     mealTable.setVisible(false);
     flowerTable.setVisible(false);
     furnTable.setVisible(false);
+    maintenanceTable.setVisible(false);
   }
 
   public void loadFlowerTable() {
@@ -352,10 +390,21 @@ public class AdminFormStatusController {
     mealTable.setVisible(false);
     roomTable.setVisible(false);
     furnTable.setVisible(false);
+    maintenanceTable.setVisible(false);
   }
 
   public void loadFurnitureTable() {
     furnTable.setVisible(true);
+    flowerTable.setVisible(false);
+    mainTable.setVisible(false);
+    mealTable.setVisible(false);
+    roomTable.setVisible(false);
+    maintenanceTable.setVisible(false);
+  }
+
+  public void loadMaintenanceTable() {
+    furnTable.setVisible(false);
+    maintenanceTable.setVisible(true);
     flowerTable.setVisible(false);
     mainTable.setVisible(false);
     mealTable.setVisible(false);

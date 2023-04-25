@@ -18,14 +18,14 @@
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="table_view_left">
                <children>
-                  <VBox alignment="CENTER" prefHeight="992.0" prefWidth="470.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+                  <VBox alignment="CENTER" prefHeight="992.0" prefWidth="370.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                      <children>
                         <MFXButton fx:id="allRequestTableButton" rippleAnimateBackground="false" styleClass="table_view_Button" text="All Requests">
                            <font>
                               <Font size="50.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="25.0" />
+                              <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
                         <MFXButton fx:id="roomTableButton" styleClass="table_view_Button" text="Room Requests">
@@ -33,7 +33,7 @@
                               <Font size="50.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="25.0" />
+                              <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
                         <MFXButton fx:id="flowerTableButton" styleClass="table_view_Button" text="Flower Requests">
@@ -41,7 +41,7 @@
                               <Font size="50.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="25.0" />
+                              <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
                         <MFXButton fx:id="mealTableButton" styleClass="table_view_Button" text="Meal Requests">
@@ -49,7 +49,7 @@
                               <Font size="50.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="25.0" />
+                              <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
                         <MFXButton styleClass="table_view_Button" text="Office Supply Requests">
@@ -57,7 +57,7 @@
                               <Font size="50.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="25.0" />
+                              <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
                         <MFXButton fx:id="furnTableButton" styleClass="table_view_Button" text="Furniture Requests">
@@ -65,7 +65,15 @@
                               <Font size="50.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="25.0" />
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="maintenanceTableButton" styleClass="table_view_Button" text="Maintenance Requests">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
                         <MFXButton fx:id="editTableForm" styleClass="table_view_Button" text="Edit Tables">
@@ -73,7 +81,7 @@
                               <Font size="50.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="25.0" />
+                              <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
                         <MFXButton fx:id="cancelTableForm" styleClass="table_view_Button" text="Cancel Tables">
@@ -81,7 +89,7 @@
                               <Font size="50.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="15.0" />
+                              <Insets top="10.0" />
                            </VBox.margin>
                         </MFXButton>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Export">
@@ -178,6 +186,26 @@
                         <TableColumn fx:id="reqDate" prefWidth="146.76806640625" text="Date" />
                         <TableColumn fx:id="reqTime" prefWidth="152.335205078125" text="Time" />
                         <TableColumn fx:id="status" prefWidth="215.75634765625" text="Status" />
+                     </columns>
+                  </TableView>
+                  <TableView fx:id="maintenanceTable" layoutX="20.0" layoutY="20.0" prefHeight="899.5" prefWidth="1387.0" styleClass="table-text">
+                     <columns>
+                        <TableColumn fx:id="maintenanceReqID" prefWidth="85.0" text="Req. ID" />
+                        <TableColumn fx:id="maintenanceEmpID" prefWidth="160.0" text="Emp. ID" />
+                        <TableColumn fx:id="maintenanceLocation1" prefWidth="400.0" text="Location" />
+                        <TableColumn fx:id="maintenanceServeBy" prefWidth="250.0" text="Serve-By" />
+                        <TableColumn fx:id="maintenanceStatus" prefWidth="130.0" text="Status" />
+                        <TableColumn prefWidth="670.0" text="Mainenance Request">
+                           <columns>
+                              <TableColumn fx:id="maintenanceDate" minWidth="0.0" prefWidth="120.0" text="Date" />
+                              <TableColumn fx:id="maintenanceTime" prefWidth="120.0" text="Time" />
+                              <TableColumn fx:id="maintenancePhoneNumber" prefWidth="250.0" text="Phone Number" />
+                              <TableColumn fx:id="maintenanceType" prefWidth="250.0" text="Type" />
+                              <TableColumn fx:id="maintenanceSpecified" prefWidth="250.0" text="Specified" />
+                              <TableColumn fx:id="maintenanceRecipient" prefWidth="150.0" text="Recipient" />
+                              <TableColumn fx:id="maintenanceNote" prefWidth="400.0" text="Note" />
+                           </columns>
+                        </TableColumn>
                      </columns>
                   </TableView>
                </children>

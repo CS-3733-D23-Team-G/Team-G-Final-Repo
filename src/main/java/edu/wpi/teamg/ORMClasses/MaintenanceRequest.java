@@ -37,7 +37,13 @@ public class MaintenanceRequest extends Request {
     this.notes = notes;
   }
 
-  public MaintenanceRequest(int reqId, String recipient, String phoneNumber, String type, String specified, String notes) {
+  public MaintenanceRequest(
+      int reqId,
+      String recipient,
+      String phoneNumber,
+      String type,
+      String specified,
+      String notes) {
     this.reqId = reqId;
     this.recipient = recipient;
     this.phoneNumber = phoneNumber;
@@ -45,8 +51,8 @@ public class MaintenanceRequest extends Request {
     this.specified = specified;
     this.notes = notes;
   }
-  public void setReqID(int reqId){
-    this.reqId=reqId;
 
+  public void setReqID(int reqId) {
+    this.reqId = reqId;
   }
 }

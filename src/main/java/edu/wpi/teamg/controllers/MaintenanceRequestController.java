@@ -320,7 +320,7 @@ public class MaintenanceRequestController {
 
     MaintenanceRequest mr =
         new MaintenanceRequest(
-            "M",
+            "MT",
             "ID "
                 + App.employee.getEmpID()
                 + ": "
@@ -335,13 +335,14 @@ public class MaintenanceRequestController {
             StringToTime(maintainTime.getText()),
             maintainRecipient.getText(),
             maintainPhoneNumber.getText(),
-                typeOfMaintain, specifiedMaintain, finalTreeLevel.getText());
+            typeOfMaintain,
+            specifiedMaintain,
+            finalTreeLevel.getText());
 
-    dao.insertMealRequest(mr); // TODO need to change to MaintenanceRequest
-    App.mealRefresh(); // TODO need to change to MaintenanceRequest
+    dao.insertMaintenance(mr);
+    App.maintainRefresh();
   }
 
-  // TODO need to change to MaintenanceRequest
   public HashMap<Integer, String> getHashMapEmployeeLongName(String canServe) throws SQLException {
 
     HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();
@@ -355,7 +356,6 @@ public class MaintenanceRequestController {
     return longNameHashMap;
   }
 
-  // TODO need to change to MaintenanceRequest
   public HashMap<Integer, String> getHashMapMLongName() throws SQLException {
 
     HashMap<Integer, String> longNameHashMap = new HashMap<Integer, String>();

@@ -277,6 +277,16 @@ public class App extends Application {
     }
   }
 
+  public static HashMap<Integer, MaintenanceRequest> testingMaintain;
+
+  static {
+    try {
+      testingMaintain = getHashMaintain();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   @Override
   public void init() {
     log.info("Starting Up");
@@ -458,6 +468,19 @@ public class App extends Application {
     }
   }
 
+  public static void maintainRefresh() {
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    try {
+      testingMaintain = getHashMaintain();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   public static void requestRefresh() {
     try {
       testingRequest = getHashMapRequest();
@@ -529,6 +552,19 @@ public class App extends Application {
     }
 
     return furnsHash;
+  }
+
+  public static HashMap getHashMaintain() throws SQLException {
+
+    HashMap<Integer, MaintenanceRequest> maintainHash = new HashMap<Integer, MaintenanceRequest>();
+
+    try {
+      maintainHash = daoRepo.getAllMaintenance();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return maintainHash;
   }
 
   static int code;
