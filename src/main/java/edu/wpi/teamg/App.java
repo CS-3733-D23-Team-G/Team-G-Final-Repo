@@ -29,8 +29,8 @@ public class App extends Application {
 
   @Getter private static LocalDate currentDate = LocalDate.now();
 
-  int monthNum = currentDate.getMonth().getValue();
-  int yearNum = currentDate.getYear();
+  static int monthNum = currentDate.getMonth().getValue();
+  static int yearNum = currentDate.getYear();
 
   public static Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
 
@@ -604,6 +604,56 @@ public class App extends Application {
   public static String getUser() {
     return App.user;
   }
+
+  public static String getMonthFieldSignage(){
+    StringBuilder sb = new StringBuilder();
+
+    switch (monthNum){
+      case 1:
+        sb.append("JAN-");
+        break;
+      case 2:
+        sb.append("FEB-");
+        break;
+      case 3:
+        sb.append("MAR-");
+        break;
+      case 4:
+        sb.append("APR-");
+        break;
+      case 5:
+        sb.append("MAY-");
+        break;
+      case 6:
+        sb.append("JUN-");
+        break;
+      case 7:
+        sb.append("JUL-");
+        break;
+      case 8:
+        sb.append("AUG-");
+        break;
+      case 9:
+        sb.append("SEP-");
+        break;
+      case 10:
+        sb.append("OCT-");
+        break;
+      case 11:
+        sb.append("NOV-");
+        break;
+      case 12:
+        sb.append("DEC-");
+      default:
+        break;
+    }
+    sb.append(yearNum);
+
+
+    return sb.toString();
+  }
+
+
 
   @Override
   public void stop() {
