@@ -3,6 +3,9 @@ package edu.wpi.teamg.DAOs;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.FurnitureRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.HashMap;
 
@@ -122,19 +125,32 @@ public class FurnitureDAO implements DAO {
       ps_Req.setString(2, "FR");
 
       String reqEmp = ((FurnitureRequest) obj).getEmpid();
-      String assignedEmp = ((FurnitureRequest) obj).getServeBy();
 
       String[] split0 = reqEmp.split(":");
-      String[] split1 = assignedEmp.split(":");
 
       int empid = Integer.parseInt(split0[0].substring(3));
-      int servby = Integer.parseInt(split1[0].substring(3));
 
       ps_Req.setInt(3, empid);
       int nodeID = nodeDAO.getNodeIDbyLongName(furn.getLocation(), new java.sql.Date(2023, 01, 01));
 
       ps_Req.setInt(4, nodeID);
-      ps_Req.setInt(5, servby);
+
+      String assignedEmployee = furn.getServeBy();
+
+      String[] split1 = new String[2];
+      int serveBy = 0;
+
+      if (assignedEmployee != null) {
+        split1 = assignedEmployee.split(":");
+        serveBy = Integer.parseInt(split1[0].substring(3));
+      }
+
+      if (serveBy == 0) {
+        ps_Req.setObject(5, null);
+      } else {
+        ps_Req.setInt(5, serveBy);
+      }
+
       ps_Req.setObject(6, furn.getStatus(), java.sql.Types.OTHER);
       ps_Req.setDate(7, furn.getRequestDate());
       ps_Req.setTime(8, furn.getRequestTime());
@@ -157,6 +173,28 @@ public class FurnitureDAO implements DAO {
 
   @Override
   public void delete(Object obj) throws SQLException {}
+
+  @Override
+  public void importCSV(String path) throws SQLException {
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(path));
+      String line = null;
+      br.readLine();
+
+      while ((line = br.readLine()) != null) {
+        String[] data = line.split(",");
+        int id = Integer.parseInt(data[0]);
+        String type = data[1];
+        String note = data[2];
+        String recipient = data[3];
+        FurnitureRequest furnReq = new FurnitureRequest(id, type, note, recipient);
+        this.insert(furnReq);
+      }
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   @Override
   public String getTable() {

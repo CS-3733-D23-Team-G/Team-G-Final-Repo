@@ -3,6 +3,7 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
+import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
@@ -20,6 +21,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import org.controlsfx.control.SearchableComboBox;
 
 public class ConRoomRequestController {
@@ -40,6 +44,11 @@ public class ConRoomRequestController {
   @FXML SearchableComboBox employeeSearchDropdown;
   @FXML Label checkFields;
 
+  @FXML Line assignToLine;
+  @FXML Text assignToText;
+
+  @FXML VBox vboxWithAssignTo;
+
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
 
@@ -55,6 +64,12 @@ public class ConRoomRequestController {
 
     datePicker.setText("");
     //    checkFields.getText();
+
+    if (!App.employee.getIs_admin()) {
+      vboxWithAssignTo.getChildren().remove(assignToLine);
+      vboxWithAssignTo.getChildren().remove(assignToText);
+      vboxWithAssignTo.getChildren().remove(employeeSearchDropdown);
+    }
 
     roomMeetingPurpose.getText();
     // roomNumber.getText();
@@ -120,11 +135,19 @@ public class ConRoomRequestController {
 
   public void storeRoomValues() throws SQLException {
 
+    HashMap<Integer, Employee> employeeHash = dao.getAllEmployees();
+
+    Employee signedIn = employeeHash.get(App.employee.getEmpID());
+
     ConferenceRoomRequest conRoom =
         new ConferenceRoomRequest(
             "CR",
-            "ID 1: John Doe",
-            // assume for now they are going to input a node number, so parseInt
+            "ID "
+                + App.employee.getEmpID()
+                + ": "
+                + signedIn.getFirstName()
+                + " "
+                + signedIn.getLastName(),
             (String) locationSearchDropdown.getValue(),
             (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
@@ -135,7 +158,7 @@ public class ConRoomRequestController {
 
     try {
       dao.insertConferenceRoomRequest(conRoom);
-      App.requestRefresh();
+      App.confRefresh();
     } catch (SQLException e) {
       System.err.println("SQL Exception");
       e.printStackTrace();

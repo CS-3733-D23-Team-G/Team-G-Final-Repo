@@ -23,6 +23,7 @@ public class DBConnection {
     } catch (ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
+    System.out.println("Connection is Set");
   }
 
   private List<String> getDBCreds() {
@@ -44,6 +45,7 @@ public class DBConnection {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
+    System.out.println("Connection is closed");
   }
 
   public static Connection getConnection() {

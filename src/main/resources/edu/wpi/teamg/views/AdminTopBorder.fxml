@@ -46,6 +46,18 @@
                      <font>
                         <Font size="30.0" />
                      </font></MFXButton>
+                  <Text fill="#f6bd38" layoutX="906.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Extras" wrappingWidth="52.689453125">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <MFXButton fx:id="About_Credits" layoutX="894.0" layoutY="2.0" opacity="0.0" prefHeight="50.0" prefWidth="72.0" text="Button" />
+                  <Text fill="#f6bd38" layoutX="795.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Dictionary" wrappingWidth="90.689453125">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <MFXButton fx:id="dictionaryButton" layoutX="791.0" layoutY="2.0" opacity="0.0" prefHeight="50.0" prefWidth="91.0" text="Button" />
                </children>
             </AnchorPane>
             <GridPane alignment="CENTER_LEFT" hgap="5.0" prefWidth="1086.0" styleClass="hit_the_griddy">

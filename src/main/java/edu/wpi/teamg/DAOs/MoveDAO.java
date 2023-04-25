@@ -107,10 +107,13 @@ public class MoveDAO implements LocationMoveDao {
     db.setConnection();
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
-    sql = "DELETE FROM teamgdb.iteration3.move WHERE nodeID = ?";
+    sql = "DELETE FROM teamgdb.iteration3.move WHERE nodeID = ? AND longname=? and date=?";
 
     try {
+
       ps.setInt(1, move.getNodeID());
+      ps.setString(2, move.getLongName());
+      ps.setDate(3, move.getDate());
     } catch (SQLException e) {
       System.err.println("SQL Exception");
     }

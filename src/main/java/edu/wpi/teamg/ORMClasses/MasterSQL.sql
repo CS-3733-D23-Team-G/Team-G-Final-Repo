@@ -9,18 +9,17 @@ drop table if exists iteration3.Move;
 drop table if exists iteration3.Edge;
 drop table if exists iteration3.LocationName;
 drop table if exists iteration3.Node;
-
-
+drop table if exists iteration3.notification;
 drop table if exists iteration3.account;
 drop table if exists iteration3.Employee;
 
 
 create table iteration3.Node(
-                                        nodeID int primary key,
-                                        xcoord int,
-                                        ycoord int,
-                                        floor char(2),
-                                        building varchar(40)
+                nodeID int primary key,
+                xcoord int,
+                ycoord int,
+                floor char(2),
+                building varchar(40)
 );
 
 create table iteration3.Edge(
@@ -121,6 +120,16 @@ create table iteration3.account(
     salt bytea NOT NULL,
     is_admin bool,
     foreign key (empID) references iteration3.Employee(empID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+create table iteration3.notification(
+    alertid int primary key,
+    notifDate Date,
+    notifTime Time,
+    notifType text,
+    empID int,
+    recipients text,
+    message text,
+    foreign key (empID) references iteration3.employee(empID) on delete cascade on update cascade);
 
 
 INSERT INTO iteration3.Employee (empID, firstName, lastName, email, can_serve)

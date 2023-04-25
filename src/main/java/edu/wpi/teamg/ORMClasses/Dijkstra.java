@@ -5,31 +5,26 @@ import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 import org.controlsfx.control.SearchableComboBox;
 
-public class DFS implements Algorithm {
+public class Dijkstra implements Algorithm {
   DAORepo dao = new DAORepo();
 
   @Override
   public ArrayList<String> process(
       SearchableComboBox startLocDrop, SearchableComboBox endLocDrop, ArrayList<Move> movin)
       throws SQLException {
+    ArrayList<String> path;
 
-    ArrayList<String> path = new ArrayList<>();
-
-    NodeDAO nodeDao = new NodeDAO();
+    NodeDAO nodeDAO = new NodeDAO();
     EdgeDAO edgeDAO = new EdgeDAO();
 
     // This is where accounting for moveStarts
     // MoveDAO moveDAO = new MoveDAO();
 
-    HashMap<Integer, Node> nodeMap = nodeDao.getAll();
-    HashMap<String, Edge> edgeMap = edgeDAO.getAll();
-
-    ArrayList<Node> nodeList = new ArrayList<>(nodeMap.values());
-    ArrayList<Edge> edgeList = new ArrayList<>(edgeMap.values());
+    ArrayList<Node> allNodes = new ArrayList<>(nodeDAO.getAll().values());
+    ArrayList<Edge> allEdges = new ArrayList<>(edgeDAO.getAll().values());
 
     String L1StartNodeLongName = (String) startLocDrop.getValue();
     String L1EndNodeLongName = (String) endLocDrop.getValue();
@@ -45,19 +40,18 @@ public class DFS implements Algorithm {
       }
     }
 
-    Node[] nodeArray = new Node[nodeList.size()];
-    Edge[] edgeArray = new Edge[edgeList.size()];
-
-    for (int i = 0; i < nodeList.size(); i++) {
-      nodeArray[i] = nodeList.get(i);
+    Node[] nodeArray = new Node[allNodes.size()];
+    for (int i = 0; i < allNodes.size(); i++) {
+      nodeArray[i] = allNodes.get(i);
     }
-    for (int i = 0; i < edgeList.size(); i++) {
-      edgeArray[i] = edgeList.get(i);
+    Edge[] edgeArray = new Edge[allEdges.size()];
+    for (int i = 0; i < allEdges.size(); i++) {
+      edgeArray[i] = allEdges.get(i);
     }
 
     int startNode = 0;
     int endNode = 0;
-    for (int i = 0; i < nodeList.size(); i++) {
+    for (int i = 0; i < allNodes.size(); i++) {
 
       if (nodeArray[i].getNodeID() == L1StartNodeID) {
         startNode = i;
@@ -67,18 +61,12 @@ public class DFS implements Algorithm {
       }
     }
 
-    Graph graph = new Graph(nodeArray, edgeArray);
-    path = graph.depthFirstSearch(graph.createWeightedAdj(), startNode, endNode);
-    //  setPath(path);
+    Graph G1 = new Graph(nodeArray, edgeArray);
+    int[][] Adj = G1.createWeightedAdj();
 
-    System.out.println("Start node:" + L1StartNodeID);
-    System.out.println("End node:" + L1EndNodeID);
+    System.out.println(nodeArray[0].getNodeID());
+    path = G1.Dijkstra(Adj, startNode, endNode);
 
-    ArrayList<String> finalPath = new ArrayList<>();
-    for (int i = 0; i < path.size(); i++) {
-      finalPath.add(String.valueOf(nodeArray[Integer.parseInt(path.get(i))].getNodeID()));
-    }
-
-    return finalPath;
+    return path;
   }
 }

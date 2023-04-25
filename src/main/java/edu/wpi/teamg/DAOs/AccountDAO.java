@@ -85,6 +85,9 @@ public class AccountDAO implements DAO {
   @Override
   public void delete(Object obj) throws SQLException {}
 
+  @Override
+  public void importCSV(String path) throws SQLException {}
+
   public void deleteAccount(Object obj) throws SQLException {
 
     Account account = (Account) obj;

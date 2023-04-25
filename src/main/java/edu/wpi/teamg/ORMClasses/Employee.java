@@ -10,7 +10,11 @@ public class Employee {
   @Getter @Setter private String email;
   @Getter @Setter private String can_serve;
 
-  public Employee() {}
+  @Getter @Setter private Boolean is_admin;
+
+  public Employee() {
+    this.setIs_admin(false);
+  }
 
   public Employee(String firstName, String lastName, String email, String can_serve) {
     this.firstName = firstName;
