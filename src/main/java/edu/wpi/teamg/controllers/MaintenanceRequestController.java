@@ -268,7 +268,7 @@ public class MaintenanceRequestController {
     }
 
     if (type == "1") {
-      typeOfMaintain = checkTree1.getText();
+      specifiedMaintain = checkTree1.getText();
 
       checkTree2.setSelected(false);
       checkTree3.setSelected(false);
@@ -279,7 +279,7 @@ public class MaintenanceRequestController {
       finalTreeLevel.setVisible(true);
     }
     if (type == "2") {
-      typeOfMaintain = checkTree2.getText();
+      specifiedMaintain = checkTree2.getText();
 
       checkTree1.setSelected(false);
       checkTree3.setSelected(false);
@@ -290,7 +290,7 @@ public class MaintenanceRequestController {
       finalTreeLevel.setVisible(true);
     }
     if (type == "3") {
-      typeOfMaintain = checkTree3.getText();
+      specifiedMaintain = checkTree3.getText();
       checkTree2.setSelected(false);
       checkTree1.setSelected(false);
       checkTree4.setSelected(false);
@@ -300,7 +300,7 @@ public class MaintenanceRequestController {
       finalTreeLevel.setVisible(true);
     }
     if (type == "4") {
-      typeOfMaintain = checkTree4.getText();
+      specifiedMaintain = checkTree4.getText();
       checkTree2.setSelected(false);
       checkTree1.setSelected(false);
       checkTree3.setSelected(false);
@@ -314,6 +314,8 @@ public class MaintenanceRequestController {
   public void storeMaintenanceValues() throws SQLException {
 
     HashMap<Integer, Employee> employeeHash = dao.getAllEmployees();
+
+    System.out.println(typeOfMaintain + " " + specifiedMaintain + " " + finalTreeLevel.getText());
 
     Employee signedIn = employeeHash.get(App.employee.getEmpID());
 
