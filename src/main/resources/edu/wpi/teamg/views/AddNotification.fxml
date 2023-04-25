@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckListView?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -12,9 +16,8 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import org.controlsfx.control.SearchableComboBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AddEmployee">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AddNotificationController">
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -33,16 +36,33 @@
                                     <Insets />
                                  </HBox.margin>
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="First Name">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Date">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
+                                          <Insets bottom="5.0" top="25.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="39.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="FirstName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                    <Line fx:id="t" endX="-39.12132263183594" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXDatePicker fx:id="notifDate" minHeight="-Infinity" prefHeight="60.0" prefWidth="281.0" style="-fx-background-color: #D9D9D9;">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </MFXDatePicker>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Time">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="-37.60960388183594" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXTextField fx:id="notifTime" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
@@ -50,58 +70,37 @@
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </MFXTextField>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Last Name">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Type">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
+                                          <Insets bottom="5.0" top="25.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="32.87867736816406" endY="-1.8639607429504395" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="lastName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                    <Line endX="-38.56175231933594" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXComboBox fx:id="notifType" maxHeight="75.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="281.0" styleClass="requestTextBox">
+                                       <VBox.margin>
+                                          <Insets right="15.0" top="15.0" />
+                                       </VBox.margin>
+                                    </MFXComboBox>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Message">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Line endX="19.461456298828125" startX="134.0442352294922" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <TextArea fx:id="notifMessage" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #D9D9D9;" styleClass="notes" stylesheets="@style.css" wrapText="true">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
-                                    </MFXTextField>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Email">
-                                       <font>
-                                          <Font size="22.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
-                                       </VBox.margin>
-                                    </Text>
-                                    <Line endX="-24.242645263671875" endY="-1.8639254570007324" startX="-95.12132263183594" startY="-1.863943099975586" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="emailName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
-                                       <font>
-                                          <Font size="25.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
-                                       </VBox.margin>
-                                    </MFXTextField>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Can Serve">
-                                       <font>
-                                          <Font size="22.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
-                                       </VBox.margin>
-                                    </Text>
-                                    <Line endX="28.878677368164062" endY="1.7642974853515625E-5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <SearchableComboBox fx:id="serveDrop" prefHeight="32.0" prefWidth="200.0">
-                                       <styleClass>
-                                          <String fx:value="text_box" />
-                                          <String fx:value="requestTextBox" />
-                                       </styleClass>
-                                       <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
-                                       </VBox.margin>
-                                    </SearchableComboBox>
+                                    </TextArea>
                                  </children>
                                  <padding>
                                     <Insets left="50.0" right="25.0" />
@@ -112,47 +111,39 @@
                                     <Insets left="50.0" right="25.0" />
                                  </padding>
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Username">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Recipients">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
+                                          <Insets bottom="5.0" top="25.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="33.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="userName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
-                                       <font>
-                                          <Font size="25.0" />
-                                       </font>
+                                    <Line endX="32.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXCheckListView fx:id="notifRecipients" prefHeight="522.0" prefWidth="281.0">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
-                                    </MFXTextField>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Password">
+                                    </MFXCheckListView>
+                                    <Label fx:id="checkFields" prefHeight="17.0" prefWidth="377.0" styleClass="allFilledError" stylesheets="@style.css" text="Not All Fields Are Filled." textFill="#d01616">
                                        <font>
-                                          <Font size="22.0" />
+                                          <Font size="30.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
-                                    </Text>
-                                    <Line endX="21.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXPasswordField fx:id="Password" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
-                                       <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
-                                       </VBox.margin>
-                                    </MFXPasswordField>
+                                    </Label>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
                                        <children>
-                                          <MFXButton fx:id="empClear" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear" />
-                                          <MFXButton fx:id="empSubmit" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm">
+                                          <MFXButton fx:id="notifClear" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear" />
+                                          <MFXButton fx:id="notifSubmit" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm">
                                              <HBox.margin>
                                                 <Insets left="15.0" />
-                                             </HBox.margin></MFXButton>
+                                             </HBox.margin>
+                                          </MFXButton>
                                        </children>
                                     </HBox>
                                  </children>
@@ -161,7 +152,7 @@
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <Text layoutX="143.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Add Employee" AnchorPane.topAnchor="50.0">
+                  <Text layoutX="133.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Send Notification" AnchorPane.topAnchor="50.0">
                      <font>
                         <Font size="25.0" />
                      </font>

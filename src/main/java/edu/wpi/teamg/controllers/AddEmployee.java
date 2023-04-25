@@ -41,7 +41,6 @@ public class AddEmployee {
   EmployeeDAO empDao = new EmployeeDAO();
   AccountDAO accDao = new AccountDAO();
 
-  @FXML
   public void initialize() throws SQLException {
     empSubmit.setOnMouseClicked(event -> allDataFilled());
     FirstName.getText();

@@ -2,9 +2,8 @@ package edu.wpi.teamg.controllers;
 
 import static edu.wpi.teamg.App.*;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.ORMClasses.Node;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
@@ -78,25 +77,25 @@ public class ConfirmPopUpController {
     nodeDAO.update(potentialUpdate, "xcoord", Integer.parseInt(x2.getText()));
     nodeDAO.update(potentialUpdate, "ycoord", Integer.parseInt(y2.getText()));
     refresh();
-    Navigation.navigate(Screen.ADMIN_MAP_EDITOR);
     window.hide();
   }
 
   public void cancelUpdate() throws SQLException {
-    Navigation.navigate(Screen.ADMIN_MAP_EDITOR);
-    MapEditorController controller = new MapEditorController();
+    // Navigation.navigate(Screen.ADMIN_MAP_EDITOR);
+    //    MapEditorController controller = new MapEditorController();
+    //
+    //    int flNum = controller.findIndex(floor);
 
-    int flNum = controller.findIndex(floor);
-
-    controller.newNodes(flNum);
-
-    //    for (int i = 0; i < allNodeList.size(); i++) {
-    //      if (Objects.equals(allNodeList.get(i).getFloor(), floor)) {
-    //        controller.getNodesWFunctionality(allNodeList, i, sn);
-    //      }
-    //    }
-
-    controller.goToFloor2(map);
+    //    controller.newNodes(flNum);
+    //
+    //    //    for (int i = 0; i < allNodeList.size(); i++) {
+    //    //      if (Objects.equals(allNodeList.get(i).getFloor(), floor)) {
+    //    //        controller.getNodesWFunctionality(allNodeList, i, sn);
+    //    //      }
+    //    //    }
+    //
+    App.refresh();
     window.hide();
+    //    controller.goToFloor2(map);
   }
 }

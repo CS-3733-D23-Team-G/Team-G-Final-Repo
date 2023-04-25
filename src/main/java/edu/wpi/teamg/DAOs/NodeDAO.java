@@ -12,7 +12,6 @@ public class NodeDAO implements LocationDAO {
   private static HashMap<Integer, Node> nodeHash = new HashMap<Integer, Node>();
   private static DBConnection db = new DBConnection();
   private static String SQL;
-  private HashMap<Integer, Node> Nodes = new HashMap<>();
 
   @Override
   public void update(Object obj, String colName, Object value) {
