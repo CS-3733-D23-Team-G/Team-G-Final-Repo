@@ -302,6 +302,26 @@ public class App extends Application {
     }
   }
 
+  public static HashMap<Integer, OfficeSupplyRequest> testingOSupps;
+
+  static {
+    try {
+      testingOSupps = getHashOSupps();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, MaintenanceRequest> testingMaintain;
+
+  static {
+    try {
+      testingMaintain = getHashMaintain();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   @Override
   public void init() {
     log.info("Starting Up");
@@ -437,6 +457,16 @@ public class App extends Application {
     loc = new LocationNameDAO();
 
     locMap = new HashMap<>(loc.getAll());
+
+    edgeDao = new EdgeDAO();
+
+    listOfEdges = new ArrayList<>(edgeMap.values());
+
+    try {
+      edgeMap = edgeDao.getAll();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   /// FIX REFRESH
@@ -488,6 +518,32 @@ public class App extends Application {
     }
     try {
       testingFurns = getHashFurns();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static void oSuppsRefresh() {
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    try {
+      testingOSupps = getHashOSupps();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static void maintainRefresh() {
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    try {
+      testingMaintain = getHashMaintain();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -564,6 +620,30 @@ public class App extends Application {
     }
 
     return furnsHash;
+  }
+
+  public static HashMap getHashOSupps() throws SQLException {
+
+    HashMap<Integer, OfficeSupplyRequest> oSuppsHash = new HashMap<Integer, OfficeSupplyRequest>();
+
+    try {
+      oSuppsHash = daoRepo.getAllSupply();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+    return oSuppsHash;
+  }
+
+  public static HashMap getHashMaintain() throws SQLException {
+
+    HashMap<Integer, MaintenanceRequest> maintainHash = new HashMap<Integer, MaintenanceRequest>();
+
+    try {
+      maintainHash = daoRepo.getAllMaintenance();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+    return maintainHash;
   }
 
   static int code;

@@ -41,7 +41,7 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="64.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <Line endX="39.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="FirstName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                        <font>
                                           <Font size="25.0" />
@@ -58,7 +58,7 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="64.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <Line endX="32.87867736816406" endY="-1.8639607429504395" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="lastName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                        <font>
                                           <Font size="25.0" />
@@ -75,7 +75,7 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-10.166671752929688" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <Line endX="-24.242645263671875" endY="-1.8639254570007324" startX="-95.12132263183594" startY="-1.863943099975586" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="emailName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                        <font>
                                           <Font size="25.0" />
@@ -92,7 +92,7 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="53.21202087402344" endY="0.9558281898498535" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <Line endX="28.878677368164062" endY="1.7642974853515625E-5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <SearchableComboBox fx:id="serveDrop" prefHeight="32.0" prefWidth="200.0">
                                        <styleClass>
                                           <String fx:value="text_box" />
@@ -120,7 +120,7 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="64.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <Line endX="33.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="userName" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                        <font>
                                           <Font size="25.0" />
@@ -137,8 +137,8 @@
                                           <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="64.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXPasswordField fx:id="Password"  minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                    <Line endX="21.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                    <MFXPasswordField fx:id="Password" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
@@ -161,6 +161,11 @@
                         </HBox>
                      </children>
                   </AnchorPane>
+                  <Text layoutX="143.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Add Employee" AnchorPane.topAnchor="50.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" />

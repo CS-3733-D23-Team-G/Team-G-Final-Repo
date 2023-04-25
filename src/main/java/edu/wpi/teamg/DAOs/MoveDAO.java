@@ -105,12 +105,16 @@ public class MoveDAO implements LocationMoveDao {
   public void delete(Object obj) throws SQLException {
     Move move = (Move) obj;
     db.setConnection();
+    sql = "DELETE FROM teamgdb.iteration3.move WHERE nodeID = ? and longname=? and date =?";
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
-    sql = "DELETE FROM teamgdb.iteration3.move WHERE nodeID = ?";
-
     try {
+
       ps.setInt(1, move.getNodeID());
+      ps.setString(2, move.getLongName());
+      ps.setDate(3, move.getDate());
+
+      ps.executeUpdate();
     } catch (SQLException e) {
       System.err.println("SQL Exception");
     }

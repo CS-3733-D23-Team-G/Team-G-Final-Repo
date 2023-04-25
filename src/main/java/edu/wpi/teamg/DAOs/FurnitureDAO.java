@@ -156,6 +156,9 @@ public class FurnitureDAO implements DAO {
       ps_Req.setTime(8, furn.getRequestTime());
       ps_Req.executeUpdate();
 
+      db.closeConnection();
+      db.setConnection();
+
       ps_Furniture = db.getConnection().prepareStatement(SQL);
       ps_Furniture.setInt(1, maxID);
       ps_Furniture.setString(2, furn.getFurnitureType());

@@ -9,6 +9,7 @@ import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -21,11 +22,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import org.controlsfx.control.SearchableComboBox;
 
 public class FurnitureRequestController {
   @FXML MFXButton furnSubmitButton;
@@ -39,7 +40,7 @@ public class FurnitureRequestController {
 
   @FXML MFXTextField furnRecipient;
 
-  @FXML MFXTextField furnNotesData;
+  @FXML TextArea furnNotesData;
 
   @FXML ImageView selectedChair;
   @FXML ImageView chairOption;
@@ -51,8 +52,8 @@ public class FurnitureRequestController {
   // @FXML ChoiceBox<String> mealFoodChoice;
   @FXML Label furnChoice;
 
-  @FXML SearchableComboBox locationSearchDropdown;
-  @FXML SearchableComboBox employeeSearchDropdown;
+  @FXML MFXFilterComboBox locationSearchDropdown;
+  @FXML MFXFilterComboBox employeeSearchDropdown;
   @FXML Label checkFields;
 
   @FXML Line assignToLine;

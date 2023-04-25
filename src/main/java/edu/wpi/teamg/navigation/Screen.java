@@ -8,6 +8,7 @@ public enum Screen {
   FLOWERS_REQUEST("views/FlowersRequestPage.fxml"),
   FURNITURE_REQUEST("views/FurnitureRequestPage.fxml"),
   SUPPLIES_REQUEST("views/OfficeSuppRequestPage.fxml"),
+  MAINTENANCE_REQUEST("views/MaintenanceRequestPage.fxml"),
 
   PATHFINDING_PAGE("views/pathfinding.fxml"),
 
@@ -23,17 +24,26 @@ public enum Screen {
   FLOWERS_REQUEST_SUBMIT("views/FlowersRequestConfirmationPage.fxml"),
   FURNITURE_REQUEST_SUBMIT("views/FurnitureRequestConfirmationPage.fxml"),
   SUPPLIES_REQUEST_SUBMIT("views/OfficeSuppRequestConfirmationPage.fxml"),
+  MAINTENANCE_REQUEST_SUBMIT("views/MaintenanceRequestConfirmationPage.fxml"),
   ADMIN_STATUS_PAGE("views/AdminFormStatus.fxml"),
   LOGIN_PAGE("views/Login.fxml"),
   EMPLOYEE_FORMS("views/EmployeeSelfFormView.fxml"),
   ADMIN_SIGNAGE_EDITOR("views/SignageAdmin.fxml"),
   ADMIN_MAP_EDITOR("views/MapEditor.fxml"),
   ADD_EMPLOYEE("views/AddEmployee.fxml"),
+
+  ABOUT_PAGE("views/About_page.fxml"),
   EMPLOYEE_INFO("views/EmployeeInformation.fxml"),
   TWO_FAC("views/2FactorPopUp.fxml"),
+
+  NOTIFICATION_PAGE("views/AddNotification.fxml"),
+  // ALERT_PAGE("views/AlertPage.fxml"),
+
   NODE_EDITOR("views/NodeViewAndEditor.fxml"),
 
-  DICTIONARY("views/Dictionary.fxml");
+  DICTIONARY("views/Dictionary.fxml"),
+
+  CREDITS("views/Credits.fxml");
 
   private final String filename;
 
