@@ -67,6 +67,8 @@ public class MaintenanceRequestController {
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
 
+  static String typeOfMaintain;
+
   DAORepo dao = new DAORepo();
 
   @FXML
@@ -168,6 +170,7 @@ public class MaintenanceRequestController {
     }
 
     if (type == "Custodial") {
+      typeOfMaintain = "Custodial";
       mechanicalCheck.setSelected(false);
       technologicalCheck.setSelected(false);
       textTree1.setVisible(true);
@@ -195,6 +198,7 @@ public class MaintenanceRequestController {
       finalTreeLevel.setVisible(false);
     }
     if (type == "Mechanical") {
+      typeOfMaintain = "Mechanical";
       custodialCheck.setSelected(false);
       technologicalCheck.setSelected(false);
       textTree1.setVisible(true);
@@ -221,6 +225,7 @@ public class MaintenanceRequestController {
       finalTreeLevel.setVisible(false);
     }
     if (type == "Technological") {
+      typeOfMaintain = "Technological";
       mechanicalCheck.setSelected(false);
       custodialCheck.setSelected(false);
       textTree1.setVisible(true);
@@ -322,7 +327,8 @@ public class MaintenanceRequestController {
             Date.valueOf(maintainDate.getValue()),
             StringToTime(maintainTime.getText()),
             maintainRecipient.getText(),
-            maintainPhoneNumber.getText());
+            maintainPhoneNumber.getText(),
+                typeOfMaintain);
 
     dao.insertMealRequest(mr); // TODO need to change to MaintenanceRequest
     App.mealRefresh(); // TODO need to change to MaintenanceRequest
@@ -365,10 +371,18 @@ public class MaintenanceRequestController {
 
   public void allDataFilled() {
     if (!(maintainRecipient.getText().equals("")
-        || maintainPhoneNumber.getText().equals("")
-        || maintainDate.getText().equals("")
-        || maintainTime.getText().equals("")
-        || locationSearchDropdown.getValue() == null)) {
+            || maintainPhoneNumber.getText().equals("")
+            || maintainDate.getText().equals("")
+            || maintainTime.getText().equals("")
+            || locationSearchDropdown.getValue() == null)
+        || (mechanicalCheck.isSelected() == false
+            && custodialCheck.isSelected() == false
+            && technologicalCheck.isSelected() == false)
+        || (checkTree1.isSelected() == false
+            && checkTree2.isSelected() == false
+            && checkTree3.isSelected() == false
+            && checkTree4.isSelected() == false)
+        || finalTreeLevel.getText().equals("")) {
 
       try {
         storeMaintenanceValues();
@@ -389,6 +403,28 @@ public class MaintenanceRequestController {
 
     locationSearchDropdown.setValue(null);
     employeeSearchDropdown.setValue(null);
+
+    mechanicalCheck.setSelected(false);
+    technologicalCheck.setSelected(false);
+    custodialCheck.setSelected(false);
+    checkTree1.setSelected(false);
+    checkTree2.setSelected(false);
+    checkTree3.setSelected(false);
+    checkTree4.setSelected(false);
+    finalTreeLevel.setText("");
+
+    finalTreeLevel.setVisible(false);
+    checkTree1.setVisible(false);
+    checkTree2.setVisible(false);
+    checkTree3.setVisible(false);
+    checkTree4.setVisible(false);
+    mechanicalCheck.setVisible(false);
+    technologicalCheck.setVisible(false);
+    custodialCheck.setVisible(false);
+    textTree1.setVisible(false);
+    textTree2.setVisible(false);
+    lineTree2.setVisible(false);
+    lineTree1.setVisible(false);
     return;
   }
 }
