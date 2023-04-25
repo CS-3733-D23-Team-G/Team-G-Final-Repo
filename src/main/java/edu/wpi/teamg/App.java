@@ -6,6 +6,7 @@ import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.application.Application;
@@ -24,6 +25,12 @@ public class App extends Application {
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
   @Setter @Getter private static Stage frontStage;
+
+
+  @Getter private static LocalDate currentDate = LocalDate.now();
+
+  int monthNum = currentDate.getMonth().getValue();
+  int yearNum = currentDate.getYear();
 
   public static Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
 

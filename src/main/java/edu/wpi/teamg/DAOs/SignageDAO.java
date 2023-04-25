@@ -133,6 +133,36 @@ public class SignageDAO implements DAO {
     db.closeConnection();
   }
 
+  public HashMap getSignageGivenKioskNumAndMonth(int givenKiosk, String givenMonth)
+      throws SQLException {
+    db.setConnection();
+    HashMap<String, Signage> directions = new HashMap<>();
+    PreparedStatement ps;
+    ResultSet rs;
+
+    sql =
+        "select * from"
+            + this.getTable()
+            + "where iteration3.signage.month = ? and iteration3.signage.kiosknum = ?";
+    ps = db.getConnection().prepareStatement(sql);
+    ps.setString(1, givenMonth);
+    ps.setInt(2, givenKiosk);
+    rs = ps.executeQuery();
+
+    while (rs.next()) {
+      int kiosknum = rs.getInt("kiosknum");
+      String key = rs.getString("month") + " " + rs.getString("arrow");
+      String month = rs.getString("month");
+      String arrow = rs.getString("arrow");
+
+      Signage newSignage = new Signage(kiosknum, null, arrow, month, false);
+      directions.put(key, newSignage);
+    }
+
+    db.closeConnection();
+    return directions;
+  }
+
   @Override
   public String getTable() {
     return "teamgdb.iteration3.signage";

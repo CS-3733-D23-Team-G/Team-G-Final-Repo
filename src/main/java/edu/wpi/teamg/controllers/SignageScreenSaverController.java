@@ -53,6 +53,9 @@ public class SignageScreenSaverController {
   public String date;
 
   public void initialize() {
+
+
+
     ClickToPathFinding.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     arrows =
         new ArrayList<>(
