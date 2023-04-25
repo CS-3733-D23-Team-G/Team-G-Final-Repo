@@ -129,7 +129,7 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </Text>
-                        <MFXComboBox minHeight="-Infinity" prefWidth="150.0" styleClass="requestTextBox_MFX">
+                        <MFXComboBox fx:id="kioskDrop" minHeight="-Infinity" prefWidth="150.0" styleClass="requestTextBox_MFX">
                            <HBox.margin>
                               <Insets left="15.0" top="5.0" />
                            </HBox.margin>

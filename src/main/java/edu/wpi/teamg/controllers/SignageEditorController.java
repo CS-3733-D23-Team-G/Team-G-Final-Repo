@@ -1,7 +1,11 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
+import edu.wpi.teamg.DAOs.SignageDAO;
+import edu.wpi.teamg.ORMClasses.Signage;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
@@ -16,7 +20,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.controlsfx.control.SearchableComboBox;
 
 public class SignageEditorController {
   Image westArrow = new Image("edu/wpi/teamg/Images/WestArrow.png");
@@ -36,16 +39,16 @@ public class SignageEditorController {
   @FXML ImageView arrow9 = new ImageView(noArrow);
   @FXML ImageView arrow10 = new ImageView(noArrow);
 
-  @FXML SearchableComboBox signageDropDown1;
-  @FXML SearchableComboBox signageDropDown2;
-  @FXML SearchableComboBox signageDropDown3;
-  @FXML SearchableComboBox signageDropDown4;
-  @FXML SearchableComboBox signageDropDown5;
-  @FXML SearchableComboBox signageDropDown6;
-  @FXML SearchableComboBox signageDropDown7;
-  @FXML SearchableComboBox signageDropDown8;
-  @FXML SearchableComboBox signageDropDown9;
-  @FXML SearchableComboBox signageDropDown10;
+  @FXML MFXFilterComboBox signageDropDown1;
+  @FXML MFXFilterComboBox signageDropDown2;
+  @FXML MFXFilterComboBox signageDropDown3;
+  @FXML MFXFilterComboBox signageDropDown4;
+  @FXML MFXFilterComboBox signageDropDown5;
+  @FXML MFXFilterComboBox signageDropDown6;
+  @FXML MFXFilterComboBox signageDropDown7;
+  @FXML MFXFilterComboBox signageDropDown8;
+  @FXML MFXFilterComboBox signageDropDown9;
+  @FXML MFXFilterComboBox signageDropDown10;
 
   @FXML MFXButton clearField1;
   @FXML MFXButton clearField2;
@@ -64,6 +67,9 @@ public class SignageEditorController {
 
   @FXML MFXFilterComboBox monthDrop;
 
+  @FXML MFXFilterComboBox yearDrop;
+  @FXML MFXComboBox kioskDrop;
+
   static boolean attribute = false;
 
   public static String[] locationNameSave = new String[10];
@@ -78,10 +84,37 @@ public class SignageEditorController {
       FXCollections.observableArrayList(
           "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
+  ObservableList<String> yearChoice =
+      FXCollections.observableArrayList(
+          App.getYearNum() + "",
+          App.getYearNum() + 1 + "",
+          App.getYearNum() + 2 + "",
+          App.getYearNum() + 3 + "",
+          App.getYearNum() + 4 + "");
+  ObservableList<String> kioskChoice = FXCollections.observableArrayList(1 + "", 2 + "");
+
+  MFXFilterComboBox[] comboBoxes = {
+    signageDropDown1,
+    signageDropDown2,
+    signageDropDown3,
+    signageDropDown4,
+    signageDropDown5,
+    signageDropDown6,
+    signageDropDown7,
+    signageDropDown8,
+    signageDropDown9,
+    signageDropDown10
+  };
+
   @FXML
   public void initialize() throws SQLException {
     DAORepo dao = new DAORepo();
     monthDrop.setItems(monthChoice);
+    yearDrop.setItems(yearChoice);
+    kioskDrop.setItems(kioskChoice);
+    for (MFXFilterComboBox box : comboBoxes) {
+      box.setValue("");
+    }
     arrows =
         new ArrayList<>(
             Arrays.asList(
@@ -94,6 +127,14 @@ public class SignageEditorController {
           }
         });
     daySpecify.setOnAction(event -> date.setVisible(true));
+    submitSignage.setOnAction(
+        event -> {
+          try {
+            addSignage();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
 
     //    if (!attribute) {
     //      arrow2.setImage(westArrow);
@@ -367,5 +408,41 @@ public class SignageEditorController {
 
   public String getDate() {
     return dateSave.toString();
+  }
+
+  private void addSignage() throws SQLException {
+    int kiNum = Integer.parseInt(kioskDrop.getText());
+
+    StringBuilder sb1 = new StringBuilder();
+    sb1.append(monthDrop.getText() + "-");
+    sb1.append(yearDrop.getText());
+    int i = 0;
+    ImageView[] views = {
+      arrow1, arrow2, arrow3, arrow4, arrow5, arrow6, arrow7, arrow8, arrow9, arrow10
+    };
+    for (MFXFilterComboBox box : comboBoxes) {
+      StringBuilder sb = new StringBuilder();
+      if (box.getText().equals("")) {
+        continue;
+      }
+
+      sb.append(box.getValue() + "_");
+
+      if (views[i].getImage() == westArrow) {
+        sb.append("L_");
+      } else if (views[i].getImage() == northArrow) {
+        sb.append("U_");
+      } else if (views[i].getImage() == southArrow) {
+        sb.append("D_");
+      } else if (views[i].getImage() == eastArrow) {
+        sb.append("R_");
+      }
+
+      sb.append(i + 1);
+      Signage signage = new Signage(kiNum, null, sb.toString(), sb1.toString(), false);
+      SignageDAO dao = new SignageDAO();
+      dao.insert(signage);
+      i++;
+    }
   }
 }

@@ -29,7 +29,7 @@ public class App extends Application {
   @Getter private static LocalDate currentDate = LocalDate.now();
 
   static int monthNum = currentDate.getMonth().getValue();
-  static int yearNum = currentDate.getYear();
+  @Getter static int yearNum = currentDate.getYear();
 
   public static Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
 
