@@ -28,10 +28,12 @@ public class SignageDAO implements DAO {
 
     while (rs.next()) {
       int kiosk = rs.getInt("kiosknum");
-      Date date = rs.getDate("date");
+      Date date = rs.getDate("specdate");
       String direction = rs.getString("arrow");
+      String month = rs.getString("month");
+      boolean spec = rs.getBoolean("is_spec");
 
-      Signage signage = new Signage(kiosk, date, direction);
+      Signage signage = new Signage(kiosk, date, direction, month, spec);
       signageHash.put(signage.getKioskNum(), signage);
     }
 
@@ -61,11 +63,16 @@ public class SignageDAO implements DAO {
     db.setConnection();
 
     PreparedStatement ps;
-    sql = "insert into " + this.getTable() + " (kiosknum, date, arrow) values (?,?,?)";
+    sql =
+        "insert into "
+            + this.getTable()
+            + " (kiosknum, specdate, arrow, month, is_spec) values (?,?,?,?,?)";
     ps = db.getConnection().prepareStatement(sql);
     ps.setInt(1, ((Signage) obj).getKioskNum());
-    ps.setDate(2, ((Signage) obj).getDate());
+    ps.setDate(2, ((Signage) obj).getSpecdate());
     ps.setString(3, ((Signage) obj).getArrow());
+    ps.setString(4, ((Signage) obj).getMonth());
+    ps.setBoolean(5, ((Signage) obj).isSpecified());
     ps.executeUpdate();
     signageHash.put(((Signage) obj).getKioskNum(), (Signage) obj);
 
@@ -91,7 +98,10 @@ public class SignageDAO implements DAO {
     db.setConnection();
 
     PreparedStatement ps;
-    sql = "insert into " + this.getTable() + " (kiosknum, date, arrow) values (?,?,?)";
+    sql =
+        "insert into "
+            + this.getTable()
+            + " (kiosknum, specdate, arrow, month, is_spec) values (?,?,?,?,?)";
     ps = db.getConnection().prepareStatement(sql);
     try {
       BufferedReader br = new BufferedReader(new FileReader(path));
@@ -102,10 +112,14 @@ public class SignageDAO implements DAO {
         String kiosk = data[0];
         String date = data[1];
         String directions = data[2];
+        String month = data[3];
+        boolean specified = Boolean.parseBoolean(data[4]);
 
         ps.setInt(1, Integer.parseInt(kiosk));
         ps.setDate(2, Date.valueOf(date));
         ps.setString(3, directions);
+        ps.setString(4, month);
+        ps.setBoolean(5, specified);
         ps.addBatch();
       }
 

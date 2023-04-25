@@ -47,8 +47,10 @@ create table iteration3.Move(
 );
 create table iteration3.signage(
                                    kiosknum int primary key,
-                                   date Date,
-                                   arrow text
+                                   specDate Date,
+                                   arrow text,
+                                   month text,
+                                   is_spec bool
 );
 
 create type iteration3.enum1 as enum('blank', 'processing', 'done');
