@@ -58,29 +58,22 @@
                <children>
                   <MFXScrollPane AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <content>
-                        <VBox fx:id="forms" prefHeight="780.0" prefWidth="743.0">
-                           <children>
-                              <Text fill="WHITE" layoutX="40.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Forms:">
-                                 <font>
-                                    <Font size="36.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="40.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <Line endX="88.017578125" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
-                                 <VBox.margin>
-                                    <Insets left="40.0" />
-                                 </VBox.margin>
-                              </Line>
-                           </children>
-                        </VBox>
+                        <VBox fx:id="forms" prefHeight="780.0" prefWidth="743.0" />
                      </content>
                      <styleClass>
                         <String fx:value="scroll-pane-Furn" />
                         <String fx:value="widget_homepage_pair" />
                      </styleClass>
+                     <padding>
+                        <Insets top="50.0" />
+                     </padding>
                   </MFXScrollPane>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Your Forms:" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="100.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Line endX="88.017578125" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="145.0" />
                </children>
                <HBox.margin>
                   <Insets bottom="2.0" />

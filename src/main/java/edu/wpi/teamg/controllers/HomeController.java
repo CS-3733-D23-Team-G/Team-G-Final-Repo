@@ -35,9 +35,9 @@ public class HomeController {
     hash.forEach(
         (i, m) -> {
           Text requestID = new Text("Request #" + i + ": " + m.getStatus());
-          requestID.setLayoutX(20);
-          requestID.setLayoutY(35);
-          requestID.setStyle("-fx-font-size: 24;");
+          requestID.setLayoutX(50);
+          requestID.setLayoutY(45);
+          requestID.setStyle("-fx-font-size: 30; -fx-font-weight: 600");
           String type = m.getReqtype();
           String thisType = "";
 
@@ -72,18 +72,18 @@ public class HomeController {
           }
 
           Text request = new Text(thisType + "Request");
-          request.setLayoutX(20);
-          request.setLayoutY(85);
-          request.setStyle("-fx-font-size: 24;");
+          request.setLayoutX(50);
+          request.setLayoutY(90);
+          request.setStyle("-fx-font-size: 30; -fx-font-weight: 600");
 
           Text date = new Text("Do By: " + m.getRequestDate());
-          date.setLayoutX(470);
-          date.setLayoutY(85);
-          date.setStyle("-fx-font-size: 24;" + "-fx-alignment: right");
+          date.setLayoutX(375);
+          date.setLayoutY(90);
+          date.setStyle("-fx-font-size: 30; -fx-font-weight: 600;" + "-fx-alignment: right");
 
-          Circle circle = new Circle(20);
-          circle.setLayoutX(675);
-          circle.setLayoutY(70);
+          Circle circle = new Circle(25);
+          circle.setLayoutX(670);
+          circle.setLayoutY(80);
           circle.setStyle("-fx-fill: " + color);
 
           AnchorPane newAnchorPane = new AnchorPane();

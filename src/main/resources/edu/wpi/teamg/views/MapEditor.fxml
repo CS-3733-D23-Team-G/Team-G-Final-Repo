@@ -4,8 +4,10 @@
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
+
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.TitledPane?>
+
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -18,11 +20,11 @@
    <center>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="980.0" prefWidth="656.0" styleClass="half_bottom_left" stylesheets="@style.css">
+            <AnchorPane prefHeight="980.0" prefWidth="656.0" styleClass="half_bottom_left" stylesheets="@mapEditor.css">
                <children>
-                  <HBox layoutX="69.0" layoutY="228.0" prefHeight="486.0" prefWidth="502.0" styleClass="left_vbox" stylesheets="@style.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="150.0">
+                  <HBox layoutX="69.0" layoutY="228.0" prefHeight="486.0" prefWidth="642.0" styleClass="left_vbox" stylesheets="@mapEditor.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="150.0">
                      <children>
-                        <VBox prefHeight="980.0" prefWidth="135.0" styleClass="locationSelect_vbox">
+                        <VBox prefHeight="606.0" prefWidth="393.0" styleClass="locationSelect_vbox">
                            <children>
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <opaqueInsets>
@@ -138,7 +140,29 @@
                               </HBox>
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
+
+                                    <MFXButton fx:id="addMove" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Move">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="addEdge" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Edge">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox" stylesheets="@mapEditor.css">
+                                 <children>
+                                    <MFXButton fx:id="deleteLoc" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Location Name">
+
                                     <MFXToggleButton fx:id="toggleEdge" prefHeight="41.0" prefWidth="30.0" text="Toggle Edges">
+
                                        <HBox.margin>
                                           <Insets top="25.0" />
                                        </HBox.margin>
@@ -154,8 +178,20 @@
                                     </MFXToggleButton>
                                  </children>
                               </HBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <MFXButton fx:id="alignButton" prefHeight="54.0" prefWidth="226.0" styleClass="add_Buttons" text="Align Nodes" />
+                                    <Label fx:id="alignmentLabel" text="Select the nodes you would like to align" />
+                                 </children>
+                              </VBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <MFXButton fx:id="verticalButton" prefHeight="70.0" prefWidth="192.0" styleClass="add_Buttons" text="Vertical" />
+                                    <MFXButton fx:id="horizontalButton" prefHeight="60.0" prefWidth="216.0" styleClass="add_Buttons" text="Horizontal" />
+                                 </children>
+                              </HBox>
                            </children></VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="button_vbox">
+                        <VBox prefHeight="680.0" prefWidth="92.0" styleClass="button_vbox">
                            <children>
                               <MFXButton fx:id="floor3" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F3" textAlignment="CENTER" textFill="#f6bd38">
                                  <VBox.margin>
@@ -210,7 +246,7 @@
             </AnchorPane>
             <AnchorPane styleClass="half_bottom_right">
                <children>
-                  <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" layoutX="2.0" layoutY="-26.0" prefHeight="980.0" prefWidth="1356.0" styleClass="gesture_pane_pathfinding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" layoutX="2.0" layoutY="-26.0" prefHeight="980.0" prefWidth="1356.0" styleClass="finding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
                         <Group fx:id="group">
                            <children>

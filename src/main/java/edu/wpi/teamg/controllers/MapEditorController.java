@@ -55,6 +55,16 @@ public class MapEditorController {
 
   @FXML MFXButton addEdge;
 
+
+  @FXML MFXButton alignButton;
+
+  @FXML MFXButton horizontalButton;
+
+  @FXML MFXButton verticalButton;
+
+  @FXML Label alignLabel;
+
+
   @FXML MFXButton deleteMove;
 
   @FXML MFXButton delEdge;
@@ -62,6 +72,7 @@ public class MapEditorController {
   @FXML MFXButton locNameMod;
 
   @FXML MFXToggleButton toggSn;
+
   boolean moved = false;
 
   boolean lineGen;
@@ -74,6 +85,12 @@ public class MapEditorController {
 
   ArrayList<ImageView> img = new ArrayList<>();
 
+  ArrayList<Node> alignedNodes = new ArrayList<Node>();
+  ArrayList<Circle> allCircles = new ArrayList<Circle>();
+
+  boolean isAlignClicked = false;
+
+ 
   boolean editEdge = false;
 
   boolean shortNameToggle = true;
@@ -177,7 +194,23 @@ public class MapEditorController {
             throw new RuntimeException(e);
           }
         });
-    //    Image mapL1 =
+    alignButton.setOnMouseClicked(
+        event -> {
+          isAlignClicked = true;
+        });
+    horizontalButton.setOnMouseClicked(
+        event -> {
+          alignCirclesHorizontal(allCircles);
+          isAlignClicked = false;
+          allCircles.clear();
+        });
+
+    verticalButton.setOnMouseClicked(
+        event -> {
+          alignCirclesVertical(allCircles);
+          isAlignClicked = false;
+          allCircles.clear();
+        });
 
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
@@ -302,6 +335,36 @@ public class MapEditorController {
     //            throw new RuntimeException(e);
     //          }
     //        });
+  }
+
+  public void alignCirclesVertical(ArrayList<Circle> circles) {
+    double firstX = circles.get(0).getCenterX();
+    for (Circle circle : circles) {
+      circle.setCenterX(firstX);
+    }
+  }
+
+  public void alignCirclesHorizontal(ArrayList<Circle> circles) {
+    double firstY = circles.get(0).getCenterY();
+    for (Circle circle : circles) {
+      circle.setCenterY(firstY);
+    }
+  }
+
+  public void alignNodesVertical(ArrayList<Node> nodes) {
+
+    int xcoord = nodes.get(0).getXcoord();
+    for (Node node : nodes) {
+      node.setXcoord(xcoord);
+    }
+  }
+
+  public void alignNodesHorizontal(ArrayList<Node> nodes) {
+
+    int ycoord = nodes.get(0).getYcoord();
+    for (Node node : nodes) {
+      node.setXcoord(ycoord);
+    }
   }
 
   public void goToL1(ArrayList<ImageView> imgs) throws SQLException {
@@ -538,8 +601,10 @@ public class MapEditorController {
       throws SQLException {
 
     Node currentNode = listOfNodes.get(i);
+
     Text nodeLabel = new Text();
     //
+
     //    LocationNameDAO locationNameDAO = new LocationNameDAO();
     //    HashMap<String, LocationName> labelMap = locationNameDAO.getAll();
 
@@ -550,6 +615,14 @@ public class MapEditorController {
             10,
             Color.rgb(1, 45, 90));
 
+
+    point.setOnMouseClicked(
+        event -> {
+          if (isAlignClicked) {
+            allCircles.add(point);
+          }
+        });
+
     if (shortNameToggle) {
       nodeLabel.setFill(Color.BLACK);
       nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
@@ -559,6 +632,7 @@ public class MapEditorController {
 
       nodePane.getChildren().add(nodeLabel);
     }
+
     /*
        point.setOnMouseEntered(event ->
 
