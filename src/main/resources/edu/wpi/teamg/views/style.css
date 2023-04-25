@@ -4,6 +4,23 @@
     -mfx-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
 }
 
+.mfx-checkbox .box {
+    -fx-background-color: transparent;
+    -fx-background-radius: 2;
+
+    -fx-border-color: #F6BD38;
+    -fx-border-radius: 2;
+    -fx-border-width: 2;
+
+    -fx-padding: 5;
+}
+
+.mfx-checkbox:selected .box,
+.mfx-checkbox:indeterminate .box {
+    -fx-background-color: #012D5A;
+    -fx-border-color: #012D5A;
+}
+
 .mfx-checkbox .box .mark {
     -mfx-color: #F6BD38;
 }
@@ -418,7 +435,14 @@ Popup
 
 .requestTextBox{
     -fx-background-color: #D9D9D9;
-    -fx-font-size: 25;
+    -fx-font-size: 20;
+    -fx-pref-height: 60;
+    -fx-max-height: 60;
+}
+
+.requestTextBox_MFX{
+    -fx-background-color: #D9D9D9;
+    -fx-font-size: 15;
     -fx-pref-height: 60;
     -fx-max-height: 60;
 }
@@ -428,7 +452,7 @@ Popup
     -fx-background-color: #D9D9D9;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
-    -fx-font-size: 25;
+    -fx-font-size: 20;
     -fx-font-family: "Open Sans Regular";
 }
 

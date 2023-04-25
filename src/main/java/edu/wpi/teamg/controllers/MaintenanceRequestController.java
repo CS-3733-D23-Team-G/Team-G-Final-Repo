@@ -7,10 +7,7 @@ import edu.wpi.teamg.ORMClasses.MaintenanceRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXCheckbox;
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
-import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.controls.*;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -26,7 +23,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import org.controlsfx.control.SearchableComboBox;
 
 public class MaintenanceRequestController {
   @FXML MFXButton maintainSubmitButton;
@@ -57,8 +53,8 @@ public class MaintenanceRequestController {
 
   @FXML TextArea finalTreeLevel;
 
-  @FXML SearchableComboBox locationSearchDropdown;
-  @FXML SearchableComboBox employeeSearchDropdown;
+  @FXML MFXFilterComboBox locationSearchDropdown;
+  @FXML MFXFilterComboBox employeeSearchDropdown;
   @FXML Label checkFields;
   @FXML Line assignToLine;
   @FXML Text assignToText;

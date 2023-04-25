@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class FlowerRequestDAO implements DAO {
   HashMap<Integer, FlowerRequest> flowerHashMap = new HashMap<>();
-  private static DBConnection db = new DBConnection();
+  private DBConnection db = new DBConnection();
   private String SQL_maxID;
   private String SQL_flowerRequest;
   private String SQL_Request;
