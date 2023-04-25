@@ -74,6 +74,15 @@
                               </HBox>
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
+                                    <MFXButton fx:id="deleteMove" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Move">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
                                     <MFXToggleButton fx:id="toggleEdge" prefHeight="41.0" prefWidth="30.0" text="Toggle Edges">
                                        <HBox.margin>
                                           <Insets top="25.0" />

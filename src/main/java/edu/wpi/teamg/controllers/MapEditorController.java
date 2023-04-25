@@ -55,6 +55,7 @@ public class MapEditorController {
 
   @FXML MFXButton addEdge;
 
+  @FXML MFXButton deleteMove;
   boolean moved = false;
 
   boolean lineGen;
@@ -120,6 +121,15 @@ public class MapEditorController {
         event -> {
           try {
             addEdge();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    deleteMove.setOnMouseClicked(
+        event -> {
+          try {
+            deleteAMove();
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
@@ -713,6 +723,18 @@ public class MapEditorController {
     ConfirmPopUpController controller = loader.getController();
     controller.setFields(x1, y1, x2, y2, potentialUpdate, window, imgs, index);
 
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void deleteAMove() throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/DeleteMovePopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    DeleteMovePopUpController controller = loader.getController();
+    controller.passOver(window);
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
