@@ -28,6 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
@@ -260,8 +261,11 @@ public class MapEditorController {
 
     // Scales Map
     pane.setMinScale(.001);
-    pane.zoomTo(.000001, new Point2D(2500, 1700));
-    pane.zoomTo(.000001, new Point2D(2500, 1700));
+    pane.zoomTo(.5, new Point2D(1250, 850));
+    pane.zoomTo(.5, new Point2D(1250, 850));
+
+    pane.centreOnX(1000);
+    pane.centreOnY(500);
 
     ArrayList<ImageView> imageViewsList = new ArrayList<>();
     imageViewsList.add(mapView);
@@ -631,6 +635,7 @@ public class MapEditorController {
 
     if (shortNameToggle) {
       nodeLabel.setFill(Color.BLACK);
+      nodeLabel.setFont(Font.font(30));
       nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
       nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
       nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);

@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.ORMClasses.Move;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
@@ -24,8 +25,11 @@ public class DirectionsPopUpController {
 
   boolean last = false;
 
+  String orientation = "S";
+
   public void initialize() {
     closePath.setOnMouseClicked(event -> close());
+    pathInstructions.setEditable(false);
   }
 
   public void setF(PopOver window, ArrayList<String> getPath, ArrayList<Move> movin) {
@@ -44,6 +48,10 @@ public class DirectionsPopUpController {
         last = true;
       }
       for (int j = 0; j < updatedMoves.size(); j++) {
+        int up = 0;
+        int down = 0;
+        int left = 0;
+        int right = 0;
 
         if (first) {
           if (updatedMoves.get(j).getNodeID() == Integer.parseInt(path.get(i))) {
@@ -56,18 +64,199 @@ public class DirectionsPopUpController {
           if (updatedMoves.get(j).getNodeID() == Integer.parseInt(path.get(i))) {
             lnEnd.setText(updatedMoves.get(j).getLongName());
             pathInstructions.setText(
-                pathInstructions.getText() + " End At:" + updatedMoves.get(j).getLongName());
+                pathInstructions.getText() + "End At: " + updatedMoves.get(j).getLongName());
             last = false;
           }
 
         } else {
-          if (updatedMoves.get(j).getNodeID() == Integer.parseInt(path.get(i))) {
-            pathInstructions.setText(
-                pathInstructions.getText() + "\t" + updatedMoves.get(j).getLongName() + "\n");
+          if (i != 0 && updatedMoves.get(j).getNodeID() == Integer.parseInt(path.get(i))) {
+
+            if (App.allNodes.get(Integer.parseInt(path.get(i))).getXcoord()
+                > App.allNodes.get(Integer.parseInt(path.get(i - 1))).getXcoord()) {
+              right =
+                  App.allNodes.get(Integer.parseInt(path.get(i))).getXcoord()
+                      - App.allNodes.get(Integer.parseInt(path.get(i - 1))).getXcoord();
+            }
+            if (App.allNodes.get(Integer.parseInt(path.get(i))).getXcoord()
+                < App.allNodes.get(Integer.parseInt(path.get(i - 1))).getXcoord()) {
+              left =
+                  App.allNodes.get(Integer.parseInt(path.get(i - 1))).getXcoord()
+                      - App.allNodes.get(Integer.parseInt(path.get(i))).getXcoord();
+            }
+            if (App.allNodes.get(Integer.parseInt(path.get(i))).getYcoord()
+                < App.allNodes.get(Integer.parseInt(path.get(i - 1))).getYcoord()) {
+              up =
+                  App.allNodes.get(Integer.parseInt(path.get(i - 1))).getYcoord()
+                      - App.allNodes.get(Integer.parseInt(path.get(i))).getYcoord();
+            }
+            if (App.allNodes.get(Integer.parseInt(path.get(i))).getYcoord()
+                > App.allNodes.get(Integer.parseInt(path.get(i - 1))).getYcoord()) {
+              down =
+                  App.allNodes.get(Integer.parseInt(path.get(i))).getYcoord()
+                      - App.allNodes.get(Integer.parseInt(path.get(i - 1))).getYcoord();
+            }
+
+            if (up == down && up == right && up == left) {
+              pathInstructions.setText(
+                  pathInstructions.getText()
+                      + "Go Up To: "
+                      + updatedMoves.get(j).getLongName()
+                      + "\n");
+
+            } else {
+              changeOrientation(up, down, left, right, j, i);
+            }
           }
         }
       }
     }
+  }
+
+  public void changeOrientation(int up, int down, int left, int right, int j, int i) {
+
+    System.out.println(up);
+    System.out.println(down);
+    System.out.println(left);
+    System.out.println(right);
+
+    switch (orientation) {
+      case "R":
+        if (right > left && right > down && right > up) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Go Straight To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "R";
+        } else if (left > right && left > down && left > up) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn Around and Go To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "L";
+        } else if (up > left && up > down && up > right) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn Left and Go To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "S";
+        } else if (down > left && down > up && down > right) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn Right and Go To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+
+          orientation = "D";
+        }
+
+        break;
+
+      case "L":
+        if (right > left && right > down && right > up) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn Around and Go To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+
+          orientation = "R";
+        } else if (left > right && left > down && left > up) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Go Straight To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+
+          orientation = "L";
+        } else if (up > left && up > down && up > right) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn Right and Go To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "S";
+        } else if (down > left && down > up && down > right) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn Left and Go To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "D";
+        }
+
+        break;
+
+      case "S":
+        if (right > left && right > down && right > up) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn Right and Go To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "R";
+        } else if (left > right && left > down && left > up) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn Left and Go To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "L";
+        } else if (up > left && up > down && up > right) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Go Straight to: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "S";
+        } else if (down > left && down > up && down > right) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn around and go to: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "D";
+        }
+
+        break;
+
+      case "D":
+        if (right > left && right > down && right > up) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn Left and Go To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "R";
+        } else if (left > right && left > down && left > up) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn Right and Go To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "L";
+        } else if (up > left && up > down && up > right) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Turn Around and Go Straight To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "S";
+        } else if (down > left && down > up && down > right) {
+          pathInstructions.setText(
+              pathInstructions.getText()
+                  + "Go Straight To: "
+                  + updatedMoves.get(j).getLongName()
+                  + "\n");
+          orientation = "D";
+        }
+
+        break;
+    }
+
+    System.out.println(orientation);
   }
 
   public void close() {

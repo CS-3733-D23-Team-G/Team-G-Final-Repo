@@ -302,8 +302,8 @@ public class pathfindingController {
 
     // Scales Map
     pane.setMinScale(.001);
-    pane.zoomTo(.3, new Point2D(2500, 1700));
-    pane.zoomTo(.3, new Point2D(2500, 1700));
+    pane.zoomTo(.5, new Point2D(1250, 850));
+    pane.zoomTo(.5, new Point2D(1250, 850));
 
     pane.centreOnX(1000);
     pane.centreOnY(500);
@@ -1013,9 +1013,9 @@ public class pathfindingController {
       txt.setFill(Color.BLACK);
       txt.setTextAlignment(TextAlignment.LEFT);
       // nodeLabel.setPrefSize(10, 10);
-      txt.setFont(new Font(20));
+      txt.setFont(new Font(30));
       txt.setText(sn.get(listOfNodes.get(i).getNodeID()));
-      txt.setLayoutX(listOfNodes.get(i).getXcoord() - 30);
+      txt.setLayoutX(listOfNodes.get(i).getXcoord());
       txt.setLayoutY(listOfNodes.get(i).getYcoord() + 30);
       txt.toFront();
     }
