@@ -67,7 +67,7 @@ public class LocNamePopUpController {
     longName.setItems(locNames);
   }
 
-  public void setW(PopOver window){
+  public void setW(PopOver window) {
     this.wind = window;
   }
 

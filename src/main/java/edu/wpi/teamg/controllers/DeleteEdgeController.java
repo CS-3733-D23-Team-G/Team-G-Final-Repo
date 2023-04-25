@@ -51,9 +51,10 @@ public class DeleteEdgeController {
         });
   }
 
-  public void setWind(PopOver window){
-      this.wind = window;
+  public void setWind(PopOver window) {
+    this.wind = window;
   }
+
   public void setEdgeIDs() {
     ArrayList<Edge> edges = new ArrayList<>(App.listOfEdges);
     ArrayList<String> finalLocations = new ArrayList<>();

@@ -22,13 +22,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
 
@@ -61,6 +61,7 @@ public class MapEditorController {
 
   @FXML MFXButton locNameMod;
 
+  @FXML MFXToggleButton toggSn;
   boolean moved = false;
 
   boolean lineGen;
@@ -75,7 +76,10 @@ public class MapEditorController {
 
   boolean editEdge = false;
 
+  boolean shortNameToggle = true;
+
   public void initialize() throws SQLException, IOException {
+    toggSn.setSelected(true);
     pane.setVisible(true);
     nodePane.setVisible(true);
     group.setVisible(true);
@@ -121,6 +125,22 @@ public class MapEditorController {
           if (toggleEdge.isSelected()) {
             lineGen = true;
             edgeDisplay(floor);
+          }
+        });
+
+    toggSn.setOnAction(
+        event -> {
+          if (!toggSn.isSelected()) {
+            nodePane.getChildren().removeIf(node -> node instanceof Text);
+            shortNameToggle = false;
+          }
+          if (toggSn.isSelected()) {
+            try {
+              shortNameToggle = true;
+              newNodes(floor);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
           }
         });
 
@@ -361,6 +381,14 @@ public class MapEditorController {
     newNodes(4);
   }
 
+  public void floorButtons(ArrayList<ImageView> imgs, int index) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(index).setVisible(true);
+    newNodes(index);
+  }
+
   public void newNodes(int index) throws SQLException {
     //    NodeDAO nodeDAO = new NodeDAO();
     //
@@ -510,7 +538,7 @@ public class MapEditorController {
       throws SQLException {
 
     Node currentNode = listOfNodes.get(i);
-    Label nodeLabel = new Label();
+    Text nodeLabel = new Text();
     //
     //    LocationNameDAO locationNameDAO = new LocationNameDAO();
     //    HashMap<String, LocationName> labelMap = locationNameDAO.getAll();
@@ -521,12 +549,16 @@ public class MapEditorController {
             listOfNodes.get(i).getYcoord(),
             10,
             Color.rgb(1, 45, 90));
-    nodeLabel.setTextFill(Color.BLACK);
-    nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
-    nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
-    nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
-    nodeLabel.toFront();
 
+    if (shortNameToggle) {
+      nodeLabel.setFill(Color.BLACK);
+      nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
+      nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
+      nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
+      nodeLabel.toFront();
+
+      nodePane.getChildren().add(nodeLabel);
+    }
     /*
        point.setOnMouseEntered(event ->
 
@@ -576,7 +608,8 @@ public class MapEditorController {
                   (int) point.getCenterY(),
                   currentNode,
                   img,
-                  currentNode.getFloor());
+                  currentNode.getFloor(),
+                  point);
             }
             if (!moved) {
 
@@ -604,7 +637,8 @@ public class MapEditorController {
         });
 
     nodePane.getChildren().add(point);
-    nodePane.getChildren().add(nodeLabel);
+    nodeLabel.toFront();
+
     // point.setOnMouseReleased(event -> recordDrag());
 
   }
@@ -741,11 +775,28 @@ public class MapEditorController {
   }
 
   public void confirmPop(
-      int x1, int y1, int x2, int y2, Node potentialUpdate, ArrayList<ImageView> imgs, String index)
+      int x1,
+      int y1,
+      int x2,
+      int y2,
+      Node potentialUpdate,
+      ArrayList<ImageView> imgs,
+      String index,
+      Circle point)
       throws IOException {
     final PopOver window = new PopOver();
     var loader = new FXMLLoader(App.class.getResource("views/ConfirmPopUp.fxml"));
     window.setContentNode(loader.load());
+
+    window.setOnHiding(
+        event -> {
+          try {
+            floorButtons(imgs, floor);
+            nodePane.getChildren().remove(point);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
 
     window.setArrowSize(0);
     ConfirmPopUpController controller = loader.getController();
