@@ -296,6 +296,16 @@ public class App extends Application {
     }
   }
 
+  public static HashMap<Integer, OfficeSupplyRequest> testingOSupps;
+
+  static {
+    try {
+      testingOSupps = getHashOSupps();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   @Override
   public void init() {
     log.info("Starting Up");
@@ -487,6 +497,19 @@ public class App extends Application {
     }
   }
 
+  public static void oSuppsRefresh() {
+    try {
+      testingRequest = getHashMapRequest();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    try {
+      testingOSupps = getHashOSupps();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   public static void requestRefresh() {
     try {
       testingRequest = getHashMapRequest();
@@ -558,6 +581,19 @@ public class App extends Application {
     }
 
     return furnsHash;
+  }
+
+  public static HashMap getHashOSupps() throws SQLException {
+
+    HashMap<Integer, OfficeSupplyRequest> oSuppsHash = new HashMap<Integer, OfficeSupplyRequest>();
+
+    try {
+      oSuppsHash = daoRepo.getAllSupply();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+
+    return oSuppsHash;
   }
 
   static int code;
