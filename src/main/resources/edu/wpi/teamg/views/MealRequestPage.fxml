@@ -186,26 +186,31 @@
                      <content>
                         <VBox alignment="BOTTOM_CENTER">
                            <children>
-                              <VBox maxHeight="600.0" prefHeight="600.0" prefWidth="718.0" styleClass="meal-request-box">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Menu">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Text>
+                              <VBox maxHeight="650.0" prefHeight="650.0" prefWidth="718.0" styleClass="meal-request-box">
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="125.0" prefWidth="200.0">
                                        <children>
-                                          <MFXButton styleClass="meal-choice-buttons">
+                                          <MFXButton styleClass="meal-choice-buttons" text="Meals">
                                              <HBox.margin>
                                                 <Insets right="15.0" />
                                              </HBox.margin>
                                           </MFXButton>
-                                          <MFXButton styleClass="meal-choice-buttons">
+                                          <MFXButton styleClass="meal-choice-buttons" text="Snacks">
                                              <HBox.margin>
                                                 <Insets right="15.0" />
                                              </HBox.margin>
                                           </MFXButton>
-                                          <MFXButton styleClass="meal-choice-buttons">
+                                          <MFXButton styleClass="meal-choice-buttons" text="Drinks">
                                              <HBox.margin>
                                                 <Insets right="15.0" />
                                              </HBox.margin>
                                           </MFXButton>
-                                          <MFXButton styleClass="meal-choice-buttons">
+                                          <MFXButton styleClass="meal-choice-buttons" text="Other">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -216,18 +221,89 @@
                                        <children>
                                           <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="359.0">
                                              <children>
-                                                <Pane prefHeight="200.0" prefWidth="200.0" styleClass="meal-selection">
+                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
                                                    <children>
-                                                      <ImageView fitHeight="150.0" fitWidth="125.0" layoutX="161.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </Pane>
+                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
+                                                   <children>
+                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </Pane>
+                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
+                                                   <children>
+                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
                                                 </Pane>
                                              </children>
                                           </VBox>
-                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="359.0" />
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="359.0">
+                                             <children>
+                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
+                                                   <children>
+                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </Pane>
+                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
+                                                   <children>
+                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </Pane>
+                                                <Pane prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
+                                                   <children>
+                                                      <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
+                                                      <ImageView fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@square%20food%20pics/pexels-valeria-boltneva-1639565.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </Pane>
+                                             </children></VBox>
                                        </children>
                                     </HBox>
                                  </children>

@@ -616,7 +616,7 @@ Popup
     -fx-border-radius: 10 10 10 10;
 }
 .meal-selection{
-    -fx-pref-height: 150;
+    -fx-pref-height: 130;
     -fx-pref-width: 300;
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 15;
