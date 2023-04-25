@@ -22,13 +22,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
 
@@ -55,6 +55,7 @@ public class MapEditorController {
 
   @FXML MFXButton addEdge;
 
+
   @FXML MFXButton alignButton;
 
   @FXML MFXButton horizontalButton;
@@ -62,6 +63,15 @@ public class MapEditorController {
   @FXML MFXButton verticalButton;
 
   @FXML Label alignLabel;
+
+
+  @FXML MFXButton deleteMove;
+
+  @FXML MFXButton delEdge;
+
+  @FXML MFXButton locNameMod;
+
+  @FXML MFXToggleButton toggSn;
 
   boolean moved = false;
 
@@ -80,8 +90,13 @@ public class MapEditorController {
 
   boolean isAlignClicked = false;
 
-  public void initialize() throws SQLException, IOException {
+ 
+  boolean editEdge = false;
 
+  boolean shortNameToggle = true;
+
+  public void initialize() throws SQLException, IOException {
+    toggSn.setSelected(true);
     pane.setVisible(true);
     nodePane.setVisible(true);
     group.setVisible(true);
@@ -130,10 +145,51 @@ public class MapEditorController {
           }
         });
 
+    toggSn.setOnAction(
+        event -> {
+          if (!toggSn.isSelected()) {
+            nodePane.getChildren().removeIf(node -> node instanceof Text);
+            shortNameToggle = false;
+          }
+          if (toggSn.isSelected()) {
+            try {
+              shortNameToggle = true;
+              newNodes(floor);
+            } catch (SQLException e) {
+              throw new RuntimeException(e);
+            }
+          }
+        });
+
     addEdge.setOnMouseClicked(
         event -> {
+          editEdge = true;
+        });
+
+    deleteMove.setOnMouseClicked(
+        event -> {
           try {
-            addEdge();
+            deleteAMove();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    delEdge.setOnMouseClicked(
+        event -> {
+          try {
+            deleteEdge();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
+    locNameMod.setOnMouseClicked(
+        event -> {
+          try {
+            locPop();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
@@ -388,6 +444,14 @@ public class MapEditorController {
     newNodes(4);
   }
 
+  public void floorButtons(ArrayList<ImageView> imgs, int index) throws SQLException {
+    for (int i = 0; i < imgs.size(); i++) {
+      imgs.get(i).setVisible(false);
+    }
+    imgs.get(index).setVisible(true);
+    newNodes(index);
+  }
+
   public void newNodes(int index) throws SQLException {
     //    NodeDAO nodeDAO = new NodeDAO();
     //
@@ -537,7 +601,9 @@ public class MapEditorController {
       throws SQLException {
 
     Node currentNode = listOfNodes.get(i);
-    Label nodeLabel = new Label();
+
+    Text nodeLabel = new Text();
+    //
 
     //    LocationNameDAO locationNameDAO = new LocationNameDAO();
     //    HashMap<String, LocationName> labelMap = locationNameDAO.getAll();
@@ -548,11 +614,7 @@ public class MapEditorController {
             listOfNodes.get(i).getYcoord(),
             10,
             Color.rgb(1, 45, 90));
-    nodeLabel.setTextFill(Color.BLACK);
-    nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
-    nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
-    nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
-    nodeLabel.toFront();
+
 
     point.setOnMouseClicked(
         event -> {
@@ -560,6 +622,16 @@ public class MapEditorController {
             allCircles.add(point);
           }
         });
+
+    if (shortNameToggle) {
+      nodeLabel.setFill(Color.BLACK);
+      nodeLabel.setText(sn.get(listOfNodes.get(i).getNodeID()));
+      nodeLabel.setLayoutX(listOfNodes.get(i).getXcoord());
+      nodeLabel.setLayoutY(listOfNodes.get(i).getYcoord() + 10);
+      nodeLabel.toFront();
+
+      nodePane.getChildren().add(nodeLabel);
+    }
 
     /*
        point.setOnMouseEntered(event ->
@@ -610,19 +682,23 @@ public class MapEditorController {
                   (int) point.getCenterY(),
                   currentNode,
                   img,
-                  currentNode.getFloor());
+                  currentNode.getFloor(),
+                  point);
             }
             if (!moved) {
 
-              if (nodeClickCount == 0) {
-                nodeCon1 = currentNode;
-                nodeClickCount = nodeClickCount + 1;
-              }
-              if (nodeClickCount == 1) {
-                nodeCon2 = currentNode;
+              if (editEdge) {
+                if (nodeClickCount == 0) {
+                  nodeCon1 = currentNode;
+                  nodeClickCount = nodeClickCount + 1;
+                }
+                if (nodeClickCount == 1) {
+                  nodeCon2 = currentNode;
 
-                if (nodeCon1 != nodeCon2) {
-                  addEdgeOffClicks(nodeCon1, nodeCon2);
+                  if (nodeCon1 != nodeCon2) {
+                    addEdgeOffClicks(nodeCon1, nodeCon2);
+                    editEdge = false;
+                  }
                 }
               }
             }
@@ -635,7 +711,8 @@ public class MapEditorController {
         });
 
     nodePane.getChildren().add(point);
-    nodePane.getChildren().add(nodeLabel);
+    nodeLabel.toFront();
+
     // point.setOnMouseReleased(event -> recordDrag());
 
   }
@@ -646,6 +723,7 @@ public class MapEditorController {
     edgeDao.insert(newEdge);
     nodeClickCount = 0;
     System.out.println("edge added" + nodeCon1.getNodeID() + "      " + nodeCon2.getNodeID());
+
     refresh();
   }
 
@@ -744,13 +822,14 @@ public class MapEditorController {
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
-  public void addEdge() throws IOException {
+  public void deleteEdge() throws IOException {
     final PopOver window = new PopOver();
-    var loader = new FXMLLoader(App.class.getResource("views/addEdgePopUp.fxml"));
+    var loader = new FXMLLoader(App.class.getResource("views/DeleteEdgePopOver.fxml"));
     window.setContentNode(loader.load());
 
     window.setArrowSize(0);
-    AddEdgePopUpController controller = loader.getController();
+    DeleteEdgeController controller = loader.getController();
+    controller.setWind(window);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
@@ -770,15 +849,58 @@ public class MapEditorController {
   }
 
   public void confirmPop(
-      int x1, int y1, int x2, int y2, Node potentialUpdate, ArrayList<ImageView> imgs, String index)
+      int x1,
+      int y1,
+      int x2,
+      int y2,
+      Node potentialUpdate,
+      ArrayList<ImageView> imgs,
+      String index,
+      Circle point)
       throws IOException {
     final PopOver window = new PopOver();
     var loader = new FXMLLoader(App.class.getResource("views/ConfirmPopUp.fxml"));
     window.setContentNode(loader.load());
 
+    window.setOnHiding(
+        event -> {
+          try {
+            floorButtons(imgs, floor);
+            nodePane.getChildren().remove(point);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
     window.setArrowSize(0);
     ConfirmPopUpController controller = loader.getController();
     controller.setFields(x1, y1, x2, y2, potentialUpdate, window, imgs, index);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void deleteAMove() throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/DeleteMovePopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    DeleteMovePopUpController controller = loader.getController();
+    controller.passOver(window);
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void locPop() throws SQLException, IOException {
+
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/locNamePopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    LocNamePopUpController controller = loader.getController();
+    controller.setW(window);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());

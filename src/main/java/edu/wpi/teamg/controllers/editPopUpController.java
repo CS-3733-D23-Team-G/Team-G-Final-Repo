@@ -35,8 +35,6 @@ public class editPopUpController {
 
   @FXML MFXButton fmoves;
 
-  @FXML MFXButton locEdit;
-
   public void initialize() {
 
     nID.setEditable(false);
@@ -66,17 +64,6 @@ public class editPopUpController {
           try {
             disMove((Integer.parseInt(nID.getText())));
           } catch (SQLException | IOException e) {
-            throw new RuntimeException(e);
-          }
-        });
-
-    locEdit.setOnMouseClicked(
-        event -> {
-          try {
-            locPop(Integer.parseInt(nID.getText()));
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          } catch (IOException e) {
             throw new RuntimeException(e);
           }
         });
@@ -155,24 +142,6 @@ public class editPopUpController {
     MovePopOverController controller = loader.getController();
     controller.setFields(nodeID);
     controller.displayMove(nodeID, nodeMoves);
-
-    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
-  }
-
-  public void locPop(int nodeID) throws SQLException, IOException {
-
-    NodeDAO nodeDAO = new NodeDAO();
-    HashMap<Integer, Node> nodes = nodeDAO.getAll();
-    Node clickedNode = nodes.get(nodeID);
-
-    final PopOver window = new PopOver();
-    var loader = new FXMLLoader(App.class.getResource("views/locNamePopUp.fxml"));
-    window.setContentNode(loader.load());
-
-    window.setArrowSize(0);
-    LocNamePopUpController controller = loader.getController();
-    controller.setF(clickedNode);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
