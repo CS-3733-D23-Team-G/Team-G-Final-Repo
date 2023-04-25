@@ -8,6 +8,7 @@ public enum Screen {
   FLOWERS_REQUEST("views/FlowersRequestPage.fxml"),
   FURNITURE_REQUEST("views/FurnitureRequestPage.fxml"),
   SUPPLIES_REQUEST("views/OfficeSuppRequestPage.fxml"),
+  MAINTENANCE_REQUEST("views/MaintenanceRequestPage.fxml"),
 
   PATHFINDING_PAGE("views/pathfinding.fxml"),
 
