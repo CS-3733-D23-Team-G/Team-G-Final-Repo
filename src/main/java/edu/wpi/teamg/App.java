@@ -26,7 +26,6 @@ public class App extends Application {
   @Setter @Getter private static BorderPane rootPane;
   @Setter @Getter private static Stage frontStage;
 
-
   @Getter private static LocalDate currentDate = LocalDate.now();
 
   static int monthNum = currentDate.getMonth().getValue();
@@ -605,10 +604,10 @@ public class App extends Application {
     return App.user;
   }
 
-  public static String getMonthFieldSignage(){
+  public static String getMonthFieldSignage() {
     StringBuilder sb = new StringBuilder();
 
-    switch (monthNum){
+    switch (monthNum) {
       case 1:
         sb.append("JAN-");
         break;
@@ -649,11 +648,8 @@ public class App extends Application {
     }
     sb.append(yearNum);
 
-
     return sb.toString();
   }
-
-
 
   @Override
   public void stop() {

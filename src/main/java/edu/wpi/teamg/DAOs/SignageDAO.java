@@ -140,10 +140,7 @@ public class SignageDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs;
 
-    sql =
-        "select * from"
-            + this.getTable()
-            + "where iteration3.signage.month = ? and iteration3.signage.kiosknum = ?";
+    sql = "select * from " + this.getTable() + " where month = ? and kiosknum = ?";
     ps = db.getConnection().prepareStatement(sql);
     ps.setString(1, givenMonth);
     ps.setInt(2, givenKiosk);
