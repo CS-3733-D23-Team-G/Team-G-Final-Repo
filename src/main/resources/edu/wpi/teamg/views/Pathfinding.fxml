@@ -109,6 +109,15 @@
                                     <MFXToggleButton fx:id="toggN" text="Toggle Nodes" />
                                  </children>
                               </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="txtDirections" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefWidth="416.0" styleClass="add_Buttons" text="TEXT DIRECTIONS">
+                                       <HBox.margin>
+                                          <Insets top="15.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
                            </children>
                            <HBox.margin>
                               <Insets left="25.0" />
