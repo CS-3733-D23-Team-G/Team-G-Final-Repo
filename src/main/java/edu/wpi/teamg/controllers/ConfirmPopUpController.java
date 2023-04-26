@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import org.controlsfx.control.PopOver;
 
 public class ConfirmPopUpController {
@@ -27,6 +28,8 @@ public class ConfirmPopUpController {
 
   ArrayList<ImageView> map;
   String floor;
+
+  Pane pane;
 
   public void initialize() {
     confirm.setOnMouseClicked(
@@ -60,12 +63,14 @@ public class ConfirmPopUpController {
       Node updateTheNode,
       PopOver window,
       ArrayList<ImageView> img,
-      String i) {
+      String i,
+      Pane nodePane) {
     this.potentialUpdate = updateTheNode;
     this.window = window;
     this.map = img;
     this.floor = i;
 
+    this.pane = nodePane;
     x1.setText(String.valueOf(X1));
     y1.setText(String.valueOf(Y1));
     x2.setText(String.valueOf(X2));
@@ -75,6 +80,7 @@ public class ConfirmPopUpController {
   public void confirmUpdate() throws SQLException {
     nodeDAO.update(potentialUpdate, "xcoord", Integer.parseInt(x2.getText()));
     nodeDAO.update(potentialUpdate, "ycoord", Integer.parseInt(y2.getText()));
+
     refresh();
     window.hide();
   }
