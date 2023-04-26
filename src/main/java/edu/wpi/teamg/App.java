@@ -2,8 +2,7 @@ package edu.wpi.teamg;
 
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
+import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -18,9 +17,11 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.controlsfx.control.PopOver;
 
 @Slf4j
 public class App extends Application {
+  static PopOver window = new PopOver();
 
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
@@ -343,7 +344,13 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
 
-    Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
+    var popLoader = new FXMLLoader(App.class.getResource("views/ChooseKioskPop.fxml"));
+    window.setContentNode(popLoader.load());
+    window.setArrowSize(0);
+    window.setTitle("Choose Kiosk Number");
+    window.setHeaderAlwaysVisible(true);
+    final Point mouseLoc = MouseInfo.getPointerInfo().getLocation();
+    window.show(getPrimaryStage(), mouseLoc.getX(), mouseLoc.getY());
   }
 
   public static void refresh() throws SQLException {
