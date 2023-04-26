@@ -672,7 +672,7 @@ public class MapEditorController {
 
     if (shortNameToggle) {
       nodeLabel.setFill(Color.BLACK);
-      nodeLabel.setFont(Font.font(12));
+      nodeLabel.setFont(Font.font(30));
 
       nodeLabel.setText(
           App.locMap.get(moving.get(listOfNodes.get(i).getNodeID()).getLongName()).getShortName());

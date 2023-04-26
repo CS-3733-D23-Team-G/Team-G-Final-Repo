@@ -2,6 +2,7 @@ package edu.wpi.teamg;
 
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
+import edu.wpi.teamg.controllers.ChooseKioskPop;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -351,6 +352,9 @@ public class App extends Application {
     window.setArrowSize(0);
     window.setTitle("Choose Kiosk Number");
     window.setHeaderAlwaysVisible(true);
+    ChooseKioskPop cont = popLoader.getController();
+    cont.setWind(window);
+
     final Point mouseLoc = MouseInfo.getPointerInfo().getLocation();
     window.show(getPrimaryStage(), mouseLoc.getX(), mouseLoc.getY());
   }
