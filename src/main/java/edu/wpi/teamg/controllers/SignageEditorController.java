@@ -93,19 +93,6 @@ public class SignageEditorController {
           App.getYearNum() + 4 + "");
   ObservableList<String> kioskChoice = FXCollections.observableArrayList(1 + "", 2 + "");
 
-  MFXFilterComboBox[] comboBoxes = {
-    signageDropDown1,
-    signageDropDown2,
-    signageDropDown3,
-    signageDropDown4,
-    signageDropDown5,
-    signageDropDown6,
-    signageDropDown7,
-    signageDropDown8,
-    signageDropDown9,
-    signageDropDown10
-  };
-
   @FXML
   public void initialize() throws SQLException {
     DAORepo dao = new DAORepo();
@@ -153,16 +140,16 @@ public class SignageEditorController {
 
     date.setValue(dateSave);
 
-    signageDropDown1.setValue(locationNameSave[0]);
-    signageDropDown2.setValue(locationNameSave[1]);
-    signageDropDown3.setValue(locationNameSave[2]);
-    signageDropDown4.setValue(locationNameSave[3]);
-    signageDropDown5.setValue(locationNameSave[4]);
-    signageDropDown6.setValue(locationNameSave[5]);
-    signageDropDown7.setValue(locationNameSave[6]);
-    signageDropDown8.setValue(locationNameSave[7]);
-    signageDropDown9.setValue(locationNameSave[8]);
-    signageDropDown10.setValue(locationNameSave[9]);
+    //    signageDropDown1.setValue(locationNameSave[0]);
+    //    signageDropDown2.setValue(locationNameSave[1]);
+    //    signageDropDown3.setValue(locationNameSave[2]);
+    //    signageDropDown4.setValue(locationNameSave[3]);
+    //    signageDropDown5.setValue(locationNameSave[4]);
+    //    signageDropDown6.setValue(locationNameSave[5]);
+    //    signageDropDown7.setValue(locationNameSave[6]);
+    //    signageDropDown8.setValue(locationNameSave[7]);
+    //    signageDropDown9.setValue(locationNameSave[8]);
+    //    signageDropDown10.setValue(locationNameSave[9]);
 
     ArrayList<String> locationNames = new ArrayList<>();
     HashMap<Integer, String> testingLongName = dao.getAllLongName();
@@ -413,36 +400,55 @@ public class SignageEditorController {
   private void addSignage() throws SQLException {
     int kiNum = Integer.parseInt(kioskDrop.getText());
 
+    MFXFilterComboBox[] comboBoxes = {
+      signageDropDown1,
+      signageDropDown2,
+      signageDropDown3,
+      signageDropDown4,
+      signageDropDown5,
+      signageDropDown6,
+      signageDropDown7,
+      signageDropDown8,
+      signageDropDown9,
+      signageDropDown10
+    };
+
     StringBuilder sb1 = new StringBuilder();
     sb1.append(monthDrop.getText() + "-");
     sb1.append(yearDrop.getText());
-    int i = 0;
+    int j = -1;
     ImageView[] views = {
       arrow1, arrow2, arrow3, arrow4, arrow5, arrow6, arrow7, arrow8, arrow9, arrow10
     };
     for (MFXFilterComboBox box : comboBoxes) {
       StringBuilder sb = new StringBuilder();
-      if (box == null) {
+      j++;
+      if (box.getValue() == null) {
         continue;
       }
 
       sb.append(box.getValue() + "_");
 
-      if (views[i].getImage() == westArrow) {
+      if (views[j].getImage() == westArrow) {
         sb.append("L_");
-      } else if (views[i].getImage() == northArrow) {
+      }
+
+      if (views[j].getImage() == northArrow) {
         sb.append("U_");
-      } else if (views[i].getImage() == southArrow) {
+      }
+
+      if (views[j].getImage() == southArrow) {
         sb.append("D_");
-      } else if (views[i].getImage() == eastArrow) {
+      }
+
+      if (views[j].getImage() == eastArrow) {
         sb.append("R_");
       }
 
-      sb.append(i + 1);
+      sb.append(j + 1);
       Signage signage = new Signage(kiNum, null, sb.toString(), sb1.toString(), false);
       SignageDAO dao = new SignageDAO();
       dao.insert(signage);
-      i++;
     }
   }
 }
