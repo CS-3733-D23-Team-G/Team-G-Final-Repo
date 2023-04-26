@@ -219,9 +219,6 @@ VALUES
     (11, 'Daisy, Tulip', 20, 'Sarah', 'Congratulations on your new job!'),
     (12, 'Lily, Rose', 15, 'Michael', 'With deepest sympathy');
 
-
-
-
 insert into iteration3.signage (kiosknum, specdate, arrow, month, is_spec) values
     (1,null, 'information_R_6','APR-23',false),
     (1,null, 'Shapiro Admitting_R_7','APR-23',false),

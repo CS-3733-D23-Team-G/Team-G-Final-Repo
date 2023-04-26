@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RequestDAO implements DAO {
@@ -158,8 +159,10 @@ public class RequestDAO implements DAO {
     return "teamgdb.iteration3.request";
   }
 
-  public static HashMap getOutstandingRequest(int serveby) throws SQLException {
+  public static ArrayList getOutstandingRequest(int serveby) throws SQLException {
     db.setConnection();
+
+    ArrayList<Request> oRequestList = new ArrayList<>();
 
     String oRequestSQL;
     ResultSet rs = null;
@@ -169,7 +172,7 @@ public class RequestDAO implements DAO {
     //        "select * from iteration3.request where serveby = ? and (status = 'blank' or status =
     // 'processing');";
 
-    oRequestSQL = "select * from iteration3.request where serveby = ?";
+    oRequestSQL = "select * from iteration3.request where serveby = ? ORDER BY requestdate";
 
     try {
       ps = db.getConnection().prepareStatement(oRequestSQL);
@@ -215,10 +218,11 @@ public class RequestDAO implements DAO {
 
       cReq.setReqid(reqID);
 
+      oRequestList.add(cReq);
       outstandingRequestHash.put(reqID, cReq);
     }
 
     db.closeConnection();
-    return outstandingRequestHash;
+    return oRequestList;
   }
 }

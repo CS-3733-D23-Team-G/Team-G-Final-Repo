@@ -33,15 +33,16 @@ public class HomeController {
     empName.setFill(Color.valueOf("#012D5A"));
 
     RequestDAO requestDAO = new RequestDAO();
-    HashMap<Integer, Request> hash = requestDAO.getOutstandingRequest(App.employee.getEmpID());
+    // HashMap<Integer, Request> hash = requestDAO.getOutstandingRequest(App.employee.getEmpID());
+    ArrayList<Request> hash = requestDAO.getOutstandingRequest(App.employee.getEmpID());
 
     hash.forEach(
-        (i, m) -> {
-          Text requestID = new Text("Ticket #" + i);
+        (i) -> {
+          Text requestID = new Text("Ticket #" + i.getReqid());
           requestID.setLayoutX(50);
           requestID.setLayoutY(45);
           requestID.setStyle("-fx-font-size: 20; -fx-font-weight: 800; -fx-font-family: Poppins");
-          String type = m.getReqtype();
+          String type = i.getReqtype();
           String thisType = "";
 
           switch (type) {
@@ -66,7 +67,7 @@ public class HomeController {
               break;
           }
 
-          StatusTypeEnum status = m.getStatus();
+          StatusTypeEnum status = i.getStatus();
           String color = "";
           switch (status) {
             case blank:
@@ -85,14 +86,14 @@ public class HomeController {
           request.setLayoutY(85);
           request.setStyle("-fx-font-size: 26; -fx-font-weight: 800; -fx-font-family: Poppins");
 
-          Text date = new Text("Do By: " + m.getRequestDate());
+          Text date = new Text("Do By: " + i.getRequestDate());
           date.setLayoutX(50);
           date.setLayoutY(120);
           date.setStyle(
               "-fx-font-size: 20; -fx-font-weight: 500;"
                   + "-fx-alignment: right; -fx-font-family: Poppins");
 
-          Text bubbleText = new Text(String.valueOf(m.getStatus()));
+          Text bubbleText = new Text(String.valueOf(i.getStatus()));
           bubbleText.setStyle(
               "-fx-font-size: 20; -fx-font-weight: 500;"
                   + "-fx-alignment: center; -fx-font-family: Poppins");
