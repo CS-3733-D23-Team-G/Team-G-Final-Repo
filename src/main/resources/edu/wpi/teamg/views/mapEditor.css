@@ -1,7 +1,45 @@
 * {
-    -mfx-main: #F6BD38;
+    -mfx-main: #012D5A;
     -mfx-purple: #F6BD38;
-    -mfx-color: #F6BD38;
+    -mfx-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
+}
+
+.mfx-date-picker .icon {
+    -mfx-color: #012D5A;
+}
+
+.mfx-date-picker:focus-within .icon {
+    -mfx-color:  linear-gradient(to bottom left, #009FFD, #012D5A);
+}
+
+.mfx-date-picker .date-picker-popup .months-combo:focus-within,
+.mfx-date-picker .date-picker-popup .years-combo:focus-within {
+    -fx-text-fill: #012D5A;
+}
+
+.mfx-date-picker .date-picker-popup .months-combo .virtual-flow .mfx-combo-box-cell:hover,
+.mfx-date-picker .date-picker-popup .years-combo .virtual-flow .mfx-combo-box-cell:hover {
+    -fx-background-color: #F1F1F1;
+}
+
+.mfx-combo-box-cell:hover,
+.mfx-combo-box-cell:hover {
+    -fx-background-color: #F1F1F1;
+}
+
+.mfx-combo-box-cell:selected,
+.mfx-combo-box-cell:selected {
+    -fx-background-color: #009FFD;
+}
+
+.mfx-date-picker .date-picker-popup .months-combo .virtual-flow .mfx-combo-box-cell:selected,
+.mfx-date-picker .date-picker-popup .years-combo .virtual-flow .mfx-combo-box-cell:selected {
+    -fx-background-color: #d0d0d0;
+}
+
+
+.root{
+    -fx-background-color: #F1F1F1;
 }
 
 

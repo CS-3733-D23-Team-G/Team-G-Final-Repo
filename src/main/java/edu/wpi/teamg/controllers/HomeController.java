@@ -61,6 +61,9 @@ public class HomeController {
             case "OS":
               thisType = "Office Supply ";
               break;
+            case "MA":
+              thisType = "Maintenance ";
+              break;
           }
 
           StatusTypeEnum status = m.getStatus();
@@ -71,6 +74,9 @@ public class HomeController {
               break;
             case processing:
               color = "#FFDA83;";
+              break;
+            case done:
+              color = "#97E198;";
               break;
           }
 

@@ -21,7 +21,7 @@
          <children>
             <AnchorPane prefHeight="980.0" prefWidth="656.0" styleClass="half_bottom_left" stylesheets="@mapEditor.css">
                <children>
-                  <HBox layoutX="69.0" layoutY="228.0" prefHeight="486.0" prefWidth="642.0" styleClass="left_vbox" stylesheets="@mapEditor.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="150.0">
+                  <HBox layoutX="62.0" layoutY="150.0" prefHeight="486.0" prefWidth="642.0" styleClass="left_vbox" stylesheets="@mapEditor.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="150.0">
                      <children>
                         <VBox prefHeight="606.0" prefWidth="393.0" styleClass="locationSelect_vbox">
                            <children>
@@ -36,25 +36,34 @@
                                              <content>
                                                 <VBox prefHeight="200.0" prefWidth="100.0">
                                                    <children>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
+                                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
                                                          <children>
 
                                                                                                                                                                                                                                                             <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Node" />
                                                          </children>
                                                       </HBox>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
+                                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
                                                          <children>
-                                                            <MFXButton fx:id="alignButton" prefHeight="54.0" prefWidth="226.0" styleClass="add_Buttons" text="Align Nodes" />
+                                                            <MFXButton fx:id="alignButton" prefHeight="54.0" prefWidth="226.0" styleClass="add_Buttons" text="Align Nodes">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin></MFXButton>
                                                          </children>
                                                       </HBox>
                                                       <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                                          <children>
-                                                            <MFXButton fx:id="verticalButton" prefHeight="70.0" prefWidth="192.0" styleClass="add_Buttons" text="Vertical" />
+                                                            <MFXButton fx:id="verticalButton" prefHeight="70.0" prefWidth="192.0" styleClass="add_Buttons" text="Vertical">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin></MFXButton>
                                                          </children>
                                                       </HBox>
                                                       <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                                          <children>
-                                                            <MFXButton fx:id="horizontalButton" prefHeight="60.0" prefWidth="216.0" styleClass="add_Buttons" text="Horizontal" />
+                                                            <MFXButton fx:id="horizontalButton" prefHeight="60.0" prefWidth="216.0" styleClass="add_Buttons" text="Horizontal">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin></MFXButton>
                                                          </children>
                                                       </HBox>
                                                    </children>
@@ -69,7 +78,7 @@
                                                          <children>
                                                             <MFXButton fx:id="addEdge" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Edge">
                                                                <HBox.margin>
-                                                                  <Insets top="10.0" />
+                                                                  <Insets />
                                                                </HBox.margin>
                                                             </MFXButton>
                                                          </children>
@@ -130,7 +139,7 @@
                                                          <children>
                                                             <MFXButton fx:id="addMove" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Move">
                                                                <HBox.margin>
-                                                                  <Insets top="10.0" />
+                                                                  <Insets />
                                                                </HBox.margin>
                                                             </MFXButton>
                                                          </children>
@@ -146,7 +155,7 @@
                                                       </HBox>
                                                       <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                                          <children>
-                                                            <MFXDatePicker fx:id="mapEditDate">
+                                                            <MFXDatePicker fx:id="mapEditDate" prefHeight="38.0" prefWidth="246.0" stylesheets="@style.css">
                                                                <HBox.margin>
                                                                   <Insets top="10.0" />
                                                                </HBox.margin>
@@ -163,7 +172,7 @@
                               </HBox>
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXToggleButton fx:id="toggleEdge" prefHeight="41.0" prefWidth="30.0" text="Toggle Edges">
+                                    <MFXToggleButton fx:id="toggleEdge" contentDisposition="TOP" prefHeight="41.0" prefWidth="175.0" stylesheets="@style.css" text="Toggle Edges">
                                        <HBox.margin>
                                           <Insets top="25.0" />
                                        </HBox.margin>
@@ -172,9 +181,9 @@
                               </HBox>
                               <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXToggleButton fx:id="toggSn" prefHeight="41.0" prefWidth="30.0" text="Toggle Short Names">
+                                    <MFXToggleButton fx:id="toggSn" contentDisposition="TOP" prefHeight="41.0" prefWidth="30.0" stylesheets="@style.css" text="Toggle Short Names">
                                        <HBox.margin>
-                                          <Insets top="25.0" />
+                                          <Insets />
                                        </HBox.margin>
                                     </MFXToggleButton>
                                  </children>
@@ -194,7 +203,10 @@
                                     </MFXButton>
                                  </children>
                               </HBox>
-                           </children></VBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin></VBox>
                         <VBox prefHeight="680.0" prefWidth="92.0" styleClass="button_vbox">
                            <children>
                               <MFXButton fx:id="floor3" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F3" textAlignment="CENTER" textFill="#f6bd38">

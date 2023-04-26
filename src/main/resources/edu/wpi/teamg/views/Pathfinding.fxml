@@ -56,37 +56,33 @@
                                  <children>
                                     <MFXCheckbox fx:id="aStarCheckBox" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="A*">
                                        <HBox.margin>
-                                          <Insets left="25.0" top="25.0" />
+                                          <Insets left="20.0" top="25.0" />
                                        </HBox.margin>
                                     </MFXCheckbox>
                                     <MFXCheckbox fx:id="bfsCheckBox" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="BFS">
                                        <HBox.margin>
-                                          <Insets left="25.0" top="25.0" />
+                                          <Insets left="20.0" top="25.0" />
                                        </HBox.margin>
                                     </MFXCheckbox>
                                     <MFXCheckbox fx:id="dfsCheckBox" alignment="CENTER" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="DFS">
                                        <HBox.margin>
-                                          <Insets left="25.0" top="25.0" />
+                                          <Insets left="20.0" top="25.0" />
+                                       </HBox.margin>
+                                    </MFXCheckbox>
+                                    <MFXCheckbox fx:id="Dijkstracheckbox" alignment="CENTER" prefHeight="57.0" prefWidth="156.0" styleClass="algoCheckBox" text="Dijkstra">
+                                       <HBox.margin>
+                                          <Insets left="20.0" top="25.0" />
                                        </HBox.margin>
                                     </MFXCheckbox>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="25.0" />
+                                    <Insets />
                                  </VBox.margin>
-                              </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
-                                 <children>
-                                    <MFXCheckbox fx:id="Dijkstracheckbox" alignment="CENTER" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="Dijkstra">
-                                       <HBox.margin>
-                                          <Insets left="125.0" top="25.0" />
-                                       </HBox.margin>
-                                    </MFXCheckbox>
-                                 </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
 
-                                    <MFXDatePicker fx:id="date" prefHeight="38.0" prefWidth="265.0" text="Date" />
+                                    <MFXDatePicker fx:id="date" prefHeight="38.0" prefWidth="246.0" promptText="pathfind on move date" />
 
                                  </children>
                               </HBox>
@@ -99,20 +95,20 @@
                                     </MFXButton>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
+                              <HBox alignment="CENTER" prefHeight="28.0" prefWidth="389.0" styleClass="algoSelect_hbox">
                                  <children>
                                     <MFXToggleButton fx:id="dSN" alignment="CENTER" contentDisplay="CENTER" text="Display Short Names" textAlignment="CENTER" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
+                              <HBox alignment="CENTER" prefHeight="0.0" prefWidth="389.0" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXToggleButton fx:id="toggN" text="Toggle Nodes" />
+                                    <MFXToggleButton fx:id="toggN" prefHeight="41.0" prefWidth="177.0" text="Toggle Nodes" />
                                  </children>
                               </HBox>
 
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXButton fx:id="alertButton" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefWidth="416.0" styleClass="add_Buttons" text="Alerts">
+                                    <MFXButton fx:id="alertButton" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefWidth="416.0" styleClass="add_Buttons" text="ALERTS">
                                        <HBox.margin>
                                           <Insets top="15.0" />
                                        </HBox.margin>

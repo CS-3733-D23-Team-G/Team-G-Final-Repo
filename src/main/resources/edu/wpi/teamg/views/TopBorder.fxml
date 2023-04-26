@@ -42,7 +42,7 @@
                      </font>
                   </Text>
                   <MFXButton fx:id="loginButton" layoutX="367.0" layoutY="3.0" opacity="0.0" prefHeight="50.0" prefWidth="80.0" text="Button" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="3.0" />
-                  <MFXButton fx:id="exitButton" layoutX="425.0" layoutY="3.0" opacity="0.0" prefHeight="51.0" prefWidth="52.0" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="3.0" />
+                  <MFXButton fx:id="exitButton" layoutX="425.0" layoutY="3.0" opacity="0.0" prefHeight="51.0" prefWidth="52.0" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="3.0" />
                   <Text fill="#f6bd38" layoutX="902.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Extras" wrappingWidth="52.689453125" AnchorPane.bottomAnchor="13.98046875" AnchorPane.rightAnchor="165.310546875" AnchorPane.topAnchor="15.41796875">
                      <font>
                         <Font size="14.0" />
@@ -53,7 +53,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <MFXButton fx:id="dictionaryButton" layoutX="787.0" layoutY="3.0" opacity="0.0" prefHeight="50.0" prefWidth="91.0" text="Button" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="241.66666666666669" AnchorPane.topAnchor="3.0" />
+                  <MFXButton fx:id="dictionaryButton" layoutX="787.0" layoutY="2.0" opacity="0.0" prefHeight="50.0" prefWidth="91.0" text="Button" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="242.0" AnchorPane.topAnchor="3.0" />
                   <MFXButton fx:id="About_Credits" layoutX="890.0" layoutY="3.0" opacity="0.0" prefHeight="50.0" prefWidth="72.0" text="Button" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="3.0" />
                </children>
             </AnchorPane>

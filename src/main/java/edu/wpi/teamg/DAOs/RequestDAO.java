@@ -165,8 +165,11 @@ public class RequestDAO implements DAO {
     ResultSet rs = null;
 
     PreparedStatement ps;
-    oRequestSQL =
-        "select * from iteration3.request where serveby = ? and (status = 'blank' or status = 'processing');";
+    //    oRequestSQL =
+    //        "select * from iteration3.request where serveby = ? and (status = 'blank' or status =
+    // 'processing');";
+
+    oRequestSQL = "select * from iteration3.request where serveby = ?";
 
     try {
       ps = db.getConnection().prepareStatement(oRequestSQL);

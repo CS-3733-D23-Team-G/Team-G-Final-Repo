@@ -4,6 +4,15 @@
     -mfx-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
 }
 
+.choice-box .menu-item{
+    -fx-font-family: "Poppins";
+    -fx-background-color: #F1F1F1;
+}
+
+.choice-box .menu-item:hover { -fx-background-color: #012D5A; }
+
+.choice-box .menu-item:focused { -fx-background-color: #012D5A; }
+
 .mfx-checkbox .box {
     -fx-background-color: transparent;
     -fx-background-radius: 2;
@@ -86,13 +95,13 @@ Popup
 .mfx-date-cell:current {
     -fx-text-fill: #012D5A;
     -fx-background-color: #F7F6F9;
-    -fx-font-family: "Open Sans SemiBold";
+    -fx-font-family: "Poppins";
 }
 
 .mfx-date-cell:selected {
     -fx-text-fill: white;
     -fx-background-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
-    -fx-font-family: "Open Sans SemiBold";
+    -fx-font-family: "Poppins";
 }
 
 @font-face {
@@ -283,7 +292,7 @@ Popup
 .algoCheckBox{
     -fx-pref-height: 45;
     -fx-pref-width: 45;
-    -fx-font-size: 40;
+    -fx-font-size: 20;
     -fx-font-weight: 600;
 }
 
