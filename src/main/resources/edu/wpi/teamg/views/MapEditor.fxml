@@ -184,6 +184,15 @@
                                     <MFXButton fx:id="help" styleClass="add_Buttons" text="Instructions" />
                                  </children>
                               </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="messageButton" styleClass="add_Buttons" text="Edit  Message">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
                            </children></VBox>
                         <VBox prefHeight="680.0" prefWidth="92.0" styleClass="button_vbox">
                            <children>
