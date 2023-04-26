@@ -63,7 +63,7 @@ public class AddEmployee {
       } catch (SQLException | NoSuchAlgorithmException e) {
         e.printStackTrace();
       }
-      Navigation.navigate(Screen.ROOM_REQUEST_SUBMIT);
+      Navigation.navigate(Screen.EMPLOYEE_CONFIRMATION);
     }
   }
 

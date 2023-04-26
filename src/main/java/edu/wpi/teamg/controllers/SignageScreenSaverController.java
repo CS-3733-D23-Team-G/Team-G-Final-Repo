@@ -23,12 +23,13 @@ public class SignageScreenSaverController {
   //  @FXML ImageView northArrow;
   //  @FXML ImageView southArrow;
   //  @FXML ImageView eastArrow;
-
   Image westArrow = new Image("edu/wpi/teamg/Images/WestArrow.png");
   Image eastArrow = new Image("edu/wpi/teamg/Images/EastArrow.png");
   Image southArrow = new Image("edu/wpi/teamg/Images/SouthArrow.png");
   Image northArrow = new Image("edu/wpi/teamg/Images/NorthArrow.png");
   Image noArrow = new Image("edu/wpi/teamg/Images/NoArrow.png");
+
+  @FXML MFXButton snakeButton;
 
   @FXML ImageView arrow1 = new ImageView(noArrow);
   @FXML ImageView arrow2 = new ImageView(noArrow);
@@ -129,7 +130,10 @@ public class SignageScreenSaverController {
     //      getSavedDate();
     //
     //    }
-  }
+
+
+      snakeButton.setOnMouseClicked(event -> letsAGo());
+    }
 
   public void getArrowDirectionFromEditor() {
     int[] arrowDirection;
@@ -180,7 +184,6 @@ public class SignageScreenSaverController {
     dateText.setFill(Paint.valueOf("linear-gradient(to bottom left, #009FFD, #2A2A72)"));
     dateText.setStyle("-fx-font-weight: 800");
   }
-
   public void setDirection(String val, String index) {
     Image arrowImage = null;
     switch (val) {
@@ -273,5 +276,8 @@ public class SignageScreenSaverController {
       default:
         break;
     }
+}
+  public void letsAGo() {
+    new GameFrame();
   }
 }

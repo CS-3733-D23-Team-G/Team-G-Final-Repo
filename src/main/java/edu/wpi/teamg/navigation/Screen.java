@@ -34,6 +34,9 @@ public enum Screen {
 
   ABOUT_PAGE("views/About_page.fxml"),
   EMPLOYEE_INFO("views/EmployeeInformation.fxml"),
+
+  EMPLOYEE_CONFIRMATION("views/EmployeeConfirmationPage.fxml"),
+  NOTIFICATION_CONFIRMATION("views/NotificationConfirmationPage.fxml"),
   TWO_FAC("views/2FactorPopUp.fxml"),
 
   NOTIFICATION_PAGE("views/AddNotification.fxml"),
