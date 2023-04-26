@@ -770,6 +770,7 @@ public class MapEditorController {
 
   public void addEdgeOffClicks(Node nodeCon1, Node nodeCon2) throws SQLException {
     Edge newEdge = new Edge(nodeCon1.getNodeID(), nodeCon2.getNodeID());
+    newEdge.setEdgeID(nodeCon1.getNodeID() + "_" + nodeCon2.getNodeID());
 
     edgeDao.insert(newEdge);
     nodeClickCount = 0;
