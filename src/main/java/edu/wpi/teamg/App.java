@@ -27,12 +27,16 @@ public class App extends Application {
   @Setter @Getter private static BorderPane rootPane;
   @Setter @Getter private static Stage frontStage;
 
+
+  public static String message;
+
   @Setter @Getter private static int kioskNumber;
 
   @Getter private static LocalDate currentDate = LocalDate.now();
 
   static int monthNum = currentDate.getMonth().getValue();
   @Getter static int yearNum = currentDate.getYear();
+
 
   public static Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
 

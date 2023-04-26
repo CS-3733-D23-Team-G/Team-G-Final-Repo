@@ -1,7 +1,6 @@
 package edu.wpi.teamg.controllers;
 
 import static edu.wpi.teamg.App.*;
-import static edu.wpi.teamg.App.move;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
@@ -79,6 +78,7 @@ public class pathfindingController {
   @FXML MFXToggleButton dSN;
 
   @FXML MFXToggleButton toggN;
+  @FXML MFXButton alertButton;
 
   @FXML MFXButton txtDirections;
 
@@ -271,6 +271,14 @@ public class pathfindingController {
           }
         });
 
+    alertButton.setOnMouseClicked(
+        event -> {
+          try {
+            displayAlert();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
     // goToL1();
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
@@ -980,7 +988,7 @@ public class pathfindingController {
     }
   }
 
-  private void getNodesWFunctionality(
+  public void getNodesWFunctionality(
       ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn) throws SQLException {
 
     Node currentNode = listOfNodes.get(i);
@@ -1431,6 +1439,16 @@ public class pathfindingController {
     movesForAlgos = finalLocNames;
   }
 
+
+  public void displayAlert() throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/AlertPopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    PathfindingAlertPopUpController controller = new PathfindingAlertPopUpController();
+
+    System.out.println(App.message);
+
   public void getDirections(ArrayList<String> path) throws IOException {
     final PopOver window = new PopOver();
     var loader = new FXMLLoader(App.class.getResource("views/DirectionsPopUp.fxml"));
@@ -1440,9 +1458,11 @@ public class pathfindingController {
     DirectionsPopUpController controller = loader.getController();
     controller.setF(window, path, movesForAlgos);
 
+
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
+
 
   public void updateMoves() {
     ArrayList<Move> updateMove = new ArrayList<>();

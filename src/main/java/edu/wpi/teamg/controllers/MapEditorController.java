@@ -76,9 +76,13 @@ public class MapEditorController {
 
   @FXML MFXToggleButton toggSn;
 
+
+  @FXML MFXButton messageButton;
+
   @FXML MFXButton help;
 
   @FXML MFXDatePicker mapEditDate;
+
 
   boolean moved = false;
 
@@ -89,6 +93,7 @@ public class MapEditorController {
 
   Node nodeCon1 = new Node();
   Node nodeCon2 = new Node();
+  String message;
 
   ArrayList<ImageView> img = new ArrayList<>();
 
@@ -105,7 +110,11 @@ public class MapEditorController {
   HashMap<Integer, Move> moving = new HashMap<>();
 
   public void initialize() throws SQLException, IOException {
+
+
+
     updateMove();
+
     toggSn.setSelected(true);
     pane.setVisible(true);
     nodePane.setVisible(true);
@@ -232,10 +241,17 @@ public class MapEditorController {
           isAlignClicked = false;
           allCircles.clear();
         });
+
+    messageButton.setOnMouseClicked(
+        event -> {
+          try {
+            displayMoveChange();
+
     help.setOnMouseClicked(
         event -> {
           try {
             getHelp();
+
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
@@ -865,6 +881,18 @@ public class MapEditorController {
     window.setArrowSize(0);
     DeleteEdgeController controller = loader.getController();
     controller.setWind(window);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void displayMoveChange() throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/MapEditorPopOver.fxml"));
+    window.setContentNode(loader.load());
+
+    MapEditorPopUpController controller = loader.getController();
+    message = controller.message;
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
