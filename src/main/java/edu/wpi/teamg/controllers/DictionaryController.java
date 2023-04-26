@@ -1,9 +1,7 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.App;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-
 import java.awt.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -15,8 +13,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import javax.swing.text.html.ImageView;
-
 public class DictionaryController {
   @FXML Text outputText;
   @FXML Text typeOfWord;
@@ -25,16 +21,13 @@ public class DictionaryController {
   @FXML MFXButton inputButton;
 
   @FXML MFXTextField input;
-//  @FXML  ImageView logoMW;
+  //  @FXML  ImageView logoMW;
 
   public void initialize() throws SQLException {
     inputButton.setOnMouseClicked(event -> SpanishLookup());
-//    Image sushi = new Image(App.class.getResourceAsStream("Images/mwlogo.jpg"));
-
+    //    Image sushi = new Image(App.class.getResourceAsStream("Images/mwlogo.jpg"));
 
   }
-
-
 
   public void SpanishLookup() {
     String FinalOutput;

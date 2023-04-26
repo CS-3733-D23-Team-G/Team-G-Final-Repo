@@ -2,10 +2,10 @@ package edu.wpi.teamg;
 
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
+import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.application.Application;
@@ -17,13 +17,22 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.controlsfx.control.PopOver;
 
 @Slf4j
 public class App extends Application {
+  static PopOver window = new PopOver();
 
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
   @Setter @Getter private static Stage frontStage;
+
+  @Setter @Getter private static int kioskNumber;
+
+  @Getter private static LocalDate currentDate = LocalDate.now();
+
+  static int monthNum = currentDate.getMonth().getValue();
+  @Getter static int yearNum = currentDate.getYear();
 
   public static Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
 
@@ -335,7 +344,13 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
 
-    Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
+    var popLoader = new FXMLLoader(App.class.getResource("views/ChooseKioskPop.fxml"));
+    window.setContentNode(popLoader.load());
+    window.setArrowSize(0);
+    window.setTitle("Choose Kiosk Number");
+    window.setHeaderAlwaysVisible(true);
+    final Point mouseLoc = MouseInfo.getPointerInfo().getLocation();
+    window.show(getPrimaryStage(), mouseLoc.getX(), mouseLoc.getY());
   }
 
   public static void refresh() throws SQLException {
@@ -676,6 +691,53 @@ public class App extends Application {
 
   public static String getUser() {
     return App.user;
+  }
+
+  public static String getMonthFieldSignage() {
+    StringBuilder sb = new StringBuilder();
+
+    switch (monthNum) {
+      case 1:
+        sb.append("JAN-");
+        break;
+      case 2:
+        sb.append("FEB-");
+        break;
+      case 3:
+        sb.append("MAR-");
+        break;
+      case 4:
+        sb.append("APR-");
+        break;
+      case 5:
+        sb.append("MAY-");
+        break;
+      case 6:
+        sb.append("JUN-");
+        break;
+      case 7:
+        sb.append("JUL-");
+        break;
+      case 8:
+        sb.append("AUG-");
+        break;
+      case 9:
+        sb.append("SEP-");
+        break;
+      case 10:
+        sb.append("OCT-");
+        break;
+      case 11:
+        sb.append("NOV-");
+        break;
+      case 12:
+        sb.append("DEC-");
+      default:
+        break;
+    }
+    sb.append(yearNum);
+
+    return sb.toString();
   }
 
   @Override
