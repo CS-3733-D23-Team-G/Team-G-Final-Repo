@@ -162,6 +162,6 @@ public class SignageDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration3.signage";
+    return "teamgdb.iteration4.signage";
   }
 }

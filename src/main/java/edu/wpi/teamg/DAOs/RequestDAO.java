@@ -86,7 +86,7 @@ public class RequestDAO implements DAO {
     db.setConnection();
 
     PreparedStatement ps;
-    sql = "update teamgdb.iteration3.request set " + colName + " = ? where reqid = ?";
+    sql = "update teamgdb.iteration4.request set " + colName + " = ? where reqid = ?";
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -156,7 +156,7 @@ public class RequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration3.request";
+    return "teamgdb.iteration4.request";
   }
 
   public static ArrayList getOutstandingRequest(int serveby) throws SQLException {
@@ -169,10 +169,10 @@ public class RequestDAO implements DAO {
 
     PreparedStatement ps;
     //    oRequestSQL =
-    //        "select * from iteration3.request where serveby = ? and (status = 'blank' or status =
+    //        "select * from iteration4.request where serveby = ? and (status = 'blank' or status =
     // 'processing');";
 
-    oRequestSQL = "select * from iteration3.request where serveby = ? ORDER BY requestdate";
+    oRequestSQL = "select * from iteration4.request where serveby = ? ORDER BY requestdate";
 
     try {
       ps = db.getConnection().prepareStatement(oRequestSQL);
