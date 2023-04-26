@@ -26,6 +26,8 @@ public class App extends Application {
   @Setter @Getter private static BorderPane rootPane;
   @Setter @Getter private static Stage frontStage;
 
+  @Setter @Getter private static int kioskNumber;
+
   @Getter private static LocalDate currentDate = LocalDate.now();
 
   static int monthNum = currentDate.getMonth().getValue();

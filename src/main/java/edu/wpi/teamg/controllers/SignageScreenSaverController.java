@@ -84,7 +84,7 @@ public class SignageScreenSaverController {
     nameLabel9.setText("");
     nameLabel10.setText("");
 
-    int kinum = 1;
+    int kinum = App.getKioskNumber();
 
     HashMap<String, Signage> page =
         signageDAO.getSignageGivenKioskNumAndMonth(kinum, App.getMonthFieldSignage());
