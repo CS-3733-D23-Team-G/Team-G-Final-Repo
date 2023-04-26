@@ -43,8 +43,9 @@ public enum Screen {
 
   DICTIONARY("views/Dictionary.fxml"),
 
-  CREDITS("views/Credits.fxml");
 
+  CREDITS("views/Credits.fxml");
+  
   private final String filename;
 
   Screen(String filename) {
