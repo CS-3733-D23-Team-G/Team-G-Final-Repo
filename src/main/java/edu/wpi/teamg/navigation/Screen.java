@@ -25,6 +25,8 @@ public enum Screen {
   FURNITURE_REQUEST_SUBMIT("views/FurnitureRequestConfirmationPage.fxml"),
   SUPPLIES_REQUEST_SUBMIT("views/OfficeSuppRequestConfirmationPage.fxml"),
   MAINTENANCE_REQUEST_SUBMIT("views/MaintenanceRequestConfirmationPage.fxml"),
+
+  SIGNAGE_EDITOR_SUBMIT("views/SignageEditorConfirmationPage.fxml"),
   ADMIN_STATUS_PAGE("views/AdminFormStatus.fxml"),
   LOGIN_PAGE("views/Login.fxml"),
   EMPLOYEE_FORMS("views/EmployeeSelfFormView.fxml"),

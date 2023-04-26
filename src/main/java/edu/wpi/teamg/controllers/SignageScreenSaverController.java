@@ -131,9 +131,8 @@ public class SignageScreenSaverController {
     //
     //    }
 
-
-      snakeButton.setOnMouseClicked(event -> letsAGo());
-    }
+    snakeButton.setOnMouseClicked(event -> letsAGo());
+  }
 
   public void getArrowDirectionFromEditor() {
     int[] arrowDirection;
@@ -184,6 +183,7 @@ public class SignageScreenSaverController {
     dateText.setFill(Paint.valueOf("linear-gradient(to bottom left, #009FFD, #2A2A72)"));
     dateText.setStyle("-fx-font-weight: 800");
   }
+
   public void setDirection(String val, String index) {
     Image arrowImage = null;
     switch (val) {
@@ -276,7 +276,8 @@ public class SignageScreenSaverController {
       default:
         break;
     }
-}
+  }
+
   public void letsAGo() {
     new GameFrame();
   }

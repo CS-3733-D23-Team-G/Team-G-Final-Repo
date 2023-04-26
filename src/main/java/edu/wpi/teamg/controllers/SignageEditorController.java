@@ -4,6 +4,8 @@ import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.SignageDAO;
 import edu.wpi.teamg.ORMClasses.Signage;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
@@ -449,6 +451,7 @@ public class SignageEditorController {
       Signage signage = new Signage(kiNum, null, sb.toString(), sb1.toString(), false);
       SignageDAO dao = new SignageDAO();
       dao.insert(signage);
+      Navigation.navigate(Screen.SIGNAGE_EDITOR_SUBMIT);
     }
   }
 }
