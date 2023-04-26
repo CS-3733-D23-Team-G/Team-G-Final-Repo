@@ -51,7 +51,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <MFXButton fx:id="About_Credits" layoutX="894.0" layoutY="2.0" opacity="0.0" prefHeight="50.0" prefWidth="72.0" text="Button" AnchorPane.rightAnchor="238.0" />
+                  <MFXButton fx:id="About_Credits" layoutX="894.0" layoutY="2.0" opacity="0.0" prefHeight="50.0" prefWidth="72.0" text="Button" AnchorPane.rightAnchor="156.0" />
                   <Text fill="#f6bd38" layoutX="795.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Dictionary" wrappingWidth="90.689453125" AnchorPane.rightAnchor="234.310546875">
                      <font>
                         <Font size="14.0" />
