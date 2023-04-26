@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import org.controlsfx.control.PopOver;
@@ -35,6 +34,8 @@ public class editPopUpController {
 
   @FXML MFXButton fmoves;
 
+  HashMap<Integer, Move> moving = new HashMap<>();
+
   public void initialize() {
 
     nID.setEditable(false);
@@ -42,7 +43,7 @@ public class editPopUpController {
     nYcoord.setEditable(true);
     nFloor.setEditable(true);
     nBuilding.setEditable(true);
-    shortName.setEditable(true);
+    shortName.setEditable(false);
     submit.setOnMouseClicked(
         event -> {
           try {
@@ -69,13 +70,16 @@ public class editPopUpController {
         });
   }
 
-  public void setFields(Node node, LocationName loc) {
+  public void setFields(Node node, LocationName loc, HashMap<Integer, Move> m) {
     nID.setText(String.valueOf(node.getNodeID()));
     nXcoord.setText(String.valueOf(node.getXcoord()));
     nYcoord.setText(String.valueOf(node.getYcoord()));
     nFloor.setText(node.getFloor());
     nBuilding.setText(node.getBuilding());
     shortName.setText(loc.getShortName());
+    this.moving = m;
+    shortName.setText(
+        App.locMap.get(moving.get(Integer.parseInt(nID.getText())).getLongName()).getShortName());
   }
 
   public void editPopUp() throws SQLException {
@@ -86,12 +90,6 @@ public class editPopUpController {
     HashMap<Integer, String> ln = nodeDAO.getLongNames(nFloor.getText());
     ArrayList<LocationName> locs = new ArrayList<>(LocationNames.values());
     LocationName knownLoc = new LocationName();
-
-    for (int i = 0; i < locs.size(); i++) {
-      if (Objects.equals(sn.get(Integer.parseInt(nID.getText())), locs.get(i).getShortName())) {
-        knownLoc = locs.get(i);
-      }
-    }
 
     System.out.println(knownLoc.getLongName());
     Node node =
@@ -105,7 +103,6 @@ public class editPopUpController {
     nodeDAO.update(node, "ycoord", Integer.parseInt(nYcoord.getText()));
     nodeDAO.update(node, "floor", nFloor.getText());
     nodeDAO.update(node, "building", nBuilding.getText());
-    locationNameDAO.update(knownLoc, "shortname", shortName.getText());
     App.refresh();
   }
 

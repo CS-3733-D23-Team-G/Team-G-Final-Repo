@@ -97,11 +97,13 @@ public class pathfindingController {
 
   ArrayList<String> txtPath;
 
+  HashMap<Integer, Move> moving = new HashMap<>();
+
   int floor = 0;
 
   @FXML
   public void initialize() throws SQLException {
-
+    updateMoves();
     //  goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
 
     aStarCheckBox.setSelected(true);
@@ -179,6 +181,17 @@ public class pathfindingController {
             } catch (SQLException e) {
               throw new RuntimeException(e);
             }
+          }
+        });
+
+    date.setOnCommit(
+        event -> {
+          updateMoves();
+          nodePane.getChildren().removeIf(node -> node instanceof Text);
+          try {
+            floorButtons(imageViewsList, floor);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
           }
         });
 
@@ -869,6 +882,7 @@ public class pathfindingController {
     //    HashMap<Integer, Node> nodes = nodeDAO.getAll();
     //    ArrayList<Node> listOfNodes = new ArrayList<>(nodes.values());
     ArrayList<Node> listOfNodes = allNodeList;
+    updateMove(index);
 
     ArrayList<Node> listOfGoodNodes;
 
@@ -1014,7 +1028,8 @@ public class pathfindingController {
       txt.setTextAlignment(TextAlignment.LEFT);
       // nodeLabel.setPrefSize(10, 10);
       txt.setFont(new Font(30));
-      txt.setText(sn.get(listOfNodes.get(i).getNodeID()));
+      txt.setText(
+          App.locMap.get(moving.get(listOfNodes.get(i).getNodeID()).getLongName()).getShortName());
       txt.setLayoutX(listOfNodes.get(i).getXcoord());
       txt.setLayoutY(listOfNodes.get(i).getYcoord() + 30);
       txt.toFront();
@@ -1050,6 +1065,9 @@ public class pathfindingController {
     for (int i = 0; i < updatedMove.size(); i++) {
       moving.put(updatedMove.get(i).getNodeID(), updatedMove.get(i));
     }
+
+    System.out.println(point.getNodeID());
+    System.out.println(moving.get(point.getNodeID()).getLongName());
 
     // System.out.println(move.get(155).getLongName());
 
@@ -1425,6 +1443,29 @@ public class pathfindingController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void updateMoves() {
+    ArrayList<Move> updateMove = new ArrayList<>();
+
+    for (int i = 0; i < move.size(); i++) {
+
+      if (date.getValue() == null) {
+        if (move.get(i).getDate().toLocalDate().isEqual(LocalDate.of(2023, Month.JANUARY, 1))) {
+          moving.put(move.get(i).getNodeID(), move.get(i));
+        }
+      } else {
+        if (date.getValue().isAfter(move.get(i).date.toLocalDate())) {
+          moving.put(move.get(i).getNodeID(), move.get(i));
+        } else if (date.getValue().isEqual(move.get(i).getDate().toLocalDate())) {
+          updateMove.add(move.get(i));
+        }
+      }
+    }
+
+    for (int i = 0; i < updateMove.size(); i++) {
+      moving.put(updateMove.get(i).getNodeID(), updateMove.get(i));
+    }
   }
 
   public void exit() {
