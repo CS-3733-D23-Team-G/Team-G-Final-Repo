@@ -28,12 +28,16 @@ public class SignageDAO implements DAO {
 
     while (rs.next()) {
       int kiosk = rs.getInt("kiosknum");
+
+      String location = rs.getString("location");
+
       Date date = rs.getDate("specdate");
+
       String direction = rs.getString("arrow");
       String month = rs.getString("month");
       boolean spec = rs.getBoolean("is_spec");
 
-      Signage signage = new Signage(kiosk, date, direction, month, spec);
+      Signage signage = new Signage(location, date, direction, month, spec);
       signageHash.put(signage.getKioskNum(), signage);
     }
 
@@ -133,26 +137,27 @@ public class SignageDAO implements DAO {
     db.closeConnection();
   }
 
-  public HashMap getSignageGivenKioskNumAndMonth(int givenKiosk, String givenMonth)
+  public HashMap getSignageGiveLNAndMonth(String givenLocationName, String givenMonth)
       throws SQLException {
     db.setConnection();
     HashMap<String, Signage> directions = new HashMap<>();
     PreparedStatement ps;
     ResultSet rs;
 
-    sql = "select * from " + this.getTable() + " where month = ? and kiosknum = ?";
+    sql = "select * from " + this.getTable() + " where month = ? and location = ?";
     ps = db.getConnection().prepareStatement(sql);
     ps.setString(1, givenMonth);
-    ps.setInt(2, givenKiosk);
+    ps.setString(2, givenLocationName);
     rs = ps.executeQuery();
 
     while (rs.next()) {
       int kiosknum = rs.getInt("kiosknum");
+      String location = rs.getString("location");
       String key = rs.getString("month") + " " + rs.getString("arrow");
       String month = rs.getString("month");
       String arrow = rs.getString("arrow");
 
-      Signage newSignage = new Signage(kiosknum, null, arrow, month, false);
+      Signage newSignage = new Signage(location, null, arrow, month, false);
       directions.put(key, newSignage);
     }
 
@@ -162,6 +167,6 @@ public class SignageDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration3.signage";
+    return "teamgdb.iteration4.signage";
   }
 }

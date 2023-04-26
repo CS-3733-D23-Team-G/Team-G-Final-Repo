@@ -3,13 +3,9 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.SignageDAO;
-import edu.wpi.teamg.ORMClasses.Signage;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
-import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -63,14 +59,15 @@ public class SignageEditorController {
   @FXML MFXButton clearField9;
   @FXML MFXButton clearField10;
   @FXML MFXButton submitSignage;
-  @FXML MFXButton daySpecify;
-
+  @FXML MFXCheckbox daySpecify;
   @FXML MFXDatePicker date;
+
+  @FXML MFXFilterComboBox locationDrop;
 
   @FXML MFXFilterComboBox monthDrop;
 
   @FXML MFXFilterComboBox yearDrop;
-  @FXML MFXComboBox kioskDrop;
+  // @FXML MFXComboBox kioskDrop;
 
   static boolean attribute = false;
 
@@ -93,6 +90,7 @@ public class SignageEditorController {
           App.getYearNum() + 2 + "",
           App.getYearNum() + 3 + "",
           App.getYearNum() + 4 + "");
+
   ObservableList<String> kioskChoice = FXCollections.observableArrayList(1 + "", 2 + "");
 
   @FXML
@@ -100,7 +98,16 @@ public class SignageEditorController {
     DAORepo dao = new DAORepo();
     monthDrop.setItems(monthChoice);
     yearDrop.setItems(yearChoice);
-    kioskDrop.setItems(kioskChoice);
+
+    HashMap<Integer, String> locationHash = App.ln;
+
+    ArrayList<String> locationArrayList = new ArrayList<String>(locationHash.values());
+
+    ObservableList<String> locationList = FXCollections.observableArrayList(locationArrayList);
+
+    locationDrop.setItems(locationList);
+
+    // kioskDrop.setItems(kioskChoice);
     //    for (MFXFilterComboBox box : comboBoxes) {
     //      box.setValue("");
     //    }
@@ -400,7 +407,7 @@ public class SignageEditorController {
   }
 
   private void addSignage() throws SQLException {
-    int kiNum = Integer.parseInt(kioskDrop.getText());
+    // int kiNum = Integer.parseInt(kioskDrop.getText());
 
     MFXFilterComboBox[] comboBoxes = {
       signageDropDown1,
@@ -448,9 +455,9 @@ public class SignageEditorController {
       }
 
       sb.append(j + 1);
-      Signage signage = new Signage(kiNum, null, sb.toString(), sb1.toString(), false);
+      // Signage signage = new Signage(kiNum, null, sb.toString(), sb1.toString(), false);
       SignageDAO dao = new SignageDAO();
-      dao.insert(signage);
+      // dao.insert(signage);
       Navigation.navigate(Screen.SIGNAGE_EDITOR_SUBMIT);
     }
   }

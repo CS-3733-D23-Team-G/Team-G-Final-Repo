@@ -24,6 +24,10 @@
     -fx-padding: 5;
 }
 
+.signageCheckBox .box{
+    -fx-border-color: #012D5A;
+}
+
 .mfx-checkbox:selected .box,
 .mfx-checkbox:indeterminate .box {
     -fx-background-color: #012D5A;
@@ -44,7 +48,7 @@
 }
 
 .mfx-text-field:focus-within {
-    -fx-border-color: -mfx-color;
+    -fx-border-color: -mfx-color; /* NOT AN ERROR, IMPORTANT MFX STYLING */
 }
 
 /********************
@@ -56,14 +60,14 @@ Date Picker
 }
 
 .mfx-date-picker:focus-within .icon {
-    -mfx-color:  linear-gradient(to bottom left, #009FFD, #012D5A);
+    -mfx-color:  linear-gradient(to bottom left, #009FFD, #012D5A); /* NOT AN ERROR, IMPORTANT MFX STYLING */
 }
 
 /********************
 Popup
 ********************/
-.mfx-date-picker .date-picker-popup .months-combo:focus-within,
-.mfx-date-picker .date-picker-popup .years-combo:focus-within {
+.mfx-date-picker .date-picker-popup .months-combo:focus-within, /* NOT AN ERROR, IMPORTANT MFX STYLING */
+.mfx-date-picker .date-picker-popup .years-combo:focus-within { /* NOT AN ERROR, IMPORTANT MFX STYLING */
     -fx-text-fill: #012D5A;
 }
 

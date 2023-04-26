@@ -72,7 +72,7 @@ public class AddEmployee {
     conn.setConnection();
 
     int maxid = 0;
-    String sql = "select empid from teamgdb.iteration3.employee order by empid desc limit 1";
+    String sql = "select empid from teamgdb.iteration4.employee order by empid desc limit 1";
     PreparedStatement ps_max = conn.getConnection().prepareStatement(sql);
     ResultSet rs_max = ps_max.executeQuery();
     while (rs_max.next()) {
