@@ -19,5 +19,6 @@ public class ChooseKioskPop {
   public void setKiosk(int i) {
     App.setKioskNumber(i);
     Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
+
   }
 }
