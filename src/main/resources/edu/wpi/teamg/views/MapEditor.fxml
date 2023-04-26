@@ -169,6 +169,11 @@
                                     </MFXToggleButton>
                                  </children>
                               </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <MFXButton fx:id="messageButton" buttonType="RAISED" prefHeight="40.0" prefWidth="200.0" style="-fx-border-radius: 20px;" text="Edit Move Message" />
+                                 </children>
+                              </HBox>
                            </children></VBox>
                         <VBox prefHeight="680.0" prefWidth="92.0" styleClass="button_vbox">
                            <children>

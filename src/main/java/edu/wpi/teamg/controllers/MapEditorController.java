@@ -71,6 +71,8 @@ public class MapEditorController {
 
   @FXML MFXToggleButton toggSn;
 
+  @FXML MFXButton messageButton;
+
   boolean moved = false;
 
   boolean lineGen;
@@ -207,6 +209,14 @@ public class MapEditorController {
           alignCirclesVertical(allCircles);
           isAlignClicked = false;
           allCircles.clear();
+        });
+    messageButton.setOnMouseClicked(
+        event -> {
+          try {
+            displayMoveChange();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
         });
 
     ImageView mapView = new ImageView(mapL1);
@@ -826,6 +836,15 @@ public class MapEditorController {
     window.setArrowSize(0);
     DeleteEdgeController controller = loader.getController();
     controller.setWind(window);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public void displayMoveChange() throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/MapEditorPopOver.fxml"));
+    window.setContentNode(loader.load());
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
