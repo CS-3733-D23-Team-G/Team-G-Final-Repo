@@ -34,6 +34,9 @@ public enum Screen {
 
   ABOUT_PAGE("views/About_page.fxml"),
   EMPLOYEE_INFO("views/EmployeeInformation.fxml"),
+
+  EMPLOYEE_CONFIRMATION("views/EmployeeConfirmationPage.fxml"),
+  NOTIFICATION_CONFIRMATION("views/NotificationConfirmationPage.fxml"),
   TWO_FAC("views/2FactorPopUp.fxml"),
 
   NOTIFICATION_PAGE("views/AddNotification.fxml"),
@@ -43,9 +46,8 @@ public enum Screen {
 
   DICTIONARY("views/Dictionary.fxml"),
 
-
   CREDITS("views/Credits.fxml");
-  
+
   private final String filename;
 
   Screen(String filename) {
