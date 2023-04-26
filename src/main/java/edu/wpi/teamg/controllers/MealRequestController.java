@@ -13,16 +13,16 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
@@ -40,16 +40,31 @@ public class MealRequestController {
 
   @FXML MFXTextField mealPersonOrderingForData;
   @FXML TextArea mealNotesData;
+  @FXML ImageView image1;
+  @FXML ImageView image2;
+  @FXML ImageView image3;
+  @FXML ImageView image4;
+  @FXML ImageView image5;
+  @FXML ImageView image6;
+  @FXML Text text1;
+  @FXML Text text2;
+  @FXML Text text3;
+  @FXML Text text4;
+  @FXML Text text5;
+  @FXML Text text6;
+  @FXML Pane pane1;
+  @FXML Pane pane2;
+  @FXML Pane pane3;
+  @FXML Pane pane4;
+  @FXML Pane pane5;
+  @FXML Pane pane6;
 
-  @FXML ImageView selectedBurger;
-  @FXML ImageView burgerOption;
-  @FXML ImageView selectedCornDog;
-  @FXML ImageView corndogOption;
-  @FXML ImageView selectedFriedRice;
-  @FXML ImageView friedRiceOption;
+  @FXML MFXButton mealButton;
+  @FXML MFXButton snackButton;
+  @FXML MFXButton drinkButton;
 
   // @FXML ChoiceBox<String> mealFoodChoice;
-  @FXML Label mealFoodChoice;
+  //  @FXML Label mealFoodChoice;
 
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML SearchableComboBox employeeSearchDropdown;
@@ -63,15 +78,23 @@ public class MealRequestController {
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
 
+  Hashtable<String, Integer> selectedPanes = new Hashtable<>();
+  HashMap<String, Integer> food = new HashMap<>();
+
   DAORepo dao = new DAORepo();
 
   @FXML
   public void initialize() throws SQLException {
+    MealPressed();
     mealSubmitButton.setOnMouseClicked(
         event -> {
+          getOrderItems();
           MealOrder();
           allDataFilled();
         });
+    mealButton.setOnMouseClicked(event -> MealPressed());
+    snackButton.setOnMouseClicked(event -> SnackPressed());
+    drinkButton.setOnMouseClicked(event -> DrinkPressed());
 
     if (!App.employee.getIs_admin()) {
       vboxWithAssignTo.getChildren().remove(assignToLine);
@@ -85,19 +108,9 @@ public class MealRequestController {
     mealPersonOrderingForData.getText();
     mealNotesData.getText();
     // mealFoodChoice.setItems(foodList);
-    mealFoodChoice.getText();
+    //    mealFoodChoice.getText();
     mealDate.getValue();
     mealTimeOfDeliver.getText();
-
-    selectedBurger.setVisible(false);
-    selectedBurger.setDisable(true);
-    selectedCornDog.setVisible(false);
-    selectedCornDog.setDisable(true);
-    selectedFriedRice.setVisible(false);
-    selectedFriedRice.setDisable(true);
-    burgerOption.setOnMouseClicked(event -> selectBurgerOption());
-    friedRiceOption.setOnMouseClicked(event -> selectFriedRiceOption());
-    corndogOption.setOnMouseClicked(event -> selectCorndogOption());
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName = this.getHashMapEmployeeLongName("Meal Request");
@@ -117,12 +130,6 @@ public class MealRequestController {
     testingLongName.forEach(
         (i, m) -> {
           locationNames.add(m);
-          //          System.out.println("Request ID:" + m.getReqid());
-          //          System.out.println("Employee ID:" + m.getEmpid());
-          //          System.out.println("Status:" + m.getStatus());
-          //          System.out.println("Location:" + m.getLocation());
-          //          System.out.println("Serve By:" + m.getServ_by());
-          //          System.out.println();
         });
 
     Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
@@ -135,53 +142,262 @@ public class MealRequestController {
     checkFields.getText();
   }
 
+  public void MealPressed() {
+
+    Image burger = new Image(App.class.getResourceAsStream("Images/burger.jpg"));
+
+    Image dog = new Image(App.class.getResourceAsStream("Images/dog.jpg"));
+
+    Image pizza = new Image(App.class.getResourceAsStream("Images/pizza.jpg"));
+
+    Image sushi = new Image(App.class.getResourceAsStream("Images/sushi.jpg"));
+
+    Image taco = new Image(App.class.getResourceAsStream("Images/taco.jpg"));
+
+    Image sandwich = new Image(App.class.getResourceAsStream("Images/sandwich.jpg"));
+    text1.setText("Burger");
+    text2.setText("Hot Dog");
+    text3.setText("Pizza");
+    text4.setText("Sushi");
+    text5.setText("Taco");
+    text6.setText("Sandwich");
+    image1.setImage(burger);
+    image2.setImage(dog);
+    image3.setImage(pizza);
+    image4.setImage(sushi);
+    image5.setImage(taco);
+    image6.setImage(sandwich);
+
+    //              Enumeration<String> keys = selectedPanes.keys();
+    //              while (keys.hasMoreElements()) {
+    //                String key = keys.nextElement();
+    //                System.out.println("Order Item: " + key + ", Num Selected: " +
+    // selectedPanes.get(key));
+    //              }
+
+    pane1.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 1 pressed");
+          selectItems(text1);
+        });
+    pane2.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 2 pressed");
+          selectItems(text3);
+        });
+    pane3.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 3 pressed");
+          selectItems(text5);
+        });
+    pane4.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 4 pressed");
+          selectItems(text2);
+        });
+    pane5.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 5 pressed");
+          selectItems(text4);
+        });
+    pane6.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 6 pressed");
+          selectItems(text6);
+        });
+  }
+
+  public void DrinkPressed() {
+    Image OJ = new Image(App.class.getResourceAsStream("Images/OJ.jpg"));
+
+    Image coffee = new Image(App.class.getResourceAsStream("Images/coffee.jpg"));
+
+    Image water = new Image(App.class.getResourceAsStream("Images/water.jpg"));
+
+    Image soda = new Image(App.class.getResourceAsStream("Images/soda.jpg"));
+
+    Image smoothie = new Image(App.class.getResourceAsStream("Images/smoothie.jpg"));
+
+    Image tea = new Image(App.class.getResourceAsStream("Images/tea.jpg"));
+    text1.setText("Orange Juice");
+    text2.setText("Coffee");
+    text3.setText("Pizza");
+    text4.setText("Water");
+    text5.setText("Smoothie");
+    text6.setText("Tea");
+    image1.setImage(OJ);
+    image2.setImage(coffee);
+    image3.setImage(water);
+    image4.setImage(soda);
+    image5.setImage(smoothie);
+    image6.setImage(tea);
+
+    pane1.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 1 pressed");
+          selectItems(text1);
+        });
+    pane2.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 2 pressed");
+          selectItems(text3);
+        });
+    pane3.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 3 pressed");
+          selectItems(text5);
+        });
+    pane4.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 4 pressed");
+          selectItems(text2);
+        });
+    pane5.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 5 pressed");
+          selectItems(text4);
+        });
+    pane6.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 6 pressed");
+          selectItems(text6);
+        });
+  }
+
+  public void SnackPressed() {
+    Image frenchFries = new Image(App.class.getResourceAsStream("Images/frenchfries.jpg"));
+
+    Image chips = new Image(App.class.getResourceAsStream("Images/chips.jpg"));
+
+    Image bacon = new Image(App.class.getResourceAsStream("Images/bacon.jpg"));
+
+    Image avocadoToast = new Image(App.class.getResourceAsStream("Images/avocadotoast.jpg"));
+
+    Image goldfish = new Image(App.class.getResourceAsStream("Images/goldfish.jpg"));
+
+    Image pretzels = new Image(App.class.getResourceAsStream("Images/pretzels.jpg"));
+    text1.setText("French Fries");
+    text2.setText("Chips");
+    text3.setText("Bacon");
+    text4.setText("Avocado Toast");
+    text5.setText("Goldfish");
+    text6.setText("Pretzels");
+    image1.setImage(frenchFries);
+    image2.setImage(chips);
+    image3.setImage(bacon);
+    image4.setImage(avocadoToast);
+    image5.setImage(goldfish);
+    image6.setImage(pretzels);
+
+    pane1.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 1 pressed");
+          selectItems(text1);
+        });
+    pane2.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 2 pressed");
+          selectItems(text3);
+        });
+    pane3.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 3 pressed");
+          selectItems(text5);
+        });
+    pane4.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 4 pressed");
+          selectItems(text2);
+        });
+    pane5.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 5 pressed");
+          selectItems(text4);
+        });
+    pane6.setOnMouseClicked(
+        event -> {
+          System.out.println("pane 6 pressed");
+          selectItems(text6);
+        });
+  }
+
+  public void selectItems(Text text) {
+
+    if (food.get(text.getText().toString()) == null || food.get(text.getText().toString()) == 0) {
+      food.put(text.getText().toString(), 1);
+    } else {
+      food.put(text.getText().toString(), 0);
+    }
+
+    System.out.println(food.get(text.getText().toString()));
+  }
+
+  //  public Hashtable<String, Integer> selectItems(Text text) {
+  //
+  //    // trying to implement contains
+  //    if (selectedPanes.size() > 0) {
+  //      Enumeration<String> e = selectedPanes.keys();
+  //      Boolean contains = false;
+  //      while (e.hasMoreElements()) {
+  //        String item = e.nextElement();
+  //        if (text.getText().equals(item)) {
+  //          contains = true;
+  //          System.out.println(
+  //              selectedPanes.replace(item, selectedPanes.get(item), selectedPanes.get(item) +
+  // 1));
+  //              break;
+  //        }
+  //        System.out.println("boolean is: " + contains);
+  //        if (contains == false) {
+  //          selectedPanes.put(text.getText(), 0);
+  //          System.out.println(text.getText() + "added bc contains was false");
+  //        }
+  //      }
+  //    }
+  //
+  //    if (selectedPanes.size() == 0) {
+  //      selectedPanes.put(text.getText(), 1);
+  //    }
+  //
+  //    Enumeration<String> e = selectedPanes.keys();
+  //    while (e.hasMoreElements()) {
+  //
+  //      // Getting the key of a particular entry
+  //      String key = e.nextElement();
+  //
+  //      // Print and display the Rank and Name
+  //      System.out.println("Item: " + key + "\t\t Num of times Selected: " +
+  // selectedPanes.get(key));
+  //    }
+  //
+  //    return selectedPanes;
+  //  }
+
+  public void getOrderItems() {
+    ArrayList<String> foods = new ArrayList<>();
+    String s = "";
+    String done = "";
+
+    food.forEach(
+        (i, m) -> {
+          if (m == 1) {
+            foods.add(i);
+          }
+        });
+
+    for (int i = 0; i < foods.size(); i++) {
+      s = s.concat(foods.get(i)) + "_";
+    }
+
+    done = s.substring(0, s.length() - 1);
+    Order = done;
+  }
+
   public void exit() {
     Platform.exit();
   }
 
-  public void selectBurgerOption() {
-    if (selectedBurger.isVisible() == false) {
-      selectedBurger.setVisible(true);
-      //  Order += "Cheeseburger, ";
-    } else if (selectedBurger.isVisible() == true) {
-      selectedBurger.setVisible(false);
-      //  Order.replace("Cheeseburger, ", "");
-    }
-  }
-
-  public void selectCorndogOption() {
-    if (selectedCornDog.isVisible() == false) {
-      selectedCornDog.setVisible(true);
-      //  Order += "Corndog, ";
-    } else if (selectedCornDog.isVisible() == true) {
-      selectedCornDog.setVisible(false);
-      // Order.replace("Corndog, ", "");
-
-    }
-  }
-
-  public void selectFriedRiceOption() {
-    if (selectedFriedRice.isVisible() == false) {
-      selectedFriedRice.setVisible(true);
-
-      // Order += "Shrimp Fried Rice, ";
-    } else if (selectedFriedRice.isVisible() == true) {
-      selectedFriedRice.setVisible(false);
-      //  Order.replace("Shrimp Fried Rice, ", "");
-    }
-  }
-
-  public void MealOrder() {
-    if (selectedBurger.isVisible()) {
-      Order += "Cheese Burger, ";
-    }
-    if (selectedCornDog.isVisible()) {
-      Order += "CornDog, ";
-    }
-    if (selectedFriedRice.isVisible()) {
-      Order += "Shrimp Fried Rice, ";
-    }
-  }
+  public void MealOrder() {}
 
   public void storeMealValues() throws SQLException {
 
@@ -198,7 +414,6 @@ public class MealRequestController {
                 + signedIn.getFirstName()
                 + " "
                 + signedIn.getLastName(),
-            // assume for now they are going to input a node number, so parseInt
             (String) locationSearchDropdown.getValue(),
             (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
@@ -207,37 +422,6 @@ public class MealRequestController {
             mealPersonOrderingForData.getText(),
             Order,
             mealNotesData.getText());
-
-    //  System.out.println (Order);
-
-    //    mr.setEmpid(1);
-    //    mr.setServ_by(1);
-    //    mr.setStatus(StatusTypeEnum.blank);
-    //
-    //    mr.setLocation(Integer.parseInt(mealDeliveryLocationData.getText()));
-    //    mr.setRecipient(mealPersonOrderingForData.getText());
-    //    mr.setNote(mealNotesData.getText());
-    //    mr.setDeliveryDate(Date.valueOf(mealDate.getValue()));
-    //    mr.setDeliveryTime(StringToTime(mealTimeOfDeliver.getText()));
-    //    mr.setOrder(mealFoodChoice.getValue());
-
-    //    System.out.println(
-    //        "Employee ID: "
-    //            + mr.getEmpid()
-    //            + "\nDelivery Location: "
-    //            + mr.getLocation()
-    //            + "\nOrder: "
-    //            + mr.getOrder()
-    //            + "\nNote: "
-    //            + mr.getNote()
-    //            + "\nRecipient: "
-    //            + mr.getRecipient()
-    //            + "\nDelivery Date: "
-    //            + mr.getDeliveryDate()
-    //            + "\nDelivery Time: "
-    //            + mr.getDeliveryTime()
-    //            + "\nStatus: "
-    //            + mr.getStatus());
 
     dao.insertMealRequest(mr);
     App.mealRefresh();
@@ -300,17 +484,9 @@ public class MealRequestController {
     mealNotesData.setText("");
     mealDate.setText("");
     mealTimeOfDeliver.setText("");
-    mealFoodChoice.setText("");
+    //    mealFoodChoice.setText("");
 
     locationSearchDropdown.setValue(null);
-
-    selectedBurger.setVisible(false);
-    selectedBurger.setDisable(true);
-    selectedCornDog.setVisible(false);
-    selectedCornDog.setDisable(true);
-    selectedFriedRice.setVisible(false);
-    selectedFriedRice.setDisable(true);
-
     employeeSearchDropdown.setValue(null);
     return;
   }
