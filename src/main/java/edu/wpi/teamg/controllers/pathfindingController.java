@@ -1446,8 +1446,8 @@ public class pathfindingController {
 
     PathfindingAlertPopUpController controller = new PathfindingAlertPopUpController();
 
-      final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-      window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
     System.out.println(App.message);
   }
 

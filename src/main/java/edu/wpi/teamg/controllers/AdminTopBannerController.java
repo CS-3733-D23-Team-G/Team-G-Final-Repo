@@ -42,7 +42,7 @@ public class AdminTopBannerController {
   @FXML
   public void initialize() {
     dictionaryButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
-    About_Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.ABOUT_PAGE));
+    About_Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     exitButton.setOnMouseClicked(event -> exit());
     statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_STATUS_PAGE));
