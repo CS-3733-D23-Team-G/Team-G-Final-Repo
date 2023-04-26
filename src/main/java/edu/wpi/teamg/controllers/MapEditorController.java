@@ -82,6 +82,7 @@ public class MapEditorController {
 
   Node nodeCon1 = new Node();
   Node nodeCon2 = new Node();
+  String message;
 
   ArrayList<ImageView> img = new ArrayList<>();
 
@@ -95,6 +96,7 @@ public class MapEditorController {
   boolean shortNameToggle = true;
 
   public void initialize() throws SQLException, IOException {
+
     toggSn.setSelected(true);
     pane.setVisible(true);
     nodePane.setVisible(true);
@@ -845,6 +847,9 @@ public class MapEditorController {
     final PopOver window = new PopOver();
     var loader = new FXMLLoader(App.class.getResource("views/MapEditorPopOver.fxml"));
     window.setContentNode(loader.load());
+
+    MapEditorPopUpController controller = loader.getController();
+    message = controller.message;
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());

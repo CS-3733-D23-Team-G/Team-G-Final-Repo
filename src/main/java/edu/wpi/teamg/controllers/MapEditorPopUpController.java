@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,14 +16,9 @@ public class MapEditorPopUpController {
   public void initialize() {
     messageText.setEditable(true);
 
-    confirmButton.setOnMouseClicked(
+    confirmButton.setOnAction(
         event -> {
-          message = messageText.getText();
-          getMessage();
+          App.message = messageText.getText();
         });
-  }
-
-  public String getMessage() {
-    return this.message;
   }
 }

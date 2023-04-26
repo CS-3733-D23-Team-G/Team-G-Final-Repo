@@ -25,6 +25,7 @@ public class App extends Application {
   @Setter @Getter private static BorderPane rootPane;
   @Setter @Getter private static Stage frontStage;
 
+  public static String message;
   public static Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
 
   public static Image mapL2 = new Image("edu/wpi/teamg/Images/00_thelowerlevel2.png");
