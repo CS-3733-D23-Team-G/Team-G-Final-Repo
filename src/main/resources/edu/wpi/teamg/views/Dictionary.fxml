@@ -58,9 +58,9 @@
                         <Font size="46.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <ImageView fx:id="logoMW" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <image>
-                        <Image url="@../../../../../../../../Team-G-Repo/src/main/resources/edu/wpi/teamg/views/mwlogo.png" />
+                        <Image url="@../Images/mwlogo.png" />
                      </image>
                   </ImageView>
                </children>
