@@ -4,6 +4,23 @@
     -mfx-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
 }
 
+.mfx-checkbox .box {
+    -fx-background-color: transparent;
+    -fx-background-radius: 2;
+
+    -fx-border-color: #F6BD38;
+    -fx-border-radius: 2;
+    -fx-border-width: 2;
+
+    -fx-padding: 5;
+}
+
+.mfx-checkbox:selected .box,
+.mfx-checkbox:indeterminate .box {
+    -fx-background-color: #012D5A;
+    -fx-border-color: #012D5A;
+}
+
 .mfx-checkbox .box .mark {
     -mfx-color: #F6BD38;
 }
@@ -364,6 +381,25 @@ Popup
     -fx-alignment: center;
 }
 
+.signage_submit_button{
+    -fx-background-color: #F6BD38;
+    -fx-background-radius: 30;
+    -fx-font-size: 26;
+    -fx-text-fill: #000000;
+    -fx-border-color: #000000;
+    -fx-border-radius:30;
+    -fx-alignment: center;
+}
+.signage_monthDropDown_button{
+    -fx-background-color: #D0D0D0;
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+    -fx-border-color: #000000;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-text-fill: #0067b1;
+}
+
 
 .signage_leftDropDown_button{
     -fx-background-color: #D0D0D0;
@@ -416,9 +452,24 @@ Popup
     -fx-font-size: 25;
 }
 
+.signageClearButton {
+    -fx-pref-height: 65;
+    -fx-pref-width: 105;
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 30;
+    -fx-font-size: 25;
+}
+
 .requestTextBox{
     -fx-background-color: #D9D9D9;
-    -fx-font-size: 25;
+    -fx-font-size: 20;
+    -fx-pref-height: 60;
+    -fx-max-height: 60;
+}
+
+.requestTextBox_MFX{
+    -fx-background-color: #D9D9D9;
+    -fx-font-size: 15;
     -fx-pref-height: 60;
     -fx-max-height: 60;
 }
@@ -428,7 +479,7 @@ Popup
     -fx-background-color: #D9D9D9;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
-    -fx-font-size: 25;
+    -fx-font-size: 20;
     -fx-font-family: "Open Sans Regular";
 }
 
@@ -448,6 +499,18 @@ Popup
 
 .allFilledError{
     -fx-font-size: 25;
+}
+.about_backround{
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 20 20 20 20;
+
+}
+.about_text{
+
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 30;
+    -fx-spacing: 1.5;
+    -fx-text-alignment: left;
 }
 
 
@@ -624,6 +687,7 @@ Popup
     -fx-background-insets: 1.5, 0.0, 0.0;
     -fx-background-radius: 2.0em;
 }
+
 .meal-choice-buttons{
      -fx-pref-height: 75;
      -fx-pref-width: 150;
@@ -645,6 +709,14 @@ Popup
     -fx-background-radius: 15;
     -fx-font-size: 25;
 }
+
+about_text{
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 36;
+    -fx-font-family: "Poppins-Regular";
+}
+
+
 
 .add_Nodes{
     -fx-pref-height: 65;

@@ -7,10 +7,7 @@ import edu.wpi.teamg.ORMClasses.MaintenanceRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXCheckbox;
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
-import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.controls.*;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -26,7 +23,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import org.controlsfx.control.SearchableComboBox;
 
 public class MaintenanceRequestController {
   @FXML MFXButton maintainSubmitButton;
@@ -57,8 +53,8 @@ public class MaintenanceRequestController {
 
   @FXML TextArea finalTreeLevel;
 
-  @FXML SearchableComboBox locationSearchDropdown;
-  @FXML SearchableComboBox employeeSearchDropdown;
+  @FXML MFXFilterComboBox locationSearchDropdown;
+  @FXML MFXFilterComboBox employeeSearchDropdown;
   @FXML Label checkFields;
   @FXML Line assignToLine;
   @FXML Text assignToText;
@@ -268,7 +264,7 @@ public class MaintenanceRequestController {
     }
 
     if (type == "1") {
-      typeOfMaintain = checkTree1.getText();
+      specifiedMaintain = checkTree1.getText();
 
       checkTree2.setSelected(false);
       checkTree3.setSelected(false);
@@ -279,7 +275,7 @@ public class MaintenanceRequestController {
       finalTreeLevel.setVisible(true);
     }
     if (type == "2") {
-      typeOfMaintain = checkTree2.getText();
+      specifiedMaintain = checkTree2.getText();
 
       checkTree1.setSelected(false);
       checkTree3.setSelected(false);
@@ -290,7 +286,7 @@ public class MaintenanceRequestController {
       finalTreeLevel.setVisible(true);
     }
     if (type == "3") {
-      typeOfMaintain = checkTree3.getText();
+      specifiedMaintain = checkTree3.getText();
       checkTree2.setSelected(false);
       checkTree1.setSelected(false);
       checkTree4.setSelected(false);
@@ -300,7 +296,7 @@ public class MaintenanceRequestController {
       finalTreeLevel.setVisible(true);
     }
     if (type == "4") {
-      typeOfMaintain = checkTree4.getText();
+      specifiedMaintain = checkTree4.getText();
       checkTree2.setSelected(false);
       checkTree1.setSelected(false);
       checkTree3.setSelected(false);
@@ -314,6 +310,8 @@ public class MaintenanceRequestController {
   public void storeMaintenanceValues() throws SQLException {
 
     HashMap<Integer, Employee> employeeHash = dao.getAllEmployees();
+
+    System.out.println(typeOfMaintain + " " + specifiedMaintain + " " + finalTreeLevel.getText());
 
     Employee signedIn = employeeHash.get(App.employee.getEmpID());
 

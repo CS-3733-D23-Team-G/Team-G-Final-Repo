@@ -159,6 +159,9 @@ public class OfficeSupplyRequestDAO implements DAO {
       ps_req.setTime(8, supplyRequest.getRequestTime());
       ps_req.executeUpdate();
 
+      db.closeConnection();
+      db.setConnection();
+
       ps_supply = db.getConnection().prepareStatement(SQL);
       ps_supply.setInt(1, maxid);
       ps_supply.setString(2, supplyRequest.getSupplyType());

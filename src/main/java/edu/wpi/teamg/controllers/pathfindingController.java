@@ -40,7 +40,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
-import org.controlsfx.control.SearchableComboBox;
 
 // Touch Ups
 // Make NodeInfo Disappear More clean
@@ -64,8 +63,8 @@ public class pathfindingController {
 
   private ArrayList<ImageView> imageViewsList = new ArrayList<>();
 
-  @FXML SearchableComboBox startLocDrop;
-  @FXML SearchableComboBox endLocDrop;
+  @FXML MFXFilterComboBox startLocDrop;
+  @FXML MFXFilterComboBox endLocDrop;
 
   @FXML MFXComboBox floorStart;
   @FXML MFXComboBox floorEnd;
@@ -73,6 +72,7 @@ public class pathfindingController {
   @FXML MFXCheckbox aStarCheckBox;
   @FXML MFXCheckbox bfsCheckBox;
   @FXML MFXCheckbox dfsCheckBox;
+  @FXML MFXCheckbox Dijkstracheckbox;
 
   @FXML MFXDatePicker date;
 
@@ -107,6 +107,15 @@ public class pathfindingController {
           if (aStarCheckBox.isSelected()) {
             bfsCheckBox.setSelected(false);
             dfsCheckBox.setSelected(false);
+            Dijkstracheckbox.setSelected(false);
+          }
+        });
+    Dijkstracheckbox.setOnAction(
+        event -> {
+          if (Dijkstracheckbox.isSelected()) {
+            bfsCheckBox.setSelected(false);
+            dfsCheckBox.setSelected(false);
+            aStarCheckBox.setSelected(false);
           }
         });
 
@@ -115,6 +124,7 @@ public class pathfindingController {
           if (bfsCheckBox.isSelected()) {
             aStarCheckBox.setSelected(false);
             dfsCheckBox.setSelected(false);
+            Dijkstracheckbox.setSelected(false);
           }
         });
 
@@ -123,6 +133,7 @@ public class pathfindingController {
           if (dfsCheckBox.isSelected()) {
             aStarCheckBox.setSelected(false);
             bfsCheckBox.setSelected(false);
+            Dijkstracheckbox.setSelected(false);
           }
         });
     dSN.setOnAction(
@@ -215,6 +226,11 @@ public class pathfindingController {
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
             } else if (bfsCheckBox.isSelected()) {
               algo = new BFS();
+              updateMove(floor);
+              setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+
+            } else if (Dijkstracheckbox.isSelected()) {
+              algo = new Dijkstra();
               updateMove(floor);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
             }

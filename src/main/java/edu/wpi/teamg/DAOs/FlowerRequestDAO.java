@@ -157,6 +157,9 @@ public class FlowerRequestDAO implements DAO {
       ps_Req.setTime(8, ((FlowerRequest) obj).getRequestTime());
       ps_Req.executeUpdate();
 
+      db.closeConnection();
+      db.setConnection();
+
       ps_getFlowerReq = db.getConnection().prepareStatement(SQL_flowerRequest);
       ps_getFlowerReq.setInt(1, maxID);
       ps_getFlowerReq.setString(2, ((FlowerRequest) obj).getFlowerType());

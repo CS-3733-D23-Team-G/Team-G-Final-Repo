@@ -36,7 +36,7 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="flowerTableButton" styleClass="table_view_Button" text="Office Supply ">
+                        <MFXButton fx:id="flowerTableButton" styleClass="table_view_Button" text="Flower Request ">
                            <font>
                               <Font size="50.0" />
                            </font>

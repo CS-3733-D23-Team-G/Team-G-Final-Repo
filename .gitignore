@@ -1,5 +1,7 @@
+
 creds.yml
 .resources/edu/wpi/teamg/creds.yml
+
 emailCreds.yml
 .resources/edu/wpi/teamg/emailCreds.yml
 derby.log
