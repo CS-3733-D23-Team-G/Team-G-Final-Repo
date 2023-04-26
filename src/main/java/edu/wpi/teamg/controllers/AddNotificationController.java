@@ -87,7 +87,7 @@ public class AddNotificationController {
       } catch (SQLException e) {
         throw new RuntimeException(e);
       }
-      Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT);
+      Navigation.navigate(Screen.NOTIFICATION_CONFIRMATION);
     } else {
       checkFields.setVisible(true);
     }
