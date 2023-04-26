@@ -1439,7 +1439,6 @@ public class pathfindingController {
     movesForAlgos = finalLocNames;
   }
 
-
   public void displayAlert() throws IOException {
     final PopOver window = new PopOver();
     var loader = new FXMLLoader(App.class.getResource("views/AlertPopUp.fxml"));
@@ -1447,7 +1446,10 @@ public class pathfindingController {
 
     PathfindingAlertPopUpController controller = new PathfindingAlertPopUpController();
 
+      final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+      window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
     System.out.println(App.message);
+  }
 
   public void getDirections(ArrayList<String> path) throws IOException {
     final PopOver window = new PopOver();
@@ -1458,11 +1460,9 @@ public class pathfindingController {
     DirectionsPopUpController controller = loader.getController();
     controller.setF(window, path, movesForAlgos);
 
-
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
-
 
   public void updateMoves() {
     ArrayList<Move> updateMove = new ArrayList<>();

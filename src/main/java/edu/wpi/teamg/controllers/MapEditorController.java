@@ -76,13 +76,11 @@ public class MapEditorController {
 
   @FXML MFXToggleButton toggSn;
 
-
   @FXML MFXButton messageButton;
 
   @FXML MFXButton help;
 
   @FXML MFXDatePicker mapEditDate;
-
 
   boolean moved = false;
 
@@ -110,8 +108,6 @@ public class MapEditorController {
   HashMap<Integer, Move> moving = new HashMap<>();
 
   public void initialize() throws SQLException, IOException {
-
-
 
     updateMove();
 
@@ -246,6 +242,10 @@ public class MapEditorController {
         event -> {
           try {
             displayMoveChange();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
 
     help.setOnMouseClicked(
         event -> {
