@@ -25,6 +25,8 @@ public enum Screen {
   FURNITURE_REQUEST_SUBMIT("views/FurnitureRequestConfirmationPage.fxml"),
   SUPPLIES_REQUEST_SUBMIT("views/OfficeSuppRequestConfirmationPage.fxml"),
   MAINTENANCE_REQUEST_SUBMIT("views/MaintenanceRequestConfirmationPage.fxml"),
+
+  SIGNAGE_EDITOR_SUBMIT("views/SignageEditorConfirmationPage.fxml"),
   ADMIN_STATUS_PAGE("views/AdminFormStatus.fxml"),
   LOGIN_PAGE("views/Login.fxml"),
   EMPLOYEE_FORMS("views/EmployeeSelfFormView.fxml"),
@@ -34,6 +36,9 @@ public enum Screen {
 
   ABOUT_PAGE("views/About_page.fxml"),
   EMPLOYEE_INFO("views/EmployeeInformation.fxml"),
+
+  EMPLOYEE_CONFIRMATION("views/EmployeeConfirmationPage.fxml"),
+  NOTIFICATION_CONFIRMATION("views/NotificationConfirmationPage.fxml"),
   TWO_FAC("views/2FactorPopUp.fxml"),
 
   NOTIFICATION_PAGE("views/AddNotification.fxml"),

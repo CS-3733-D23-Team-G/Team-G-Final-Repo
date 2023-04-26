@@ -98,17 +98,17 @@ public class AdminFormStatusController {
   @FXML TableColumn<FurnitureRequest, Time> furnTime;
 
   // office supply Table
-  @FXML TableColumn<FurnitureRequest, String> suppEmpID;
-  @FXML TableColumn<FurnitureRequest, String> suppLocation1;
-  @FXML TableColumn<FurnitureRequest, Integer> suppReqID;
-  @FXML TableColumn<FurnitureRequest, String> suppServeBy;
-  @FXML TableColumn<FurnitureRequest, StatusTypeEnum> suppStatus;
-  @FXML TableColumn<FurnitureRequest, String> suppType;
-  @FXML TableColumn<FurnitureRequest, String> suppRecipient;
-  @FXML TableColumn<FurnitureRequest, String> suppNote;
+  @FXML TableColumn<OfficeSupplyRequest, String> suppEmpID;
+  @FXML TableColumn<OfficeSupplyRequest, String> suppLocation1;
+  @FXML TableColumn<OfficeSupplyRequest, Integer> suppReqID;
+  @FXML TableColumn<OfficeSupplyRequest, String> suppServeBy;
+  @FXML TableColumn<OfficeSupplyRequest, StatusTypeEnum> suppStatus;
+  @FXML TableColumn<OfficeSupplyRequest, String> suppType;
+  @FXML TableColumn<OfficeSupplyRequest, String> suppRecipient;
+  @FXML TableColumn<OfficeSupplyRequest, String> suppNote;
 
-  @FXML TableColumn<FurnitureRequest, Date> suppDate;
-  @FXML TableColumn<FurnitureRequest, Time> suppTime;
+  @FXML TableColumn<OfficeSupplyRequest, Date> suppDate;
+  @FXML TableColumn<OfficeSupplyRequest, Time> suppTime;
 
   // maintenance Table
   @FXML TableColumn<MaintenanceRequest, String> maintenanceEmpID;

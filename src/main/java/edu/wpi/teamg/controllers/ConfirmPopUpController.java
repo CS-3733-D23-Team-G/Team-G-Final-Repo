@@ -2,7 +2,6 @@ package edu.wpi.teamg.controllers;
 
 import static edu.wpi.teamg.App.*;
 
-import edu.wpi.teamg.App;
 import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -94,7 +93,7 @@ public class ConfirmPopUpController {
     //    //      }
     //    //    }
     //
-    App.refresh();
+
     window.hide();
     //    controller.goToFloor2(map);
   }

@@ -80,6 +80,8 @@ public class pathfindingController {
   @FXML MFXToggleButton toggN;
   @FXML MFXButton alertButton;
 
+  @FXML MFXButton txtDirections;
+
   ObservableList<String> locationListStart;
   ObservableList<String> locationListEnd;
   ObservableList<String> FloorList;
@@ -92,16 +94,29 @@ public class pathfindingController {
   boolean snLab = true;
   boolean togg = false;
 
+  ArrayList<String> txtPath;
+
+  HashMap<Integer, Move> moving = new HashMap<>();
+
   int floor = 0;
 
   @FXML
   public void initialize() throws SQLException {
-
+    updateMoves();
     //  goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
 
     aStarCheckBox.setSelected(true);
     dSN.setSelected(true);
 
+    txtDirections.setVisible(false);
+    txtDirections.setOnMouseClicked(
+        event -> {
+          try {
+            getDirections(txtPath);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
     aStarCheckBox.setOnAction(
         event -> {
           if (aStarCheckBox.isSelected()) {
@@ -168,6 +183,17 @@ public class pathfindingController {
           }
         });
 
+    date.setOnCommit(
+        event -> {
+          updateMoves();
+          nodePane.getChildren().removeIf(node -> node instanceof Text);
+          try {
+            floorButtons(imageViewsList, floor);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
+
     startingFloor();
     longNameEnd(0);
 
@@ -218,20 +244,25 @@ public class pathfindingController {
             if (aStarCheckBox.isSelected()) {
               algo = new Astar();
               updateMove(floor);
+              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
             } else if (dfsCheckBox.isSelected()) {
 
               algo = new DFS();
               updateMove(floor);
+              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+
             } else if (bfsCheckBox.isSelected()) {
               algo = new BFS();
               updateMove(floor);
+              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
 
             } else if (Dijkstracheckbox.isSelected()) {
               algo = new Dijkstra();
               updateMove(floor);
+              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
             }
           } catch (SQLException e) {
@@ -291,8 +322,8 @@ public class pathfindingController {
 
     // Scales Map
     pane.setMinScale(.001);
-    pane.zoomTo(.3, new Point2D(2500, 1700));
-    pane.zoomTo(.3, new Point2D(2500, 1700));
+    pane.zoomTo(.5, new Point2D(1250, 850));
+    pane.zoomTo(.5, new Point2D(1250, 850));
 
     pane.centreOnX(1000);
     pane.centreOnY(500);
@@ -467,6 +498,7 @@ public class pathfindingController {
   public void setPath(ArrayList<String> path) throws SQLException {
 
     System.out.println(path);
+    txtPath = path;
     //    if (path.size() == 1) {
     //      results.setText("Error: No Possible Path Found");
     //    } else {
@@ -857,6 +889,7 @@ public class pathfindingController {
     //    HashMap<Integer, Node> nodes = nodeDAO.getAll();
     //    ArrayList<Node> listOfNodes = new ArrayList<>(nodes.values());
     ArrayList<Node> listOfNodes = allNodeList;
+    updateMove(index);
 
     ArrayList<Node> listOfGoodNodes;
 
@@ -1001,9 +1034,10 @@ public class pathfindingController {
       txt.setFill(Color.BLACK);
       txt.setTextAlignment(TextAlignment.LEFT);
       // nodeLabel.setPrefSize(10, 10);
-      txt.setFont(new Font(20));
-      txt.setText(sn.get(listOfNodes.get(i).getNodeID()));
-      txt.setLayoutX(listOfNodes.get(i).getXcoord() - 30);
+      txt.setFont(new Font(30));
+      txt.setText(
+          App.locMap.get(moving.get(listOfNodes.get(i).getNodeID()).getLongName()).getShortName());
+      txt.setLayoutX(listOfNodes.get(i).getXcoord());
       txt.setLayoutY(listOfNodes.get(i).getYcoord() + 30);
       txt.toFront();
     }
@@ -1038,6 +1072,9 @@ public class pathfindingController {
     for (int i = 0; i < updatedMove.size(); i++) {
       moving.put(updatedMove.get(i).getNodeID(), updatedMove.get(i));
     }
+
+    System.out.println(point.getNodeID());
+    System.out.println(moving.get(point.getNodeID()).getLongName());
 
     // System.out.println(move.get(155).getLongName());
 
@@ -1402,6 +1439,7 @@ public class pathfindingController {
     movesForAlgos = finalLocNames;
   }
 
+
   public void displayAlert() throws IOException {
     final PopOver window = new PopOver();
     var loader = new FXMLLoader(App.class.getResource("views/AlertPopUp.fxml"));
@@ -1411,11 +1449,43 @@ public class pathfindingController {
 
     System.out.println(App.message);
 
+  public void getDirections(ArrayList<String> path) throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/DirectionsPopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    DirectionsPopUpController controller = loader.getController();
+    controller.setF(window, path, movesForAlgos);
+
+
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
-  public void listenToMouse() {}
+
+  public void updateMoves() {
+    ArrayList<Move> updateMove = new ArrayList<>();
+
+    for (int i = 0; i < move.size(); i++) {
+
+      if (date.getValue() == null) {
+        if (move.get(i).getDate().toLocalDate().isEqual(LocalDate.of(2023, Month.JANUARY, 1))) {
+          moving.put(move.get(i).getNodeID(), move.get(i));
+        }
+      } else {
+        if (date.getValue().isAfter(move.get(i).date.toLocalDate())) {
+          moving.put(move.get(i).getNodeID(), move.get(i));
+        } else if (date.getValue().isEqual(move.get(i).getDate().toLocalDate())) {
+          updateMove.add(move.get(i));
+        }
+      }
+    }
+
+    for (int i = 0; i < updateMove.size(); i++) {
+      moving.put(updateMove.get(i).getNodeID(), updateMove.get(i));
+    }
+  }
 
   public void exit() {
     Platform.exit();

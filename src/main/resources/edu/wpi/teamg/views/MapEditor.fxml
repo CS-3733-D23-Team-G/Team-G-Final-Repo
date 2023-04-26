@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
@@ -41,7 +42,7 @@
                                                                                                                                                                                                                                                             <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Node" />
                                                          </children>
                                                       </HBox>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0">
+                                                      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
                                                          <children>
                                                             <MFXButton fx:id="alignButton" prefHeight="54.0" prefWidth="226.0" styleClass="add_Buttons" text="Align Nodes" />
                                                          </children>
@@ -143,6 +144,15 @@
                                                             </MFXButton>
                                                          </children>
                                                       </HBox>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXDatePicker fx:id="mapEditDate">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </MFXDatePicker>
+                                                         </children>
+                                                      </HBox>
                                                    </children>
                                                 </VBox>
                                              </content>
@@ -169,9 +179,19 @@
                                     </MFXToggleButton>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
                                  <children>
-                                    <MFXButton fx:id="messageButton" buttonType="RAISED" prefHeight="40.0" prefWidth="200.0" style="-fx-border-radius: 20px;" text="Edit Move Message" />
+                                    <MFXButton fx:id="help" styleClass="add_Buttons" text="Instructions" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="messageButton" styleClass="add_Buttons" text="Edit  Message">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
                                  </children>
                               </HBox>
                            </children></VBox>

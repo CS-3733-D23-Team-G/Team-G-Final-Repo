@@ -1,10 +1,15 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
+import edu.wpi.teamg.DAOs.SignageDAO;
+import edu.wpi.teamg.ORMClasses.Signage;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,12 +23,13 @@ public class SignageScreenSaverController {
   //  @FXML ImageView northArrow;
   //  @FXML ImageView southArrow;
   //  @FXML ImageView eastArrow;
-
   Image westArrow = new Image("edu/wpi/teamg/Images/WestArrow.png");
   Image eastArrow = new Image("edu/wpi/teamg/Images/EastArrow.png");
   Image southArrow = new Image("edu/wpi/teamg/Images/SouthArrow.png");
   Image northArrow = new Image("edu/wpi/teamg/Images/NorthArrow.png");
   Image noArrow = new Image("edu/wpi/teamg/Images/NoArrow.png");
+
+  @FXML MFXButton snakeButton;
 
   @FXML ImageView arrow1 = new ImageView(noArrow);
   @FXML ImageView arrow2 = new ImageView(noArrow);
@@ -49,10 +55,50 @@ public class SignageScreenSaverController {
 
   ArrayList<ImageView> arrows;
 
+  SignageDAO signageDAO = new SignageDAO();
+
   @FXML Text dateText;
   public String date;
 
-  public void initialize() {
+  public void initialize() throws SQLException {
+
+    getSavedDate(); // getting the proper date
+    arrow1.setImage(null); // making everything null so only the proper fields will be initialized
+    arrow2.setImage(null);
+    arrow3.setImage(null);
+    arrow4.setImage(null);
+    arrow5.setImage(null);
+    arrow6.setImage(null);
+    arrow7.setImage(null);
+    arrow8.setImage(null);
+    arrow9.setImage(null);
+    arrow10.setImage(null);
+    nameLabel1.setText("");
+    nameLabel2.setText("");
+    nameLabel3.setText("");
+    nameLabel4.setText("");
+    nameLabel5.setText("");
+    nameLabel6.setText("");
+    nameLabel7.setText("");
+    nameLabel8.setText("");
+    nameLabel9.setText("");
+    nameLabel10.setText("");
+
+    int kinum = App.getKioskNumber();
+
+    HashMap<String, Signage> page =
+        signageDAO.getSignageGivenKioskNumAndMonth(kinum, App.getMonthFieldSignage());
+
+    page.forEach(
+        (i, m) -> {
+          String[] data = m.getArrow().split("_");
+
+          System.out.println(data[1] + " " + data[2]);
+
+          setDirection(data[1], data[2]);
+          setLoc(data[0], data[2]);
+        });
+
     ClickToPathFinding.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     arrows =
         new ArrayList<>(
@@ -66,8 +112,6 @@ public class SignageScreenSaverController {
     //              }
     //            });
 
-    // HELP, I NEED SOMEBODY
-
     int[] arrowDirection = null;
     SignageEditorController controller = new SignageEditorController();
     arrowDirection = controller.getArrowDirection();
@@ -78,34 +122,16 @@ public class SignageScreenSaverController {
 
     // int[] testCase = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-    if (controller.getAttribute()) {
-      getArrowDirectionFromEditor();
-      getSavedNamesFromEditor();
-      getSavedDate();
-    } else {
-      getSavedDate();
-      arrow2.setImage(westArrow);
-      nameLabel2.setText("75 Lobby");
-      arrow3.setImage(northArrow);
-      nameLabel3.setText("Bathroom 75 Lobby");
-      arrow7.setImage(eastArrow);
-      nameLabel7.setText("Garden Cafe");
-      arrow8.setImage(eastArrow);
-      nameLabel8.setText("75 Lobby Information Desk");
+    //    if (controller.getAttribute()) {
+    //      getArrowDirectionFromEditor();
+    //      getSavedNamesFromEditor();
+    //
+    //    } else {
+    //      getSavedDate();
+    //
+    //    }
 
-      arrow1.setImage(null);
-      arrow4.setImage(null);
-      arrow5.setImage(null);
-      arrow6.setImage(null);
-      arrow9.setImage(null);
-      arrow10.setImage(null);
-      nameLabel1.setText("");
-      nameLabel4.setText("");
-      nameLabel5.setText("");
-      nameLabel6.setText("");
-      nameLabel9.setText("");
-      nameLabel10.setText("");
-    }
+    snakeButton.setOnMouseClicked(event -> letsAGo());
   }
 
   public void getArrowDirectionFromEditor() {
@@ -156,5 +182,103 @@ public class SignageScreenSaverController {
     dateText.setText(controller.getDate() + ".");
     dateText.setFill(Paint.valueOf("linear-gradient(to bottom left, #009FFD, #2A2A72)"));
     dateText.setStyle("-fx-font-weight: 800");
+  }
+
+  public void setDirection(String val, String index) {
+    Image arrowImage = null;
+    switch (val) {
+      case "U":
+        arrowImage = northArrow;
+        break;
+      case "R":
+        arrowImage = eastArrow;
+        break;
+      case "L":
+        arrowImage = westArrow;
+        break;
+      case "D":
+        arrowImage = southArrow;
+        break;
+      default:
+        arrowImage = noArrow;
+        break;
+    }
+
+    switch (Integer.parseInt(index)) {
+      case 1:
+        arrow1.setImage(arrowImage);
+        break;
+      case 2:
+        arrow2.setImage(arrowImage);
+        break;
+      case 3:
+        arrow3.setImage(arrowImage);
+        break;
+      case 4:
+        arrow4.setImage(arrowImage);
+        break;
+      case 5:
+        arrow5.setImage(arrowImage);
+        break;
+      case 6:
+        arrow6.setImage(arrowImage);
+        break;
+      case 7:
+        arrow7.setImage(arrowImage);
+        break;
+      case 8:
+        arrow8.setImage(arrowImage);
+        break;
+      case 9:
+        arrow9.setImage(arrowImage);
+        break;
+      case 10:
+        arrow10.setImage(arrowImage);
+        break;
+      default:
+        break;
+    }
+  }
+
+  public void setLoc(String loc, String index) {
+
+    switch (Integer.parseInt(index)) {
+      case 1:
+        nameLabel1.setText(loc);
+        break;
+      case 2:
+        nameLabel2.setText(loc);
+        break;
+      case 3:
+        nameLabel3.setText(loc);
+        break;
+      case 4:
+        nameLabel4.setText(loc);
+        break;
+      case 5:
+        nameLabel5.setText(loc);
+        break;
+      case 6:
+        nameLabel6.setText(loc);
+        break;
+      case 7:
+        nameLabel7.setText(loc);
+        break;
+      case 8:
+        nameLabel8.setText(loc);
+        break;
+      case 9:
+        nameLabel9.setText(loc);
+        break;
+      case 10:
+        nameLabel10.setText(loc);
+        break;
+      default:
+        break;
+    }
+  }
+
+  public void letsAGo() {
+    new GameFrame();
   }
 }
