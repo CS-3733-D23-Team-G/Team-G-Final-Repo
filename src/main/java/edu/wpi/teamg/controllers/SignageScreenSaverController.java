@@ -7,14 +7,21 @@ import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class SignageScreenSaverController {
   @FXML MFXButton ClickToPathFinding;
@@ -30,6 +37,8 @@ public class SignageScreenSaverController {
   Image noArrow = new Image("edu/wpi/teamg/Images/NoArrow.png");
 
   @FXML MFXButton snakeButton;
+
+  @FXML Text timeText;
 
   @FXML ImageView arrow1 = new ImageView(noArrow);
   @FXML ImageView arrow2 = new ImageView(noArrow);
@@ -62,6 +71,18 @@ public class SignageScreenSaverController {
 
   public void initialize() throws SQLException {
 
+    Timeline clock =
+        new Timeline(
+            new KeyFrame(
+                Duration.ZERO,
+                e ->
+                    timeText.setText(
+                        LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss a")))),
+            new KeyFrame(Duration.seconds(1)));
+    clock.setCycleCount(Animation.INDEFINITE);
+    clock.play();
+
+    // setTime();
     getSavedDate(); // getting the proper date
     arrow1.setImage(null); // making everything null so only the proper fields will be initialized
     arrow2.setImage(null);
@@ -277,6 +298,22 @@ public class SignageScreenSaverController {
         break;
     }
   }
+
+  SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss a");
+  String time;
+
+  //  public void setTime() {
+  //    while (true) {
+  //      time = timeFormat.format(Calendar.getInstance().getTime());
+  //      timeText.setText(time);
+  //
+  //      try {
+  //        Thread.sleep(1000);
+  //      } catch (InterruptedException e) {
+  //        e.printStackTrace();
+  //      }
+  //    }
+  //  }
 
   public void letsAGo() {
     new GameFrame();
