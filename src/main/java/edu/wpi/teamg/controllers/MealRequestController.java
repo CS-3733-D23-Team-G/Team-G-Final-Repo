@@ -58,6 +58,12 @@ public class MealRequestController {
   @FXML Pane pane4;
   @FXML Pane pane5;
   @FXML Pane pane6;
+  boolean borderPane1 = false;
+  boolean borderPane2 = false;
+  boolean borderPane3 = false;
+  boolean borderPane4 = false;
+  boolean borderPane5 = false;
+  boolean borderPane6 = false;
 
   @FXML MFXButton mealButton;
   @FXML MFXButton snackButton;
@@ -155,6 +161,25 @@ public class MealRequestController {
     Image taco = new Image(App.class.getResourceAsStream("Images/taco.jpg"));
 
     Image sandwich = new Image(App.class.getResourceAsStream("Images/sandwich.jpg"));
+
+    pane1.setStyle("-fx-border-radius: 15 15 15 15");
+    pane2.setStyle("-fx-border-radius: 15 15 15 15");
+    pane3.setStyle("-fx-border-radius: 15 15 15 15");
+    pane4.setStyle("-fx-border-radius: 15 15 15 15");
+    pane5.setStyle("-fx-border-radius: 15 15 15 15");
+    pane6.setStyle("-fx-border-radius: 15 15 15 15");
+    pane1.setStyle("-fx-border-color: #F6BD38");
+    pane2.setStyle("-fx-border-color: #F6BD38");
+    pane3.setStyle("-fx-border-color: #F6BD38");
+    pane4.setStyle("-fx-border-color: #F6BD38");
+    pane5.setStyle("-fx-border-color: #F6BD38");
+    pane6.setStyle("-fx-border-color: #F6BD38");
+    pane1.setStyle("-fx-border-width: 0 0 0 0");
+    pane2.setStyle("-fx-border-width: 0 0 0 0");
+    pane3.setStyle("-fx-border-width: 0 0 0 0");
+    pane4.setStyle("-fx-border-width: 0 0 0 0");
+    pane5.setStyle("-fx-border-width: 0 0 0 0");
+    pane6.setStyle("-fx-border-width: 0 0 0 0");
     text1.setText("Burger");
     text2.setText("Hot Dog");
     text3.setText("Pizza");
@@ -177,34 +202,99 @@ public class MealRequestController {
 
     pane1.setOnMouseClicked(
         event -> {
+          highlightControl(1);
           System.out.println("pane 1 pressed");
           selectItems(text1);
         });
     pane2.setOnMouseClicked(
         event -> {
+          highlightControl(2);
           System.out.println("pane 2 pressed");
           selectItems(text3);
         });
     pane3.setOnMouseClicked(
         event -> {
+          highlightControl(3);
           System.out.println("pane 3 pressed");
           selectItems(text5);
         });
     pane4.setOnMouseClicked(
         event -> {
+          highlightControl(4);
           System.out.println("pane 4 pressed");
           selectItems(text2);
         });
     pane5.setOnMouseClicked(
         event -> {
+          highlightControl(5);
           System.out.println("pane 5 pressed");
           selectItems(text4);
         });
     pane6.setOnMouseClicked(
         event -> {
+          highlightControl(6);
           System.out.println("pane 6 pressed");
           selectItems(text6);
         });
+  }
+
+  public void highlightControl(int paneNum) {
+    switch (paneNum) {
+      case 1:
+        if (borderPane1) {
+          pane1.setStyle("-fx-border-width: 0 0 0 0");
+          borderPane1 = false;
+        } else {
+          pane1.setStyle("-fx-border-width: 5 5 5 5");
+          borderPane1 = true;
+        }
+        break;
+      case 2:
+        if (borderPane2) {
+          pane2.setStyle("-fx-border-width: 0 0 0 0");
+          borderPane2 = false;
+        } else {
+          pane2.setStyle("-fx-border-width: 5 5 5 5");
+          borderPane2 = true;
+        }
+        break;
+      case 3:
+        if (borderPane3) {
+          pane3.setStyle("-fx-border-width: 0 0 0 0");
+          borderPane3 = false;
+        } else {
+          pane3.setStyle("-fx-border-width: 5 5 5 5");
+          borderPane3 = true;
+        }
+        break;
+      case 4:
+        if (borderPane4) {
+          pane4.setStyle("-fx-border-width: 0 0 0 0");
+          borderPane4 = false;
+        } else {
+          pane4.setStyle("-fx-border-width: 5 5 5 5");
+          borderPane4 = true;
+        }
+        break;
+      case 5:
+        if (borderPane5) {
+          pane5.setStyle("-fx-border-width: 0 0 0 0");
+          borderPane5 = false;
+        } else {
+          pane5.setStyle("-fx-border-width: 5 5 5 5");
+          borderPane5 = true;
+        }
+        break;
+      case 6:
+        if (borderPane6) {
+          pane6.setStyle("-fx-border-width: 0 0 0 0");
+          borderPane6 = false;
+        } else {
+          pane6.setStyle("-fx-border-width: 5 5 5 5");
+          borderPane6 = true;
+        }
+        break;
+    }
   }
 
   public void DrinkPressed() {
@@ -219,9 +309,9 @@ public class MealRequestController {
     Image smoothie = new Image(App.class.getResourceAsStream("Images/smoothie.jpg"));
 
     Image tea = new Image(App.class.getResourceAsStream("Images/tea.jpg"));
-    text1.setText("Orange Juice");
+    text1.setText("Orange \nJuice");
     text2.setText("Coffee");
-    text3.setText("Pizza");
+    text3.setText("Water");
     text4.setText("Water");
     text5.setText("Smoothie");
     text6.setText("Tea");
@@ -279,7 +369,7 @@ public class MealRequestController {
     text1.setText("French Fries");
     text2.setText("Chips");
     text3.setText("Bacon");
-    text4.setText("Avocado Toast");
+    text4.setText("Avocado \n Toast");
     text5.setText("Goldfish");
     text6.setText("Pretzels");
     image1.setImage(frenchFries);
