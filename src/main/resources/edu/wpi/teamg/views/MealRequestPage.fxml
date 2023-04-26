@@ -210,11 +210,6 @@
                                                 <Insets right="15.0" />
                                              </HBox.margin>
                                           </MFXButton>
-                                          <MFXButton styleClass="meal-choice-buttons" text="Other">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </MFXButton>
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="475.0" prefWidth="758.0">
