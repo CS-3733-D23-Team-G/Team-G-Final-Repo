@@ -2,11 +2,14 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.ORMClasses.Move;
+import edu.wpi.teamg.ORMClasses.TextToSpeech;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
+import javax.speech.AudioException;
+import javax.speech.EngineException;
 import org.controlsfx.control.PopOver;
 
 public class DirectionsPopUpController {
@@ -15,6 +18,8 @@ public class DirectionsPopUpController {
   @FXML Text lnEnd;
   @FXML TextArea pathInstructions;
   @FXML MFXButton closePath;
+
+  @FXML MFXButton speakButton;
 
   ArrayList<Move> updatedMoves;
 
@@ -30,6 +35,18 @@ public class DirectionsPopUpController {
   public void initialize() {
     closePath.setOnMouseClicked(event -> close());
     pathInstructions.setEditable(false);
+    speakButton.setOnMouseClicked(
+        event -> {
+          try {
+            speak();
+          } catch (AudioException | InterruptedException | EngineException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
+
+  private void speak() throws AudioException, EngineException, InterruptedException {
+    TextToSpeech tts = new TextToSpeech(pathInstructions.getText());
   }
 
   public void setF(PopOver window, ArrayList<String> getPath, ArrayList<Move> movin) {

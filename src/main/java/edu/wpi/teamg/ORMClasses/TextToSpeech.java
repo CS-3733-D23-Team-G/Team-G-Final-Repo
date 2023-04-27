@@ -11,6 +11,8 @@ public class TextToSpeech {
   String spoken;
   Synthesizer synth = Central.createSynthesizer(new SynthesizerModeDesc(Locale.US));
 
+  public TextToSpeech() throws EngineException {}
+
   public TextToSpeech(String spoken) throws EngineException, AudioException, InterruptedException {
     this.spoken = spoken;
     System.setProperty(
