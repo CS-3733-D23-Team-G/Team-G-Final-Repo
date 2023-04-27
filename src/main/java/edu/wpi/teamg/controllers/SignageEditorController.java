@@ -3,6 +3,7 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.SignageDAO;
+import edu.wpi.teamg.ORMClasses.Signage;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.*;
@@ -455,9 +456,10 @@ public class SignageEditorController {
       }
 
       sb.append(j + 1);
-      // Signage signage = new Signage(kiNum, null, sb.toString(), sb1.toString(), false);
+      Signage signage =
+          new Signage((String) locationDrop.getValue(), null, sb.toString(), sb1.toString(), false);
       SignageDAO dao = new SignageDAO();
-      // dao.insert(signage);
+      dao.insert(signage);
       Navigation.navigate(Screen.SIGNAGE_EDITOR_SUBMIT);
     }
   }

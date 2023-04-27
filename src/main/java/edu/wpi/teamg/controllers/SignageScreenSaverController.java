@@ -7,14 +7,20 @@ import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class SignageScreenSaverController {
   @FXML MFXButton ClickToPathFinding;
@@ -58,11 +64,32 @@ public class SignageScreenSaverController {
   SignageDAO signageDAO = new SignageDAO();
 
   @FXML Text dateText;
+  @FXML Text locationText;
+
+  @FXML Text greetingText;
+
+  @FXML Text timeText;
   public String date;
 
   public void initialize() throws SQLException {
 
+    Timeline clock =
+        new Timeline(
+            new KeyFrame(
+                Duration.ZERO,
+                e -> {
+                  timeText.setText(
+                      LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss a")) + ",");
+                  timeText.setFill(
+                      Paint.valueOf("linear-gradient(to bottom left, #009FFD, #012D5A)"));
+                  timeText.setStyle("-fx-font-weight: 800");
+                }),
+            new KeyFrame(Duration.seconds(1)));
+    clock.setCycleCount(Animation.INDEFINITE);
+    clock.play();
+
     getSavedDate(); // getting the proper date
+
     arrow1.setImage(null); // making everything null so only the proper fields will be initialized
     arrow2.setImage(null);
     arrow3.setImage(null);
@@ -86,6 +113,10 @@ public class SignageScreenSaverController {
 
     int kinum = App.getKioskNumber();
     String location = "Innovation Hub";
+
+    locationText.setText(location);
+    locationText.setFill(Paint.valueOf("#012D5A"));
+    locationText.setStyle("-fx-font-weight: 800");
 
     HashMap<String, Signage> page =
         signageDAO.getSignageGiveLNAndMonth(location, App.getMonthFieldSignage());
@@ -179,9 +210,23 @@ public class SignageScreenSaverController {
   }
 
   public void getSavedDate() {
+
+    //    Calendar c = Calendar.getInstance();
+    //    int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+    //
+    //    if (timeOfDay >= 0 && timeOfDay < 12) {
+    //      greetingText.setText("Good Morning! It's");
+    //    } else if (timeOfDay >= 12 && timeOfDay < 16) {
+    //      greetingText.setText("Good Afternoon! It's");
+    //    } else if (timeOfDay >= 16 && timeOfDay < 21) {
+    //      greetingText.setText("Good Evening! It's");
+    //    } else if (timeOfDay >= 21 && timeOfDay < 24) {
+    //      greetingText.setText("Good Morning! It's");
+    //    }
+
     SignageEditorController controller = new SignageEditorController();
-    dateText.setText(controller.getDate() + ".");
-    dateText.setFill(Paint.valueOf("linear-gradient(to bottom left, #009FFD, #2A2A72)"));
+    dateText.setText(controller.getDate());
+    dateText.setFill(Paint.valueOf("linear-gradient(to bottom left, #009FFD, #012D5A)"));
     dateText.setStyle("-fx-font-weight: 800");
   }
 

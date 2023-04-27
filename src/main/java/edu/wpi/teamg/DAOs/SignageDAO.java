@@ -70,13 +70,14 @@ public class SignageDAO implements DAO {
     sql =
         "insert into "
             + this.getTable()
-            + " (kiosknum, specdate, arrow, month, is_spec) values (?,?,?,?,?)";
+            + " (kiosknum, specdate, arrow, month, is_spec, location) values (?,?,?,?,?,?)";
     ps = db.getConnection().prepareStatement(sql);
     ps.setInt(1, ((Signage) obj).getKioskNum());
     ps.setDate(2, ((Signage) obj).getSpecdate());
     ps.setString(3, ((Signage) obj).getArrow());
     ps.setString(4, ((Signage) obj).getMonth());
     ps.setBoolean(5, ((Signage) obj).isSpecified());
+    ps.setString(6, ((Signage) obj).getLocation());
     ps.executeUpdate();
     signageHash.put(((Signage) obj).getKioskNum(), (Signage) obj);
 
