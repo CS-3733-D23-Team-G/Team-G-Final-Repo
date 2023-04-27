@@ -51,6 +51,20 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
+                  <HBox prefHeight="26.0" prefWidth="306.0">
+                     <children>
+                        <Text fx:id="quoteText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcomeText_home" text="Welcome,">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="authorText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcomeText_user">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
                   <MFXScrollPane AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <content>
                         <VBox fx:id="forms" prefHeight="780.0" prefWidth="743.0" />
