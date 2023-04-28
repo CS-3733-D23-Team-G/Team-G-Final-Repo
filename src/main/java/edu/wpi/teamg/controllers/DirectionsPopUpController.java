@@ -74,7 +74,12 @@ public class DirectionsPopUpController {
         if (first) {
           if (updatedMoves.get(j).getNodeID() == Integer.parseInt(path.get(i))) {
             lnStart.setText(updatedMoves.get(j).getLongName());
-            pathInstructions.setText("Start At: " + updatedMoves.get(j).getLongName() + "\n");
+            pathInstructions.setText(
+                "Start on Floor: "
+                    + App.allNodes.get(Integer.parseInt(path.get(i))).getFloor()
+                    + " At: "
+                    + updatedMoves.get(j).getLongName()
+                    + "\n");
             first = false;
           }
 
@@ -89,12 +94,15 @@ public class DirectionsPopUpController {
         } else {
           if (i != 0 && updatedMoves.get(j).getNodeID() == Integer.parseInt(path.get(i))) {
 
-//            if (!Objects.equals(
-//                    App.allNodes.get(Integer.parseInt(path.get(i))).getFloor(),
-//                    App.allNodes.get(Integer.parseInt(path.get(i - 1))).getFloor())) {
-//              System.out.println(
-//                      "\nFloor " + App.allNodes.get(Integer.parseInt(path.get(i))).getFloor() + "\n\n");
-//            }
+            if (!Objects.equals(
+                App.allNodes.get(Integer.parseInt(path.get(i))).getFloor(),
+                App.allNodes.get(Integer.parseInt(path.get(i - 1))).getFloor())) {
+              pathInstructions.setText(
+                  pathInstructions.getText()
+                      + "\nFloor "
+                      + App.allNodes.get(Integer.parseInt(path.get(i))).getFloor()
+                      + "\n");
+            }
 
             if (App.allNodes.get(Integer.parseInt(path.get(i))).getXcoord()
                 > App.allNodes.get(Integer.parseInt(path.get(i - 1))).getXcoord()) {
@@ -138,11 +146,6 @@ public class DirectionsPopUpController {
   }
 
   public void changeOrientation(int up, int down, int left, int right, int j, int i) {
-
-    System.out.println(up);
-    System.out.println(down);
-    System.out.println(left);
-    System.out.println(right);
 
     switch (orientation) {
       case "R":
