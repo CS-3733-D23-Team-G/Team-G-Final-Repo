@@ -54,8 +54,8 @@ public class SpeechToText {
     Configuration config = new Configuration();
 
     config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-    config.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
-    config.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
+    config.setDictionaryPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.dic");
+    config.setLanguageModelPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.lm");
 
     LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(config);
     recognizer.startRecognition(true);

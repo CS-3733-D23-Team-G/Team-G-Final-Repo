@@ -3,3 +3,4 @@ Login
 Open form status
 Generate path
 Logout
+Stop
