@@ -30,7 +30,7 @@ public class MealRequestDAO implements DAO {
     ResultSet rs = null;
 
     SQL_mealRequest =
-        "select * from teamgdb.iteration4.request join teamgdb.iteration4.mealrequest on teamgdb.iteration4.request.reqid = teamgdb.iteration4.mealrequest.reqid";
+        "select * from teamgdb.iteration3.request join teamgdb.iteration3.mealrequest on teamgdb.iteration3.request.reqid = teamgdb.iteration3.mealrequest.reqid";
 
     try {
       ps = db.getConnection().prepareStatement(SQL_mealRequest);
@@ -106,7 +106,7 @@ public class MealRequestDAO implements DAO {
 
     ResultSet rs = null;
 
-    SQL_maxID = "select reqID from teamgdb.iteration4.request order by reqid desc limit 1";
+    SQL_maxID = "select reqID from teamgdb.iteration3.request order by reqid desc limit 1";
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -130,7 +130,7 @@ public class MealRequestDAO implements DAO {
             + "(reqid, recipient, mealOrder, note) values (?, ?, ?, ?)";
 
     SQL_Request =
-        "insert into teamgdb.iteration4.request(reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+        "insert into teamgdb.iteration3.request(reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
 
     try {
 
@@ -172,9 +172,6 @@ public class MealRequestDAO implements DAO {
       ps_Request.setTime(8, ((MealRequest) obj).getRequestTime());
       ps_Request.executeUpdate();
 
-      db.closeConnection();
-      db.setConnection();
-
       ps_mealRequest = db.getConnection().prepareStatement(SQL_mealRequest);
       ps_mealRequest.setInt(1, maxID);
       ps_mealRequest.setString(2, ((MealRequest) obj).getRecipient());
@@ -202,7 +199,7 @@ public class MealRequestDAO implements DAO {
 
     String SQL_mealrequest = "delete from " + this.getTable() + " where reqId = ?";
 
-    String SQL_request = "delete from teamgdb.iteration4.request where reqId = ?";
+    String SQL_request = "delete from teamgdb.iteration3.request where reqId = ?";
 
     try {
       ps_mealrequest = db.getConnection().prepareStatement(SQL_mealrequest);
@@ -248,6 +245,6 @@ public class MealRequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4.mealrequest";
+    return "teamgdb.iteration3.mealrequest";
   }
 }

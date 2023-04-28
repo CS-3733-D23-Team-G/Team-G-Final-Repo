@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="706.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AboutPageController">
    <center>
-      <ImageView fitHeight="980.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@about_page.jpg" />
-         </image>
-      </ImageView>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="339.0" layoutY="8.0" prefHeight="868.0" prefWidth="1170.0" styleClass="about_backround" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <Label layoutX="558.0" layoutY="24.0" styleClass="about_text" text="About" />
+                  <Line endX="77.0" endY="-1.0" layoutX="575.0" layoutY="70.0" startX="-29.0" startY="-1.0" stroke="#f6bd38" strokeWidth="3.0" />
+                  <Text fx:id="Text_about" fill="#f8f3f3" layoutX="11.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="about_text" wrappingWidth="1282.13671875" />
+                  <MFXButton fx:id="Credits" layoutX="1025.0" layoutY="796.0" styleClass="requestConfirmButton" text="Credits &gt;" AnchorPane.leftAnchor="1025.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="796.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
    </center>
 </BorderPane>

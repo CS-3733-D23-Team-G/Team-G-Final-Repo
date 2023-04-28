@@ -1,11 +1,11 @@
 package edu.wpi.teamg.ORMClasses;
 
-import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import org.controlsfx.control.SearchableComboBox;
 
 public interface Algorithm {
   public ArrayList<String> process(
-      MFXFilterComboBox startLocDrop, MFXFilterComboBox endLocDrop, ArrayList<Move> movin)
+      SearchableComboBox startLocDrop, SearchableComboBox endLocDrop, ArrayList<Move> movin)
       throws SQLException;
 }

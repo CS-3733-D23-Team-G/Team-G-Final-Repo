@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <HBox prefHeight="100.0" prefWidth="200.0" styleClass="new_banner" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.PatientTopBannerController">
     <children>
@@ -23,44 +24,20 @@
         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="banner_big-side">
             <children>
                 <AnchorPane styleClass="hit_the_griddy">
-               <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="850.0">
-                     <children>
-                        <ImageView fx:id="information" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/informationIcon.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <ImageView fx:id="dictionary" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/dictionaryIcon.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets right="25.0" top="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <ImageView fx:id="login" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/loginIcon.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <ImageView fx:id="exit" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/exitIcon.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets right="25.0" top="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </children>
+                    <children>
+                        <Text fill="#f6bd38" layoutX="380.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Login" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="73.01025390625" AnchorPane.topAnchor="15.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Text>
+                        <Text fill="#f6bd38" layoutX="437.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Exit" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="25.9951171875" AnchorPane.topAnchor="15.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Text>
+                        <MFXButton fx:id="exitButton" layoutX="425.0" layoutY="3.0" opacity="0.0" prefHeight="55.0" prefWidth="57.0" styleClass="banner_login_exit_text" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="3.0" />
+                        <MFXButton fx:id="loginButton" layoutX="367.0" layoutY="3.0" opacity="0.0" prefHeight="55.0" prefWidth="69.0" styleClass="banner_login_exit_text" text="Button" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="3.0" />
+                    </children>
                 </AnchorPane>
             </children>
         </VBox>

@@ -1,14 +1,19 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import java.awt.*;
+import javafx.fxml.FXML;
+import javafx.scene.text.Text;
 
 public class AboutPageController {
-  //  @FXML Text Text_about;
-  //  @FXML MFXButton Credits;
+  @FXML Text Text_about;
+  @FXML MFXButton Credits;
 
   public void initialize() {
 
-    // Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
+    Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
 
     String about_text =
         "WPI Computer Science Department, CS3733-D23 Software Engineering, Prof. Wilson Wong, \n"
@@ -22,6 +27,6 @@ public class AboutPageController {
             + "Full-time Engineer: Mohamed Barry, Viet Hung Pham\n"
             + "\n"
             + "Thank you to the Brigham and Women's Hospital and their representative, Andrew Shinn, for their time and input with the project\n ";
-    // Text_about.setText(about_text);
+    Text_about.setText(about_text);
   }
 }

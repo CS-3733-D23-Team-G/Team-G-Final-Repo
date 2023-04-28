@@ -41,6 +41,7 @@ public class AddEmployee {
   EmployeeDAO empDao = new EmployeeDAO();
   AccountDAO accDao = new AccountDAO();
 
+  @FXML
   public void initialize() throws SQLException {
     empSubmit.setOnMouseClicked(event -> allDataFilled());
     FirstName.getText();
@@ -63,7 +64,7 @@ public class AddEmployee {
       } catch (SQLException | NoSuchAlgorithmException e) {
         e.printStackTrace();
       }
-      Navigation.navigate(Screen.EMPLOYEE_CONFIRMATION);
+      Navigation.navigate(Screen.ROOM_REQUEST_SUBMIT);
     }
   }
 
@@ -72,7 +73,7 @@ public class AddEmployee {
     conn.setConnection();
 
     int maxid = 0;
-    String sql = "select empid from teamgdb.iteration4.employee order by empid desc limit 1";
+    String sql = "select empid from teamgdb.iteration3.employee order by empid desc limit 1";
     PreparedStatement ps_max = conn.getConnection().prepareStatement(sql);
     ResultSet rs_max = ps_max.executeQuery();
     while (rs_max.next()) {

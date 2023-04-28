@@ -11,7 +11,8 @@ import javax.swing.*;
 public class NodeDAO implements LocationDAO {
   private static HashMap<Integer, Node> nodeHash = new HashMap<Integer, Node>();
   private static DBConnection db = new DBConnection();
-  private static String SQL;  
+  private static String SQL;
+  private HashMap<Integer, Node> Nodes = new HashMap<>();
 
   @Override
   public void update(Object obj, String colName, Object value) {
@@ -58,7 +59,7 @@ public class NodeDAO implements LocationDAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4.node";
+    return "teamgdb.iteration3.node";
   }
 
   @Override
@@ -183,9 +184,9 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.longName\n"
-            + "FROM iteration4.Move\n"
-            + "JOIN iteration4.LocationName ON Move.longName = LocationName.longName\n"
-            + "JOIN iteration4.Node ON Move.nodeID = Node.nodeID\n"
+            + "FROM iteration3.Move\n"
+            + "JOIN iteration3.LocationName ON Move.longName = LocationName.longName\n"
+            + "JOIN iteration3.Node ON Move.nodeID = Node.nodeID\n"
             + "WHERE LocationName.nodeType = 'CONF';";
 
     try {
@@ -219,8 +220,8 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.longName\n"
-            + "           FROM iteration4.Move\n"
-            + "            JOIN iteration4.LocationName ON Move.longName = LocationName.longName\n"
+            + "           FROM iteration3.Move\n"
+            + "            JOIN iteration3.LocationName ON Move.longName = LocationName.longName\n"
             + "            WHERE LocationName.nodeType = 'CONF'\n"
             + "                OR LocationName.nodeType = 'DEPT'\n"
             + "                OR LocationName.nodeType = 'INFO'\n"
@@ -259,9 +260,9 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.longName\n"
-            + "             FROM iteration4.Move\n"
-            + "             JOIN iteration4.LocationName ON Move.longName = LocationName.longName\n"
-            + "             JOIN iteration4.node ON move.nodeid = node.nodeid\n"
+            + "             FROM iteration3.Move\n"
+            + "             JOIN iteration3.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration3.node ON move.nodeid = node.nodeid\n"
             + "             WHERE node.floor = 'L1';";
 
     try {
@@ -295,9 +296,9 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.longName\n"
-            + "             FROM iteration4.Move\n"
-            + "             JOIN iteration4.LocationName ON Move.longName = LocationName.longName\n"
-            + "             JOIN iteration4.node ON move.nodeid = node.nodeid\n"
+            + "             FROM iteration3.Move\n"
+            + "             JOIN iteration3.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration3.node ON move.nodeid = node.nodeid\n"
             + "             WHERE node.floor = 'L2';";
 
     try {
@@ -331,9 +332,9 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.longName\n"
-            + "             FROM iteration4.Move\n"
-            + "             JOIN iteration4.LocationName ON Move.longName = LocationName.longName\n"
-            + "             JOIN iteration4.node ON move.nodeid = node.nodeid\n"
+            + "             FROM iteration3.Move\n"
+            + "             JOIN iteration3.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration3.node ON move.nodeid = node.nodeid\n"
             + "             WHERE node.floor = '1 ';";
 
     try {
@@ -367,9 +368,9 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT Move.nodeID, LocationName.shortname\n"
-            + "             FROM iteration4.Move\n"
-            + "             JOIN iteration4.LocationName ON Move.longName = LocationName.longName\n"
-            + "             JOIN iteration4.node ON move.nodeid = node.nodeid\n"
+            + "             FROM iteration3.Move\n"
+            + "             JOIN iteration3.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration3.node ON move.nodeid = node.nodeid\n"
             + "             WHERE node.floor = ?;";
 
     try {
@@ -404,7 +405,7 @@ public class NodeDAO implements LocationDAO {
 
     ResultSet rs = null;
 
-    SQL = "select nodeid, longname from iteration4.Move;";
+    SQL = "select nodeid, longname from iteration3.Move;";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -438,8 +439,8 @@ public class NodeDAO implements LocationDAO {
 
     SQL =
         "SELECT move.nodeid, locationname.nodetype, locationname.shortname\n"
-            + "FROM iteration4.Move INNER JOIN iteration4.LocationName ON Move.longName = LocationName.longName\n"
-            + "                      INNER JOIN iteration4.node ON node.nodeid = move.nodeid\n"
+            + "FROM iteration3.Move INNER JOIN iteration3.LocationName ON Move.longName = LocationName.longName\n"
+            + "                      INNER JOIN iteration3.node ON node.nodeid = move.nodeid\n"
             + "WHERE nodetype <> 'HALL' AND node.floor = ?;";
 
     try {
@@ -469,7 +470,7 @@ public class NodeDAO implements LocationDAO {
     PreparedStatement ps;
 
     ResultSet rs = null;
-    SQL = "select nodeid from iteration4.Move where longname = ?"; // AND where date>=?
+    SQL = "select nodeid from iteration3.Move where longname = ?"; // AND where date>=?
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
@@ -498,9 +499,9 @@ public class NodeDAO implements LocationDAO {
     db.setConnection();
     SQL =
         "SELECT Move.nodeID, LocationName.longname\n"
-            + "             FROM iteration4.Move\n"
-            + "             JOIN iteration4.LocationName ON Move.longName = LocationName.longName\n"
-            + "             JOIN iteration4.node ON move.nodeid = node.nodeid\n"
+            + "             FROM iteration3.Move\n"
+            + "             JOIN iteration3.LocationName ON Move.longName = LocationName.longName\n"
+            + "             JOIN iteration3.node ON move.nodeid = node.nodeid\n"
             + "             WHERE node.floor = ?;";
 
     PreparedStatement ps;
@@ -541,8 +542,8 @@ public class NodeDAO implements LocationDAO {
     SQL =
         "select node.nodeid, "
             + "node.xcoord, node.ycoord, node.floor, node.building, locationname.shortname "
-            + "from iteration4.move join iteration4.locationname on move.longname = locationname.longname "
-            + "join iteration4.node on move.nodeid = node.nodeid "
+            + "from iteration3.move join iteration3.locationname on move.longname = locationname.longname "
+            + "join iteration3.node on move.nodeid = node.nodeid "
             + "where node.floor = ? and locationname.shortname in ";
 
     for (int i = 0; i < shortNames.size(); i++) {

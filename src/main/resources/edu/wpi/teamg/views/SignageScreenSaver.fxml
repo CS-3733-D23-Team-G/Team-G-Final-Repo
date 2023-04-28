@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -17,52 +16,52 @@
             <children>
                 <AnchorPane prefHeight="540.0" prefWidth="971.0" styleClass="rest_of_page">
                     <children>
-                        <ImageView fx:id="arrow1" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="185.0">
+                        <ImageView fx:id="arrow1" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="175.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow2" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="335.0">
+                        <ImageView fx:id="arrow2" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="325.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow3" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="485.0">
+                        <ImageView fx:id="arrow3" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="475.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow4" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="635.0">
+                        <ImageView fx:id="arrow4" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="625.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow5" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="785.0">
+                        <ImageView fx:id="arrow5" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="775.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow6" fitHeight="100.0" fitWidth="100.0" layoutX="801.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="185.0">
+                        <ImageView fx:id="arrow6" fitHeight="100.0" fitWidth="100.0" layoutX="801.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="175.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow7" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="335.0">
+                        <ImageView fx:id="arrow7" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="325.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow8" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="485.0">
+                        <ImageView fx:id="arrow8" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="475.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow9" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="635.0">
+                        <ImageView fx:id="arrow9" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="625.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow10" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="785.0">
+                        <ImageView fx:id="arrow10" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="775.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
@@ -117,52 +116,22 @@
                         <Font size="30.0" />
                      </font>
                   </Text>
-                  <Text fill="#012d5a" layoutX="912.0" layoutY="933.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-field" text="Click Screen" AnchorPane.leftAnchor="912.0" AnchorPane.rightAnchor="838.75">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Text>
-                  <ImageView fitHeight="233.0" fitWidth="411.0" layoutX="672.0" layoutY="832.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-59.0" AnchorPane.leftAnchor="672.0">
+                  <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="1632.0" layoutY="832.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="800.0">
                      <image>
-                        <Image url="@../Images/Click_Screen_Mouse.png" />
+                        <Image url="@../Images/ClickScreenIcon.png" />
                      </image>
                   </ImageView>
-                  <VBox alignment="CENTER" prefHeight="109.0" prefWidth="1606.0" AnchorPane.bottomAnchor="825.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
+                  <HBox layoutX="162.0" prefHeight="55.0" prefWidth="272.0" AnchorPane.bottomAnchor="845.0" AnchorPane.leftAnchor="150.0">
                      <children>
-                        <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="272.0">
-                           <children>
-                              <Text fx:id="timeText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text_Clock" text="Text">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin></Text>
-                              <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text_Clock" text="Text">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                        </HBox>
-                        <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="272.0">
-                           <children>
-                              <ImageView fx:id="arrow81" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Screenshot_2023-04-27_192107-removebg-preview.png" />
-                                 </image>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Text fx:id="locationText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text_loc" text="Text">
-                                 <HBox.margin>
-                                    <Insets right="10.0" top="10.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text" text="Hello! It's">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text" text="Text" />
                      </children>
-                  </VBox>
+                  </HBox>
                   <MFXButton fx:id="ClickToPathFinding" layoutX="-52.0" layoutY="10.0" opacity="0.0" prefHeight="981.0" prefWidth="1920.0" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <MFXButton fx:id="snakeButton" layoutX="312.0" layoutY="80.0" opacity="0.0" prefHeight="47.0" prefWidth="241.0" />
                     </children>
                 </AnchorPane>
             </children>
