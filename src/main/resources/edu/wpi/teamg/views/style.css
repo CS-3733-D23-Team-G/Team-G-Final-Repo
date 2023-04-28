@@ -462,6 +462,7 @@ Popup
     -fx-background-color: #F6BD38;
     -fx-background-radius: 10;
     -fx-font-size: 25;
+    -fx-font-color: #012D5A;
     -fx-text-fill: #000000;
     -fx-alignment: center;
 }
@@ -469,9 +470,13 @@ Popup
 .requestClearButton {
     -fx-pref-height: 65;
     -fx-pref-width: 132;
-    -fx-background-color: #D9D9D9;
+    -fx-background-color: #012D5A;
     -fx-background-radius: 10;
     -fx-font-size: 25;
+    -fx-font-color: #F6BD38;
+    -fx-border-color: #F6BD38;
+    -fx-border-width: 4;
+    -fx-border-radius: 10;
 }
 
 .signageClearButton {
