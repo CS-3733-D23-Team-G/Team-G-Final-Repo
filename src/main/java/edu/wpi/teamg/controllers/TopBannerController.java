@@ -9,17 +9,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.ImageView;
 
 public class TopBannerController {
+
+  @FXML MFXButton HomeButton;
   @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
 
   @FXML MFXButton statusButton;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
-  @FXML MFXButton loginButton;
-  @FXML MFXButton HomeButton;
-  @FXML MFXButton dictionaryButton;
-  @FXML MFXButton About_Credits;
+
+  @FXML ImageView logout;
+
+  @FXML ImageView exit;
+  @FXML ImageView information;
+  @FXML ImageView dictionary;
+
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -33,15 +38,15 @@ public class TopBannerController {
   public void initialize() {
     //    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
     signagePageButton.setOnAction(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
-    exitButton.setOnMouseClicked(event -> exit());
+    exit.setOnMouseClicked(event -> exit());
     statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_STATUS_PAGE));
 
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
-    loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
+    logout.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    dictionaryButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
-    About_Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
+    dictionary.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
+    information.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
   }
 
   public void exit() {

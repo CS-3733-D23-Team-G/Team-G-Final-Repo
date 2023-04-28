@@ -12,22 +12,26 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.ImageView;
 import org.controlsfx.control.PopOver;
 
 public class AdminTopBannerController {
   @FXML MFXButton signagePageButton;
-  @FXML MFXButton exitButton;
-
   @FXML MFXButton statusButton;
   @FXML ChoiceBox<String> serviceRequestChoiceBox;
   @FXML MFXButton HomeButton;
-  @FXML MFXButton Logout;
 
-  @FXML MFXButton settings;
+  @FXML ImageView logout;
+
+  @FXML ImageView exit;
+
+  @FXML ImageView settings;
+
+  @FXML ImageView dictionary;
+
+  @FXML ImageView information;
 
   @FXML ChoiceBox<String> AdminChoiceBox;
-  @FXML MFXButton dictionaryButton;
-  @FXML MFXButton About_Credits;
 
   static PopOver window = new PopOver();
   ObservableList<String> list =
@@ -49,8 +53,8 @@ public class AdminTopBannerController {
 
   @FXML
   public void initialize() {
-    dictionaryButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
-    About_Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
+    dictionary.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
+    information.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     settings.setOnMouseClicked(
         (event -> {
@@ -60,9 +64,9 @@ public class AdminTopBannerController {
             throw new RuntimeException(e);
           }
         }));
-    exitButton.setOnMouseClicked(event -> exit());
+    exit.setOnMouseClicked(event -> exit());
     statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_STATUS_PAGE));
-    Logout.setOnMouseClicked(
+    logout.setOnMouseClicked(
         event -> {
           Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
           App.employee.setIs_admin(false);

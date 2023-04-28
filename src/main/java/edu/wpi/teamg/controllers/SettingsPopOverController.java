@@ -31,6 +31,7 @@ public class SettingsPopOverController {
 
     aStarCheckBox.setOnAction(
         event -> {
+          aStarCheckBox.setSelected(true);
           if (aStarCheckBox.isSelected()) {
             bfsCheckBox.setSelected(false);
             dfsCheckBox.setSelected(false);
@@ -39,6 +40,7 @@ public class SettingsPopOverController {
         });
     Dijkstracheckbox.setOnAction(
         event -> {
+          Dijkstracheckbox.setSelected(true);
           if (Dijkstracheckbox.isSelected()) {
             bfsCheckBox.setSelected(false);
             dfsCheckBox.setSelected(false);
@@ -48,6 +50,7 @@ public class SettingsPopOverController {
 
     bfsCheckBox.setOnAction(
         event -> {
+          bfsCheckBox.setSelected(true);
           if (bfsCheckBox.isSelected()) {
             aStarCheckBox.setSelected(false);
             dfsCheckBox.setSelected(false);
@@ -57,6 +60,7 @@ public class SettingsPopOverController {
 
     dfsCheckBox.setOnAction(
         event -> {
+          dfsCheckBox.setSelected(true);
           if (dfsCheckBox.isSelected()) {
             aStarCheckBox.setSelected(false);
             bfsCheckBox.setSelected(false);
@@ -65,13 +69,19 @@ public class SettingsPopOverController {
         });
 
     awsCheckBox.setOnAction(
-            event -> {
-                if (awsCheckBox.isSelected()) {
-                    
-                    aStarCheckBox.setSelected(false);
-                    bfsCheckBox.setSelected(false);
-                    Dijkstracheckbox.setSelected(false);
-                }
-            });
+        event -> {
+          awsCheckBox.setSelected(true);
+          if (awsCheckBox.isSelected()) {
+            clientSideCheckBox.setSelected(false);
+          }
+        });
+
+    clientSideCheckBox.setOnAction(
+        event -> {
+          clientSideCheckBox.setSelected(true);
+          if (clientSideCheckBox.isSelected()) {
+            awsCheckBox.setSelected(false);
+          }
+        });
   }
 }

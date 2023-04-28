@@ -9,22 +9,27 @@ import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
 import org.controlsfx.control.PopOver;
 
 public class PatientTopBannerController {
-  @FXML MFXButton exitButton;
+  @FXML ImageView login;
 
-  @FXML MFXButton loginButton;
+  @FXML ImageView exit;
+  @FXML ImageView information;
+  @FXML ImageView dictionary;
   @FXML MFXButton logoButton;
 
   static PopOver window = new PopOver();
 
   @FXML
   public void initialize() {
-    //    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-    exitButton.setOnMouseClicked(event -> exit());
-    // loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOGIN_PAGE));
-    loginButton.setOnMouseClicked(
+
+    exit.setOnMouseClicked(event -> exit());
+    information.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
+    dictionary.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
+
+    login.setOnMouseClicked(
         event -> {
           try {
             login();
