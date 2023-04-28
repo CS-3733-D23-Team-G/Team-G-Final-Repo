@@ -18,9 +18,9 @@
    <top>
       <AnchorPane prefHeight="500.0" prefWidth="415.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="415.0" style="-fx-border-color: #012D5A; -fx-border-width: 3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="415.0" style="-fx-border-color: linear-gradient(to bottom left, #009FFD, #2A2A72); -fx-border-width: 3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label style="-fx-font-size: 30; -fx-font-weight: 800; -fx-text-fill: #012D5A;" text="Login">
+                  <Label style="-fx-font-size: 30; -fx-font-weight: 800;" text="Login">
                      <font>
                         <Font size="35.0" />
                      </font>
@@ -42,7 +42,7 @@
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin></Label>
-                  <MFXButton fx:id="loginButton" prefHeight="35.0" prefWidth="325.0" style="-fx-background-color: #012D5A; -fx-background-radius: 10px;" styleClass="requestTextBox" text="Login" textAlignment="CENTER" textFill="WHITE">
+                  <MFXButton fx:id="loginButton" prefHeight="35.0" prefWidth="325.0" style="-fx-background-color: linear-gradient(to bottom left, #009FFD, #2A2A72); -fx-background-radius: 10px;" styleClass="requestTextBox" text="Login" textAlignment="CENTER" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" />
                      </VBox.margin>

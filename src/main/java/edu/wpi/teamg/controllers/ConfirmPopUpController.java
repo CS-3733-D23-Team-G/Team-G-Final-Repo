@@ -3,13 +3,14 @@ package edu.wpi.teamg.controllers;
 import static edu.wpi.teamg.App.*;
 
 import edu.wpi.teamg.ORMClasses.Node;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import org.controlsfx.control.PopOver;
 
 public class ConfirmPopUpController {
@@ -28,8 +29,6 @@ public class ConfirmPopUpController {
 
   ArrayList<ImageView> map;
   String floor;
-
-  Pane pane;
 
   public void initialize() {
     confirm.setOnMouseClicked(
@@ -63,14 +62,12 @@ public class ConfirmPopUpController {
       Node updateTheNode,
       PopOver window,
       ArrayList<ImageView> img,
-      String i,
-      Pane nodePane) {
+      String i) {
     this.potentialUpdate = updateTheNode;
     this.window = window;
     this.map = img;
     this.floor = i;
 
-    this.pane = nodePane;
     x1.setText(String.valueOf(X1));
     y1.setText(String.valueOf(Y1));
     x2.setText(String.valueOf(X2));
@@ -80,27 +77,26 @@ public class ConfirmPopUpController {
   public void confirmUpdate() throws SQLException {
     nodeDAO.update(potentialUpdate, "xcoord", Integer.parseInt(x2.getText()));
     nodeDAO.update(potentialUpdate, "ycoord", Integer.parseInt(y2.getText()));
-
     refresh();
+    Navigation.navigate(Screen.ADMIN_MAP_EDITOR);
     window.hide();
   }
 
   public void cancelUpdate() throws SQLException {
-    // Navigation.navigate(Screen.ADMIN_MAP_EDITOR);
-    //    MapEditorController controller = new MapEditorController();
-    //
-    //    int flNum = controller.findIndex(floor);
+    Navigation.navigate(Screen.ADMIN_MAP_EDITOR);
+    MapEditorController controller = new MapEditorController();
 
-    //    controller.newNodes(flNum);
-    //
-    //    //    for (int i = 0; i < allNodeList.size(); i++) {
-    //    //      if (Objects.equals(allNodeList.get(i).getFloor(), floor)) {
-    //    //        controller.getNodesWFunctionality(allNodeList, i, sn);
-    //    //      }
-    //    //    }
-    //
+    int flNum = controller.findIndex(floor);
 
+    controller.newNodes(flNum);
+
+    //    for (int i = 0; i < allNodeList.size(); i++) {
+    //      if (Objects.equals(allNodeList.get(i).getFloor(), floor)) {
+    //        controller.getNodesWFunctionality(allNodeList, i, sn);
+    //      }
+    //    }
+
+    controller.goToFloor2(map);
     window.hide();
-    //    controller.goToFloor2(map);
   }
 }

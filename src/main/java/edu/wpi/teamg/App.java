@@ -2,11 +2,10 @@ package edu.wpi.teamg;
 
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.controllers.ChooseKioskPop;
-import java.awt.*;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.application.Application;
@@ -18,24 +17,13 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.controlsfx.control.PopOver;
 
 @Slf4j
 public class App extends Application {
-  static PopOver window = new PopOver();
 
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
   @Setter @Getter private static Stage frontStage;
-
-  public static String message;
-
-  @Setter @Getter private static int kioskNumber;
-
-  @Getter private static LocalDate currentDate = LocalDate.now();
-
-  static int monthNum = currentDate.getMonth().getValue();
-  @Getter static int yearNum = currentDate.getYear();
 
   public static Image mapL1 = new Image("edu/wpi/teamg/Images/00_thelowerlevel1.png");
 
@@ -308,26 +296,6 @@ public class App extends Application {
     }
   }
 
-  public static HashMap<Integer, OfficeSupplyRequest> testingOSupps;
-
-  static {
-    try {
-      testingOSupps = getHashOSupps();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  public static HashMap<Integer, MaintenanceRequest> testingMaintain;
-
-  static {
-    try {
-      testingMaintain = getHashMaintain();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
   @Override
   public void init() {
     log.info("Starting Up");
@@ -347,16 +315,7 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
 
-    var popLoader = new FXMLLoader(App.class.getResource("views/ChooseKioskPop.fxml"));
-    window.setContentNode(popLoader.load());
-    window.setArrowSize(0);
-    window.setTitle("Choose Kiosk Number");
-    window.setHeaderAlwaysVisible(true);
-    ChooseKioskPop cont = popLoader.getController();
-    cont.setWind(window);
-
-    final Point mouseLoc = MouseInfo.getPointerInfo().getLocation();
-    window.show(getPrimaryStage(), mouseLoc.getX(), mouseLoc.getY());
+    Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
   }
 
   public static void refresh() throws SQLException {
@@ -472,16 +431,6 @@ public class App extends Application {
     loc = new LocationNameDAO();
 
     locMap = new HashMap<>(loc.getAll());
-
-    edgeDao = new EdgeDAO();
-
-    listOfEdges = new ArrayList<>(edgeMap.values());
-
-    try {
-      edgeMap = edgeDao.getAll();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
   }
 
   /// FIX REFRESH
@@ -533,32 +482,6 @@ public class App extends Application {
     }
     try {
       testingFurns = getHashFurns();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  public static void oSuppsRefresh() {
-    try {
-      testingRequest = getHashMapRequest();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-    try {
-      testingOSupps = getHashOSupps();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  public static void maintainRefresh() {
-    try {
-      testingRequest = getHashMapRequest();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-    try {
-      testingMaintain = getHashMaintain();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -637,30 +560,6 @@ public class App extends Application {
     return furnsHash;
   }
 
-  public static HashMap getHashOSupps() throws SQLException {
-
-    HashMap<Integer, OfficeSupplyRequest> oSuppsHash = new HashMap<Integer, OfficeSupplyRequest>();
-
-    try {
-      oSuppsHash = daoRepo.getAllSupply();
-    } catch (SQLException e) {
-      System.err.print(e.getErrorCode());
-    }
-    return oSuppsHash;
-  }
-
-  public static HashMap getHashMaintain() throws SQLException {
-
-    HashMap<Integer, MaintenanceRequest> maintainHash = new HashMap<Integer, MaintenanceRequest>();
-
-    try {
-      maintainHash = daoRepo.getAllMaintenance();
-    } catch (SQLException e) {
-      System.err.print(e.getErrorCode());
-    }
-    return maintainHash;
-  }
-
   static int code;
   static int empid;
   static String user;
@@ -697,53 +596,6 @@ public class App extends Application {
 
   public static String getUser() {
     return App.user;
-  }
-
-  public static String getMonthFieldSignage() {
-    StringBuilder sb = new StringBuilder();
-
-    switch (monthNum) {
-      case 1:
-        sb.append("JAN-");
-        break;
-      case 2:
-        sb.append("FEB-");
-        break;
-      case 3:
-        sb.append("MAR-");
-        break;
-      case 4:
-        sb.append("APR-");
-        break;
-      case 5:
-        sb.append("MAY-");
-        break;
-      case 6:
-        sb.append("JUN-");
-        break;
-      case 7:
-        sb.append("JUL-");
-        break;
-      case 8:
-        sb.append("AUG-");
-        break;
-      case 9:
-        sb.append("SEP-");
-        break;
-      case 10:
-        sb.append("OCT-");
-        break;
-      case 11:
-        sb.append("NOV-");
-        break;
-      case 12:
-        sb.append("DEC-");
-      default:
-        break;
-    }
-    sb.append(yearNum);
-
-    return sb.toString();
   }
 
   @Override

@@ -27,7 +27,7 @@ public class FlowerRequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
     SQL_flowerRequest =
-        "select * from iteration4.request join iteration4.flowerrequest on iteration4.request.reqid = iteration4.flowerrequest.reqid";
+        "select * from iteration3.request join iteration3.flowerrequest on iteration3.request.reqid = iteration3.flowerrequest.reqid";
     try {
       ps = db.getConnection().prepareStatement(SQL_flowerRequest);
       rs = ps.executeQuery();
@@ -97,7 +97,7 @@ public class FlowerRequestDAO implements DAO {
     PreparedStatement ps_Req;
 
     ResultSet rs = null;
-    SQL_maxID = "select reqid from teamgdb.iteration4.request order by reqid desc limit 1";
+    SQL_maxID = "select reqid from teamgdb.iteration3.request order by reqid desc limit 1";
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -113,9 +113,9 @@ public class FlowerRequestDAO implements DAO {
     }
 
     SQL_flowerRequest =
-        "insert into teamgdb.iteration4.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
+        "insert into teamgdb.iteration3.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
     SQL_Request =
-        "insert into teamgdb.iteration4.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+        "insert into teamgdb.iteration3.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
 
     try {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
@@ -156,9 +156,6 @@ public class FlowerRequestDAO implements DAO {
       ps_Req.setDate(7, ((FlowerRequest) obj).getRequestDate());
       ps_Req.setTime(8, ((FlowerRequest) obj).getRequestTime());
       ps_Req.executeUpdate();
-
-      db.closeConnection();
-      db.setConnection();
 
       ps_getFlowerReq = db.getConnection().prepareStatement(SQL_flowerRequest);
       ps_getFlowerReq.setInt(1, maxID);
@@ -204,6 +201,6 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4.flowerrequest";
+    return "teamgdb.iteration3.flowerrequest";
   }
 }

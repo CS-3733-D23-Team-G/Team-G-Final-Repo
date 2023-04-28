@@ -6,6 +6,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -15,6 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.SearchableComboBox?>
@@ -44,12 +46,13 @@
                                                     <Font size="22.0" />
                                                 </font>
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                             </Text>
+                                            <Line endX="24.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="mealPersonOrderingForData" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="5.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </MFXTextField>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Delivery Location">
@@ -57,12 +60,13 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
+                                    <Line endX="126.57804870605469" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <SearchableComboBox fx:id="locationSearchDropdown" prefHeight="32.0" prefWidth="200.0">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="5.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                        <styleClass>
                                           <String fx:value="text_box" />
@@ -74,12 +78,13 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
+                                    <Line endX="-22.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <TextArea fx:id="mealNotesData" prefHeight="200.0" prefWidth="200.0" styleClass="notes" stylesheets="@style.css" wrapText="true">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="5.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                        <font>
                                           <Font size="25.0" />
@@ -97,12 +102,13 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
+                                    <Line endX="-42.70710754394531" endY="7.748603820800781E-7" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXDatePicker fx:id="mealDate" prefHeight="60.0" prefWidth="281.0" style="-fx-background-color: #D9D9D9;">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="5.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </MFXDatePicker>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Time">
@@ -110,12 +116,13 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
+                                    <Line endX="-35.70710754394531" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="mealTimeOfDeliver" minHeight="-Infinity" prefHeight="47.0" prefWidth="281.0" styleClass="requestTextBox">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="5.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </MFXTextField>
                                     <Text fx:id="assignToText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Assign To">
@@ -123,12 +130,13 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets bottom="5.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
+                                    <Line fx:id="assignToLine" endX="26.292892456054688" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="requestTextBox" stylesheets="@style.css">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="5.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </SearchableComboBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
@@ -145,7 +153,7 @@
                                           </MFXButton>
                                        </children>
                                        <VBox.margin>
-                                          <Insets top="75.0" />
+                                          <Insets top="50.0" />
                                        </VBox.margin>
                                     </HBox>
                                     <Label fx:id="checkFields" prefHeight="17.0" prefWidth="377.0" styleClass="allFilledError" stylesheets="@style.css" text="Not All Fields Are Filled." textFill="#d01616">
@@ -177,130 +185,60 @@
                         <String fx:value="widget_homepage_pair" />
                      </styleClass>
                      <content>
-                        <VBox alignment="BOTTOM_CENTER">
+                        <Pane prefHeight="779.0">
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Menu">
-                                 <font>
-                                    <Font size="36.0" />
-                                 </font>
-                              </Text>
-                              <VBox maxHeight="650.0" prefHeight="650.0" prefWidth="718.0" styleClass="meal-request-box">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="125.0" prefWidth="200.0">
-                                       <children>
-                                          <MFXButton fx:id="mealButton" styleClass="meal-choice-buttons" text="Meals">
-                                             <HBox.margin>
-                                                <Insets right="15.0" />
-                                             </HBox.margin>
-                                          </MFXButton>
-                                          <MFXButton fx:id="snackButton" styleClass="meal-choice-buttons" text="Snacks">
-                                             <HBox.margin>
-                                                <Insets right="15.0" />
-                                             </HBox.margin>
-                                          </MFXButton>
-                                          <MFXButton fx:id="drinkButton" styleClass="meal-choice-buttons" text="Drinks">
-                                             <HBox.margin>
-                                                <Insets right="15.0" />
-                                             </HBox.margin>
-                                          </MFXButton>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="475.0" prefWidth="758.0">
-                                       <children>
-                                          <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="359.0">
-                                             <children>
-                                                <Pane fx:id="pane1" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
-                                                   <children>
-                                                      <Text fx:id="text1" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fx:id="image1" fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@burger.jpg" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" top="10.0" />
-                                                   </VBox.margin>
-                                                </Pane>
-                                                <Pane fx:id="pane2" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
-                                                   <children>
-                                                      <Text fx:id="text3" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fx:id="image3" fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@burger.jpg" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" top="10.0" />
-                                                   </VBox.margin>
-                                                </Pane>
-                                                <Pane fx:id="pane3" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
-                                                   <children>
-                                                      <Text fx:id="text5" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fx:id="image5" fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@burger.jpg" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" top="10.0" />
-                                                   </VBox.margin>
-                                                </Pane>
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="359.0">
-                                             <children>
-                                                <Pane fx:id="pane4" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
-                                                   <children>
-                                                      <Text fx:id="text2" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fx:id="image2" fitHeight="120.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@burger.jpg" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" top="10.0" />
-                                                   </VBox.margin>
-                                                </Pane>
-                                                <Pane fx:id="pane5" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
-                                                   <children>
-                                                      <Text fx:id="text4" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fx:id="image4" fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@burger.jpg" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" top="10.0" />
-                                                   </VBox.margin>
-                                                </Pane>
-                                                <Pane fx:id="pane6" prefHeight="180.0" prefWidth="200.0" styleClass="meal-selection">
-                                                   <children>
-                                                      <Text fx:id="text6" layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger" wrappingWidth="86.7849235534668" />
-                                                      <ImageView fx:id="image6" fitHeight="150.0" fitWidth="120.0" layoutX="160.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@burger.jpg" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" top="10.0" />
-                                                   </VBox.margin>
-                                                </Pane>
-                                             </children></VBox>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </VBox.margin>
-                              </VBox>
+                              <ImageView fx:id="burgerOption" fitWidth="600.0" layoutX="90.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/BurgerUnchecked2.0.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                              <ImageView fx:id="selectedBurger" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/BurgerChecked2.0.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                              <ImageView fx:id="corndogOption" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/CorndogUnchecked2.0.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                              <ImageView fx:id="selectedCornDog" fitWidth="600.0" layoutX="90.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/CorndogChecked2.0.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                              <ImageView fx:id="friedRiceOption" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/ShrimpFriedRiceUnchecked2.0.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                              <ImageView fx:id="selectedFriedRice" fitHeight="200.0" fitWidth="600.0" layoutX="90.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/ShrimpFriedRiceChecked2.0.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                              <Label fx:id="mealFoodChoice" layoutX="362.0" layoutY="806.0" text="Label" visible="false" />
                            </children>
-                        </VBox>
+                        </Pane>
+
                      </content>
                   </MFXScrollPane>
                     </children>

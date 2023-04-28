@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.DeleteMovePopUpController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AddMoveController">
    <children>
-      <HBox alignment="CENTER" prefWidth="200.0">
-         <children>
-            <Label prefWidth="200.0" text="NodeID" />
-            <SearchableComboBox fx:id="moveDelNodeID" prefHeight="25.0" prefWidth="243.0" />
-         </children>
-      </HBox>
       <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER">
          <children>
             <Label prefWidth="200.0" text="Move" />
-            <SearchableComboBox fx:id="moveDel" prefHeight="25.0" prefWidth="243.0" />
+            <SearchableComboBox fx:id="moveLongName" prefHeight="25.0" prefWidth="202.0" />
+            <MFXLegacyComboBox />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefWidth="200.0" />
+      <HBox alignment="CENTER" prefWidth="200.0">
+         <children>
+            <Label prefWidth="200.0" text="NodeID" />
+            <MFXTextField fx:id="moveNodeID" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefWidth="200.0">
+         <children>
+            <Label alignment="TOP_LEFT" prefWidth="276.0" text="Date of Move">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></Label>
+            <TextArea prefHeight="9.0" prefWidth="196.0" />
+         </children>
+      </HBox>
       <HBox alignment="CENTER_LEFT" prefWidth="200.0">
          <children>
-            <MFXButton fx:id="moveDelSub" text="Submit" />
+            <MFXButton fx:id="moveSub" text="Submit" />
          </children>
       </HBox>
    </children>

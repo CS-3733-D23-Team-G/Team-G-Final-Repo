@@ -31,8 +31,6 @@ public class AddEdgePopUpController {
     Edge e = new Edge();
     e.setStartNode(Integer.parseInt(sn.getText()));
     e.setEndNode(Integer.parseInt(en.getText()));
-    e.setEdgeID(sn.getText() + "_" + en.getText());
-    System.out.println(e.getEdgeID());
 
     dao.insert(e);
   }

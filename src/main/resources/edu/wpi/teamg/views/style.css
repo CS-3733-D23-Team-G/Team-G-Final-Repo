@@ -1,45 +1,7 @@
 * {
     -mfx-main: #012D5A;
     -mfx-purple: #F6BD38;
-    -mfx-color: #012D5A;
-}
-
-.choice-box .menu-item{
-    -fx-font-family: "Poppins";
-    -fx-background-color: #F1F1F1;
-}
-
-.choice-box .menu-item:hover { -fx-background-color: #012D5A; }
-
-.choice-box .menu-item:focused { -fx-background-color: #012D5A; }
-
-.mfx-checkbox .box {
-    -fx-background-color: transparent;
-    -fx-background-radius: 2;
-
-    -fx-border-color: #F6BD38;
-    -fx-border-radius: 2;
-    -fx-border-width: 2;
-
-    -fx-padding: 5;
-}
-
-.signageCheckBox .box{
-    -fx-border-color: #012D5A;
-}
-
-.mfx-checkbox:selected .box,
-.mfx-checkbox:indeterminate .box {
-    -fx-background-color: #012D5A;
-    -fx-border-color: #012D5A;
-}
-
-.mfx-checkbox .box .mark {
-    -mfx-color: #F6BD38;
-}
-
-.mfx-check-list-cell .data-label {
-    -fx-font-size: 15;
+    -mfx-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
 }
 
 .mfx-text-field .text-field {
@@ -48,7 +10,7 @@
 }
 
 .mfx-text-field:focus-within {
-    -fx-border-color: -mfx-color; /* NOT AN ERROR, IMPORTANT MFX STYLING */
+    -fx-border-color: -mfx-color;
 }
 
 /********************
@@ -60,14 +22,14 @@ Date Picker
 }
 
 .mfx-date-picker:focus-within .icon {
-    -mfx-color:  #012D5A; /* NOT AN ERROR, IMPORTANT MFX STYLING */
+    -mfx-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
 }
 
 /********************
 Popup
 ********************/
-.mfx-date-picker .date-picker-popup .months-combo:focus-within, /* NOT AN ERROR, IMPORTANT MFX STYLING */
-.mfx-date-picker .date-picker-popup .years-combo:focus-within { /* NOT AN ERROR, IMPORTANT MFX STYLING */
+.mfx-date-picker .date-picker-popup .months-combo:focus-within,
+.mfx-date-picker .date-picker-popup .years-combo:focus-within {
     -fx-text-fill: #012D5A;
 }
 
@@ -79,11 +41,6 @@ Popup
 .mfx-combo-box-cell:hover,
 .mfx-combo-box-cell:hover {
     -fx-background-color: #F1F1F1;
-}
-
-.mfx-combo-box-cell:selected,
-.mfx-combo-box-cell:selected {
-    -fx-background-color: #009FFD;
 }
 
 .mfx-date-picker .date-picker-popup .months-combo .virtual-flow .mfx-combo-box-cell:selected,
@@ -99,13 +56,13 @@ Popup
 .mfx-date-cell:current {
     -fx-text-fill: #012D5A;
     -fx-background-color: #F7F6F9;
-    -fx-font-family: "Poppins";
+    -fx-font-family: "Open Sans SemiBold";
 }
 
 .mfx-date-cell:selected {
     -fx-text-fill: white;
-    -fx-background-color:  #012D5A;
-    -fx-font-family: "Poppins";
+    -fx-background-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
+    -fx-font-family: "Open Sans SemiBold";
 }
 
 @font-face {
@@ -187,10 +144,10 @@ Popup
     -fx-pref-width: 1920;
 }
 .banner_big-side{
-    -fx-pref-width: 850;
+    -fx-pref-width: 1120;
 }
 .banner_logo_side{
-    -fx-pref-width: 1070;
+    -fx-pref-width: 800;
 }
 .hit_the_griddy{
     -fx-pref-height: 90;
@@ -232,15 +189,6 @@ Popup
 .signage_text{
     -fx-font-size: 40;
 }
-
-.signage_text_Clock{
-    -fx-font-size: 30;
-}
-
-.signage_text_loc{
-    -fx-font-size: 20;
-}
-
 .signage_background_color{
     -fx-background-color: #f1f1f1;
 }
@@ -305,7 +253,7 @@ Popup
 .algoCheckBox{
     -fx-pref-height: 45;
     -fx-pref-width: 45;
-    -fx-font-size: 20;
+    -fx-font-size: 40;
     -fx-font-weight: 600;
 }
 
@@ -403,25 +351,6 @@ Popup
     -fx-alignment: center;
 }
 
-.signage_submit_button{
-    -fx-background-color: #F6BD38;
-    -fx-background-radius: 30;
-    -fx-font-size: 26;
-    -fx-text-fill: #000000;
-    -fx-border-color: #000000;
-    -fx-border-radius:30;
-    -fx-alignment: center;
-}
-.signage_monthDropDown_button{
-    -fx-background-color: #D0D0D0;
-    -fx-font-size: 30;
-    -fx-text-fill: #000000;
-    -fx-border-color: #000000;
-    -fx-background-radius: 30;
-    -fx-border-radius: 30;
-    -fx-text-fill: #0067b1;
-}
-
 
 .signage_leftDropDown_button{
     -fx-background-color: #D0D0D0;
@@ -458,30 +387,17 @@ Popup
 
 .requestConfirmButton{
     -fx-pref-height: 65;
-    -fx-pref-width: 132;
+    -fx-pref-width: 250;
     -fx-background-color: #F6BD38;
-    -fx-background-radius: 10;
+    -fx-background-radius: 30;
     -fx-font-size: 25;
-    -fx-font-color: #012D5A;
     -fx-text-fill: #000000;
     -fx-alignment: center;
 }
 
 .requestClearButton {
     -fx-pref-height: 65;
-    -fx-pref-width: 132;
-    -fx-background-color: #012D5A;
-    -fx-background-radius: 10;
-    -fx-font-size: 25;
-    -fx-font-color: #F6BD38;
-    -fx-border-color: #F6BD38;
-    -fx-border-width: 4;
-    -fx-border-radius: 10;
-}
-
-.signageClearButton {
-    -fx-pref-height: 65;
-    -fx-pref-width: 105;
+    -fx-pref-width: 250;
     -fx-background-color: #D9D9D9;
     -fx-background-radius: 30;
     -fx-font-size: 25;
@@ -489,14 +405,7 @@ Popup
 
 .requestTextBox{
     -fx-background-color: #D9D9D9;
-    -fx-font-size: 20;
-    -fx-pref-height: 60;
-    -fx-max-height: 60;
-}
-
-.requestTextBox_MFX{
-    -fx-background-color: #D9D9D9;
-    -fx-font-size: 15;
+    -fx-font-size: 25;
     -fx-pref-height: 60;
     -fx-max-height: 60;
 }
@@ -506,7 +415,7 @@ Popup
     -fx-background-color: #D9D9D9;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
-    -fx-font-size: 20;
+    -fx-font-size: 25;
     -fx-font-family: "Open Sans Regular";
 }
 
@@ -569,8 +478,8 @@ Popup
 /* banner CSS */
 .banner_login_exit_text {
     -fx-font-family: "Poppins";
-    -fx-font-weight: 800;
-    -fx-font-size: 22;
+
+    -fx-font-size: 20;
     -fx-pref-height: 35;
     /*   -fx-pref-width: 300; */
 }
@@ -714,107 +623,11 @@ Popup
     -fx-background-insets: 1.5, 0.0, 0.0;
     -fx-background-radius: 2.0em;
 }
-
-.meal-choice-buttons{
-     -fx-pref-height: 75;
-     -fx-pref-width: 150;
-     -fx-background-color: #F6BD38;
-     -fx-background-radius: 15;
-     -fx-font-size: 25;
-     -fx-text-fill: #000000;
-     -fx-alignment: center;
- }
-.meal-request-box{
-    -fx-border-color:#F6BD38;
-    -fx-border-width: 10 10 10 10;
-    -fx-border-radius: 10 10 10 10;
-}
-.meal-selection{
-    -fx-pref-height: 130;
-    -fx-pref-width: 300;
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 15;
-    -fx-font-size: 25;
-}
-
 about_text{
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 36;
     -fx-font-family: "Poppins-Regular";
 }
-
-
-.txt_directions {
-    -fx-pref-height: 70;
-    -fx-pref-width: 275;
-    -fx-background-color: #D9D9D9;
-}
-
-.add_Nodes{
-    -fx-pref-height: 65;
-    -fx-pref-width: 250;
-    -fx-background-color: #118AB2;
-    -fx-background-radius: 30;
-    -fx-font-size: 20 ;
-    -fx-text-fill: #000000;
-    -fx-alignment: center;
-}
-. add_Edges{
-    -fx-pref-height: 65;
-    -fx-pref-width: 250;
-    -fx-background-color: #ef476f;
-    -fx-background-radius: 30;
-    -fx-font-size: 20 ;
-    -fx-text-fill: #000000;
-    -fx-alignment: center;
-
-
-}
-
-.add_Locs{
-    -fx-pref-height: 65;
-    -fx-pref-width: 250;
-    -fx-background-color: #06d6a0;
-    -fx-background-radius: 30;
-    -fx-font-size: 20 ;
-    -fx-text-fill: #000000;
-    -fx-alignment: center;
-}
-
-.add_Move{
-    -fx-pref-height: 65;
-    -fx-pref-width: 250;
-    -fx-background-color: #ffd116;
-    -fx-background-radius: 30;
-    -fx-font-size: 20 ;
-    -fx-text-fill: #000000;
-    -fx-alignment: center;
-}
-
-.confTiles{
-    -fx-background-color: #d5d5d5;
-    -fx-background-insets: 5;
-    -fx-border-insets: 5;
-}
-
-.adminSettings{
-    -fx-pref-height: 400;
-    -fx-pref-width: 400;
-}
-
-.settingsLabel{
-    -fx-font-size: 25;
-    -fx-font-family: "Poppins-Regular";
-}
-
-.confirmButton{
-    -fx-background-color: #F6BD38;
-    -fx-font-size: 15;
-    -fx-pref-height: 41;
-    -fx-max-height: 41;
-}
-
-
 
 
 

@@ -1,6 +1,7 @@
 package edu.wpi.teamg.controllers;
 
 import static edu.wpi.teamg.App.*;
+import static edu.wpi.teamg.App.move;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
@@ -39,6 +40,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
+import org.controlsfx.control.SearchableComboBox;
 
 // Touch Ups
 // Make NodeInfo Disappear More clean
@@ -62,8 +64,8 @@ public class pathfindingController {
 
   private ArrayList<ImageView> imageViewsList = new ArrayList<>();
 
-  @FXML MFXFilterComboBox startLocDrop;
-  @FXML MFXFilterComboBox endLocDrop;
+  @FXML SearchableComboBox startLocDrop;
+  @FXML SearchableComboBox endLocDrop;
 
   @FXML MFXComboBox floorStart;
   @FXML MFXComboBox floorEnd;
@@ -78,9 +80,6 @@ public class pathfindingController {
   @FXML MFXToggleButton dSN;
 
   @FXML MFXToggleButton toggN;
-  @FXML MFXButton alertButton;
-
-  @FXML MFXButton txtDirections;
 
   ObservableList<String> locationListStart;
   ObservableList<String> locationListEnd;
@@ -94,32 +93,18 @@ public class pathfindingController {
   boolean snLab = true;
   boolean togg = false;
 
-  ArrayList<String> txtPath;
-
-  HashMap<Integer, Move> moving = new HashMap<>();
-
   int floor = 0;
 
   @FXML
   public void initialize() throws SQLException {
-    updateMoves();
+
     //  goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
 
     aStarCheckBox.setSelected(true);
     dSN.setSelected(true);
 
-    txtDirections.setVisible(false);
-    txtDirections.setOnMouseClicked(
-        event -> {
-          try {
-            getDirections(txtPath);
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
-        });
     aStarCheckBox.setOnAction(
         event -> {
-          aStarCheckBox.setSelected(true);
           if (aStarCheckBox.isSelected()) {
             bfsCheckBox.setSelected(false);
             dfsCheckBox.setSelected(false);
@@ -128,7 +113,6 @@ public class pathfindingController {
         });
     Dijkstracheckbox.setOnAction(
         event -> {
-          Dijkstracheckbox.setSelected(true);
           if (Dijkstracheckbox.isSelected()) {
             bfsCheckBox.setSelected(false);
             dfsCheckBox.setSelected(false);
@@ -138,7 +122,6 @@ public class pathfindingController {
 
     bfsCheckBox.setOnAction(
         event -> {
-          bfsCheckBox.setSelected(true);
           if (bfsCheckBox.isSelected()) {
             aStarCheckBox.setSelected(false);
             dfsCheckBox.setSelected(false);
@@ -148,7 +131,6 @@ public class pathfindingController {
 
     dfsCheckBox.setOnAction(
         event -> {
-          dfsCheckBox.setSelected(true);
           if (dfsCheckBox.isSelected()) {
             aStarCheckBox.setSelected(false);
             bfsCheckBox.setSelected(false);
@@ -184,17 +166,6 @@ public class pathfindingController {
             } catch (SQLException e) {
               throw new RuntimeException(e);
             }
-          }
-        });
-
-    date.setOnCommit(
-        event -> {
-          updateMoves();
-          nodePane.getChildren().removeIf(node -> node instanceof Text);
-          try {
-            floorButtons(imageViewsList, floor);
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
           }
         });
 
@@ -248,25 +219,20 @@ public class pathfindingController {
             if (aStarCheckBox.isSelected()) {
               algo = new Astar();
               updateMove(floor);
-              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
             } else if (dfsCheckBox.isSelected()) {
 
               algo = new DFS();
               updateMove(floor);
-              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
-
             } else if (bfsCheckBox.isSelected()) {
               algo = new BFS();
               updateMove(floor);
-              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
 
             } else if (Dijkstracheckbox.isSelected()) {
               algo = new Dijkstra();
               updateMove(floor);
-              txtDirections.setVisible(true);
               setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
             }
           } catch (SQLException e) {
@@ -275,14 +241,6 @@ public class pathfindingController {
           }
         });
 
-    alertButton.setOnMouseClicked(
-        event -> {
-          try {
-            displayAlert();
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
-        });
     // goToL1();
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
@@ -326,8 +284,8 @@ public class pathfindingController {
 
     // Scales Map
     pane.setMinScale(.001);
-    pane.zoomTo(.5, new Point2D(1250, 850));
-    pane.zoomTo(.5, new Point2D(1250, 850));
+    pane.zoomTo(.3, new Point2D(2500, 1700));
+    pane.zoomTo(.3, new Point2D(2500, 1700));
 
     pane.centreOnX(1000);
     pane.centreOnY(500);
@@ -502,7 +460,6 @@ public class pathfindingController {
   public void setPath(ArrayList<String> path) throws SQLException {
 
     System.out.println(path);
-    txtPath = path;
     //    if (path.size() == 1) {
     //      results.setText("Error: No Possible Path Found");
     //    } else {
@@ -893,7 +850,6 @@ public class pathfindingController {
     //    HashMap<Integer, Node> nodes = nodeDAO.getAll();
     //    ArrayList<Node> listOfNodes = new ArrayList<>(nodes.values());
     ArrayList<Node> listOfNodes = allNodeList;
-    updateMove(index);
 
     ArrayList<Node> listOfGoodNodes;
 
@@ -992,7 +948,7 @@ public class pathfindingController {
     }
   }
 
-  public void getNodesWFunctionality(
+  private void getNodesWFunctionality(
       ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn) throws SQLException {
 
     Node currentNode = listOfNodes.get(i);
@@ -1038,10 +994,9 @@ public class pathfindingController {
       txt.setFill(Color.BLACK);
       txt.setTextAlignment(TextAlignment.LEFT);
       // nodeLabel.setPrefSize(10, 10);
-      txt.setFont(new Font(30));
-      txt.setText(
-          App.locMap.get(moving.get(listOfNodes.get(i).getNodeID()).getLongName()).getShortName());
-      txt.setLayoutX(listOfNodes.get(i).getXcoord());
+      txt.setFont(new Font(20));
+      txt.setText(sn.get(listOfNodes.get(i).getNodeID()));
+      txt.setLayoutX(listOfNodes.get(i).getXcoord() - 30);
       txt.setLayoutY(listOfNodes.get(i).getYcoord() + 30);
       txt.toFront();
     }
@@ -1076,9 +1031,6 @@ public class pathfindingController {
     for (int i = 0; i < updatedMove.size(); i++) {
       moving.put(updatedMove.get(i).getNodeID(), updatedMove.get(i));
     }
-
-    System.out.println(point.getNodeID());
-    System.out.println(moving.get(point.getNodeID()).getLongName());
 
     // System.out.println(move.get(155).getLongName());
 
@@ -1443,53 +1395,7 @@ public class pathfindingController {
     movesForAlgos = finalLocNames;
   }
 
-  public void displayAlert() throws IOException {
-    final PopOver window = new PopOver();
-    var loader = new FXMLLoader(App.class.getResource("views/AlertPopUp.fxml"));
-    window.setContentNode(loader.load());
-
-    PathfindingAlertPopUpController controller = new PathfindingAlertPopUpController();
-
-    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
-    System.out.println(App.message);
-  }
-
-  public void getDirections(ArrayList<String> path) throws IOException {
-    final PopOver window = new PopOver();
-    var loader = new FXMLLoader(App.class.getResource("views/DirectionsPopUp.fxml"));
-    window.setContentNode(loader.load());
-
-    window.setArrowSize(0);
-    DirectionsPopUpController controller = loader.getController();
-    controller.setF(window, path, movesForAlgos);
-
-    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
-  }
-
-  public void updateMoves() {
-    ArrayList<Move> updateMove = new ArrayList<>();
-
-    for (int i = 0; i < move.size(); i++) {
-
-      if (date.getValue() == null) {
-        if (move.get(i).getDate().toLocalDate().isEqual(LocalDate.of(2023, Month.JANUARY, 1))) {
-          moving.put(move.get(i).getNodeID(), move.get(i));
-        }
-      } else {
-        if (date.getValue().isAfter(move.get(i).date.toLocalDate())) {
-          moving.put(move.get(i).getNodeID(), move.get(i));
-        } else if (date.getValue().isEqual(move.get(i).getDate().toLocalDate())) {
-          updateMove.add(move.get(i));
-        }
-      }
-    }
-
-    for (int i = 0; i < updateMove.size(); i++) {
-      moving.put(updateMove.get(i).getNodeID(), updateMove.get(i));
-    }
-  }
+  public void listenToMouse() {}
 
   public void exit() {
     Platform.exit();
