@@ -81,6 +81,7 @@ public class SettingsPopOverController {
           clientSideCheckBox.setSelected(true);
           if (clientSideCheckBox.isSelected()) {
             awsCheckBox.setSelected(false);
+
           }
         });
   }
