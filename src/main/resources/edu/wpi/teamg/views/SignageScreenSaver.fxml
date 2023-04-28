@@ -144,9 +144,17 @@
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="272.0">
                            <children>
+                              <ImageView fx:id="arrow81" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Screenshot_2023-04-27_192107-removebg-preview.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
                               <Text fx:id="locationText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text_loc" text="Text">
                                  <HBox.margin>
-                                    <Insets right="10.0" />
+                                    <Insets right="10.0" top="10.0" />
                                  </HBox.margin>
                               </Text>
                            </children>

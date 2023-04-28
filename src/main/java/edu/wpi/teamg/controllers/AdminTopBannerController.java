@@ -4,11 +4,15 @@ import edu.wpi.teamg.App;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.awt.*;
+import java.io.IOException;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
+import org.controlsfx.control.PopOver;
 
 public class AdminTopBannerController {
   @FXML MFXButton signagePageButton;
@@ -19,9 +23,13 @@ public class AdminTopBannerController {
   @FXML MFXButton HomeButton;
   @FXML MFXButton Logout;
 
+  @FXML MFXButton settings;
+
   @FXML ChoiceBox<String> AdminChoiceBox;
   @FXML MFXButton dictionaryButton;
   @FXML MFXButton About_Credits;
+
+  static PopOver window = new PopOver();
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -44,6 +52,14 @@ public class AdminTopBannerController {
     dictionaryButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
     About_Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
+    settings.setOnMouseClicked(
+        (event -> {
+          try {
+            settings();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        }));
     exitButton.setOnMouseClicked(event -> exit());
     statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_STATUS_PAGE));
     Logout.setOnMouseClicked(
@@ -96,5 +112,20 @@ public class AdminTopBannerController {
     } else {
       return;
     }
+  }
+
+  public void settings() throws IOException {
+
+    var loader = new FXMLLoader(App.class.getResource("views/SettingsPopover.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    window.setTitle("Settings Panel");
+
+    window.setHeaderAlwaysVisible(true);
+    SettingsPopOverController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 }

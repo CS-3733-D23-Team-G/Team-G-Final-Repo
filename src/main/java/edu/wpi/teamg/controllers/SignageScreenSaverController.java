@@ -80,8 +80,7 @@ public class SignageScreenSaverController {
                 e -> {
                   timeText.setText(
                       LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss a")) + ",");
-                  timeText.setFill(
-                      Paint.valueOf("linear-gradient(to bottom left, #009FFD, #012D5A)"));
+                  timeText.setFill(Paint.valueOf("#012D5A"));
                   timeText.setStyle("-fx-font-weight: 800");
                 }),
             new KeyFrame(Duration.seconds(1)));
@@ -226,7 +225,7 @@ public class SignageScreenSaverController {
 
     SignageEditorController controller = new SignageEditorController();
     dateText.setText(controller.getDate());
-    dateText.setFill(Paint.valueOf("linear-gradient(to bottom left, #009FFD, #012D5A)"));
+    dateText.setFill(Paint.valueOf("#012D5A"));
     dateText.setStyle("-fx-font-weight: 800");
   }
 

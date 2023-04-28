@@ -1,7 +1,7 @@
 * {
     -mfx-main: #012D5A;
     -mfx-purple: #F6BD38;
-    -mfx-color:  linear-gradient(to bottom left, #009FFD, #012D5A);
+    -mfx-color: #012D5A;
 }
 
 .choice-box .menu-item{
@@ -60,7 +60,7 @@ Date Picker
 }
 
 .mfx-date-picker:focus-within .icon {
-    -mfx-color:  linear-gradient(to bottom left, #009FFD, #012D5A); /* NOT AN ERROR, IMPORTANT MFX STYLING */
+    -mfx-color:  #012D5A; /* NOT AN ERROR, IMPORTANT MFX STYLING */
 }
 
 /********************
@@ -104,7 +104,7 @@ Popup
 
 .mfx-date-cell:selected {
     -fx-text-fill: white;
-    -fx-background-color:  linear-gradient(to bottom left, #009FFD, #012D5A);
+    -fx-background-color:  #012D5A;
     -fx-font-family: "Poppins";
 }
 

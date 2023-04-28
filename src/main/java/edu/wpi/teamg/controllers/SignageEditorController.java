@@ -123,7 +123,16 @@ public class SignageEditorController {
             arrowSetUp(arrowDirectionNumber);
           }
         });
-    daySpecify.setOnAction(event -> date.setVisible(true));
+
+    daySpecify.setOnAction(
+        event -> {
+          if (date.isVisible()) {
+            date.setVisible(false);
+          } else if (!date.isVisible()) {
+            date.setVisible(true);
+          }
+        });
+
     submitSignage.setOnAction(
         event -> {
           try {
