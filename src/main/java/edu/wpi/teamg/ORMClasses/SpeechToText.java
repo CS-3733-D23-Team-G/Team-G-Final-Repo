@@ -74,7 +74,8 @@ public class SpeechToText {
     if (result != null) {
       String spokenText = result.getHypothesis();
       System.out.println("You said: " + spokenText);
-      if (spokenText.equals("stop")) {
+      if (spokenText.equalsIgnoreCase("stop")) {
+
         recognizer.stopRecognition();
       }
     }
