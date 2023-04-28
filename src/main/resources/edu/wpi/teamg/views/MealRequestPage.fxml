@@ -133,12 +133,12 @@
                                     </SearchableComboBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <MFXButton fx:id="mealClearAll" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear">
+                                          <MFXButton fx:id="mealClearAll" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear" textFill="#f6bd38">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </MFXButton>
-                                          <MFXButton fx:id="mealSubmitButton" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm">
+                                          <MFXButton fx:id="mealSubmitButton" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm" textFill="#012d5a">
                                              <HBox.margin>
                                                 <Insets left="15.0" />
                                              </HBox.margin>
