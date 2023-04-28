@@ -53,7 +53,7 @@
                <children>
                   <HBox prefHeight="26.0" prefWidth="306.0">
                      <children>
-                        <Text fx:id="quoteText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcomeText_home" text="Welcome,">
+                        <Text fx:id="quoteText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Welcome,">
                            <font>
                               <Font size="25.0" />
                            </font>

@@ -270,6 +270,7 @@ public class HomeController {
         //          author = JSONOut1.get("a").toString();
         //        authorText.setText(author);
         quoteText.setText(quote);
+        quoteText.wrappingWidthProperty().set(500);
         conn.disconnect();
       }
     } catch (Exception e) {
