@@ -141,14 +141,20 @@
                                           <Insets top="70.0" />
                                        </VBox.margin>
                                        <children>
-                                          <MFXButton fx:id="empClear" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear" />
-                                          <MFXButton fx:id="empSubmit" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm">
+                                          <MFXButton fx:id="empClear" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="132.0" styleClass="requestClearButton" text="Clear">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin></MFXButton>
+                                          <MFXButton fx:id="empSubmit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="132.0" styleClass="requestConfirmButton" text="Confirm">
                                              <HBox.margin>
                                                 <Insets left="15.0" />
                                              </HBox.margin></MFXButton>
                                        </children>
                                     </HBox>
                                  </children>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
                               </VBox>
                            </children>
                         </HBox>

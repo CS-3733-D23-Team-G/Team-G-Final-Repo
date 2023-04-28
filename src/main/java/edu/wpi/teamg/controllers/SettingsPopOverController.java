@@ -65,13 +65,13 @@ public class SettingsPopOverController {
         });
 
     awsCheckBox.setOnAction(
-            event -> {
-                if (awsCheckBox.isSelected()) {
-                    
-                    aStarCheckBox.setSelected(false);
-                    bfsCheckBox.setSelected(false);
-                    Dijkstracheckbox.setSelected(false);
-                }
-            });
+        event -> {
+          if (awsCheckBox.isSelected()) {
+
+            aStarCheckBox.setSelected(false);
+            bfsCheckBox.setSelected(false);
+            Dijkstracheckbox.setSelected(false);
+          }
+        });
   }
 }
