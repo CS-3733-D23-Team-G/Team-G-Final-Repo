@@ -4,6 +4,7 @@ import edu.wpi.teamg.App;
 import edu.wpi.teamg.ORMClasses.Move;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
+import java.util.Objects;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
@@ -70,6 +71,13 @@ public class DirectionsPopUpController {
 
         } else {
           if (i != 0 && updatedMoves.get(j).getNodeID() == Integer.parseInt(path.get(i))) {
+
+//            if (!Objects.equals(
+//                    App.allNodes.get(Integer.parseInt(path.get(i))).getFloor(),
+//                    App.allNodes.get(Integer.parseInt(path.get(i - 1))).getFloor())) {
+//              System.out.println(
+//                      "\nFloor " + App.allNodes.get(Integer.parseInt(path.get(i))).getFloor() + "\n\n");
+//            }
 
             if (App.allNodes.get(Integer.parseInt(path.get(i))).getXcoord()
                 > App.allNodes.get(Integer.parseInt(path.get(i - 1))).getXcoord()) {
