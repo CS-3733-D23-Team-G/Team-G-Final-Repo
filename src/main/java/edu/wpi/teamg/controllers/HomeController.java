@@ -262,12 +262,13 @@ public class HomeController {
         // Get the first JSON object in the JSON array
         //        System.out.println(dataObject.get(0));
 
-        JSONObject JSONOut = (JSONObject) dataObject.get(0);
-        String person;
+        JSONObject JSONOut0 = (JSONObject) dataObject.get(0);
+        //          JSONObject JSONOut1 = (JSONObject) dataObject.get(1);
+        //        String author;
         String quote;
-        //        person = JSONOut.get("q").toStirng();
-        quote = JSONOut.get("q").toString();
-        //        authorText.setText(person);
+        quote = JSONOut0.get("q").toString();
+        //          author = JSONOut1.get("a").toString();
+        //        authorText.setText(author);
         quoteText.setText(quote);
         conn.disconnect();
       }
