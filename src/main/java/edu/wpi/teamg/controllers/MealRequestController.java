@@ -22,7 +22,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -208,29 +207,18 @@ public class MealRequestController {
 
   public void MealPressed() {
 
-    Image burger = new Image(App.class.getResourceAsStream("Images/burger.jpg"));
-
-    Image dog = new Image(App.class.getResourceAsStream("Images/dog.jpg"));
-
-    Image pizza = new Image(App.class.getResourceAsStream("Images/pizza.jpg"));
-
-    Image sushi = new Image(App.class.getResourceAsStream("Images/sushi.jpg"));
-
-    Image taco = new Image(App.class.getResourceAsStream("Images/taco.jpg"));
-
-    Image sandwich = new Image(App.class.getResourceAsStream("Images/sandwich.jpg"));
     text1.setText("Burger");
     text2.setText("Hot Dog");
     text3.setText("Pizza");
     text4.setText("Sushi");
     text5.setText("Taco");
     text6.setText("Sandwich");
-    image1.setImage(burger);
-    image2.setImage(dog);
-    image3.setImage(pizza);
-    image4.setImage(sushi);
-    image5.setImage(taco);
-    image6.setImage(sandwich);
+    image1.setImage(App.burger);
+    image2.setImage(App.dog);
+    image3.setImage(App.pizza);
+    image4.setImage(App.sushi);
+    image5.setImage(App.taco);
+    image6.setImage(App.sandwich);
 
     //              Enumeration<String> keys = selectedPanes.keys();
     //              while (keys.hasMoreElements()) {
@@ -272,29 +260,19 @@ public class MealRequestController {
   }
 
   public void DrinkPressed() {
-    Image OJ = new Image(App.class.getResourceAsStream("Images/OJ.jpg"));
 
-    Image coffee = new Image(App.class.getResourceAsStream("Images/coffee.jpg"));
-
-    Image water = new Image(App.class.getResourceAsStream("Images/water.jpg"));
-
-    Image soda = new Image(App.class.getResourceAsStream("Images/soda.jpg"));
-
-    Image smoothie = new Image(App.class.getResourceAsStream("Images/smoothie.jpg"));
-
-    Image tea = new Image(App.class.getResourceAsStream("Images/tea.jpg"));
     text1.setText("Orange Juice");
     text2.setText("Coffee");
     text3.setText("Pizza");
     text4.setText("Water");
     text5.setText("Smoothie");
     text6.setText("Tea");
-    image1.setImage(OJ);
-    image2.setImage(coffee);
-    image3.setImage(water);
-    image4.setImage(soda);
-    image5.setImage(smoothie);
-    image6.setImage(tea);
+    image1.setImage(App.OJ);
+    image2.setImage(App.coffee);
+    image3.setImage(App.water);
+    image4.setImage(App.soda);
+    image5.setImage(App.smoothie);
+    image6.setImage(App.tea);
 
     pane1.setOnMouseClicked(
         event -> {
@@ -329,29 +307,19 @@ public class MealRequestController {
   }
 
   public void SnackPressed() {
-    Image frenchFries = new Image(App.class.getResourceAsStream("Images/frenchfries.jpg"));
 
-    Image chips = new Image(App.class.getResourceAsStream("Images/chips.jpg"));
-
-    Image bacon = new Image(App.class.getResourceAsStream("Images/bacon.jpg"));
-
-    Image avocadoToast = new Image(App.class.getResourceAsStream("Images/avocadotoast.jpg"));
-
-    Image goldfish = new Image(App.class.getResourceAsStream("Images/goldfish.jpg"));
-
-    Image pretzels = new Image(App.class.getResourceAsStream("Images/pretzels.jpg"));
     text1.setText("French Fries");
     text2.setText("Chips");
     text3.setText("Bacon");
     text4.setText("Avocado Toast");
     text5.setText("Goldfish");
     text6.setText("Pretzels");
-    image1.setImage(frenchFries);
-    image2.setImage(chips);
-    image3.setImage(bacon);
-    image4.setImage(avocadoToast);
-    image5.setImage(goldfish);
-    image6.setImage(pretzels);
+    image1.setImage(App.frenchFries);
+    image2.setImage(App.chips);
+    image3.setImage(App.bacon);
+    image4.setImage(App.avocadoToast);
+    image5.setImage(App.goldfish);
+    image6.setImage(App.pretzels);
 
     pane1.setOnMouseClicked(
         event -> {
@@ -424,8 +392,7 @@ public class MealRequestController {
             + "-fx-font-size: 15;"
             + "-fx-font-weight: 500;");
 
-    Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
-    ImageView completionImage = new ImageView(checkmarkImage);
+    ImageView completionImage = new ImageView(App.checkmarkImage);
 
     completionImage.setFitHeight(120);
     completionImage.setFitWidth(120);
