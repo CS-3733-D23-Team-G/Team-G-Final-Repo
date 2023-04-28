@@ -19,6 +19,8 @@ public class DAORepo {
   private FurnitureDAO furnitureRequest = new FurnitureDAO();
   private OfficeSupplyRequestDAO officeSupplyRequest = new OfficeSupplyRequestDAO();
 
+  private MaintenanceRequestDAO maintenanceRequest = new MaintenanceRequestDAO();
+
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
   }
@@ -63,6 +65,10 @@ public class DAORepo {
     return officeSupplyRequest.getAll();
   }
 
+  public HashMap getAllMaintenance() throws SQLException {
+    return maintenanceRequest.getAll();
+  }
+
   public void insertNode(Object obj) throws SQLException {
     nodeDao.insert(obj);
   }
@@ -103,6 +109,10 @@ public class DAORepo {
     officeSupplyRequest.insert(obj);
   }
 
+  public void insertMaintenance(Object obj) throws SQLException {
+    maintenanceRequest.insert(obj);
+  }
+
   public void deleteNode(Object obj) throws SQLException {
     nodeDao.delete(obj);
   }
@@ -141,6 +151,10 @@ public class DAORepo {
 
   public void deleteSupplyReq(Object obj) throws SQLException {
     officeSupplyRequest.delete(obj);
+  }
+
+  public void deleteMaintenanceRequest(Object obj) throws SQLException {
+    maintenanceRequest.delete(obj);
   }
 
   public void importNodeCSV(String path) throws SQLException {

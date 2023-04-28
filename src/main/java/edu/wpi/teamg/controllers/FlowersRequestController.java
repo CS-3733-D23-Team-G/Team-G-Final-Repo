@@ -8,7 +8,9 @@ import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -19,20 +21,17 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import org.controlsfx.control.CheckComboBox;
-import org.controlsfx.control.SearchableComboBox;
 
 public class FlowersRequestController {
 
-  @FXML ChoiceBox<String> bouquetSizeChoiceBox;
-  @FXML CheckComboBox<String> flowerTypeCheckBox;
+  @FXML MFXComboBox bouquetSizeChoiceBox;
   @FXML MFXButton submit;
   @FXML MFXButton clearAll;
   // @FXML TextField deliveryLocation;
@@ -51,7 +50,7 @@ public class FlowersRequestController {
 
   @FXML TextField deliveryTime;
   @FXML TextField recipient;
-  @FXML TextField bouquetNote;
+  @FXML TextArea bouquetNote;
 
   @FXML ImageView selectedSunflower;
   @FXML ImageView sunflowerOption;
@@ -65,9 +64,9 @@ public class FlowersRequestController {
 
   String Order = "";
 
-  @FXML SearchableComboBox locationSearchDropdown;
+  @FXML MFXFilterComboBox locationSearchDropdown;
 
-  @FXML SearchableComboBox employeeSearchDropdown;
+  @FXML MFXFilterComboBox employeeSearchDropdown;
 
   @FXML VBox vboxWithAssignTo;
 
@@ -206,7 +205,7 @@ public class FlowersRequestController {
             Date.valueOf(deliveryDate.getValue()),
             StringToTime(deliveryTime.getText()),
             Order,
-            flowerConvert(bouquetSizeChoiceBox.getValue()),
+            flowerConvert((String) bouquetSizeChoiceBox.getValue()),
             bouquetNote.getText(),
             recipient.getText());
 

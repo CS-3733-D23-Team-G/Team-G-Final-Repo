@@ -27,40 +27,57 @@
             <MFXButton fx:id="HomeButton" layoutX="-1.0" layoutY="-2.0" opacity="0.0" prefHeight="101.0" prefWidth="425.0" />
          </children>
       </AnchorPane>
-      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="banner_big-side">
+      <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="101.0" prefWidth="852.0" styleClass="banner_big-side">
          <children>
             <AnchorPane styleClass="hit_the_griddy">
                <children>
-                  <Text fill="#f6bd38" layoutX="380.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Log out" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="73.01025390625" AnchorPane.topAnchor="15.0">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Text>
-                  <Text fill="#f6bd38" layoutX="437.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Exit" AnchorPane.bottomAnchor="14.333333333333336" AnchorPane.rightAnchor="25.9951171875" AnchorPane.topAnchor="15.0">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-                  <MFXButton fx:id="exitButton" layoutX="1058.0" layoutY="5.0" opacity="0.0" prefHeight="40.0" prefWidth="41.0" styleClass="banner_login_exit_text" stylesheets="@style.css" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="5.0" />
-                  <MFXButton fx:id="Logout" layoutX="981.0" layoutY="5.0" opacity="0.0" prefHeight="46.0" prefWidth="75.0" styleClass="banner_login_exit_text" stylesheets="@style.css" text="Button" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="5.0">
-                     <font>
-                        <Font size="30.0" />
-                     </font></MFXButton>
-                  <Text fill="#f6bd38" layoutX="906.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Extras" wrappingWidth="52.689453125">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-                  <MFXButton fx:id="About_Credits" layoutX="894.0" layoutY="2.0" opacity="0.0" prefHeight="50.0" prefWidth="72.0" text="Button" />
-                  <Text fill="#f6bd38" layoutX="795.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_login_exit_text" text="Dictionary" wrappingWidth="90.689453125">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-                  <MFXButton fx:id="dictionaryButton" layoutX="791.0" layoutY="2.0" opacity="0.0" prefHeight="50.0" prefWidth="91.0" text="Button" />
+                  <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fx:id="information" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/informationIcon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="dictionary" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/dictionaryIcon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="settings" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/settingIcon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="25.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="logout" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/logoutIcon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="exit" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/exitIcon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="25.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
-            <GridPane alignment="CENTER_LEFT" hgap="5.0" prefWidth="1086.0" styleClass="hit_the_griddy">
+            <GridPane alignment="CENTER_LEFT" hgap="5.0" prefHeight="35.0" prefWidth="861.0" styleClass="hit_the_griddy">
                <columnConstraints>
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -111,14 +128,20 @@
                         <Insets top="40.0" />
                      </GridPane.margin>
                   </Line>
-                  <MFXButton fx:id="signagePageButton" opacity="0.0" prefWidth="370.0" styleClass="hit_the_griddy" GridPane.columnIndex="3" />
+                  <MFXButton fx:id="signagePageButton" opacity="0.0" prefWidth="370.0" styleClass="hit_the_griddy" GridPane.columnIndex="3">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></MFXButton>
                   <MFXButton fx:id="statusButton" opacity="0.0" prefWidth="389.0" styleClass="hit_the_griddy" text="Button" GridPane.columnIndex="1" />
                   <ChoiceBox fx:id="serviceRequestChoiceBox" opacity="0.0" prefHeight="50.0" prefWidth="275.0" style="-fx-background-color: red;" styleClass="dropdown" GridPane.columnIndex="2" />
                   <ChoiceBox fx:id="AdminChoiceBox" opacity="0.0" prefHeight="50.0" prefWidth="200.0" styleClass="dropdown" />
                </children>
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets />
                </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
             </GridPane>
          </children>
       </VBox>

@@ -61,7 +61,7 @@ public class LocationNameDAO implements LocationDAO {
       default:
         SQL =
             "SELECT LocationName.longName\n"
-                + "           FROM iteration3.LocationName\n"
+                + "           FROM iteration4.LocationName\n"
                 + "            WHERE LocationName.nodeType = 'CONF'\n"
                 + "                OR LocationName.nodeType = 'DEPT'\n"
                 + "                OR LocationName.nodeType = 'INFO'\n"
@@ -72,7 +72,7 @@ public class LocationNameDAO implements LocationDAO {
       case "CR":
         SQL =
             "SELECT LocationName.longName\n"
-                + "           FROM iteration3.LocationName\n"
+                + "           FROM iteration4.LocationName\n"
                 + "            WHERE LocationName.nodeType = 'CONF';";
         break;
     }
@@ -162,7 +162,7 @@ public class LocationNameDAO implements LocationDAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration3.locationname";
+    return "teamgdb.iteration4.locationname";
   }
 
   @Override

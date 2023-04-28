@@ -2,13 +2,14 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Point3D?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,10 +17,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import org.controlsfx.control.SearchableComboBox?>
 
 <BorderPane prefHeight="10.0" prefWidth="10.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.OfficeSuppRequestController">
    <center>
@@ -42,17 +41,12 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
+                                          <Insets top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="20.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </Line>
                                     <MFXTextField fx:id="supplyRecipient" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="281.0" styleClass="requestTextBox" stylesheets="@style.css">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXTextField>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Delivery Location">
@@ -60,43 +54,27 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
+                                          <Insets top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="122.87867736816406" endY="-1.242640495300293" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
+                                    <MFXFilterComboBox fx:id="locationSearchDropdown" maxHeight="63.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="285.0" styleClass="requestTextBox_MFX">
                                        <VBox.margin>
-                                          <Insets />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
-                                    </Line>
-                                    <SearchableComboBox fx:id="locationSearchDropdown" prefHeight="32.0" prefWidth="395.0" styleClass="requestTextBox">
-                                       <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
-                                       </VBox.margin>
-                                    </SearchableComboBox>
+                                    </MFXFilterComboBox>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Notes">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" right="15.0" top="50.0" />
+                                          <Insets right="15.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-25.121322631835938" endY="1.7642974853515625E-5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
+                                    <TextArea fx:id="recipientNotes" prefHeight="200.0" prefWidth="200.0" styleClass="notes">
                                        <VBox.margin>
-                                          <Insets right="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
-                                       <rotationAxis>
-                                          <Point3D />
-                                       </rotationAxis>
-                                    </Line>
-                                    <MFXTextField fx:id="recipientNotes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="281.0">
-                                       <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font size="25.0" />
-                                       </font>
-                                    </MFXTextField>
+                                    </TextArea>
                                  </children>
                                  <padding>
                                     <Insets left="50.0" right="25.0" />
@@ -109,17 +87,12 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
+                                          <Insets top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-40.12132263183594" endY="-0.6213202476501465" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
+                                    <MFXDatePicker fx:id="supplyDate" minHeight="-Infinity" prefHeight="30.0" prefWidth="328.0" styleClass="requestTextBox_MFX">
                                        <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </Line>
-                                    <MFXDatePicker fx:id="supplyDate" minHeight="-Infinity" prefHeight="30.0" prefWidth="324.0" styleClass="locationSelect_comboSearchBox">
-                                       <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXDatePicker>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Time">
@@ -127,17 +100,12 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" right="15.0" top="50.0" />
+                                          <Insets right="15.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-39.12132263183594" endY="1.7642974853515625E-5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
-                                       <VBox.margin>
-                                          <Insets right="15.0" />
-                                       </VBox.margin>
-                                    </Line>
                                     <MFXTextField fx:id="supplyDeliverTime" minHeight="-Infinity" prefHeight="30.0" prefWidth="317.0" styleClass="requestTextBox">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXTextField>
                                     <Text fx:id="assignToText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Assign To">
@@ -145,19 +113,14 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" right="15.0" top="50.0" />
+                                          <Insets right="15.0" top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line fx:id="assignToLine" endX="24.878677368164062" endY="1.7642974853515625E-5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0">
+                                    <MFXFilterComboBox fx:id="employeeSearchDropdown" maxHeight="63.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="315.0" styleClass="requestTextBox_MFX">
                                        <VBox.margin>
-                                          <Insets right="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
-                                    </Line>
-                                    <SearchableComboBox fx:id="employeeSearchDropdown" prefHeight="32.0" prefWidth="200.0" styleClass="requestTextBox">
-                                       <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
-                                       </VBox.margin>
-                                    </SearchableComboBox>
+                                    </MFXFilterComboBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <MFXButton fx:id="supplyClear" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear">
@@ -172,7 +135,7 @@
                                           </MFXButton>
                                        </children>
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets top="75.0" />
                                        </VBox.margin>
                                     </HBox>
                                     <Label fx:id="checkFields" prefHeight="17.0" prefWidth="377.0" styleClass="allFilledError" stylesheets="@style.css" text="Not All Fields Are Filled." textFill="#d01616">

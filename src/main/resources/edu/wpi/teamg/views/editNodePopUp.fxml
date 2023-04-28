@@ -60,11 +60,6 @@
             <MFXButton fx:id="fmoves" text="Future Moves" />
          </children>
       </HBox>
-      <HBox>
-         <children>
-            <MFXButton fx:id="locEdit" text="Location Edit" />
-         </children>
-      </HBox>
    </children>
    <padding>
       <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

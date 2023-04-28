@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RequestDAO implements DAO {
@@ -85,7 +86,7 @@ public class RequestDAO implements DAO {
     db.setConnection();
 
     PreparedStatement ps;
-    sql = "update teamgdb.iteration3.request set " + colName + " = ? where reqid = ?";
+    sql = "update teamgdb.iteration4.request set " + colName + " = ? where reqid = ?";
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -155,19 +156,25 @@ public class RequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration3.request";
+    return "teamgdb.iteration4.request";
   }
 
-  public static HashMap getOutstandingRequest(int serveby) throws SQLException {
+  public static ArrayList getOutstandingRequest(int serveby) throws SQLException {
     db.setConnection();
+
+    ArrayList<Request> oRequestList = new ArrayList<>();
 
     String oRequestSQL;
     ResultSet rs = null;
 
     PreparedStatement ps;
-    oRequestSQL =
-        "select * from iteration3.request where serveby = ? and (status = 'blank' or status = 'processing');";
+    //    oRequestSQL =
+    //        "select * from iteration4.request where serveby = ? and (status = 'blank' or status =
+    // 'processing');";
 
+    oRequestSQL =
+        "select * from iteration4.request where serveby = ? and status <> 'done' ORDER BY requestdate";
+    
     try {
       ps = db.getConnection().prepareStatement(oRequestSQL);
       ps.setInt(1, serveby);
@@ -212,10 +219,11 @@ public class RequestDAO implements DAO {
 
       cReq.setReqid(reqID);
 
+      oRequestList.add(cReq);
       outstandingRequestHash.put(reqID, cReq);
     }
 
     db.closeConnection();
-    return outstandingRequestHash;
+    return oRequestList;
   }
 }

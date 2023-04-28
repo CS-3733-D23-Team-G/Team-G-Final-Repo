@@ -2,6 +2,7 @@ package edu.wpi.teamg.controllers;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.awt.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.SQLException;
@@ -20,9 +21,12 @@ public class DictionaryController {
   @FXML MFXButton inputButton;
 
   @FXML MFXTextField input;
+  //  @FXML  ImageView logoMW;
 
   public void initialize() throws SQLException {
     inputButton.setOnMouseClicked(event -> SpanishLookup());
+    //    Image sushi = new Image(App.class.getResourceAsStream("Images/mwlogo.jpg"));
+
   }
 
   public void SpanishLookup() {
@@ -31,7 +35,6 @@ public class DictionaryController {
     String spanishOutput;
 
     try {
-
       URL url =
           new URL(
               "https://dictionaryapi.com/api/v3/references/spanish/json/"
@@ -139,7 +142,7 @@ public class DictionaryController {
         typeOfWord.setText(JSONOut.get("fl").toString());
         Word.setText(searchInput);
         Word.setStyle("-fx-underline: true");
-        outputText.wrappingWidthProperty().set(1470);
+        outputText.wrappingWidthProperty().set(340);
         outputText.setText(output);
         conn.disconnect();
       }

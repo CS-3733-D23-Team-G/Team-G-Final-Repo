@@ -36,8 +36,8 @@ public class ConferenceRoomRequestDAO implements DAO {
     ResultSet rs = null;
 
     SQL_confRoomRequest =
-        "select * from teamgdb.iteration3.request join teamgdb.iteration3.conferenceroomrequest "
-            + "on teamgdb.iteration3.request.reqid = teamgdb.iteration3.conferenceroomrequest.reqid";
+        "select * from teamgdb.iteration4.request join teamgdb.iteration4.conferenceroomrequest "
+            + "on teamgdb.iteration4.request.reqid = teamgdb.iteration4.conferenceroomrequest.reqid";
 
     try {
       ps = db.getConnection().prepareStatement(SQL_confRoomRequest);
@@ -117,7 +117,7 @@ public class ConferenceRoomRequestDAO implements DAO {
 
     ResultSet rs = null;
 
-    SQL_maxID = "select reqID from teamgdb.iteration3.request order by reqid desc limit 1";
+    SQL_maxID = "select reqID from teamgdb.iteration4.request order by reqid desc limit 1";
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -132,9 +132,9 @@ public class ConferenceRoomRequestDAO implements DAO {
       maxID++;
     }
     SQL_confRoomRequest =
-        "insert  into teamgdb.iteration3.conferenceroomrequest(reqid, endtime, purpose) values (?,?,?)";
+        "insert  into teamgdb.iteration4.conferenceroomrequest(reqid, endtime, purpose) values (?,?,?)";
     SQL_Request =
-        "insert into teamgdb.iteration3.request(reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+        "insert into teamgdb.iteration4.request(reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
 
     try {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
@@ -176,6 +176,8 @@ public class ConferenceRoomRequestDAO implements DAO {
       ps_Req.setTime(8, ((ConferenceRoomRequest) obj).getRequestTime());
 
       ps_Req.executeUpdate();
+      db.closeConnection();
+      db.setConnection();
 
       ps_getRoomReq = db.getConnection().prepareStatement(SQL_confRoomRequest);
       ps_getRoomReq.setInt(1, maxID);
@@ -200,8 +202,8 @@ public class ConferenceRoomRequestDAO implements DAO {
     PreparedStatement ps_confReq;
     PreparedStatement ps_Req;
 
-    String SQL_confReq = "delete from teamgdb.iteration3.conferenceroomrequest where reqID = ?";
-    String SQL_Req = "delete from teamgdb.iteration3.request where reqID = ?";
+    String SQL_confReq = "delete from teamgdb.iteration4.conferenceroomrequest where reqID = ?";
+    String SQL_Req = "delete from teamgdb.iteration4.request where reqID = ?";
     try {
       ps_confReq = db.getConnection().prepareStatement(SQL_confReq);
       ps_confReq.setInt(1, ((ConferenceRoomRequest) obj).getReqid());
@@ -244,6 +246,6 @@ public class ConferenceRoomRequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration3.conferenceroomrequest";
+    return "teamgdb.iteration4.conferenceroomrequest";
   }
 }
