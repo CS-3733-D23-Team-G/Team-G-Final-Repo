@@ -19,7 +19,7 @@
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="540.0" prefWidth="971.0">
+            <AnchorPane fx:id="forms" prefHeight="540.0" prefWidth="971.0">
                <children>
                   <MFXFilterComboBox fx:id="signageDropDown1" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="195.0" />
                   <MFXFilterComboBox fx:id="signageDropDown2" layoutX="10.0" layoutY="10.0" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="345.0" />

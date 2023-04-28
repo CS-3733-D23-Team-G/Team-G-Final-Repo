@@ -177,7 +177,7 @@
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+            <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
 
                   <GridPane layoutX="93.0" layoutY="126.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
