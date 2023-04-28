@@ -22,12 +22,21 @@ public class PatientTopBannerController {
 
   static PopOver window = new PopOver();
 
+  static PopOver dictionaryPopOver = new PopOver();
+
   @FXML
   public void initialize() {
 
     exit.setOnMouseClicked(event -> exit());
     information.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
-    dictionary.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
+    dictionary.setOnMouseClicked(
+        event -> {
+          try {
+            dictionary();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
 
     login.setOnMouseClicked(
         event -> {
@@ -43,6 +52,21 @@ public class PatientTopBannerController {
 
   public void exit() {
     Platform.exit();
+  }
+
+  public void dictionary() throws IOException {
+
+    var loader = new FXMLLoader(App.class.getResource("views/DictionaryPopUp.fxml"));
+    window.setContentNode(loader.load());
+
+    window.setArrowSize(0);
+    window.setTitle("Medical Dictionary");
+
+    window.setHeaderAlwaysVisible(true);
+    DictionaryController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void login() throws IOException {
