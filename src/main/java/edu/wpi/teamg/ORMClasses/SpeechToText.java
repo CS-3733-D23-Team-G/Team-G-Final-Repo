@@ -16,7 +16,6 @@ public class SpeechToText {
   private ScheduledExecutorService executorService;
   LiveSpeechRecognizer recog;
 
-
   public SpeechToText() throws IOException {
     config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
     config.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
@@ -26,29 +25,29 @@ public class SpeechToText {
   }
 
   public void detectCommand(int duration) throws IOException {
-    try{
+    try {
       this.timeLim = duration;
       recog.startRecognition(true);
 
-      executorService.schedule(this::stop,timeLim, TimeUnit.SECONDS);
+      executorService.schedule(this::stop, timeLim, TimeUnit.SECONDS);
       SpeechResult result;
-      while(!stopped&&(result=recog.getResult())!=null){
+      while (!stopped && (result = recog.getResult()) != null) {
         command = result.getHypothesis();
-        System.out.println("The command was: "+command);
+        System.out.println("The command was: " + command);
       }
-    }catch(Exception e){
+    } catch (Exception e) {
       e.printStackTrace();
-    }finally {
-      if(recog!=null){
+    } finally {
+      if (recog != null) {
         recog.stopRecognition();
       }
       executorService.shutdownNow();
     }
   }
 
-  private void stop(){
+  private void stop() {
     recog.stopRecognition();
-    stopped=true;
+    stopped = true;
   }
 
   public static void main(String[] args) throws IOException {
