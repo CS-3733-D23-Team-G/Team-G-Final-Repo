@@ -103,7 +103,7 @@ public class MapEditorController {
   ArrayList<ImageView> img = new ArrayList<>();
 
   ArrayList<Node> alignedNodes = new ArrayList<Node>();
-  ArrayList<Circle> allCircles = new ArrayList<Circle>();
+  ArrayList<Node> allCircles = new ArrayList<Node>();
 
   boolean isAlignClicked = false;
 
@@ -116,6 +116,8 @@ public class MapEditorController {
 
   public void initialize() throws SQLException, IOException {
 
+    verticalButton.setVisible(false);
+    horizontalButton.setVisible(false);
     updateMove();
 
     forms.setDisable(true);
@@ -231,17 +233,27 @@ public class MapEditorController {
     alignButton.setOnMouseClicked(
         event -> {
           isAlignClicked = true;
+          horizontalButton.setVisible(true);
+          verticalButton.setVisible(true);
         });
     horizontalButton.setOnMouseClicked(
         event -> {
-          alignCirclesHorizontal(allCircles);
+          try {
+            alignCirclesHorizontal(allCircles);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
           isAlignClicked = false;
           allCircles.clear();
         });
 
     verticalButton.setOnMouseClicked(
         event -> {
-          alignCirclesVertical(allCircles);
+          try {
+            alignCirclesVertical(allCircles);
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
           isAlignClicked = false;
           allCircles.clear();
         });
@@ -394,34 +406,48 @@ public class MapEditorController {
     //        });
   }
 
-  public void alignCirclesVertical(ArrayList<Circle> circles) {
-    double firstX = circles.get(0).getCenterX();
-    for (Circle circle : circles) {
-      circle.setCenterX(firstX);
+  public void alignCirclesVertical(ArrayList<Node> circles) throws SQLException {
+    int firstX = circles.get(0).getXcoord();
+    int firstY = circles.get(0).getYcoord();
+
+    for (Node circle : circles) {
+      circle.setXcoord(firstX);
+
+      nodeDAO.update(circle, "xcoord", circle.getXcoord());
+
+      if (firstY == circle.getYcoord()) {
+
+        circle.setYcoord(circle.getYcoord() + 200);
+        nodeDAO.update(circle, "ycoord", circle.getYcoord());
+      }
     }
+
+    nodePane.getChildren().clear();
+    floorButtons(img, floor);
+
+    refresh();
   }
 
-  public void alignCirclesHorizontal(ArrayList<Circle> circles) {
-    double firstY = circles.get(0).getCenterY();
-    for (Circle circle : circles) {
-      circle.setCenterY(firstY);
+  public void alignCirclesHorizontal(ArrayList<Node> circles) throws SQLException {
+    int firstY = circles.get(0).getYcoord();
+    int firstX = circles.get(0).getXcoord();
+
+    for (Node circle : circles) {
+      circle.setYcoord(firstY);
+
+      nodeDAO.update(circle, "ycoord", circle.getYcoord());
+
+      if (firstX == circle.getXcoord()) {
+
+        circle.setXcoord(circle.getXcoord() + 200);
+        nodeDAO.update(circle, "xcoord", circle.getXcoord());
+      }
     }
-  }
 
-  public void alignNodesVertical(ArrayList<Node> nodes) {
+    nodePane.getChildren().clear();
+    floorButtons(img, floor);
 
-    int xcoord = nodes.get(0).getXcoord();
-    for (Node node : nodes) {
-      node.setXcoord(xcoord);
-    }
-  }
-
-  public void alignNodesHorizontal(ArrayList<Node> nodes) {
-
-    int ycoord = nodes.get(0).getYcoord();
-    for (Node node : nodes) {
-      node.setXcoord(ycoord);
-    }
+    refresh();
   }
 
   public void goToL1(ArrayList<ImageView> imgs) throws SQLException {
@@ -779,7 +805,8 @@ public class MapEditorController {
     point.setOnMouseClicked(
         event -> {
           if (isAlignClicked) {
-            allCircles.add(point);
+            point.setFill(Color.rgb(246, 189, 56));
+            allCircles.add(currentNode);
           }
         });
 
@@ -847,7 +874,8 @@ public class MapEditorController {
                   currentNode,
                   img,
                   currentNode.getFloor(),
-                  point);
+                  point,
+                  nodePane);
             }
             if (!moved) {
 
@@ -1033,28 +1061,32 @@ public class MapEditorController {
       Node potentialUpdate,
       ArrayList<ImageView> imgs,
       String index,
-      Circle point)
+      Circle point,
+      Pane nodePane)
       throws IOException {
     final PopOver window = new PopOver();
     var loader = new FXMLLoader(App.class.getResource("views/ConfirmPopUp.fxml"));
     window.setContentNode(loader.load());
 
+    //    nodePane.getChildren().remove(point);
+
+    window.setArrowSize(0);
+    ConfirmPopUpController controller = loader.getController();
+
+    controller.setFields(x1, y1, x2, y2, potentialUpdate, window, imgs, index, nodePane);
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
     window.setOnHiding(
         event -> {
           try {
+            nodePane.getChildren().clear();
             floorButtons(imgs, floor);
-            nodePane.getChildren().remove(point);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
         });
-
-    window.setArrowSize(0);
-    ConfirmPopUpController controller = loader.getController();
-    controller.setFields(x1, y1, x2, y2, potentialUpdate, window, imgs, index);
-
-    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void deleteAMove() throws IOException {
