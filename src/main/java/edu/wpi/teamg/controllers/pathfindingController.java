@@ -119,6 +119,7 @@ public class pathfindingController {
         });
     aStarCheckBox.setOnAction(
         event -> {
+          aStarCheckBox.setSelected(true);
           if (aStarCheckBox.isSelected()) {
             bfsCheckBox.setSelected(false);
             dfsCheckBox.setSelected(false);
@@ -127,6 +128,7 @@ public class pathfindingController {
         });
     Dijkstracheckbox.setOnAction(
         event -> {
+          Dijkstracheckbox.setSelected(true);
           if (Dijkstracheckbox.isSelected()) {
             bfsCheckBox.setSelected(false);
             dfsCheckBox.setSelected(false);
@@ -136,6 +138,7 @@ public class pathfindingController {
 
     bfsCheckBox.setOnAction(
         event -> {
+          bfsCheckBox.setSelected(true);
           if (bfsCheckBox.isSelected()) {
             aStarCheckBox.setSelected(false);
             dfsCheckBox.setSelected(false);
@@ -145,6 +148,7 @@ public class pathfindingController {
 
     dfsCheckBox.setOnAction(
         event -> {
+          dfsCheckBox.setSelected(true);
           if (dfsCheckBox.isSelected()) {
             aStarCheckBox.setSelected(false);
             bfsCheckBox.setSelected(false);

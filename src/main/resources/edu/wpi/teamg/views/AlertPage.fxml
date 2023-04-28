@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -35,13 +34,12 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
+                                          <Insets top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-42.70710754394531" endY="7.748603820800781E-7" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXDatePicker fx:id="alertDate" minHeight="-Infinity" prefHeight="30.0" prefWidth="324.0" styleClass="locationSelect_comboSearchBox">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXDatePicker>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Time">
@@ -49,13 +47,12 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
+                                          <Insets top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-35.70710754394531" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="alertTime" minHeight="-Infinity" prefHeight="30.0" prefWidth="317.0" styleClass="requestTextBox">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXTextField>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Recipient(s)">
@@ -63,13 +60,12 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
+                                          <Insets top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="42.19036865234375" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="alertRecipients" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXTextField>
                                  </children>
@@ -84,13 +80,12 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
+                                          <Insets top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="74.93208312988281" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="alertMessage" alignment="TOP_LEFT" prefColumnCount="1" prefHeight="200.0" prefWidth="386.0" styleClass="notes_textbox">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                        <font>
                                           <Font size="25.0" />
@@ -110,7 +105,7 @@
                                           </MFXButton>
                                        </children>
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets top="90.0" />
                                        </VBox.margin>
                                     </HBox>
                                     <Label fx:id="checkFields" prefHeight="17.0" prefWidth="377.0" styleClass="allFilledError" stylesheets="@style.css" text="Not All Fields Are Filled." textFill="#d01616">
