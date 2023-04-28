@@ -142,7 +142,7 @@ public class DictionaryController {
         typeOfWord.setText(JSONOut.get("fl").toString());
         Word.setText(searchInput);
         Word.setStyle("-fx-underline: true");
-        outputText.wrappingWidthProperty().set(1470);
+        outputText.wrappingWidthProperty().set(340);
         outputText.setText(output);
         conn.disconnect();
       }
