@@ -1,15 +1,19 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.awt.*;
+import java.io.IOException;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
+import org.controlsfx.control.PopOver;
 
 public class TopBannerController {
 
@@ -24,6 +28,8 @@ public class TopBannerController {
   @FXML ImageView exit;
   @FXML ImageView information;
   @FXML ImageView dictionary;
+
+  static PopOver dictionaryPopOver = new PopOver();
 
   ObservableList<String> list =
       FXCollections.observableArrayList(
@@ -45,8 +51,30 @@ public class TopBannerController {
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());
     logout.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    dictionary.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
+    dictionary.setOnMouseClicked(
+        event -> {
+          try {
+            dictionary();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
     information.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
+  }
+
+  public void dictionary() throws IOException {
+
+    var loader = new FXMLLoader(App.class.getResource("views/DictionaryPopUp.fxml"));
+    dictionaryPopOver.setContentNode(loader.load());
+
+    dictionaryPopOver.setArrowSize(0);
+    dictionaryPopOver.setTitle("Medical Dictionary");
+
+    dictionaryPopOver.setHeaderAlwaysVisible(true);
+    DictionaryController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    dictionaryPopOver.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void exit() {

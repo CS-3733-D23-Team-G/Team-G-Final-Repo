@@ -34,6 +34,8 @@ public class AdminTopBannerController {
   @FXML ChoiceBox<String> AdminChoiceBox;
 
   static PopOver window = new PopOver();
+
+  static PopOver dictionaryPopOver = new PopOver();
   ObservableList<String> list =
       FXCollections.observableArrayList(
           "Conference Room Request Form",
@@ -53,7 +55,14 @@ public class AdminTopBannerController {
 
   @FXML
   public void initialize() {
-    dictionary.setOnMouseClicked(event -> Navigation.navigate(Screen.DICTIONARY));
+    dictionary.setOnMouseClicked(
+        event -> {
+          try {
+            dictionary();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
     information.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     settings.setOnMouseClicked(
@@ -76,6 +85,21 @@ public class AdminTopBannerController {
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     AdminChoiceBox.setItems(AdminList);
     AdminChoiceBox.setOnAction(event -> AdminServiceForms());
+  }
+
+  public void dictionary() throws IOException {
+
+    var loader = new FXMLLoader(App.class.getResource("views/DictionaryPopUp.fxml"));
+    dictionaryPopOver.setContentNode(loader.load());
+
+    dictionaryPopOver.setArrowSize(0);
+    dictionaryPopOver.setTitle("Medical Dictionary");
+
+    dictionaryPopOver.setHeaderAlwaysVisible(true);
+    DictionaryController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    dictionaryPopOver.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void exit() {

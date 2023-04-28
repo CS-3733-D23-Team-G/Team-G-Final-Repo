@@ -57,16 +57,16 @@ public class PatientTopBannerController {
   public void dictionary() throws IOException {
 
     var loader = new FXMLLoader(App.class.getResource("views/DictionaryPopUp.fxml"));
-    window.setContentNode(loader.load());
+    dictionaryPopOver.setContentNode(loader.load());
 
-    window.setArrowSize(0);
-    window.setTitle("Medical Dictionary");
+    dictionaryPopOver.setArrowSize(0);
+    dictionaryPopOver.setTitle("Medical Dictionary");
 
-    window.setHeaderAlwaysVisible(true);
+    dictionaryPopOver.setHeaderAlwaysVisible(true);
     DictionaryController controller = loader.getController();
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+    dictionaryPopOver.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void login() throws IOException {
