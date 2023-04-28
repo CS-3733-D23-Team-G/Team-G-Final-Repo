@@ -7,13 +7,12 @@ import edu.wpi.teamg.DAOs.RequestDAO;
 import edu.wpi.teamg.ORMClasses.Notification;
 import edu.wpi.teamg.ORMClasses.Request;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.net.HttpURLConnection;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -21,6 +20,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class HomeController {
   @FXML Text empName;
@@ -34,7 +36,8 @@ public class HomeController {
 
   @FXML
   public void initialize() throws SQLException {
-
+    fillQuote();
+    ;
     empName.setText(" " + App.employee.getFirstName() + " " + App.employee.getLastName());
     empName.setFill(Color.valueOf("#012D5A"));
 
@@ -222,52 +225,54 @@ public class HomeController {
 
     // EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
   }
-    public void  fillQuote(){
-        String output = "Nah Fam";
 
-        try {
+  public void fillQuote() {
+    String output = "Nah Fam";
 
-            URL url =
-                    new URL(
-                            "https://zenquotes.io/api/random";
+    try {
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.connect();
+      URL url = new URL("https://zenquotes.io/api/random");
 
-            // Check if connect is made
-            int responseCode = conn.getResponseCode();
-            // 200 OK
-            if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode: " + responseCode);
-            } else {
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("GET");
+      conn.connect();
 
-                StringBuilder informationString = new StringBuilder();
-                Scanner scanner = new Scanner(url.openStream());
+      // Check if connect is made
+      int responseCode = conn.getResponseCode();
+      // 200 OK
+      if (responseCode != 200) {
+        throw new RuntimeException("HttpResponseCode: " + responseCode);
+      } else {
 
-                while (scanner.hasNext()) {
-                    informationString.append(scanner.nextLine());
-                }
-                // Close the scanner
-                scanner.close();
-                //        System.out.println("doctor");
-                //        System.out.println(informationString);
+        StringBuilder informationString = new StringBuilder();
+        Scanner scanner = new Scanner(url.openStream());
 
-                // JSON simple library Setup with Maven is used to convert strings to JSON
-                JSONParser parse = new JSONParser();
-                JSONArray dataObject = (JSONArray) parse.parse(String.valueOf(informationString));
-
-                // Get the first JSON object in the JSON array
-                //        System.out.println(dataObject.get(0));
-
-                JSONObject JSONOut = (JSONObject) dataObject.get(0);
-
-//               authorText.setText(JSONOut.get("a").toStirng());
-//                quoteText.setText(JSONOut.get("q").toString());
-                conn.disconnect();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        while (scanner.hasNext()) {
+          informationString.append(scanner.nextLine());
         }
+        // Close the scanner
+        scanner.close();
+        //        System.out.println("doctor");
+        //        System.out.println(informationString);
+
+        // JSON simple library Setup with Maven is used to convert strings to JSON
+        JSONParser parse = new JSONParser();
+        JSONArray dataObject = (JSONArray) parse.parse(String.valueOf(informationString));
+
+        // Get the first JSON object in the JSON array
+        //        System.out.println(dataObject.get(0));
+
+        JSONObject JSONOut = (JSONObject) dataObject.get(0);
+        String person;
+        String quote;
+        //        person = JSONOut.get("q").toStirng();
+        quote = JSONOut.get("q").toString();
+        //        authorText.setText(person);
+        quoteText.setText(quote);
+        conn.disconnect();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
 }
