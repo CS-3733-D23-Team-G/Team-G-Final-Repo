@@ -11,7 +11,7 @@ import javax.swing.*;
 public class NodeDAO implements LocationDAO {
   private static HashMap<Integer, Node> nodeHash = new HashMap<Integer, Node>();
   private static DBConnection db = new DBConnection();
-  private static String SQL;
+  private static String SQL;  
 
   @Override
   public void update(Object obj, String colName, Object value) {
