@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -159,6 +161,20 @@ public class HomeController {
         (i) -> {
           Text notif = new Text("From: " + allEmployeeHash.get(i.getEmpid()));
 
+          ImageView dismiss = new ImageView("edu/wpi/teamg/Images/blueDismiss.png");
+
+          dismiss.setOnMouseClicked(
+              event -> {
+                if (event.getButton() == MouseButton.PRIMARY) {
+                  System.out.println("Dismiss Notif " + i.getAlertID());
+                }
+              });
+
+          dismiss.setFitHeight(28);
+          dismiss.setLayoutX(670);
+          dismiss.setLayoutY(25);
+          dismiss.setPreserveRatio(true);
+
           notif.setLayoutX(50);
           notif.setLayoutY(45);
           notif.setStyle("-fx-font-size: 20; -fx-font-weight: 800; -fx-font-family: Poppins");
@@ -208,6 +224,7 @@ public class HomeController {
                   + " -fx-background-insets: 10 25 10 25;");
 
           //        notifAnchorPane.getChildren().add(requestID);
+          notifAnchorPane.getChildren().add(dismiss);
           notifAnchorPane.getChildren().add(notif);
           notifAnchorPane.getChildren().add(notifDate);
           notifAnchorPane.getChildren().add(message);

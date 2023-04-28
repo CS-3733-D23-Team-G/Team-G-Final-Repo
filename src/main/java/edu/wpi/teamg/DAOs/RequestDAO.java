@@ -174,7 +174,7 @@ public class RequestDAO implements DAO {
 
     oRequestSQL =
         "select * from iteration4.request where serveby = ? and status <> 'done' ORDER BY requestdate";
-    
+
     try {
       ps = db.getConnection().prepareStatement(oRequestSQL);
       ps.setInt(1, serveby);
