@@ -70,6 +70,7 @@ public class AddNotificationController {
     notifSubmit.setOnAction(
         event -> {
           try {
+              completeAnimation();
             storeNotificationValues();
           } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -82,7 +83,11 @@ public class AddNotificationController {
     notifType.setItems(notifTypeList);
 
     notifClear.setOnAction(event -> clearNotif());
-    notifSubmit.setOnAction(event -> allDataFilled());
+    notifSubmit.setOnAction(
+        event -> {
+          completeAnimation();
+          allDataFilled();
+        });
   }
 
   public void allDataFilled() {
@@ -104,7 +109,6 @@ public class AddNotificationController {
 
   public void storeNotificationValues() throws SQLException {
 
-    completeAnimation();
     ObservableMap selectedRecipients = notifRecipients.getSelectionModel().getSelection();
 
     AtomicReference<String> recipients = new AtomicReference<>("");

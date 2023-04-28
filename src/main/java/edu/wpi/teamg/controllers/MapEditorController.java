@@ -118,6 +118,7 @@ public class MapEditorController {
 
     updateMove();
 
+    forms.setDisable(true);
     toggSn.setSelected(true);
     pane.setVisible(true);
     nodePane.setVisible(true);
@@ -257,6 +258,7 @@ public class MapEditorController {
     help.setOnMouseClicked(
         event -> {
           try {
+            completeAnimation();
             getHelp();
 
           } catch (IOException e) {
@@ -654,6 +656,7 @@ public class MapEditorController {
 
   public void completeAnimation() {
 
+    forms.setDisable(false);
     // Form Completion PopUp
     AnchorPane rect = new AnchorPane();
     rect.setLayoutX(325);
@@ -752,6 +755,7 @@ public class MapEditorController {
           fadeOut3.play();
           fadeOut4.play();
         });
+    forms.setDisable(true);
   }
 
   void getNodesWFunctionality(ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn)
