@@ -23,7 +23,7 @@ public class DirectionsPopUpController {
   @FXML MFXButton speakButton;
 
   ArrayList<Move> updatedMoves;
-
+  TextToSpeech tts;
   ArrayList<String> path;
   PopOver wind;
 
@@ -47,7 +47,7 @@ public class DirectionsPopUpController {
   }
 
   private void speak() throws AudioException, EngineException, InterruptedException {
-    TextToSpeech tts = new TextToSpeech(pathInstructions.getText());
+    tts = new TextToSpeech(pathInstructions.getText());
   }
 
   public void setF(PopOver window, ArrayList<String> getPath, ArrayList<Move> movin) {

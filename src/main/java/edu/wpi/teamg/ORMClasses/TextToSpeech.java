@@ -19,18 +19,15 @@ public class TextToSpeech {
         "freetts.voices", "com.sun.speech.freetts.en.us" + ".cmu_us_kal.KevinVoiceDirectory");
     Central.registerEngineCentral("com.sun.speech.freetts" + ".jsapi.FreeTTSEngineCentral");
     Synthesizer synth = Central.createSynthesizer(new SynthesizerModeDesc(Locale.US));
-    synth.allocate();
-    synth.resume();
-    synth.speakPlainText(spoken, null);
-    synth.waitEngineState(Synthesizer.QUEUE_EMPTY);
-    synth.deallocate();
+    this.synth = synth;
+    this.synth.allocate();
+    this.synth.resume();
+    this.synth.speakPlainText(spoken, null);
+    this.synth.waitEngineState(Synthesizer.QUEUE_EMPTY);
+    this.synth.deallocate();
   }
 
-  public void resumeSpeech() throws AudioException {
-    synth.resume();
-  }
-
-  public void pauseSpeech() {
-    synth.pause();
+  public void pauseSpeech() throws EngineException, InterruptedException {
+    synth.cancelAll();
   }
 }
