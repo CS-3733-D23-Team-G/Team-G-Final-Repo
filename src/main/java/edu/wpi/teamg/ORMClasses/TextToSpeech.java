@@ -1,36 +1,30 @@
 package edu.wpi.teamg.ORMClasses;
 
-import java.util.Locale;
-import javax.speech.AudioException;
-import javax.speech.Central;
-import javax.speech.EngineException;
-import javax.speech.synthesis.Synthesizer;
-import javax.speech.synthesis.SynthesizerModeDesc;
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
+import lombok.Getter;
+import lombok.Setter;
 
 public class TextToSpeech {
-  String spoken;
-  Synthesizer synth = Central.createSynthesizer(new SynthesizerModeDesc(Locale.US));
+  @Getter @Setter String spoken;
+  public final String voice_name = "kevin16";
+  Voice voice;
 
-  public TextToSpeech() throws EngineException {}
-
-  public TextToSpeech(String spoken) throws EngineException, AudioException, InterruptedException {
-    this.spoken = spoken;
+  public TextToSpeech(String spoken) {
     System.setProperty(
-        "freetts.voices", "com.sun.speech.freetts.en.us" + ".cmu_us_kal.KevinVoiceDirectory");
-    Central.registerEngineCentral("com.sun.speech.freetts" + ".jsapi.FreeTTSEngineCentral");
-    Synthesizer synth = Central.createSynthesizer(new SynthesizerModeDesc(Locale.US));
-    synth.allocate();
-    synth.resume();
-    synth.speakPlainText(spoken, null);
-    synth.waitEngineState(Synthesizer.QUEUE_EMPTY);
-    synth.deallocate();
+        "freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+    this.spoken = spoken;
   }
 
-  public void resumeSpeech() throws AudioException {
-    synth.resume();
+  public void speak() {
+    VoiceManager vm = VoiceManager.getInstance();
+    voice = vm.getVoice(voice_name);
+    voice.allocate();
+
+    voice.speak(spoken);
   }
 
-  public void pauseSpeech() {
-    synth.pause();
-  }
+  public void pause() {}
+
+  public void resume() {}
 }

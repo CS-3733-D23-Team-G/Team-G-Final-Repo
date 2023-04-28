@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
-import javax.speech.AudioException;
-import javax.speech.EngineException;
 import org.controlsfx.control.PopOver;
 
 public class DirectionsPopUpController {
@@ -37,16 +35,13 @@ public class DirectionsPopUpController {
     pathInstructions.setEditable(false);
     speakButton.setOnMouseClicked(
         event -> {
-          try {
-            speak();
-          } catch (AudioException | InterruptedException | EngineException e) {
-            throw new RuntimeException(e);
-          }
+          speak();
         });
   }
 
-  private void speak() throws AudioException, EngineException, InterruptedException {
+  private void speak() {
     TextToSpeech tts = new TextToSpeech(pathInstructions.getText());
+    tts.speak();
   }
 
   public void setF(PopOver window, ArrayList<String> getPath, ArrayList<Move> movin) {
