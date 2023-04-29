@@ -73,7 +73,8 @@ public class MaintenanceRequestController {
   static String specifiedMaintain;
 
   DAORepo dao = new DAORepo();
-  MFXCheckbox[] checkbox;
+  private MFXCheckbox[] checkbox;
+  private boolean somethingSelected = false;
 
   @FXML
   public void initialize() throws SQLException {
@@ -110,16 +111,16 @@ public class MaintenanceRequestController {
     }
 
     checkFields.setVisible(false);
+    finalTreeLevel.setVisible(false);
+    Problemdes.setVisible(false);
 
     for (MFXCheckbox box : checkbox) {
-      box.setOnAction(
-          event -> {
-            if (box.isSelected()) {
-              
-              System.out.println("It was selected");
-            }
-            setString(box);
-          });
+      box.setOnAction(event -> setString(box.getText()));
+    }
+    if (somethingSelected) {
+      checkFields.setVisible(true);
+      finalTreeLevel.setVisible(true);
+      Problemdes.setVisible(true);
     }
 
     maintainClearButton.setOnAction(event -> clearAllData());
@@ -149,8 +150,6 @@ public class MaintenanceRequestController {
         (i, m) -> {
           locationNames.add(m);
         });
-    finalTreeLevel.setVisible(false);
-    Problemdes.setVisible(false);
 
     Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
 
@@ -165,20 +164,15 @@ public class MaintenanceRequestController {
     Platform.exit();
   }
 
-  public void setString(MFXCheckbox box1) {
+  public void setString(String box1) {
     String answer = "";
-    box1.setSelected(true);
     for (MFXCheckbox box : checkbox) {
-      if (box.isSelected()) {
-        answer = box.getText();
-        for (MFXCheckbox box2 : checkbox) {
-          if (!box1.equals(box2)) {
-            box.setSelected(false);
-          }
-        }
+      if (!box.getText().equals(box1)) {
+        box.setSelected(false);
       }
     }
-    typeOfMaintain = answer;
+    somethingSelected = true;
+    typeOfMaintain = box1;
   }
 
   public void storeMaintenanceValues() throws SQLException {
