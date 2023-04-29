@@ -137,7 +137,7 @@ public class AddNotificationController {
   }
 
   public void clearNotif() {
-    notifRecipients.setItems(null);
+    notifRecipients.getSelectionModel().getSelection().clear();
     notifType.setValue(null);
     notifMessage.setText("");
     notifDate.setValue(null);

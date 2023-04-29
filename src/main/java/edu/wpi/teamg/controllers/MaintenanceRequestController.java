@@ -38,18 +38,45 @@ public class MaintenanceRequestController {
 
   @FXML MFXTextField maintainPhoneNumber;
 
-  @FXML MFXCheckbox custodialCheck;
-  @FXML MFXCheckbox technologicalCheck;
-  @FXML MFXCheckbox mechanicalCheck;
-  @FXML MFXCheckbox checkTree1;
-  @FXML MFXCheckbox checkTree2;
-  @FXML MFXCheckbox checkTree3;
-  @FXML MFXCheckbox checkTree4;
+  @FXML MFXCheckbox electrical;
+  @FXML MFXCheckbox waste;
+  @FXML MFXCheckbox roof;
+  @FXML MFXCheckbox move;
+  @FXML MFXCheckbox floor;
+  @FXML MFXCheckbox glass;
+  @FXML MFXCheckbox paint;
+  @FXML MFXCheckbox custodial;
+  @FXML MFXCheckbox keyandlock;
+  @FXML MFXCheckbox heat;
+  @FXML MFXCheckbox ventilation;
+  @FXML MFXCheckbox airCond;
+  @FXML MFXCheckbox recycle;
+  @FXML MFXCheckbox officeSer;
+  @FXML MFXCheckbox land;
+  @FXML MFXCheckbox elevator;
+  @FXML MFXCheckbox pest;
+  @FXML MFXCheckbox appliance;
 
-  @FXML Line lineTree1;
-  @FXML Text textTree1;
-  @FXML Line lineTree2;
-  @FXML Text textTree2;
+  MFXCheckbox[] checkbox = {
+    electrical,
+    waste,
+    roof,
+    move,
+    floor,
+    glass,
+    paint,
+    custodial,
+    keyandlock,
+    heat,
+    ventilation,
+    airCond,
+    recycle,
+    officeSer,
+    land,
+    elevator,
+    pest,
+    appliance
+  };
 
   @FXML TextArea finalTreeLevel;
 
@@ -83,14 +110,9 @@ public class MaintenanceRequestController {
 
     checkFields.setVisible(false);
 
-    custodialCheck.setOnAction(event -> checkBoxTreeLv1("Custodial"));
-    mechanicalCheck.setOnAction(event -> checkBoxTreeLv1("Mechanical"));
-    technologicalCheck.setOnAction(event -> checkBoxTreeLv1("Technological"));
-    checkTree1.setOnAction(event -> checkBoxTreeLv2("1"));
-    checkTree2.setOnAction(event -> checkBoxTreeLv2("2"));
-    checkTree3.setOnAction(event -> checkBoxTreeLv2("3"));
-    checkTree4.setOnAction(event -> checkBoxTreeLv2("4"));
-    ;
+    for (MFXCheckbox box : checkbox) {
+      box.setOnAction(event -> setString(box));
+    }
 
     maintainClearButton.setOnAction(event -> clearAllData());
     maintainRecipient.getText();
@@ -133,185 +155,21 @@ public class MaintenanceRequestController {
     Platform.exit();
   }
 
-  public void checkBoxTreeLv1(String type) {
-
-    if (custodialCheck.isSelected() == false
-        && mechanicalCheck.isSelected() == false
-        && technologicalCheck.isSelected() == false) {
-      textTree1.setVisible(false);
-      lineTree1.setVisible(false);
-
-      textTree2.setVisible(false);
-      lineTree2.setVisible(false);
-      finalTreeLevel.setVisible(false);
-
-      // Text
-      checkTree1.setText("");
-      checkTree2.setText("");
-      checkTree3.setText("");
-      checkTree4.setText("");
-
-      // Checked
-      checkTree1.setSelected(false);
-      checkTree2.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-
-      // visibility
-      checkTree1.setVisible(false);
-      checkTree2.setVisible(false);
-      checkTree3.setVisible(false);
-      checkTree4.setVisible(false);
-      return;
+  public void setString(MFXCheckbox box1) {
+    String answer = "";
+    for (MFXCheckbox box : checkbox) {
+      if (box.equals(box1)) {
+        answer = box1.getText();
+      }
     }
-
-    if (type == "Custodial") {
-      typeOfMaintain = "Custodial";
-      mechanicalCheck.setSelected(false);
-      technologicalCheck.setSelected(false);
-      textTree1.setVisible(true);
-      lineTree1.setVisible(true);
-
-      // Text
-      checkTree1.setText("Cleaning");
-      checkTree2.setText("Moving");
-      checkTree3.setText("Repairing");
-      checkTree4.setText("Other");
-
-      // Checked
-      checkTree1.setSelected(false);
-      checkTree2.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-      // visibility
-      checkTree1.setVisible(true);
-      checkTree2.setVisible(true);
-      checkTree3.setVisible(true);
-      checkTree4.setVisible(true);
-
-      textTree2.setVisible(false);
-      lineTree2.setVisible(false);
-      finalTreeLevel.setVisible(false);
-    }
-    if (type == "Mechanical") {
-      typeOfMaintain = "Mechanical";
-      custodialCheck.setSelected(false);
-      technologicalCheck.setSelected(false);
-      textTree1.setVisible(true);
-      lineTree1.setVisible(true);
-
-      // Text
-      checkTree1.setText("Equipment Repair");
-      checkTree2.setText("Machine Repair");
-      checkTree3.setText("Other");
-      checkTree4.setText("");
-      // Checked
-      checkTree1.setSelected(false);
-      checkTree2.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-      // visibility
-      checkTree1.setVisible(true);
-      checkTree2.setVisible(true);
-      checkTree3.setVisible(true);
-      checkTree4.setVisible(false);
-
-      textTree2.setVisible(false);
-      lineTree2.setVisible(false);
-      finalTreeLevel.setVisible(false);
-    }
-    if (type == "Technological") {
-      typeOfMaintain = "Technological";
-      mechanicalCheck.setSelected(false);
-      custodialCheck.setSelected(false);
-      textTree1.setVisible(true);
-      lineTree1.setVisible(true);
-
-      // Text
-      checkTree1.setText("Hardware Issue");
-      checkTree2.setText("Software Issue");
-      checkTree3.setText("Other");
-      checkTree4.setText("");
-      // Checked
-      checkTree1.setSelected(false);
-      checkTree2.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-      // visibility
-      checkTree1.setVisible(true);
-      checkTree2.setVisible(true);
-      checkTree3.setVisible(true);
-      checkTree4.setVisible(false);
-
-      textTree2.setVisible(false);
-      lineTree2.setVisible(false);
-      finalTreeLevel.setVisible(false);
-    }
-  }
-
-  public void checkBoxTreeLv2(String type) {
-
-    if (checkTree1.isSelected() == false
-        && checkTree2.isSelected() == false
-        && checkTree3.isSelected() == false
-        && checkTree4.isSelected() == false) {
-      textTree2.setVisible(false);
-      lineTree2.setVisible(false);
-      // Text
-      finalTreeLevel.setText("");
-      finalTreeLevel.setVisible(false);
-      return;
-    }
-
-    if (type == "1") {
-      specifiedMaintain = checkTree1.getText();
-
-      checkTree2.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-
-      textTree2.setVisible(true);
-      lineTree2.setVisible(true);
-      finalTreeLevel.setVisible(true);
-    }
-    if (type == "2") {
-      specifiedMaintain = checkTree2.getText();
-
-      checkTree1.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-
-      textTree2.setVisible(true);
-      lineTree2.setVisible(true);
-      finalTreeLevel.setVisible(true);
-    }
-    if (type == "3") {
-      specifiedMaintain = checkTree3.getText();
-      checkTree2.setSelected(false);
-      checkTree1.setSelected(false);
-      checkTree4.setSelected(false);
-
-      textTree2.setVisible(true);
-      lineTree2.setVisible(true);
-      finalTreeLevel.setVisible(true);
-    }
-    if (type == "4") {
-      specifiedMaintain = checkTree4.getText();
-      checkTree2.setSelected(false);
-      checkTree1.setSelected(false);
-      checkTree3.setSelected(false);
-
-      textTree2.setVisible(true);
-      lineTree2.setVisible(true);
-      finalTreeLevel.setVisible(true);
-    }
+    typeOfMaintain = answer;
   }
 
   public void storeMaintenanceValues() throws SQLException {
 
     HashMap<Integer, Employee> employeeHash = dao.getAllEmployees();
 
-    System.out.println(typeOfMaintain + " " + specifiedMaintain + " " + finalTreeLevel.getText());
+    System.out.println(typeOfMaintain + " " + finalTreeLevel.getText());
 
     Employee signedIn = employeeHash.get(App.employee.getEmpID());
 
@@ -333,7 +191,7 @@ public class MaintenanceRequestController {
             maintainRecipient.getText(),
             maintainPhoneNumber.getText(),
             typeOfMaintain,
-            specifiedMaintain,
+            typeOfMaintain,
             finalTreeLevel.getText());
 
     dao.insertMaintenance(mr);
@@ -373,19 +231,23 @@ public class MaintenanceRequestController {
     return t;
   }
 
+  public boolean checkBoxSlected() {
+    boolean answer = false;
+    for (MFXCheckbox box : checkbox) {
+      if (box.isSelected()) {
+        answer = true;
+      }
+    }
+    return answer;
+  }
+
   public void allDataFilled() {
     if (!(maintainRecipient.getText().equals("")
             || maintainPhoneNumber.getText().equals("")
             || maintainDate.getText().equals("")
             || maintainTime.getText().equals("")
             || locationSearchDropdown.getValue() == null)
-        || (mechanicalCheck.isSelected() == false
-            && custodialCheck.isSelected() == false
-            && technologicalCheck.isSelected() == false)
-        || (checkTree1.isSelected() == false
-            && checkTree2.isSelected() == false
-            && checkTree3.isSelected() == false
-            && checkTree4.isSelected() == false)
+        || checkBoxSlected()
         || finalTreeLevel.getText().equals("")) {
 
       try {
@@ -408,27 +270,13 @@ public class MaintenanceRequestController {
     locationSearchDropdown.setValue(null);
     employeeSearchDropdown.setValue(null);
 
-    mechanicalCheck.setSelected(false);
-    technologicalCheck.setSelected(false);
-    custodialCheck.setSelected(false);
-    checkTree1.setSelected(false);
-    checkTree2.setSelected(false);
-    checkTree3.setSelected(false);
-    checkTree4.setSelected(false);
+    for (MFXCheckbox box : checkbox) {
+      box.setSelected(false);
+    }
     finalTreeLevel.setText("");
 
     finalTreeLevel.setVisible(false);
-    checkTree1.setVisible(false);
-    checkTree2.setVisible(false);
-    checkTree3.setVisible(false);
-    checkTree4.setVisible(false);
-    mechanicalCheck.setVisible(false);
-    technologicalCheck.setVisible(false);
-    custodialCheck.setVisible(false);
-    textTree1.setVisible(false);
-    textTree2.setVisible(false);
-    lineTree2.setVisible(false);
-    lineTree1.setVisible(false);
+
     return;
   }
 }
