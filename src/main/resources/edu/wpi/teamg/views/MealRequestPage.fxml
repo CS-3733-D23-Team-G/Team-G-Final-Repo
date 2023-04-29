@@ -6,6 +6,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -110,20 +111,21 @@
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </MFXDatePicker>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Time">
-                                       <font>
-                                          <Font size="22.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" top="50.0" />
-                                       </VBox.margin>
-                                    </Text>
-                                    <Line endX="-35.70710754394531" endY="-0.41421353816986084" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
-                                    <MFXTextField fx:id="mealTimeOfDeliver" minHeight="-Infinity" prefHeight="47.0" prefWidth="281.0" styleClass="requestTextBox">
-                                       <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
-                                       </VBox.margin>
-                                    </MFXTextField>
+                                    <AnchorPane prefHeight="112.0" prefWidth="296.0">
+                                       <children>
+                                          <Text fill="WHITE" layoutX="-1.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Time">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Text>
+                                          <Line endX="-35.70710754394531" endY="-0.41421353816986084" layoutX="99.0" layoutY="96.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="70.0" prefWidth="296.0">
+                                       <children>
+                                          <ComboBox layoutY="1.0" prefHeight="70.0" prefWidth="284.0" />
+                                       </children>
+                                    </AnchorPane>
                                     <Text fx:id="assignToText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Assign To">
                                        <font>
                                           <Font size="22.0" />
@@ -159,6 +161,7 @@
                                        <font>
                                           <Font size="30.0" />
                                        </font></Label>
+                                    <ComboBox prefWidth="150.0" />
                                  </children>
                                  <padding>
                                     <Insets left="50.0" right="25.0" />
