@@ -21,12 +21,12 @@ public class Navigation {
 
       if (screen == Screen.SIGNAGE_SCREENSAVER_PAGE) {
         Logout();
-        PaitentBanner();
+        PatientBanner();
       } else if (screen == Screen.PATHFINDING_PAGE) {
         if (EmployeeCheck) {
           AdminBannerManager();
         } else {
-          PaitentBanner();
+          PatientBanner();
         }
       } else if (screen == Screen.LOGIN_PAGE) {
         LoginBanner();
@@ -34,7 +34,7 @@ public class Navigation {
         if (EmployeeCheck) {
           AdminBannerManager();
         } else {
-          PaitentBanner();
+          PatientBanner();
         }
       } else if (screen != Screen.LOGIN_PAGE
           && screen != Screen.PATHFINDING_PAGE
@@ -60,7 +60,7 @@ public class Navigation {
     }
   }
 
-  public static void PaitentBanner() throws IOException {
+  public static void PatientBanner() throws IOException {
     final FXMLLoader BannerLoaderPatient =
         new FXMLLoader(App.class.getResource("views/PatientBanner.fxml"));
     final Node PatientBanner = BannerLoaderPatient.load();
