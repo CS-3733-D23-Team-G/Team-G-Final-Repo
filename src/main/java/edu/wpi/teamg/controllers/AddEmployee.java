@@ -9,6 +9,7 @@ import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,6 +31,7 @@ public class AddEmployee {
 
   @FXML SearchableComboBox serveDrop;
 
+  @FXML MFXToggleButton adminToggle;
   ObservableList<String> serveList =
       FXCollections.observableArrayList(
           "Meal Request",
