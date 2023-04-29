@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -41,13 +40,12 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="25.0" />
+                                          <Insets top="25.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line fx:id="t" endX="-39.12132263183594" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXDatePicker fx:id="notifDate" minHeight="-Infinity" prefHeight="60.0" prefWidth="281.0" style="-fx-background-color: #D9D9D9;">
                                        <VBox.margin>
-                                          <Insets top="15.0" />
+                                          <Insets top="5.0" />
                                        </VBox.margin>
                                        <font>
                                           <Font size="15.0" />
@@ -58,16 +56,15 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="25.0" />
+                                          <Insets top="25.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-37.60960388183594" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXTextField fx:id="notifTime" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXTextField>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Type">
@@ -75,13 +72,12 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="25.0" />
+                                          <Insets top="25.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="-38.56175231933594" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXComboBox fx:id="notifType" maxHeight="75.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="281.0" styleClass="requestTextBox">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXComboBox>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Message">
@@ -89,16 +85,15 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="25.0" />
+                                          <Insets top="25.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="19.461456298828125" startX="134.0442352294922" stroke="#f6bd38" strokeWidth="3.0" />
                                     <TextArea fx:id="notifMessage" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #D9D9D9;" styleClass="notes" stylesheets="@style.css" wrapText="true">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
                                  </children>
@@ -116,13 +111,12 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" top="25.0" />
+                                          <Insets top="25.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Line endX="32.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXCheckListView fx:id="notifRecipients" prefHeight="522.0" prefWidth="281.0">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXCheckListView>
                                     <Label fx:id="checkFields" prefHeight="17.0" prefWidth="377.0" styleClass="allFilledError" stylesheets="@style.css" text="Not All Fields Are Filled." textFill="#d01616">

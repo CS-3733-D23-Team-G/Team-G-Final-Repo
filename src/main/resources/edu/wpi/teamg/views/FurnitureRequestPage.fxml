@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -46,13 +45,12 @@
                                                         <Font size="22.0" />
                                                     </font>
                                                     <VBox.margin>
-                                                        <Insets bottom="5.0" top="50.0" />
+                                                        <Insets top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                                <Line endX="24.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                                 <MFXTextField fx:id="furnRecipient" minHeight="-Infinity" prefHeight="30.0" prefWidth="327.0" styleClass="requestTextBox" stylesheets="@style.css">
                                                     <VBox.margin>
-                                                        <Insets right="15.0" top="15.0" />
+                                                        <Insets right="15.0" top="5.0" />
                                                     </VBox.margin>
                                                 </MFXTextField>
                                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Delivery Location">
@@ -60,13 +58,12 @@
                                                         <Font size="22.0" />
                                                     </font>
                                                     <VBox.margin>
-                                                        <Insets bottom="5.0" top="50.0" />
+                                                        <Insets top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                                <Line endX="126.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXFilterComboBox fx:id="locationSearchDropdown" maxHeight="63.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="285.0" styleClass="requestTextBox_MFX">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXFilterComboBox>
                                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Notes">
@@ -74,19 +71,21 @@
                                                         <Font size="22.0" />
                                                     </font>
                                                     <VBox.margin>
-                                                        <Insets bottom="5.0" top="50.0" />
+                                                        <Insets top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                                <Line endX="-22.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <TextArea fx:id="furnNotesData" prefHeight="200.0" prefWidth="200.0" styleClass="notes">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </TextArea>
                                             </children>
                                             <padding>
                                                 <Insets left="50.0" right="25.0" />
                                             </padding>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
                                         </VBox>
                                         <VBox fx:id="vboxWithAssignTo" prefHeight="200.0" prefWidth="436.0" styleClass="mealLocationNotes_vbox">
                                             <children>
@@ -95,13 +94,12 @@
                                                         <Font size="22.0" />
                                                     </font>
                                                     <VBox.margin>
-                                                        <Insets bottom="5.0" top="50.0" />
+                                                        <Insets top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                                <Line endX="-36.5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                                 <MFXDatePicker fx:id="furnDate" minHeight="-Infinity" prefHeight="30.0" prefWidth="324.0" styleClass="requestTextBox_MFX">
                                                     <VBox.margin>
-                                                        <Insets right="15.0" top="15.0" />
+                                                        <Insets right="15.0" top="5.0" />
                                                     </VBox.margin>
                                                 </MFXDatePicker>
                                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Time">
@@ -109,13 +107,12 @@
                                                         <Font size="22.0" />
                                                     </font>
                                                     <VBox.margin>
-                                                        <Insets bottom="5.0" top="50.0" />
+                                                        <Insets top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                                <Line endX="-37.12132263183594" endY="-2.574920654296875E-5" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                                 <MFXTextField fx:id="furnTimeOfDeliver" minHeight="-Infinity" prefHeight="30.0" prefWidth="317.0" styleClass="requestTextBox">
                                                     <VBox.margin>
-                                                        <Insets right="15.0" top="15.0" />
+                                                        <Insets right="15.0" top="5.0" />
                                                     </VBox.margin>
                                                 </MFXTextField>
                                                 <Text fx:id="assignToText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Assign To">
@@ -123,13 +120,12 @@
                                                         <Font size="22.0" />
                                                     </font>
                                                     <VBox.margin>
-                                                        <Insets bottom="5.0" top="50.0" />
+                                                        <Insets top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                                <Line fx:id="assignToLine" endX="24.878677368164062" endY="-1.242640495300293" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                     <MFXFilterComboBox fx:id="employeeSearchDropdown" maxHeight="63.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="285.0" styleClass="requestTextBox_MFX">
                                        <VBox.margin>
-                                          <Insets right="15.0" top="15.0" />
+                                          <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXFilterComboBox>
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
@@ -146,7 +142,7 @@
                                                         </MFXButton>
                                                     </children>
                                                     <VBox.margin>
-                                                        <Insets top="50.0" />
+                                                        <Insets top="75.0" />
                                                     </VBox.margin>
                                                 </HBox>
                                     <Label fx:id="checkFields" prefHeight="17.0" prefWidth="377.0" styleClass="allFilledError" stylesheets="@style.css" text="Not All Fields Are Filled." textFill="#d01616">

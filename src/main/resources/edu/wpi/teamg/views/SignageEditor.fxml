@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import java.lang.String?>
@@ -90,50 +90,69 @@
                   <MFXButton fx:id="clearField7" buttonType="RAISED" layoutX="875.0" layoutY="241.0" prefHeight="45.0" prefWidth="105.0" styleClass="signageClearButton" text="Clear" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="345.0" />
                   <MFXButton fx:id="clearField8" buttonType="RAISED" layoutX="875.0" layoutY="391.0" prefHeight="45.0" prefWidth="105.0" styleClass="signageClearButton" text="Clear" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="495.0" />
                   <MFXButton fx:id="clearField9" buttonType="RAISED" layoutX="875.0" layoutY="541.0" prefHeight="45.0" prefWidth="105.0" styleClass="signageClearButton" text="Clear" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="645.0" />
-                  <MFXButton fx:id="clearField10" buttonType="RAISED" layoutX="875.0" layoutY="691.0" prefHeight="45.0" prefWidth="105.0" styleClass="signageClearButton" text="Clear" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="795.0" />
-                  <MFXDatePicker fx:id="date" layoutX="118.0" layoutY="92.0" prefHeight="33.0" prefWidth="295.0" styleClass="signage_datePicker" visible="false" AnchorPane.leftAnchor="110.0" />
-                  <HBox prefHeight="73.0" prefWidth="611.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="100.0">
+                  <MFXButton fx:id="clearField10" buttonType="RAISED" layoutX="875.0" layoutY="691.0" prefHeight="45.0" prefWidth="105.0" styleClass="signageClearButton" text="Clear" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="795.0" />
+                  <HBox alignment="TOP_CENTER" prefHeight="73.0" prefWidth="1410.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="100.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Month:" wrappingWidth="163.47006225585938">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location:" wrappingWidth="119.80340576171875">
                            <font>
-                              <Font size="48.0" />
+                              <Font size="30.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="20.0" top="15.0" />
+                           </HBox.margin>
                         </Text>
-                        <MFXFilterComboBox fx:id="monthDrop" minHeight="10.0" minWidth="10.0" prefHeight="55.0" prefWidth="150.0" styleClass="requestTextBox_MFX">
+                        <MFXFilterComboBox fx:id="locationDrop" minHeight="10.0" minWidth="10.0" prefHeight="55.0" prefWidth="286.0" styleClass="requestTextBox_MFX">
                            <HBox.margin>
                               <Insets left="5.0" top="5.0" />
                            </HBox.margin>
                         </MFXFilterComboBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year:" wrappingWidth="108.80340576171875">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Month:" wrappingWidth="98.47006225585938">
                            <font>
-                              <Font size="48.0" />
+                              <Font size="30.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="20.0" top="15.0" />
                            </HBox.margin>
                         </Text>
-                        <MFXFilterComboBox fx:id="yearDrop" minHeight="10.0" minWidth="10.0" prefHeight="55.0" prefWidth="150.0" styleClass="requestTextBox_MFX">
+                        <MFXFilterComboBox fx:id="monthDrop" maxHeight="-Infinity" minHeight="10.0" minWidth="10.0" prefHeight="26.0" prefWidth="85.0" styleClass="requestTextBox_MFX">
                            <HBox.margin>
                               <Insets left="5.0" top="5.0" />
                            </HBox.margin>
                         </MFXFilterComboBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="71.0" prefWidth="524.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="100.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kiosk #:" wrappingWidth="166.13671875">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year:" wrappingWidth="67.80340576171875">
                            <font>
-                              <Font size="48.0" />
+                              <Font size="30.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="20.0" top="15.0" />
                            </HBox.margin>
                         </Text>
-                        <MFXComboBox fx:id="kioskDrop" minHeight="-Infinity" prefWidth="150.0" styleClass="requestTextBox_MFX">
+                        <MFXFilterComboBox fx:id="yearDrop" minHeight="10.0" minWidth="10.0" prefHeight="55.0" prefWidth="85.0" styleClass="requestTextBox_MFX">
                            <HBox.margin>
-                              <Insets left="15.0" top="5.0" />
+                              <Insets left="5.0" top="5.0" />
                            </HBox.margin>
-                        </MFXComboBox>
+                        </MFXFilterComboBox>
+                        <MFXCheckbox fx:id="daySpecify" prefHeight="60.0" prefWidth="128.0" styleClass="signageCheckBox" text="Specify Date?">
+                           <HBox.margin>
+                              <Insets left="20.0" top="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </MFXCheckbox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Specific Date:" visible="false" wrappingWidth="178.47003173828125">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" top="15.0" />
+                           </HBox.margin>
+                        </Text>
+                        <MFXDatePicker fx:id="date" prefHeight="33.0" prefWidth="295.0" styleClass="requestTextBox_MFX" visible="false">
+                           <HBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </HBox.margin>
+                        </MFXDatePicker>
                         <MFXButton fx:id="submitSignage" minHeight="10.0" minWidth="10.0" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #F6BD38;; -fx-text-fill: #012D5A;" styleClass="request_submit_button" text="Submit">
                            <HBox.margin>
                               <Insets left="20.0" top="5.0" />
@@ -141,7 +160,6 @@
                         </MFXButton>
                      </children>
                   </HBox>
-                  <MFXButton fx:id="daySpecify" layoutX="193.0" layoutY="62.0" minHeight="10.0" minWidth="10.0" prefHeight="63.0" prefWidth="185.0" styleClass="signage_clear_button" text="Specify Day" visible="false" AnchorPane.rightAnchor="1542.0" AnchorPane.topAnchor="62.0" />
                </children>
                <styleClass>
                   <String fx:value="rest_of_page" />

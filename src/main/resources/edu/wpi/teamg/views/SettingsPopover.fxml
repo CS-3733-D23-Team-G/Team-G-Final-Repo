@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane minHeight="-Infinity" prefHeight="570.0" prefWidth="500.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SettingsPopOverController">
+   <center>
+      <HBox prefHeight="400.0" prefWidth="421.0" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <AnchorPane minWidth="-Infinity" prefHeight="675.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="400.0" prefWidth="500.0" style="-fx-border-color: #012D5A; -fx-border-width: 3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label style="-fx-font-size: 30; -fx-font-weight: 800; -fx-text-fill: #012D5A;" text="Settings">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" top="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-size: 20; -fx-font-weight: 800; -fx-text-fill: #012D5A;" text="Kiosk Location">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This setting, along with the system date, will determine what signage configuration will be display on the screensaver." wrappingWidth="440.291015625">
+                     <VBox.margin>
+                        <Insets left="25.0" right="25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <MFXFilterComboBox fx:id="locationDrop" minHeight="-Infinity" prefHeight="40.0" prefWidth="300.0">
+                     <VBox.margin>
+                        <Insets left="25.0" top="25.0" />
+                     </VBox.margin>
+                  </MFXFilterComboBox>
+                  <Line endX="339.29290771484375" startX="-100.0" stroke="#d9d9d9" strokeWidth="2.0">
+                     <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </VBox.margin>
+                  </Line>
+                  <Label style="-fx-font-size: 20; -fx-font-weight: 800; -fx-text-fill: #012D5A;" text="Pathfinding Algorithm">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose what search algorithm will be used for pathfinding" wrappingWidth="440.291015625">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Text>
+                  <HBox prefHeight="82.0" prefWidth="145.0" styleClass="algoSelect_hbox">
+                     <children>
+                        <MFXCheckbox fx:id="aStarCheckBox" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="A*">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </MFXCheckbox>
+                        <MFXCheckbox fx:id="bfsCheckBox" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="BFS">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </MFXCheckbox>
+                        <MFXCheckbox fx:id="dfsCheckBox" alignment="CENTER" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="DFS">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </MFXCheckbox>
+                        <MFXCheckbox fx:id="Dijkstracheckbox" alignment="CENTER" prefHeight="57.0" prefWidth="156.0" styleClass="algoCheckBox" text="Dijkstra">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </MFXCheckbox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label style="-fx-font-size: 20; -fx-font-weight: 800; -fx-text-fill: #012D5A;" text="Database ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose where information will be retrieve in the application" wrappingWidth="440.291015625">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Text>
+                  <HBox prefHeight="0.0" prefWidth="494.0" styleClass="algoSelect_hbox">
+                     <children>
+                        <MFXCheckbox fx:id="awsCheckBox" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="AWS RDS ">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </MFXCheckbox>
+                        <MFXCheckbox fx:id="clientSideCheckBox" prefHeight="57.0" prefWidth="236.0" styleClass="algoCheckBox" text="client-server">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </MFXCheckbox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
