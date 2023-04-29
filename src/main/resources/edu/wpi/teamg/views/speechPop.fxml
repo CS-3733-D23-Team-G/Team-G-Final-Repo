@@ -8,6 +8,6 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SpeechPopController">
    <children>
       <Label fx:id="speakLabel" layoutX="197.0" layoutY="213.0" prefHeight="97.0" prefWidth="207.0" textAlignment="CENTER" />
-      <MFXButton fx:id="speakButton" layoutX="197.0" layoutY="92.0" prefHeight="97.0" prefWidth="207.0" text="Use Microphone" />
+      <MFXButton fx:id="speakButton" layoutX="197.0" layoutY="92.0" prefHeight="97.0" prefWidth="207.0" styleClass="button_confirm" stylesheets="@style.css" text="Use Microphone" />
    </children>
 </AnchorPane>

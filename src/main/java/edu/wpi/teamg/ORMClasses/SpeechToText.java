@@ -5,12 +5,11 @@ import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import lombok.Getter;
+import lombok.Setter;
 
 public class SpeechToText {
   Configuration config = new Configuration();
@@ -48,7 +47,7 @@ public class SpeechToText {
     recog.stopRecognition();
   }
 
-  public void startCommand(){
+  public void startCommand() {
     recog.startRecognition(true);
   }
 

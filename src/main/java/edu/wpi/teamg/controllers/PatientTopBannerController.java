@@ -1,7 +1,6 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
-import edu.wpi.teamg.ORMClasses.SpeechToText;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -26,6 +25,8 @@ public class PatientTopBannerController {
   static PopOver window = new PopOver();
 
   static PopOver dictionaryPopOver = new PopOver();
+
+  static PopOver listenPopOver = new PopOver();
 
   @FXML
   public void initialize() {
@@ -63,7 +64,18 @@ public class PatientTopBannerController {
   }
 
   private void listenEvent() throws IOException {
-    
+    var loader = new FXMLLoader(App.class.getResource("views/speechPop.fxml"));
+    listenPopOver.setContentNode(loader.load());
+
+    listenPopOver.setArrowSize(0);
+    listenPopOver.setTitle("Awaiting Command");
+
+    listenPopOver.setHeaderAlwaysVisible(true);
+
+    SpeechPopController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    listenPopOver.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void exit() {
