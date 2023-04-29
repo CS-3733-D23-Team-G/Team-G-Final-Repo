@@ -26,7 +26,7 @@
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" stylesheets="@style.css">
                     <children>
 
-                        <AnchorPane layoutX="123.0" layoutY="111.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                        <AnchorPane layoutX="100.0" layoutY="92.0" maxHeight="773.0" maxWidth="756.0" prefHeight="773.0" prefWidth="756.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="92.0">
 
                             <styleClass>
                                 <String fx:value="widget_background" />
@@ -34,7 +34,7 @@
                             </styleClass>
                             <children>
 
-                                <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <HBox prefHeight="764.0" prefWidth="760.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <VBox prefHeight="200.0" prefWidth="198.0" styleClass="mealLocationNotes_vbox">
                                             <children>
@@ -82,7 +82,7 @@
                                                 <Insets left="50.0" right="25.0" />
                                             </padding>
                                         </VBox>
-                                        <VBox fx:id="vboxWithAssignTo" prefHeight="200.0" prefWidth="436.0" styleClass="mealLocationNotes_vbox">
+                                        <VBox fx:id="vboxWithAssignTo" prefHeight="745.0" prefWidth="374.0" styleClass="mealLocationNotes_vbox">
                                             <children>
                                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Date Needed By">
                                                     <font>
@@ -161,15 +161,15 @@
                     </children>
                 </AnchorPane>
 
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" stylesheets="@style.css">
+                <AnchorPane prefHeight="979.0" prefWidth="200.0" styleClass="half_bottom_page" stylesheets="@style.css">
                <children>
-                  <AnchorPane layoutX="103.0" layoutY="111.0" prefHeight="200.0" prefWidth="436.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="103.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="111.0">
+                  <AnchorPane layoutX="100.0" layoutY="77.0" prefHeight="200.0" prefWidth="436.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="92.0">
                      <styleClass>
                         <String fx:value="widget_background" />
                         <String fx:value="widget_homepage_pair" />
                      </styleClass>
                      <children>
-                        <VBox prefHeight="782.0" prefWidth="758.0">
+                        <VBox layoutX="-5.0" layoutY="25.0" prefHeight="756.0" prefWidth="757.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="25.0">
                            <padding>
                               <Insets left="50.0" right="25.0" />
                            </padding>
@@ -370,7 +370,7 @@
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <TextArea fx:id="finalTreeLevel" layoutX="2.0" layoutY="33.0" prefHeight="200.0" prefWidth="679.0" />
-                                    <Text fx:id="notes" fill="WHITE" layoutX="2.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Please describe your problem or request ">
+                                    <Text fx:id="Problemdes" fill="WHITE" layoutX="2.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Please describe your problem or request ">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -383,7 +383,7 @@
                   </AnchorPane>
                </children>
                <HBox.margin>
-                  <Insets top="25.0" />
+                  <Insets />
                </HBox.margin>
                 </AnchorPane>
             </children>

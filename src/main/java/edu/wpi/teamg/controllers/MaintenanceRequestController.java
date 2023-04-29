@@ -57,29 +57,8 @@ public class MaintenanceRequestController {
   @FXML MFXCheckbox pest;
   @FXML MFXCheckbox appliance;
 
-  MFXCheckbox[] checkbox = {
-    electrical,
-    waste,
-    roof,
-    move,
-    floor,
-    glass,
-    paint,
-    custodial,
-    keyandlock,
-    heat,
-    ventilation,
-    airCond,
-    recycle,
-    officeSer,
-    land,
-    elevator,
-    pest,
-    appliance
-  };
-
   @FXML TextArea finalTreeLevel;
-
+  @FXML Text Problemdes;
   @FXML MFXFilterComboBox locationSearchDropdown;
   @FXML MFXFilterComboBox employeeSearchDropdown;
   @FXML Label checkFields;
@@ -94,9 +73,31 @@ public class MaintenanceRequestController {
   static String specifiedMaintain;
 
   DAORepo dao = new DAORepo();
+  MFXCheckbox[] checkbox;
 
   @FXML
   public void initialize() throws SQLException {
+    checkbox =
+        new MFXCheckbox[] {
+          electrical,
+          waste,
+          roof,
+          move,
+          floor,
+          glass,
+          paint,
+          custodial,
+          keyandlock,
+          heat,
+          ventilation,
+          airCond,
+          recycle,
+          officeSer,
+          land,
+          elevator,
+          pest,
+          appliance
+        };
     maintainSubmitButton.setOnMouseClicked(
         event -> {
           allDataFilled();
@@ -111,7 +112,14 @@ public class MaintenanceRequestController {
     checkFields.setVisible(false);
 
     for (MFXCheckbox box : checkbox) {
-      box.setOnAction(event -> setString(box));
+      box.setOnAction(
+          event -> {
+            if (box.isSelected()) {
+              
+              System.out.println("It was selected");
+            }
+            setString(box);
+          });
     }
 
     maintainClearButton.setOnAction(event -> clearAllData());
@@ -141,6 +149,8 @@ public class MaintenanceRequestController {
         (i, m) -> {
           locationNames.add(m);
         });
+    finalTreeLevel.setVisible(false);
+    Problemdes.setVisible(false);
 
     Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
 
@@ -157,9 +167,15 @@ public class MaintenanceRequestController {
 
   public void setString(MFXCheckbox box1) {
     String answer = "";
+    box1.setSelected(true);
     for (MFXCheckbox box : checkbox) {
-      if (box.equals(box1)) {
-        answer = box1.getText();
+      if (box.isSelected()) {
+        answer = box.getText();
+        for (MFXCheckbox box2 : checkbox) {
+          if (!box1.equals(box2)) {
+            box.setSelected(false);
+          }
+        }
       }
     }
     typeOfMaintain = answer;
@@ -186,7 +202,7 @@ public class MaintenanceRequestController {
             (String) locationSearchDropdown.getValue(),
             (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
-            Date.valueOf(maintainDate.getValue()),
+            Date.valueOf(maintainDate.getValue().toString()),
             StringToTime(maintainTime.getText()),
             maintainRecipient.getText(),
             maintainPhoneNumber.getText(),
@@ -232,10 +248,10 @@ public class MaintenanceRequestController {
   }
 
   public boolean checkBoxSlected() {
-    boolean answer = false;
+    boolean answer = true;
     for (MFXCheckbox box : checkbox) {
       if (box.isSelected()) {
-        answer = true;
+        answer = false;
       }
     }
     return answer;
@@ -243,13 +259,12 @@ public class MaintenanceRequestController {
 
   public void allDataFilled() {
     if (!(maintainRecipient.getText().equals("")
-            || maintainPhoneNumber.getText().equals("")
-            || maintainDate.getText().equals("")
-            || maintainTime.getText().equals("")
-            || locationSearchDropdown.getValue() == null)
-        || checkBoxSlected()
-        || finalTreeLevel.getText().equals("")) {
-
+        || maintainPhoneNumber.getText().equals("")
+        || maintainDate.getText().equals("")
+        || maintainTime.getText().equals("")
+        || locationSearchDropdown.getValue() == null
+        || finalTreeLevel.getText().equals(""))) {
+      // || checkBoxSlected()
       try {
         storeMaintenanceValues();
       } catch (SQLException e) {
@@ -276,6 +291,7 @@ public class MaintenanceRequestController {
     finalTreeLevel.setText("");
 
     finalTreeLevel.setVisible(false);
+    checkFields.setVisible(false);
 
     return;
   }
