@@ -1,10 +1,12 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.AccountDAO;
 import edu.wpi.teamg.DAOs.EmployeeDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
 import edu.wpi.teamg.ORMClasses.Employee;
+import edu.wpi.teamg.ORMClasses.MaintenanceRequest;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -13,10 +15,17 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.SearchableComboBox;
+
+import javax.swing.table.TableColumn;
+import javax.swing.text.TableView;
 
 public class AddEmployee {
   @FXML MFXButton empSubmit;
@@ -29,6 +38,14 @@ public class AddEmployee {
   @FXML MFXTextField Password;
 
   @FXML SearchableComboBox serveDrop;
+
+  @FXML TableView empTableView;
+  @FXML TableColumn empFirstName;
+  @FXML TableColumn empLastName;
+  @FXML TableColumn empUsername;
+  @FXML TableColumn empEmail;
+  @FXML TableColumn empCanServe;
+
 
   ObservableList<String> serveList =
       FXCollections.observableArrayList(
@@ -49,6 +66,34 @@ public class AddEmployee {
     userName.getText();
     Password.getText();
     serveDrop.setItems(serveList);
+
+
+
+
+    HashMap<Integer, Employee> testingEmps = App.testingEmps;
+    ArrayList<Employee> emps = new ArrayList<>(testingEmps.values());
+
+    testMaintainList = FXCollections.observableArrayList(maintains);
+
+    maintenanceTable.setItems(testMaintainList);
+
+    maintenanceReqID.setCellValueFactory(new PropertyValueFactory<>("reqId"));
+    maintenanceEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+    maintenanceLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+    maintenanceServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+    maintenanceStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+    maintenanceType.setCellValueFactory(new PropertyValueFactory<>("type"));
+    maintenanceSpecified.setCellValueFactory(new PropertyValueFactory<>("specified"));
+    maintenanceDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+    maintenanceTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+    maintenanceRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+    maintenanceNote.setCellValueFactory(new PropertyValueFactory<>("notes"));
+    maintenancePhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+
+
+
+
   };
 
   private void allDataFilled() {

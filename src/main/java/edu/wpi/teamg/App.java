@@ -328,6 +328,17 @@ public class App extends Application {
     }
   }
 
+  //Employee Table Stuff
+  public static HashMap<Integer, Employee> testingEmps;
+
+  static {
+    try {
+      testingEmps = getHashEmps();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   @Override
   public void init() {
     log.info("Starting Up");
@@ -572,6 +583,16 @@ public class App extends Application {
     }
   }
 
+  //Employee Table
+  public static void empsRefresh() {
+    try {
+      testingEmps = getHashEmps();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
   public static HashMap getHashMapRequest() throws SQLException {
 
     HashMap<Integer, Request> requestHashMap = new HashMap<Integer, Request>();
@@ -660,6 +681,21 @@ public class App extends Application {
     }
     return maintainHash;
   }
+
+  //Employee Table
+
+  public static HashMap getHashEmps() throws SQLException {
+
+    HashMap<Integer, Employee> empHash = new HashMap<Integer, Employee>();
+
+    try {
+      empHash = daoRepo.getAllEmployees();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+    return empHash;
+  }
+
 
   static int code;
   static int empid;
