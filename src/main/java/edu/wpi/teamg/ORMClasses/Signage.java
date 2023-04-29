@@ -5,7 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class Signage {
+
   @Getter @Setter int kioskNum;
+
+  @Getter @Setter String location;
   @Getter @Setter Date specdate;
   @Getter @Setter String arrow;
   @Getter @Setter String month;
@@ -13,8 +16,9 @@ public class Signage {
 
   public Signage() {}
 
-  public Signage(int kioskNum, Date date, String arrow, String month, boolean specified) {
-    this.kioskNum = kioskNum;
+  public Signage(String location, Date date, String arrow, String month, boolean specified) {
+    // this.kioskNum = kioskNum;
+    this.location = location;
     this.specdate = date;
     this.arrow = arrow;
     this.month = month;
