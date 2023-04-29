@@ -30,6 +30,12 @@ public class Navigation {
         }
       } else if (screen == Screen.LOGIN_PAGE) {
         LoginBanner();
+      } else if (screen == Screen.CREDITS || screen == Screen.ABOUT_PAGE) {
+        if (EmployeeCheck) {
+          AdminBannerManager();
+        } else {
+          PaitentBanner();
+        }
       } else if (screen != Screen.LOGIN_PAGE
           && screen != Screen.PATHFINDING_PAGE
           && screen != Screen.SIGNAGE_SCREENSAVER_PAGE) {

@@ -814,6 +814,12 @@ about_text{
     -fx-max-height: 41;
 }
 
+.confirmationPopover{
+    -fx-pref-height: 125;
+    -fx-pref-width: 300;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
 
 
 

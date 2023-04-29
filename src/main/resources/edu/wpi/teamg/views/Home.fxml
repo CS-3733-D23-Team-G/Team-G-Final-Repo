@@ -33,7 +33,7 @@
                         <Font size="36.0" />
                      </font>
                   </Text>
-                  <HBox prefHeight="26.0" prefWidth="306.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+                  <HBox prefHeight="26.0" prefWidth="306.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="25.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcomeText_home" text="Welcome,">
                            <font>
