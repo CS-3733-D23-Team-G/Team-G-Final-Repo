@@ -1,6 +1,7 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
+import edu.wpi.teamg.ORMClasses.SpeechToText;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -19,6 +20,8 @@ public class PatientTopBannerController {
   @FXML ImageView information;
   @FXML ImageView dictionary;
   @FXML MFXButton logoButton;
+
+  @FXML MFXButton listenButton;
 
   static PopOver window = new PopOver();
 
@@ -48,6 +51,20 @@ public class PatientTopBannerController {
         });
 
     logoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
+
+    listenButton.setOnMouseClicked(
+        event -> {
+          try {
+            listenEvent();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
+
+  private void listenEvent() throws IOException {
+    SpeechToText stt = new SpeechToText();
+    stt.detectCommand();
   }
 
   public void exit() {
