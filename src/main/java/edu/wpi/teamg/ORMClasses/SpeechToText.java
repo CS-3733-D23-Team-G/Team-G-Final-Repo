@@ -5,7 +5,6 @@ import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
-
 import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -49,9 +48,8 @@ public class SpeechToText {
     }
   }
 
-
-  private void checkCommand(){
-    switch(command){
+  private void checkCommand() {
+    switch (command) {
       case "OPEN PATH FINDING":
         Navigation.navigate(Screen.PATHFINDING_PAGE);
         break;
@@ -72,34 +70,34 @@ public class SpeechToText {
     stopped = true;
   }
 
-//  public static void main(String[] args) throws IOException {
-//    Configuration config = new Configuration();
-//
-//    config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-//    config.setDictionaryPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.dic");
-//    config.setLanguageModelPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.lm");
-//
-//    LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(config);
-//    recognizer.startRecognition(true);
-//
-//    System.out.println("Speech Recognition started");
-//
-//    while (true) {
-//      SpeechResult result = recognizer.getResult();
-//      if (result != null) {
-//        resultListener(result, recognizer);
-//      }
-//    }
-//  }
-//
-//  private static void resultListener(SpeechResult result, LiveSpeechRecognizer recognizer) {
-//    if (result != null) {
-//      String spokenText = result.getHypothesis();
-//      System.out.println("You said: " + spokenText);
-//      if (spokenText.equalsIgnoreCase("stop")) {
-//
-//        recognizer.stopRecognition();
-//      }
-//    }
-//  }
+  //  public static void main(String[] args) throws IOException {
+  //    Configuration config = new Configuration();
+  //
+  //    config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+  //    config.setDictionaryPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.dic");
+  //    config.setLanguageModelPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.lm");
+  //
+  //    LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(config);
+  //    recognizer.startRecognition(true);
+  //
+  //    System.out.println("Speech Recognition started");
+  //
+  //    while (true) {
+  //      SpeechResult result = recognizer.getResult();
+  //      if (result != null) {
+  //        resultListener(result, recognizer);
+  //      }
+  //    }
+  //  }
+  //
+  //  private static void resultListener(SpeechResult result, LiveSpeechRecognizer recognizer) {
+  //    if (result != null) {
+  //      String spokenText = result.getHypothesis();
+  //      System.out.println("You said: " + spokenText);
+  //      if (spokenText.equalsIgnoreCase("stop")) {
+  //
+  //        recognizer.stopRecognition();
+  //      }
+  //    }
+  //  }
 }

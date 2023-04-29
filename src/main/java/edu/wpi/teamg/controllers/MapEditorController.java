@@ -802,7 +802,6 @@ public class MapEditorController {
     Edge newEdge = new Edge(nodeCon1.getNodeID(), nodeCon2.getNodeID());
     newEdge.setEdgeID(nodeCon1.getNodeID() + "_" + nodeCon2.getNodeID());
 
-
     edgeDao.insert(newEdge);
     nodeClickCount = 0;
     System.out.println("edge added" + nodeCon1.getNodeID() + "      " + nodeCon2.getNodeID());

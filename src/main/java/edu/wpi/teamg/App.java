@@ -24,6 +24,8 @@ import org.controlsfx.control.PopOver;
 public class App extends Application {
   static PopOver window = new PopOver();
 
+  public static ArrayList<String> usernames = new ArrayList<>();
+
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
   @Setter @Getter private static Stage frontStage;

@@ -99,7 +99,9 @@ public class LoginController {
       account.setPassword(pass);
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
-        if (username.getText().equals("admin") || username.getText().equals("staff")) {
+        if (username.getText().equals("admin")
+            || username.getText().equals("staff")
+            || App.usernames.contains(tableUser)) {
           Navigation.Logout();
           if (tableAdmin) {
             Navigation.setAdmin();
@@ -145,6 +147,7 @@ public class LoginController {
 
           db.closeConnection();
           twoFactor();
+          App.usernames.add(tableUser);
           // Navigation.navigate(Screen.TWO_FAC);
         }
 
