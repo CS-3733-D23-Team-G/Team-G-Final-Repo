@@ -6,7 +6,6 @@ import edu.wpi.teamg.DAOs.EmployeeDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
 import edu.wpi.teamg.ORMClasses.Employee;
-import edu.wpi.teamg.ORMClasses.MaintenanceRequest;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -17,15 +16,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.SearchableComboBox;
-
-import javax.swing.table.TableColumn;
-import javax.swing.text.TableView;
 
 public class AddEmployee {
   @FXML MFXButton empSubmit;
@@ -39,13 +37,13 @@ public class AddEmployee {
 
   @FXML SearchableComboBox serveDrop;
 
-  @FXML TableView empTableView;
-  @FXML TableColumn empFirstName;
-  @FXML TableColumn empLastName;
-  @FXML TableColumn empUsername;
-  @FXML TableColumn empEmail;
-  @FXML TableColumn empCanServe;
+  @FXML TableView<Employee> empTableView;
 
+  @FXML TableColumn<Employee, String> empFirstName;
+  @FXML TableColumn<Employee, String> empLastName;
+  @FXML TableColumn<Employee, String> empUsername;
+  @FXML TableColumn<Employee, String> empEmail;
+  @FXML TableColumn<Employee, String> empCanServe;
 
   ObservableList<String> serveList =
       FXCollections.observableArrayList(
@@ -58,6 +56,8 @@ public class AddEmployee {
   EmployeeDAO empDao = new EmployeeDAO();
   AccountDAO accDao = new AccountDAO();
 
+  ObservableList<Employee> testEmpList;
+
   public void initialize() throws SQLException {
     empSubmit.setOnMouseClicked(event -> allDataFilled());
     FirstName.getText();
@@ -67,33 +67,28 @@ public class AddEmployee {
     Password.getText();
     serveDrop.setItems(serveList);
 
-
-
+    HashMap<String, Account> accUsernames = accDao.getAll();
 
     HashMap<Integer, Employee> testingEmps = App.testingEmps;
     ArrayList<Employee> emps = new ArrayList<>(testingEmps.values());
 
-    testMaintainList = FXCollections.observableArrayList(maintains);
+    testEmpList = FXCollections.observableArrayList(emps);
 
-    maintenanceTable.setItems(testMaintainList);
+    empTableView.setItems(testEmpList);
 
-    maintenanceReqID.setCellValueFactory(new PropertyValueFactory<>("reqId"));
-    maintenanceEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
-    maintenanceLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    maintenanceServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
-    maintenanceStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-    maintenanceType.setCellValueFactory(new PropertyValueFactory<>("type"));
-    maintenanceSpecified.setCellValueFactory(new PropertyValueFactory<>("specified"));
-    maintenanceDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
-    maintenanceTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
-    maintenanceRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
-    maintenanceNote.setCellValueFactory(new PropertyValueFactory<>("notes"));
-    maintenancePhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+    empFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+    empLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+    empEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+    empUsername.setCellValueFactory(
+        (row) -> {
+          try {
+            return new SimpleStringProperty(accDao.getUsernameFromEmpID(row.getValue().getEmpID()));
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
 
-
-
-
-
+    empCanServe.setCellValueFactory(new PropertyValueFactory<>("can_serve"));
   };
 
   private void allDataFilled() {
@@ -115,7 +110,7 @@ public class AddEmployee {
   private void storeEmployeeData() throws SQLException, NoSuchAlgorithmException {
     DBConnection conn = new DBConnection();
     conn.setConnection();
-
+    int empid = 0;
     int maxid = 0;
     String sql = "select empid from teamgdb.iteration4.employee order by empid desc limit 1";
     PreparedStatement ps_max = conn.getConnection().prepareStatement(sql);

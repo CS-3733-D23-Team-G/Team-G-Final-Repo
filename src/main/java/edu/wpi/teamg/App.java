@@ -328,7 +328,7 @@ public class App extends Application {
     }
   }
 
-  //Employee Table Stuff
+  // Employee Table Stuff
   public static HashMap<Integer, Employee> testingEmps;
 
   static {
@@ -583,7 +583,7 @@ public class App extends Application {
     }
   }
 
-  //Employee Table
+  // Employee Table
   public static void empsRefresh() {
     try {
       testingEmps = getHashEmps();
@@ -591,7 +591,6 @@ public class App extends Application {
       throw new RuntimeException(e);
     }
   }
-
 
   public static HashMap getHashMapRequest() throws SQLException {
 
@@ -682,7 +681,7 @@ public class App extends Application {
     return maintainHash;
   }
 
-  //Employee Table
+  // Employee Table
 
   public static HashMap getHashEmps() throws SQLException {
 
@@ -695,7 +694,6 @@ public class App extends Application {
     }
     return empHash;
   }
-
 
   static int code;
   static int empid;
