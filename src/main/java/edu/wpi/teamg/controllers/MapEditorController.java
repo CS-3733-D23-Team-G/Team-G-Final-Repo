@@ -877,6 +877,7 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     AddMoveController controller = loader.getController();
+    controller.moveSetter(moving);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());

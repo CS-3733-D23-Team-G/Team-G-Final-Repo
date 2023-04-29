@@ -11,13 +11,13 @@
    <children>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="NodeID" />
+            <Label prefWidth="200.0" text="Location Name" />
             <SearchableComboBox fx:id="moveDelNodeID" prefHeight="25.0" prefWidth="243.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER">
          <children>
-            <Label prefWidth="200.0" text="Move" />
+            <Label prefWidth="200.0" text="Move Date" />
             <SearchableComboBox fx:id="moveDel" prefHeight="25.0" prefWidth="243.0" />
          </children>
       </HBox>
