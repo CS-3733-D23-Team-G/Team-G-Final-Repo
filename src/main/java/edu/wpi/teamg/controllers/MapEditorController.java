@@ -769,10 +769,12 @@ public class MapEditorController {
               if (editEdge) {
                 if (nodeClickCount == 0) {
                   nodeCon1 = currentNode;
+                  point.setFill(Color.rgb(246, 189, 56));
                   nodeClickCount = nodeClickCount + 1;
                 }
                 if (nodeClickCount == 1) {
                   nodeCon2 = currentNode;
+                  point.setFill(Color.rgb(246, 189, 56));
 
                   if (nodeCon1 != nodeCon2) {
                     addEdgeOffClicks(nodeCon1, nodeCon2);
@@ -800,9 +802,12 @@ public class MapEditorController {
     Edge newEdge = new Edge(nodeCon1.getNodeID(), nodeCon2.getNodeID());
     newEdge.setEdgeID(nodeCon1.getNodeID() + "_" + nodeCon2.getNodeID());
 
+
     edgeDao.insert(newEdge);
     nodeClickCount = 0;
     System.out.println("edge added" + nodeCon1.getNodeID() + "      " + nodeCon2.getNodeID());
+
+    floorButtons(img, floor);
 
     refresh();
   }
