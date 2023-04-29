@@ -5,13 +5,16 @@ import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SpeechToText {
   Configuration config = new Configuration();
-  String command = "";
+  @Getter @Setter private String command;
   private boolean stopped = false;
   private Timer timer;
   LiveSpeechRecognizer recog;
@@ -25,8 +28,6 @@ public class SpeechToText {
   }
 
   public void detectCommand() throws IOException {
-
-    recog.startRecognition(true);
     System.out.println("recognition started");
     timer.schedule(
         new TimerTask() {
@@ -45,6 +46,10 @@ public class SpeechToText {
       recog.stopRecognition();
     }
     recog.stopRecognition();
+  }
+
+  public void startCommand(){
+    recog.startRecognition(true);
   }
 
   private void checkCommand() {
@@ -69,8 +74,8 @@ public class SpeechToText {
     stopped = true;
   }
 
-//  public static void main(String[] args) throws IOException {
-//    SpeechToText stt = new SpeechToText();
-//    stt.detectCommand();
-//  }
+  //  public static void main(String[] args) throws IOException {
+  //    SpeechToText stt = new SpeechToText();
+  //    stt.detectCommand();
+  //  }
 }

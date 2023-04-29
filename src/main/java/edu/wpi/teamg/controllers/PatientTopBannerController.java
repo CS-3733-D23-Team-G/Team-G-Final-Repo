@@ -63,8 +63,7 @@ public class PatientTopBannerController {
   }
 
   private void listenEvent() throws IOException {
-    SpeechToText stt = new SpeechToText();
-    stt.detectCommand();
+    
   }
 
   public void exit() {
