@@ -96,6 +96,7 @@ public class SignageEditorController {
 
   @FXML
   public void initialize() throws SQLException {
+    App.bool = false;
     DAORepo dao = new DAORepo();
     monthDrop.setItems(monthChoice);
     yearDrop.setItems(yearChoice);
