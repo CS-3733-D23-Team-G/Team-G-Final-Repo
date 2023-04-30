@@ -35,7 +35,9 @@ public class DBConnection {
     creds.add(data.get("url").toString());
     creds.add(data.get("username").toString());
     creds.add(data.get("password").toString());
-
+    creds.add(data.get("awsurl").toString());
+    creds.add(data.get("awsusername").toString());
+    creds.add(data.get("awspassword").toString());
     return creds;
   }
 

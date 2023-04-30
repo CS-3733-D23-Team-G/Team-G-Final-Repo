@@ -25,6 +25,8 @@ import org.controlsfx.control.PopOver;
 public class App extends Application {
   static PopOver window = new PopOver();
 
+  int whichDB = 1;
+
   public static ArrayList<String> usernames = new ArrayList<>();
 
   @Setter @Getter private static Stage primaryStage;
