@@ -181,7 +181,7 @@
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="1555.0" prefWidth="1109.0" styleClass="half_bottom_page">
+            <AnchorPane fx:id="forms" prefHeight="1555.0" prefWidth="1109.0" styleClass="half_bottom_page">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
