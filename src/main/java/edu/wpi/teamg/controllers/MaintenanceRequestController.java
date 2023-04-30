@@ -20,6 +20,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
@@ -52,7 +54,7 @@ public class MaintenanceRequestController {
   @FXML MFXCheckbox airCond;
   @FXML MFXCheckbox recycle;
   @FXML MFXCheckbox officeSer;
-  @FXML MFXCheckbox land;
+  @FXML MFXCheckbox other;
   @FXML MFXCheckbox elevator;
   @FXML MFXCheckbox pest;
   @FXML MFXCheckbox appliance;
@@ -65,6 +67,7 @@ public class MaintenanceRequestController {
   @FXML Line assignToLine;
   @FXML Text assignToText;
   @FXML VBox vboxWithAssignTo;
+  @FXML ImageView img_main;
 
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
@@ -94,7 +97,7 @@ public class MaintenanceRequestController {
           airCond,
           recycle,
           officeSer,
-          land,
+          other,
           elevator,
           pest,
           appliance
@@ -113,16 +116,11 @@ public class MaintenanceRequestController {
     checkFields.setVisible(false);
     finalTreeLevel.setVisible(false);
     Problemdes.setVisible(false);
+   
 
     for (MFXCheckbox box : checkbox) {
       box.setOnAction(event -> setString(box.getText()));
     }
-    if (somethingSelected) {
-      checkFields.setVisible(true);
-      finalTreeLevel.setVisible(true);
-      Problemdes.setVisible(true);
-    }
-
     maintainClearButton.setOnAction(event -> clearAllData());
     maintainRecipient.getText();
     // mealFoodChoice.setItems(foodList);
@@ -173,6 +171,8 @@ public class MaintenanceRequestController {
     }
     somethingSelected = true;
     typeOfMaintain = box1;
+    finalTreeLevel.setVisible(true);
+    Problemdes.setVisible(true);
   }
 
   public void storeMaintenanceValues() throws SQLException {
@@ -285,6 +285,7 @@ public class MaintenanceRequestController {
     finalTreeLevel.setText("");
 
     finalTreeLevel.setVisible(false);
+    Problemdes.setVisible(false);
     checkFields.setVisible(false);
 
     return;
