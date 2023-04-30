@@ -64,10 +64,7 @@ public class App extends Application {
   //  // then we go to settings controller?
 
   public static LocalDate pathfindingDate =
-      LocalDate.of(2023, 1, 1); // default right? yup, and it's a local date
-  // we can convert later tho if this is easier for you, it does cuz all the algos takes in Date ?
-  // Doesn't really matter because it just taking the date freom the calendar Ohhhh
-  // then we go to settings controller?
+      LocalDate.of(2023, 1, 1);
 
   public static DAORepo daoRepo = new DAORepo();
   public static EdgeDAO edgeDao = new EdgeDAO();
