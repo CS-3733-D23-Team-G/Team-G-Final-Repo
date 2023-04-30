@@ -76,7 +76,7 @@ public class SpeechPopController {
       case "OPEN PATH FINDING":
         Navigation.navigate(Screen.PATHFINDING_PAGE);
         break;
-      case "OPEN STATUS FORMS":
+      case "OPEN STATUS FORM":
         Navigation.navigate(Screen.ADMIN_STATUS_PAGE);
         break;
       case "LOGIN":
@@ -101,6 +101,8 @@ public class SpeechPopController {
 
         break;
       case "LOGOUT":
+        Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
+        App.employee.setIs_admin(false);
         break;
       default:
         break;
