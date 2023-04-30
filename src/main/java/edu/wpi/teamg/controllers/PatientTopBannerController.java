@@ -20,9 +20,13 @@ public class PatientTopBannerController {
   @FXML ImageView dictionary;
   @FXML MFXButton logoButton;
 
+  @FXML MFXButton listenButton;
+
   static PopOver window = new PopOver();
 
   static PopOver dictionaryPopOver = new PopOver();
+
+  static PopOver listenPopOver = new PopOver();
 
   @FXML
   public void initialize() {
@@ -48,6 +52,30 @@ public class PatientTopBannerController {
         });
 
     logoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE));
+
+    listenButton.setOnMouseClicked(
+        event -> {
+          try {
+            listenEvent();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
+
+  private void listenEvent() throws IOException {
+    var loader = new FXMLLoader(App.class.getResource("views/speechPop.fxml"));
+    listenPopOver.setContentNode(loader.load());
+
+    listenPopOver.setArrowSize(0);
+    listenPopOver.setTitle("Awaiting Command");
+
+    listenPopOver.setHeaderAlwaysVisible(true);
+
+    SpeechPopController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    listenPopOver.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void exit() {
