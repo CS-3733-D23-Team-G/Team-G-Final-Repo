@@ -46,7 +46,7 @@
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <MFXFilterComboBox fx:id="locationDrop" minHeight="-Infinity" prefHeight="40.0" prefWidth="300.0">
+                  <MFXFilterComboBox fx:id="locationDrop" floatMode="DISABLED" minHeight="-Infinity" prefHeight="40.0" prefWidth="300.0" style="-fx-font-size: 15;">
                      <VBox.margin>
                         <Insets left="25.0" top="15.0" />
                      </VBox.margin>
@@ -119,6 +119,9 @@
                      <VBox.margin>
                         <Insets left="25.0" top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                   </MFXDatePicker>
                   <Label style="-fx-font-size: 20; -fx-font-weight: 800; -fx-text-fill: #012D5A;" text="Database ">
                      <font>

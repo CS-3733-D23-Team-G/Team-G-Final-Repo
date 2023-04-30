@@ -44,11 +44,15 @@ public class SettingsPopOverController {
         break;
     }
 
+    date.setValue(App.pathfindingDate);
+
     ArrayList<String> locationArrayList = new ArrayList<String>(locationHash.values());
 
     ObservableList<String> locationList = FXCollections.observableArrayList(locationArrayList);
 
     locationDrop.setItems(locationList);
+
+    locationDrop.getSelectionModel().selectItem(App.getKioskLocation());
 
     aStarCheckBox.setOnAction(
         event -> {

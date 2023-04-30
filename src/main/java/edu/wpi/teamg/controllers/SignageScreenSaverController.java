@@ -111,14 +111,13 @@ public class SignageScreenSaverController {
     nameLabel10.setText("");
 
     int kinum = App.getKioskNumber();
-    String location = "Innovation Hub";
 
-    locationText.setText(location);
+    locationText.setText(App.getKioskLocation());
     locationText.setFill(Paint.valueOf("#012D5A"));
     locationText.setStyle("-fx-font-weight: 800");
 
     HashMap<String, Signage> page =
-        signageDAO.getSignageGiveLNAndMonth(location, App.getMonthFieldSignage());
+        signageDAO.getSignageGiveLNAndMonth(App.getKioskLocation(), App.getMonthFieldSignage());
 
     page.forEach(
         (i, m) -> {

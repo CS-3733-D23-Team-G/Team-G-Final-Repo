@@ -126,6 +126,7 @@ public class HomeController {
           if (i.getRequestDate().toLocalDate().isEqual(currentLocalDate)) {
 
             date.setText("Do By: " + i.getRequestDate() + " (Due Today)");
+              date.setFill(Paint.valueOf("#000000"));
             date.setStyle(
                 "-fx-font-size: 20; -fx-font-weight: 800;"
                     + "-fx-alignment: right; -fx-font-family: Poppins");

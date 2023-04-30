@@ -6,7 +6,6 @@ import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import java.awt.*;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,6 +34,7 @@ public class App extends Application {
   public static String message;
 
   @Setter @Getter private static int kioskNumber;
+  @Setter @Getter private static String kioskLocation = "Innovation Hub";
 
   @Getter private static LocalDate currentDate = LocalDate.now();
 
@@ -56,8 +56,15 @@ public class App extends Application {
   public static String pathfindingAlgo = "Astar";
 
   public static boolean bool = false;
+  //  public static LocalDate pathfindingDate =
+  //      new Date(2023, 1, 1).toLocalDate(); // default right? yup, and it's a local date
+  //  // we can convert later tho if this is easier for you, it does cuz all the algos takes in Date
+  // ?
+  //  // Doesn't really matter because it just taking the date freom the calendar Ohhhh
+  //  // then we go to settings controller?
+
   public static LocalDate pathfindingDate =
-      new Date(2023, 1, 1).toLocalDate(); // default right? yup, and it's a local date
+      LocalDate.of(2023, 1, 1); // default right? yup, and it's a local date
   // we can convert later tho if this is easier for you, it does cuz all the algos takes in Date ?
   // Doesn't really matter because it just taking the date freom the calendar Ohhhh
   // then we go to settings controller?
