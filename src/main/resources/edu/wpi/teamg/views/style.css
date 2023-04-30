@@ -618,6 +618,16 @@ Popup
     -fx-alignment: center;
 }
 
+.table-row-cell:odd{
+    -fx-background-color: #d8ebfe;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
+.table-row-cell:even{
+    -fx-background-color: #b7dafe;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
 
 .dropdown{
     -fx-font-size: 20;
