@@ -20,8 +20,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
@@ -34,7 +32,6 @@ public class MaintenanceRequestController {
   @FXML MFXDatePicker maintainDate;
 
   // TextFields
-  @FXML MFXTextField maintainTime;
 
   @FXML MFXTextField maintainRecipient;
 
@@ -63,14 +60,17 @@ public class MaintenanceRequestController {
   @FXML Text Problemdes;
   @FXML MFXFilterComboBox locationSearchDropdown;
   @FXML MFXFilterComboBox employeeSearchDropdown;
+  @FXML MFXFilterComboBox hour;
+  @FXML MFXFilterComboBox minutes;
   @FXML Label checkFields;
   @FXML Line assignToLine;
   @FXML Text assignToText;
   @FXML VBox vboxWithAssignTo;
-  @FXML ImageView img_main;
 
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
+  ObservableList<String> hourList;
+  ObservableList<String> minuteList;
 
   static String typeOfMaintain;
   static String specifiedMaintain;
@@ -116,7 +116,6 @@ public class MaintenanceRequestController {
     checkFields.setVisible(false);
     finalTreeLevel.setVisible(false);
     Problemdes.setVisible(false);
-   
 
     for (MFXCheckbox box : checkbox) {
       box.setOnAction(event -> setString(box.getText()));
@@ -125,8 +124,23 @@ public class MaintenanceRequestController {
     maintainRecipient.getText();
     // mealFoodChoice.setItems(foodList);
     maintainDate.getValue();
-    maintainTime.getText();
     maintainPhoneNumber.getText();
+
+    ArrayList<String> time_hour = new ArrayList<>();
+    int x = 0;
+    while (x <= 24) {
+      x++;
+      time_hour.add("" + x);
+    }
+    hourList = FXCollections.observableArrayList(time_hour);
+
+    ArrayList<String> time_minute = new ArrayList<>();
+    int j = 0;
+    while (j < 60) {
+      time_minute.add("" + j);
+      j += 15;
+    }
+    minuteList = FXCollections.observableArrayList(time_minute);
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName =
@@ -155,6 +169,8 @@ public class MaintenanceRequestController {
 
     employeeSearchDropdown.setItems(employeeList);
     locationSearchDropdown.setItems(locationList);
+    hour.setItems(hourList);
+    minutes.setItems(minuteList);
     checkFields.getText();
   }
 
@@ -197,7 +213,7 @@ public class MaintenanceRequestController {
             (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
             Date.valueOf(maintainDate.getValue().toString()),
-            StringToTime(maintainTime.getText()),
+            StringToTime((String) hour.getValue(), (String) minutes.getValue()),
             maintainRecipient.getText(),
             maintainPhoneNumber.getText(),
             typeOfMaintain,
@@ -234,10 +250,8 @@ public class MaintenanceRequestController {
     return longNameHashMap;
   }
 
-  public Time StringToTime(String s) {
-
-    String[] hourMin = s.split(":", 2);
-    Time t = new Time(Integer.parseInt(hourMin[0]), Integer.parseInt(hourMin[1]), 00);
+  public Time StringToTime(String h, String m) {
+    Time t = new Time(Integer.parseInt(h), Integer.parseInt(m), 00);
     return t;
   }
 
@@ -255,7 +269,8 @@ public class MaintenanceRequestController {
     if (!(maintainRecipient.getText().equals("")
         || maintainPhoneNumber.getText().equals("")
         || maintainDate.getText().equals("")
-        || maintainTime.getText().equals("")
+        || hour.getValue() == null
+        || minutes.getValue() == null
         || locationSearchDropdown.getValue() == null
         || finalTreeLevel.getText().equals(""))) {
       // || checkBoxSlected()
@@ -273,11 +288,12 @@ public class MaintenanceRequestController {
   public void clearAllData() {
     maintainRecipient.setText("");
     maintainDate.setText("");
-    maintainTime.setText("");
     maintainPhoneNumber.setText("");
 
     locationSearchDropdown.setValue(null);
     employeeSearchDropdown.setValue(null);
+    hour.setValue(null);
+    minutes.setValue(null);
 
     for (MFXCheckbox box : checkbox) {
       box.setSelected(false);
