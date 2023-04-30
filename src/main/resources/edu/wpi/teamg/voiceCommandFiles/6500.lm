@@ -1,0 +1,61 @@
+Language model created by QuickLM on Fri Apr 28 19:23:21 EDT 2023
+Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
+
+The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
+
+The code that was used to produce this language model is available in Open Source.
+Please visit http://www.speech.cs.cmu.edu/tools/ for more information
+
+The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
+This model based on a corpus of 6 sentences and 11 words
+
+\data\
+ngram 1=11
+ngram 2=16
+ngram 3=11
+
+\1-grams:
+-0.8846 </s> -0.3010
+-0.8846 <s> -0.2403
+-1.6628 FINDING -0.2403
+-1.6628 FORM -0.2915
+-1.6628 GENERATE -0.2817
+-1.6628 LOGIN -0.2403
+-1.6628 LOGOUT -0.2403
+-1.3617 OPEN -0.2717
+-1.3617 PATH -0.2293
+-1.6628 STATUS -0.2403
+-1.6628 STOP -0.2403
+
+\2-grams:
+-1.0792 <s> GENERATE 0.0000
+-1.0792 <s> LOGIN 0.0000
+-1.0792 <s> LOGOUT 0.0000
+-0.7782 <s> OPEN 0.0000
+-1.0792 <s> STOP 0.0000
+-0.3010 FINDING </s> -0.3010
+-0.3010 FORM STATUS 0.0000
+-0.3010 GENERATE PATH -0.1761
+-0.3010 LOGIN </s> -0.3010
+-0.3010 LOGOUT </s> -0.3010
+-0.6021 OPEN FORM 0.0000
+-0.6021 OPEN PATH -0.1761
+-0.6021 PATH </s> -0.3010
+-0.6021 PATH FINDING 0.0000
+-0.3010 STATUS </s> -0.3010
+-0.3010 STOP </s> -0.3010
+
+\3-grams:
+-0.3010 <s> GENERATE PATH
+-0.3010 <s> LOGIN </s>
+-0.3010 <s> LOGOUT </s>
+-0.6021 <s> OPEN FORM
+-0.6021 <s> OPEN PATH
+-0.3010 <s> STOP </s>
+-0.3010 FORM STATUS </s>
+-0.3010 GENERATE PATH </s>
+-0.3010 OPEN FORM STATUS
+-0.3010 OPEN PATH FINDING
+-0.3010 PATH FINDING </s>
+
+\end\
