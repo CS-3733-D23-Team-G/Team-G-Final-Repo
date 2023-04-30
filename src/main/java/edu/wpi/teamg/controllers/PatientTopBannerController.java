@@ -76,6 +76,7 @@ public class PatientTopBannerController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     listenPopOver.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+    controller.passWindow(listenPopOver);
   }
 
   public void exit() {
