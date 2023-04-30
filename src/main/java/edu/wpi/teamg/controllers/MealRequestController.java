@@ -85,6 +85,7 @@ public class MealRequestController {
 
   @FXML
   public void initialize() throws SQLException {
+    App.bool = false;
     MealPressed();
     mealSubmitButton.setOnMouseClicked(
         event -> {

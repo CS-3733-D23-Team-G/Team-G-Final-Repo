@@ -57,7 +57,7 @@ public class ConRoomRequestController {
 
   @FXML
   public void initialize() throws SQLException {
-
+    App.bool = false;
     roomConfirm.setOnMouseClicked(
         event -> {
           allDataFilled();

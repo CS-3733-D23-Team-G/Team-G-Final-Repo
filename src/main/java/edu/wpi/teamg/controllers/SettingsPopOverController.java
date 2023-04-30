@@ -1,9 +1,12 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.collections.FXCollections;
@@ -111,9 +114,15 @@ public class SettingsPopOverController {
         });
     date.setOnCommit(
         event -> {
-          App.pathfindingDate =
-              date.getValue(); // LLOlOL SORRY, NVM NOT SORRY fuck it just fix the date to the
-          // localdate you had OKAY GO OFF KING in app
+          App.pathfindingDate = date.getValue();
+
+          System.out.println(App.bool);
+          if (App.bool) {
+            Navigation.navigate(Screen.PATHFINDING_PAGE);
+            App.bool = false;
+          }
+          // if(Window.getWindows() == 2)// LLOlOL SORRY, NVM NOT SORRY fuck it just fix the date to
+
         });
   }
 }

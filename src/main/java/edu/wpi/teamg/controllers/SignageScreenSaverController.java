@@ -72,7 +72,7 @@ public class SignageScreenSaverController {
   public String date;
 
   public void initialize() throws SQLException {
-
+    App.bool = false;
     Timeline clock =
         new Timeline(
             new KeyFrame(

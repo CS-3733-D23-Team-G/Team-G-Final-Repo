@@ -89,7 +89,7 @@ public class FlowersRequestController {
 
   @FXML
   public void initialize() throws SQLException {
-
+    App.bool = false;
     bouquetSizeChoiceBox.setItems(listSizes);
 
     checkFields.setVisible(false);

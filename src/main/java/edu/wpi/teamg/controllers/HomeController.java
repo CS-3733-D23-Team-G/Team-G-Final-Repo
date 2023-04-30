@@ -40,7 +40,7 @@ public class HomeController {
 
   @FXML
   public void initialize() throws SQLException {
-
+    App.bool = false;
     empName.setText(" " + App.employee.getFirstName() + " " + App.employee.getLastName());
     empName.setFill(Color.valueOf("#012D5A"));
 
