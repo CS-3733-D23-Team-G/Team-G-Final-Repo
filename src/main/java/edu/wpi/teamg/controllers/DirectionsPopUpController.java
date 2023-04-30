@@ -2,11 +2,15 @@ package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.ORMClasses.Move;
+import edu.wpi.teamg.ORMClasses.TextToSpeech;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
+import java.util.Objects;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
+import javax.speech.AudioException;
+import javax.speech.EngineException;
 import org.controlsfx.control.PopOver;
 
 public class DirectionsPopUpController {
@@ -16,8 +20,10 @@ public class DirectionsPopUpController {
   @FXML TextArea pathInstructions;
   @FXML MFXButton closePath;
 
-  ArrayList<Move> updatedMoves;
+  @FXML MFXButton speakButton;
 
+  ArrayList<Move> updatedMoves;
+  TextToSpeech tts;
   ArrayList<String> path;
   PopOver wind;
 
@@ -30,6 +36,18 @@ public class DirectionsPopUpController {
   public void initialize() {
     closePath.setOnMouseClicked(event -> close());
     pathInstructions.setEditable(false);
+    speakButton.setOnMouseClicked(
+        event -> {
+          try {
+            speak();
+          } catch (AudioException | InterruptedException | EngineException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
+
+  private void speak() throws AudioException, EngineException, InterruptedException {
+    tts = new TextToSpeech(pathInstructions.getText());
   }
 
   public void setF(PopOver window, ArrayList<String> getPath, ArrayList<Move> movin) {
@@ -56,7 +74,12 @@ public class DirectionsPopUpController {
         if (first) {
           if (updatedMoves.get(j).getNodeID() == Integer.parseInt(path.get(i))) {
             lnStart.setText(updatedMoves.get(j).getLongName());
-            pathInstructions.setText("Start At: " + updatedMoves.get(j).getLongName() + "\n");
+            pathInstructions.setText(
+                "Start on Floor: "
+                    + App.allNodes.get(Integer.parseInt(path.get(i))).getFloor()
+                    + " At: "
+                    + updatedMoves.get(j).getLongName()
+                    + "\n");
             first = false;
           }
 
@@ -70,6 +93,16 @@ public class DirectionsPopUpController {
 
         } else {
           if (i != 0 && updatedMoves.get(j).getNodeID() == Integer.parseInt(path.get(i))) {
+
+            if (!Objects.equals(
+                App.allNodes.get(Integer.parseInt(path.get(i))).getFloor(),
+                App.allNodes.get(Integer.parseInt(path.get(i - 1))).getFloor())) {
+              pathInstructions.setText(
+                  pathInstructions.getText()
+                      + "\nFloor "
+                      + App.allNodes.get(Integer.parseInt(path.get(i))).getFloor()
+                      + "\n");
+            }
 
             if (App.allNodes.get(Integer.parseInt(path.get(i))).getXcoord()
                 > App.allNodes.get(Integer.parseInt(path.get(i - 1))).getXcoord()) {
@@ -113,11 +146,6 @@ public class DirectionsPopUpController {
   }
 
   public void changeOrientation(int up, int down, int left, int right, int j, int i) {
-
-    System.out.println(up);
-    System.out.println(down);
-    System.out.println(left);
-    System.out.println(right);
 
     switch (orientation) {
       case "R":
