@@ -33,7 +33,7 @@
                         </MFXButton>
                         <ImageView fx:id="kids" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/kids%20icon.png" />
+                              <Image url="@../Images/NewKid.png" />
                            </image>
                            <HBox.margin>
                               <Insets right="25.0" top="10.0" />

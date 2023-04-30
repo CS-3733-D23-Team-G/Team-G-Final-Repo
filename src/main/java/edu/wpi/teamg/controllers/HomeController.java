@@ -236,11 +236,11 @@ public class HomeController {
 
           switch (notifType) {
             case "alert":
-              message = new Text("ALERT: " + i.getMessage());
+              message = new Text("ALERT: " + i.getNotifheader());
               color = "#E19797;";
               break;
             default:
-              message = new Text(i.getMessage());
+              message = new Text(i.getNotifheader());
               color = "#C0C0C0;";
               break;
           }
@@ -272,11 +272,14 @@ public class HomeController {
 
           //        notifAnchorPane.getChildren().add(requestID);
 
-          notifAnchorPane.getChildren().add(dismiss);
           notifAnchorPane.getChildren().add(notif);
           notifAnchorPane.getChildren().add(notifDate);
+          if (i.getDismissible()) {
+            notifAnchorPane.getChildren().add(dismiss);
+            notifAnchorPane.getChildren().add(dismissBtn);
+          }
           notifAnchorPane.getChildren().add(message);
-          notifAnchorPane.getChildren().add(dismissBtn);
+
           notifications.getChildren().add(notifAnchorPane);
         });
 
