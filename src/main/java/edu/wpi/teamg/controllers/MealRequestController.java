@@ -5,8 +5,6 @@ import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -103,7 +101,6 @@ public class MealRequestController {
     MealPressed();
 
     mealClearAll.setOnAction(event -> completeAnimation());
-    snackButton.setOnAction(event -> completeAnimation());
 
     mealSubmitButton.setOnMouseClicked(
         event -> {
@@ -419,7 +416,7 @@ public class MealRequestController {
             + "-fx-font-weight: 500;");
     completionText.toFront();
 
-    Text completionTextSecondRow = new Text("Conference Room Request Sent Successfully.");
+    Text completionTextSecondRow = new Text("Meal Request Sent Successfully.");
     completionTextSecondRow.setLayoutX(445);
     completionTextSecondRow.setLayoutY(870);
     completionTextSecondRow.setStyle(
@@ -636,10 +633,11 @@ public class MealRequestController {
 
       try {
         storeMealValues();
+        completeAnimation();
+        clearAllData();
       } catch (SQLException e) {
         throw new RuntimeException(e);
       }
-      Navigation.navigate(Screen.MEAL_REQUEST_SUBMIT);
     } else {
       checkFields.setVisible(true);
     }

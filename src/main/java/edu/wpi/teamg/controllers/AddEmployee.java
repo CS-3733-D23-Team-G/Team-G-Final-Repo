@@ -5,8 +5,6 @@ import edu.wpi.teamg.DAOs.EmployeeDAO;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
 import edu.wpi.teamg.ORMClasses.Employee;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.security.NoSuchAlgorithmException;
@@ -52,7 +50,7 @@ public class AddEmployee {
 
   public void initialize() throws SQLException {
     empSubmit.setOnMouseClicked(event -> allDataFilled());
-    empSubmit.setOnMouseClicked(event -> completeAnimation());
+    empClear.setOnMouseClicked(event -> empClearFields());
     FirstName.getText();
     lastName.getText();
     emailName.getText();
@@ -62,18 +60,19 @@ public class AddEmployee {
   };
 
   private void allDataFilled() {
-    if (!(FirstName.getText().equals(""))
+    if (!(FirstName.getText().equals("")
         || lastName.getText().equals("")
         || emailName.getText().equals("")
         || userName.getText().equals("")
         || Password.getText().equals("")
-        || serveDrop == null) {
+        || serveDrop == null)) {
       try {
         storeEmployeeData();
+        empClearFields();
+        completeAnimation();
       } catch (SQLException | NoSuchAlgorithmException e) {
         e.printStackTrace();
       }
-      Navigation.navigate(Screen.EMPLOYEE_CONFIRMATION);
     }
   }
 
@@ -129,7 +128,7 @@ public class AddEmployee {
             + "-fx-font-weight: 500;");
     completionText.toFront();
 
-    Text completionTextSecondRow = new Text("Conference Room Request Sent Successfully.");
+    Text completionTextSecondRow = new Text("Employee Successfully Added.");
     completionTextSecondRow.setLayoutX(445);
     completionTextSecondRow.setLayoutY(870);
     completionTextSecondRow.setStyle(
@@ -207,5 +206,14 @@ public class AddEmployee {
           fadeOut3.play();
           fadeOut4.play();
         });
+  }
+
+  public void empClearFields() {
+    FirstName.setText("");
+    lastName.setText("");
+    emailName.setText("");
+    userName.setText("");
+    Password.setText("");
+    serveDrop.setValue("");
   }
 }

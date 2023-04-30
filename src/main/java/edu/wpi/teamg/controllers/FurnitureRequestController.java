@@ -5,8 +5,6 @@ import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.FurnitureRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -86,7 +84,6 @@ public class FurnitureRequestController {
     furnSubmitButton.setOnMouseClicked(
         event -> {
           furnOrder();
-          completeAnimation();
           allDataFilled();
         });
 
@@ -271,10 +268,11 @@ public class FurnitureRequestController {
 
       try {
         storeFurnValues();
+        completeAnimation();
+        clearAllData();
       } catch (SQLException e) {
         throw new RuntimeException(e);
       }
-      Navigation.navigate(Screen.FURNITURE_REQUEST_SUBMIT);
     } else {
       checkFields.setVisible(true);
     }
@@ -302,7 +300,7 @@ public class FurnitureRequestController {
             + "-fx-font-weight: 500;");
     completionText.toFront();
 
-    Text completionTextSecondRow = new Text("Conference Room Request Sent Successfully.");
+    Text completionTextSecondRow = new Text("Furniture Request Sent Successfully.");
     completionTextSecondRow.setLayoutX(445);
     completionTextSecondRow.setLayoutY(870);
     completionTextSecondRow.setStyle(

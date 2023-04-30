@@ -5,8 +5,6 @@ import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
 import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -68,7 +66,6 @@ public class ConRoomRequestController {
     roomConfirm.setOnMouseClicked(
         event -> {
           allDataFilled();
-          completeAnimation();
         });
 
     datePicker.setText("");
@@ -209,10 +206,12 @@ public class ConRoomRequestController {
         || locationSearchDropdown == null)) {
       try {
         storeRoomValues();
+        completeAnimation();
+        clearAllData();
       } catch (SQLException e) {
         throw new RuntimeException(e);
       }
-      Navigation.navigate(Screen.ROOM_REQUEST_SUBMIT);
+
     } else {
       checkFields.setVisible(true);
     }

@@ -5,8 +5,6 @@ import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.OfficeSupplyRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -79,7 +77,6 @@ public class OfficeSuppRequestController {
     supplyConfirm.setOnMouseClicked(
         event -> {
           supplyOrder();
-          completeAnimation();
           allDataFilled();
         });
     checkFields.setVisible(false);
@@ -185,10 +182,11 @@ public class OfficeSuppRequestController {
         || locationSearchDropdown.getValue() == null)) {
       try {
         storeSupplyVal();
+        completeAnimation();
+        clearAllData();
       } catch (SQLException e) {
         e.printStackTrace();
       }
-      Navigation.navigate(Screen.SUPPLIES_REQUEST_SUBMIT);
     } else {
       checkFields.setVisible(true);
     }

@@ -4,8 +4,6 @@ import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.EmployeeDAO;
 import edu.wpi.teamg.DAOs.NotificationDAO;
 import edu.wpi.teamg.ORMClasses.Notification;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.*;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -70,7 +68,7 @@ public class AddNotificationController {
     notifSubmit.setOnAction(
         event -> {
           try {
-              completeAnimation();
+            completeAnimation();
             storeNotificationValues();
           } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -85,7 +83,6 @@ public class AddNotificationController {
     notifClear.setOnAction(event -> clearNotif());
     notifSubmit.setOnAction(
         event -> {
-          completeAnimation();
           allDataFilled();
         });
   }
@@ -98,10 +95,11 @@ public class AddNotificationController {
         || notifRecipients.getSelectionModel() == null)) {
       try {
         storeNotificationValues();
+        completeAnimation();
+        clearNotif();
       } catch (SQLException e) {
         throw new RuntimeException(e);
       }
-      Navigation.navigate(Screen.NOTIFICATION_CONFIRMATION);
     } else {
       checkFields.setVisible(true);
     }
@@ -180,7 +178,7 @@ public class AddNotificationController {
             + "-fx-font-weight: 500;");
     completionText.toFront();
 
-    Text completionTextSecondRow = new Text("Conference Room Request Sent Successfully.");
+    Text completionTextSecondRow = new Text("Notification Successfully Sent.");
     completionTextSecondRow.setLayoutX(445);
     completionTextSecondRow.setLayoutY(870);
     completionTextSecondRow.setStyle(

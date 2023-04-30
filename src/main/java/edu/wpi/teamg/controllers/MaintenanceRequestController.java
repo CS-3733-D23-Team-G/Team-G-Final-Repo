@@ -5,8 +5,6 @@ import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.MaintenanceRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.*;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -80,7 +78,6 @@ public class MaintenanceRequestController {
   public void initialize() throws SQLException {
     maintainSubmitButton.setOnMouseClicked(
         event -> {
-          completeAnimation();
           allDataFilled();
         });
 
@@ -399,10 +396,11 @@ public class MaintenanceRequestController {
 
       try {
         storeMaintenanceValues();
+        completeAnimation();
+        clearAllData();
       } catch (SQLException e) {
         throw new RuntimeException(e);
       }
-      Navigation.navigate(Screen.MAINTENANCE_REQUEST_SUBMIT);
     } else {
       checkFields.setVisible(true);
     }
@@ -430,7 +428,7 @@ public class MaintenanceRequestController {
             + "-fx-font-weight: 500;");
     completionText.toFront();
 
-    Text completionTextSecondRow = new Text("Conference Room Request Sent Successfully.");
+    Text completionTextSecondRow = new Text("Maintenance Request Sent Successfully.");
     completionTextSecondRow.setLayoutX(445);
     completionTextSecondRow.setLayoutY(870);
     completionTextSecondRow.setStyle(
