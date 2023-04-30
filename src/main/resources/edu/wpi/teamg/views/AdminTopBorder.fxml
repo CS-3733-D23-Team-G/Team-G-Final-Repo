@@ -33,6 +33,11 @@
                <children>
                   <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
+                        <MFXButton fx:id="listenButton" text="Listen">
+                           <HBox.margin>
+                              <Insets right="70.0" top="15.0" />
+                           </HBox.margin>
+                        </MFXButton>
                         <ImageView fx:id="information" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Images/informationIcon.png" />

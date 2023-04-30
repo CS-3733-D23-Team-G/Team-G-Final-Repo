@@ -22,7 +22,7 @@ public class PatientTopBannerController {
 
   @FXML MFXButton listenButton;
 
-  static PopOver window = new PopOver();
+  public static PopOver window = new PopOver();
 
   static PopOver dictionaryPopOver = new PopOver();
 
@@ -76,6 +76,7 @@ public class PatientTopBannerController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     listenPopOver.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+    controller.passWindow(listenPopOver);
   }
 
   public void exit() {

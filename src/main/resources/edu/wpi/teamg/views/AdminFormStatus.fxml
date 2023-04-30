@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TableColumn?>
@@ -59,7 +60,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="913.0" prefWidth="1370.0" styleClass="table_view_right" stylesheets="@style.css">
                <children>
-                  <TableView fx:id="roomTable" layoutX="1.0" prefHeight="899.5" prefWidth="1370.5" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="roomTable" layoutX="1.0" prefHeight="899.5" prefWidth="1370.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="roomReqID" prefWidth="85.0" text="Req. ID" />
                         <TableColumn fx:id="roomEmpID" prefWidth="160.0" text="Emp. ID" />
@@ -75,6 +76,10 @@
                            </columns>
                         </TableColumn>
                      </columns>
+                     <styleClass>
+                        <String fx:value="table-text" />
+                        <String fx:value="table-row-cell" />
+                     </styleClass>
                   </TableView>
                     <TableView fx:id="mealTable" layoutY="1.0" prefHeight="899.5" prefWidth="1370.5" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <columns>

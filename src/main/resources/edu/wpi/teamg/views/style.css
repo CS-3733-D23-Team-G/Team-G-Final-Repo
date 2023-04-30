@@ -400,11 +400,20 @@ Popup
     -fx-pref-width: 470;
 }
 
-.table_view_Button{
+.table_view_Button_edit{
+    -fx-pref-height: 65;
+    -fx-pref-width: 300;
+    -fx-background-color: #F6BD38;
+    -fx-background-radius: 10;
+    -fx-font-size: 25;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+.table_view_Button_cancel{
     -fx-pref-height: 65;
     -fx-pref-width: 300;
     -fx-background-color: #D9D9D9;
-    -fx-background-radius: 30;
+    -fx-background-radius: 10;
     -fx-font-size: 25;
     -fx-text-fill: #000000;
     -fx-alignment: center;
@@ -607,6 +616,16 @@ Popup
     -fx-font-size: 20;
     -fx-pref-height: 40;
     -fx-alignment: center;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: #d8ebfe;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
+.table-row-cell:even{
+    -fx-background-color: #b7dafe;
+    -fx-background-insets: 0, 0 0 1 0;
 }
 
 
