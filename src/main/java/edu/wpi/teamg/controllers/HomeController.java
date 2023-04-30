@@ -9,24 +9,18 @@ import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -34,11 +28,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-
-import org.controlsfx.control.PopOver;
-
 import javafx.util.Duration;
-
+import org.controlsfx.control.PopOver;
 
 public class HomeController {
   @FXML Text empName;
@@ -50,6 +41,7 @@ public class HomeController {
   static PopOver deleteConfirmation = new PopOver();
 
   static int notifToBeDeleted;
+  private static boolean playAnimation;
 
   // TODO if there are no requests, add a message saying currently no requests.
 
@@ -59,11 +51,15 @@ public class HomeController {
     empName.setText(" " + App.employee.getFirstName() + " " + App.employee.getLastName());
     empName.setFill(Color.valueOf("#012D5A"));
 
-    empName.setOnMouseClicked(event -> completeAnimation());
+    // empName.setOnMouseClicked(event -> completeAnimation());
 
     RequestDAO requestDAO = new RequestDAO();
     // HashMap<Integer, Request> hash = requestDAO.getOutstandingRequest(App.employee.getEmpID());
     ArrayList<Request> hash = requestDAO.getOutstandingRequest(App.employee.getEmpID());
+    if (getPlayanimation()) {
+      completeAnimation();
+      setPlayAnimation(false);
+    }
 
     hash.forEach(
         (i) -> {
@@ -322,7 +318,7 @@ public class HomeController {
             + "-fx-font-weight: 500;");
     completionText.toFront();
 
-    Text completionTextSecondRow = new Text("Conference Room Request Sent Successfully.");
+    Text completionTextSecondRow = new Text("Notification has been deleted.");
     completionTextSecondRow.setLayoutX(445);
     completionTextSecondRow.setLayoutY(870);
     completionTextSecondRow.setStyle(
@@ -416,5 +412,13 @@ public class HomeController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     deleteConfirmation.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public static boolean getPlayanimation() {
+    return playAnimation;
+  }
+
+  public static void setPlayAnimation(boolean t) {
+    playAnimation = t;
   }
 }

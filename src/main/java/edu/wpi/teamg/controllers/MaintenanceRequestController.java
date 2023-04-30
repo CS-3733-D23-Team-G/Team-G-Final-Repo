@@ -64,9 +64,7 @@ public class MaintenanceRequestController {
 
   @FXML Text Problemdes;
 
-
   @FXML AnchorPane forms;
-
 
   @FXML MFXFilterComboBox locationSearchDropdown;
   @FXML MFXFilterComboBox employeeSearchDropdown;

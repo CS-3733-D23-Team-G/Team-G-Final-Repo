@@ -104,7 +104,6 @@ public class App extends Application {
 
   public static Image tea = new Image("edu/wpi/teamg/Images/tea.jpg");
 
-
   public static DAORepo daoRepo = new DAORepo();
   public static EdgeDAO edgeDao = new EdgeDAO();
 
