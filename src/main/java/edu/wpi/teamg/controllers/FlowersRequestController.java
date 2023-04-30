@@ -5,8 +5,6 @@ import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
@@ -160,7 +158,6 @@ public class FlowersRequestController {
     submit.setOnAction(
         event -> {
           flowerOrder();
-          completeAnimation();
           allDataFilled();
         });
     //    deliveryLocation.getText();
@@ -346,10 +343,11 @@ public class FlowersRequestController {
         || deliveryTime.getText().equals(""))) {
       try {
         storeFlowerValues();
+        completeAnimation();
+        clearFlowers();
       } catch (SQLException e) {
         throw new RuntimeException(e);
       }
-      Navigation.navigate(Screen.FLOWERS_REQUEST_SUBMIT);
     } else {
       checkFields.setVisible(true);
     }
