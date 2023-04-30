@@ -20,7 +20,7 @@ public class PatientTopBannerController {
   @FXML ImageView dictionary;
   @FXML MFXButton logoButton;
 
-  @FXML MFXButton listenButton;
+  @FXML ImageView listenButton;
 
   public static PopOver window = new PopOver();
 

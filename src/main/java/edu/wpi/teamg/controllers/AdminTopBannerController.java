@@ -30,7 +30,7 @@ public class AdminTopBannerController {
   @FXML ImageView dictionary;
 
   @FXML ImageView information;
-  @FXML MFXButton listenButton;
+  @FXML ImageView listenButton;
 
   @FXML ChoiceBox<String> AdminChoiceBox;
 
