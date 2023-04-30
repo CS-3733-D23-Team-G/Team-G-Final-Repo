@@ -177,7 +177,6 @@
                         </Text>
                     </children>
                 </AnchorPane>
-
                 <AnchorPane prefHeight="979.0" prefWidth="200.0" styleClass="half_bottom_page" stylesheets="@style.css">
                <children>
                   <AnchorPane layoutX="97.0" layoutY="77.0" maxHeight="780.0" maxWidth="776.0" prefHeight="780.0" prefWidth="776.0" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="97.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="92.0">
