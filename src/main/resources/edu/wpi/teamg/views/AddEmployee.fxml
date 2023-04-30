@@ -5,6 +5,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -167,7 +169,17 @@
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" />
+            <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+               <children>
+                  <TableView fx:id="empTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                    <columns>
+                      <TableColumn fx:id="empLastName" prefWidth="200.0" text="Last Name" />
+                      <TableColumn fx:id="empFirstName" prefWidth="200.0" text="First Name" />
+                        <TableColumn fx:id="empEmail" prefWidth="200.0" text="Email" />
+                        <TableColumn fx:id="empCanServe" prefWidth="200.0" text="Can Serve" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
          </children>
       </HBox>
    </center>

@@ -387,6 +387,16 @@ public class App extends Application {
     }
   }
 
+  public static HashMap<Integer, Employee> testingEmps;
+
+  static {
+    try {
+      testingEmps = getHashEmps();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   public static HashMap<Integer, String> allEmployeeHash;
 
   static {
@@ -730,6 +740,18 @@ public class App extends Application {
       System.err.print(e.getErrorCode());
     }
     return maintainHash;
+  }
+
+  public static HashMap getHashEmps() throws SQLException {
+
+    HashMap<Integer, Employee> empHash = new HashMap<Integer, Employee>();
+
+    try {
+      empHash = daoRepo.getAllEmployees();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+    return empHash;
   }
 
   static int code;
