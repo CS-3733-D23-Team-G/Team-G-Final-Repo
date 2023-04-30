@@ -71,6 +71,8 @@ public class pathfindingController {
 
   @FXML MFXButton txtDirections;
 
+  @FXML MFXToggleButton aniPath;
+
   ObservableList<String> locationListStart;
   ObservableList<String> locationListEnd;
   ObservableList<String> FloorList;
@@ -82,6 +84,7 @@ public class pathfindingController {
 
   boolean snLab = true;
   boolean togg = false;
+  boolean animation = false;
 
   ArrayList<String> txtPath;
 
@@ -100,6 +103,15 @@ public class pathfindingController {
     // aStarCheckBox.setSelected(true);
     dSN.setSelected(true);
 
+    aniPath.setOnAction(
+        event -> {
+          if (aniPath.isSelected()) {
+            animation = true;
+          }
+          if (!aniPath.isSelected()) {
+            animation = false;
+          }
+        });
     txtDirections.setVisible(false);
     txtDirections.setOnMouseClicked(
         event -> {
@@ -204,29 +216,47 @@ public class pathfindingController {
               algo = new Astar();
               updateMove(floor);
               txtDirections.setVisible(true);
-              setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              if (animation) {
+                animatedPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              } else {
+                setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              }
             } else if (App.pathfindingAlgo.equals("DFS")) {
 
               algo = new DFS();
               updateMove(floor);
               txtDirections.setVisible(true);
-              setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              if (animation) {
+                animatedPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              } else {
+                setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              }
 
             } else if (App.pathfindingAlgo.equals("BFS")) {
               algo = new BFS();
               updateMove(floor);
               txtDirections.setVisible(true);
-              setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              if (animation) {
+                animatedPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              } else {
+                setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              }
 
             } else if (App.pathfindingAlgo.equals("Dijkstra")) {
               algo = new Dijkstra();
               updateMove(floor);
               txtDirections.setVisible(true);
-              setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              if (animation) {
+                animatedPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              } else {
+                setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              }
             }
           } catch (SQLException e) {
             System.err.println("SQL Exception");
             e.printStackTrace();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
           }
         });
 
@@ -456,7 +486,6 @@ public class pathfindingController {
 
   public void setPath(ArrayList<String> path) throws SQLException {
 
-    System.out.println(path);
     txtPath = path;
     //    if (path.size() == 1) {
     //      results.setText("Error: No Possible Path Found");
@@ -1454,6 +1483,25 @@ public class pathfindingController {
     // GOnna call this for pathfinding
 
     // movesForAlgos = new ArrayList<>(moving.values());
+  }
+
+  public void animatedPath(ArrayList<String> p) throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/DirectionsPopUp.fxml"));
+    window.setContentNode(loader.load());
+    DirectionsPopUpController controller = loader.getController();
+    controller.setF(window, p, movesForAlgos);
+    String txtDir = controller.retForAni();
+
+    final PopOver windowAni = new PopOver();
+    var loaderAni = new FXMLLoader(App.class.getResource("views/AnimatedPopOver.fxml"));
+    windowAni.setContentNode(loaderAni.load());
+    AnimatedPopOverController aniController = loaderAni.getController();
+    aniController.setTxtForPath(txtDir);
+    aniController.getThePath(p);
+
+    final Point mouseLocationAni = MouseInfo.getPointerInfo().getLocation();
+    windowAni.show(App.getPrimaryStage(), mouseLocationAni.getX(), mouseLocationAni.getY());
   }
 
   public void exit() {

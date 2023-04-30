@@ -63,8 +63,7 @@ public class App extends Application {
   //  // Doesn't really matter because it just taking the date freom the calendar Ohhhh
   //  // then we go to settings controller?
 
-  public static LocalDate pathfindingDate =
-      LocalDate.of(2023, 1, 1);
+  public static LocalDate pathfindingDate = LocalDate.of(2023, 1, 1);
 
   public static DAORepo daoRepo = new DAORepo();
   public static EdgeDAO edgeDao = new EdgeDAO();
