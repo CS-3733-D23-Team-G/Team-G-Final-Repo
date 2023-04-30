@@ -2,7 +2,8 @@ package edu.wpi.teamg;
 
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.controllers.ChooseKioskPop;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,6 +24,8 @@ import org.controlsfx.control.PopOver;
 @Slf4j
 public class App extends Application {
   static PopOver window = new PopOver();
+
+  public static ArrayList<String> usernames = new ArrayList<>();
 
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
@@ -347,16 +350,18 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
 
-    var popLoader = new FXMLLoader(App.class.getResource("views/ChooseKioskPop.fxml"));
-    window.setContentNode(popLoader.load());
-    window.setArrowSize(0);
-    window.setTitle("Choose Kiosk Number");
-    window.setHeaderAlwaysVisible(true);
-    ChooseKioskPop cont = popLoader.getController();
-    cont.setWind(window);
+    Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
 
-    final Point mouseLoc = MouseInfo.getPointerInfo().getLocation();
-    window.show(getPrimaryStage(), mouseLoc.getX(), mouseLoc.getY());
+    //    var popLoader = new FXMLLoader(App.class.getResource("views/ChooseKioskPop.fxml"));
+    //    window.setContentNode(popLoader.load());
+    //    window.setArrowSize(0);
+    //    window.setTitle("Choose Kiosk Number");
+    //    window.setHeaderAlwaysVisible(true);
+    //    ChooseKioskPop cont = popLoader.getController();
+    //    cont.setWind(window);
+    //
+    //    final Point mouseLoc = MouseInfo.getPointerInfo().getLocation();
+    //    window.show(getPrimaryStage(), mouseLoc.getX(), mouseLoc.getY());
   }
 
   public static void refresh() throws SQLException {
