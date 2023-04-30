@@ -160,9 +160,9 @@
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <Text layoutX="143.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Add Employee" AnchorPane.topAnchor="50.0">
+                  <Text layoutX="101.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Add Employee" AnchorPane.topAnchor="49.99609375">
                      <font>
-                        <Font size="25.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
                </children>

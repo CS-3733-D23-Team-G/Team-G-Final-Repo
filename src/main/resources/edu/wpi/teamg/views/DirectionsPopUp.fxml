@@ -42,6 +42,7 @@
             <HBox alignment="CENTER" prefWidth="453.0" stylesheets="@style.css">
                <children>
                   <MFXButton fx:id="closePath" styleClass="add_Buttons" text="Close" />
+                  <MFXButton fx:id="speakButton" styleClass="add_Buttons" text="Speak" />
                </children>
             </HBox>
          </children>
