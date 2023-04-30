@@ -39,8 +39,14 @@ public class HomeController {
   @FXML AnchorPane formsForAnimation;
 
   static PopOver deleteConfirmation = new PopOver();
+  static PopOver changeStatusConfirmation = new PopOver();
 
   static int notifToBeDeleted;
+
+  static int requestToBeChanged;
+  static StatusTypeEnum currentStatus;
+
+  static String reqTypeToBeChanged;
 
   // TODO if there are no requests, add a message saying currently no requests.
 
@@ -170,6 +176,18 @@ public class HomeController {
           stack.getChildren().addAll(rect, bubbleText);
           stack.setLayoutX(535);
           stack.setLayoutY(52);
+
+          stack.setOnMouseClicked(
+              event -> {
+                try {
+                  requestToBeChanged = i.getReqid();
+                  currentStatus = i.getStatus();
+                  reqTypeToBeChanged = i.getReqtype();
+                  setChangeStatusConfirmation();
+                } catch (IOException e) {
+                  throw new RuntimeException(e);
+                }
+              });
 
           //     pane.setStyle("-fx-background-color: " + color);
           //          pane.setStyle("-fx-fill: #E19797");
@@ -394,6 +412,22 @@ public class HomeController {
           fadeOut3.play();
           fadeOut4.play();
         });
+  }
+
+  public void setChangeStatusConfirmation() throws IOException {
+
+    var loader = new FXMLLoader(App.class.getResource("views/OutstandingRequestStatusChange.fxml"));
+    changeStatusConfirmation.setContentNode(loader.load());
+
+    changeStatusConfirmation.setArrowSize(0);
+    changeStatusConfirmation.setTitle("Change Request Status");
+
+    changeStatusConfirmation.setHeaderAlwaysVisible(false);
+    OutstandingRequestStatusChangeController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    changeStatusConfirmation.show(
+        App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void deleteConfirmation() throws IOException {
