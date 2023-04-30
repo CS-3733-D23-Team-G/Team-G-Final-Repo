@@ -6,46 +6,49 @@ import edu.cmu.sphinx.api.SpeechResult;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import java.io.IOException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.Timer;
+import java.util.TimerTask;
+import lombok.Getter;
+import lombok.Setter;
 
 public class SpeechToText {
   Configuration config = new Configuration();
-  String command = "";
+  @Getter @Setter private String command;
   private boolean stopped = false;
-  private long timeLim;
-  private ScheduledExecutorService executorService;
+  private Timer timer;
   LiveSpeechRecognizer recog;
 
   public SpeechToText() throws IOException {
     config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
     config.setDictionaryPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.dic");
     config.setLanguageModelPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.lm");
-    executorService = Executors.newSingleThreadScheduledExecutor();
     recog = new LiveSpeechRecognizer(config);
+    timer = new Timer();
   }
 
-  public void detectCommand(int duration) throws IOException {
-    try {
-      this.timeLim = duration;
-      recog.startRecognition(true);
+  public void detectCommand() throws IOException {
+    System.out.println("recognition started");
+    timer.schedule(
+        new TimerTask() {
+          @Override
+          public void run() {
+            recog.stopRecognition();
+          }
+        },
+        5000);
 
-      executorService.schedule(this::stop, timeLim, TimeUnit.SECONDS);
-      SpeechResult result;
-      while (!stopped && (result = recog.getResult()) != null) {
-        command = result.getHypothesis();
-        System.out.println("The command was: " + command);
-        checkCommand();
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      if (recog != null) {
-        recog.stopRecognition();
-      }
-      executorService.shutdownNow();
+    SpeechResult result;
+    while ((result = recog.getResult()) != null) {
+      command = result.getHypothesis();
+      System.out.println("your command is: " + command);
+      checkCommand();
+      recog.stopRecognition();
     }
+    recog.stopRecognition();
+  }
+
+  public void startCommand() {
+    recog.startRecognition(true);
   }
 
   private void checkCommand() {
@@ -71,33 +74,7 @@ public class SpeechToText {
   }
 
   //  public static void main(String[] args) throws IOException {
-  //    Configuration config = new Configuration();
-  //
-  //    config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-  //    config.setDictionaryPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.dic");
-  //    config.setLanguageModelPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.lm");
-  //
-  //    LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(config);
-  //    recognizer.startRecognition(true);
-  //
-  //    System.out.println("Speech Recognition started");
-  //
-  //    while (true) {
-  //      SpeechResult result = recognizer.getResult();
-  //      if (result != null) {
-  //        resultListener(result, recognizer);
-  //      }
-  //    }
-  //  }
-  //
-  //  private static void resultListener(SpeechResult result, LiveSpeechRecognizer recognizer) {
-  //    if (result != null) {
-  //      String spokenText = result.getHypothesis();
-  //      System.out.println("You said: " + spokenText);
-  //      if (spokenText.equalsIgnoreCase("stop")) {
-  //
-  //        recognizer.stopRecognition();
-  //      }
-  //    }
+  //    SpeechToText stt = new SpeechToText();
+  //    stt.detectCommand();
   //  }
 }
