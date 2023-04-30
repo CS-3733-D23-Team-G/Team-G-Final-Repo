@@ -103,7 +103,7 @@ public class EmployeeDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4.employee";
+    return "iteration4.employee";
   }
 
   public static HashMap<Integer, String> getEmployeeFullName(String canServe) throws SQLException {

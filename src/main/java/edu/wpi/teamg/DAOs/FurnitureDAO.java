@@ -202,10 +202,10 @@ public class FurnitureDAO implements DAO {
   @Override
   public String getTable() {
 
-    return "teamgdb.iteration4.furniturerequest";
+    return "iteration4.furniturerequest";
   }
 
   public String getRequest() {
-    return "teamgdb.iteration4.request";
+    return "iteration4.request";
   }
 }

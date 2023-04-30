@@ -32,7 +32,7 @@ public class NotificationDAO implements DAO {
 
     ResultSet rs = null;
 
-    SQL_maxID = "select alertid from teamgdb.iteration4.notification order by alertid desc limit 1";
+    SQL_maxID = "select alertid from iteration4.notification order by alertid desc limit 1";
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -179,6 +179,6 @@ public class NotificationDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4.notification";
+    return "iteration4.notification";
   }
 }

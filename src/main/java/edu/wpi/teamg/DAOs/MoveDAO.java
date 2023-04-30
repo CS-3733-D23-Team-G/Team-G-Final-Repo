@@ -20,7 +20,7 @@ public class MoveDAO implements LocationMoveDao {
     PreparedStatement ps;
     ResultSet rs = null;
 
-    sql = "select * from teamgdb.iteration4.move";
+    sql = "select * from iteration4.move";
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -52,7 +52,7 @@ public class MoveDAO implements LocationMoveDao {
 
     PreparedStatement ps;
     sql =
-        "update teamgdb.iteration4.move set "
+        "update iteration4.move set "
             + colName
             + " = ? where nodeID=? AND longname=? AND Date=?";
     try {
@@ -85,7 +85,7 @@ public class MoveDAO implements LocationMoveDao {
     Move move = (Move) obj;
     db.setConnection();
 
-    sql = "INSERT INTO teamgdb.iteration4.move (nodeid, longname, date) VALUES (?,?,?);";
+    sql = "INSERT INTO iteration4.move (nodeid, longname, date) VALUES (?,?,?);";
 
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
@@ -105,7 +105,7 @@ public class MoveDAO implements LocationMoveDao {
   public void delete(Object obj) throws SQLException {
     Move move = (Move) obj;
     db.setConnection();
-    sql = "DELETE FROM teamgdb.iteration4.move WHERE nodeID = ? and longname=? and date =?";
+    sql = "DELETE FROM iteration4.move WHERE nodeID = ? and longname=? and date =?";
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
     try {
@@ -136,7 +136,7 @@ public class MoveDAO implements LocationMoveDao {
     db.setConnection();
 
     Statement statement = null;
-    String sql = "select * from teamgdb.iteration4.move";
+    String sql = "select * from iteration4.move";
     ResultSet rs = null;
     FileWriter writer = null;
 
@@ -184,7 +184,7 @@ public class MoveDAO implements LocationMoveDao {
   @Override
   public void importCSV(String filePath) throws SQLException {
     db.setConnection();
-    sql = "insert into teamgdb.iteration4.move (nodeid, longname, date) values (?,?,?)";
+    sql = "insert into iteration4.move (nodeid, longname, date) values (?,?,?)";
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
     try {
       BufferedReader br = new BufferedReader(new FileReader(filePath));

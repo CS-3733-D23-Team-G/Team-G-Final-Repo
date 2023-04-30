@@ -97,7 +97,7 @@ public class FlowerRequestDAO implements DAO {
     PreparedStatement ps_Req;
 
     ResultSet rs = null;
-    SQL_maxID = "select reqid from teamgdb.iteration4.request order by reqid desc limit 1";
+    SQL_maxID = "select reqid from iteration4.request order by reqid desc limit 1";
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -113,9 +113,9 @@ public class FlowerRequestDAO implements DAO {
     }
 
     SQL_flowerRequest =
-        "insert into teamgdb.iteration4.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
+        "insert into iteration4.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
     SQL_Request =
-        "insert into teamgdb.iteration4.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+        "insert into iteration4.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
 
     try {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
@@ -204,6 +204,6 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4.flowerrequest";
+    return "iteration4.flowerrequest";
   }
 }

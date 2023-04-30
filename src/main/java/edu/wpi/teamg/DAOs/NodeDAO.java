@@ -58,7 +58,7 @@ public class NodeDAO implements LocationDAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4.node";
+    return "iteration4.node";
   }
 
   @Override

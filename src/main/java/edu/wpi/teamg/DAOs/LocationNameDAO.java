@@ -162,7 +162,7 @@ public class LocationNameDAO implements LocationDAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4.locationname";
+    return "iteration4.locationname";
   }
 
   @Override
