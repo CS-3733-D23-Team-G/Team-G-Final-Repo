@@ -22,7 +22,7 @@ public class PatientTopBannerController {
 
   @FXML MFXButton listenButton;
 
-  static PopOver window = new PopOver();
+  public static PopOver window = new PopOver();
 
   static PopOver dictionaryPopOver = new PopOver();
 
