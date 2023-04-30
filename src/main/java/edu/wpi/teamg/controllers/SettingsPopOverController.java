@@ -54,6 +54,14 @@ public class SettingsPopOverController {
 
     locationDrop.getSelectionModel().selectItem(App.getKioskLocation());
 
+    locationDrop
+        .getSelectionModel()
+        .selectedItemProperty()
+        .addListener(
+            (options, oldValue, newValue) -> {
+              App.setKioskLocation((String) newValue);
+            });
+
     aStarCheckBox.setOnAction(
         event -> {
           aStarCheckBox.setSelected(true);
