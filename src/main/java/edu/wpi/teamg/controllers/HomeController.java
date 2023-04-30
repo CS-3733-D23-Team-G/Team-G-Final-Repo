@@ -1,7 +1,6 @@
 package edu.wpi.teamg.controllers;
 
 import edu.wpi.teamg.App;
-import edu.wpi.teamg.DAOs.EmployeeDAO;
 import edu.wpi.teamg.DAOs.NotificationDAO;
 import edu.wpi.teamg.DAOs.RequestDAO;
 import edu.wpi.teamg.ORMClasses.Notification;
@@ -178,14 +177,11 @@ public class HomeController {
     NotificationDAO notifDao = new NotificationDAO();
     ArrayList<Notification> notifHash = notifDao.getAllNotificationOf(App.employee.getEmpID());
 
-    EmployeeDAO employeeDAO = new EmployeeDAO();
-    HashMap<Integer, String> allEmployeeHash = employeeDAO.getAllEmployeeFullName();
-
     notifHash.forEach(
         (i) -> {
-          Text notif = new Text("From: " + allEmployeeHash.get(i.getEmpid()));
+          Text notif = new Text("From: " + App.allEmployeeHash.get(i.getEmpid()));
 
-          ImageView dismiss = new ImageView("edu/wpi/teamg/Images/blackDismiss.png");
+          ImageView dismiss = new ImageView(App.notifDismissIcon);
 
           Button dismissBtn = new Button();
           dismissBtn.setStyle("-fx-pref-width: 28; -fx-pref-height: 28; -fx-opacity: 0");
