@@ -51,7 +51,6 @@ public class App extends Application {
 
   public static Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
 
-
   public static Image notifDismissIcon = new Image("edu/wpi/teamg/Images/blackDismiss.png");
 
   public static String pathfindingAlgo = "Astar";
@@ -64,8 +63,7 @@ public class App extends Application {
   //  // Doesn't really matter because it just taking the date freom the calendar Ohhhh
   //  // then we go to settings controller?
 
-  public static LocalDate pathfindingDate =
-      LocalDate.of(2023, 1, 1);
+  public static LocalDate pathfindingDate = LocalDate.of(2023, 1, 1);
 
   // MEAL IMAGES
   public static Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
@@ -105,7 +103,6 @@ public class App extends Application {
   public static Image smoothie = new Image("edu/wpi/teamg/Images/smoothie.jpg");
 
   public static Image tea = new Image("edu/wpi/teamg/Images/tea.jpg");
-
 
   public static DAORepo daoRepo = new DAORepo();
   public static EdgeDAO edgeDao = new EdgeDAO();
