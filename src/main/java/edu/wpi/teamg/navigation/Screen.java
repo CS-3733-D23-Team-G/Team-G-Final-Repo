@@ -37,6 +37,8 @@ public enum Screen {
   ABOUT_PAGE("views/About_page.fxml"),
   EMPLOYEE_INFO("views/EmployeeInformation.fxml"),
 
+  KIDS_PAGE("views/KidsGamePage.fxml"),
+
   EMPLOYEE_CONFIRMATION("views/EmployeeConfirmationPage.fxml"),
   NOTIFICATION_CONFIRMATION("views/NotificationConfirmationPage.fxml"),
   TWO_FAC("views/2FactorPopUp.fxml"),
