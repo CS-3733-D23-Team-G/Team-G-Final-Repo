@@ -44,13 +44,12 @@ public class AddNotificationController {
   @FXML MFXCheckListView notifRecipients;
 
   @FXML Label checkFields;
-  
+
   @FXML MFXCheckbox selectAll;
 
   @FXML MFXCheckbox dismissible;
 
   @FXML AnchorPane forms;
-
 
   ObservableList<String> notifTypeList =
       FXCollections.observableArrayList("Alert", "Request Assign", "Message");

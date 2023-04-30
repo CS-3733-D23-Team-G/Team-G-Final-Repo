@@ -32,7 +32,7 @@ public class PatientTopBannerController {
   public void initialize() {
     App.bool = false;
     exit.setOnMouseClicked(event -> exit());
-    information.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
+    information.setOnMouseClicked(event -> Navigation.navigate(Screen.ABOUT_PAGE));
     dictionary.setOnMouseClicked(
         event -> {
           try {
