@@ -1,7 +1,7 @@
 * {
     -mfx-main: #012D5A;
     -mfx-purple: #F6BD38;
-    -mfx-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
+    -mfx-color: #012D5A;
 }
 
 .choice-box .menu-item{
@@ -24,6 +24,10 @@
     -fx-padding: 5;
 }
 
+.signageCheckBox .box{
+    -fx-border-color: #012D5A;
+}
+
 .mfx-checkbox:selected .box,
 .mfx-checkbox:indeterminate .box {
     -fx-background-color: #012D5A;
@@ -44,7 +48,7 @@
 }
 
 .mfx-text-field:focus-within {
-    -fx-border-color: -mfx-color;
+    -fx-border-color: -mfx-color; /* NOT AN ERROR, IMPORTANT MFX STYLING */
 }
 
 /********************
@@ -56,14 +60,14 @@ Date Picker
 }
 
 .mfx-date-picker:focus-within .icon {
-    -mfx-color:  linear-gradient(to bottom left, #009FFD, #012D5A);
+    -mfx-color:  #012D5A; /* NOT AN ERROR, IMPORTANT MFX STYLING */
 }
 
 /********************
 Popup
 ********************/
-.mfx-date-picker .date-picker-popup .months-combo:focus-within,
-.mfx-date-picker .date-picker-popup .years-combo:focus-within {
+.mfx-date-picker .date-picker-popup .months-combo:focus-within, /* NOT AN ERROR, IMPORTANT MFX STYLING */
+.mfx-date-picker .date-picker-popup .years-combo:focus-within { /* NOT AN ERROR, IMPORTANT MFX STYLING */
     -fx-text-fill: #012D5A;
 }
 
@@ -100,7 +104,7 @@ Popup
 
 .mfx-date-cell:selected {
     -fx-text-fill: white;
-    -fx-background-color:  linear-gradient(to bottom left, #009FFD, #2A2A72);
+    -fx-background-color:  #012D5A;
     -fx-font-family: "Poppins";
 }
 
@@ -183,10 +187,10 @@ Popup
     -fx-pref-width: 1920;
 }
 .banner_big-side{
-    -fx-pref-width: 1120;
+    -fx-pref-width: 850;
 }
 .banner_logo_side{
-    -fx-pref-width: 800;
+    -fx-pref-width: 1070;
 }
 .hit_the_griddy{
     -fx-pref-height: 90;
@@ -228,6 +232,15 @@ Popup
 .signage_text{
     -fx-font-size: 40;
 }
+
+.signage_text_Clock{
+    -fx-font-size: 30;
+}
+
+.signage_text_loc{
+    -fx-font-size: 20;
+}
+
 .signage_background_color{
     -fx-background-color: #f1f1f1;
 }
@@ -445,20 +458,25 @@ Popup
 
 .requestConfirmButton{
     -fx-pref-height: 65;
-    -fx-pref-width: 250;
+    -fx-pref-width: 132;
     -fx-background-color: #F6BD38;
-    -fx-background-radius: 30;
+    -fx-background-radius: 10;
     -fx-font-size: 25;
+    -fx-font-color: #012D5A;
     -fx-text-fill: #000000;
     -fx-alignment: center;
 }
 
 .requestClearButton {
     -fx-pref-height: 65;
-    -fx-pref-width: 250;
-    -fx-background-color: #D9D9D9;
-    -fx-background-radius: 30;
+    -fx-pref-width: 132;
+    -fx-background-color: #012D5A;
+    -fx-background-radius: 10;
     -fx-font-size: 25;
+    -fx-font-color: #F6BD38;
+    -fx-border-color: #F6BD38;
+    -fx-border-width: 4;
+    -fx-border-radius: 10;
 }
 
 .signageClearButton {
@@ -551,8 +569,8 @@ Popup
 /* banner CSS */
 .banner_login_exit_text {
     -fx-font-family: "Poppins";
-
-    -fx-font-size: 20;
+    -fx-font-weight: 800;
+    -fx-font-size: 22;
     -fx-pref-height: 35;
     /*   -fx-pref-width: 300; */
 }
@@ -726,11 +744,11 @@ about_text{
 }
 
 
-.txt_directions{
+.txt_directions {
     -fx-pref-height: 70;
     -fx-pref-width: 275;
     -fx-background-color: #D9D9D9;
-
+}
 
 .add_Nodes{
     -fx-pref-height: 65;
@@ -772,6 +790,31 @@ about_text{
     -fx-text-fill: #000000;
     -fx-alignment: center;
 }
+
+.confTiles{
+    -fx-background-color: #d5d5d5;
+    -fx-background-insets: 5;
+    -fx-border-insets: 5;
+}
+
+.adminSettings{
+    -fx-pref-height: 400;
+    -fx-pref-width: 400;
+}
+
+.settingsLabel{
+    -fx-font-size: 25;
+    -fx-font-family: "Poppins-Regular";
+}
+
+.confirmButton{
+    -fx-background-color: #F6BD38;
+    -fx-font-size: 15;
+    -fx-pref-height: 41;
+    -fx-max-height: 41;
+}
+
+
 
 
 
