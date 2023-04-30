@@ -129,49 +129,40 @@
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="109.0" prefWidth="1606.0" AnchorPane.bottomAnchor="825.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
                      <children>
-                        <HBox prefHeight="55.0" prefWidth="272.0">
+                        <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="272.0">
                            <children>
-                              <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="152.0">
-                                 <children>
-                                    <ImageView fx:id="arrow81" fitHeight="67.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@Screenshot_2023-04-27_192107-removebg-preview.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Text fill="#404040" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text_loc_lower" text="Current Location:" />
-                                          <Text fx:id="locationText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text_loc" text="Text" />
-                                       </children>
-                                    </VBox>
-                                 </children>
+                              <Text fx:id="timeText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text_Clock" text="Text">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin></Text>
+                              <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text_Clock" text="Text">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="272.0">
+                           <children>
+                              <ImageView fx:id="arrow81" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Screenshot_2023-04-27_192107-removebg-preview.png" />
+                                 </image>
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
-                              </HBox>
-                              <HBox alignment="TOP_RIGHT" prefHeight="67.0" prefWidth="1556.0">
-                                 <children>
-                                    <Text fx:id="timeText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text_Clock" text="Text">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                    </Text>
-                                    <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text_Clock" text="Text">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                    </Text>
-                                 </children>
-                              </HBox>
+                              </ImageView>
+                              <Text fx:id="locationText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800;" styleClass="signage_text_loc" text="Text">
+                                 <HBox.margin>
+                                    <Insets right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Text>
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                   <MFXButton fx:id="ClickToPathFinding" layoutX="-52.0" layoutY="10.0" opacity="0.0" prefHeight="981.0" prefWidth="1920.0" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <MFXButton fx:id="snakeButton" layoutX="840.0" layoutY="77.0" opacity="0.0" prefHeight="47.0" prefWidth="241.0" text="Button" />
+                  <MFXButton fx:id="snakeButton" layoutX="312.0" layoutY="80.0" opacity="0.0" prefHeight="47.0" prefWidth="241.0" />
                     </children>
                 </AnchorPane>
             </children>

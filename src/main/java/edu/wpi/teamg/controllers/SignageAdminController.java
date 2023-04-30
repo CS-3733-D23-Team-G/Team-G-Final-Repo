@@ -1,6 +1,5 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
 import edu.wpi.teamg.navigation.Navigation;
@@ -107,7 +106,6 @@ public class SignageAdminController {
 
   @FXML
   public void initialize() throws SQLException {
-    App.bool = false;
     importDrop.setItems(importList);
     exportDrop.setItems(exportList);
     cancel.setOnMouseClicked(event -> cancelTable());

@@ -30,13 +30,10 @@ public class AdminTopBannerController {
   @FXML ImageView dictionary;
 
   @FXML ImageView information;
-  @FXML MFXButton listenButton;
 
   @FXML ChoiceBox<String> AdminChoiceBox;
 
   static PopOver window = new PopOver();
-
-  static PopOver listenPopOver = new PopOver();
 
   static PopOver dictionaryPopOver = new PopOver();
   ObservableList<String> list =
@@ -88,31 +85,6 @@ public class AdminTopBannerController {
     HomeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     AdminChoiceBox.setItems(AdminList);
     AdminChoiceBox.setOnAction(event -> AdminServiceForms());
-
-    listenButton.setOnMouseClicked(
-        event -> {
-          try {
-            listenEvent();
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
-        });
-  }
-
-  private void listenEvent() throws IOException {
-    var loader = new FXMLLoader(App.class.getResource("views/speechPop.fxml"));
-    listenPopOver.setContentNode(loader.load());
-
-    listenPopOver.setArrowSize(0);
-    listenPopOver.setTitle("Awaiting Command");
-
-    listenPopOver.setHeaderAlwaysVisible(true);
-
-    SpeechPopController controller = loader.getController();
-
-    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-    listenPopOver.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
-    controller.passWindow(listenPopOver);
   }
 
   public void dictionary() throws IOException {

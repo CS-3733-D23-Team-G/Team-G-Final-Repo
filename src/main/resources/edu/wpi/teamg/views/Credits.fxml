@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="980.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fitHeight="980.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="706.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.CreditsController">
+   <right>
+      <ImageView fitHeight="980.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@../Images/Credits.png" />
+            <Image url="@credits(1).jpg" />
          </image>
       </ImageView>
-      <MFXButton fx:id="Credits" layoutX="1850.0" layoutY="20.0" textFill="#f6bd38" />
-   </children>
-</AnchorPane>
+   </right>
+   <center>
+      <MFXButton fx:id="Credits" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" styleClass="requestConfirmButton" text="&lt; About" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="800.0" left="3500.0" />
+         </BorderPane.margin>
+      </MFXButton>
+   </center>
+</BorderPane>

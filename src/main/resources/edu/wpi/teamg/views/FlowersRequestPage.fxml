@@ -150,12 +150,12 @@
                                     </MFXComboBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <MFXButton fx:id="clearAll" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear" textFill="#f6bd38">
+                                          <MFXButton fx:id="clearAll" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </MFXButton>
-                                          <MFXButton fx:id="submit" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm" textFill="#012d5a">
+                                          <MFXButton fx:id="submit" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm">
                                              <HBox.margin>
                                                 <Insets left="15.0" />
                                              </HBox.margin>
@@ -174,14 +174,14 @@
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <Text layoutX="100.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Flower Request Form" AnchorPane.topAnchor="40.99609375">
+                  <Text layoutX="109.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Flower Request Form" AnchorPane.topAnchor="50.0">
                      <font>
-                        <Font name="System Bold" size="35.0" />
+                        <Font size="35.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="forms" prefHeight="1555.0" prefWidth="1109.0" styleClass="half_bottom_page">
+            <AnchorPane prefHeight="1555.0" prefWidth="1109.0" styleClass="half_bottom_page">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

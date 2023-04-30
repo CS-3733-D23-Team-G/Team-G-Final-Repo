@@ -72,7 +72,7 @@ public class SignageScreenSaverController {
   public String date;
 
   public void initialize() throws SQLException {
-    App.bool = false;
+
     Timeline clock =
         new Timeline(
             new KeyFrame(
@@ -111,13 +111,14 @@ public class SignageScreenSaverController {
     nameLabel10.setText("");
 
     int kinum = App.getKioskNumber();
+    String location = "Innovation Hub";
 
-    locationText.setText(App.getKioskLocation());
+    locationText.setText(location);
     locationText.setFill(Paint.valueOf("#012D5A"));
     locationText.setStyle("-fx-font-weight: 800");
 
     HashMap<String, Signage> page =
-        signageDAO.getSignageGiveLNAndMonth(App.getKioskLocation(), App.getMonthFieldSignage());
+        signageDAO.getSignageGiveLNAndMonth(location, App.getMonthFieldSignage());
 
     page.forEach(
         (i, m) -> {

@@ -19,40 +19,87 @@
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="table_view_left">
                <children>
-                  <VBox alignment="CENTER" prefHeight="992.0" prefWidth="370.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="-295.0">
+                  <VBox alignment="CENTER" prefHeight="992.0" prefWidth="370.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Choose Table to View" />
-                        <ChoiceBox fx:id="requestTables" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="locationSelect_comboSearchBox">
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </ChoiceBox>
-                        <MFXButton fx:id="editTableForm" styleClass="table_view_Button_edit" text="Edit Tables">
+                        <MFXButton fx:id="allRequestTableButton" rippleAnimateBackground="false" styleClass="table_view_Button" text="All Requests">
                            <font>
                               <Font size="50.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="20.0" />
+                              <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="cancelTableForm" styleClass="table_view_Button_cancel" text="Cancel Tables">
+                        <MFXButton fx:id="roomTableButton" styleClass="table_view_Button" text="Room Requests">
                            <font>
                               <Font size="50.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="40.0" top="20.0" />
+                              <Insets bottom="20.0" />
                            </VBox.margin>
                         </MFXButton>
-                        <Line endX="172.5" startX="-100.0" stroke="#012d5a" strokeWidth="3.0" />
+                        <MFXButton fx:id="flowerTableButton" styleClass="table_view_Button" text="Flower Request ">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="mealTableButton" styleClass="table_view_Button" text="Meal Requests">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="suppTableButton" styleClass="table_view_Button" text="Office Supply Requests">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="furnTableButton" styleClass="table_view_Button" text="Furniture Requests">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="maintenanceTableButton" styleClass="table_view_Button" text="Maintenance Requests">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                        <Line endX="172.5" startX="-100.0" strokeWidth="3.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Export">
                            <VBox.margin>
-                              <Insets top="40.0" />
+                              <Insets top="15.0" />
                            </VBox.margin>
                         </Text>
-                        <ChoiceBox fx:id="exportService" prefHeight="59.0" prefWidth="300.0" styleClass="locationSelect_comboSearchBox">
+                        <ChoiceBox fx:id="exportService" prefHeight="59.0" prefWidth="280.0" styleClass="locationSelect_comboSearchBox" />
+                        <MFXButton fx:id="editTableForm" styleClass="table_view_Button" text="Edit Tables">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
                            <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin></ChoiceBox>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="cancelTableForm" styleClass="table_view_Button" text="Cancel Tables">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </MFXButton>
                      </children>
                   </VBox>
                </children>

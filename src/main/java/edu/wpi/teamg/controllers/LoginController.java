@@ -13,6 +13,7 @@ import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -98,9 +99,7 @@ public class LoginController {
       account.setPassword(pass);
 
       if (account.getHashedPassword(tableSalt).equals(tablePass)) {
-        if (username.getText().equals("admin")
-            || username.getText().equals("staff")
-            || App.usernames.contains(tableUser)) {
+        if (username.getText().equals("admin") || username.getText().equals("staff")) {
           Navigation.Logout();
           if (tableAdmin) {
             Navigation.setAdmin();
@@ -146,7 +145,6 @@ public class LoginController {
 
           db.closeConnection();
           twoFactor();
-          App.usernames.add(tableUser);
           // Navigation.navigate(Screen.TWO_FAC);
         }
 
@@ -201,19 +199,19 @@ public class LoginController {
     passInc.setVisible(true);
   }
 
-  //  public void addAccount() throws NoSuchAlgorithmException, SQLException {
-  //    Account admin = new Account("admin", "admin", true);
-  //    Account staff = new Account("staff", "staff", false);
-  //    byte[] saltAdmin = admin.getSalt();
-  //    byte[] saltStaff = staff.getSalt();
-  //
-  //    admin.setEmpID(0);
-  //    staff.setEmpID(1);
-  //    String hashedAdmin = admin.getHashedPassword(saltAdmin);
-  //    String hashedStaff = admin.getHashedPassword(saltStaff);
-  //
-  //    AccountDAO accountDAO = new AccountDAO();
-  //    accountDAO.insertAccount(admin, hashedAdmin, true);
-  //    accountDAO.insertAccount(staff, hashedStaff, false);
-  //  }
+  public void addAccount() throws NoSuchAlgorithmException, SQLException {
+    Account admin = new Account("admin", "admin", true);
+    Account staff = new Account("staff", "staff", false);
+    byte[] saltAdmin = admin.getSalt();
+    byte[] saltStaff = staff.getSalt();
+
+    admin.setEmpID(0);
+    staff.setEmpID(1);
+    String hashedAdmin = admin.getHashedPassword(saltAdmin);
+    String hashedStaff = admin.getHashedPassword(saltStaff);
+
+    AccountDAO accountDAO = new AccountDAO();
+    accountDAO.insertAccount(admin, hashedAdmin, true);
+    accountDAO.insertAccount(staff, hashedStaff, false);
+  }
 }
