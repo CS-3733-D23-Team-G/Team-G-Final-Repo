@@ -76,6 +76,7 @@ public class FurnitureRequestController {
 
   @FXML
   public void initialize() throws SQLException {
+    App.bool = false;
     furnSubmitButton.setOnMouseClicked(
         event -> {
           furnOrder();

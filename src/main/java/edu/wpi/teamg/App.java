@@ -34,6 +34,7 @@ public class App extends Application {
   public static String message;
 
   @Setter @Getter private static int kioskNumber;
+  @Setter @Getter private static String kioskLocation = "Innovation Hub";
 
   @Getter private static LocalDate currentDate = LocalDate.now();
 
@@ -49,12 +50,29 @@ public class App extends Application {
   public static Image mapFloor2 = new Image("edu/wpi/teamg/Images/02_thesecondfloor.png");
 
   public static Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
+
+  public static Image notifDismissIcon = new Image("edu/wpi/teamg/Images/blackDismiss.png");
+
+  public static String pathfindingAlgo = "Astar";
+
+  public static boolean bool = false;
+  //  public static LocalDate pathfindingDate =
+  //      new Date(2023, 1, 1).toLocalDate(); // default right? yup, and it's a local date
+  //  // we can convert later tho if this is easier for you, it does cuz all the algos takes in Date
+  // ?
+  //  // Doesn't really matter because it just taking the date freom the calendar Ohhhh
+  //  // then we go to settings controller?
+
+  public static LocalDate pathfindingDate =
+      LocalDate.of(2023, 1, 1);
+
   public static DAORepo daoRepo = new DAORepo();
   public static EdgeDAO edgeDao = new EdgeDAO();
 
   public static HashMap<String, Edge> edgeMap;
 
   public static Employee employee = new Employee();
+  public static EmployeeDAO employeeDAO = new EmployeeDAO();
 
   public static MoveDAO moveDAO = new MoveDAO();
 
@@ -326,6 +344,16 @@ public class App extends Application {
   static {
     try {
       testingMaintain = getHashMaintain();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> allEmployeeHash;
+
+  static {
+    try {
+      allEmployeeHash = employeeDAO.getAllEmployeeFullName();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }

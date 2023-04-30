@@ -30,7 +30,7 @@ public class PatientTopBannerController {
 
   @FXML
   public void initialize() {
-
+    App.bool = false;
     exit.setOnMouseClicked(event -> exit());
     information.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
     dictionary.setOnMouseClicked(

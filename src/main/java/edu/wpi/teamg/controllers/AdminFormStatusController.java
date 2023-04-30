@@ -169,6 +169,7 @@ public class AdminFormStatusController {
 
   @FXML
   public void initialize() throws SQLException {
+    App.bool = false;
     exportService.setItems(serviceList);
     exportService.setOnAction(
         event -> {

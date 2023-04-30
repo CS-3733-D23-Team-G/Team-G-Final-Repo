@@ -31,6 +31,14 @@
                               <Insets right="70.0" top="15.0" />
                            </HBox.margin>
                         </MFXButton>
+                        <ImageView fx:id="kids" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/kids%20icon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="25.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
                         <ImageView fx:id="information" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Images/informationIcon.png" />

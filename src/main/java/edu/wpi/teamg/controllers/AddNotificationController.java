@@ -48,7 +48,7 @@ public class AddNotificationController {
   ArrayList<String> employeesList = new ArrayList<>();
 
   public void initialize() throws SQLException {
-
+    App.bool = false;
     HashMap EmpHashMap = empDao.getAllEmployeeFullName();
 
     checkFields.setVisible(false);

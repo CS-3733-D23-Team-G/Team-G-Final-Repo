@@ -81,15 +81,15 @@
                   <Font size="30.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Text>
             <Text fx:id="typeOfWord" fill="#d9d9d9" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text">
                <font>
-                  <Font size="15.0" />
+                  <Font size="17.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" />
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
                </VBox.margin>
             </Text>
             <Text fx:id="outputText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="340.0">
