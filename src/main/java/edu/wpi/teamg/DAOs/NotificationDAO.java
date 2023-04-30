@@ -155,7 +155,24 @@ public class NotificationDAO implements DAO {
   }
 
   @Override
-  public void delete(Object obj) throws SQLException {}
+  public void delete(Object obj) throws SQLException {
+    db.setConnection();
+
+    PreparedStatement ps;
+
+    SQL = "delete from iteration4.notification where alertid = ?";
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
+      ps.setInt(1, (Integer) obj);
+      ps.executeUpdate();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      e.printStackTrace();
+      // printSQLException(e);
+    }
+    db.closeConnection();
+  }
 
   @Override
   public void importCSV(String path) throws SQLException {}

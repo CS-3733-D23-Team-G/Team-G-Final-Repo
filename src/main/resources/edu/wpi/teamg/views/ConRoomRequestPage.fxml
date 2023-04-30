@@ -130,12 +130,12 @@
                                     </MFXFilterComboBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <MFXButton fx:id="roomClearAll" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear">
+                                          <MFXButton fx:id="roomClearAll" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear" textFill="#f6bd38">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </MFXButton>
-                                          <MFXButton fx:id="roomConfirm" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm">
+                                          <MFXButton fx:id="roomConfirm" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm" textFill="#012d5a">
                                              <HBox.margin>
                                                 <Insets left="15.0" />
                                              </HBox.margin>
@@ -159,14 +159,14 @@
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <Text layoutX="123.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Conference Rooms Request Form" AnchorPane.topAnchor="50.0">
+                  <Text layoutX="100.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Conference Rooms Request Form" AnchorPane.topAnchor="46.99609375">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+            <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
 
                   <GridPane layoutX="93.0" layoutY="126.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
