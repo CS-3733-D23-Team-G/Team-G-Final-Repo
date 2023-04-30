@@ -109,4 +109,19 @@ public class AccountDAO implements DAO {
   public String getTable() {
     return "teamgdb.iteration4.account";
   }
+
+  public String getUsernameFromEmpID(int empid) throws SQLException {
+    query = "select * from " + this.getTable() + " where empid = ?";
+    db.setConnection();
+    PreparedStatement ps = db.getConnection().prepareStatement(query);
+    ps.setInt(1, empid);
+    ResultSet rs = ps.executeQuery();
+    String username = "";
+    while (rs.next()) {
+      username = rs.getString("username");
+    }
+
+    db.closeConnection();
+    return username;
+  }
 }

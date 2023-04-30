@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<BorderPane fx:id="borderTest" prefHeight="10.0" prefWidth="10.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MealRequestController">
+<BorderPane prefHeight="10.0" prefWidth="10.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MealRequestController">
     <center>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
@@ -133,12 +133,12 @@
                                     </SearchableComboBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <MFXButton fx:id="mealClearAll" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear" textFill="#f6bd38">
+                                          <MFXButton fx:id="mealClearAll" prefHeight="46.0" prefWidth="217.0" styleClass="requestClearButton" text="Clear">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </MFXButton>
-                                          <MFXButton fx:id="mealSubmitButton" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm" textFill="#012d5a">
+                                          <MFXButton fx:id="mealSubmitButton" prefHeight="46.0" prefWidth="210.0" styleClass="requestConfirmButton" text="Confirm">
                                              <HBox.margin>
                                                 <Insets left="15.0" />
                                              </HBox.margin>
@@ -161,15 +161,15 @@
                         </HBox>
                             </children>
                         </AnchorPane>
-                        <Text layoutX="100.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Meal Request Form" AnchorPane.topAnchor="47.99609375">
+                        <Text layoutX="123.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Meal Request Form" AnchorPane.topAnchor="50.0">
                             <font>
-                                <Font name="System Bold" size="30.0" />
+                                <Font size="25.0" />
                             </font>
                         </Text>
                     </children>
                 </AnchorPane>
 
-                <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" stylesheets="@style.css">
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" stylesheets="@style.css">
                     <children>
                   <MFXScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" maxHeight="743.0" maxWidth="745.0" prefHeight="743.0" prefWidth="742.0" stylesheets="@style.css" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <styleClass>

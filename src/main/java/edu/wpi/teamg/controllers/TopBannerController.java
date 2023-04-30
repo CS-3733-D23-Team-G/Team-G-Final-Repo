@@ -42,7 +42,6 @@ public class TopBannerController {
 
   @FXML
   public void initialize() {
-    App.bool = false;
     //    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
     signagePageButton.setOnAction(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     exit.setOnMouseClicked(event -> exit());

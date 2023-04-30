@@ -3,65 +3,52 @@ package edu.wpi.teamg.ORMClasses;
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
-import edu.wpi.teamg.App;
-import edu.wpi.teamg.controllers.LoginController;
-import edu.wpi.teamg.controllers.PatientTopBannerController;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
-import java.awt.*;
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.stage.WindowEvent;
-import lombok.Getter;
-import lombok.Setter;
-import org.controlsfx.control.PopOver;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class SpeechToText {
-  PatientTopBannerController topBanner = new PatientTopBannerController();
-  static PopOver window = new PopOver();
   Configuration config = new Configuration();
-  @Getter @Setter private String command;
+  String command = "";
   private boolean stopped = false;
-  private Timer timer;
+  private long timeLim;
+  private ScheduledExecutorService executorService;
   LiveSpeechRecognizer recog;
 
   public SpeechToText() throws IOException {
     config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
     config.setDictionaryPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.dic");
     config.setLanguageModelPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.lm");
+    executorService = Executors.newSingleThreadScheduledExecutor();
     recog = new LiveSpeechRecognizer(config);
-    timer = new Timer();
   }
 
-  public void detectCommand() throws IOException {
-    System.out.println("recognition started");
-    timer.schedule(
-        new TimerTask() {
-          @Override
-          public void run() {
-            recog.stopRecognition();
-          }
-        },
-        5000);
+  public void detectCommand(int duration) throws IOException {
+    try {
+      this.timeLim = duration;
+      recog.startRecognition(true);
 
-    SpeechResult result;
-    while ((result = recog.getResult()) != null) {
-      command = result.getHypothesis();
-      System.out.println("your command is: " + command);
-      checkCommand();
-      recog.stopRecognition();
+      executorService.schedule(this::stop, timeLim, TimeUnit.SECONDS);
+      SpeechResult result;
+      while (!stopped && (result = recog.getResult()) != null) {
+        command = result.getHypothesis();
+        System.out.println("The command was: " + command);
+        checkCommand();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      if (recog != null) {
+        recog.stopRecognition();
+      }
+      executorService.shutdownNow();
     }
-    recog.stopRecognition();
   }
 
-  public void startCommand() {
-    recog.startRecognition(true);
-  }
-
-  private void checkCommand() throws IOException {
+  private void checkCommand() {
     switch (command) {
       case "OPEN PATH FINDING":
         Navigation.navigate(Screen.PATHFINDING_PAGE);
@@ -70,22 +57,6 @@ public class SpeechToText {
         Navigation.navigate(Screen.ADMIN_STATUS_PAGE);
         break;
       case "LOGIN":
-        var loader = new FXMLLoader(App.class.getResource("views/LoginPage.fxml"));
-        window.setContentNode(loader.load());
-        window.setArrowSize(0);
-        window.setTitle("Login Panel");
-        window.setHeaderAlwaysVisible(true);
-        LoginController controller = loader.getController();
-        final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-        window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
-
-        window.setOnHidden(
-            new EventHandler<WindowEvent>() {
-              @Override
-              public void handle(WindowEvent event) {
-                topBanner.window.getRoot().setDisable(false);
-              }
-            });
         break;
       case "LOGOUT":
         break;
@@ -100,7 +71,33 @@ public class SpeechToText {
   }
 
   //  public static void main(String[] args) throws IOException {
-  //    SpeechToText stt = new SpeechToText();
-  //    stt.detectCommand();
+  //    Configuration config = new Configuration();
+  //
+  //    config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+  //    config.setDictionaryPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.dic");
+  //    config.setLanguageModelPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.lm");
+  //
+  //    LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(config);
+  //    recognizer.startRecognition(true);
+  //
+  //    System.out.println("Speech Recognition started");
+  //
+  //    while (true) {
+  //      SpeechResult result = recognizer.getResult();
+  //      if (result != null) {
+  //        resultListener(result, recognizer);
+  //      }
+  //    }
+  //  }
+  //
+  //  private static void resultListener(SpeechResult result, LiveSpeechRecognizer recognizer) {
+  //    if (result != null) {
+  //      String spokenText = result.getHypothesis();
+  //      System.out.println("You said: " + spokenText);
+  //      if (spokenText.equalsIgnoreCase("stop")) {
+  //
+  //        recognizer.stopRecognition();
+  //      }
+  //    }
   //  }
 }

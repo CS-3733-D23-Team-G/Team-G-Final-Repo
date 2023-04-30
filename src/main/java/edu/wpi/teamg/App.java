@@ -2,8 +2,7 @@ package edu.wpi.teamg;
 
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
+import edu.wpi.teamg.controllers.ChooseKioskPop;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,8 +24,6 @@ import org.controlsfx.control.PopOver;
 public class App extends Application {
   static PopOver window = new PopOver();
 
-  public static ArrayList<String> usernames = new ArrayList<>();
-
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
   @Setter @Getter private static Stage frontStage;
@@ -34,7 +31,6 @@ public class App extends Application {
   public static String message;
 
   @Setter @Getter private static int kioskNumber;
-  @Setter @Getter private static String kioskLocation = "Innovation Hub";
 
   @Getter private static LocalDate currentDate = LocalDate.now();
 
@@ -50,6 +46,7 @@ public class App extends Application {
   public static Image mapFloor2 = new Image("edu/wpi/teamg/Images/02_thesecondfloor.png");
 
   public static Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
+
 
   public static Image notifDismissIcon = new Image("edu/wpi/teamg/Images/blackDismiss.png");
 
@@ -110,7 +107,6 @@ public class App extends Application {
   public static HashMap<String, Edge> edgeMap;
 
   public static Employee employee = new Employee();
-  public static EmployeeDAO employeeDAO = new EmployeeDAO();
 
   public static MoveDAO moveDAO = new MoveDAO();
 
@@ -387,11 +383,12 @@ public class App extends Application {
     }
   }
 
-  public static HashMap<Integer, String> allEmployeeHash;
+  // Employee Table Stuff
+  public static HashMap<Integer, Employee> testingEmps;
 
   static {
     try {
-      allEmployeeHash = employeeDAO.getAllEmployeeFullName();
+      testingEmps = getHashEmps();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -416,18 +413,16 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
 
-    Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
+    var popLoader = new FXMLLoader(App.class.getResource("views/ChooseKioskPop.fxml"));
+    window.setContentNode(popLoader.load());
+    window.setArrowSize(0);
+    window.setTitle("Choose Kiosk Number");
+    window.setHeaderAlwaysVisible(true);
+    ChooseKioskPop cont = popLoader.getController();
+    cont.setWind(window);
 
-    //    var popLoader = new FXMLLoader(App.class.getResource("views/ChooseKioskPop.fxml"));
-    //    window.setContentNode(popLoader.load());
-    //    window.setArrowSize(0);
-    //    window.setTitle("Choose Kiosk Number");
-    //    window.setHeaderAlwaysVisible(true);
-    //    ChooseKioskPop cont = popLoader.getController();
-    //    cont.setWind(window);
-    //
-    //    final Point mouseLoc = MouseInfo.getPointerInfo().getLocation();
-    //    window.show(getPrimaryStage(), mouseLoc.getX(), mouseLoc.getY());
+    final Point mouseLoc = MouseInfo.getPointerInfo().getLocation();
+    window.show(getPrimaryStage(), mouseLoc.getX(), mouseLoc.getY());
   }
 
   public static void refresh() throws SQLException {
@@ -643,6 +638,15 @@ public class App extends Application {
     }
   }
 
+  // Employee Table
+  public static void empsRefresh() {
+    try {
+      testingEmps = getHashEmps();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   public static HashMap getHashMapRequest() throws SQLException {
 
     HashMap<Integer, Request> requestHashMap = new HashMap<Integer, Request>();
@@ -730,6 +734,20 @@ public class App extends Application {
       System.err.print(e.getErrorCode());
     }
     return maintainHash;
+  }
+
+  // Employee Table
+
+  public static HashMap getHashEmps() throws SQLException {
+
+    HashMap<Integer, Employee> empHash = new HashMap<Integer, Employee>();
+
+    try {
+      empHash = daoRepo.getAllEmployees();
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+    return empHash;
   }
 
   static int code;

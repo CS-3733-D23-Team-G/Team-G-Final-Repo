@@ -5,6 +5,8 @@ import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.ORMClasses.Employee;
 import edu.wpi.teamg.ORMClasses.MaintenanceRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.*;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -12,21 +14,15 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import javafx.animation.FadeTransition;
-import javafx.animation.ParallelTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 public class MaintenanceRequestController {
   @FXML MFXButton maintainSubmitButton;
@@ -57,8 +53,6 @@ public class MaintenanceRequestController {
 
   @FXML TextArea finalTreeLevel;
 
-  @FXML AnchorPane forms;
-
   @FXML MFXFilterComboBox locationSearchDropdown;
   @FXML MFXFilterComboBox employeeSearchDropdown;
   @FXML Label checkFields;
@@ -76,7 +70,6 @@ public class MaintenanceRequestController {
 
   @FXML
   public void initialize() throws SQLException {
-    App.bool = false;
     maintainSubmitButton.setOnMouseClicked(
         event -> {
           allDataFilled();
@@ -397,116 +390,13 @@ public class MaintenanceRequestController {
 
       try {
         storeMaintenanceValues();
-        completeAnimation();
-        clearAllData();
       } catch (SQLException e) {
         throw new RuntimeException(e);
       }
+      Navigation.navigate(Screen.MAINTENANCE_REQUEST_SUBMIT);
     } else {
       checkFields.setVisible(true);
     }
-  }
-
-  public void completeAnimation() {
-
-    // Form Completion PopUp
-    AnchorPane rect = new AnchorPane();
-    rect.setLayoutX(325);
-    rect.setStyle(
-        "-fx-pref-width: 440; -fx-pref-height: 100; -fx-background-color: #d9d9d9; -fx-border-radius: 5; -fx-background-insets: 5; -fx-border-insets: 5; -fx-padding: 5;"
-            + "-fx-border-color: #000000;"
-            + "-fx-border-width: 3;");
-    rect.setLayoutY(800);
-    rect.toFront();
-
-    Text completionText = new Text("You Are All Set!");
-    completionText.setLayoutX(445);
-    completionText.setLayoutY(850);
-    completionText.setStyle(
-        "-fx-stroke: #000000;"
-            + "-fx-fill: #012D5A;"
-            + "-fx-font-size: 25;"
-            + "-fx-font-weight: 500;");
-    completionText.toFront();
-
-    Text completionTextSecondRow = new Text("Maintenance Request Sent Successfully.");
-    completionTextSecondRow.setLayoutX(445);
-    completionTextSecondRow.setLayoutY(870);
-    completionTextSecondRow.setStyle(
-        "-fx-stroke: #000000;"
-            + "-fx-fill: #012D5A;"
-            + "-fx-font-size: 15;"
-            + "-fx-font-weight: 500;");
-    completionTextSecondRow.toFront();
-
-    Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
-    ImageView completionImage = new ImageView(checkmarkImage);
-
-    completionImage.setFitHeight(120);
-    completionImage.setFitWidth(120);
-    completionImage.setLayoutX(320);
-    completionImage.setLayoutY(790);
-    completionImage.toFront();
-
-    rect.setOpacity(0.0);
-    completionImage.setOpacity(0.0);
-    completionText.setOpacity(0.0);
-    completionTextSecondRow.setOpacity(0.0);
-
-    forms.getChildren().add(rect);
-    forms.getChildren().add(completionText);
-    forms.getChildren().add(completionImage);
-    forms.getChildren().add(completionTextSecondRow);
-
-    FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(1), rect);
-    fadeIn1.setFromValue(0.0);
-    fadeIn1.setToValue(1.0);
-
-    FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(1), completionImage);
-    fadeIn2.setFromValue(0.0);
-    fadeIn2.setToValue(1.0);
-
-    FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(1), completionText);
-    fadeIn3.setFromValue(0.0);
-    fadeIn3.setToValue(1.0);
-
-    FadeTransition fadeIn4 = new FadeTransition(Duration.seconds(1), completionTextSecondRow);
-    fadeIn4.setFromValue(0.0);
-    fadeIn4.setToValue(1.0);
-
-    ParallelTransition parallelTransition =
-        new ParallelTransition(fadeIn1, fadeIn2, fadeIn3, fadeIn4);
-
-    parallelTransition.play();
-
-    parallelTransition.setOnFinished(
-        (event) -> {
-          FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(1), rect);
-          fadeOut1.setDelay(Duration.seconds(3));
-          fadeOut1.setFromValue(1.0);
-          fadeOut1.setToValue(0.0);
-
-          FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(1), completionImage);
-          fadeOut2.setDelay(Duration.seconds(3));
-          fadeOut2.setFromValue(1.0);
-          fadeOut2.setToValue(0.0);
-
-          FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(1), completionText);
-          fadeOut3.setDelay(Duration.seconds(3));
-          fadeOut3.setFromValue(1.0);
-          fadeOut3.setToValue(0.0);
-
-          FadeTransition fadeOut4 =
-              new FadeTransition(Duration.seconds(1), completionTextSecondRow);
-          fadeOut4.setDelay(Duration.seconds(3));
-          fadeOut4.setFromValue(1.0);
-          fadeOut4.setToValue(0.0);
-
-          fadeOut1.play();
-          fadeOut2.play();
-          fadeOut3.play();
-          fadeOut4.play();
-        });
   }
 
   public void clearAllData() {

@@ -1,6 +1,5 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.App;
 import java.awt.*;
 
 public class AboutPageController {
@@ -8,7 +7,7 @@ public class AboutPageController {
   //  @FXML MFXButton Credits;
 
   public void initialize() {
-    App.bool = false;
+
     // Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
 
     String about_text =

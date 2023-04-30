@@ -238,12 +238,7 @@ Popup
 }
 
 .signage_text_loc{
-    -fx-font-size: 30;
-}
-
-.signage_text_loc_lower{
     -fx-font-size: 20;
-    -fx-text-fill: #d9d9d9;
 }
 
 .signage_background_color{
@@ -270,22 +265,20 @@ Popup
 /*Pathfinding CSS*/
 .half_bottom_left{
     -fx-pref-height: 913;
-    -fx-pref-width: 384;
+    -fx-pref-width: 576;
 }
 
 .half_bottom_right{
     -fx-pref-height: 913;
-    -fx-pref-width: 1536;
-    /*-fx-border-color: #012D5A;*/
+    -fx-pref-width: 1344;
+    -fx-border-color: #012D5A;
     -fx-border-width: 5px;
     -fx-border-radius: 5;
 }
 
 .floor_button{
-    -fx-pref-height: 80;
-    -fx-pref-width: 80;
-    -fx-max-height: 80;
-    -fx-max-width: 80;
+    -fx-pref-height: 100;
+    -fx-pref-width: 100;
     -fx-background-color: #012D5A;
     -fx-background-radius: 20;
     -fx-font-size: 40;
@@ -306,7 +299,7 @@ Popup
 
 .locationSelect_vbox{
     -fx-pref-height: 560;
-    -fx-pref-width: 384;
+    -fx-pref-width: 400;
 }
 
 .algoCheckBox{
@@ -318,7 +311,7 @@ Popup
 
 .algoSelect_hbox{
     -fx-pref-height: 60;
-    -fx-pref-width: 355;
+    -fx-pref-width: 400;
 }
 
 .algoCheckBox .box{
@@ -341,33 +334,22 @@ Popup
 }
 
 .getPath_Button{
-    -fx-pref-height: 50;
-    -fx-pref-width: 170;
-    -fx-background-color: #F6BD38;
-    -fx-text-fill: #012D5A;
-    /*-fx-background-radius: 10;*/
-    -fx-font-size: 15;
-}
-
-.textDirection_Button{
-    -fx-pref-height: 50;
-    -fx-pref-width: 170;
-    -fx-background-color: #d9d9d9;
-    -fx-text-fill: #012D5A;
-    /*-fx-background-radius: 10;*/
-    -fx-font-size: 15;
+    -fx-pref-height: 65;
+    -fx-pref-width: 250;
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 30;
+    -fx-font-size: 30;
     -fx-text-fill: #000000;
+    -fx-alignment: center;
 }
-
 
 .locationLabel{
-    -fx-font-size: 20
-;
+    -fx-font-size: 30;
 }
 
 
 .left_vbox{
-    -fx-min-width: 384;
+    -fx-min-width: 576;
 
 
 }
@@ -400,20 +382,11 @@ Popup
     -fx-pref-width: 470;
 }
 
-.table_view_Button_edit{
-    -fx-pref-height: 65;
-    -fx-pref-width: 300;
-    -fx-background-color: #F6BD38;
-    -fx-background-radius: 10;
-    -fx-font-size: 25;
-    -fx-text-fill: #000000;
-    -fx-alignment: center;
-}
-.table_view_Button_cancel{
+.table_view_Button{
     -fx-pref-height: 65;
     -fx-pref-width: 300;
     -fx-background-color: #D9D9D9;
-    -fx-background-radius: 10;
+    -fx-background-radius: 30;
     -fx-font-size: 25;
     -fx-text-fill: #000000;
     -fx-alignment: center;
@@ -851,12 +824,6 @@ about_text{
     -fx-max-height: 41;
 }
 
-.confirmationPopover{
-    -fx-pref-height: 125;
-    -fx-pref-width: 300;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-}
 
 
 

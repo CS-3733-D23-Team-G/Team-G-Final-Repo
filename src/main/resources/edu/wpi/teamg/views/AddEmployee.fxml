@@ -5,6 +5,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -160,14 +162,32 @@
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <Text layoutX="101.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Add Employee" AnchorPane.topAnchor="49.99609375">
+                  <Text layoutX="143.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Add Employee" AnchorPane.topAnchor="50.0">
                      <font>
-                        <Font name="System Bold" size="30.0" />
+                        <Font size="25.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+               <children>
+                  <VBox prefHeight="980.0" prefWidth="962.0">
+                     <children>
+                        <TableView fx:id="empTableView" prefHeight="839.0" prefWidth="962.0">
+                          <columns>
+                            <TableColumn fx:id="empLastName" prefWidth="200.0" text="Last Name" />
+                            <TableColumn fx:id="empFirstName" prefWidth="200.0" text="First Name" />
+                              <TableColumn fx:id="empEmail" prefWidth="200.0" text="Email" />
+                              <TableColumn fx:id="empUsername" prefWidth="200.0" text="Username" />
+                              <TableColumn fx:id="empCanServe" prefWidth="200.0" text="Can Serve?" />
+                          </columns>
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
          </children>
       </HBox>
    </center>

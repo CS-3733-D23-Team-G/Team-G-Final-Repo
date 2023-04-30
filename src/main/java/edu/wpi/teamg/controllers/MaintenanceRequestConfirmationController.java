@@ -1,6 +1,5 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.App;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 
@@ -8,7 +7,7 @@ public class MaintenanceRequestConfirmationController {
 
   @FXML
   public void initialize() {
-    App.bool = false;
+
     //    FadeTransition fade1 = new FadeTransition();
     //    fade1.setNode(confettiEffect1);
     //    fade1.setDuration(Duration.millis(1000));

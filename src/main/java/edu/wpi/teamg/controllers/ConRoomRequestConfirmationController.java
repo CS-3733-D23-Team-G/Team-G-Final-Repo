@@ -1,6 +1,5 @@
 package edu.wpi.teamg.controllers;
 
-import edu.wpi.teamg.App;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -15,7 +14,6 @@ public class ConRoomRequestConfirmationController {
 
   @FXML
   public void initialize() {
-    App.bool = false;
 
     TranslateTransition translate1 = new TranslateTransition();
     translate1.setNode(confettiEffect1);
