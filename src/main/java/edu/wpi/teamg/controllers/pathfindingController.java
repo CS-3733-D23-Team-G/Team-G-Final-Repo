@@ -70,7 +70,7 @@ public class pathfindingController {
   @FXML MFXToggleButton dSN;
 
   @FXML MFXToggleButton toggN;
-  @FXML MFXButton alertButton;
+  @FXML ImageView alertButton;
 
   @FXML MFXButton txtDirections;
 

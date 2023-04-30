@@ -6,6 +6,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -50,14 +52,9 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="356.0" styleClass="algoSelect_hbox">
                            <children>
-                              <MFXButton fx:id="alertButton" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefWidth="416.0" styleClass="alerts_Button" text="ALERTS">
+                              <MFXButton fx:id="txtDirections" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="114.0" styleClass="textDirection_Button" text="TEXT DIRECTIONS">
                                  <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </MFXButton>
-                              <MFXButton fx:id="txtDirections" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="137.0" styleClass="textDirection_Button" text="TEXT DIRECTIONS">
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
+                                    <Insets right="15.0" />
                                  </HBox.margin>
                               </MFXButton>
                               <MFXButton fx:id="pathFindButton" alignment="CENTER" contentDisplay="CENTER" prefWidth="165.0" styleClass="getPath_Button" text="GET PATH" />
@@ -92,6 +89,11 @@
                         </Group>
                      </content>
                   </GesturePane>
+                  <ImageView fx:id="alertButton" fitHeight="44.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                     <image>
+                        <Image url="@../Images/alert%20icon.png" />
+                     </image>
+                  </ImageView>
                   <VBox layoutX="1419.0" layoutY="374.0" prefHeight="680.0" prefWidth="100.0" styleClass="button_vbox">
                      <children>
                         <MFXButton fx:id="floor3" alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="69.0" rippleAnimateBackground="false" styleClass="floor_button" text="F3" textAlignment="CENTER" textFill="#f6bd38">

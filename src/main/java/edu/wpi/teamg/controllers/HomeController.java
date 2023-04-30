@@ -110,9 +110,22 @@ public class HomeController {
               Period.between(i.getRequestDate().toLocalDate(), currentLocalDate);
           int daysOverdued = periodOverdued.getDays();
 
-          if (i.getRequestDate().before(currentDate)) {
+          int dateCompare = i.getRequestDate().compareTo(currentDate);
+
+          System.out.println(dateCompare);
+
+          if (dateCompare < 0) {
+
             date.setText("Do By: " + i.getRequestDate() + " (" + daysOverdued + " days overdue)");
             date.setFill(Paint.valueOf("#c20e15"));
+            date.setStyle(
+                "-fx-font-size: 20; -fx-font-weight: 800;"
+                    + "-fx-alignment: right; -fx-font-family: Poppins");
+          }
+
+          if (i.getRequestDate().toLocalDate().isEqual(currentLocalDate)) {
+
+            date.setText("Do By: " + i.getRequestDate() + " (Due Today)");
             date.setStyle(
                 "-fx-font-size: 20; -fx-font-weight: 800;"
                     + "-fx-alignment: right; -fx-font-family: Poppins");
