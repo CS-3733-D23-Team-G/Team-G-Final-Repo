@@ -69,6 +69,7 @@ public class OfficeSuppRequestController {
 
   @FXML
   public void initialize() throws SQLException {
+    App.bool = false;
     supplyConfirm.setOnMouseClicked(
         event -> {
           supplyOrder();

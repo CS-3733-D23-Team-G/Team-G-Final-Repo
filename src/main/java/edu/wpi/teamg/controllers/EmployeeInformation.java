@@ -20,6 +20,7 @@ public class EmployeeInformation {
   @FXML Text EMPID;
 
   public void initialize() {
+    App.bool = false;
     getEmployeeInformation();
     edit.setOnAction(event -> editEmployeeInformation());
     // Save.setOnMouseClicked(event -> saveEdit());

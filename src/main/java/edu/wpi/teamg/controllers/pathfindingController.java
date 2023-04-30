@@ -13,10 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -95,6 +92,9 @@ public class pathfindingController {
   @FXML
   public void initialize() throws SQLException {
     updateMoves();
+
+    App.bool = true;
+    System.out.println(bool);
     //  goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
 
     // aStarCheckBox.setSelected(true);

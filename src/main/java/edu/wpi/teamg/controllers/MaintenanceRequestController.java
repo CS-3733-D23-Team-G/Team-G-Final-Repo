@@ -70,6 +70,7 @@ public class MaintenanceRequestController {
 
   @FXML
   public void initialize() throws SQLException {
+    App.bool = false;
     maintainSubmitButton.setOnMouseClicked(
         event -> {
           allDataFilled();

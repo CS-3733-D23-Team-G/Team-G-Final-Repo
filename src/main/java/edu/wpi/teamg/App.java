@@ -55,6 +55,7 @@ public class App extends Application {
 
   public static String pathfindingAlgo = "Astar";
 
+  public static boolean bool = false;
   public static LocalDate pathfindingDate =
       new Date(2023, 1, 1).toLocalDate(); // default right? yup, and it's a local date
   // we can convert later tho if this is easier for you, it does cuz all the algos takes in Date ?

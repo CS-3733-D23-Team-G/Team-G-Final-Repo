@@ -108,7 +108,7 @@ public class MapEditorController {
   HashMap<Integer, Move> moving = new HashMap<>();
 
   public void initialize() throws SQLException, IOException {
-
+    App.bool = false;
     verticalButton.setVisible(false);
     horizontalButton.setVisible(false);
     updateMove();

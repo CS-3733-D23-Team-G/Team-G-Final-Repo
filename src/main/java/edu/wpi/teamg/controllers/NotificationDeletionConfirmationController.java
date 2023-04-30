@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.NotificationDAO;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
@@ -17,7 +18,7 @@ public class NotificationDeletionConfirmationController {
   NotificationDAO notificationDAO = new NotificationDAO();
 
   public void initialize() throws SQLException {
-
+    App.bool = false;
     int notifToBeDeleted = HomeController.notifToBeDeleted;
 
     delete.setOnMouseClicked(

@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.DAORepo;
 import edu.wpi.teamg.DAOs.EdgeDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
@@ -82,7 +83,7 @@ public class SignagePageController {
 
   @FXML
   public void initialize() throws SQLException {
-
+    App.bool = false;
     //    serviceRequestChoiceBox.setItems(list);
     //    signagePageButton.setOnMouseClicked(event ->
     // Navigation.navigate(Screen.PATHFINDING_PAGE));
