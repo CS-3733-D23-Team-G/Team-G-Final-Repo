@@ -271,6 +271,7 @@
                         </Group>
                      </content>
                   </GesturePane>
+                  <AnchorPane fx:id="forms" layoutX="136.0" layoutY="14.0" prefHeight="112.0" prefWidth="589.0" styleClass="half_bottom_page" />
                </children>
             </AnchorPane>
          </children>
