@@ -1,5 +1,6 @@
 package edu.wpi.teamg.controllers;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.AccountDAO;
 import edu.wpi.teamg.DAOs.EmployeeDAO;
 import edu.wpi.teamg.DBConnection;
@@ -42,6 +43,7 @@ public class AddEmployee {
   AccountDAO accDao = new AccountDAO();
 
   public void initialize() throws SQLException {
+    App.bool = false;
     empSubmit.setOnMouseClicked(event -> allDataFilled());
     FirstName.getText();
     lastName.getText();

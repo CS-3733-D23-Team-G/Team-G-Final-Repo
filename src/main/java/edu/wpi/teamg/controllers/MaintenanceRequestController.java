@@ -81,6 +81,7 @@ public class MaintenanceRequestController {
 
   @FXML
   public void initialize() throws SQLException {
+
     checkbox =
         new MFXCheckbox[] {
           electrical,
