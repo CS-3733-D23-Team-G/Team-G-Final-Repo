@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Edge;
 import java.io.*;
@@ -16,7 +17,7 @@ public class EdgeDAO implements LocationDAO {
 
   @Override
   public HashMap<String, Edge> getAll() throws SQLException {
-    connection.setConnection();
+    connection.setConnection(App.getWhichDB());
     PreparedStatement ps;
     ResultSet rs = null;
 
@@ -57,7 +58,7 @@ public class EdgeDAO implements LocationDAO {
 
   @Override
   public void update(Object obj, String colName, Object value) {
-    connection.setConnection();
+    connection.setConnection(App.getWhichDB());
     sql =
         "update "
             + this.getTable()
@@ -81,7 +82,7 @@ public class EdgeDAO implements LocationDAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    connection.setConnection();
+    connection.setConnection(App.getWhichDB());
     sql = "";
 
     sql = "INSERT INTO " + this.getTable() + " (startnode, endnode) VALUES (?,?)";
@@ -103,7 +104,7 @@ public class EdgeDAO implements LocationDAO {
 
   @Override
   public void delete(Object obj) throws SQLException {
-    connection.setConnection();
+    connection.setConnection(App.getWhichDB());
     sql = "";
 
     sql = "DELETE FROM " + this.getTable() + " WHERE startnode = ? AND endnode = ?";
@@ -128,7 +129,7 @@ public class EdgeDAO implements LocationDAO {
 
   @Override
   public void importCSV(String filename) throws SQLException {
-    connection.setConnection();
+    connection.setConnection(App.getWhichDB());
     sql = "";
 
     sql = "insert into " + this.getTable() + " (startnode, endnode) values (?,?)";

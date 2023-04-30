@@ -69,7 +69,7 @@ public class FactorPopUp {
 
   public void correctCode() throws SQLException {
     DBConnection db = new DBConnection();
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     ResultSet rs1 = null;
     EmployeeDAO employeeDAO = new EmployeeDAO();
 

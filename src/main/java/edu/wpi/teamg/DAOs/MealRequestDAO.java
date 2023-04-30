@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -24,7 +25,7 @@ public class MealRequestDAO implements DAO {
   @Override
   public HashMap<Integer, MealRequest> getAll() throws SQLException {
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     ResultSet rs = null;
@@ -98,7 +99,7 @@ public class MealRequestDAO implements DAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps_getMaxID;
     PreparedStatement ps_mealRequest;
@@ -173,7 +174,7 @@ public class MealRequestDAO implements DAO {
       ps_Request.executeUpdate();
 
       db.closeConnection();
-      db.setConnection();
+      db.setConnection(App.getWhichDB());
 
       ps_mealRequest = db.getConnection().prepareStatement(SQL_mealRequest);
       ps_mealRequest.setInt(1, maxID);
@@ -195,7 +196,7 @@ public class MealRequestDAO implements DAO {
   @Override
   public void delete(Object obj) throws SQLException {
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps_mealrequest;
     PreparedStatement ps_request;

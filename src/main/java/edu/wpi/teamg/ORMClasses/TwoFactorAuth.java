@@ -1,5 +1,6 @@
 package edu.wpi.teamg.ORMClasses;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
@@ -28,7 +29,7 @@ public class TwoFactorAuth {
 
   public void sendEmail(String user) throws MessagingException, SQLException {
     DBConnection db = new DBConnection();
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     String email = null;
     int id = 0;
     String retrieveAccount = "select * from teamgdb.iteration4.account where username = ?";

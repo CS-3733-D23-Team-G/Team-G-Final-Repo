@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Account;
 import java.security.NoSuchAlgorithmException;
@@ -16,7 +17,7 @@ public class AccountDAO implements DAO {
 
   @Override
   public HashMap getAll() throws SQLException {
-    conn.setConnection();
+    conn.setConnection(App.getWhichDB());
     PreparedStatement ps;
     ResultSet rs = null;
 
@@ -52,7 +53,7 @@ public class AccountDAO implements DAO {
 
   public void insertAccount(Object obj, String pass, Boolean admin) throws SQLException {
     Account account = (Account) obj;
-    conn.setConnection();
+    conn.setConnection(App.getWhichDB());
 
     query =
         "INSERT INTO "
@@ -91,7 +92,7 @@ public class AccountDAO implements DAO {
   public void deleteAccount(Object obj) throws SQLException {
 
     Account account = (Account) obj;
-    conn.setConnection();
+    conn.setConnection(App.getWhichDB());
     query = "DELETE FROM " + this.getTable() + " WHERE username = ?";
     PreparedStatement ps = conn.getConnection().prepareStatement(query);
 

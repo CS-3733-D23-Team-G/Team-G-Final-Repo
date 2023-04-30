@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.ConferenceRoomRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -28,7 +29,7 @@ public class ConferenceRoomRequestDAO implements DAO {
 
   @Override
   public HashMap<Integer, ConferenceRoomRequest> getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     System.out.println("Connection Set");
 
@@ -110,7 +111,7 @@ public class ConferenceRoomRequestDAO implements DAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps_getMaxID;
     PreparedStatement ps_getRoomReq;
     PreparedStatement ps_Req;
@@ -177,7 +178,7 @@ public class ConferenceRoomRequestDAO implements DAO {
 
       ps_Req.executeUpdate();
       db.closeConnection();
-      db.setConnection();
+      db.setConnection(App.getWhichDB());
 
       ps_getRoomReq = db.getConnection().prepareStatement(SQL_confRoomRequest);
       ps_getRoomReq.setInt(1, maxID);
@@ -197,7 +198,7 @@ public class ConferenceRoomRequestDAO implements DAO {
 
   @Override
   public void delete(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps_confReq;
     PreparedStatement ps_Req;

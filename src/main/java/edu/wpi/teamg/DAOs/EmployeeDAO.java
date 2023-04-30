@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Employee;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ public class EmployeeDAO implements DAO {
 
   @Override
   public HashMap getAll() throws SQLException {
-    conn.setConnection();
+    conn.setConnection(App.getWhichDB());
     PreparedStatement ps;
     ResultSet rs = null;
 
@@ -47,7 +48,7 @@ public class EmployeeDAO implements DAO {
 
   @Override
   public void update(Object obj, String colName, Object obj2) throws SQLException {
-    conn.setConnection();
+    conn.setConnection(App.getWhichDB());
     query = "update " + this.getTable() + " set " + colName + " = ? where empid = ?";
     PreparedStatement ps = conn.getConnection().prepareStatement(query);
     ps.setString(1, (String) obj2);
@@ -59,7 +60,7 @@ public class EmployeeDAO implements DAO {
   @Override
   public void insert(Object obj) throws SQLException {
     Employee employee = (Employee) obj;
-    conn.setConnection();
+    conn.setConnection(App.getWhichDB());
     query =
         "INSERT INTO "
             + this.getTable()
@@ -85,7 +86,7 @@ public class EmployeeDAO implements DAO {
   @Override
   public void delete(Object obj) throws SQLException {
     Employee employee = (Employee) obj;
-    conn.setConnection();
+    conn.setConnection(App.getWhichDB());
     PreparedStatement ps = conn.getConnection().prepareStatement(query);
 
     query = "DELETE FROM " + this.getTable() + " WHERE empID = ?";
@@ -110,7 +111,7 @@ public class EmployeeDAO implements DAO {
 
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
-    conn.setConnection();
+    conn.setConnection(App.getWhichDB());
     PreparedStatement ps;
 
     ResultSet rs = null;
@@ -146,7 +147,7 @@ public class EmployeeDAO implements DAO {
 
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
-    conn.setConnection();
+    conn.setConnection(App.getWhichDB());
     PreparedStatement ps;
 
     ResultSet rs = null;

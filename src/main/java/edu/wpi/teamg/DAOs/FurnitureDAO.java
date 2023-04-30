@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.FurnitureRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -20,7 +21,7 @@ public class FurnitureDAO implements DAO {
 
   @Override
   public HashMap<Integer, FurnitureRequest> getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
     ResultSet rs = null;
     SQL =
@@ -89,7 +90,7 @@ public class FurnitureDAO implements DAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps_MaxID;
     PreparedStatement ps_Furniture;
     PreparedStatement ps_Req;
@@ -157,7 +158,7 @@ public class FurnitureDAO implements DAO {
       ps_Req.executeUpdate();
 
       db.closeConnection();
-      db.setConnection();
+      db.setConnection(App.getWhichDB());
 
       ps_Furniture = db.getConnection().prepareStatement(SQL);
       ps_Furniture.setInt(1, maxID);

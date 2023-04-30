@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import java.io.File;
 import java.io.FileWriter;
@@ -22,7 +23,7 @@ public interface DAO<T, K> {
   public void delete(T obj) throws SQLException;
 
   public default void exportCSV() throws SQLException, IOException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     Statement statement = null;
     String sql = "select * from " + this.getTable();

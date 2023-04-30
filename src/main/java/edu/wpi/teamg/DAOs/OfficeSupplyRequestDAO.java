@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.OfficeSupplyRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -24,7 +25,7 @@ public class OfficeSupplyRequestDAO implements DAO {
 
   @Override
   public HashMap getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
     ResultSet rs = null;
     SQL =
@@ -94,7 +95,7 @@ public class OfficeSupplyRequestDAO implements DAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps_maxid;
     PreparedStatement ps_supply;
     PreparedStatement ps_req;
@@ -160,7 +161,7 @@ public class OfficeSupplyRequestDAO implements DAO {
       ps_req.executeUpdate();
 
       db.closeConnection();
-      db.setConnection();
+      db.setConnection(App.getWhichDB());
 
       ps_supply = db.getConnection().prepareStatement(SQL);
       ps_supply.setInt(1, maxid);

@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -23,7 +24,7 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public HashMap<Integer, FlowerRequest> getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
     ResultSet rs = null;
     SQL_flowerRequest =
@@ -91,7 +92,7 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps_getMaxID;
     PreparedStatement ps_getFlowerReq;
     PreparedStatement ps_Req;
@@ -158,7 +159,7 @@ public class FlowerRequestDAO implements DAO {
       ps_Req.executeUpdate();
 
       db.closeConnection();
-      db.setConnection();
+      db.setConnection(App.getWhichDB());
 
       ps_getFlowerReq = db.getConnection().prepareStatement(SQL_flowerRequest);
       ps_getFlowerReq.setInt(1, maxID);

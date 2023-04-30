@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Signage;
 import java.io.BufferedReader;
@@ -18,7 +19,7 @@ public class SignageDAO implements DAO {
 
   @Override
   public HashMap getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     ResultSet rs = null;
@@ -47,7 +48,7 @@ public class SignageDAO implements DAO {
 
   @Override
   public void update(Object obj, String colName, Object obj2) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     sql = "update " + this.getTable() + " set " + colName + " = ? where kiosknum = ?";
@@ -64,7 +65,7 @@ public class SignageDAO implements DAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     sql =
@@ -86,7 +87,7 @@ public class SignageDAO implements DAO {
 
   @Override
   public void delete(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     sql = "delete from " + this.getTable() + " where kiosknum = ?";
@@ -100,7 +101,7 @@ public class SignageDAO implements DAO {
 
   @Override
   public void importCSV(String path) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     sql =
@@ -140,7 +141,7 @@ public class SignageDAO implements DAO {
 
   public HashMap getSignageGiveLNAndMonth(String givenLocationName, String givenMonth)
       throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     HashMap<String, Signage> directions = new HashMap<>();
     PreparedStatement ps;
     ResultSet rs;

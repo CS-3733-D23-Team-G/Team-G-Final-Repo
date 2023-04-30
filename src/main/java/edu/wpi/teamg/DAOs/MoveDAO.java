@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Move;
 import java.io.*;
@@ -15,7 +16,7 @@ public class MoveDAO implements LocationMoveDao {
 
   @Override
   public List getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     ResultSet rs = null;
@@ -48,7 +49,7 @@ public class MoveDAO implements LocationMoveDao {
 
   @Override
   public void update(Object obj, String colName, Object value) {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     sql =
@@ -83,7 +84,7 @@ public class MoveDAO implements LocationMoveDao {
   @Override
   public void insert(Object obj) throws SQLException {
     Move move = (Move) obj;
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     sql = "INSERT INTO iteration4.move (nodeid, longname, date) VALUES (?,?,?);";
 
@@ -104,7 +105,7 @@ public class MoveDAO implements LocationMoveDao {
   @Override
   public void delete(Object obj) throws SQLException {
     Move move = (Move) obj;
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     sql = "DELETE FROM iteration4.move WHERE nodeID = ? and longname=? and date =?";
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
@@ -133,7 +134,7 @@ public class MoveDAO implements LocationMoveDao {
 
   @Override
   public void exportCSV() throws SQLException, IOException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     Statement statement = null;
     String sql = "select * from iteration4.move";
@@ -183,7 +184,7 @@ public class MoveDAO implements LocationMoveDao {
 
   @Override
   public void importCSV(String filePath) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     sql = "insert into iteration4.move (nodeid, longname, date) values (?,?,?)";
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
     try {

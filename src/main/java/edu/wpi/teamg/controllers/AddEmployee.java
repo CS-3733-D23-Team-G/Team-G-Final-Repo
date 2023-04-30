@@ -80,7 +80,7 @@ public class AddEmployee {
 
   private void storeEmployeeData() throws SQLException, NoSuchAlgorithmException {
     DBConnection conn = new DBConnection();
-    conn.setConnection();
+    conn.setConnection(App.getWhichDB());
 
     int maxid = 0;
     String sql = "select empid from teamgdb.iteration4.employee order by empid desc limit 1";
