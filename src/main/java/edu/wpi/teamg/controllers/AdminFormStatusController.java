@@ -125,18 +125,20 @@ public class AdminFormStatusController {
   @FXML TableColumn<MaintenanceRequest, Time> maintenanceTime;
 
   // Table Change Button
-  @FXML MFXButton allRequestTableButton;
-  @FXML MFXButton mealTableButton;
-  @FXML MFXButton roomTableButton;
-  @FXML MFXButton flowerTableButton;
-  @FXML MFXButton furnTableButton;
-  @FXML MFXButton suppTableButton;
-  @FXML MFXButton maintenanceTableButton;
+  //  @FXML MFXButton allRequestTableButton;
+  //  @FXML MFXButton mealTableButton;
+  //  @FXML MFXButton roomTableButton;
+  //  @FXML MFXButton flowerTableButton;
+  //  @FXML MFXButton furnTableButton;
+  //  @FXML MFXButton suppTableButton;
+  //  @FXML MFXButton maintenanceTableButton;
 
   @FXML MFXButton editTableForm;
   @FXML MFXButton cancelTableForm;
 
   @FXML ChoiceBox<String> exportService;
+  @FXML ChoiceBox<String> requestTables;
+
   ObservableList<String> serviceList =
       FXCollections.observableArrayList(
           "Conference Room", "Flowers", "Meal", "Furniture", "Office Supply");
@@ -155,6 +157,16 @@ public class AdminFormStatusController {
 
   String LocationUpdate = new String();
 
+  ObservableList<String> tableList =
+      FXCollections.observableArrayList(
+          "All Requests",
+          "Conference Room Request Table",
+          "Flowers Request Table",
+          "Furniture Request Table",
+          "Maintenance Request Table",
+          "Meal Request Table",
+          "Office Supplies Request Table");
+
   @FXML
   public void initialize() throws SQLException {
     exportService.setItems(serviceList);
@@ -168,13 +180,18 @@ public class AdminFormStatusController {
             throw new RuntimeException(e);
           }
         });
-    allRequestTableButton.setOnMouseClicked(event -> loadAllRequestTable());
-    mealTableButton.setOnMouseClicked(event -> loadMealTable());
-    roomTableButton.setOnMouseClicked(event -> loadRoomTable());
-    flowerTableButton.setOnMouseClicked(event -> loadFlowerTable());
-    furnTableButton.setOnMouseClicked(event -> loadFurnitureTable());
-    suppTableButton.setOnMouseClicked(event -> loadOfficeSupplyTable());
-    maintenanceTableButton.setOnMouseClicked(event -> loadMaintenanceTable());
+
+    requestTables.setItems(tableList);
+    requestTables.setOnAction(event -> selectTable());
+    loadAllRequestTable();
+
+    //    allRequestTableButton.setOnMouseClicked(event -> loadAllRequestTable());
+    //    mealTableButton.setOnMouseClicked(event -> loadMealTable());
+    //    roomTableButton.setOnMouseClicked(event -> loadRoomTable());
+    //    flowerTableButton.setOnMouseClicked(event -> loadFlowerTable());
+    //    furnTableButton.setOnMouseClicked(event -> loadFurnitureTable());
+    //    suppTableButton.setOnMouseClicked(event -> loadOfficeSupplyTable());
+    //    maintenanceTableButton.setOnMouseClicked(event -> loadMaintenanceTable());
 
     editTableForm.setOnMouseClicked(
         event -> {
@@ -303,6 +320,39 @@ public class AdminFormStatusController {
     maintenanceRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
     maintenanceNote.setCellValueFactory(new PropertyValueFactory<>("notes"));
     maintenancePhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+  }
+
+  public void selectTable() {
+    String table = requestTables.getValue();
+    switch (table) {
+      case "All Requests":
+        loadAllRequestTable();
+        break;
+
+      case "Conference Room Request Table":
+        loadRoomTable();
+        break;
+
+      case "Flowers Request Table":
+        loadFlowerTable();
+        break;
+
+      case "Furniture Request Table":
+        loadFurnitureTable();
+        break;
+
+      case "Maintenance Request Table":
+        loadMaintenanceTable();
+        break;
+
+      case "Meal Request Table":
+        loadMealTable();
+        break;
+
+      case "Office Supplies Request Table":
+        loadOfficeSupplyTable();
+        break;
+    }
   }
 
   private void fileExporter() throws SQLException, IOException {
