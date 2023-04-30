@@ -30,7 +30,7 @@ public class AdminTopBannerController {
   @FXML ImageView dictionary;
 
   @FXML ImageView information;
-  @FXML MFXButton listenButton;
+  @FXML ImageView listenButton;
 
   @FXML ChoiceBox<String> AdminChoiceBox;
 
@@ -66,7 +66,7 @@ public class AdminTopBannerController {
             throw new RuntimeException(e);
           }
         });
-    information.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
+    information.setOnMouseClicked(event -> Navigation.navigate(Screen.ABOUT_PAGE));
     signagePageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     settings.setOnMouseClicked(
         (event -> {

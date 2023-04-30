@@ -35,6 +35,8 @@ public class AddNotificationController {
 
   @FXML MFXTextField notifTime;
 
+  @FXML MFXTextField notifHeader;
+
   @FXML MFXComboBox notifType;
 
   @FXML TextArea notifMessage;
@@ -42,6 +44,10 @@ public class AddNotificationController {
   @FXML MFXCheckListView notifRecipients;
 
   @FXML Label checkFields;
+
+  @FXML MFXCheckbox selectAll;
+
+  @FXML MFXCheckbox dismissible;
 
   @FXML AnchorPane forms;
 
@@ -57,6 +63,8 @@ public class AddNotificationController {
   public void initialize() throws SQLException {
     App.bool = false;
     HashMap EmpHashMap = empDao.getAllEmployeeFullName();
+
+    dismissible.setSelected(true);
 
     checkFields.setVisible(false);
 
@@ -80,6 +88,31 @@ public class AddNotificationController {
     notifRecipients.setItems(recipientsList);
     notifType.setItems(notifTypeList);
 
+    notifType
+        .getSelectionModel()
+        .selectedItemProperty()
+        .addListener(
+            (options, oldValue, newValue) -> {
+              if (newValue.equals("Alert")) {
+                notifRecipients.getSelectionModel().selectItems(recipientsList);
+                dismissible.setSelected(false);
+                selectAll.setSelected(true);
+              } else {
+                selectAll.setSelected(false);
+                dismissible.setSelected(true);
+                notifRecipients.getSelectionModel().clearSelection();
+              }
+            });
+
+    selectAll.setOnAction(
+        event -> {
+          if (!selectAll.isSelected()) {
+            notifRecipients.getSelectionModel().clearSelection();
+          } else if (selectAll.isSelected()) {
+            notifRecipients.getSelectionModel().selectItems(recipientsList);
+          }
+        });
+
     notifClear.setOnAction(event -> clearNotif());
     notifSubmit.setOnAction(
         event -> {
@@ -89,10 +122,11 @@ public class AddNotificationController {
 
   public void allDataFilled() {
     if (!(notifDate == null
-        || notifTime.equals("")
-        || notifType.getValue() == null
-        || notifMessage.getText() == null
-        || notifRecipients.getSelectionModel() == null)) {
+            || notifTime.equals("")
+            || notifType.getValue() == null
+            || notifMessage.getText() == null
+            || notifRecipients.getSelectionModel() == null)
+        || notifHeader.equals("")) {
       try {
         storeNotificationValues();
         completeAnimation();
@@ -132,11 +166,13 @@ public class AddNotificationController {
     Notification notification =
         new Notification(
             App.employee.getEmpID(),
+            notifHeader.getText(),
             notifMessage.getText(),
             notifType.getText(),
             recipients.toString(),
             Date.valueOf(notifDate.getValue()),
-            StringToTime(notifTime.getText()));
+            StringToTime(notifTime.getText()),
+            dismissible.isSelected());
 
     notifDao.insert(notification);
   }
@@ -154,6 +190,7 @@ public class AddNotificationController {
     notifMessage.setText("");
     notifDate.setValue(null);
     notifTime.setText("");
+    notifHeader.setText("");
   }
 
   public void completeAnimation() {
