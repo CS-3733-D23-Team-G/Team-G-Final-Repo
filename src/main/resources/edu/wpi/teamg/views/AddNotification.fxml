@@ -9,6 +9,8 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -183,14 +185,33 @@
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <Text layoutX="100.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Send Notification" AnchorPane.topAnchor="46.99609375">
+                  <Text layoutX="100.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Send Notification" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" />
+            <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Notification Inbox" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <TableView fx:id="notifTable" prefHeight="200.0" prefWidth="200.0" styleClass="table-text" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                    <columns>
+                      <TableColumn fx:id="notifAlertIDColumn" prefWidth="75.0" text="Alert ID" />
+                      <TableColumn fx:id="notifDateColumn" prefWidth="125.0" text="Date" />
+                        <TableColumn fx:id="notifTimeColumn" prefWidth="125.0" text="Time" />
+                        <TableColumn fx:id="notifEmpIDColumn" prefWidth="75.0" text="Emp ID" />
+                        <TableColumn fx:id="notifRecipientsColumn" prefWidth="250.0" text="Recipients" />
+                        <TableColumn fx:id="notifTypeColumn" prefWidth="100.0" text="Type" />
+                        <TableColumn fx:id="notifHeaderColumn" prefWidth="300.0" text="Header" />
+                        <TableColumn fx:id="notifMessageColumn" prefWidth="350.0" text="Message" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
          </children>
       </HBox>
    </center>
