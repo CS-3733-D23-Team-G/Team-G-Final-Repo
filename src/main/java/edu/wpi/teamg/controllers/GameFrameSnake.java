@@ -2,11 +2,11 @@ package edu.wpi.teamg.controllers;
 
 import javax.swing.*;
 
-public class GameFrame extends JFrame {
+public class GameFrameSnake extends JFrame {
 
-  public GameFrame() {
+  public GameFrameSnake() {
 
-    this.add(new GamePanel());
+    this.add(new GamePanelSnake());
     this.setTitle("Snake");
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     this.setResizable(false);

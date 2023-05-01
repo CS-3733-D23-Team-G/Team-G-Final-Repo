@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="10.0" prefWidth="10.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.KidsGamePageController">
+    <center>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+               <children>
+                  <VBox layoutY="231.0" prefHeight="520.0" prefWidth="962.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="230.0">
+                     <children>
+                        <HBox prefHeight="533.0" prefWidth="962.0">
+                           <children>
+                              <ImageView fx:id="snake" fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/SnakeBoxArt.jpeg" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="150.0" top="30.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="ticTacToe" fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="150.0" top="30.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="@../Images/TicTacToeBoxArt.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+               <children>
+                  <VBox layoutY="231.0" prefHeight="520.0" prefWidth="962.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0">
+                     <children>
+                        <HBox prefHeight="598.0" prefWidth="962.0">
+                           <children>
+                              <ImageView fx:id="pac" fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/PacmanBoxArt.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="80.0" top="30.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="pong" fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="150.0" top="30.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="@../Images/PongBoxArt.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>
