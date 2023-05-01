@@ -36,6 +36,7 @@ public class ConfirmPopUpController {
         event -> {
           try {
             confirmUpdate();
+
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }

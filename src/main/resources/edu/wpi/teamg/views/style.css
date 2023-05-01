@@ -554,11 +554,7 @@ Popup
 .allFilledError{
     -fx-font-size: 25;
 }
-.about_backround{
-    -fx-background-color: #012D5A;
-    -fx-background-radius: 20 20 20 20;
 
-}
 .about_text{
 
     -fx-text-fill: #FFFFFF;
@@ -603,10 +599,9 @@ Popup
 }
 
 .add_Buttons{
-    -fx-pref-height: 65;
+    -fx-pref-height: 50;
     -fx-pref-width: 250;
     -fx-background-color: #D9D9D9;
-    -fx-background-radius: 30;
     -fx-font-size: 20 ;
     -fx-text-fill: #000000;
     -fx-alignment: center;
@@ -866,6 +861,125 @@ about_text{
     -fx-max-height: 60;
 }
 
+/*
+Styling map editor tilded pane
+ */
+
+.titled-pane
+{
+    -fx-skin: "com.sun.javafx.scene.control.skin.TitledPaneSkin";
+    -fx-text-fill: -fx-text-base-color;
+}
+.titled-pane:focused
+{
+    -fx-text-fill: black;
+}
+.titled-pane > .title
+{
+    -fx-background-color: -fx-box-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+    -fx-padding: 0.166667em 0.833333em 0.25em 0.833333em; /* 2 10 3 10 */
+}
+
+.nodesTitledPane{
+    -fx-pref-height: 50;
+    -fx-pref-width: 250;
+    -fx-font-size: 20;
+    -fx-text-fill: #118AB2;
+    -fx-alignment: center;
+}
+
+.nodesTitledPane > .title{
+    -fx-background-color: #d9d9d9;
+    -fx-font-weight: 800;
+}
 
 
+.nodesTitledPane > .title > .arrow-button .arrow {
+    -fx-background-color: #118AB2;
+}
+
+.edgesTitledPane{
+    -fx-pref-height: 50;
+    -fx-pref-width: 250;
+    -fx-font-size: 20;
+    -fx-text-fill: #ef476f;
+    -fx-alignment: center;
+}
+
+.edgesTitledPane > .title{
+    -fx-background-color: #d9d9d9;
+    -fx-font-weight: 800;
+}
+
+.edgesTitledPane > .title > .arrow-button .arrow {
+    -fx-background-color: #ef476f;
+}
+
+.locsTitledPane{
+    -fx-pref-height: 50;
+    -fx-pref-width: 250;
+    -fx-font-size: 20;
+    -fx-text-fill: #058869;
+    -fx-alignment: center;
+}
+
+.locsTitledPane > .title{
+    -fx-background-color: #d9d9d9;
+    -fx-font-weight: 800;
+}
+
+.locsTitledPane > .title > .arrow-button .arrow {
+    -fx-background-color: #058869;
+}
+
+.movesTitledPane{
+    -fx-pref-height: 50;
+    -fx-pref-width: 250;
+    -fx-font-size: 20;
+    -fx-text-fill: #a88b10;
+    -fx-alignment: center;
+}
+
+.movesTitledPane > .title{
+    -fx-background-color: #d9d9d9;
+    -fx-font-weight: 800;
+}
+
+.movesTitledPane > .title > .arrow-button .arrow {
+    -fx-background-color: #a88b10;
+}
+
+
+
+.titled-pane:focused > .title
+{
+    -fx-color: -fx-focus-color;
+}
+
+.titled-pane > .title > .arrow-button
+{
+    -fx-background-color: null;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0.0em 0.25em 0.0em 0.0em; /* 0 3 0 0 */
+}
+
+.titled-pane > .title > .arrow-button .arrow
+{
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-padding: 0.25em 0.3125em 0.25em 0.3125em; /* 3 3.75 3 3.75 */
+    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+
+.titled-pane:collapsed > .title > .arrow-button .arrow
+{
+    -fx-rotate: -90;
+}
+
+.titled-pane:focused > .title > .arrow-button .arrow
+{
+    -fx-background-color: null;
+}
 
