@@ -80,7 +80,7 @@
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="776.0" styleClass="half_bottom_right">
                <children>
-                  <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" layoutX="2.0" layoutY="-26.0" prefHeight="979.0" prefWidth="1496.0" styleClass="gesture_pane_pathfinding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" prefHeight="913.0" prefWidth="1536.0" styleClass="gesture_pane_pathfinding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
                         <Group fx:id="group">
                            <children>
@@ -94,7 +94,7 @@
                         <Image url="@../Images/alert%20icon.png" />
                      </image>
                   </ImageView>
-                  <VBox layoutX="1419.0" layoutY="374.0" prefHeight="680.0" prefWidth="100.0" styleClass="button_vbox">
+                  <VBox layoutX="1419.0" layoutY="374.0" prefHeight="680.0" prefWidth="100.0" styleClass="button_vbox" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="15.0">
                      <children>
                         <MFXButton fx:id="floor3" alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="69.0" rippleAnimateBackground="false" styleClass="floor_button" text="F3" textAlignment="CENTER" textFill="#f6bd38">
                            <VBox.margin>
