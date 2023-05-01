@@ -161,7 +161,6 @@ public class SignageScreenSaverController {
     //
     //    }
 
-    goToKidsPage.setOnMouseClicked(event -> Navigation.navigate(Screen.KIDS_PAGE));
   }
 
   public void getArrowDirectionFromEditor() {
