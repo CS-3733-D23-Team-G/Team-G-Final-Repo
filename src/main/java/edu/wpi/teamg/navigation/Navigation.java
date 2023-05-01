@@ -19,7 +19,7 @@ public class Navigation {
 
       App.getRootPane().setCenter(loader.load());
 
-      if (screen == Screen.SIGNAGE_SCREENSAVER_PAGE) {
+      if (screen == Screen.SIGNAGE_SCREENSAVER_PAGE || screen == Screen.KIDS_PAGE) {
         Logout();
         PatientBanner();
       } else if (screen == Screen.PATHFINDING_PAGE) {

@@ -3,6 +3,7 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.ORMClasses.Edge;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,11 +12,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import org.controlsfx.control.PopOver;
-import org.controlsfx.control.SearchableComboBox;
 
 public class DeleteEdgeController {
 
-  @FXML SearchableComboBox edgeIDs;
+  @FXML MFXFilterComboBox edgeIDs;
   @FXML MFXTextField startN;
   @FXML MFXTextField endN;
   @FXML MFXButton subDel;
@@ -80,6 +80,7 @@ public class DeleteEdgeController {
   public void deleteEdge() throws SQLException {
     App.edgeDao.delete(viewDel);
     App.refresh();
+    MapEditorController.playAnimation = true;
     wind.hide();
   }
 }

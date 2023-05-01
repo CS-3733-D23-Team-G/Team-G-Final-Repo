@@ -50,8 +50,8 @@ public class AdminTopBannerController {
   ObservableList<String> AdminList =
       FXCollections.observableArrayList(
           "Signage Page Editor",
-          "Table View",
-          "All Form Status",
+          "Map Table View",
+          "All Requests View",
           "Map Editor",
           "Add Employee",
           "Send Notification");
@@ -77,7 +77,11 @@ public class AdminTopBannerController {
           }
         }));
     exit.setOnMouseClicked(event -> exit());
-    statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_STATUS_PAGE));
+    statusButton.setOnMouseClicked(
+        event -> {
+          AdminFormStatusController.isAll = false;
+          Navigation.navigate(Screen.ADMIN_STATUS_PAGE);
+        });
     logout.setOnMouseClicked(
         event -> {
           Navigation.navigate(Screen.SIGNAGE_SCREENSAVER_PAGE);
@@ -137,9 +141,10 @@ public class AdminTopBannerController {
   public void AdminServiceForms() {
     if (AdminChoiceBox.getValue().equals("Signage Page Editor")) {
       Navigation.navigate(Screen.EDIT_SIGNAGE_PAGE);
-    } else if (AdminChoiceBox.getValue().equals("Table View")) {
+    } else if (AdminChoiceBox.getValue().equals("Map Table View")) {
       Navigation.navigate(Screen.ADMIN_SIGNAGE_EDITOR);
-    } else if (AdminChoiceBox.getValue().equals("All Form Status")) {
+    } else if (AdminChoiceBox.getValue().equals("All Requests View")) {
+      AdminFormStatusController.isAll = true;
       Navigation.navigate(Screen.ADMIN_STATUS_PAGE);
     } else if (AdminChoiceBox.getValue().equals("Map Editor")) {
       Navigation.navigate(Screen.ADMIN_MAP_EDITOR);

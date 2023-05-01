@@ -1,36 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import org.controlsfx.control.SearchableComboBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.DeleteEdgeController">
    <children>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="144.0" text="Edge ID:" />
-            <SearchableComboBox fx:id="edgeIDs" />
+            <Label prefHeight="17.0" prefWidth="144.0" text="Edge ID:">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXFilterComboBox fx:id="edgeIDs" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="85.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER">
          <children>
-            <Label prefWidth="200.0" text="Start Node" />
+            <Label prefWidth="200.0" text="Start Node">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="startN" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="End Node" />
+            <Label prefWidth="200.0" text="End Node">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="endN" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+      <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
          <children>
-            <MFXButton fx:id="subDel" text="Submit" />
+            <MFXButton fx:id="subDel" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #ef476f; -fx-text-fill: white;" text="Submit">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXButton>
          </children>
       </HBox>
    </children>
