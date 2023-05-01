@@ -33,14 +33,17 @@
                <children>
                   <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <MFXButton fx:id="listenButton" text="Listen">
-                           <HBox.margin>
-                              <Insets right="70.0" top="15.0" />
-                           </HBox.margin>
-                        </MFXButton>
                         <ImageView fx:id="information" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Images/informationIcon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="listenButton" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/VoiceCommand.png" />
                            </image>
                            <HBox.margin>
                               <Insets right="10.0" top="10.0" />
@@ -51,7 +54,7 @@
                               <Image url="@../Images/dictionaryIcon.png" />
                            </image>
                            <HBox.margin>
-                              <Insets right="10.0" top="10.0" />
+                              <Insets right="25.0" top="10.0" />
                            </HBox.margin>
                         </ImageView>
                         <ImageView fx:id="settings" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
@@ -103,12 +106,12 @@
                         <Insets top="40.0" />
                      </GridPane.margin>
                   </Line>
-                  <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Form Status" GridPane.columnIndex="1">
+                  <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="My Requests" GridPane.columnIndex="1">
                      <font>
                         <Font name="Baskerville Old Face" size="30.0" />
                      </font>
                   </Text>
-                  <Line endX="172.5" startX="20.0" stroke="#f6bd38" strokeWidth="3.0" GridPane.columnIndex="1">
+                  <Line endX="191.87867736816406" startX="20.0" stroke="#f6bd38" strokeWidth="3.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets top="40.0" />
                      </GridPane.margin>

@@ -8,11 +8,11 @@ import java.awt.*;
 import javafx.fxml.FXML;
 
 public class CreditsController {
-
-  @FXML MFXButton Credits;
+  @FXML MFXButton toAbout;
 
   public void initialize() {
     App.bool = false;
-    Credits.setOnMouseClicked(event -> Navigation.navigate(Screen.ABOUT_PAGE));
+
+    toAbout.setOnMouseClicked(event -> Navigation.navigate(Screen.ABOUT_PAGE));
   }
 }

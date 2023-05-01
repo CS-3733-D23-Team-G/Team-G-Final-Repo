@@ -18,7 +18,7 @@
                <children>
                   <MFXScrollPane layoutX="200.0" layoutY="170.0" maxHeight="710.0" prefHeight="710.0" prefWidth="760.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <content>
-                        <VBox fx:id="notifications" prefHeight="700.0" prefWidth="743.0" />
+                        <VBox fx:id="notifications" prefHeight="450.0" prefWidth="743.0" />
                      </content>
                      <styleClass>
                         <String fx:value="scroll-pane-Furn" />
@@ -49,11 +49,11 @@
                   </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+            <AnchorPane fx:id="formsForAnimation" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
                   <MFXScrollPane AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <content>
-                        <VBox fx:id="forms" prefHeight="698.0" prefWidth="743.0" />
+                        <VBox fx:id="forms" prefHeight="450.0" prefWidth="743.0" />
                      </content>
                      <styleClass>
                         <String fx:value="scroll-pane-Furn" />

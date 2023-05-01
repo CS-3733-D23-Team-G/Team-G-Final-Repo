@@ -20,6 +20,8 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,12 +30,14 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
 
@@ -82,6 +86,8 @@ public class MapEditorController {
 
   @FXML MFXDatePicker mapEditDate;
 
+  @FXML AnchorPane forms;
+
   boolean moved = false;
 
   boolean lineGen;
@@ -104,6 +110,8 @@ public class MapEditorController {
 
   boolean shortNameToggle = true;
 
+  static boolean playAnimation = false;
+
   boolean moves = false;
   HashMap<Integer, Move> moving = new HashMap<>();
 
@@ -113,6 +121,7 @@ public class MapEditorController {
     horizontalButton.setVisible(false);
     updateMove();
 
+    forms.setDisable(true);
     toggSn.setSelected(true);
     pane.setVisible(true);
     nodePane.setVisible(true);
@@ -232,6 +241,7 @@ public class MapEditorController {
         event -> {
           try {
             alignCirclesHorizontal(allCircles);
+            completeAnimation("Nodes aligned horizontally.");
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -243,6 +253,7 @@ public class MapEditorController {
         event -> {
           try {
             alignCirclesVertical(allCircles);
+            completeAnimation("Nodes aligned vertically.");
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -263,7 +274,6 @@ public class MapEditorController {
         event -> {
           try {
             getHelp();
-
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
@@ -325,10 +335,17 @@ public class MapEditorController {
 
     img = imageViewsList;
 
+    l1.setDisable(true);
+
     l1.setOnMouseClicked(
         event -> {
           try {
             goToL1(imageViewsList);
+            l1.setDisable(true);
+            l2.setDisable(false);
+            floor1.setDisable(false);
+            floor2.setDisable(false);
+            floor3.setDisable(false);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -337,6 +354,11 @@ public class MapEditorController {
         event -> {
           try {
             goToL2(imageViewsList);
+            l1.setDisable(false);
+            l2.setDisable(true);
+            floor1.setDisable(false);
+            floor2.setDisable(false);
+            floor3.setDisable(false);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -345,6 +367,11 @@ public class MapEditorController {
         event -> {
           try {
             goToFloor1(imageViewsList);
+            l1.setDisable(false);
+            l2.setDisable(false);
+            floor1.setDisable(true);
+            floor2.setDisable(false);
+            floor3.setDisable(false);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -353,6 +380,11 @@ public class MapEditorController {
         event -> {
           try {
             goToFloor2(imageViewsList);
+            l1.setDisable(false);
+            l2.setDisable(false);
+            floor1.setDisable(false);
+            floor2.setDisable(true);
+            floor3.setDisable(false);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -361,6 +393,11 @@ public class MapEditorController {
         event -> {
           try {
             goToFloor3(imageViewsList);
+            l1.setDisable(false);
+            l2.setDisable(false);
+            floor1.setDisable(false);
+            floor2.setDisable(false);
+            floor3.setDisable(true);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -678,6 +715,106 @@ public class MapEditorController {
     pathLine.toFront();
   }
 
+  public void completeAnimation(String message) {
+
+    // Form Completion PopUp
+    AnchorPane rect = new AnchorPane();
+    rect.setLayoutX(1000);
+    rect.setStyle(
+        "-fx-pref-width: 400; -fx-pref-height: 100; -fx-background-color: #97E198; -fx-background-radius: 10");
+    rect.setLayoutY(800);
+    rect.toFront();
+
+    Text completionText = new Text("You Are All Set!");
+    completionText.setLayoutX(1125);
+    completionText.setLayoutY(845);
+    completionText.setStyle(
+        "-fx-stroke: #000000;"
+            + "-fx-fill: #012D5A;"
+            + "-fx-font-size: 25;"
+            + "-fx-font-weight: 500;");
+    completionText.toFront();
+
+    Text completionTextSecondRow = new Text(message);
+    completionTextSecondRow.setLayoutX(1125);
+    completionTextSecondRow.setLayoutY(875);
+    completionTextSecondRow.setStyle(
+        "-fx-stroke: #404040;"
+            + "-fx-fill: #012D5A;"
+            + "-fx-font-size: 20;"
+            + "-fx-font-weight: 500;");
+    completionTextSecondRow.toFront();
+
+    // Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
+    ImageView completionImage = new ImageView(App.checkmarkImage);
+
+    completionImage.setFitHeight(50);
+    completionImage.setFitWidth(50);
+    completionImage.setLayoutX(1025);
+    completionImage.setLayoutY(825);
+    completionImage.toFront();
+
+    rect.setOpacity(0.0);
+    completionImage.setOpacity(0.0);
+    completionText.setOpacity(0.0);
+    completionTextSecondRow.setOpacity(0.0);
+
+    forms.getChildren().add(rect);
+    forms.getChildren().add(completionText);
+    forms.getChildren().add(completionImage);
+    forms.getChildren().add(completionTextSecondRow);
+
+    FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(0.5), rect);
+    fadeIn1.setFromValue(0.0);
+    fadeIn1.setToValue(1.0);
+
+    FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(0.5), completionImage);
+    fadeIn2.setFromValue(0.0);
+    fadeIn2.setToValue(1.0);
+
+    FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(0.5), completionText);
+    fadeIn3.setFromValue(0.0);
+    fadeIn3.setToValue(1.0);
+
+    FadeTransition fadeIn4 = new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
+    fadeIn4.setFromValue(0.0);
+    fadeIn4.setToValue(1.0);
+
+    ParallelTransition parallelTransition =
+        new ParallelTransition(fadeIn1, fadeIn2, fadeIn3, fadeIn4);
+
+    parallelTransition.play();
+
+    parallelTransition.setOnFinished(
+        (event) -> {
+          FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(0.5), rect);
+          fadeOut1.setDelay(Duration.seconds(1.5));
+          fadeOut1.setFromValue(1.0);
+          fadeOut1.setToValue(0.0);
+
+          FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(0.5), completionImage);
+          fadeOut2.setDelay(Duration.seconds(1.5));
+          fadeOut2.setFromValue(1.0);
+          fadeOut2.setToValue(0.0);
+
+          FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(0.5), completionText);
+          fadeOut3.setDelay(Duration.seconds(1.5));
+          fadeOut3.setFromValue(1.0);
+          fadeOut3.setToValue(0.0);
+
+          FadeTransition fadeOut4 =
+              new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
+          fadeOut4.setDelay(Duration.seconds(1.5));
+          fadeOut4.setFromValue(1.0);
+          fadeOut4.setToValue(0.0);
+
+          fadeOut1.play();
+          fadeOut2.play();
+          fadeOut3.play();
+          fadeOut4.play();
+        });
+  }
+
   void getNodesWFunctionality(ArrayList<Node> listOfNodes, int i, HashMap<Integer, String> sn)
       throws SQLException {
 
@@ -699,7 +836,7 @@ public class MapEditorController {
     point.setOnMouseClicked(
         event -> {
           if (isAlignClicked) {
-            point.setFill(Color.rgb(246, 189, 56));
+            point.setFill(Color.valueOf("#118AB2"));
             allCircles.add(currentNode);
           }
         });
@@ -776,12 +913,12 @@ public class MapEditorController {
               if (editEdge) {
                 if (nodeClickCount == 0) {
                   nodeCon1 = currentNode;
-                  point.setFill(Color.rgb(246, 189, 56));
+                  point.setFill(Color.valueOf("#ef476f"));
                   nodeClickCount = nodeClickCount + 1;
                 }
                 if (nodeClickCount == 1) {
                   nodeCon2 = currentNode;
-                  point.setFill(Color.rgb(246, 189, 56));
+                  point.setFill(Color.valueOf("#ef476f"));
 
                   if (nodeCon1 != nodeCon2) {
                     addEdgeOffClicks(nodeCon1, nodeCon2);
@@ -814,7 +951,7 @@ public class MapEditorController {
     System.out.println("edge added" + nodeCon1.getNodeID() + "      " + nodeCon2.getNodeID());
 
     floorButtons(img, floor);
-
+    completeAnimation("Edge added.");
     refresh();
   }
 
@@ -857,6 +994,8 @@ public class MapEditorController {
     var loader = new FXMLLoader(App.class.getResource("views/InsertNode.fxml"));
     window.setContentNode(loader.load());
 
+    window.setTitle("Add Node");
+
     window.setArrowSize(0);
     InsertNodeController controller = loader.getController();
     controller.setW(window);
@@ -873,9 +1012,18 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     AddLocationNameController controller = loader.getController();
+    controller.setWind(window);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    window.setOnHiding(
+        event -> {
+          if (playAnimation) {
+            completeAnimation("Location name added.");
+            playAnimation = false;
+          }
+        });
   }
 
   public void addMoves() throws IOException, SQLException {
@@ -898,9 +1046,18 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     DeleteLocationNameControllerPopOver controller = loader.getController();
+    controller.setWind(window);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    window.setOnHiding(
+        event -> {
+          if (playAnimation) {
+            completeAnimation("Location name deleted.");
+            playAnimation = false;
+          }
+        });
   }
 
   public void displayEdgeData(Edge edge, Node A, Node B) throws IOException {
@@ -927,6 +1084,14 @@ public class MapEditorController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    window.setOnHiding(
+        event -> {
+          if (playAnimation) {
+            completeAnimation("Edge deleted.");
+            playAnimation = false;
+          }
+        });
   }
 
   public void displayMoveChange() throws IOException {
@@ -984,6 +1149,10 @@ public class MapEditorController {
           try {
             nodePane.getChildren().clear();
             floorButtons(imgs, floor);
+            if (playAnimation) {
+              completeAnimation("Node moved.");
+              playAnimation = false;
+            }
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -1014,6 +1183,14 @@ public class MapEditorController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    window.setOnHiding(
+        event -> {
+          if (playAnimation) {
+            completeAnimation("Location name modified.");
+            playAnimation = false;
+          }
+        });
   }
 
   public void getHelp() throws IOException {

@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
+import java.util.ArrayList;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -24,6 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import org.controlsfx.control.PopOver;
 
 public class HomeController {
@@ -31,10 +35,19 @@ public class HomeController {
   // @FXML MFXButton EmployeeinfoHyperlink;
   @FXML VBox forms;
   @FXML VBox notifications;
+  @FXML AnchorPane formsForAnimation;
 
   static PopOver deleteConfirmation = new PopOver();
+  static PopOver changeStatusConfirmation = new PopOver();
 
   static int notifToBeDeleted;
+  private static boolean playAnimation;
+  static boolean playAnimationStatus;
+
+  static int requestToBeChanged;
+  static StatusTypeEnum currentStatus;
+
+  static String reqTypeToBeChanged;
 
   // TODO if there are no requests, add a message saying currently no requests.
 
@@ -44,9 +57,24 @@ public class HomeController {
     empName.setText(" " + App.employee.getFirstName() + " " + App.employee.getLastName());
     empName.setFill(Color.valueOf("#012D5A"));
 
+    // empName.setOnMouseClicked(event -> completeAnimation());
+
     RequestDAO requestDAO = new RequestDAO();
     // HashMap<Integer, Request> hash = requestDAO.getOutstandingRequest(App.employee.getEmpID());
     ArrayList<Request> hash = requestDAO.getOutstandingRequest(App.employee.getEmpID());
+    if (getPlayanimation()) {
+
+      completeAnimation("Notification has been deleted.");
+
+      setPlayAnimation(false);
+    }
+
+    if (playAnimationStatus) {
+
+      completeAnimation("Request status changed.");
+
+      playAnimationStatus = !playAnimationStatus;
+    }
 
     hash.forEach(
         (i) -> {
@@ -163,6 +191,18 @@ public class HomeController {
           stack.setLayoutX(535);
           stack.setLayoutY(52);
 
+          stack.setOnMouseClicked(
+              event -> {
+                try {
+                  requestToBeChanged = i.getReqid();
+                  currentStatus = i.getStatus();
+                  reqTypeToBeChanged = i.getReqtype();
+                  setChangeStatusConfirmation();
+                } catch (IOException e) {
+                  throw new RuntimeException(e);
+                }
+              });
+
           //     pane.setStyle("-fx-background-color: " + color);
           //          pane.setStyle("-fx-fill: #E19797");
 
@@ -236,11 +276,11 @@ public class HomeController {
 
           switch (notifType) {
             case "alert":
-              message = new Text("ALERT: " + i.getMessage());
+              message = new Text("ALERT: " + i.getNotifheader());
               color = "#E19797;";
               break;
             default:
-              message = new Text(i.getMessage());
+              message = new Text(i.getNotifheader());
               color = "#C0C0C0;";
               break;
           }
@@ -272,15 +312,134 @@ public class HomeController {
 
           //        notifAnchorPane.getChildren().add(requestID);
 
-          notifAnchorPane.getChildren().add(dismiss);
           notifAnchorPane.getChildren().add(notif);
           notifAnchorPane.getChildren().add(notifDate);
+          if (i.getDismissible()) {
+            notifAnchorPane.getChildren().add(dismiss);
+            notifAnchorPane.getChildren().add(dismissBtn);
+          }
           notifAnchorPane.getChildren().add(message);
-          notifAnchorPane.getChildren().add(dismissBtn);
+
           notifications.getChildren().add(notifAnchorPane);
         });
-
     // EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
+
+  }
+
+  public void completeAnimation(String message) {
+
+    // Form Completion PopUp
+    AnchorPane rect = new AnchorPane();
+    rect.setLayoutX(500);
+    rect.setStyle(
+        "-fx-pref-width: 400; -fx-pref-height: 100; -fx-background-color: #97E198; -fx-background-radius: 10");
+    rect.setLayoutY(800);
+    rect.toFront();
+
+    Text completionText = new Text("You Are All Set!");
+    completionText.setLayoutX(625);
+    completionText.setLayoutY(845);
+    completionText.setStyle(
+        "-fx-stroke: #000000;"
+            + "-fx-fill: #012D5A;"
+            + "-fx-font-size: 25;"
+            + "-fx-font-weight: 500;");
+    completionText.toFront();
+
+    Text completionTextSecondRow = new Text(message);
+    completionTextSecondRow.setLayoutX(625);
+    completionTextSecondRow.setLayoutY(875);
+    completionTextSecondRow.setStyle(
+        "-fx-stroke: #404040;"
+            + "-fx-fill: #012D5A;"
+            + "-fx-font-size: 20;"
+            + "-fx-font-weight: 500;");
+    completionTextSecondRow.toFront();
+
+    // Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
+    ImageView completionImage = new ImageView(App.checkmarkImage);
+
+    completionImage.setFitHeight(50);
+    completionImage.setFitWidth(50);
+    completionImage.setLayoutX(525);
+    completionImage.setLayoutY(825);
+    completionImage.toFront();
+
+    rect.setOpacity(0.0);
+    completionImage.setOpacity(0.0);
+    completionText.setOpacity(0.0);
+    completionTextSecondRow.setOpacity(0.0);
+
+    formsForAnimation.getChildren().add(rect);
+    formsForAnimation.getChildren().add(completionText);
+    formsForAnimation.getChildren().add(completionImage);
+    formsForAnimation.getChildren().add(completionTextSecondRow);
+
+    FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(0.5), rect);
+    fadeIn1.setFromValue(0.0);
+    fadeIn1.setToValue(1.0);
+
+    FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(0.5), completionImage);
+    fadeIn2.setFromValue(0.0);
+    fadeIn2.setToValue(1.0);
+
+    FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(0.5), completionText);
+    fadeIn3.setFromValue(0.0);
+    fadeIn3.setToValue(1.0);
+
+    FadeTransition fadeIn4 = new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
+    fadeIn4.setFromValue(0.0);
+    fadeIn4.setToValue(1.0);
+
+    ParallelTransition parallelTransition =
+        new ParallelTransition(fadeIn1, fadeIn2, fadeIn3, fadeIn4);
+
+    parallelTransition.play();
+
+    parallelTransition.setOnFinished(
+        (event) -> {
+          FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(0.5), rect);
+          fadeOut1.setDelay(Duration.seconds(1.5));
+          fadeOut1.setFromValue(1.0);
+          fadeOut1.setToValue(0.0);
+
+          FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(0.5), completionImage);
+          fadeOut2.setDelay(Duration.seconds(1.5));
+          fadeOut2.setFromValue(1.0);
+          fadeOut2.setToValue(0.0);
+
+          FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(0.5), completionText);
+          fadeOut3.setDelay(Duration.seconds(1.5));
+          fadeOut3.setFromValue(1.0);
+          fadeOut3.setToValue(0.0);
+
+          FadeTransition fadeOut4 =
+              new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
+          fadeOut4.setDelay(Duration.seconds(1.5));
+          fadeOut4.setFromValue(1.0);
+          fadeOut4.setToValue(0.0);
+
+          fadeOut1.play();
+          fadeOut2.play();
+          fadeOut3.play();
+          fadeOut4.play();
+        });
+  }
+
+  public void setChangeStatusConfirmation() throws IOException {
+
+    var loader = new FXMLLoader(App.class.getResource("views/OutstandingRequestStatusChange.fxml"));
+    changeStatusConfirmation.setContentNode(loader.load());
+
+    changeStatusConfirmation.setArrowSize(0);
+    changeStatusConfirmation.setTitle("Change Request Status");
+
+    changeStatusConfirmation.setHeaderAlwaysVisible(false);
+    OutstandingRequestStatusChangeController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    changeStatusConfirmation.show(
+        App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void deleteConfirmation() throws IOException {
@@ -297,5 +456,13 @@ public class HomeController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     deleteConfirmation.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+  }
+
+  public static boolean getPlayanimation() {
+    return playAnimation;
+  }
+
+  public static void setPlayAnimation(boolean t) {
+    playAnimation = t;
   }
 }

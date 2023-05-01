@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXCheckListView?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
@@ -56,10 +57,10 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="25.0" />
+                                          <Insets top="15.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <MFXTextField fx:id="notifTime" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                    <MFXTextField fx:id="notifTime" floatMode="DISABLED" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
@@ -72,20 +73,36 @@
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="25.0" />
+                                          <Insets top="15.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <MFXComboBox fx:id="notifType" maxHeight="75.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="281.0" styleClass="requestTextBox">
+                                    <MFXComboBox fx:id="notifType" floatMode="DISABLED" maxHeight="75.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="281.0" styleClass="requestTextBox">
                                        <VBox.margin>
                                           <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXComboBox>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Header">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <MFXTextField fx:id="notifHeader" floatMode="DISABLED" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets right="15.0" top="5.0" />
+                                       </VBox.margin>
+                                    </MFXTextField>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Message">
                                        <font>
                                           <Font size="22.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="25.0" />
+                                          <Insets top="15.0" />
                                        </VBox.margin>
                                     </Text>
                                     <TextArea fx:id="notifMessage" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #D9D9D9;" styleClass="notes" stylesheets="@style.css" wrapText="true">
@@ -114,11 +131,31 @@
                                           <Insets top="25.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <MFXCheckListView fx:id="notifRecipients" prefHeight="522.0" prefWidth="281.0">
+                                    <MFXCheckListView fx:id="notifRecipients" prefHeight="522.0" prefWidth="281.0" style="-fx-background-color: #d9d9d9;">
                                        <VBox.margin>
                                           <Insets right="15.0" top="5.0" />
                                        </VBox.margin>
                                     </MFXCheckListView>
+                                    <HBox prefHeight="11.0" prefWidth="296.0">
+                                       <children>
+                                          <MFXCheckbox fx:id="selectAll" text="Select All" textFill="#d9d9d9">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </MFXCheckbox>
+                                          <MFXCheckbox fx:id="dismissible" text="Dismissible?" textFill="#d9d9d9">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </MFXCheckbox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                     <Label fx:id="checkFields" prefHeight="17.0" prefWidth="377.0" styleClass="allFilledError" stylesheets="@style.css" text="Not All Fields Are Filled." textFill="#d01616">
                                        <font>
                                           <Font size="30.0" />
@@ -153,7 +190,7 @@
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" />
+            <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" />
          </children>
       </HBox>
    </center>

@@ -16,9 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
@@ -155,6 +153,8 @@ public class AdminFormStatusController {
 
   DAORepo dao = new DAORepo();
 
+  static Boolean isAll;
+
   String LocationUpdate = new String();
 
   ObservableList<String> tableList =
@@ -167,7 +167,9 @@ public class AdminFormStatusController {
           "Meal Request Table",
           "Office Supplies Request Table");
 
-  @FXML
+  ObservableList<String> singleTableList =
+      FXCollections.observableArrayList("Requests assigned to me.", "Requests sent by me.");
+
   public void initialize() throws SQLException {
     App.bool = false;
     exportService.setItems(serviceList);
@@ -182,17 +184,339 @@ public class AdminFormStatusController {
           }
         });
 
-    requestTables.setItems(tableList);
-    requestTables.setOnAction(event -> selectTable());
-    loadAllRequestTable();
+    System.out.println(App.employee.getIs_admin());
 
-    //    allRequestTableButton.setOnMouseClicked(event -> loadAllRequestTable());
-    //    mealTableButton.setOnMouseClicked(event -> loadMealTable());
-    //    roomTableButton.setOnMouseClicked(event -> loadRoomTable());
-    //    flowerTableButton.setOnMouseClicked(event -> loadFlowerTable());
-    //    furnTableButton.setOnMouseClicked(event -> loadFurnitureTable());
-    //    suppTableButton.setOnMouseClicked(event -> loadOfficeSupplyTable());
-    //    maintenanceTableButton.setOnMouseClicked(event -> loadMaintenanceTable());
+    if (!isAll) {
+      requestTables.setItems(singleTableList);
+      requestTables.getSelectionModel().select("Requests assigned to me.");
+
+      editTableForm.setDisable(true);
+      cancelTableForm.setDisable(true);
+      exportService.setDisable(true);
+
+      switch (App.employee.getCan_serve()) {
+        case "Meal Request":
+          HashMap<Integer, MealRequest> testingMealHash = App.testingMealHash;
+          ArrayList<MealRequest> mealRequests1 = new ArrayList<>(testingMealHash.values());
+
+          ArrayList<MealRequest> mealRequests1_filtered = new ArrayList<>();
+          System.out.println(mealRequests1.size());
+          for (int i = 0; i < mealRequests1.size(); i++) {
+            if (extractEmpIDAndSeveBy(mealRequests1.get(i).getServeBy())
+                == App.employee.getEmpID()) {
+              mealRequests1_filtered.add(mealRequests1.get(i));
+            }
+          }
+
+          System.out.println(mealRequests1_filtered.size());
+
+          testMealList = FXCollections.observableArrayList(mealRequests1_filtered);
+          mealTable.setItems(testMealList);
+
+          mealReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+          mealEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+          mealLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+          mealServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+          mealStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+          mealRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+          mealOrder.setCellValueFactory(new PropertyValueFactory<>("order"));
+          mealNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+          mealDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+          mealTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+
+          loadMealTable();
+          break;
+        case "Conference Room Request":
+          HashMap<Integer, ConferenceRoomRequest> testingConfRoom = App.testingConfRoom;
+          ArrayList<ConferenceRoomRequest> confroom = new ArrayList<>(testingConfRoom.values());
+
+          ArrayList<ConferenceRoomRequest> confroom_filtered = new ArrayList<>();
+          System.out.println(confroom.size());
+          for (int i = 0; i < confroom.size(); i++) {
+            if (extractEmpIDAndSeveBy(confroom.get(i).getServeBy()) == App.employee.getEmpID()) {
+              confroom_filtered.add(confroom.get(i));
+            }
+          }
+
+          testRoomList = FXCollections.observableArrayList(confroom_filtered);
+
+          roomTable.setItems(testRoomList);
+
+          roomReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+          roomEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+          roomLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+          roomServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+          roomStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+          roomDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+          roomTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+          endTime.setCellValueFactory(new PropertyValueFactory<>("endtime"));
+          roomPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
+
+          loadRoomTable();
+          break;
+        case "Flowers Request":
+          HashMap<Integer, FlowerRequest> testingFlower = App.testingFlower;
+          ArrayList<FlowerRequest> flowerDel = new ArrayList<>(testingFlower.values());
+
+          ArrayList<FlowerRequest> flowerDel_filtered = new ArrayList<>();
+          System.out.println(flowerDel.size());
+          for (int i = 0; i < flowerDel.size(); i++) {
+            if (extractEmpIDAndSeveBy(flowerDel.get(i).getServeBy()) == App.employee.getEmpID()) {
+              flowerDel_filtered.add(flowerDel.get(i));
+            }
+          }
+
+          testFlowerList = FXCollections.observableArrayList(flowerDel_filtered);
+          flowerTable.setItems(testFlowerList);
+
+          flowerReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+          flowerEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+          flowerLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+          flowerServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+          flowerStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+          flowerType.setCellValueFactory(new PropertyValueFactory<>("flowerType"));
+          flowerNumber.setCellValueFactory(new PropertyValueFactory<>("numFlower"));
+          flowerDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+          flowerTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+          flowerRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+          flowerNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+          loadFlowerTable();
+          break;
+        case "Office Supplies Request":
+          HashMap<Integer, OfficeSupplyRequest> testingSupp = App.testingOSupps;
+          ArrayList<OfficeSupplyRequest> oSupp = new ArrayList<>(testingSupp.values());
+
+          ArrayList<OfficeSupplyRequest> oSupp_filtered = new ArrayList<>();
+          System.out.println(oSupp.size());
+          for (int i = 0; i < oSupp.size(); i++) {
+            if (extractEmpIDAndSeveBy(oSupp.get(i).getServeBy()) == App.employee.getEmpID()) {
+              oSupp_filtered.add(oSupp.get(i));
+            }
+          }
+
+          testSuppList = FXCollections.observableArrayList(oSupp_filtered);
+          suppTable.setItems(testSuppList);
+
+          suppReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+          suppEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+          suppLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+          suppServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+          suppStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+          suppType.setCellValueFactory(new PropertyValueFactory<>("supplyType"));
+          suppDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+          suppTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+          suppRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+          suppNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+          loadOfficeSupplyTable();
+          break;
+        case "Furniture Request":
+          HashMap<Integer, FurnitureRequest> testingFurns = App.testingFurns;
+          ArrayList<FurnitureRequest> furns = new ArrayList<>(testingFurns.values());
+
+          ArrayList<FurnitureRequest> furns_filtered = new ArrayList<>();
+          System.out.println(furns.size());
+          for (int i = 0; i < furns.size(); i++) {
+            if (extractEmpIDAndSeveBy(furns.get(i).getServeBy()) == App.employee.getEmpID()) {
+              furns_filtered.add(furns.get(i));
+            }
+          }
+
+          testFurnList = FXCollections.observableArrayList(furns_filtered);
+          furnTable.setItems(testFurnList);
+
+          furnReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+          furnEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+          furnLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+          furnServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+          furnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+          furnType.setCellValueFactory(new PropertyValueFactory<>("furnitureType"));
+          furnDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+          furnTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+          furnRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+          furnNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+          loadFurnitureTable();
+          break;
+        case "Maintenance Request":
+          HashMap<Integer, MaintenanceRequest> testingMaintain = App.testingMaintain;
+          ArrayList<MaintenanceRequest> maintains = new ArrayList<>(testingMaintain.values());
+
+          ArrayList<MaintenanceRequest> maintains_filtered = new ArrayList<>();
+          System.out.println(maintains.size());
+          for (int i = 0; i < maintains.size(); i++) {
+            if (extractEmpIDAndSeveBy(maintains.get(i).getServeBy()) == App.employee.getEmpID()) {
+              maintains_filtered.add(maintains.get(i));
+            }
+          }
+
+          testMaintainList = FXCollections.observableArrayList(maintains_filtered);
+          maintenanceTable.setItems(testMaintainList);
+
+          maintenanceReqID.setCellValueFactory(new PropertyValueFactory<>("reqId"));
+          maintenanceEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+          maintenanceLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+          maintenanceServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+          maintenanceStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+          maintenanceType.setCellValueFactory(new PropertyValueFactory<>("type"));
+          maintenanceSpecified.setCellValueFactory(new PropertyValueFactory<>("specified"));
+          maintenanceDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+          maintenanceTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+          maintenanceRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+          maintenanceNote.setCellValueFactory(new PropertyValueFactory<>("notes"));
+          maintenancePhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+          loadMaintenanceTable();
+          break;
+      }
+
+      HashMap<Integer, Request> testingRequest = App.testingRequest;
+      ArrayList<Request> request1 = new ArrayList<>(testingRequest.values());
+
+      ArrayList<Request> request1_filtered = new ArrayList<>();
+
+      for (int i = 0; i < request1.size(); i++) {
+        if (extractEmpIDAndSeveBy(request1.get(i).getEmpid()) == App.employee.getEmpID()) {
+          request1_filtered.add(request1.get(i));
+        }
+      }
+
+      testList = FXCollections.observableArrayList(request1_filtered);
+
+      mainTable.setItems(testList);
+
+      reqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+      reqType.setCellValueFactory(new PropertyValueFactory<>("reqtype"));
+      empID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+      location1.setCellValueFactory(new PropertyValueFactory<>("location"));
+      serveBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+      status.setCellValueFactory(new PropertyValueFactory<>("status"));
+      reqDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+      reqTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+
+    } else {
+
+      requestTables.setItems(tableList);
+      requestTables.getSelectionModel().select("All Requests");
+      loadAllRequestTable();
+
+      HashMap<Integer, Request> testingRequest = App.testingRequest;
+      ArrayList<Request> request1 = new ArrayList<>(testingRequest.values());
+
+      HashMap<Integer, MealRequest> testingMealHash = App.testingMealHash;
+      ArrayList<MealRequest> mealRequests1 = new ArrayList<>(testingMealHash.values());
+
+      HashMap<Integer, ConferenceRoomRequest> testingConfRoom = App.testingConfRoom;
+      ArrayList<ConferenceRoomRequest> confroom = new ArrayList<>(testingConfRoom.values());
+
+      HashMap<Integer, FlowerRequest> testingFlower = App.testingFlower;
+      ArrayList<FlowerRequest> flowerDel = new ArrayList<>(testingFlower.values());
+
+      HashMap<Integer, FurnitureRequest> testingFurns = App.testingFurns;
+      ArrayList<FurnitureRequest> furns = new ArrayList<>(testingFurns.values());
+
+      HashMap<Integer, OfficeSupplyRequest> testingSupp = App.testingOSupps;
+      ArrayList<OfficeSupplyRequest> oSupp = new ArrayList<>(testingSupp.values());
+
+      HashMap<Integer, MaintenanceRequest> testingMaintain = App.testingMaintain;
+      ArrayList<MaintenanceRequest> maintains = new ArrayList<>(testingMaintain.values());
+
+      testList = FXCollections.observableArrayList(request1);
+      testMealList = FXCollections.observableArrayList(mealRequests1);
+      testRoomList = FXCollections.observableArrayList(confroom);
+      testFlowerList = FXCollections.observableArrayList(flowerDel);
+      testFurnList = FXCollections.observableArrayList(furns);
+      testSuppList = FXCollections.observableArrayList(oSupp);
+      testMaintainList = FXCollections.observableArrayList(maintains);
+
+      mainTable.setItems(testList);
+      mealTable.setItems(testMealList);
+      roomTable.setItems(testRoomList);
+      flowerTable.setItems(testFlowerList);
+      furnTable.setItems(testFurnList);
+      suppTable.setItems(testSuppList);
+      maintenanceTable.setItems(testMaintainList);
+
+      reqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+      reqType.setCellValueFactory(new PropertyValueFactory<>("reqtype"));
+      empID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+      location1.setCellValueFactory(new PropertyValueFactory<>("location"));
+      serveBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+      status.setCellValueFactory(new PropertyValueFactory<>("status"));
+      reqDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+      reqTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+
+      mealReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+      mealEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+      mealLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+      mealServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+      mealStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+      mealRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+      mealOrder.setCellValueFactory(new PropertyValueFactory<>("order"));
+      mealNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+      mealDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+      mealTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+
+      roomReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+      roomEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+      roomLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+      roomServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+      roomStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+      roomDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+      roomTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+      endTime.setCellValueFactory(new PropertyValueFactory<>("endtime"));
+      roomPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
+
+      flowerReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+      flowerEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+      flowerLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+      flowerServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+      flowerStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+      flowerType.setCellValueFactory(new PropertyValueFactory<>("flowerType"));
+      flowerNumber.setCellValueFactory(new PropertyValueFactory<>("numFlower"));
+      flowerDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+      flowerTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+      flowerRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+      flowerNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+      furnReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+      furnEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+      furnLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+      furnServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+      furnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+      furnType.setCellValueFactory(new PropertyValueFactory<>("furnitureType"));
+      furnDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+      furnTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+      furnRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+      furnNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+      suppReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
+      suppEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+      suppLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+      suppServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+      suppStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+      suppType.setCellValueFactory(new PropertyValueFactory<>("supplyType"));
+      suppDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+      suppTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+      suppRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+      suppNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+      maintenanceReqID.setCellValueFactory(new PropertyValueFactory<>("reqId"));
+      maintenanceEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
+      maintenanceLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
+      maintenanceServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
+      maintenanceStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+      maintenanceType.setCellValueFactory(new PropertyValueFactory<>("type"));
+      maintenanceSpecified.setCellValueFactory(new PropertyValueFactory<>("specified"));
+      maintenanceDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+      maintenanceTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
+      maintenanceRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
+      maintenanceNote.setCellValueFactory(new PropertyValueFactory<>("notes"));
+      maintenancePhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+    }
+
+    requestTables.setOnAction(event -> selectTable());
 
     editTableForm.setOnMouseClicked(
         event -> {
@@ -203,124 +527,6 @@ public class AdminFormStatusController {
           }
         });
     cancelTableForm.setOnMouseClicked(event -> cancelEditOfTables());
-
-    HashMap<Integer, Request> testingRequest = App.testingRequest;
-    ArrayList<Request> request1 = new ArrayList<>(testingRequest.values());
-
-    HashMap<Integer, MealRequest> testingMealHash = App.testingMealHash;
-    ArrayList<MealRequest> mealRequests1 = new ArrayList<>(testingMealHash.values());
-
-    HashMap<Integer, ConferenceRoomRequest> testingConfRoom = App.testingConfRoom;
-    ArrayList<ConferenceRoomRequest> confroom = new ArrayList<>(testingConfRoom.values());
-
-    HashMap<Integer, FlowerRequest> testingFlower = App.testingFlower;
-    ArrayList<FlowerRequest> flowerDel = new ArrayList<>(testingFlower.values());
-
-    HashMap<Integer, FurnitureRequest> testingFurns = App.testingFurns;
-    ArrayList<FurnitureRequest> furns = new ArrayList<>(testingFurns.values());
-
-    HashMap<Integer, OfficeSupplyRequest> testingSupp = App.testingOSupps;
-    ArrayList<OfficeSupplyRequest> oSupp = new ArrayList<>(testingSupp.values());
-
-    HashMap<Integer, MaintenanceRequest> testingMaintain = App.testingMaintain;
-    ArrayList<MaintenanceRequest> maintains = new ArrayList<>(testingMaintain.values());
-
-    testList = FXCollections.observableArrayList(request1);
-    testMealList = FXCollections.observableArrayList(mealRequests1);
-    testRoomList = FXCollections.observableArrayList(confroom);
-    testFlowerList = FXCollections.observableArrayList(flowerDel);
-    testFurnList = FXCollections.observableArrayList(furns);
-
-    testSuppList = FXCollections.observableArrayList(oSupp);
-
-    testMaintainList = FXCollections.observableArrayList(maintains);
-
-    mainTable.setItems(testList);
-    mealTable.setItems(testMealList);
-    roomTable.setItems(testRoomList);
-    flowerTable.setItems(testFlowerList);
-    furnTable.setItems(testFurnList);
-
-    suppTable.setItems(testSuppList);
-
-    maintenanceTable.setItems(testMaintainList);
-
-    reqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
-    reqType.setCellValueFactory(new PropertyValueFactory<>("reqtype"));
-    empID.setCellValueFactory(new PropertyValueFactory<>("empid"));
-    location1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    serveBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
-    status.setCellValueFactory(new PropertyValueFactory<>("status"));
-    reqDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
-    reqTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
-
-    mealReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
-    mealEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
-    mealLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    mealServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
-    mealStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-    mealRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
-    mealOrder.setCellValueFactory(new PropertyValueFactory<>("order"));
-    mealNote.setCellValueFactory(new PropertyValueFactory<>("note"));
-    mealDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
-    mealTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
-
-    roomReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
-    roomEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
-    roomLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    roomServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
-    roomStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-    roomDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
-    roomTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
-    endTime.setCellValueFactory(new PropertyValueFactory<>("endtime"));
-    roomPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
-
-    flowerReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
-    flowerEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
-    flowerLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    flowerServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
-    flowerStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-    flowerType.setCellValueFactory(new PropertyValueFactory<>("flowerType"));
-    flowerNumber.setCellValueFactory(new PropertyValueFactory<>("numFlower"));
-    flowerDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
-    flowerTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
-    flowerRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
-    flowerNote.setCellValueFactory(new PropertyValueFactory<>("note"));
-
-    furnReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
-    furnEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
-    furnLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    furnServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
-    furnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-    furnType.setCellValueFactory(new PropertyValueFactory<>("furnitureType"));
-    furnDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
-    furnTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
-    furnRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
-    furnNote.setCellValueFactory(new PropertyValueFactory<>("note"));
-
-    suppReqID.setCellValueFactory(new PropertyValueFactory<>("reqid"));
-    suppEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
-    suppLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    suppServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
-    suppStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-    suppType.setCellValueFactory(new PropertyValueFactory<>("supplyType"));
-    suppDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
-    suppTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
-    suppRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
-    suppNote.setCellValueFactory(new PropertyValueFactory<>("note"));
-
-    maintenanceReqID.setCellValueFactory(new PropertyValueFactory<>("reqId"));
-    maintenanceEmpID.setCellValueFactory(new PropertyValueFactory<>("empid"));
-    maintenanceLocation1.setCellValueFactory(new PropertyValueFactory<>("location"));
-    maintenanceServeBy.setCellValueFactory(new PropertyValueFactory<>("serveBy"));
-    maintenanceStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-    maintenanceType.setCellValueFactory(new PropertyValueFactory<>("type"));
-    maintenanceSpecified.setCellValueFactory(new PropertyValueFactory<>("specified"));
-    maintenanceDate.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
-    maintenanceTime.setCellValueFactory(new PropertyValueFactory<>("requestTime"));
-    maintenanceRecipient.setCellValueFactory(new PropertyValueFactory<>("recipient"));
-    maintenanceNote.setCellValueFactory(new PropertyValueFactory<>("notes"));
-    maintenancePhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
   }
 
   public void selectTable() {
@@ -328,30 +534,71 @@ public class AdminFormStatusController {
     switch (table) {
       case "All Requests":
         loadAllRequestTable();
+        editTableForm.setDisable(false);
+        cancelTableForm.setDisable(false);
         break;
 
       case "Conference Room Request Table":
         loadRoomTable();
+        editTableForm.setDisable(true);
+        cancelTableForm.setDisable(true);
         break;
 
       case "Flowers Request Table":
         loadFlowerTable();
+        editTableForm.setDisable(true);
+        cancelTableForm.setDisable(true);
         break;
 
       case "Furniture Request Table":
         loadFurnitureTable();
+        editTableForm.setDisable(true);
+        cancelTableForm.setDisable(true);
         break;
 
       case "Maintenance Request Table":
         loadMaintenanceTable();
+        editTableForm.setDisable(true);
+        cancelTableForm.setDisable(true);
         break;
 
       case "Meal Request Table":
         loadMealTable();
+        editTableForm.setDisable(true);
+        cancelTableForm.setDisable(true);
         break;
 
       case "Office Supplies Request Table":
         loadOfficeSupplyTable();
+        editTableForm.setDisable(true);
+        cancelTableForm.setDisable(true);
+        break;
+
+      case "Requests assigned to me.":
+        switch (App.employee.getCan_serve()) {
+          case "Meal Request":
+            loadMealTable();
+            break;
+          case "Conference Room Request":
+            loadRoomTable();
+            break;
+          case "Flowers Request":
+            loadFlowerTable();
+            break;
+          case "Office Supplies Request":
+            loadOfficeSupplyTable();
+            break;
+          case "Furniture Request":
+            loadFurnitureTable();
+            break;
+          case "Maintenance Request":
+            loadMaintenanceTable();
+            break;
+        }
+
+        break;
+      case "Requests sent by me.":
+        loadAllRequestTable();
         break;
     }
   }
@@ -381,71 +628,6 @@ public class AdminFormStatusController {
         break;
     }
   }
-
-  //  public HashMap getHashMapRequest() throws SQLException {
-  //
-  //    HashMap<Integer, Request> requestHashMap = new HashMap<Integer, Request>();
-  //
-  //    try {
-  //      requestHashMap = dao.getAllRequest();
-  //    } catch (SQLException e) {
-  //      System.err.print(e.getErrorCode());
-  //    }
-  //
-  //    return requestHashMap;
-  //  }
-  //
-  //  public HashMap getHashMapMeal() throws SQLException {
-  //
-  //    HashMap mealRequestHashMap = new HashMap<Integer, MealRequest>();
-  //
-  //    try {
-  //      mealRequestHashMap = dao.getAllMealRequest();
-  //    } catch (SQLException e) {
-  //      System.err.print(e.getErrorCode());
-  //    }
-  //
-  //    return mealRequestHashMap;
-  //  }
-  //
-  //  public HashMap getHashConfRoom() throws SQLException {
-  //
-  //    HashMap<Integer, ConferenceRoomRequest> confRoomHash =
-  //        new HashMap<Integer, ConferenceRoomRequest>();
-  //
-  //    try {
-  //      confRoomHash = dao.getAllConferenceRequest();
-  //    } catch (SQLException e) {
-  //      System.err.print(e.getErrorCode());
-  //    }
-  //
-  //    return confRoomHash;
-  //  }
-  //
-  //  public HashMap getHashMapFlowerRequest() throws SQLException {
-  //
-  //    HashMap<Integer, FlowerRequest> flowerHashMap = new HashMap<Integer, FlowerRequest>();
-  //
-  //    try {
-  //      flowerHashMap = dao.getALLFlowerRequest();
-  //    } catch (SQLException e) {
-  //      System.err.print(e.getErrorCode());
-  //    }
-  //    return flowerHashMap;
-  //  }
-  //
-  //  public HashMap getHashFurns() throws SQLException {
-  //
-  //    HashMap<Integer, FurnitureRequest> furnsHash = new HashMap<Integer, FurnitureRequest>();
-  //
-  //    try {
-  //      furnsHash = dao.getAllFurniture();
-  //    } catch (SQLException e) {
-  //      System.err.print(e.getErrorCode());
-  //    }
-  //
-  //    return furnsHash;
-  //  }
 
   public void loadAllRequestTable() {
     mainTable.setVisible(true);
@@ -557,123 +739,6 @@ public class AdminFormStatusController {
           }
           // m
         });
-    // ok ill do the rest hopefully they are nicer
-    // I gotta figure out why that top part isnt cooperating does the update work for the rest of
-    // the things in the main table as well?
-
-    // for any fields that is common between all requests we just need to call RequestDA0 on all
-    // tables
-
-    // Ok Ill figure out whats going on with this top part
-
-    //    empID.setCellFactory(TextFieldTableCell.forTableColumn());
-    //    empID.setOnEditCommit(
-    //        event -> {
-    //          Request obj = event.getRowValue();
-    //          int updatedEmpID = extractEmpIDAndSeveBy(String.valueOf(event.getNewValue()));
-    //          obj.setEmpid(String.valueOf(event.getNewValue()));
-    //          try {
-    //            requestDAO.update(obj, "empid", updatedEmpID);
-    //          } catch (SQLException e) {
-    //            throw new RuntimeException(e);
-    //          }
-    //        });
-
-    location1.setCellFactory(TextFieldTableCell.forTableColumn());
-    location1.setOnEditStart(
-        event -> {
-          Request obj = event.getRowValue();
-          try {
-            updateLoc(obj);
-          } catch (IOException | SQLException e) {
-            throw new RuntimeException(e);
-          }
-        });
-
-    //
-    //    location1.setOnEditCommit(
-    //        event -> {
-    //          Request obj = event.getRowValue();
-    //          obj.setLocation(LocationUpdate);
-    //          try {
-    //            requestDAO.update(
-    //                obj,
-    //                "location",
-    //                nodeDAO.getNodeIDbyLongName(LocationUpdate, new java.sql.Date(2023, 01, 01)));
-    //          } catch (SQLException e) {
-    //            throw new RuntimeException(e);
-    //          }
-    //        });
-
-    //        serveBy.setCellFactory(TextFieldTableCell.forTableColumn());
-    //        serveBy.setOnEditCommit(
-    //            event -> {
-    //              Request obj = event.getRowValue();
-    //              int updatedServeBy = extractEmpIDAndSeveBy(String.valueOf(event.getNewValue()));
-    //              obj.setServeBy(String.valueOf(event.getNewValue()));
-    //              try {
-    //                requestDAO.update(obj, "serveby", updatedServeBy);
-    //              } catch (SQLException e) {
-    //                throw new RuntimeException(e);
-    //              }
-    //            });
-
-    //        reqDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
-    //        reqDate.setOnEditCommit(event -> {
-    //          Request obj = event.getRowValue();
-    //          obj.setRequestDate((java.sql.Date) event.getNewValue());
-    //          requestDAO.update(obj, "requesttime", event.getNewValue());
-    //        });
-    //        reqTime.setCellFactory(TextFieldTableCell.forTableColumn());
-    //        reqTime.setOnEditCommit(event -> {
-    //          Request obj = event.getRowValue();
-    //          obj.setRequestTime(Date.valueOf(String.valueOf(event.getNewValue())));
-    //          requestDAO.update(obj, "requestdate", event.getNewValue());
-    //        });
-    //
-    //    furnTable.setEditable(true);
-
-    //    furnLocation1.setCellValueFactory(TextFieldTableCell.forTableColumn());
-    //    furnLocation1.setOnEditCommit(event -> {
-    //      FurnitureRequest obj = event.getRowValue();
-    //      obj.setLocation(event.getNewValue());
-    //    });
-    //
-    //    furnReqID.setCellValueFactory(TextFieldTableCell.forTableColumn());
-    //    furnReqID.setOnEditCommit(event ->{
-    //      FurnitureRequest obj = event.getRowValue();
-    //      obj.setReqid(event.getNewValue());
-    //
-    //    });
-    //    furnServeBy.setCellValueFactory(TextFieldTableCell.forTableColumn());
-    //    furnReqID.setOnEditCommit(event ->{
-    //      FurnitureRequest obj = event.getRowValue();
-    //      obj.setReqid(event.getNewValue());
-    //
-    //    });
-    //    furnServeBy.setCellValueFactory(TextFieldTableCell.forTableColumn());
-    //    furnReqID.setOnEditCommit(event ->{
-    //      FurnitureRequest obj = event.getRowValue();
-    //      obj.setReqid(event.getNewValue());
-    //
-    //    });
-
-    // furnEmpID furnLocation1///////  furnReqID furnServeBy furnStatus furnType furnRecipient,
-    // furnNote, furnDate, furnTime
-    //    nodeXcoord.setCellFactory(TextFieldTableCell.forTableColumn(new
-    // IntegerStringConverter()));
-    //    nodeXcoord.setOnEditCommit(
-    //            event -> {
-    //              Node obj = event.getRowValue();
-    //              obj.setXcoord(event.getNewValue());
-    //              nodeDAO.update(obj, "xcoord", event.getNewValue());
-    //            });
-    //
-    //
-    //    flowerTable.setEditable(true);
-    //
-    //    mealTable.setEditable(true);
-    //    roomTable.setEditable(true);
   }
 
   public void cancelEditOfTables() {

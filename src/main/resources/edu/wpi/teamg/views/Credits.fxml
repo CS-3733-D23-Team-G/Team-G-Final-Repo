@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="706.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.CreditsController">
-   <right>
-      <ImageView fitHeight="980.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@credits(1).jpg" />
-         </image>
-      </ImageView>
-   </right>
    <center>
-      <MFXButton fx:id="Credits" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" styleClass="requestConfirmButton" text="&lt; About" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="800.0" left="3500.0" />
-         </BorderPane.margin>
-      </MFXButton>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="980.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="50.0">
+               <image>
+                  <Image url="@../Images/Credits.png" />
+               </image>
+            </ImageView>
+            <MFXButton fx:id="toAbout" style="-fx-background-color: #F6BD38; -fx-font-size: 30; -fx-text-fill: #012D5A;" text="← About Page" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </MFXButton>
+         </children>
+      </AnchorPane>
    </center>
 </BorderPane>

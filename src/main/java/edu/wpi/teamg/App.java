@@ -65,6 +65,46 @@ public class App extends Application {
 
   public static LocalDate pathfindingDate = LocalDate.of(2023, 1, 1);
 
+  // MEAL IMAGES
+  public static Image checkmarkImage =
+      new Image("edu/wpi/teamg/Images/blueCheckMark-removebg-preview(1).png");
+
+  public static Image frenchFries = new Image("edu/wpi/teamg/Images/frenchfries.jpg");
+
+  public static Image chips = new Image("edu/wpi/teamg/Images/chips.jpg");
+
+  public static Image bacon = new Image("edu/wpi/teamg/Images/bacon.jpg");
+
+  public static Image avocadoToast = new Image("edu/wpi/teamg/Images/avocadotoast.jpg");
+
+  public static Image goldfish = new Image("edu/wpi/teamg/Images/goldfish.jpg");
+
+  public static Image pretzels = new Image("edu/wpi/teamg/Images/pretzels.jpg");
+
+  public static Image burger = new Image("edu/wpi/teamg/Images/burger.jpg");
+
+  public static Image dog = new Image("edu/wpi/teamg/Images/dog.jpg");
+
+  public static Image pizza = new Image("edu/wpi/teamg/Images/pizza.jpg");
+
+  public static Image sushi = new Image("edu/wpi/teamg/Images/sushi.jpg");
+
+  public static Image taco = new Image("edu/wpi/teamg/Images/taco.jpg");
+
+  public static Image sandwich = new Image("edu/wpi/teamg/Images/sandwich.jpg");
+
+  public static Image OJ = new Image("edu/wpi/teamg/Images/OJ.jpg");
+
+  public static Image coffee = new Image("edu/wpi/teamg/Images/coffee.jpg");
+
+  public static Image water = new Image("edu/wpi/teamg/Images/water.jpg");
+
+  public static Image soda = new Image("edu/wpi/teamg/Images/soda.jpg");
+
+  public static Image smoothie = new Image("edu/wpi/teamg/Images/smoothie.jpg");
+
+  public static Image tea = new Image("edu/wpi/teamg/Images/tea.jpg");
+
   public static DAORepo daoRepo = new DAORepo();
   public static EdgeDAO edgeDao = new EdgeDAO();
 

@@ -60,7 +60,7 @@ public class TopBannerController {
             throw new RuntimeException(e);
           }
         });
-    information.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
+    information.setOnMouseClicked(event -> Navigation.navigate(Screen.ABOUT_PAGE));
   }
 
   public void dictionary() throws IOException {

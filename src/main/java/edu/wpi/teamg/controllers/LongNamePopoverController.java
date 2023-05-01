@@ -5,17 +5,17 @@ import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.DAOs.RequestDAO;
 import edu.wpi.teamg.ORMClasses.Request;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import org.controlsfx.control.SearchableComboBox;
 
 public class LongNamePopoverController {
 
-  @FXML SearchableComboBox tableLong;
+  @FXML MFXFilterComboBox tableLong;
   @FXML MFXButton tableSelect;
 
   ObservableList<String> longNameList;

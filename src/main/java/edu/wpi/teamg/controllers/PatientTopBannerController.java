@@ -19,8 +19,9 @@ public class PatientTopBannerController {
   @FXML ImageView information;
   @FXML ImageView dictionary;
   @FXML MFXButton logoButton;
+  @FXML ImageView goToKidsPage;
 
-  @FXML MFXButton listenButton;
+  @FXML ImageView listenButton;
 
   public static PopOver window = new PopOver();
 
@@ -32,7 +33,8 @@ public class PatientTopBannerController {
   public void initialize() {
     App.bool = false;
     exit.setOnMouseClicked(event -> exit());
-    information.setOnMouseClicked(event -> Navigation.navigate(Screen.CREDITS));
+    information.setOnMouseClicked(event -> Navigation.navigate(Screen.ABOUT_PAGE));
+    goToKidsPage.setOnMouseClicked(event -> Navigation.navigate(Screen.KIDS_PAGE));
     dictionary.setOnMouseClicked(
         event -> {
           try {

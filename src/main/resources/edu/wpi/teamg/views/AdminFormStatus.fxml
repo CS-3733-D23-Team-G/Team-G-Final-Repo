@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TableColumn?>
@@ -21,48 +22,49 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="992.0" prefWidth="370.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Choose Table to View" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800; -fx-font-size: 30;" styleClass="admin_page_text" text="Request Type" textAlignment="CENTER" wrappingWidth="275.5009765625" />
                         <ChoiceBox fx:id="requestTables" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="280.0" styleClass="locationSelect_comboSearchBox">
                            <VBox.margin>
-                              <Insets bottom="60.0" top="5.0" />
+                              <Insets top="5.0" />
                            </VBox.margin>
                         </ChoiceBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="338.0">
+                           <children>
+                              <MFXButton fx:id="cancelTableForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="280.0" styleClass="table_view_Button_cancel" text="Cancel Edit">
+                                 <font>
+                                    <Font size="50.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </MFXButton>
+                              <MFXButton fx:id="editTableForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="280.0" styleClass="table_view_Button_edit" text="Edit Status">
+                                 <font>
+                                    <Font size="50.0" />
+                                 </font>
+                              </MFXButton>
+                           </children>
+                        </HBox>
                         <Line endX="172.5" startX="-100.0" stroke="#012d5a" strokeWidth="3.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Export">
                            <VBox.margin>
-                              <Insets top="40.0" />
+                              <Insets top="20.0" />
                            </VBox.margin>
                         </Text>
                         <ChoiceBox fx:id="exportService" prefHeight="59.0" prefWidth="280.0" styleClass="locationSelect_comboSearchBox">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin></ChoiceBox>
-                        <MFXButton fx:id="editTableForm" styleClass="table_view_Button" text="Edit Tables">
-                           <font>
-                              <Font size="50.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="20.0" top="20.0" />
-                           </VBox.margin>
-                        </MFXButton>
-                        <MFXButton fx:id="cancelTableForm" styleClass="table_view_Button" text="Cancel Tables">
-                           <font>
-                              <Font size="50.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </MFXButton>
                      </children>
                   </VBox>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="913.0" prefWidth="1370.0" styleClass="table_view_right" stylesheets="@style.css">
                <children>
-                  <TableView fx:id="roomTable" layoutX="1.0" prefHeight="899.5" prefWidth="1370.5" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="roomTable" layoutX="1.0" prefHeight="899.5" prefWidth="1370.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="roomReqID" prefWidth="85.0" text="Req. ID" />
-                        <TableColumn fx:id="roomEmpID" prefWidth="160.0" text="Emp. ID" />
+                        <TableColumn fx:id="roomEmpID" prefWidth="160.0" text="Requested-By" />
                         <TableColumn fx:id="roomLocation1" prefWidth="400.0" text="Location" />
                         <TableColumn fx:id="roomServeBy" prefWidth="250.0" text="Serve-By" />
                         <TableColumn fx:id="roomStatus" prefWidth="100.0" text="Status" />
@@ -75,11 +77,15 @@
                            </columns>
                         </TableColumn>
                      </columns>
+                     <styleClass>
+                        <String fx:value="table-text" />
+                        <String fx:value="table-row-cell" />
+                     </styleClass>
                   </TableView>
                     <TableView fx:id="mealTable" layoutY="1.0" prefHeight="899.5" prefWidth="1370.5" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <columns>
                             <TableColumn fx:id="mealReqID" prefWidth="85.0" text="Req. ID" />
-                            <TableColumn fx:id="mealEmpID" minWidth="0.0" prefWidth="160.0" text="Emp. ID" />
+                            <TableColumn fx:id="mealEmpID" minWidth="0.0" prefWidth="160.0" text="Requested-By" />
                         <TableColumn fx:id="mealLocation1" prefWidth="300.0" text="Location" />
                             <TableColumn fx:id="mealServeBy" prefWidth="250.0" text="Serve-By" />
                             <TableColumn fx:id="mealStatus" prefWidth="120.0" text="Status" />
@@ -97,7 +103,7 @@
                   <TableView fx:id="flowerTable" prefHeight="899.5" prefWidth="1370.5" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="flowerReqID" prefWidth="85.0" text="Req. ID" />
-                        <TableColumn fx:id="flowerEmpID" prefWidth="160.0" text="Emp. ID" />
+                        <TableColumn fx:id="flowerEmpID" prefWidth="160.0" text="Requested-By" />
                         <TableColumn fx:id="flowerLocation1" prefWidth="400.0" text="Location" />
                         <TableColumn fx:id="flowerServeBy" prefWidth="260.0" text="Serve-By" />
                         <TableColumn fx:id="flowerStatus" prefWidth="130.0" text="Status" />
@@ -116,7 +122,7 @@
                   <TableView fx:id="furnTable" layoutX="10.0" layoutY="10.0" prefHeight="880.0" prefWidth="1350.0" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="furnReqID" prefWidth="85.0" text="Req. ID" />
-                        <TableColumn fx:id="furnEmpID" prefWidth="160.0" text="Emp. ID" />
+                        <TableColumn fx:id="furnEmpID" prefWidth="160.0" text="Requested-By" />
                         <TableColumn fx:id="furnLocation1" prefWidth="400.0" text="Location" />
                         <TableColumn fx:id="furnServeBy" prefWidth="250.0" text="Serve-By" />
                         <TableColumn fx:id="furnStatus" prefWidth="130.0" text="Status" />
@@ -134,7 +140,7 @@
                   <TableView fx:id="suppTable" layoutX="20.0" layoutY="20.0" prefHeight="880.0" prefWidth="1380.0" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="suppReqID" prefWidth="85.0" text="Req. ID" />
-                        <TableColumn fx:id="suppEmpID" prefWidth="160.0" text="Emp. ID" />
+                        <TableColumn fx:id="suppEmpID" prefWidth="160.0" text="Requested-By" />
                         <TableColumn fx:id="suppLocation1" prefWidth="400.0" text="Location" />
                         <TableColumn fx:id="suppServeBy" prefWidth="250.0" text="Serve-By" />
                         <TableColumn fx:id="suppStatus" prefWidth="130.0" text="Status" />
@@ -152,7 +158,7 @@
                   <TableView fx:id="maintenanceTable" layoutX="20.0" layoutY="20.0" prefHeight="880.0" prefWidth="1417.0" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="maintenanceReqID" prefWidth="85.0" text="Req. ID" />
-                        <TableColumn fx:id="maintenanceEmpID" prefWidth="160.0" text="Emp. ID" />
+                        <TableColumn fx:id="maintenanceEmpID" prefWidth="160.0" text="Requested-By" />
                         <TableColumn fx:id="maintenanceLocation1" prefWidth="400.0" text="Location" />
                         <TableColumn fx:id="maintenanceServeBy" prefWidth="250.0" text="Serve-By" />
                         <TableColumn fx:id="maintenanceStatus" prefWidth="130.0" text="Status" />
@@ -173,12 +179,12 @@
                      <columns>
                         <TableColumn fx:id="reqID" prefWidth="85.0" text="Req. ID" />
                         <TableColumn fx:id="reqType" prefWidth="118.95477294921875" text="Req. Type" />
-                        <TableColumn fx:id="empID" prefWidth="160.0" text="Emp. ID" />
+                        <TableColumn fx:id="empID" prefWidth="160.0" text="Requested-By" />
                         <TableColumn fx:id="location1" minWidth="0.0" prefWidth="400.0" text="Location" />
                         <TableColumn fx:id="serveBy" minWidth="0.0" prefWidth="250.0" text="Serve-By" />
+                        <TableColumn fx:id="status" prefWidth="215.75634765625" text="Status" />
                         <TableColumn fx:id="reqDate" prefWidth="146.76806640625" text="Date" />
                         <TableColumn fx:id="reqTime" prefWidth="152.335205078125" text="Time" />
-                        <TableColumn fx:id="status" prefWidth="215.75634765625" text="Status" />
                      </columns>
                   </TableView>
                </children>
