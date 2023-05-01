@@ -40,7 +40,7 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
          <children>
-            <MFXButton fx:id="subDel" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #ef476f; -fx-text-fill: white;" text="Submit">
+            <MFXButton fx:id="subDel" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #ef476f; -fx-text-fill: white;" text="Delete">
                <font>
                   <Font size="15.0" />
                </font></MFXButton>
