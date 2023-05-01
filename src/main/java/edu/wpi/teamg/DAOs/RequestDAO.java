@@ -227,4 +227,26 @@ public class RequestDAO implements DAO {
     db.closeConnection();
     return oRequestList;
   }
+
+  public static void updateRequestStatus(StatusTypeEnum newStatus, int reqid) throws SQLException {
+    db.setConnection();
+
+    String RequestSQL;
+
+    PreparedStatement ps;
+
+    RequestSQL = "update teamgdb.iteration4.request set status = ? where reqid = ?";
+
+    try {
+      ps = db.getConnection().prepareStatement(RequestSQL);
+      ps.setObject(1, newStatus, java.sql.Types.OTHER);
+      ps.setInt(2, reqid);
+      ps.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+      System.err.println("SQL exception");
+    }
+
+    db.closeConnection();
+  }
 }

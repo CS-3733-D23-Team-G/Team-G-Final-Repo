@@ -39,8 +39,14 @@ public class HomeController {
   @FXML AnchorPane formsForAnimation;
 
   static PopOver deleteConfirmation = new PopOver();
+  static PopOver changeStatusConfirmation = new PopOver();
 
   static int notifToBeDeleted;
+
+  static int requestToBeChanged;
+  static StatusTypeEnum currentStatus;
+
+  static String reqTypeToBeChanged;
 
   // TODO if there are no requests, add a message saying currently no requests.
 
@@ -171,6 +177,18 @@ public class HomeController {
           stack.setLayoutX(535);
           stack.setLayoutY(52);
 
+          stack.setOnMouseClicked(
+              event -> {
+                try {
+                  requestToBeChanged = i.getReqid();
+                  currentStatus = i.getStatus();
+                  reqTypeToBeChanged = i.getReqtype();
+                  setChangeStatusConfirmation();
+                } catch (IOException e) {
+                  throw new RuntimeException(e);
+                }
+              });
+
           //     pane.setStyle("-fx-background-color: " + color);
           //          pane.setStyle("-fx-fill: #E19797");
 
@@ -244,11 +262,11 @@ public class HomeController {
 
           switch (notifType) {
             case "alert":
-              message = new Text("ALERT: " + i.getMessage());
+              message = new Text("ALERT: " + i.getNotifheader());
               color = "#E19797;";
               break;
             default:
-              message = new Text(i.getMessage());
+              message = new Text(i.getNotifheader());
               color = "#C0C0C0;";
               break;
           }
@@ -280,11 +298,14 @@ public class HomeController {
 
           //        notifAnchorPane.getChildren().add(requestID);
 
-          notifAnchorPane.getChildren().add(dismiss);
           notifAnchorPane.getChildren().add(notif);
           notifAnchorPane.getChildren().add(notifDate);
+          if (i.getDismissible()) {
+            notifAnchorPane.getChildren().add(dismiss);
+            notifAnchorPane.getChildren().add(dismissBtn);
+          }
           notifAnchorPane.getChildren().add(message);
-          notifAnchorPane.getChildren().add(dismissBtn);
+
           notifications.getChildren().add(notifAnchorPane);
         });
     // EmployeeinfoHyperlink.setOnAction(event -> Navigation.navigate(Screen.EMPLOYEE_INFO));
@@ -391,6 +412,22 @@ public class HomeController {
           fadeOut3.play();
           fadeOut4.play();
         });
+  }
+
+  public void setChangeStatusConfirmation() throws IOException {
+
+    var loader = new FXMLLoader(App.class.getResource("views/OutstandingRequestStatusChange.fxml"));
+    changeStatusConfirmation.setContentNode(loader.load());
+
+    changeStatusConfirmation.setArrowSize(0);
+    changeStatusConfirmation.setTitle("Change Request Status");
+
+    changeStatusConfirmation.setHeaderAlwaysVisible(false);
+    OutstandingRequestStatusChangeController controller = loader.getController();
+
+    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    changeStatusConfirmation.show(
+        App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void deleteConfirmation() throws IOException {
