@@ -858,13 +858,7 @@ about_text{
     -fx-background-radius: 10;
 }
 
-.selectHour{
-    -fx-background-color: #D9D9D9;
-    -fx-font-size: 15;
-    -fx-pref-width: 100;
-    -fx-pref-height: 60;
-    -fx-max-height: 60;
-}
+
 
 
 

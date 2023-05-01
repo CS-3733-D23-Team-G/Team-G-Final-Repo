@@ -18,6 +18,7 @@ import javafx.animation.ParallelTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
@@ -41,8 +42,6 @@ public class HomeController {
   static PopOver changeStatusConfirmation = new PopOver();
 
   static int notifToBeDeleted;
-  private static boolean playAnimation;
-  static boolean playAnimationStatus;
 
   static int requestToBeChanged;
   static StatusTypeEnum currentStatus;
@@ -57,24 +56,11 @@ public class HomeController {
     empName.setText(" " + App.employee.getFirstName() + " " + App.employee.getLastName());
     empName.setFill(Color.valueOf("#012D5A"));
 
-    // empName.setOnMouseClicked(event -> completeAnimation());
+    empName.setOnMouseClicked(event -> completeAnimation());
 
     RequestDAO requestDAO = new RequestDAO();
     // HashMap<Integer, Request> hash = requestDAO.getOutstandingRequest(App.employee.getEmpID());
     ArrayList<Request> hash = requestDAO.getOutstandingRequest(App.employee.getEmpID());
-    if (getPlayanimation()) {
-
-      completeAnimation("Notification has been deleted.");
-
-      setPlayAnimation(false);
-    }
-
-    if (playAnimationStatus) {
-
-      completeAnimation("Request status changed.");
-
-      playAnimationStatus = !playAnimationStatus;
-    }
 
     hash.forEach(
         (i) -> {
@@ -326,19 +312,21 @@ public class HomeController {
 
   }
 
-  public void completeAnimation(String message) {
+  public void completeAnimation() {
 
     // Form Completion PopUp
     AnchorPane rect = new AnchorPane();
-    rect.setLayoutX(500);
+    rect.setLayoutX(325);
     rect.setStyle(
-        "-fx-pref-width: 400; -fx-pref-height: 100; -fx-background-color: #97E198; -fx-background-radius: 10");
+        "-fx-pref-width: 440; -fx-pref-height: 100; -fx-background-color: #d9d9d9; -fx-border-radius: 5; -fx-background-insets: 5; -fx-border-insets: 5; -fx-padding: 5;"
+            + "-fx-border-color: #000000;"
+            + "-fx-border-width: 3;");
     rect.setLayoutY(800);
     rect.toFront();
 
     Text completionText = new Text("You Are All Set!");
-    completionText.setLayoutX(625);
-    completionText.setLayoutY(845);
+    completionText.setLayoutX(445);
+    completionText.setLayoutY(850);
     completionText.setStyle(
         "-fx-stroke: #000000;"
             + "-fx-fill: #012D5A;"
@@ -346,23 +334,23 @@ public class HomeController {
             + "-fx-font-weight: 500;");
     completionText.toFront();
 
-    Text completionTextSecondRow = new Text(message);
-    completionTextSecondRow.setLayoutX(625);
-    completionTextSecondRow.setLayoutY(875);
+    Text completionTextSecondRow = new Text("Conference Room Request Sent Successfully.");
+    completionTextSecondRow.setLayoutX(445);
+    completionTextSecondRow.setLayoutY(870);
     completionTextSecondRow.setStyle(
-        "-fx-stroke: #404040;"
+        "-fx-stroke: #000000;"
             + "-fx-fill: #012D5A;"
-            + "-fx-font-size: 20;"
+            + "-fx-font-size: 15;"
             + "-fx-font-weight: 500;");
     completionTextSecondRow.toFront();
 
-    // Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
-    ImageView completionImage = new ImageView(App.checkmarkImage);
+    Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
+    ImageView completionImage = new ImageView(checkmarkImage);
 
-    completionImage.setFitHeight(50);
-    completionImage.setFitWidth(50);
-    completionImage.setLayoutX(525);
-    completionImage.setLayoutY(825);
+    completionImage.setFitHeight(120);
+    completionImage.setFitWidth(120);
+    completionImage.setLayoutX(320);
+    completionImage.setLayoutY(790);
     completionImage.toFront();
 
     rect.setOpacity(0.0);
@@ -375,19 +363,19 @@ public class HomeController {
     formsForAnimation.getChildren().add(completionImage);
     formsForAnimation.getChildren().add(completionTextSecondRow);
 
-    FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(0.5), rect);
+    FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(1), rect);
     fadeIn1.setFromValue(0.0);
     fadeIn1.setToValue(1.0);
 
-    FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(0.5), completionImage);
+    FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(1), completionImage);
     fadeIn2.setFromValue(0.0);
     fadeIn2.setToValue(1.0);
 
-    FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(0.5), completionText);
+    FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(1), completionText);
     fadeIn3.setFromValue(0.0);
     fadeIn3.setToValue(1.0);
 
-    FadeTransition fadeIn4 = new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
+    FadeTransition fadeIn4 = new FadeTransition(Duration.seconds(1), completionTextSecondRow);
     fadeIn4.setFromValue(0.0);
     fadeIn4.setToValue(1.0);
 
@@ -398,24 +386,24 @@ public class HomeController {
 
     parallelTransition.setOnFinished(
         (event) -> {
-          FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(0.5), rect);
-          fadeOut1.setDelay(Duration.seconds(1.5));
+          FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(1), rect);
+          fadeOut1.setDelay(Duration.seconds(3));
           fadeOut1.setFromValue(1.0);
           fadeOut1.setToValue(0.0);
 
-          FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(0.5), completionImage);
-          fadeOut2.setDelay(Duration.seconds(1.5));
+          FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(1), completionImage);
+          fadeOut2.setDelay(Duration.seconds(3));
           fadeOut2.setFromValue(1.0);
           fadeOut2.setToValue(0.0);
 
-          FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(0.5), completionText);
-          fadeOut3.setDelay(Duration.seconds(1.5));
+          FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(1), completionText);
+          fadeOut3.setDelay(Duration.seconds(3));
           fadeOut3.setFromValue(1.0);
           fadeOut3.setToValue(0.0);
 
           FadeTransition fadeOut4 =
-              new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
-          fadeOut4.setDelay(Duration.seconds(1.5));
+              new FadeTransition(Duration.seconds(1), completionTextSecondRow);
+          fadeOut4.setDelay(Duration.seconds(3));
           fadeOut4.setFromValue(1.0);
           fadeOut4.setToValue(0.0);
 
@@ -456,13 +444,5 @@ public class HomeController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     deleteConfirmation.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
-  }
-
-  public static boolean getPlayanimation() {
-    return playAnimation;
-  }
-
-  public static void setPlayAnimation(boolean t) {
-    playAnimation = t;
   }
 }

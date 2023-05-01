@@ -17,203 +17,252 @@
 
 <BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MapEditorController">
    <center>
-      <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" styleClass="rest_of_page" stylesheets="@style.css" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="980.0" prefWidth="390.0" styleClass="half_bottom_left" stylesheets="@style.css">
+            <AnchorPane prefHeight="980.0" prefWidth="656.0" styleClass="half_bottom_left" stylesheets="@mapEditor.css">
                <children>
-                  <VBox alignment="CENTER" prefHeight="913.0" prefWidth="384.0" styleClass="locationSelect_vbox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox layoutX="62.0" layoutY="150.0" prefHeight="486.0" prefWidth="642.0" styleClass="left_vbox" stylesheets="@mapEditor.css" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="150.0">
                      <children>
-                        <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
+                        <VBox prefHeight="606.0" prefWidth="393.0" styleClass="locationSelect_vbox">
                            <children>
-                              <Accordion styleClass="algoSelect_hbox">
-                                <panes>
-                                  <TitledPane animated="false" styleClass="add_Buttons" text="Nodes">
-                                       <content>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
-                                                   <children>
-
-                                                                                                                                                                                                                                                      <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Node" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
-                                                   <children>
-                                                      <MFXButton fx:id="alignButton" prefHeight="54.0" prefWidth="226.0" styleClass="add_Buttons" text="Align Nodes">
-                                                         <HBox.margin>
-                                                            <Insets top="10.0" />
-                                                         </HBox.margin>
-                                                      </MFXButton>
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                                   <children>
-                                                      <MFXButton fx:id="verticalButton" prefHeight="70.0" prefWidth="192.0" styleClass="add_Buttons" text="Vertical">
-                                                         <HBox.margin>
-                                                            <Insets top="10.0" />
-                                                         </HBox.margin>
-                                                      </MFXButton>
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                                   <children>
-                                                      <MFXButton fx:id="horizontalButton" prefHeight="60.0" prefWidth="216.0" styleClass="add_Buttons" text="Horizontal">
-                                                         <HBox.margin>
-                                                            <Insets top="10.0" />
-                                                         </HBox.margin>
-                                                      </MFXButton>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                       </content>
-                                  </TitledPane>
-                                  <TitledPane animated="false" styleClass="add_Buttons" text="Edges">
-                                       <content>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                                   <children>
-                                                      <MFXButton fx:id="addEdge" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Edge">
-                                                         <HBox.margin>
-                                                            <Insets />
-                                                         </HBox.margin>
-                                                      </MFXButton>
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                                   <children>
-                                                      <MFXButton fx:id="delEdge" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Edge">
-                                                         <HBox.margin>
-                                                            <Insets top="10.0" />
-                                                         </HBox.margin>
-                                                      </MFXButton>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                       </content>
-                                  </TitledPane>
-                                  <TitledPane animated="false" styleClass="add_Buttons" text="Location Names">
-                                       <content>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                                   <children>
-                                                      <MFXButton fx:id="addLoc" prefHeight="70.0" prefWidth="259.0" styleClass="add_Buttons" text="Add Location Name">
-                                                         <HBox.margin>
-                                                            <Insets top="10.0" />
-                                                         </HBox.margin>
-                                                      </MFXButton>
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                                   <children>
-                                                      <MFXButton fx:id="locNameMod" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Modify Location Name">
-                                                         <HBox.margin>
-                                                            <Insets top="10.0" />
-                                                         </HBox.margin>
-                                                      </MFXButton>
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                                   <children>
-                                                      <MFXButton fx:id="deleteLoc" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Location Name">
-                                                         <HBox.margin>
-                                                            <Insets top="10.0" />
-                                                         </HBox.margin>
-                                                      </MFXButton>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                       </content>
-                                  </TitledPane>
-                                    <TitledPane animated="false" styleClass="add_Buttons" text="Move">
-                                       <content>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                                   <children>
-                                                      <MFXButton fx:id="addMove" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Move">
-                                                         <HBox.margin>
-                                                            <Insets />
-                                                         </HBox.margin>
-                                                      </MFXButton>
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                                   <children>
-                                                      <MFXButton fx:id="deleteMove" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Move">
-                                                         <HBox.margin>
-                                                            <Insets top="10.0" />
-                                                         </HBox.margin>
-                                                      </MFXButton>
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                                                   <children>
-                                                      <MFXDatePicker fx:id="mapEditDate" prefHeight="38.0" prefWidth="246.0" stylesheets="@style.css">
-                                                         <HBox.margin>
-                                                            <Insets top="10.0" />
-                                                         </HBox.margin>
-                                                      </MFXDatePicker>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                       </content>
-                                    </TitledPane>
-                                </panes>
-                              </Accordion>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                           <children>
-                              <MFXToggleButton fx:id="toggleEdge" contentDisposition="TOP" prefHeight="41.0" prefWidth="175.0" stylesheets="@style.css" text="Toggle Edges">
-                                 <HBox.margin>
-                                    <Insets top="25.0" />
-                                 </HBox.margin>
-                              </MFXToggleButton>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                           <children>
-                              <MFXToggleButton fx:id="toggSn" contentDisposition="TOP" prefHeight="41.0" prefWidth="30.0" stylesheets="@style.css" text="Toggle Short Names">
-                                 <HBox.margin>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <opaqueInsets>
                                     <Insets />
-                                 </HBox.margin>
-                              </MFXToggleButton>
-                           </children>
-                        </HBox>
+                                 </opaqueInsets>
+                                 <children>
+                                    <Accordion styleClass="algoSelect_hbox">
+                                      <panes>
+                                        <TitledPane animated="false" styleClass="add_Buttons" text="Nodes">
+                                             <content>
+                                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
+                                                         <children>
 
-                        <HBox alignment="CENTER" styleClass="algoSelect_hbox">
-                           <children>
-                              <MFXButton fx:id="help" styleClass="add_Buttons" text="Instructions" />
+                                                                                                                                                                                                                                                            <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Node" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="alignButton" prefHeight="54.0" prefWidth="226.0" styleClass="add_Buttons" text="Align Nodes">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin></MFXButton>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="verticalButton" prefHeight="70.0" prefWidth="192.0" styleClass="add_Buttons" text="Vertical">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin></MFXButton>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="horizontalButton" prefHeight="60.0" prefWidth="216.0" styleClass="add_Buttons" text="Horizontal">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin></MFXButton>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </content>
+                                        </TitledPane>
+                                        <TitledPane animated="false" styleClass="add_Buttons" text="Edges">
+                                             <content>
+                                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="addEdge" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Edge">
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </MFXButton>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="delEdge" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Edge">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </MFXButton>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </content>
+                                        </TitledPane>
+                                        <TitledPane animated="false" styleClass="add_Buttons" text="Location Names">
+                                             <content>
+                                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="addLoc" prefHeight="70.0" prefWidth="259.0" styleClass="add_Buttons" text="Add Location Name">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </MFXButton>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="locNameMod" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Modify Location Name">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </MFXButton>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="deleteLoc" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Location Name">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </MFXButton>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </content>
+                                        </TitledPane>
+                                          <TitledPane animated="false" styleClass="add_Buttons" text="Move">
+                                             <content>
+                                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="addMove" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Add Move">
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </MFXButton>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXButton fx:id="deleteMove" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" text="Delete Move">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </MFXButton>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                                         <children>
+                                                            <MFXDatePicker fx:id="mapEditDate" prefHeight="38.0" prefWidth="246.0" stylesheets="@style.css">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </MFXDatePicker>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </content>
+                                          </TitledPane>
+                                      </panes>
+                                    </Accordion>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXToggleButton fx:id="toggleEdge" contentDisposition="TOP" prefHeight="41.0" prefWidth="175.0" stylesheets="@style.css" text="Toggle Edges">
+                                       <HBox.margin>
+                                          <Insets top="25.0" />
+                                       </HBox.margin>
+                                    </MFXToggleButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXToggleButton fx:id="toggSn" contentDisposition="TOP" prefHeight="41.0" prefWidth="30.0" stylesheets="@style.css" text="Toggle Short Names">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </MFXToggleButton>
+                                 </children>
+                              </HBox>
+
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="help" styleClass="add_Buttons" text="Instructions" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="messageButton" styleClass="add_Buttons" text="Edit  Message">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin></VBox>
+                        <VBox prefHeight="680.0" prefWidth="92.0" styleClass="button_vbox">
                            <children>
-                              <MFXButton fx:id="messageButton" styleClass="add_Buttons" text="Edit  Message">
-                                 <HBox.margin>
-                                    <Insets top="10.0" />
-                                 </HBox.margin>
+                              <MFXButton fx:id="floor3" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F3" textAlignment="CENTER" textFill="#f6bd38">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </padding>
+                              </MFXButton>
+                              <MFXButton fx:id="floor2" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F2" textAlignment="CENTER" textFill="#f6bd38">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </padding>
+                              </MFXButton>
+                              <MFXButton fx:id="floor1" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F1" textAlignment="CENTER" textFill="#f6bd38">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </padding>
+                              </MFXButton>
+                              <Line endX="-20.0" startX="-110.0" strokeWidth="2.0" styleClass="line">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </Line>
+                              <MFXButton fx:id="l2" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="L2" textAlignment="CENTER" textFill="#f6bd38">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </padding>
+                              </MFXButton>
+                              <MFXButton fx:id="l1" alignment="CENTER" contentDisplay="CENTER" prefHeight="84.0" prefWidth="185.0" rippleAnimateBackground="false" styleClass="floor_button" text="L1" textAlignment="CENTER" textFill="#f6bd38">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                 </padding>
                               </MFXButton>
                            </children>
-                        </HBox>
+                        </VBox>
                      </children>
-                     <padding>
-                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                     </padding>
-                  </VBox>
+                  </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="980.0" prefWidth="1220.0" styleClass="half_bottom_right">
+            <AnchorPane styleClass="half_bottom_right">
                <children>
-                  <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" layoutX="2.0" layoutY="-26.0" minWidth="-Infinity" prefHeight="913.0" prefWidth="1536.0" styleClass="gesture_pane_pathfinding" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" layoutX="2.0" layoutY="-26.0" prefHeight="980.0" prefWidth="1356.0" styleClass="finding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
                         <Group fx:id="group">
                            <children>
@@ -222,56 +271,7 @@
                         </Group>
                      </content>
                   </GesturePane>
-                  <AnchorPane fx:id="forms" prefHeight="913.0" prefWidth="1536.0" styleClass="half_bottom_page" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <VBox prefHeight="514.0" prefWidth="112.0" styleClass="button_vbox" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="15.0">
-                     <children>
-                        <MFXButton fx:id="floor3" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F3" textAlignment="CENTER" textFill="#f6bd38">
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                           </padding>
-                        </MFXButton>
-                        <MFXButton fx:id="floor2" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F2" textAlignment="CENTER" textFill="#f6bd38">
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                           </padding>
-                        </MFXButton>
-                        <MFXButton fx:id="floor1" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F1" textAlignment="CENTER" textFill="#f6bd38">
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                           </padding>
-                        </MFXButton>
-                        <Line endX="-40.0" startX="-118.0" strokeWidth="2.0" styleClass="line">
-                           <VBox.margin>
-                              <Insets bottom="20.0" top="20.0" />
-                           </VBox.margin>
-                        </Line>
-                        <MFXButton fx:id="l2" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="L2" textAlignment="CENTER" textFill="#f6bd38">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                           </padding>
-                        </MFXButton>
-                        <MFXButton fx:id="l1" alignment="CENTER" contentDisplay="CENTER" prefHeight="84.0" prefWidth="185.0" rippleAnimateBackground="false" styleClass="floor_button" text="L1" textAlignment="CENTER" textFill="#f6bd38">
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                           </padding>
-                        </MFXButton>
-                     </children>
-                  </VBox>
+                  <AnchorPane fx:id="forms" layoutX="136.0" layoutY="14.0" prefHeight="112.0" prefWidth="589.0" styleClass="half_bottom_page" />
                </children>
             </AnchorPane>
          </children>

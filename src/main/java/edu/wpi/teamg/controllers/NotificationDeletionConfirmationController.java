@@ -27,7 +27,6 @@ public class NotificationDeletionConfirmationController {
             try {
               notificationDAO.delete(notifToBeDeleted);
               HomeController.deleteConfirmation.hide();
-              HomeController.setPlayAnimation(true);
 
               Navigation.navigate(Screen.HOME);
 
@@ -41,7 +40,6 @@ public class NotificationDeletionConfirmationController {
         event -> {
           if (event.getButton() == MouseButton.PRIMARY) {
             HomeController.deleteConfirmation.hide();
-            HomeController.setPlayAnimation(false);
           }
         });
 
