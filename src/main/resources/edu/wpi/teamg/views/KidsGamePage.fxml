@@ -66,7 +66,7 @@
                      <children>
                         <HBox prefHeight="260.0" prefWidth="200.0">
                            <children>
-                              <MFXButton prefHeight="202.0" prefWidth="199.0" text="Button">
+                              <MFXButton fx:id="pac" prefHeight="202.0" prefWidth="199.0" text="Pacman">
                                  <HBox.margin>
                                     <Insets left="100.0" top="30.0" />
                                  </HBox.margin>
@@ -85,7 +85,7 @@
                         </HBox>
                         <HBox prefHeight="260.0" prefWidth="200.0">
                            <children>
-                              <MFXButton prefHeight="202.0" prefWidth="199.0" text="Snake Button">
+                              <MFXButton prefHeight="202.0" prefWidth="199.0" text="Button">
                                  <HBox.margin>
                                     <Insets left="100.0" top="30.0" />
                                  </HBox.margin>

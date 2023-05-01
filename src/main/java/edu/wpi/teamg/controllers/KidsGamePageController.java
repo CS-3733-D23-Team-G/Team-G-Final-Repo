@@ -8,12 +8,14 @@ public class KidsGamePageController {
   @FXML MFXButton snake;
   @FXML MFXButton ticTacToe;
   @FXML MFXButton pong;
+  @FXML MFXButton pac;
 
   @FXML
   public void initialize() throws SQLException {
     snake.setOnMouseClicked(event -> snakeGame());
     ticTacToe.setOnMouseClicked(event -> ticTacToeGame());
     pong.setOnMouseClicked(event -> pongGame());
+    pac.setOnMouseClicked(event -> pacmanGame());
   }
 
   public void snakeGame() {
@@ -26,5 +28,9 @@ public class KidsGamePageController {
 
   public void pongGame() {
     new GameFramePong();
+  }
+
+  public void pacmanGame() {
+    new GamePacManFrame();
   }
 }
