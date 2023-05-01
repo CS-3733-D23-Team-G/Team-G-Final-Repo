@@ -865,11 +865,6 @@ about_text{
 Styling map editor tilded pane
  */
 
-.titled-pane
-{
-    -fx-skin: "com.sun.javafx.scene.control.skin.TitledPaneSkin";
-    -fx-text-fill: -fx-text-base-color;
-}
 .titled-pane:focused
 {
     -fx-text-fill: black;
@@ -951,27 +946,6 @@ Styling map editor tilded pane
     -fx-background-color: #a88b10;
 }
 
-
-
-.titled-pane:focused > .title
-{
-    -fx-color: -fx-focus-color;
-}
-
-.titled-pane > .title > .arrow-button
-{
-    -fx-background-color: null;
-    -fx-background-insets: 0;
-    -fx-background-radius: 0;
-    -fx-padding: 0.0em 0.25em 0.0em 0.0em; /* 0 3 0 0 */
-}
-
-.titled-pane > .title > .arrow-button .arrow
-{
-    -fx-background-insets: 1 0 -1 0, 0;
-    -fx-padding: 0.25em 0.3125em 0.25em 0.3125em; /* 3 3.75 3 3.75 */
-    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
-}
 
 .titled-pane:collapsed > .title > .arrow-button .arrow
 {

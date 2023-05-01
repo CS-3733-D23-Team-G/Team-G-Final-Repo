@@ -110,6 +110,8 @@ public class MapEditorController {
 
   boolean shortNameToggle = true;
 
+  static boolean playAnimation = false;
+
   boolean moves = false;
   HashMap<Integer, Move> moving = new HashMap<>();
 
@@ -1001,9 +1003,18 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     AddLocationNameController controller = loader.getController();
+    controller.setWind(window);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    window.setOnHiding(
+        event -> {
+          if (playAnimation) {
+            completeAnimation("Location name added.");
+            playAnimation = false;
+          }
+        });
   }
 
   public void addMoves() throws IOException, SQLException {
@@ -1055,6 +1066,14 @@ public class MapEditorController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    window.setOnHiding(
+        event -> {
+          if (playAnimation) {
+            completeAnimation("Edge deleted.");
+            playAnimation = false;
+          }
+        });
   }
 
   public void displayMoveChange() throws IOException {
@@ -1112,6 +1131,10 @@ public class MapEditorController {
           try {
             nodePane.getChildren().clear();
             floorButtons(imgs, floor);
+            if (playAnimation) {
+              completeAnimation("Node moved.");
+              playAnimation = false;
+            }
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -1142,6 +1165,14 @@ public class MapEditorController {
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    window.setOnHiding(
+        event -> {
+          if (playAnimation) {
+            completeAnimation("Location name modified.");
+            playAnimation = false;
+          }
+        });
   }
 
   public void getHelp() throws IOException {
