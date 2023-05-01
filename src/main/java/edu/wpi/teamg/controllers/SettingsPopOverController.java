@@ -7,6 +7,7 @@ import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.collections.FXCollections;
@@ -44,13 +45,13 @@ public class SettingsPopOverController {
         break;
     }
 
-    switch(App.getWhichDB()){
-        case 1:
-            clientSideCheckBox.setSelected(true);
-            break;
-        case 2:
-            awsCheckBox.setSelected(true);
-            break;
+    switch (App.getWhichDB()) {
+      case 1:
+        clientSideCheckBox.setSelected(true);
+        break;
+      case 2:
+        awsCheckBox.setSelected(true);
+        break;
     }
 
     date.setValue(App.pathfindingDate);
@@ -125,6 +126,11 @@ public class SettingsPopOverController {
             clientSideCheckBox.setSelected(false);
           }
           App.setWhichDB(2);
+          try {
+            App.refresh();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
         });
 
     clientSideCheckBox.setOnAction(
@@ -134,6 +140,11 @@ public class SettingsPopOverController {
             awsCheckBox.setSelected(false);
           }
           App.setWhichDB(1);
+          try {
+            App.refresh();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
         });
     date.setOnCommit(
         event -> {
