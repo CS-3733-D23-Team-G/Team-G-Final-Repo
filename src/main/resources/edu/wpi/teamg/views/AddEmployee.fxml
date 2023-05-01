@@ -162,7 +162,7 @@
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <Text layoutX="101.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Add Employee" AnchorPane.topAnchor="49.99609375">
+                  <Text layoutX="101.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Add Employee" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -171,12 +171,17 @@
             </AnchorPane>
             <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
                <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="All Employees" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
                   <TableView fx:id="empTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                     <columns>
-                      <TableColumn fx:id="empLastName" prefWidth="200.0" text="Last Name" />
-                      <TableColumn fx:id="empFirstName" prefWidth="200.0" text="First Name" />
-                        <TableColumn fx:id="empEmail" prefWidth="200.0" text="Email" />
-                        <TableColumn fx:id="empCanServe" prefWidth="200.0" text="Can Serve" />
+                      <TableColumn fx:id="empLastName" prefWidth="150.0" text="Last Name" />
+                      <TableColumn fx:id="empFirstName" prefWidth="150.0" text="First Name" />
+                        <TableColumn fx:id="empEmail" prefWidth="250.0" text="Email" />
+                        <TableColumn fx:id="empCanServe" prefWidth="250.0" text="Can Serve" />
                     </columns>
                   </TableView>
                </children></AnchorPane>

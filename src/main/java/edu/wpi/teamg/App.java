@@ -105,6 +105,7 @@ public class App extends Application {
   public static Image tea = new Image("edu/wpi/teamg/Images/tea.jpg");
 
   public static DAORepo daoRepo = new DAORepo();
+  public static NotificationDAO daoNotif = new NotificationDAO();
   public static EdgeDAO edgeDao = new EdgeDAO();
 
   public static HashMap<String, Edge> edgeMap;
@@ -392,6 +393,16 @@ public class App extends Application {
   static {
     try {
       testingEmps = getHashEmps();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static ArrayList<Notification> testingNotifs;
+
+  static {
+    try {
+      testingNotifs = getHashNotifs();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -752,6 +763,18 @@ public class App extends Application {
       System.err.print(e.getErrorCode());
     }
     return empHash;
+  }
+
+  public static ArrayList<Notification> getHashNotifs() throws SQLException {
+
+    ArrayList<Notification> notifHash = new ArrayList<Notification>();
+
+    try {
+      notifHash = daoNotif.getAllNotificationOf(App.employee.getEmpID());
+    } catch (SQLException e) {
+      System.err.print(e.getErrorCode());
+    }
+    return notifHash;
   }
 
   static int code;

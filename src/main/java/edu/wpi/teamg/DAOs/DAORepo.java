@@ -21,12 +21,18 @@ public class DAORepo {
 
   private MaintenanceRequestDAO maintenanceRequest = new MaintenanceRequestDAO();
 
+  private NotificationDAO notifcationDao = new NotificationDAO();
+
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
   }
 
   public HashMap getAllEmployees() throws SQLException {
     return employeeDAO.getAll();
+  }
+
+  public HashMap getAllNotifications() throws SQLException {
+    return notifcationDao.getAll();
   }
 
   public HashMap getAllEdges() throws SQLException {

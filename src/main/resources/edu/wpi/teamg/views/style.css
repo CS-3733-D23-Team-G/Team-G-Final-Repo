@@ -615,18 +615,32 @@ Popup
 .table-text {
     -fx-font-size: 20;
     -fx-pref-height: 40;
-    -fx-alignment: center;
+    -fx-alignment: left;
+}
+
+.table-view .table-column .label{
+    -fx-font-size: 20;
+    -fx-alignment: left;
+    -fx-font-style: bold;
+}
+
+.table-view .table-cell{
+    -fx-font-size: 15;
+    -fx-alignment: left;
 }
 
 .table-row-cell:odd{
     -fx-background-color: #d8ebfe;
     -fx-background-insets: 0, 0 0 1 0;
+    -fx-font-size: 15;
 }
 
 .table-row-cell:even{
     -fx-background-color: #b7dafe;
     -fx-background-insets: 0, 0 0 1 0;
+    -fx-font-size: 15;
 }
+
 
 
 .dropdown{
@@ -857,6 +871,7 @@ about_text{
     -fx-border-radius: 10;
     -fx-background-radius: 10;
 }
+
 
 
 
