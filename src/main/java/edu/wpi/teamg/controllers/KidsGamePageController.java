@@ -10,7 +10,7 @@ public class KidsGamePageController {
   Image pacBoxArt = new Image("edu/wpi/teamg/Images/PacmanBoxArt.png");
   Image pongBoxArt = new Image("edu/wpi/teamg/Images/SouthArrow.png");
   Image snakeBoxArt = new Image("edu/wpi/teamg/Images/SnakeBoxArt.jpeg");
-  Image tttBoxArt = new Image("edu/wpi/teamg/Images/TicTacToeBoxArt.jpg");
+  Image tttBoxArt = new Image("edu/wpi/teamg/Images/tttGameArt.jpeg");
 
   @FXML ImageView snake = new ImageView(snakeBoxArt);
   @FXML ImageView ticTacToe = new ImageView(tttBoxArt);
