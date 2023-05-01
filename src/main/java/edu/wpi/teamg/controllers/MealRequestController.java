@@ -22,10 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -43,24 +40,63 @@ public class MealRequestController {
 
   @FXML MFXTextField mealPersonOrderingForData;
   @FXML TextArea mealNotesData;
-  @FXML ImageView image1;
-  @FXML ImageView image2;
-  @FXML ImageView image3;
-  @FXML ImageView image4;
-  @FXML ImageView image5;
-  @FXML ImageView image6;
-  @FXML Text text1;
-  @FXML Text text2;
-  @FXML Text text3;
-  @FXML Text text4;
-  @FXML Text text5;
-  @FXML Text text6;
-  @FXML Pane pane1;
-  @FXML Pane pane2;
-  @FXML Pane pane3;
-  @FXML Pane pane4;
-  @FXML Pane pane5;
-  @FXML Pane pane6;
+  @FXML ImageView imageM1;
+  @FXML ImageView imageM2;
+  @FXML ImageView imageM3;
+  @FXML ImageView imageM4;
+  @FXML ImageView imageM5;
+  @FXML ImageView imageM6;
+  @FXML ImageView imageS1;
+  @FXML ImageView imageS2;
+  @FXML ImageView imageS3;
+  @FXML ImageView imageS4;
+  @FXML ImageView imageS5;
+  @FXML ImageView imageS6;
+  @FXML ImageView imageD1;
+  @FXML ImageView imageD2;
+  @FXML ImageView imageD3;
+  @FXML ImageView imageD4;
+  @FXML ImageView imageD5;
+  @FXML ImageView imageD6;
+
+  @FXML Text textM1;
+  @FXML Text textM2;
+  @FXML Text textM3;
+  @FXML Text textM4;
+  @FXML Text textM5;
+  @FXML Text textM6;
+  @FXML Text textS1;
+  @FXML Text textS2;
+  @FXML Text textS3;
+  @FXML Text textS4;
+  @FXML Text textS5;
+  @FXML Text textS6;
+
+  @FXML Text textD1;
+  @FXML Text textD2;
+  @FXML Text textD3;
+  @FXML Text textD4;
+  @FXML Text textD5;
+  @FXML Text textD6;
+
+  @FXML Pane paneM1;
+  @FXML Pane paneM2;
+  @FXML Pane paneM3;
+  @FXML Pane paneM4;
+  @FXML Pane paneM5;
+  @FXML Pane paneM6;
+  @FXML Pane paneS1;
+  @FXML Pane paneS2;
+  @FXML Pane paneS3;
+  @FXML Pane paneS4;
+  @FXML Pane paneS5;
+  @FXML Pane paneS6;
+  @FXML Pane paneD1;
+  @FXML Pane paneD2;
+  @FXML Pane paneD3;
+  @FXML Pane paneD4;
+  @FXML Pane paneD5;
+  @FXML Pane paneD6;
 
   @FXML AnchorPane forms;
   @FXML BorderPane borderTest;
@@ -75,9 +111,6 @@ public class MealRequestController {
   @FXML MFXButton mealButton;
   @FXML MFXButton snackButton;
   @FXML MFXButton drinkButton;
-
-  // @FXML ChoiceBox<String> mealFoodChoice;
-  //  @FXML Label mealFoodChoice;
 
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML SearchableComboBox employeeSearchDropdown;
@@ -117,12 +150,21 @@ public class MealRequestController {
   boolean isSelectedDrinkPane5;
   boolean isSelectedDrinkPane6;
 
+  @FXML HBox MealHBox;
+  @FXML HBox DrinkHBox;
+  @FXML HBox SnackHBox;
+
   @FXML
   public void initialize() throws SQLException {
     App.bool = false;
     MealPressed();
+    MealHBox.toFront();
 
     mealClearAll.setOnAction(event -> completeAnimation());
+
+    mealButton.setOnMouseClicked(event -> MealPressed());
+    snackButton.setOnMouseClicked(event -> SnackPressed());
+    drinkButton.setOnMouseClicked(event -> DrinkPressed());
 
     mealSubmitButton.setOnMouseClicked(
         event -> {
@@ -130,9 +172,6 @@ public class MealRequestController {
           MealOrder();
           allDataFilled();
         });
-    mealButton.setOnMouseClicked(event -> MealPressed());
-    snackButton.setOnMouseClicked(event -> SnackPressed());
-    drinkButton.setOnMouseClicked(event -> DrinkPressed());
 
     if (!App.employee.getIs_admin()) {
       vboxWithAssignTo.getChildren().remove(assignToLine);
@@ -171,7 +210,6 @@ public class MealRequestController {
         });
 
     Collections.sort(locationNames, String.CASE_INSENSITIVE_ORDER);
-
     locationList = FXCollections.observableArrayList(locationNames);
 
     // Hung this is where it sets the list - Andrew
@@ -181,6 +219,7 @@ public class MealRequestController {
   }
 
   public void MealPressed() {
+    MealHBox.toFront();
 
     Image burger = new Image(App.class.getResourceAsStream("Images/burger.jpg"));
 
@@ -193,18 +232,19 @@ public class MealRequestController {
     Image taco = new Image(App.class.getResourceAsStream("Images/taco.jpg"));
 
     Image sandwich = new Image(App.class.getResourceAsStream("Images/sandwich.jpg"));
-    text1.setText("Burger");
-    text2.setText("Hot Dog");
-    text3.setText("Pizza");
-    text4.setText("Sushi");
-    text5.setText("Taco");
-    text6.setText("Sandwich");
-    image1.setImage(burger);
-    image2.setImage(dog);
-    image3.setImage(pizza);
-    image4.setImage(sushi);
-    image5.setImage(taco);
-    image6.setImage(sandwich);
+
+    textM1.setText("Burger");
+    textM2.setText("Hot Dog");
+    textM3.setText("Pizza");
+    textM4.setText("Sushi");
+    textM5.setText("Taco");
+    textM6.setText("Sandwich");
+    imageM1.setImage(burger);
+    imageM2.setImage(dog);
+    imageM3.setImage(pizza);
+    imageM4.setImage(sushi);
+    imageM5.setImage(taco);
+    imageM6.setImage(sandwich);
 
     isSelectedMealPane1 = false;
     isSelectedMealPane2 = false;
@@ -216,46 +256,47 @@ public class MealRequestController {
     //    pane1.setStyle(
     //        "-fx-border-color: #F6BD38;" + " -fx-border-width: 8px;" + " -fx-border-radius: 15;");
 
-    pane1.setOnMouseClicked(
+    paneM1.setOnMouseClicked(
         event -> {
           System.out.println("pane 1 pressed");
-          selectItems(text1);
-          isSelectedMealPane1 = selectPaneHighlight(pane1, isSelectedMealPane1);
+          selectItems(textM1);
+          isSelectedMealPane1 = selectPaneHighlight(paneM1, isSelectedMealPane1);
           System.out.println(isSelectedMealPane1);
         });
-    pane2.setOnMouseClicked(
+    paneM2.setOnMouseClicked(
         event -> {
           System.out.println("pane 2 pressed");
-          selectItems(text3);
-          isSelectedMealPane2 = selectPaneHighlight(pane2, isSelectedMealPane2);
+          selectItems(textM3);
+          isSelectedMealPane2 = selectPaneHighlight(paneM2, isSelectedMealPane2);
         });
-    pane3.setOnMouseClicked(
+    paneM3.setOnMouseClicked(
         event -> {
           System.out.println("pane 3 pressed");
-          selectItems(text5);
-          isSelectedMealPane3 = selectPaneHighlight(pane3, isSelectedMealPane3);
+          selectItems(textM5);
+          isSelectedMealPane3 = selectPaneHighlight(paneM3, isSelectedMealPane3);
         });
-    pane4.setOnMouseClicked(
+    paneM4.setOnMouseClicked(
         event -> {
           System.out.println("pane 4 pressed");
-          selectItems(text2);
-          isSelectedMealPane4 = selectPaneHighlight(pane4, isSelectedMealPane4);
+          selectItems(textM2);
+          isSelectedMealPane4 = selectPaneHighlight(paneM4, isSelectedMealPane4);
         });
-    pane5.setOnMouseClicked(
+    paneM5.setOnMouseClicked(
         event -> {
           System.out.println("pane 5 pressed");
-          selectItems(text4);
-          isSelectedMealPane5 = selectPaneHighlight(pane5, isSelectedMealPane5);
+          selectItems(textM4);
+          isSelectedMealPane5 = selectPaneHighlight(paneM5, isSelectedMealPane5);
         });
-    pane6.setOnMouseClicked(
+    paneM6.setOnMouseClicked(
         event -> {
           System.out.println("pane 6 pressed");
-          selectItems(text6);
-          isSelectedMealPane6 = selectPaneHighlight(pane6, isSelectedMealPane6);
+          selectItems(textM6);
+          isSelectedMealPane6 = selectPaneHighlight(paneM6, isSelectedMealPane6);
         });
   }
 
   public void DrinkPressed() {
+    DrinkHBox.toFront();
     Image OJ = new Image(App.class.getResourceAsStream("Images/OJ.jpg"));
 
     Image coffee = new Image(App.class.getResourceAsStream("Images/coffee.jpg"));
@@ -267,18 +308,18 @@ public class MealRequestController {
     Image smoothie = new Image(App.class.getResourceAsStream("Images/smoothie.jpg"));
 
     Image tea = new Image(App.class.getResourceAsStream("Images/tea.jpg"));
-    text1.setText("Orange Juice");
-    text2.setText("Coffee");
-    text3.setText("Pizza");
-    text4.setText("Water");
-    text5.setText("Smoothie");
-    text6.setText("Tea");
-    image1.setImage(OJ);
-    image2.setImage(coffee);
-    image3.setImage(water);
-    image4.setImage(soda);
-    image5.setImage(smoothie);
-    image6.setImage(tea);
+    textD1.setText("Orange Juice");
+    textD2.setText("Coffee");
+    textD3.setText("Pizza");
+    textD4.setText("Water");
+    textD5.setText("Smoothie");
+    textD6.setText("Tea");
+    imageD1.setImage(OJ);
+    imageD2.setImage(coffee);
+    imageD3.setImage(water);
+    imageD4.setImage(soda);
+    imageD5.setImage(smoothie);
+    imageD6.setImage(tea);
 
     isSelectedDrinkPane1 = false;
     isSelectedDrinkPane2 = false;
@@ -287,45 +328,47 @@ public class MealRequestController {
     isSelectedDrinkPane5 = false;
     isSelectedDrinkPane6 = false;
 
-    pane1.setOnMouseClicked(
+    paneD1.setOnMouseClicked(
         event -> {
           System.out.println("pane 1 pressed");
-          selectItems(text1);
-          isSelectedDrinkPane1 = selectPaneHighlight(pane1, isSelectedDrinkPane1);
+          selectItems(textD1);
+          isSelectedDrinkPane1 = selectPaneHighlight(paneD1, isSelectedDrinkPane1);
         });
-    pane2.setOnMouseClicked(
+    paneD2.setOnMouseClicked(
         event -> {
           System.out.println("pane 2 pressed");
-          selectItems(text3);
-          isSelectedDrinkPane2 = selectPaneHighlight(pane2, isSelectedDrinkPane2);
+          selectItems(textD3);
+          isSelectedDrinkPane2 = selectPaneHighlight(paneD2, isSelectedDrinkPane2);
         });
-    pane3.setOnMouseClicked(
+    paneD3.setOnMouseClicked(
         event -> {
           System.out.println("pane 3 pressed");
-          selectItems(text5);
-          isSelectedDrinkPane3 = selectPaneHighlight(pane3, isSelectedDrinkPane3);
+          selectItems(textD5);
+          isSelectedDrinkPane3 = selectPaneHighlight(paneD3, isSelectedDrinkPane3);
         });
-    pane4.setOnMouseClicked(
+    paneD4.setOnMouseClicked(
         event -> {
           System.out.println("pane 4 pressed");
-          selectItems(text2);
-          isSelectedDrinkPane4 = selectPaneHighlight(pane4, isSelectedDrinkPane4);
+          selectItems(textD2);
+          isSelectedDrinkPane4 = selectPaneHighlight(paneD4, isSelectedDrinkPane4);
         });
-    pane5.setOnMouseClicked(
+    paneD5.setOnMouseClicked(
         event -> {
           System.out.println("pane 5 pressed");
-          selectItems(text4);
-          isSelectedDrinkPane5 = selectPaneHighlight(pane5, isSelectedDrinkPane5);
+          selectItems(textD4);
+          isSelectedDrinkPane5 = selectPaneHighlight(paneD5, isSelectedDrinkPane5);
         });
-    pane6.setOnMouseClicked(
+    paneD6.setOnMouseClicked(
         event -> {
           System.out.println("pane 6 pressed");
-          selectItems(text6);
-          isSelectedDrinkPane6 = selectPaneHighlight(pane6, isSelectedDrinkPane6);
+          selectItems(textD6);
+          isSelectedDrinkPane6 = selectPaneHighlight(paneD6, isSelectedDrinkPane6);
         });
   }
 
   public void SnackPressed() {
+
+    SnackHBox.toFront();
     Image frenchFries = new Image(App.class.getResourceAsStream("Images/frenchfries.jpg"));
 
     Image chips = new Image(App.class.getResourceAsStream("Images/chips.jpg"));
@@ -337,18 +380,18 @@ public class MealRequestController {
     Image goldfish = new Image(App.class.getResourceAsStream("Images/goldfish.jpg"));
 
     Image pretzels = new Image(App.class.getResourceAsStream("Images/pretzels.jpg"));
-    text1.setText("French Fries");
-    text2.setText("Chips");
-    text3.setText("Bacon");
-    text4.setText("Avocado Toast");
-    text5.setText("Goldfish");
-    text6.setText("Pretzels");
-    image1.setImage(frenchFries);
-    image2.setImage(chips);
-    image3.setImage(bacon);
-    image4.setImage(avocadoToast);
-    image5.setImage(goldfish);
-    image6.setImage(pretzels);
+    textS1.setText("French Fries");
+    textS2.setText("Chips");
+    textS3.setText("Bacon");
+    textS4.setText("Avocado Toast");
+    textS5.setText("Goldfish");
+    textS6.setText("Pretzels");
+    imageS1.setImage(frenchFries);
+    imageS2.setImage(chips);
+    imageS3.setImage(bacon);
+    imageS4.setImage(avocadoToast);
+    imageS5.setImage(goldfish);
+    imageS6.setImage(pretzels);
 
     isSelectedSnackPane1 = false;
     isSelectedSnackPane2 = false;
@@ -357,41 +400,41 @@ public class MealRequestController {
     isSelectedSnackPane5 = false;
     isSelectedSnackPane6 = false;
 
-    pane1.setOnMouseClicked(
+    paneS1.setOnMouseClicked(
         event -> {
           System.out.println("pane 1 pressed");
-          selectItems(text1);
-          isSelectedSnackPane1 = selectPaneHighlight(pane1, isSelectedSnackPane1);
+          selectItems(textS1);
+          isSelectedSnackPane1 = selectPaneHighlight(paneS1, isSelectedSnackPane1);
         });
-    pane2.setOnMouseClicked(
+    paneS2.setOnMouseClicked(
         event -> {
           System.out.println("pane 2 pressed");
-          selectItems(text3);
-          isSelectedSnackPane2 = selectPaneHighlight(pane2, isSelectedSnackPane2);
+          selectItems(textS3);
+          isSelectedSnackPane2 = selectPaneHighlight(paneS2, isSelectedSnackPane2);
         });
-    pane3.setOnMouseClicked(
+    paneS3.setOnMouseClicked(
         event -> {
           System.out.println("pane 3 pressed");
-          selectItems(text5);
-          isSelectedSnackPane3 = selectPaneHighlight(pane3, isSelectedSnackPane3);
+          selectItems(textS5);
+          isSelectedSnackPane3 = selectPaneHighlight(paneS3, isSelectedSnackPane3);
         });
-    pane4.setOnMouseClicked(
+    paneS4.setOnMouseClicked(
         event -> {
           System.out.println("pane 4 pressed");
-          selectItems(text2);
-          isSelectedSnackPane4 = selectPaneHighlight(pane4, isSelectedSnackPane4);
+          selectItems(textS2);
+          isSelectedSnackPane4 = selectPaneHighlight(paneS4, isSelectedSnackPane4);
         });
-    pane5.setOnMouseClicked(
+    paneS5.setOnMouseClicked(
         event -> {
           System.out.println("pane 5 pressed");
-          selectItems(text4);
-          isSelectedSnackPane5 = selectPaneHighlight(pane5, isSelectedSnackPane5);
+          selectItems(textS4);
+          isSelectedSnackPane5 = selectPaneHighlight(paneS5, isSelectedSnackPane5);
         });
-    pane6.setOnMouseClicked(
+    paneS6.setOnMouseClicked(
         event -> {
           System.out.println("pane 6 pressed");
-          selectItems(text6);
-          isSelectedSnackPane6 = selectPaneHighlight(pane6, isSelectedSnackPane6);
+          selectItems(textS6);
+          isSelectedSnackPane6 = selectPaneHighlight(paneS6, isSelectedSnackPane6);
         });
   }
 
@@ -512,12 +555,12 @@ public class MealRequestController {
     switch (bool) {
       case "true":
         p.setStyle(
-            "-fx-border-color: #F6BD38;" + " -fx-border-width: 0px;" + " -fx-border-radius: 15;");
+            "-fx-border-color: #F6BD38;" + " -fx-border-width: 0px;" + " -fx-border-radius: 10;");
         b = false;
         break;
       case "false":
         p.setStyle(
-            "-fx-border-color: #F6BD38;" + " -fx-border-width: 8px;" + " -fx-border-radius: 15;");
+            "-fx-border-color: #F6BD38;" + " -fx-border-width: 8px;" + " -fx-border-radius: 10;");
         b = true;
         break;
     }

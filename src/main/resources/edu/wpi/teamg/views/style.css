@@ -763,8 +763,8 @@ Popup
  }
 .meal-request-box{
     -fx-border-color:#F6BD38;
-    -fx-border-width: 10 10 10 10;
-    -fx-border-radius: 10 10 10 10;
+    -fx-border-width: 5 0 0 0;
+    -fx-border-radius: 0 0 0 0;
 }
 .meal-selection{
     -fx-pref-height: 130;
@@ -772,6 +772,11 @@ Popup
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 15;
     -fx-font-size: 25;
+}
+
+.meal-pane-vbox{
+    -fx-pref-height: 475;
+    -fx-pref-width: 354;
 }
 
 about_text{
