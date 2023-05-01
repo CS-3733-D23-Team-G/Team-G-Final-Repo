@@ -615,25 +615,14 @@ Popup
 .table-text {
     -fx-font-size: 20;
     -fx-pref-height: 40;
-    -fx-alignment: left;
-}
-
-.table-view .table-column .label{
-    -fx-font-size: 20;
-    -fx-alignment: left;
-    -fx-font-style: bold;
-}
-
-.table-view .table-cell{
-    -fx-font-size: 15;
-    -fx-alignment: left;
+    -fx-font-color: #000000;
+    -fx-alignment: center;
 }
 
 .table-row-cell:odd{
     -fx-background-color: #d8ebfe;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-font-color: #000000;
-    -fx-font-size: 15;
 }
 
 
@@ -641,13 +630,11 @@ Popup
     -fx-background-color: #b7dafe;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-font-color: #000000;
-    -fx-font-size: 15;
 }
 
 .table-row-cell:selected {
    -fx-text-background-color: #000000;
 }
-
 
 .dropdown{
     -fx-font-size: 20;
@@ -885,7 +872,6 @@ about_text{
     -fx-pref-height: 60;
     -fx-max-height: 60;
 }
-
 
 
 
