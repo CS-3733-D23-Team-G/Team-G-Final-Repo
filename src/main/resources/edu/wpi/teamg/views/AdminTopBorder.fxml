@@ -41,12 +41,20 @@
                               <Insets right="10.0" top="10.0" />
                            </HBox.margin>
                         </ImageView>
+                        <ImageView fx:id="listenButton" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/VoiceCommand.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
                         <ImageView fx:id="dictionary" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Images/dictionaryIcon.png" />
                            </image>
                            <HBox.margin>
-                              <Insets right="10.0" top="10.0" />
+                              <Insets right="25.0" top="10.0" />
                            </HBox.margin>
                         </ImageView>
                         <ImageView fx:id="settings" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">

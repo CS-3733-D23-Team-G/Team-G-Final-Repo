@@ -82,7 +82,7 @@ public class SignageEditorController {
 
   ObservableList<String> monthChoice =
       FXCollections.observableArrayList(
-          "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+          "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
 
   ObservableList<String> yearChoice =
       FXCollections.observableArrayList(
@@ -96,6 +96,7 @@ public class SignageEditorController {
 
   @FXML
   public void initialize() throws SQLException {
+    App.bool = false;
     DAORepo dao = new DAORepo();
     monthDrop.setItems(monthChoice);
     yearDrop.setItems(yearChoice);

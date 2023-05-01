@@ -34,6 +34,7 @@ public class App extends Application {
   public static String message;
 
   @Setter @Getter private static int kioskNumber;
+  @Setter @Getter private static String kioskLocation = "Innovation Hub";
 
   @Getter private static LocalDate currentDate = LocalDate.now();
 
@@ -49,12 +50,68 @@ public class App extends Application {
   public static Image mapFloor2 = new Image("edu/wpi/teamg/Images/02_thesecondfloor.png");
 
   public static Image mapFloor3 = new Image("edu/wpi/teamg/Images/03_thethirdfloor.png");
+
+  public static Image notifDismissIcon = new Image("edu/wpi/teamg/Images/blackDismiss.png");
+
+  public static String pathfindingAlgo = "Astar";
+
+  public static boolean bool = false;
+  //  public static LocalDate pathfindingDate =
+  //      new Date(2023, 1, 1).toLocalDate(); // default right? yup, and it's a local date
+  //  // we can convert later tho if this is easier for you, it does cuz all the algos takes in Date
+  // ?
+  //  // Doesn't really matter because it just taking the date freom the calendar Ohhhh
+  //  // then we go to settings controller?
+
+  public static LocalDate pathfindingDate = LocalDate.of(2023, 1, 1);
+
+  // MEAL IMAGES
+  public static Image checkmarkImage =
+      new Image("edu/wpi/teamg/Images/blueCheckMark-removebg-preview(1).png");
+
+  public static Image frenchFries = new Image("edu/wpi/teamg/Images/frenchfries.jpg");
+
+  public static Image chips = new Image("edu/wpi/teamg/Images/chips.jpg");
+
+  public static Image bacon = new Image("edu/wpi/teamg/Images/bacon.jpg");
+
+  public static Image avocadoToast = new Image("edu/wpi/teamg/Images/avocadotoast.jpg");
+
+  public static Image goldfish = new Image("edu/wpi/teamg/Images/goldfish.jpg");
+
+  public static Image pretzels = new Image("edu/wpi/teamg/Images/pretzels.jpg");
+
+  public static Image burger = new Image("edu/wpi/teamg/Images/burger.jpg");
+
+  public static Image dog = new Image("edu/wpi/teamg/Images/dog.jpg");
+
+  public static Image pizza = new Image("edu/wpi/teamg/Images/pizza.jpg");
+
+  public static Image sushi = new Image("edu/wpi/teamg/Images/sushi.jpg");
+
+  public static Image taco = new Image("edu/wpi/teamg/Images/taco.jpg");
+
+  public static Image sandwich = new Image("edu/wpi/teamg/Images/sandwich.jpg");
+
+  public static Image OJ = new Image("edu/wpi/teamg/Images/OJ.jpg");
+
+  public static Image coffee = new Image("edu/wpi/teamg/Images/coffee.jpg");
+
+  public static Image water = new Image("edu/wpi/teamg/Images/water.jpg");
+
+  public static Image soda = new Image("edu/wpi/teamg/Images/soda.jpg");
+
+  public static Image smoothie = new Image("edu/wpi/teamg/Images/smoothie.jpg");
+
+  public static Image tea = new Image("edu/wpi/teamg/Images/tea.jpg");
+
   public static DAORepo daoRepo = new DAORepo();
   public static EdgeDAO edgeDao = new EdgeDAO();
 
   public static HashMap<String, Edge> edgeMap;
 
   public static Employee employee = new Employee();
+  public static EmployeeDAO employeeDAO = new EmployeeDAO();
 
   public static MoveDAO moveDAO = new MoveDAO();
 
@@ -326,6 +383,16 @@ public class App extends Application {
   static {
     try {
       testingMaintain = getHashMaintain();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static HashMap<Integer, String> allEmployeeHash;
+
+  static {
+    try {
+      allEmployeeHash = employeeDAO.getAllEmployeeFullName();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }

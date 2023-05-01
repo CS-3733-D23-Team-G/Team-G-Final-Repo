@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -19,176 +19,68 @@
 
 <BorderPane styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.pathfindingController">
    <center>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1194.0" styleClass="rest_of_page" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="980.0" prefWidth="656.0" styleClass="half_bottom_left">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="980.0" prefWidth="332.0" styleClass="half_bottom_left">
                <children>
-                  <HBox layoutX="69.0" layoutY="228.0" prefHeight="486.0" prefWidth="502.0" styleClass="left_vbox" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="150.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="913.0" prefWidth="384.0" styleClass="locationSelect_vbox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <VBox prefHeight="486.0" prefWidth="418.0" styleClass="locationSelect_vbox">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="locationLabel" text="STARTING LOCATION:" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="389.0" styleClass="algoSelect_hbox">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="locationLabel" text="STARTING LOCATION:" />
-                              <HBox prefHeight="51.0" prefWidth="389.0" styleClass="algoSelect_hbox">
-                                 <children>
-                                    <MFXComboBox fx:id="floorStart" alignment="TOP_LEFT" borderGap="0.0" floatingTextGap="0.0" graphicTextGap="0.0" measureUnitGap="0.0" prefHeight="6.0" prefWidth="157.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css" />
-                                    <MFXFilterComboBox fx:id="startLocDrop" minHeight="-Infinity" minWidth="-Infinity" prefWidth="229.0" styleClass="locationSelect_comboSearchBox">
-                                       <HBox.margin>
-                                          <Insets left="25.0" />
-                                       </HBox.margin>
-                                    </MFXFilterComboBox>
-                                 </children>
-                              </HBox>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="locationLabel" text="DESTINATION:" />
-                              <HBox prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
-                                 <children>
-                                    <MFXComboBox fx:id="floorEnd" alignment="TOP_LEFT" prefHeight="103.0" prefWidth="135.0" styleClass="locationSelect_comboSearchBox" />
-                                    <MFXFilterComboBox fx:id="endLocDrop" minHeight="-Infinity" minWidth="-Infinity" prefWidth="229.0" styleClass="locationSelect_comboSearchBox">
-                                       <HBox.margin>
-                                          <Insets left="25.0" />
-                                       </HBox.margin>
-                                    </MFXFilterComboBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox prefHeight="82.0" prefWidth="145.0" styleClass="algoSelect_hbox">
-                                 <children>
-                                    <MFXCheckbox fx:id="aStarCheckBox" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="A*">
-                                       <HBox.margin>
-                                          <Insets left="20.0" top="25.0" />
-                                       </HBox.margin>
-                                    </MFXCheckbox>
-                                    <MFXCheckbox fx:id="bfsCheckBox" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="BFS">
-                                       <HBox.margin>
-                                          <Insets left="20.0" top="25.0" />
-                                       </HBox.margin>
-                                    </MFXCheckbox>
-                                    <MFXCheckbox fx:id="dfsCheckBox" alignment="CENTER" prefHeight="57.0" prefWidth="0.0" styleClass="algoCheckBox" text="DFS">
-                                       <HBox.margin>
-                                          <Insets left="20.0" top="25.0" />
-                                       </HBox.margin>
-                                    </MFXCheckbox>
-                                    <MFXCheckbox fx:id="Dijkstracheckbox" alignment="CENTER" prefHeight="57.0" prefWidth="156.0" styleClass="algoCheckBox" text="Dijkstra">
-                                       <HBox.margin>
-                                          <Insets left="20.0" top="25.0" />
-                                       </HBox.margin>
-                                    </MFXCheckbox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
-                                 <children>
-
-                                    <MFXDatePicker fx:id="date" prefHeight="38.0" prefWidth="246.0" promptText="pathfind on move date" />
-
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
-                                 <children>
-                                    <MFXButton fx:id="pathFindButton" alignment="CENTER" contentDisplay="CENTER" prefWidth="416.0" styleClass="getPath_Button" text="GET PATH">
-                                       <HBox.margin>
-                                          <Insets top="15.0" />
-                                       </HBox.margin>
-                                    </MFXButton>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="28.0" prefWidth="389.0" styleClass="algoSelect_hbox">
-                                 <children>
-                                    <MFXToggleButton fx:id="dSN" alignment="CENTER" contentDisplay="CENTER" text="Display Short Names" textAlignment="CENTER" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="0.0" prefWidth="389.0" styleClass="algoSelect_hbox">
-                                 <children>
-                                    <MFXToggleButton fx:id="toggN" prefHeight="41.0" prefWidth="177.0" text="Toggle Nodes" />
-                                 </children>
-                              </HBox>
-
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
-                                 <children>
-                                    <MFXButton fx:id="alertButton" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefWidth="416.0" styleClass="add_Buttons" text="ALERTS">
-                                       <HBox.margin>
-                                          <Insets top="15.0" />
-                                       </HBox.margin>
-                                    </MFXButton>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox">
-                                 <children>
-                                    <MFXButton fx:id="txtDirections" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefWidth="416.0" styleClass="add_Buttons" text="TEXT DIRECTIONS">
-                                       <HBox.margin>
-                                          <Insets top="15.0" />
-                                       </HBox.margin>
-                                    </MFXButton>
-
-                                 </children>
-                              </HBox>
+                              <MFXComboBox fx:id="floorStart" alignment="TOP_LEFT" borderGap="0.0" floatMode="DISABLED" floatingTextGap="0.0" graphicTextGap="0.0" measureUnitGap="0.0" minWidth="-Infinity" prefHeight="6.0" prefWidth="100.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css" />
+                              <MFXFilterComboBox fx:id="startLocDrop" floatMode="DISABLED" minHeight="-Infinity" minWidth="-Infinity" prefWidth="245.0" styleClass="locationSelect_comboSearchBox">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </MFXFilterComboBox>
                            </children>
-                           <HBox.margin>
-                              <Insets left="25.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="button_vbox">
+                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="locationLabel" text="DESTINATION:" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="312.0" styleClass="algoSelect_hbox">
                            <children>
-                              <MFXButton fx:id="floor3" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F3" textAlignment="CENTER" textFill="#f6bd38">
-                                 <VBox.margin>
-                                    <Insets top="15.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </padding>
-                              </MFXButton>
-                              <MFXButton fx:id="floor2" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F2" textAlignment="CENTER" textFill="#f6bd38">
-                                 <VBox.margin>
-                                    <Insets top="15.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </padding>
-                              </MFXButton>
-                              <MFXButton fx:id="floor1" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F1" textAlignment="CENTER" textFill="#f6bd38">
-                                 <VBox.margin>
-                                    <Insets top="15.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </padding>
-                              </MFXButton>
-                              <Line endX="-20.0" startX="-110.0" strokeWidth="2.0" styleClass="line">
-                                 <VBox.margin>
-                                    <Insets bottom="20.0" top="20.0" />
-                                 </VBox.margin>
-                              </Line>
-                              <MFXButton fx:id="l2" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="L2" textAlignment="CENTER" textFill="#f6bd38">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </padding>
-                              </MFXButton>
-                              <MFXButton fx:id="l1" alignment="CENTER" contentDisplay="CENTER" prefHeight="84.0" prefWidth="185.0" rippleAnimateBackground="false" styleClass="floor_button" text="L1" textAlignment="CENTER" textFill="#f6bd38">
-                                 <VBox.margin>
-                                    <Insets top="15.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </padding>
-                              </MFXButton>
+                              <MFXComboBox fx:id="floorEnd" alignment="TOP_LEFT" borderGap="0.0" floatMode="DISABLED" floatingTextGap="0.0" graphicTextGap="0.0" measureUnitGap="0.0" minWidth="-Infinity" prefHeight="6.0" prefWidth="100.0" styleClass="locationSelect_comboSearchBox" stylesheets="@style.css" />
+                              <MFXFilterComboBox fx:id="endLocDrop" floatMode="DISABLED" minHeight="-Infinity" minWidth="-Infinity" prefWidth="245.0" styleClass="locationSelect_comboSearchBox">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </MFXFilterComboBox>
                            </children>
-                           <HBox.margin>
-                              <Insets left="50.0" />
-                           </HBox.margin>
-                        </VBox>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="356.0" styleClass="algoSelect_hbox">
+                           <children>
+                              <MFXButton fx:id="txtDirections" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="114.0" styleClass="textDirection_Button" text="TEXT DIRECTIONS">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </MFXButton>
+                              <MFXButton fx:id="pathFindButton" alignment="CENTER" contentDisplay="CENTER" prefWidth="165.0" styleClass="getPath_Button" text="GET PATH" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="389.0" styleClass="algoSelect_hbox">
+                           <children>
+                              <MFXToggleButton fx:id="dSN" alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="75.0" text="Display Short Names" textAlignment="CENTER" />
+                              <MFXToggleButton fx:id="toggN" prefHeight="41.0" prefWidth="100.0" text="Toggle Nodes" />
+                           </children>
+                        </HBox>
+
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0" styleClass="algoSelect_hbox" />
                      </children>
-                  </HBox>
+                     <padding>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </padding>
+                  </VBox>
                </children>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
             </AnchorPane>
-            <AnchorPane prefHeight="1172.0" prefWidth="522.0" styleClass="half_bottom_right">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="776.0" styleClass="half_bottom_right">
                <children>
-                  <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" layoutX="2.0" layoutY="-26.0" prefHeight="979.0" prefWidth="851.0" styleClass="gesture_pane_pathfinding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GesturePane fx:id="pane" fitHeight="false" fitMode="COVER" fitWidth="false" prefHeight="913.0" prefWidth="1536.0" styleClass="gesture_pane_pathfinding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
                         <Group fx:id="group">
                            <children>
@@ -197,6 +89,60 @@
                         </Group>
                      </content>
                   </GesturePane>
+                  <ImageView fx:id="alertButton" fitHeight="44.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                     <image>
+                        <Image url="@../Images/alert%20icon.png" />
+                     </image>
+                  </ImageView>
+                  <VBox layoutX="1419.0" layoutY="374.0" prefHeight="680.0" prefWidth="100.0" styleClass="button_vbox" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="15.0">
+                     <children>
+                        <MFXButton fx:id="floor3" alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="69.0" rippleAnimateBackground="false" styleClass="floor_button" text="F3" textAlignment="CENTER" textFill="#f6bd38">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </padding>
+                        </MFXButton>
+                        <MFXButton fx:id="floor2" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F2" textAlignment="CENTER" textFill="#f6bd38">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </padding>
+                        </MFXButton>
+                        <MFXButton fx:id="floor1" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="F1" textAlignment="CENTER" textFill="#f6bd38">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </padding>
+                        </MFXButton>
+                        <Line endX="-32.0" startX="-110.0" strokeWidth="2.0" styleClass="line">
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Line>
+                        <MFXButton fx:id="l2" alignment="CENTER" contentDisplay="CENTER" rippleAnimateBackground="false" styleClass="floor_button" text="L2" textAlignment="CENTER" textFill="#f6bd38">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </padding>
+                        </MFXButton>
+                        <MFXButton fx:id="l1" alignment="CENTER" contentDisplay="CENTER" prefHeight="84.0" prefWidth="185.0" rippleAnimateBackground="false" styleClass="floor_button" text="L1" textAlignment="CENTER" textFill="#f6bd38">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </padding>
+                        </MFXButton>
+                     </children>
+                  </VBox>
                </children>
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
