@@ -135,7 +135,7 @@ public class MaintenanceRequestController {
     maintainPhoneNumber.getText();
 
     ArrayList<String> time_hour = new ArrayList<>();
-    int x = 0;
+    int x = -1;
     while (x < 24) {
       x++;
       time_hour.add("" + x);
