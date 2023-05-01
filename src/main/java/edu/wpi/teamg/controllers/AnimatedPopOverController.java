@@ -45,9 +45,13 @@ public class AnimatedPopOverController {
 
   boolean end = false;
 
+  int bottomAni = 0;
+
+  int switchFloor = 0;
   Pane pane;
 
   int index = 1;
+  int index2 = 1;
 
   public void initialize() {
     anitxt.setEditable(false);
@@ -96,7 +100,16 @@ public class AnimatedPopOverController {
 
     pane.getChildren().clear();
     index = index + 1;
-    setPath(path);
+
+    if (switchFloor == 0) {
+      bottomAni = 0;
+      setPath(path);
+    } else {
+
+      nextFloor(
+          App.allNodes.get(Integer.parseInt(path.get(switchFloor + 1))), path, switchFloor + 1);
+      bottomAni = bottomAni + 1;
+    }
 
     if (index == path.size()) {
       next.setVisible(false);
@@ -108,7 +121,6 @@ public class AnimatedPopOverController {
 
   public void setPath(ArrayList<String> path) throws SQLException {
     pane.getChildren().clear();
-
     anitxt.clear();
 
     for (int i = 0; i < index; i++) {
@@ -214,7 +226,7 @@ public class AnimatedPopOverController {
         }
         pane.getChildren().add(triangle);
         pathForFloor.add(path.get(i));
-        nextFloor(nodes.get(Integer.parseInt(path.get(finalI + 1))), path, finalI + 1);
+        switchFloor = finalI + 1;
         triangle.setOnMouseClicked(
             event -> {
               try {
@@ -280,8 +292,6 @@ public class AnimatedPopOverController {
 
       pane.getChildren().add(pathLine);
 
-      System.out.println(i);
-      System.out.println(index);
       if (i == index - 1) {
         timeline.play();
       }
@@ -403,6 +413,8 @@ public class AnimatedPopOverController {
         triangle.setFill(Color.rgb(246, 189, 56));
         pane.getChildren().add(triangle);
         pathForFloor2.add(path.get(i));
+        switchFloor = finalI + 1;
+        bottomAni = -1;
         triangle.setOnMouseClicked(
             event -> {
               try {
@@ -434,9 +446,37 @@ public class AnimatedPopOverController {
               nodes.get(Integer.parseInt(path.get(index + i - 1))).getYcoord(),
               nodes.get(Integer.parseInt(path.get(index + i))).getXcoord(),
               nodes.get(Integer.parseInt(path.get(index + i))).getYcoord());
-      pathLine.setStrokeWidth(10);
+
+      Timeline timeline =
+          new Timeline(
+              new KeyFrame(
+                  Duration.seconds(0),
+                  new KeyValue(
+                      pathLine.endXProperty(),
+                      nodes.get(Integer.parseInt(path.get(index + i - 1))).getXcoord()),
+                  new KeyValue(
+                      pathLine.endYProperty(),
+                      nodes.get(Integer.parseInt(path.get(index + i - 1))).getYcoord())),
+              new KeyFrame(
+                  Duration.seconds(1.25),
+                  new KeyValue(
+                      pathLine.endXProperty(),
+                      nodes.get(Integer.parseInt(path.get(index + i))).getXcoord()),
+                  new KeyValue(
+                      pathLine.endYProperty(),
+                      nodes.get(Integer.parseInt(path.get(index + i))).getYcoord())));
+
       pathLine.setStroke(Color.rgb(1, 45, 90));
+      pathLine.setStrokeWidth(10);
+      timeline.setCycleCount(Timeline.INDEFINITE);
+
       pane.getChildren().add(pathLine);
+
+      System.out.println(bottomAni);
+      System.out.println(i);
+      if (i == bottomAni - 1) {
+        timeline.play();
+      }
     }
 
     downPoint.toFront();
