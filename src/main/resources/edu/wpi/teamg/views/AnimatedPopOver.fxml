@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AnimatedPopOverController">
+   <children>
+      <HBox alignment="CENTER" prefWidth="200.0">
+         <children>
+            <TextArea fx:id="anitxt" prefHeight="200.0" prefWidth="200.0" />
+         </children></HBox>
+      <HBox alignment="CENTER" prefWidth="200.0" />
+      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+         <children>
+            <MFXButton fx:id="back" text="Back" />
+            <MFXButton fx:id="next" text="Next">
+               <HBox.margin>
+                  <Insets left="80.0" />
+               </HBox.margin></MFXButton>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+   </padding>
+</VBox>
