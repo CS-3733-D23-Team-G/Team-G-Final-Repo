@@ -1037,9 +1037,18 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     DeleteLocationNameControllerPopOver controller = loader.getController();
+    controller.setWind(window);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    window.setOnHiding(
+        event -> {
+          if (playAnimation) {
+            completeAnimation("Location name deleted.");
+            playAnimation = false;
+          }
+        });
   }
 
   public void displayEdgeData(Edge edge, Node A, Node B) throws IOException {
