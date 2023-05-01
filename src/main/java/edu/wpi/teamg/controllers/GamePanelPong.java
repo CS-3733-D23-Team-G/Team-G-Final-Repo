@@ -23,6 +23,8 @@ public class GamePanelPong extends JPanel implements Runnable {
   GamePongBall ball;
   GamePongScore score;
 
+  boolean isRunning;
+
   GamePanelPong() {
     newPaddles();
     newBall();
@@ -30,6 +32,7 @@ public class GamePanelPong extends JPanel implements Runnable {
     this.setFocusable(true);
     this.addKeyListener(new AL());
     this.setPreferredSize(SCREEN_SIZE);
+    isRunning = true;
 
     gameThread = new Thread(this);
     gameThread.start();
@@ -151,7 +154,7 @@ public class GamePanelPong extends JPanel implements Runnable {
     double amountOfTicks = 60.0;
     double ns = 1000000000 / amountOfTicks;
     double delta = 0;
-    while (true) {
+    while (isRunning) {
       long now = System.nanoTime();
       delta += (now - lastTime) / ns;
       lastTime = now;
