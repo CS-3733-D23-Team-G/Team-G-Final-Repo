@@ -203,6 +203,15 @@
                                     </MFXButton>
                                  </children>
                               </HBox>
+                              <HBox alignment="CENTER" styleClass="algoSelect_hbox">
+                                 <children>
+                                    <MFXButton fx:id="translate" styleClass="add_Buttons" text="Translate Languages">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
                            </children>
                            <HBox.margin>
                               <Insets top="30.0" />

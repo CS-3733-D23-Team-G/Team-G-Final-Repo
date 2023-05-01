@@ -1,7 +1,5 @@
 package edu.wpi.teamg.controllers;
 
-import static edu.wpi.teamg.App.*;
-
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
@@ -12,14 +10,6 @@ import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
-import java.awt.*;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +26,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
+
+import java.awt.*;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
+
+import static edu.wpi.teamg.App.*;
 
 public class MapEditorController {
 
@@ -81,6 +82,8 @@ public class MapEditorController {
   @FXML MFXButton help;
 
   @FXML MFXDatePicker mapEditDate;
+
+  @FXML MFXButton translate;
 
   boolean moved = false;
 

@@ -10,10 +10,6 @@ import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Time;
-import java.util.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +23,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import org.controlsfx.control.SearchableComboBox;
+
+import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 public class MealRequestController {
   @FXML MFXButton mealSubmitButton;
@@ -68,6 +72,7 @@ public class MealRequestController {
 
   @FXML SearchableComboBox locationSearchDropdown;
   @FXML SearchableComboBox employeeSearchDropdown;
+  @FXML SearchableComboBox timeSearchDropDown; //maybe
   @FXML Label checkFields;
   @FXML Line assignToLine;
   @FXML Text assignToText;
@@ -77,6 +82,7 @@ public class MealRequestController {
 
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
+  ObservableList<String> timeList; //maybe
 
   Hashtable<String, Integer> selectedPanes = new Hashtable<>();
   HashMap<String, Integer> food = new HashMap<>();
@@ -136,9 +142,28 @@ public class MealRequestController {
 
     locationList = FXCollections.observableArrayList(locationNames);
 
+
+      ArrayList<String> times = new ArrayList<>();
+      HashMap<Integer, String> testingTime = this.getHashMapEmployeeLongName("Meal Request");
+
+      testingTime.forEach(
+              (i, m) -> {
+                  times.add(i + ": " + m);
+              });
+
+      Collections.sort(times, String.CASE_INSENSITIVE_ORDER);
+
+      timeList = FXCollections.observableArrayList(times);
+
+
+
+
+
+
     // Hung this is where it sets the list - Andrew
     employeeSearchDropdown.setItems(employeeList);
     locationSearchDropdown.setItems(locationList);
+    timeSearchDropDown.setItems(timeList); //maybe
     checkFields.getText();
   }
 
@@ -453,11 +478,27 @@ public class MealRequestController {
     return longNameHashMap;
   }
 
+  //maybe
+    //public String[] getArrayTime() throws Exception{}
+
+
   public Time StringToTime(String s) {
+
+
+
+
+
+
+
+
 
     String[] hourMin = s.split(":", 2);
     Time t = new Time(Integer.parseInt(hourMin[0]), Integer.parseInt(hourMin[1]), 00);
     return t;
+
+
+
+
   }
 
   public void allDataFilled() {
@@ -488,6 +529,7 @@ public class MealRequestController {
 
     locationSearchDropdown.setValue(null);
     employeeSearchDropdown.setValue(null);
+    timeSearchDropDown.setValue(null); //maybe
     return;
   }
 }
