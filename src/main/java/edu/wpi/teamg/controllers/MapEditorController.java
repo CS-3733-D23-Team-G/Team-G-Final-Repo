@@ -334,10 +334,17 @@ public class MapEditorController {
 
     img = imageViewsList;
 
+    l1.setDisable(true);
+
     l1.setOnMouseClicked(
         event -> {
           try {
             goToL1(imageViewsList);
+            l1.setDisable(true);
+            l2.setDisable(false);
+            floor1.setDisable(false);
+            floor2.setDisable(false);
+            floor3.setDisable(false);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -346,6 +353,11 @@ public class MapEditorController {
         event -> {
           try {
             goToL2(imageViewsList);
+            l1.setDisable(false);
+            l2.setDisable(true);
+            floor1.setDisable(false);
+            floor2.setDisable(false);
+            floor3.setDisable(false);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -354,6 +366,11 @@ public class MapEditorController {
         event -> {
           try {
             goToFloor1(imageViewsList);
+            l1.setDisable(false);
+            l2.setDisable(false);
+            floor1.setDisable(true);
+            floor2.setDisable(false);
+            floor3.setDisable(false);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -362,6 +379,11 @@ public class MapEditorController {
         event -> {
           try {
             goToFloor2(imageViewsList);
+            l1.setDisable(false);
+            l2.setDisable(false);
+            floor1.setDisable(false);
+            floor2.setDisable(true);
+            floor3.setDisable(false);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -370,6 +392,11 @@ public class MapEditorController {
         event -> {
           try {
             goToFloor3(imageViewsList);
+            l1.setDisable(false);
+            l2.setDisable(false);
+            floor1.setDisable(false);
+            floor2.setDisable(false);
+            floor3.setDisable(true);
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
