@@ -1497,7 +1497,7 @@ public class pathfindingController {
     var loaderAni = new FXMLLoader(App.class.getResource("views/AnimatedPopOver.fxml"));
     windowAni.setContentNode(loaderAni.load());
     AnimatedPopOverController aniController = loaderAni.getController();
-    aniController.setTxtForPath(txtDir);
+    aniController.setTxtForPath(txtDir, nodePane);
     aniController.getThePath(p);
 
     final Point mouseLocationAni = MouseInfo.getPointerInfo().getLocation();
