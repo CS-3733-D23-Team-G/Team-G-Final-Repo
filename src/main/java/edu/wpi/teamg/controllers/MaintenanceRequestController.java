@@ -69,6 +69,9 @@ public class MaintenanceRequestController {
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
 
+  ObservableList<String> hourList;
+  ObservableList<String> minuteList;
+
   static String typeOfMaintain;
   static String specifiedMaintain;
 
@@ -105,6 +108,23 @@ public class MaintenanceRequestController {
     maintainDate.getValue();
     maintainTime.getText();
     maintainPhoneNumber.getText();
+
+
+    ArrayList<String> time_hour = new ArrayList<>();
+    int x = -1;
+    while (x < 24) {
+      x++;
+      time_hour.add("" + x);
+    }
+    hourList = FXCollections.observableArrayList(time_hour);
+
+    ArrayList<String> time_minute = new ArrayList<>();
+    int j = 0;
+    while (j < 60) {
+      time_minute.add("" + j);
+      j += 15;
+    }
+    minuteList = FXCollections.observableArrayList(time_minute);
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName =
