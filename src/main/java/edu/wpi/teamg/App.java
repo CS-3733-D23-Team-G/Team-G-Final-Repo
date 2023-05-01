@@ -432,6 +432,17 @@ public class App extends Application {
     //    window.show(getPrimaryStage(), mouseLoc.getX(), mouseLoc.getY());
   }
 
+  public static void totalRefresh() throws SQLException {
+    refresh();
+    mealRefresh();
+    confRefresh();
+    flowerRefresh();
+    fernsRefresh();
+    oSuppsRefresh();
+    maintainRefresh();
+    requestRefresh();
+  }
+
   public static void refresh() throws SQLException {
 
     nodeDAO = new NodeDAO();

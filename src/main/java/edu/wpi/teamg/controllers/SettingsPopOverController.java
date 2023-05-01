@@ -127,7 +127,7 @@ public class SettingsPopOverController {
           }
           App.setWhichDB(2);
           try {
-            App.refresh();
+            App.totalRefresh();
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -141,7 +141,7 @@ public class SettingsPopOverController {
           }
           App.setWhichDB(1);
           try {
-            App.refresh();
+            App.totalRefresh();
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
