@@ -51,14 +51,14 @@ public class InsertNodeController {
             Integer.parseInt(nYcoord.getText()),
             nFloor.getText(),
             nBuilding.getText());
-    LocationName loc = new LocationName(ln.getText(), ln.getText(), "HALL");
-    Date date = new Date(2023 - 01 - 01);
+    LocationName loc = new LocationName(ln.getText().toString(), ln.getText().toString(), "HALL");
+    Date date = Date.valueOf(App.getCurrentDate());
 
     Move move = new Move(Integer.parseInt(nID.getText()), loc.getLongName(), date);
 
-    nodeDAO.insert(node);
-    locationNameDAO.insert(loc);
-    moveDAO.insert(move);
+    App.nodeDAO.insert(node);
+    App.loc.insert(loc);
+    App.moveDAO.insert(move);
     App.refresh();
   }
 }
