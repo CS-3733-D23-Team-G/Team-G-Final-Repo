@@ -1,43 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import org.controlsfx.control.SearchableComboBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AddMoveController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="287.0" prefWidth="437.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AddMoveController">
    <children>
       <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER">
          <children>
-            <Label prefWidth="200.0" text="Location Name" />
-            <SearchableComboBox fx:id="moveLongName" prefHeight="25.0" prefWidth="202.0" />
+            <Label prefWidth="200.0" text="Location Name">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXFilterComboBox fx:id="moveLongName" minHeight="-Infinity" prefHeight="38.0" prefWidth="211.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="NodeID" />
-            <SearchableComboBox fx:id="moveNodeID" prefHeight="25.0" prefWidth="202.0" />
+            <Label prefWidth="200.0" text="NodeID">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXFilterComboBox fx:id="moveNodeID" floatMode="DISABLED" minHeight="-Infinity" prefHeight="38.0" prefWidth="210.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="Location Currently at NodeID" />
-            <TextField fx:id="foundLoc" prefHeight="25.0" prefWidth="201.0" />
+            <Label prefWidth="200.0" text="Location Currently at NodeID">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXTextField fx:id="foundLoc" floatMode="DISABLED" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="206.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </MFXTextField>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="Date of Move" />
-            <DatePicker fx:id="moveDate" prefHeight="25.0" prefWidth="202.0" />
+            <Label prefWidth="200.0" text="Date of Move">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXDatePicker fx:id="moveDate" prefHeight="38.0" prefWidth="206.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+      <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="434.0">
          <children>
-            <MFXButton fx:id="moveSub" text="Submit" />
+            <MFXButton fx:id="moveSub" minHeight="-Infinity" prefHeight="38.0" prefWidth="111.0" style="-fx-background-color: #a88b10; -fx-text-fill: white;" text="Submit">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXButton>
          </children>
       </HBox>
    </children>

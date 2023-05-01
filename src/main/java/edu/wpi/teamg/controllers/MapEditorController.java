@@ -80,9 +80,9 @@ public class MapEditorController {
 
   @FXML MFXToggleButton toggSn;
 
-  @FXML MFXButton messageButton;
+  @FXML ImageView messageButton;
 
-  @FXML MFXButton help;
+  @FXML ImageView help;
 
   @FXML MFXDatePicker mapEditDate;
 
@@ -1025,9 +1025,18 @@ public class MapEditorController {
     window.setArrowSize(0);
     AddMoveController controller = loader.getController();
     controller.moveSetter(moving);
+    controller.setWind(window);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    window.setOnHiding(
+        event -> {
+          if (playAnimation) {
+            completeAnimation("Move added.");
+            playAnimation = false;
+          }
+        });
   }
 
   public void deleteLocation() throws IOException, SQLException {
@@ -1160,6 +1169,14 @@ public class MapEditorController {
     controller.passOver(window);
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    window.setOnHiding(
+        event -> {
+          if (playAnimation) {
+            completeAnimation("Move deleted.");
+            playAnimation = false;
+          }
+        });
   }
 
   public void locPop() throws SQLException, IOException {
