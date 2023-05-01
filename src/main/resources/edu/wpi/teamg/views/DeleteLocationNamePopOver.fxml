@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import org.controlsfx.control.SearchableComboBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.DeleteLocationNameControllerPopOver">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="117.0" prefWidth="342.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.DeleteLocationNameControllerPopOver">
    <children>
       <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER">
          <children>
-            <Label prefWidth="200.0" text="Long Name" />
-            <SearchableComboBox fx:id="deleteLongName" prefHeight="25.0" prefWidth="202.0" />
+            <Label prefWidth="200.0" text="Long Name">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXFilterComboBox fx:id="deleteLongName" prefHeight="40.0" prefWidth="334.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+      <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
          <children>
-            <MFXButton fx:id="locDelete" text="Delete" />
+            <MFXButton fx:id="locDelete" prefHeight="31.0" prefWidth="99.0" style="-fx-background-color: #058869; -fx-text-fill: white;" text="Delete">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXButton>
          </children>
       </HBox>
    </children>
