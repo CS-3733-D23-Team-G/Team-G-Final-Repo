@@ -4,6 +4,7 @@ import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
 import java.sql.SQLException;
@@ -13,11 +14,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import org.controlsfx.control.PopOver;
-import org.controlsfx.control.SearchableComboBox;
 
 public class LocNamePopUpController {
   @FXML MFXTextField shortName;
-  @FXML SearchableComboBox longName;
+  @FXML MFXFilterComboBox longName;
   @FXML MFXTextField nType;
 
   @FXML MFXButton sub;
@@ -85,6 +85,7 @@ public class LocNamePopUpController {
     locationNameDAO.update(loc, "nodetype", nType.getText());
 
     wind.hide();
+    MapEditorController.playAnimation = true;
     App.refresh();
   }
 }

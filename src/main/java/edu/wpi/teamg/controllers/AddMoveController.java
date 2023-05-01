@@ -6,6 +6,9 @@ import edu.wpi.teamg.DAOs.MoveDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
 import edu.wpi.teamg.ORMClasses.Move;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,25 +18,25 @@ import java.util.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import org.controlsfx.control.SearchableComboBox;
+import org.controlsfx.control.PopOver;
 
 public class AddMoveController {
 
-  @FXML SearchableComboBox moveNodeID;
+  @FXML MFXFilterComboBox moveNodeID;
 
-  @FXML SearchableComboBox moveLongName;
+  @FXML MFXFilterComboBox moveLongName;
 
-  @FXML DatePicker moveDate;
+  @FXML MFXDatePicker moveDate;
 
   @FXML MFXButton moveSub;
 
-  @FXML TextField foundLoc;
+  @FXML MFXTextField foundLoc;
 
   ObservableList<String> longNameList;
 
   HashMap<Integer, Move> movin;
+
+  PopOver wind = new PopOver();
 
   public void initialize() throws SQLException {
     moveNodeID.setEditable(true);
@@ -61,6 +64,10 @@ public class AddMoveController {
                 setID();
               }
             });
+  }
+
+  public void setWind(PopOver window) {
+    this.wind = window;
   }
 
   public void longNodes() throws SQLException {
@@ -142,5 +149,7 @@ public class AddMoveController {
 
     moveDAO.insert(newMove);
     App.refresh();
+    MapEditorController.playAnimation = true;
+    wind.hide();
   }
 }

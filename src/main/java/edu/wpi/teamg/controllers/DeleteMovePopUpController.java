@@ -5,6 +5,7 @@ import edu.wpi.teamg.DAOs.MoveDAO;
 import edu.wpi.teamg.ORMClasses.LocationName;
 import edu.wpi.teamg.ORMClasses.Move;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.*;
@@ -13,13 +14,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javax.swing.*;
 import org.controlsfx.control.PopOver;
-import org.controlsfx.control.SearchableComboBox;
 
 public class DeleteMovePopUpController {
 
-  @FXML SearchableComboBox moveDelNodeID;
+  @FXML MFXFilterComboBox moveDelNodeID;
 
-  @FXML SearchableComboBox moveDel;
+  @FXML MFXFilterComboBox moveDel;
 
   @FXML MFXButton moveDelSub;
 
@@ -105,6 +105,7 @@ public class DeleteMovePopUpController {
 
     moveDAO.delete(moveToDelete);
 
+    MapEditorController.playAnimation = true;
     win.hide();
     App.refresh();
   }

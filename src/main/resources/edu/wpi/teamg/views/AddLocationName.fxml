@@ -6,30 +6,43 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AddLocationNameController">
    <children>
       <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER">
          <children>
-            <Label prefWidth="200.0" text="Short Name" />
+            <Label prefWidth="200.0" text="Short Name">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="locShortName" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="Long Name" />
+            <Label prefWidth="200.0" text="Long Name">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="locLongName" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="Node Type" />
+            <Label prefWidth="200.0" text="Node Type">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="locNodeType" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+      <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
          <children>
-            <MFXButton fx:id="locSub" text="Submit" />
+            <MFXButton fx:id="locSub" prefHeight="31.0" prefWidth="85.0" style="-fx-background-color: #058869; -fx-text-fill: white;" text="Submit">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXButton>
          </children>
       </HBox>
    </children>

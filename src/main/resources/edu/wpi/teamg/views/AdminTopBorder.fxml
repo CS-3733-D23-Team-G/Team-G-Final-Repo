@@ -106,12 +106,12 @@
                         <Insets top="40.0" />
                      </GridPane.margin>
                   </Line>
-                  <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="Form Status" GridPane.columnIndex="1">
+                  <Text disable="true" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="banner_text" text="My Requests" GridPane.columnIndex="1">
                      <font>
                         <Font name="Baskerville Old Face" size="30.0" />
                      </font>
                   </Text>
-                  <Line endX="172.5" startX="20.0" stroke="#f6bd38" strokeWidth="3.0" GridPane.columnIndex="1">
+                  <Line endX="191.87867736816406" startX="20.0" stroke="#f6bd38" strokeWidth="3.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets top="40.0" />
                      </GridPane.margin>

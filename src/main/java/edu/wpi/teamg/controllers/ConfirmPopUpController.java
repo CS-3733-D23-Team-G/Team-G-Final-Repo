@@ -36,6 +36,7 @@ public class ConfirmPopUpController {
         event -> {
           try {
             confirmUpdate();
+
           } catch (SQLException e) {
             throw new RuntimeException(e);
           }
@@ -82,6 +83,7 @@ public class ConfirmPopUpController {
     nodeDAO.update(potentialUpdate, "ycoord", Integer.parseInt(y2.getText()));
 
     refresh();
+    MapEditorController.playAnimation = true;
     window.hide();
   }
 
@@ -99,7 +101,7 @@ public class ConfirmPopUpController {
     //    //      }
     //    //    }
     //
-
+    MapEditorController.playAnimation = false;
     window.hide();
     //    controller.goToFloor2(map);
   }
