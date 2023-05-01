@@ -615,8 +615,18 @@ Popup
 .table-text {
     -fx-font-size: 20;
     -fx-pref-height: 40;
-    -fx-font-color: #000000;
-    -fx-alignment: center;
+    /*-fx-alignment: left;*/
+}
+
+.table-view .table-column .label{
+    -fx-font-size: 20;
+    -fx-alignment: left;
+    -fx-font-weight: 800;
+}
+
+.table-view .table-cell{
+    -fx-font-size: 15;
+    /*-fx-alignment: left;*/
 }
 
 .table-row-cell:odd{
