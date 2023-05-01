@@ -13,24 +13,24 @@ public class DBConnection {
   static Connection connection;
 
   public void setConnection(int db) {
-    if(db==1){
+    if (db == 1) {
       try {
         Class.forName("org.postgresql.Driver");
         connection =
-                DriverManager.getConnection(
-                        getDBCreds().get(0), getDBCreds().get(1), getDBCreds().get(2));
+            DriverManager.getConnection(
+                getDBCreds().get(0), getDBCreds().get(1), getDBCreds().get(2));
       } catch (SQLException e) {
         System.err.println("SQL Exception");
       } catch (ClassNotFoundException e) {
         throw new RuntimeException(e);
       }
       System.out.println("Connection is Set");
-    }else{
+    } else {
       try {
         Class.forName("org.postgresql.Driver");
         connection =
-                DriverManager.getConnection(
-                        getDBCreds().get(3), getDBCreds().get(4), getDBCreds().get(5));
+            DriverManager.getConnection(
+                getDBCreds().get(3), getDBCreds().get(4), getDBCreds().get(5));
       } catch (SQLException e) {
         System.err.println("SQL Exception");
       } catch (ClassNotFoundException e) {

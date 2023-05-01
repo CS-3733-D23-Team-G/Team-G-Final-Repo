@@ -229,7 +229,7 @@ public class RequestDAO implements DAO {
   }
 
   public static void updateRequestStatus(StatusTypeEnum newStatus, int reqid) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     String RequestSQL;
 

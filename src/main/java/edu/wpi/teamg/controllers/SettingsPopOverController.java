@@ -44,6 +44,15 @@ public class SettingsPopOverController {
         break;
     }
 
+    switch(App.getWhichDB()){
+        case 1:
+            clientSideCheckBox.setSelected(true);
+            break;
+        case 2:
+            awsCheckBox.setSelected(true);
+            break;
+    }
+
     date.setValue(App.pathfindingDate);
 
     ArrayList<String> locationArrayList = new ArrayList<String>(locationHash.values());
@@ -115,6 +124,7 @@ public class SettingsPopOverController {
           if (awsCheckBox.isSelected()) {
             clientSideCheckBox.setSelected(false);
           }
+          App.setWhichDB(2);
         });
 
     clientSideCheckBox.setOnAction(
@@ -123,6 +133,7 @@ public class SettingsPopOverController {
           if (clientSideCheckBox.isSelected()) {
             awsCheckBox.setSelected(false);
           }
+          App.setWhichDB(1);
         });
     date.setOnCommit(
         event -> {
@@ -133,7 +144,7 @@ public class SettingsPopOverController {
             Navigation.navigate(Screen.PATHFINDING_PAGE);
             App.bool = false;
           }
-          // if(Window.getWindows() == 2)// LLOlOL SORRY, NVM NOT SORRY fuck it just fix the date to
+          // if(Window.getWindows() == 2)
 
         });
   }

@@ -52,10 +52,7 @@ public class MoveDAO implements LocationMoveDao {
     db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
-    sql =
-        "update iteration4.move set "
-            + colName
-            + " = ? where nodeID=? AND longname=? AND Date=?";
+    sql = "update iteration4.move set " + colName + " = ? where nodeID=? AND longname=? AND Date=?";
     try {
       ps = db.getConnection().prepareStatement(sql);
       switch (colName) {
