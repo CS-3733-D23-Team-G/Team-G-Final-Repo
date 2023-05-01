@@ -96,6 +96,27 @@ public class MealRequestController {
 
   DAORepo dao = new DAORepo();
 
+  boolean isSelectedMealPane1;
+  boolean isSelectedMealPane2;
+  boolean isSelectedMealPane3;
+  boolean isSelectedMealPane4;
+  boolean isSelectedMealPane5;
+  boolean isSelectedMealPane6;
+
+  boolean isSelectedSnackPane1;
+  boolean isSelectedSnackPane2;
+  boolean isSelectedSnackPane3;
+  boolean isSelectedSnackPane4;
+  boolean isSelectedSnackPane5;
+  boolean isSelectedSnackPane6;
+
+  boolean isSelectedDrinkPane1;
+  boolean isSelectedDrinkPane2;
+  boolean isSelectedDrinkPane3;
+  boolean isSelectedDrinkPane4;
+  boolean isSelectedDrinkPane5;
+  boolean isSelectedDrinkPane6;
+
   @FXML
   public void initialize() throws SQLException {
     App.bool = false;
@@ -157,53 +178,6 @@ public class MealRequestController {
     employeeSearchDropdown.setItems(employeeList);
     locationSearchDropdown.setItems(locationList);
     checkFields.getText();
-
-    //    // Form Completion PopUp
-    //    //      AnchorPane rect = new AnchorPane();
-    //    rect.setLayoutX(325);
-    //    rect.setStyle(
-    //        "-fx-pref-width: 440; -fx-pref-height: 100; -fx-background-color: #d9d9d9;
-    // -fx-border-radius: 5; -fx-background-insets: 5; -fx-border-insets: 5; -fx-padding: 5;"
-    //            + "-fx-border-color: #000000;"
-    //            + "-fx-border-width: 3;");
-    //    rect.setLayoutY(800);
-    //
-    //    //      Text completionText = new Text("You Are All Set!");
-    //    completionText.setLayoutX(445);
-    //    completionText.setLayoutY(850);
-    //    completionText.setStyle(
-    //        "-fx-stroke: #000000;"
-    //            + "-fx-fill: #012D5A;"
-    //            + "-fx-font-size: 25;"
-    //            + "-fx-font-weight: 500;");
-    //
-    //    //      Text completionTextSecondRow = new Text("Conference Room Request Sent
-    // Successfully.");
-    //    completionTextSecondRow.setLayoutX(445);
-    //    completionTextSecondRow.setLayoutY(870);
-    //    completionTextSecondRow.setStyle(
-    //        "-fx-stroke: #000000;"
-    //            + "-fx-fill: #012D5A;"
-    //            + "-fx-font-size: 15;"
-    //            + "-fx-font-weight: 500;");
-    //
-    //    Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
-    //    ImageView completionImage = new ImageView(checkmarkImage);
-    //
-    //    completionImage.setFitHeight(120);
-    //    completionImage.setFitWidth(120);
-    //    completionImage.setLayoutX(320);
-    //    completionImage.setLayoutY(790);
-    //
-    //    rect.setOpacity(0.0);
-    //    completionImage.setOpacity(0.0);
-    //    completionText.setOpacity(0.0);
-    //    completionTextSecondRow.setOpacity(0.0);
-    //
-    //    forms.getChildren().add(rect);
-    //    forms.getChildren().add(completionText);
-    //    forms.getChildren().add(completionImage);
-    //    forms.getChildren().add(completionTextSecondRow);
   }
 
   public void MealPressed() {
@@ -232,42 +206,52 @@ public class MealRequestController {
     image5.setImage(taco);
     image6.setImage(sandwich);
 
-    //              Enumeration<String> keys = selectedPanes.keys();
-    //              while (keys.hasMoreElements()) {
-    //                String key = keys.nextElement();
-    //                System.out.println("Order Item: " + key + ", Num Selected: " +
-    // selectedPanes.get(key));
-    //              }
+    isSelectedMealPane1 = false;
+    isSelectedMealPane2 = false;
+    isSelectedMealPane3 = false;
+    isSelectedMealPane4 = false;
+    isSelectedMealPane5 = false;
+    isSelectedMealPane6 = false;
+
+    //    pane1.setStyle(
+    //        "-fx-border-color: #F6BD38;" + " -fx-border-width: 8px;" + " -fx-border-radius: 15;");
 
     pane1.setOnMouseClicked(
         event -> {
           System.out.println("pane 1 pressed");
           selectItems(text1);
+          isSelectedMealPane1 = selectPaneHighlight(pane1, isSelectedMealPane1);
+          System.out.println(isSelectedMealPane1);
         });
     pane2.setOnMouseClicked(
         event -> {
           System.out.println("pane 2 pressed");
           selectItems(text3);
+          isSelectedMealPane2 = selectPaneHighlight(pane2, isSelectedMealPane2);
         });
     pane3.setOnMouseClicked(
         event -> {
           System.out.println("pane 3 pressed");
           selectItems(text5);
+          isSelectedMealPane3 = selectPaneHighlight(pane3, isSelectedMealPane3);
         });
     pane4.setOnMouseClicked(
         event -> {
           System.out.println("pane 4 pressed");
           selectItems(text2);
+          isSelectedMealPane4 = selectPaneHighlight(pane4, isSelectedMealPane4);
         });
     pane5.setOnMouseClicked(
         event -> {
           System.out.println("pane 5 pressed");
           selectItems(text4);
+          isSelectedMealPane5 = selectPaneHighlight(pane5, isSelectedMealPane5);
         });
     pane6.setOnMouseClicked(
         event -> {
           System.out.println("pane 6 pressed");
           selectItems(text6);
+          isSelectedMealPane6 = selectPaneHighlight(pane6, isSelectedMealPane6);
         });
   }
 
@@ -296,35 +280,48 @@ public class MealRequestController {
     image5.setImage(smoothie);
     image6.setImage(tea);
 
+    isSelectedDrinkPane1 = false;
+    isSelectedDrinkPane2 = false;
+    isSelectedDrinkPane3 = false;
+    isSelectedDrinkPane4 = false;
+    isSelectedDrinkPane5 = false;
+    isSelectedDrinkPane6 = false;
+
     pane1.setOnMouseClicked(
         event -> {
           System.out.println("pane 1 pressed");
           selectItems(text1);
+          isSelectedDrinkPane1 = selectPaneHighlight(pane1, isSelectedDrinkPane1);
         });
     pane2.setOnMouseClicked(
         event -> {
           System.out.println("pane 2 pressed");
           selectItems(text3);
+          isSelectedDrinkPane2 = selectPaneHighlight(pane2, isSelectedDrinkPane2);
         });
     pane3.setOnMouseClicked(
         event -> {
           System.out.println("pane 3 pressed");
           selectItems(text5);
+          isSelectedDrinkPane3 = selectPaneHighlight(pane3, isSelectedDrinkPane3);
         });
     pane4.setOnMouseClicked(
         event -> {
           System.out.println("pane 4 pressed");
           selectItems(text2);
+          isSelectedDrinkPane4 = selectPaneHighlight(pane4, isSelectedDrinkPane4);
         });
     pane5.setOnMouseClicked(
         event -> {
           System.out.println("pane 5 pressed");
           selectItems(text4);
+          isSelectedDrinkPane5 = selectPaneHighlight(pane5, isSelectedDrinkPane5);
         });
     pane6.setOnMouseClicked(
         event -> {
           System.out.println("pane 6 pressed");
           selectItems(text6);
+          isSelectedDrinkPane6 = selectPaneHighlight(pane6, isSelectedDrinkPane6);
         });
   }
 
@@ -353,35 +350,48 @@ public class MealRequestController {
     image5.setImage(goldfish);
     image6.setImage(pretzels);
 
+    isSelectedSnackPane1 = false;
+    isSelectedSnackPane2 = false;
+    isSelectedSnackPane3 = false;
+    isSelectedSnackPane4 = false;
+    isSelectedSnackPane5 = false;
+    isSelectedSnackPane6 = false;
+
     pane1.setOnMouseClicked(
         event -> {
           System.out.println("pane 1 pressed");
           selectItems(text1);
+          isSelectedSnackPane1 = selectPaneHighlight(pane1, isSelectedSnackPane1);
         });
     pane2.setOnMouseClicked(
         event -> {
           System.out.println("pane 2 pressed");
           selectItems(text3);
+          isSelectedSnackPane2 = selectPaneHighlight(pane2, isSelectedSnackPane2);
         });
     pane3.setOnMouseClicked(
         event -> {
           System.out.println("pane 3 pressed");
           selectItems(text5);
+          isSelectedSnackPane3 = selectPaneHighlight(pane3, isSelectedSnackPane3);
         });
     pane4.setOnMouseClicked(
         event -> {
           System.out.println("pane 4 pressed");
           selectItems(text2);
+          isSelectedSnackPane4 = selectPaneHighlight(pane4, isSelectedSnackPane4);
         });
     pane5.setOnMouseClicked(
         event -> {
           System.out.println("pane 5 pressed");
           selectItems(text4);
+          isSelectedSnackPane5 = selectPaneHighlight(pane5, isSelectedSnackPane5);
         });
     pane6.setOnMouseClicked(
         event -> {
           System.out.println("pane 6 pressed");
           selectItems(text6);
+          isSelectedSnackPane6 = selectPaneHighlight(pane6, isSelectedSnackPane6);
         });
   }
 
@@ -497,46 +507,22 @@ public class MealRequestController {
         });
   }
 
-  //  public Hashtable<String, Integer> selectItems(Text text) {
-  //
-  //    // trying to implement contains
-  //    if (selectedPanes.size() > 0) {
-  //      Enumeration<String> e = selectedPanes.keys();
-  //      Boolean contains = false;
-  //      while (e.hasMoreElements()) {
-  //        String item = e.nextElement();
-  //        if (text.getText().equals(item)) {
-  //          contains = true;
-  //          System.out.println(
-  //              selectedPanes.replace(item, selectedPanes.get(item), selectedPanes.get(item) +
-  // 1));
-  //              break;
-  //        }
-  //        System.out.println("boolean is: " + contains);
-  //        if (contains == false) {
-  //          selectedPanes.put(text.getText(), 0);
-  //          System.out.println(text.getText() + "added bc contains was false");
-  //        }
-  //      }
-  //    }
-  //
-  //    if (selectedPanes.size() == 0) {
-  //      selectedPanes.put(text.getText(), 1);
-  //    }
-  //
-  //    Enumeration<String> e = selectedPanes.keys();
-  //    while (e.hasMoreElements()) {
-  //
-  //      // Getting the key of a particular entry
-  //      String key = e.nextElement();
-  //
-  //      // Print and display the Rank and Name
-  //      System.out.println("Item: " + key + "\t\t Num of times Selected: " +
-  // selectedPanes.get(key));
-  //    }
-  //
-  //    return selectedPanes;
-  //  }
+  public boolean selectPaneHighlight(Pane p, boolean b) {
+    String bool = String.valueOf(b);
+    switch (bool) {
+      case "true":
+        p.setStyle(
+            "-fx-border-color: #F6BD38;" + " -fx-border-width: 0px;" + " -fx-border-radius: 15;");
+        b = false;
+        break;
+      case "false":
+        p.setStyle(
+            "-fx-border-color: #F6BD38;" + " -fx-border-width: 8px;" + " -fx-border-radius: 15;");
+        b = true;
+        break;
+    }
+    return b;
+  }
 
   public void getOrderItems() {
     ArrayList<String> foods = new ArrayList<>();
@@ -657,3 +643,91 @@ public class MealRequestController {
     return;
   }
 }
+
+//    // Form Completion PopUp
+//    //      AnchorPane rect = new AnchorPane();
+//    rect.setLayoutX(325);
+//    rect.setStyle(
+//        "-fx-pref-width: 440; -fx-pref-height: 100; -fx-background-color: #d9d9d9;
+// -fx-border-radius: 5; -fx-background-insets: 5; -fx-border-insets: 5; -fx-padding: 5;"
+//            + "-fx-border-color: #000000;"
+//            + "-fx-border-width: 3;");
+//    rect.setLayoutY(800);
+//
+//    //      Text completionText = new Text("You Are All Set!");
+//    completionText.setLayoutX(445);
+//    completionText.setLayoutY(850);
+//    completionText.setStyle(
+//        "-fx-stroke: #000000;"
+//            + "-fx-fill: #012D5A;"
+//            + "-fx-font-size: 25;"
+//            + "-fx-font-weight: 500;");
+//
+//    //      Text completionTextSecondRow = new Text("Conference Room Request Sent
+// Successfully.");
+//    completionTextSecondRow.setLayoutX(445);
+//    completionTextSecondRow.setLayoutY(870);
+//    completionTextSecondRow.setStyle(
+//        "-fx-stroke: #000000;"
+//            + "-fx-fill: #012D5A;"
+//            + "-fx-font-size: 15;"
+//            + "-fx-font-weight: 500;");
+//
+//    Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
+//    ImageView completionImage = new ImageView(checkmarkImage);
+//
+//    completionImage.setFitHeight(120);
+//    completionImage.setFitWidth(120);
+//    completionImage.setLayoutX(320);
+//    completionImage.setLayoutY(790);
+//
+//    rect.setOpacity(0.0);
+//    completionImage.setOpacity(0.0);
+//    completionText.setOpacity(0.0);
+//    completionTextSecondRow.setOpacity(0.0);
+//
+//    forms.getChildren().add(rect);
+//    forms.getChildren().add(completionText);
+//    forms.getChildren().add(completionImage);
+//    forms.getChildren().add(completionTextSecondRow);
+
+//  public Hashtable<String, Integer> selectItems(Text text) {
+//
+//    // trying to implement contains
+//    if (selectedPanes.size() > 0) {
+//      Enumeration<String> e = selectedPanes.keys();
+//      Boolean contains = false;
+//      while (e.hasMoreElements()) {
+//        String item = e.nextElement();
+//        if (text.getText().equals(item)) {
+//          contains = true;
+//          System.out.println(
+//              selectedPanes.replace(item, selectedPanes.get(item), selectedPanes.get(item) +
+// 1));
+//              break;
+//        }
+//        System.out.println("boolean is: " + contains);
+//        if (contains == false) {
+//          selectedPanes.put(text.getText(), 0);
+//          System.out.println(text.getText() + "added bc contains was false");
+//        }
+//      }
+//    }
+//
+//    if (selectedPanes.size() == 0) {
+//      selectedPanes.put(text.getText(), 1);
+//    }
+//
+//    Enumeration<String> e = selectedPanes.keys();
+//    while (e.hasMoreElements()) {
+//
+//      // Getting the key of a particular entry
+//      String key = e.nextElement();
+//
+//      // Print and display the Rank and Name
+//      System.out.println("Item: " + key + "\t\t Num of times Selected: " +
+// selectedPanes.get(key));
+//    }
+//
+//    return selectedPanes;
+//  }

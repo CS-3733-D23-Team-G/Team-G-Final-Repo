@@ -291,7 +291,8 @@
                                                       <Insets bottom="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </Pane>
-                                             </children></VBox>
+                                             </children>
+                                          </VBox>
                                        </children>
                                     </HBox>
                                  </children>

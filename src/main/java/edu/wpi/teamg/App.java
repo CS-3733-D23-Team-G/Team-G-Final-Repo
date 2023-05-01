@@ -65,7 +65,6 @@ public class App extends Application {
 
   public static LocalDate pathfindingDate = LocalDate.of(2023, 1, 1);
 
-
   // MEAL IMAGES
   public static Image checkmarkImage =
       new Image("edu/wpi/teamg/Images/blueCheckMark-removebg-preview(1).png");
@@ -105,7 +104,6 @@ public class App extends Application {
   public static Image smoothie = new Image("edu/wpi/teamg/Images/smoothie.jpg");
 
   public static Image tea = new Image("edu/wpi/teamg/Images/tea.jpg");
-
 
   public static DAORepo daoRepo = new DAORepo();
   public static EdgeDAO edgeDao = new EdgeDAO();
