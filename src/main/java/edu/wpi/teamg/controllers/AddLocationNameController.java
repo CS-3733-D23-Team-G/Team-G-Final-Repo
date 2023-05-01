@@ -7,6 +7,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
+import org.controlsfx.control.PopOver;
 
 public class AddLocationNameController {
 
@@ -17,6 +18,8 @@ public class AddLocationNameController {
   @FXML MFXTextField locNodeType;
 
   @FXML MFXButton locSub;
+
+  PopOver wind = new PopOver();
 
   public void initialize() {
     locShortName.setEditable(true);
@@ -33,6 +36,10 @@ public class AddLocationNameController {
         });
   }
 
+  public void setWind(PopOver window) {
+    this.wind = window;
+  }
+
   public void addLocName() throws SQLException {
 
     LocationNameDAO locationNameDAO = new LocationNameDAO();
@@ -42,6 +49,8 @@ public class AddLocationNameController {
 
     LocationName locName = new LocationName(shortName, longName, nodeType);
     locationNameDAO.insert(locName);
+    MapEditorController.playAnimation = true;
+    wind.hide();
     App.refresh();
   }
 }

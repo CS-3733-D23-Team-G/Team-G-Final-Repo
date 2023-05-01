@@ -8,6 +8,7 @@ import edu.wpi.teamg.ORMClasses.LocationName;
 import edu.wpi.teamg.ORMClasses.Move;
 import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,14 +17,16 @@ import java.util.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import org.controlsfx.control.SearchableComboBox;
+import org.controlsfx.control.PopOver;
 
 public class DeleteLocationNameControllerPopOver {
 
-  @FXML SearchableComboBox deleteLongName;
+  @FXML MFXFilterComboBox deleteLongName;
   @FXML MFXButton locDelete;
 
   ObservableList<String> longNameList;
+
+  PopOver wind = new PopOver();
 
   public void initialize() throws SQLException {
 
@@ -36,6 +39,10 @@ public class DeleteLocationNameControllerPopOver {
             throw new RuntimeException(e);
           }
         });
+  }
+
+  public void setWind(PopOver window) {
+    this.wind = window;
   }
 
   public void longNodes() throws SQLException {
@@ -85,6 +92,8 @@ public class DeleteLocationNameControllerPopOver {
     }
 
     locationNameDAO.delete(del);
+    MapEditorController.playAnimation = true;
+    wind.hide();
     App.refresh();
   }
 }

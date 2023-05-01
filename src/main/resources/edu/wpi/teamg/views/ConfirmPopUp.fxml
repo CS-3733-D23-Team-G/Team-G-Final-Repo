@@ -6,39 +6,67 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="400.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.ConfirmPopUpController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="400.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.ConfirmPopUpController">
    <children>
       <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER" />
-      <HBox alignment="CENTER" prefWidth="200.0">
+      <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="368.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="323.0" text="Are you sure you would like to make the following changes?" />
+            <Label prefHeight="21.0" prefWidth="282.0" text="Are you sure you want to move this node?" textAlignment="CENTER">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="19.0" text="X: " />
+            <Label prefHeight="17.0" prefWidth="19.0" text="X: ">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="67.0" fx:id="x1" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="91.0" text="To" />
-            <Label prefHeight="17.0" prefWidth="17.0" text="X:" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="91.0" text="To">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label prefHeight="17.0" prefWidth="17.0" text="X:">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="67.0" fx:id="x2" />
          </children></HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="19.0" text="Y: " />
+            <Label prefHeight="17.0" prefWidth="19.0" text="Y: ">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="y1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="67.0" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="91.0" text="To" />
-            <Label prefHeight="17.0" prefWidth="17.0" text="Y:" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="91.0" text="To">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label prefHeight="17.0" prefWidth="17.0" text="Y:">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="y2" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="67.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+      <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <MFXButton fx:id="cancel" text="Cancel" />
-            <MFXButton fx:id="confirm" text="Yes">
+            <MFXButton fx:id="cancel" style="-fx-background-color: #d9d9d9;" text="Cancel">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXButton>
+            <MFXButton fx:id="confirm" prefHeight="31.0" prefWidth="69.0" style="-fx-background-color: #118AB2; -fx-text-fill: white;" text="Yes">
                <HBox.margin>
-                  <Insets left="275.0" />
+                  <Insets left="200.0" />
                </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </MFXButton>
          </children>
       </HBox>
