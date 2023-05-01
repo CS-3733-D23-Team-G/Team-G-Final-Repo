@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -26,7 +25,7 @@
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" stylesheets="@style.css">
                     <children>
 
-                        <AnchorPane layoutX="100.0" layoutY="92.0" maxHeight="780.0" maxWidth="776.0" prefHeight="780.0" prefWidth="776.0" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="71.0" AnchorPane.topAnchor="92.0">
+                        <AnchorPane layoutX="100.0" layoutY="92.0" maxHeight="780.0" maxWidth="776.0" prefHeight="780.0" prefWidth="776.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
 
                             <styleClass>
                                 <String fx:value="widget_background" />
@@ -34,11 +33,11 @@
                             </styleClass>
                             <children>
 
-                                <HBox prefHeight="764.0" prefWidth="760.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <HBox prefHeight="780.0" prefWidth="757.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <VBox prefHeight="200.0" prefWidth="198.0" styleClass="mealLocationNotes_vbox">
                                             <children>
-                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Recipient">
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Department">
                                                     <font>
                                                         <Font size="22.0" />
                                                     </font>
@@ -46,7 +45,7 @@
                                                         <Insets bottom="5.0" top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                                <MFXTextField fx:id="maintainRecipient" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                                <MFXTextField fx:id="maintainRecipient" floatMode="DISABLED" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                                     <VBox.margin>
                                                         <Insets right="15.0" top="15.0" />
                                                     </VBox.margin>
@@ -59,7 +58,7 @@
                                                         <Insets bottom="5.0" top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                    <MFXFilterComboBox fx:id="locationSearchDropdown" maxHeight="63.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="285.0" styleClass="requestTextBox_MFX">
+                                    <MFXFilterComboBox fx:id="locationSearchDropdown" floatMode="DISABLED" maxHeight="63.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="285.0" styleClass="requestTextBox_MFX">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
@@ -72,9 +71,9 @@
                                           <Insets top="50.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <MFXTextField fx:id="maintainPhoneNumber" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
+                                    <MFXTextField fx:id="maintainPhoneNumber" floatMode="DISABLED" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox">
                                        <VBox.margin>
-                                          <Insets top="15.0" />
+                                          <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
                                     </MFXTextField>
                                             </children>
@@ -107,7 +106,7 @@
                                                 </Text>
                                     <HBox prefHeight="70.0" prefWidth="298.0">
                                        <children>
-                                          <MFXFilterComboBox fx:id="hour" prefHeight="43.0" prefWidth="69.0" styleClass="requestTextBox_MFX">
+                                          <MFXFilterComboBox fx:id="hour" floatMode="DISABLED" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="50.0" styleClass="selectHour">
                                              <HBox.margin>
                                                 <Insets top="15.0" />
                                              </HBox.margin>
@@ -117,12 +116,12 @@
                                                 <Font size="48.0" />
                                              </font>
                                              <HBox.margin>
-                                                <Insets left="15.0" />
+                                                <Insets left="10.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <MFXFilterComboBox fx:id="minutes" styleClass="requestTextBox_MFX">
+                                          <MFXFilterComboBox fx:id="minutes" floatMode="DISABLED" prefWidth="207.0" styleClass="requestTextBox_MFX">
                                              <HBox.margin>
-                                                <Insets left="15.0" top="15.0" />
+                                                <Insets left="10.0" right="15.0" top="15.0" />
                                              </HBox.margin>
                                           </MFXFilterComboBox>
                                        </children>
@@ -135,7 +134,7 @@
                                                         <Insets bottom="5.0" top="50.0" />
                                                     </VBox.margin>
                                                 </Text>
-                                    <MFXFilterComboBox fx:id="employeeSearchDropdown" maxHeight="63.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="315.0" styleClass="requestTextBox_MFX">
+                                    <MFXFilterComboBox fx:id="employeeSearchDropdown" floatMode="DISABLED" maxHeight="63.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="315.0" styleClass="requestTextBox_MFX">
                                        <VBox.margin>
                                           <Insets right="15.0" top="15.0" />
                                        </VBox.margin>
@@ -179,16 +178,13 @@
                 </AnchorPane>
                 <AnchorPane fx:id="forms" prefHeight="979.0" prefWidth="200.0" styleClass="half_bottom_page" stylesheets="@style.css">
                <children>
-                  <AnchorPane layoutX="97.0" layoutY="77.0" maxHeight="780.0" maxWidth="776.0" prefHeight="780.0" prefWidth="776.0" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="97.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="92.0">
+                  <AnchorPane layoutX="97.0" layoutY="77.0" maxHeight="780.0" maxWidth="776.0" prefHeight="780.0" prefWidth="776.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <styleClass>
                         <String fx:value="widget_background" />
                         <String fx:value="widget_homepage_pair" />
                      </styleClass>
                      <children>
-                        <VBox layoutX="-4.0" layoutY="25.0" prefHeight="790.0" prefWidth="771.0" AnchorPane.bottomAnchor="-35.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="25.0">
-                           <padding>
-                              <Insets left="50.0" right="25.0" />
-                           </padding>
+                        <VBox alignment="CENTER" layoutX="-4.0" layoutY="25.0" prefHeight="780.0" prefWidth="766.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="56.0" prefWidth="698.0">
                                  <children>
@@ -197,7 +193,6 @@
                                           <Font size="22.0" />
                                        </font>
                                     </Text>
-                                    <Line endX="70.94996643066406" layoutX="116.0" layoutY="47.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="371.0" prefWidth="685.0">
@@ -252,7 +247,7 @@
                                                             <Insets left="86.0" top="25.0" />
                                                          </HBox.margin>
                                                       </MFXCheckbox>
-                                                      <MFXCheckbox fx:id="glass" text="Glass\Window Repair" textFill="WHITE">
+                                                      <MFXCheckbox fx:id="glass" text="Glass/Window Repair" textFill="WHITE">
                                                          <font>
                                                             <Font size="24.0" />
                                                          </font>
@@ -308,7 +303,7 @@
                                                             <Insets left="82.0" top="25.0" />
                                                          </HBox.margin>
                                                       </MFXCheckbox>
-                                                      <MFXCheckbox fx:id="airCond" text="Air Conditoing" textFill="WHITE">
+                                                      <MFXCheckbox fx:id="airCond" text="Air Conditioning" textFill="WHITE">
                                                          <font>
                                                             <Font size="24.0" />
                                                          </font>
@@ -380,17 +375,20 @@
                                     </MFXScrollPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="44.0" prefWidth="724.0">
+                              <AnchorPane prefHeight="169.0" prefWidth="730.0">
                                  <children>
-                                    <TextArea fx:id="finalTreeLevel" layoutX="17.0" layoutY="41.0" prefHeight="152.0" prefWidth="643.0" />
-                                    <Text fx:id="Problemdes" fill="WHITE" layoutX="3.0" layoutY="25.8984375" strokeType="OUTSIDE" strokeWidth="0.0" text=" Please describe your problem or request " AnchorPane.bottomAnchor="190.078125">
+                                    <Text fx:id="Problemdes" fill="WHITE" layoutX="3.0" layoutY="-2.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Please describe your problem or request: " wrappingWidth="445.88671875">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
                                     </Text>
+                                    <TextArea fx:id="finalTreeLevel" layoutY="15.0" minHeight="-Infinity" prefHeight="226.0" prefWidth="696.0" styleClass="notes" wrapText="true" />
                                  </children>
                               </AnchorPane>
                            </children>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
                         </VBox>
                      </children>
                   </AnchorPane>

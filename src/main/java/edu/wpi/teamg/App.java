@@ -66,7 +66,8 @@ public class App extends Application {
   public static LocalDate pathfindingDate = LocalDate.of(2023, 1, 1);
 
   // MEAL IMAGES
-  public static Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
+  public static Image checkmarkImage =
+      new Image("edu/wpi/teamg/Images/blueCheckMark-removebg-preview(1).png");
 
   public static Image frenchFries = new Image("edu/wpi/teamg/Images/frenchfries.jpg");
 

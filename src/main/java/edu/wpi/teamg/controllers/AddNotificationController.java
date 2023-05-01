@@ -19,7 +19,6 @@ import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -76,7 +75,7 @@ public class AddNotificationController {
     notifSubmit.setOnAction(
         event -> {
           try {
-            completeAnimation();
+            // completeAnimation("Notification sent!");
             storeNotificationValues();
           } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -100,7 +99,6 @@ public class AddNotificationController {
               } else {
                 selectAll.setSelected(false);
                 dismissible.setSelected(true);
-                notifRecipients.getSelectionModel().clearSelection();
               }
             });
 
@@ -129,7 +127,7 @@ public class AddNotificationController {
         || notifHeader.equals("")) {
       try {
         storeNotificationValues();
-        completeAnimation();
+        completeAnimation("Notification sent!");
         clearNotif();
       } catch (SQLException e) {
         throw new RuntimeException(e);
@@ -193,21 +191,19 @@ public class AddNotificationController {
     notifHeader.setText("");
   }
 
-  public void completeAnimation() {
+  public void completeAnimation(String message) {
 
     // Form Completion PopUp
     AnchorPane rect = new AnchorPane();
-    rect.setLayoutX(325);
+    rect.setLayoutX(500);
     rect.setStyle(
-        "-fx-pref-width: 440; -fx-pref-height: 100; -fx-background-color: #d9d9d9; -fx-border-radius: 5; -fx-background-insets: 5; -fx-border-insets: 5; -fx-padding: 5;"
-            + "-fx-border-color: #000000;"
-            + "-fx-border-width: 3;");
+        "-fx-pref-width: 400; -fx-pref-height: 100; -fx-background-color: #97E198; -fx-background-radius: 10");
     rect.setLayoutY(800);
     rect.toFront();
 
     Text completionText = new Text("You Are All Set!");
-    completionText.setLayoutX(445);
-    completionText.setLayoutY(850);
+    completionText.setLayoutX(625);
+    completionText.setLayoutY(845);
     completionText.setStyle(
         "-fx-stroke: #000000;"
             + "-fx-fill: #012D5A;"
@@ -215,23 +211,23 @@ public class AddNotificationController {
             + "-fx-font-weight: 500;");
     completionText.toFront();
 
-    Text completionTextSecondRow = new Text("Notification Successfully Sent.");
-    completionTextSecondRow.setLayoutX(445);
-    completionTextSecondRow.setLayoutY(870);
+    Text completionTextSecondRow = new Text(message);
+    completionTextSecondRow.setLayoutX(625);
+    completionTextSecondRow.setLayoutY(875);
     completionTextSecondRow.setStyle(
-        "-fx-stroke: #000000;"
+        "-fx-stroke: #404040;"
             + "-fx-fill: #012D5A;"
-            + "-fx-font-size: 15;"
+            + "-fx-font-size: 20;"
             + "-fx-font-weight: 500;");
     completionTextSecondRow.toFront();
 
-    Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
-    ImageView completionImage = new ImageView(checkmarkImage);
+    // Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
+    ImageView completionImage = new ImageView(App.checkmarkImage);
 
-    completionImage.setFitHeight(120);
-    completionImage.setFitWidth(120);
-    completionImage.setLayoutX(320);
-    completionImage.setLayoutY(790);
+    completionImage.setFitHeight(50);
+    completionImage.setFitWidth(50);
+    completionImage.setLayoutX(525);
+    completionImage.setLayoutY(825);
     completionImage.toFront();
 
     rect.setOpacity(0.0);
@@ -244,19 +240,19 @@ public class AddNotificationController {
     forms.getChildren().add(completionImage);
     forms.getChildren().add(completionTextSecondRow);
 
-    FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(1), rect);
+    FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(0.5), rect);
     fadeIn1.setFromValue(0.0);
     fadeIn1.setToValue(1.0);
 
-    FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(1), completionImage);
+    FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(0.5), completionImage);
     fadeIn2.setFromValue(0.0);
     fadeIn2.setToValue(1.0);
 
-    FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(1), completionText);
+    FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(0.5), completionText);
     fadeIn3.setFromValue(0.0);
     fadeIn3.setToValue(1.0);
 
-    FadeTransition fadeIn4 = new FadeTransition(Duration.seconds(1), completionTextSecondRow);
+    FadeTransition fadeIn4 = new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
     fadeIn4.setFromValue(0.0);
     fadeIn4.setToValue(1.0);
 
@@ -267,24 +263,24 @@ public class AddNotificationController {
 
     parallelTransition.setOnFinished(
         (event) -> {
-          FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(1), rect);
-          fadeOut1.setDelay(Duration.seconds(3));
+          FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(0.5), rect);
+          fadeOut1.setDelay(Duration.seconds(1.5));
           fadeOut1.setFromValue(1.0);
           fadeOut1.setToValue(0.0);
 
-          FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(1), completionImage);
-          fadeOut2.setDelay(Duration.seconds(3));
+          FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(0.5), completionImage);
+          fadeOut2.setDelay(Duration.seconds(1.5));
           fadeOut2.setFromValue(1.0);
           fadeOut2.setToValue(0.0);
 
-          FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(1), completionText);
-          fadeOut3.setDelay(Duration.seconds(3));
+          FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(0.5), completionText);
+          fadeOut3.setDelay(Duration.seconds(1.5));
           fadeOut3.setFromValue(1.0);
           fadeOut3.setToValue(0.0);
 
           FadeTransition fadeOut4 =
-              new FadeTransition(Duration.seconds(1), completionTextSecondRow);
-          fadeOut4.setDelay(Duration.seconds(3));
+              new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
+          fadeOut4.setDelay(Duration.seconds(1.5));
           fadeOut4.setFromValue(1.0);
           fadeOut4.setToValue(0.0);
 
