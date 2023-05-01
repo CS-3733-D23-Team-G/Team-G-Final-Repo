@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,42 +16,24 @@
                <children>
                   <VBox layoutY="231.0" prefHeight="520.0" prefWidth="962.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="230.0">
                      <children>
-                        <HBox prefHeight="260.0" prefWidth="200.0">
+                        <HBox prefHeight="533.0" prefWidth="962.0">
                            <children>
-                              <MFXButton fx:id="snake" prefHeight="202.0" prefWidth="199.0" text="Snake Button">
+                              <ImageView fx:id="snake" fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/SnakeBoxArt.jpeg" />
+                                 </image>
                                  <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
+                                    <Insets left="150.0" top="30.0" />
                                  </HBox.margin>
-                              </MFXButton>
-                              <MFXButton fx:id="ticTacToe" prefHeight="202.0" prefWidth="199.0" text="TicTacToe Button">
+                              </ImageView>
+                              <ImageView fx:id="ticTacToe" fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
+                                    <Insets left="150.0" top="30.0" />
                                  </HBox.margin>
-                              </MFXButton>
-                              <MFXButton fx:id="pong" prefHeight="202.0" prefWidth="199.0" text="Pong">
-                                 <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
-                                 </HBox.margin>
-                              </MFXButton>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="260.0" prefWidth="200.0">
-                           <children>
-                              <MFXButton prefHeight="202.0" prefWidth="199.0" text="Button">
-                                 <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
-                                 </HBox.margin>
-                              </MFXButton>
-                              <MFXButton prefHeight="202.0" prefWidth="199.0" text="Button">
-                                 <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
-                                 </HBox.margin>
-                              </MFXButton>
-                              <MFXButton prefHeight="202.0" prefWidth="199.0" text="Button">
-                                 <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
-                                 </HBox.margin>
-                              </MFXButton>
+                                 <image>
+                                    <Image url="@../Images/TicTacToeBoxArt.jpg" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </HBox>
                      </children>
@@ -64,42 +47,24 @@
                <children>
                   <VBox layoutY="231.0" prefHeight="520.0" prefWidth="962.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0">
                      <children>
-                        <HBox prefHeight="260.0" prefWidth="200.0">
+                        <HBox prefHeight="598.0" prefWidth="962.0">
                            <children>
-                              <MFXButton fx:id="pac" prefHeight="202.0" prefWidth="199.0" text="Pacman">
+                              <ImageView fx:id="pac" fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/PacmanBoxArt.png" />
+                                 </image>
                                  <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
+                                    <Insets left="80.0" top="30.0" />
                                  </HBox.margin>
-                              </MFXButton>
-                              <MFXButton prefHeight="202.0" prefWidth="199.0" text="Button">
+                              </ImageView>
+                              <ImageView fx:id="pong" fitHeight="400.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
+                                    <Insets left="150.0" top="30.0" />
                                  </HBox.margin>
-                              </MFXButton>
-                              <MFXButton prefHeight="202.0" prefWidth="199.0" text="Button">
-                                 <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
-                                 </HBox.margin>
-                              </MFXButton>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="260.0" prefWidth="200.0">
-                           <children>
-                              <MFXButton prefHeight="202.0" prefWidth="199.0" text="Button">
-                                 <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
-                                 </HBox.margin>
-                              </MFXButton>
-                              <MFXButton prefHeight="202.0" prefWidth="199.0" text="Button">
-                                 <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
-                                 </HBox.margin>
-                              </MFXButton>
-                              <MFXButton prefHeight="202.0" prefWidth="199.0" text="Button">
-                                 <HBox.margin>
-                                    <Insets left="100.0" top="30.0" />
-                                 </HBox.margin>
-                              </MFXButton>
+                                 <image>
+                                    <Image url="@../Images/PongBoxArt.jpg" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </HBox>
                      </children>

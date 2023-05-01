@@ -1,14 +1,21 @@
 package edu.wpi.teamg.controllers;
 
-import io.github.palexdev.materialfx.controls.MFXButton;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class KidsGamePageController {
-  @FXML MFXButton snake;
-  @FXML MFXButton ticTacToe;
-  @FXML MFXButton pong;
-  @FXML MFXButton pac;
+
+  Image pacBoxArt = new Image("edu/wpi/teamg/Images/PacmanBoxArt.png");
+  Image pongBoxArt = new Image("edu/wpi/teamg/Images/SouthArrow.png");
+  Image snakeBoxArt = new Image("edu/wpi/teamg/Images/SnakeBoxArt.jpeg");
+  Image tttBoxArt = new Image("edu/wpi/teamg/Images/TicTacToeBoxArt.jpg");
+
+  @FXML ImageView snake = new ImageView(snakeBoxArt);
+  @FXML ImageView ticTacToe = new ImageView(tttBoxArt);
+  @FXML ImageView pong = new ImageView(pongBoxArt);
+  @FXML ImageView pac = new ImageView(pacBoxArt);
 
   @FXML
   public void initialize() throws SQLException {

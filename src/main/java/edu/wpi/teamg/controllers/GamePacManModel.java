@@ -95,19 +95,19 @@ public class GamePacManModel extends JPanel implements ActionListener {
 
   public void showIntroScreen(Graphics2D g2d) {
     String start = "Press SPACE to start";
-    g2d.setColor(Color.yellow);
+    g2d.setColor(new Color(246, 189, 56));
     g2d.drawString(start, SCREEN_SIZE / 4, 150);
   }
 
   public void drawScore(Graphics2D g2d) {
     g2d.setFont(smallFont);
-    g2d.setColor(new Color(5, 181, 79));
+    g2d.setColor(new Color(246, 189, 56));
     String s = "Score: " + score;
     g2d.drawString(s, SCREEN_SIZE / 2 + 96, SCREEN_SIZE + 16);
 
     for (int i = 0; i < lives; i++) {
       // g2d.drawImage(heart, i * 28 + 8, SCREEN_SIZE + 1, this);
-      g2d.setColor(Color.red);
+      g2d.setColor(new Color(246, 189, 56));
       g2d.drawOval(i * 28 + 8, SCREEN_SIZE + 7, BLOCK_SIZE - 7, BLOCK_SIZE - 7);
     }
   }
@@ -312,7 +312,7 @@ public class GamePacManModel extends JPanel implements ActionListener {
 
   public void drawGhost(Graphics2D g2d, int x, int y) {
     // g2d.drawImage(ghost, x, y, this);
-    g2d.setColor(new Color(217, 217, 217));
+    g2d.setColor(new Color(6, 214, 160));
     g2d.fillRect(x, y, BLOCK_SIZE, BLOCK_SIZE);
   }
 
@@ -388,7 +388,7 @@ public class GamePacManModel extends JPanel implements ActionListener {
     for (y = 0; y < SCREEN_SIZE; y += BLOCK_SIZE) {
       for (x = 0; x < SCREEN_SIZE; x += BLOCK_SIZE) {
 
-        g2d.setColor(new Color(0, 72, 251));
+        g2d.setColor(new Color(217, 217, 217));
         g2d.setStroke(new BasicStroke(5));
 
         if ((levelData[i] == 0)) {

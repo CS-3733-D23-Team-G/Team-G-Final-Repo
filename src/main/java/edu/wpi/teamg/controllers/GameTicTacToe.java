@@ -25,7 +25,7 @@ public class GameTicTacToe implements ActionListener {
     frame.setLocationRelativeTo(null);
 
     textfield.setBackground(new Color(25, 25, 25));
-    textfield.setForeground(new Color(25, 255, 0));
+    textfield.setForeground(new Color(246, 189, 56));
     textfield.setFont(new Font("Poppins", Font.BOLD, 75));
     textfield.setHorizontalAlignment(JLabel.CENTER);
     textfield.setText("Tic-Tac-Toe");
@@ -58,7 +58,7 @@ public class GameTicTacToe implements ActionListener {
       if (e.getSource() == buttons[i]) {
         if (player1_turn) {
           if (buttons[i].getText() == "") {
-            buttons[i].setForeground(new Color(255, 0, 0));
+            buttons[i].setForeground(new Color(246, 189, 56));
             buttons[i].setText("X");
             player1_turn = false;
             textfield.setText("O's Turn");
@@ -66,7 +66,7 @@ public class GameTicTacToe implements ActionListener {
           }
         } else {
           if (buttons[i].getText() == "") {
-            buttons[i].setForeground(new Color(0, 0, 255));
+            buttons[i].setForeground(new Color(1, 45, 90));
             buttons[i].setText("O");
             player1_turn = true;
             textfield.setText("X's Turn");
