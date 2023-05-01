@@ -20,7 +20,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -36,31 +35,40 @@ public class MaintenanceRequestController {
   @FXML MFXDatePicker maintainDate;
 
   // TextFields
-  @FXML MFXTextField maintainTime;
 
   @FXML MFXTextField maintainRecipient;
 
   @FXML MFXTextField maintainPhoneNumber;
 
-  @FXML MFXCheckbox custodialCheck;
-  @FXML MFXCheckbox technologicalCheck;
-  @FXML MFXCheckbox mechanicalCheck;
-  @FXML MFXCheckbox checkTree1;
-  @FXML MFXCheckbox checkTree2;
-  @FXML MFXCheckbox checkTree3;
-  @FXML MFXCheckbox checkTree4;
-
-  @FXML Line lineTree1;
-  @FXML Text textTree1;
-  @FXML Line lineTree2;
-  @FXML Text textTree2;
+  @FXML MFXCheckbox electrical;
+  @FXML MFXCheckbox waste;
+  @FXML MFXCheckbox roof;
+  @FXML MFXCheckbox move;
+  @FXML MFXCheckbox floor;
+  @FXML MFXCheckbox glass;
+  @FXML MFXCheckbox paint;
+  @FXML MFXCheckbox custodial;
+  @FXML MFXCheckbox keyandlock;
+  @FXML MFXCheckbox heat;
+  @FXML MFXCheckbox ventilation;
+  @FXML MFXCheckbox airCond;
+  @FXML MFXCheckbox recycle;
+  @FXML MFXCheckbox officeSer;
+  @FXML MFXCheckbox other;
+  @FXML MFXCheckbox elevator;
+  @FXML MFXCheckbox pest;
+  @FXML MFXCheckbox appliance;
 
   @FXML TextArea finalTreeLevel;
+
+  @FXML Text Problemdes;
 
   @FXML AnchorPane forms;
 
   @FXML MFXFilterComboBox locationSearchDropdown;
   @FXML MFXFilterComboBox employeeSearchDropdown;
+  @FXML MFXFilterComboBox hour;
+  @FXML MFXFilterComboBox minutes;
   @FXML Label checkFields;
   @FXML Line assignToLine;
   @FXML Text assignToText;
@@ -68,15 +76,40 @@ public class MaintenanceRequestController {
 
   ObservableList<String> locationList;
   ObservableList<String> employeeList;
+  ObservableList<String> hourList;
+  ObservableList<String> minuteList;
 
   static String typeOfMaintain;
   static String specifiedMaintain;
 
   DAORepo dao = new DAORepo();
+  private MFXCheckbox[] checkbox;
+  private boolean somethingSelected = false;
 
   @FXML
   public void initialize() throws SQLException {
-    App.bool = false;
+
+    checkbox =
+        new MFXCheckbox[] {
+          electrical,
+          waste,
+          roof,
+          move,
+          floor,
+          glass,
+          paint,
+          custodial,
+          keyandlock,
+          heat,
+          ventilation,
+          airCond,
+          recycle,
+          officeSer,
+          other,
+          elevator,
+          pest,
+          appliance
+        };
     maintainSubmitButton.setOnMouseClicked(
         event -> {
           allDataFilled();
@@ -89,22 +122,33 @@ public class MaintenanceRequestController {
     }
 
     checkFields.setVisible(false);
+    finalTreeLevel.setVisible(false);
+    Problemdes.setVisible(false);
 
-    custodialCheck.setOnAction(event -> checkBoxTreeLv1("Custodial"));
-    mechanicalCheck.setOnAction(event -> checkBoxTreeLv1("Mechanical"));
-    technologicalCheck.setOnAction(event -> checkBoxTreeLv1("Technological"));
-    checkTree1.setOnAction(event -> checkBoxTreeLv2("1"));
-    checkTree2.setOnAction(event -> checkBoxTreeLv2("2"));
-    checkTree3.setOnAction(event -> checkBoxTreeLv2("3"));
-    checkTree4.setOnAction(event -> checkBoxTreeLv2("4"));
-    ;
-
+    for (MFXCheckbox box : checkbox) {
+      box.setOnAction(event -> setString(box.getText()));
+    }
     maintainClearButton.setOnAction(event -> clearAllData());
     maintainRecipient.getText();
     // mealFoodChoice.setItems(foodList);
     maintainDate.getValue();
-    maintainTime.getText();
     maintainPhoneNumber.getText();
+
+    ArrayList<String> time_hour = new ArrayList<>();
+    int x = -1;
+    while (x < 24) {
+      x++;
+      time_hour.add("" + x);
+    }
+    hourList = FXCollections.observableArrayList(time_hour);
+
+    ArrayList<String> time_minute = new ArrayList<>();
+    int j = 0;
+    while (j < 60) {
+      time_minute.add("" + j);
+      j += 15;
+    }
+    minuteList = FXCollections.observableArrayList(time_minute);
 
     ArrayList<String> employeeNames = new ArrayList<>();
     HashMap<Integer, String> employeeLongName =
@@ -133,6 +177,8 @@ public class MaintenanceRequestController {
 
     employeeSearchDropdown.setItems(employeeList);
     locationSearchDropdown.setItems(locationList);
+    hour.setItems(hourList);
+    minutes.setItems(minuteList);
     checkFields.getText();
   }
 
@@ -140,185 +186,24 @@ public class MaintenanceRequestController {
     Platform.exit();
   }
 
-  public void checkBoxTreeLv1(String type) {
-
-    if (custodialCheck.isSelected() == false
-        && mechanicalCheck.isSelected() == false
-        && technologicalCheck.isSelected() == false) {
-      textTree1.setVisible(false);
-      lineTree1.setVisible(false);
-
-      textTree2.setVisible(false);
-      lineTree2.setVisible(false);
-      finalTreeLevel.setVisible(false);
-
-      // Text
-      checkTree1.setText("");
-      checkTree2.setText("");
-      checkTree3.setText("");
-      checkTree4.setText("");
-
-      // Checked
-      checkTree1.setSelected(false);
-      checkTree2.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-
-      // visibility
-      checkTree1.setVisible(false);
-      checkTree2.setVisible(false);
-      checkTree3.setVisible(false);
-      checkTree4.setVisible(false);
-      return;
+  public void setString(String box1) {
+    String answer = "";
+    for (MFXCheckbox box : checkbox) {
+      if (!box.getText().equals(box1)) {
+        box.setSelected(false);
+      }
     }
-
-    if (type == "Custodial") {
-      typeOfMaintain = "Custodial";
-      mechanicalCheck.setSelected(false);
-      technologicalCheck.setSelected(false);
-      textTree1.setVisible(true);
-      lineTree1.setVisible(true);
-
-      // Text
-      checkTree1.setText("Cleaning");
-      checkTree2.setText("Moving");
-      checkTree3.setText("Repairing");
-      checkTree4.setText("Other");
-
-      // Checked
-      checkTree1.setSelected(false);
-      checkTree2.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-      // visibility
-      checkTree1.setVisible(true);
-      checkTree2.setVisible(true);
-      checkTree3.setVisible(true);
-      checkTree4.setVisible(true);
-
-      textTree2.setVisible(false);
-      lineTree2.setVisible(false);
-      finalTreeLevel.setVisible(false);
-    }
-    if (type == "Mechanical") {
-      typeOfMaintain = "Mechanical";
-      custodialCheck.setSelected(false);
-      technologicalCheck.setSelected(false);
-      textTree1.setVisible(true);
-      lineTree1.setVisible(true);
-
-      // Text
-      checkTree1.setText("Equipment Repair");
-      checkTree2.setText("Machine Repair");
-      checkTree3.setText("Other");
-      checkTree4.setText("");
-      // Checked
-      checkTree1.setSelected(false);
-      checkTree2.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-      // visibility
-      checkTree1.setVisible(true);
-      checkTree2.setVisible(true);
-      checkTree3.setVisible(true);
-      checkTree4.setVisible(false);
-
-      textTree2.setVisible(false);
-      lineTree2.setVisible(false);
-      finalTreeLevel.setVisible(false);
-    }
-    if (type == "Technological") {
-      typeOfMaintain = "Technological";
-      mechanicalCheck.setSelected(false);
-      custodialCheck.setSelected(false);
-      textTree1.setVisible(true);
-      lineTree1.setVisible(true);
-
-      // Text
-      checkTree1.setText("Hardware Issue");
-      checkTree2.setText("Software Issue");
-      checkTree3.setText("Other");
-      checkTree4.setText("");
-      // Checked
-      checkTree1.setSelected(false);
-      checkTree2.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-      // visibility
-      checkTree1.setVisible(true);
-      checkTree2.setVisible(true);
-      checkTree3.setVisible(true);
-      checkTree4.setVisible(false);
-
-      textTree2.setVisible(false);
-      lineTree2.setVisible(false);
-      finalTreeLevel.setVisible(false);
-    }
-  }
-
-  public void checkBoxTreeLv2(String type) {
-
-    if (checkTree1.isSelected() == false
-        && checkTree2.isSelected() == false
-        && checkTree3.isSelected() == false
-        && checkTree4.isSelected() == false) {
-      textTree2.setVisible(false);
-      lineTree2.setVisible(false);
-      // Text
-      finalTreeLevel.setText("");
-      finalTreeLevel.setVisible(false);
-      return;
-    }
-
-    if (type == "1") {
-      specifiedMaintain = checkTree1.getText();
-
-      checkTree2.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-
-      textTree2.setVisible(true);
-      lineTree2.setVisible(true);
-      finalTreeLevel.setVisible(true);
-    }
-    if (type == "2") {
-      specifiedMaintain = checkTree2.getText();
-
-      checkTree1.setSelected(false);
-      checkTree3.setSelected(false);
-      checkTree4.setSelected(false);
-
-      textTree2.setVisible(true);
-      lineTree2.setVisible(true);
-      finalTreeLevel.setVisible(true);
-    }
-    if (type == "3") {
-      specifiedMaintain = checkTree3.getText();
-      checkTree2.setSelected(false);
-      checkTree1.setSelected(false);
-      checkTree4.setSelected(false);
-
-      textTree2.setVisible(true);
-      lineTree2.setVisible(true);
-      finalTreeLevel.setVisible(true);
-    }
-    if (type == "4") {
-      specifiedMaintain = checkTree4.getText();
-      checkTree2.setSelected(false);
-      checkTree1.setSelected(false);
-      checkTree3.setSelected(false);
-
-      textTree2.setVisible(true);
-      lineTree2.setVisible(true);
-      finalTreeLevel.setVisible(true);
-    }
+    somethingSelected = true;
+    typeOfMaintain = box1;
+    finalTreeLevel.setVisible(true);
+    Problemdes.setVisible(true);
   }
 
   public void storeMaintenanceValues() throws SQLException {
 
     HashMap<Integer, Employee> employeeHash = dao.getAllEmployees();
 
-    System.out.println(typeOfMaintain + " " + specifiedMaintain + " " + finalTreeLevel.getText());
+    System.out.println(typeOfMaintain + " " + finalTreeLevel.getText());
 
     Employee signedIn = employeeHash.get(App.employee.getEmpID());
 
@@ -335,12 +220,12 @@ public class MaintenanceRequestController {
             (String) locationSearchDropdown.getValue(),
             (String) employeeSearchDropdown.getValue(),
             StatusTypeEnum.blank,
-            Date.valueOf(maintainDate.getValue()),
-            StringToTime(maintainTime.getText()),
+            Date.valueOf(maintainDate.getValue().toString()),
+            StringToTime((String) hour.getValue(), (String) minutes.getValue()),
             maintainRecipient.getText(),
             maintainPhoneNumber.getText(),
             typeOfMaintain,
-            specifiedMaintain,
+            typeOfMaintain,
             finalTreeLevel.getText());
 
     dao.insertMaintenance(mr);
@@ -373,31 +258,33 @@ public class MaintenanceRequestController {
     return longNameHashMap;
   }
 
-  public Time StringToTime(String s) {
-
-    String[] hourMin = s.split(":", 2);
-    Time t = new Time(Integer.parseInt(hourMin[0]), Integer.parseInt(hourMin[1]), 00);
+  public Time StringToTime(String h, String m) {
+    Time t = new Time(Integer.parseInt(h), Integer.parseInt(m), 00);
     return t;
+  }
+
+  public boolean checkBoxSlected() {
+    boolean answer = true;
+    for (MFXCheckbox box : checkbox) {
+      if (box.isSelected()) {
+        answer = false;
+      }
+    }
+    return answer;
   }
 
   public void allDataFilled() {
     if (!(maintainRecipient.getText().equals("")
-            || maintainPhoneNumber.getText().equals("")
-            || maintainDate.getText().equals("")
-            || maintainTime.getText().equals("")
-            || locationSearchDropdown.getValue() == null)
-        || (mechanicalCheck.isSelected() == false
-            && custodialCheck.isSelected() == false
-            && technologicalCheck.isSelected() == false)
-        || (checkTree1.isSelected() == false
-            && checkTree2.isSelected() == false
-            && checkTree3.isSelected() == false
-            && checkTree4.isSelected() == false)
-        || finalTreeLevel.getText().equals("")) {
-
+        || maintainPhoneNumber.getText().equals("")
+        || maintainDate.getText().equals("")
+        || hour.getValue() == null
+        || minutes.getValue() == null
+        || locationSearchDropdown.getValue() == null
+        || finalTreeLevel.getText().equals(""))) {
+      // || checkBoxSlected()
       try {
         storeMaintenanceValues();
-        completeAnimation();
+        completeAnimation("Maintenance request sent!");
         clearAllData();
       } catch (SQLException e) {
         throw new RuntimeException(e);
@@ -407,21 +294,19 @@ public class MaintenanceRequestController {
     }
   }
 
-  public void completeAnimation() {
+  public void completeAnimation(String message) {
 
     // Form Completion PopUp
     AnchorPane rect = new AnchorPane();
-    rect.setLayoutX(325);
+    rect.setLayoutX(500);
     rect.setStyle(
-        "-fx-pref-width: 440; -fx-pref-height: 100; -fx-background-color: #d9d9d9; -fx-border-radius: 5; -fx-background-insets: 5; -fx-border-insets: 5; -fx-padding: 5;"
-            + "-fx-border-color: #000000;"
-            + "-fx-border-width: 3;");
+        "-fx-pref-width: 400; -fx-pref-height: 100; -fx-background-color: #97E198; -fx-background-radius: 10");
     rect.setLayoutY(800);
     rect.toFront();
 
     Text completionText = new Text("You Are All Set!");
-    completionText.setLayoutX(445);
-    completionText.setLayoutY(850);
+    completionText.setLayoutX(625);
+    completionText.setLayoutY(845);
     completionText.setStyle(
         "-fx-stroke: #000000;"
             + "-fx-fill: #012D5A;"
@@ -429,23 +314,23 @@ public class MaintenanceRequestController {
             + "-fx-font-weight: 500;");
     completionText.toFront();
 
-    Text completionTextSecondRow = new Text("Maintenance Request Sent Successfully.");
-    completionTextSecondRow.setLayoutX(445);
-    completionTextSecondRow.setLayoutY(870);
+    Text completionTextSecondRow = new Text(message);
+    completionTextSecondRow.setLayoutX(625);
+    completionTextSecondRow.setLayoutY(875);
     completionTextSecondRow.setStyle(
-        "-fx-stroke: #000000;"
+        "-fx-stroke: #404040;"
             + "-fx-fill: #012D5A;"
-            + "-fx-font-size: 15;"
+            + "-fx-font-size: 20;"
             + "-fx-font-weight: 500;");
     completionTextSecondRow.toFront();
 
-    Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
-    ImageView completionImage = new ImageView(checkmarkImage);
+    // Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
+    ImageView completionImage = new ImageView(App.checkmarkImage);
 
-    completionImage.setFitHeight(120);
-    completionImage.setFitWidth(120);
-    completionImage.setLayoutX(320);
-    completionImage.setLayoutY(790);
+    completionImage.setFitHeight(50);
+    completionImage.setFitWidth(50);
+    completionImage.setLayoutX(525);
+    completionImage.setLayoutY(825);
     completionImage.toFront();
 
     rect.setOpacity(0.0);
@@ -458,19 +343,19 @@ public class MaintenanceRequestController {
     forms.getChildren().add(completionImage);
     forms.getChildren().add(completionTextSecondRow);
 
-    FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(1), rect);
+    FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(0.5), rect);
     fadeIn1.setFromValue(0.0);
     fadeIn1.setToValue(1.0);
 
-    FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(1), completionImage);
+    FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(0.5), completionImage);
     fadeIn2.setFromValue(0.0);
     fadeIn2.setToValue(1.0);
 
-    FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(1), completionText);
+    FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(0.5), completionText);
     fadeIn3.setFromValue(0.0);
     fadeIn3.setToValue(1.0);
 
-    FadeTransition fadeIn4 = new FadeTransition(Duration.seconds(1), completionTextSecondRow);
+    FadeTransition fadeIn4 = new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
     fadeIn4.setFromValue(0.0);
     fadeIn4.setToValue(1.0);
 
@@ -481,24 +366,24 @@ public class MaintenanceRequestController {
 
     parallelTransition.setOnFinished(
         (event) -> {
-          FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(1), rect);
-          fadeOut1.setDelay(Duration.seconds(3));
+          FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(0.5), rect);
+          fadeOut1.setDelay(Duration.seconds(1.5));
           fadeOut1.setFromValue(1.0);
           fadeOut1.setToValue(0.0);
 
-          FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(1), completionImage);
-          fadeOut2.setDelay(Duration.seconds(3));
+          FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(0.5), completionImage);
+          fadeOut2.setDelay(Duration.seconds(1.5));
           fadeOut2.setFromValue(1.0);
           fadeOut2.setToValue(0.0);
 
-          FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(1), completionText);
-          fadeOut3.setDelay(Duration.seconds(3));
+          FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(0.5), completionText);
+          fadeOut3.setDelay(Duration.seconds(1.5));
           fadeOut3.setFromValue(1.0);
           fadeOut3.setToValue(0.0);
 
           FadeTransition fadeOut4 =
-              new FadeTransition(Duration.seconds(1), completionTextSecondRow);
-          fadeOut4.setDelay(Duration.seconds(3));
+              new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
+          fadeOut4.setDelay(Duration.seconds(1.5));
           fadeOut4.setFromValue(1.0);
           fadeOut4.setToValue(0.0);
 
@@ -512,33 +397,22 @@ public class MaintenanceRequestController {
   public void clearAllData() {
     maintainRecipient.setText("");
     maintainDate.setText("");
-    maintainTime.setText("");
     maintainPhoneNumber.setText("");
 
     locationSearchDropdown.setValue(null);
     employeeSearchDropdown.setValue(null);
+    hour.setValue(null);
+    minutes.setValue(null);
 
-    mechanicalCheck.setSelected(false);
-    technologicalCheck.setSelected(false);
-    custodialCheck.setSelected(false);
-    checkTree1.setSelected(false);
-    checkTree2.setSelected(false);
-    checkTree3.setSelected(false);
-    checkTree4.setSelected(false);
+    for (MFXCheckbox box : checkbox) {
+      box.setSelected(false);
+    }
     finalTreeLevel.setText("");
 
     finalTreeLevel.setVisible(false);
-    checkTree1.setVisible(false);
-    checkTree2.setVisible(false);
-    checkTree3.setVisible(false);
-    checkTree4.setVisible(false);
-    mechanicalCheck.setVisible(false);
-    technologicalCheck.setVisible(false);
-    custodialCheck.setVisible(false);
-    textTree1.setVisible(false);
-    textTree2.setVisible(false);
-    lineTree2.setVisible(false);
-    lineTree1.setVisible(false);
+    Problemdes.setVisible(false);
+    checkFields.setVisible(false);
+
     return;
   }
 }

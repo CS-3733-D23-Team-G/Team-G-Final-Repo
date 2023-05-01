@@ -35,7 +35,7 @@ public class SignageScreenSaverController {
   Image northArrow = new Image("edu/wpi/teamg/Images/NorthArrow.png");
   Image noArrow = new Image("edu/wpi/teamg/Images/NoArrow.png");
 
-  @FXML MFXButton snakeButton;
+  @FXML MFXButton goToKidsPage;
 
   @FXML ImageView arrow1 = new ImageView(noArrow);
   @FXML ImageView arrow2 = new ImageView(noArrow);
@@ -161,7 +161,6 @@ public class SignageScreenSaverController {
     //
     //    }
 
-    snakeButton.setOnMouseClicked(event -> letsAGo());
   }
 
   public void getArrowDirectionFromEditor() {
@@ -322,7 +321,7 @@ public class SignageScreenSaverController {
     }
   }
 
-  public void letsAGo() {
-    new GameFrame();
-  }
+  //  public void letsAGsnake() {
+  //    new GameFrame();
+  //  }
 }

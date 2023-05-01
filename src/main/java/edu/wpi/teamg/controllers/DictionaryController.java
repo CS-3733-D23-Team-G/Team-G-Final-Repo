@@ -8,6 +8,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.Scanner;
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -25,8 +26,13 @@ public class DictionaryController {
 
   public void initialize() throws SQLException {
     inputButton.setOnMouseClicked(event -> SpanishLookup());
-    //    Image sushi = new Image(App.class.getResourceAsStream("Images/mwlogo.jpg"));
 
+    input.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+            SpanishLookup();
+          }
+        });
   }
 
   public void SpanishLookup() {

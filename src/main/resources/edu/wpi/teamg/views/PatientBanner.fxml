@@ -26,7 +26,7 @@
                <children>
                   <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="850.0">
                      <children>
-                        <ImageView fx:id="kids" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="goToKidsPage" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Images/NewKid.png" />
                            </image>
