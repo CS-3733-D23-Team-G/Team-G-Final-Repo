@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -12,14 +13,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="-Infinity" prefHeight="570.0" prefWidth="500.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SettingsPopOverController">
+<BorderPane minHeight="-Infinity" prefHeight="700.0" prefWidth="500.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SettingsPopOverController">
    <center>
       <HBox prefHeight="400.0" prefWidth="421.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <AnchorPane minWidth="-Infinity" prefHeight="675.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="400.0" prefWidth="500.0" style="-fx-border-color: #012D5A; -fx-border-width: 3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox prefHeight="650.0" prefWidth="500.0" style="-fx-border-color: #012D5A; -fx-border-width: 3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label style="-fx-font-size: 30; -fx-font-weight: 800; -fx-text-fill: #012D5A;" text="Settings">
                      <font>
@@ -45,9 +46,9 @@
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <MFXFilterComboBox fx:id="locationDrop" minHeight="-Infinity" prefHeight="40.0" prefWidth="300.0">
+                  <MFXFilterComboBox fx:id="locationDrop" floatMode="DISABLED" minHeight="-Infinity" prefHeight="40.0" prefWidth="300.0" style="-fx-font-size: 15;">
                      <VBox.margin>
-                        <Insets left="25.0" top="25.0" />
+                        <Insets left="25.0" top="15.0" />
                      </VBox.margin>
                   </MFXFilterComboBox>
                   <Line endX="339.29290771484375" startX="-100.0" stroke="#d9d9d9" strokeWidth="2.0">
@@ -95,9 +96,38 @@
                         </MFXCheckbox>
                      </children>
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
+                  <Label style="-fx-font-size: 20; -fx-font-weight: 800; -fx-text-fill: #012D5A;" text="Pathfinding Date">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose what date will be used for nodes in pathfinding" wrappingWidth="440.291015625">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Text>
+                  <MFXDatePicker fx:id="date" prefHeight="38.0" prefWidth="300.0" promptText="pathfind on move date">
+                     <VBox.margin>
+                        <Insets left="25.0" top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </MFXDatePicker>
+                  <Line endX="339.29290771484375" startX="-100.0" stroke="#d9d9d9" strokeWidth="2.0">
+                     <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </VBox.margin>
+                  </Line>
                   <Label style="-fx-font-size: 20; -fx-font-weight: 800; -fx-text-fill: #012D5A;" text="Database ">
                      <font>
                         <Font size="20.0" />
@@ -128,7 +158,7 @@
                         </MFXCheckbox>
                      </children>
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
                </children>

@@ -52,17 +52,19 @@ public class NotificationDAO implements DAO {
     SQL =
         "insert into "
             + this.getTable()
-            + "(alertid, notifdate, notiftime, notiftype, empid, recipients, message) values (?, ?, ?, ?, ?, ?, ?)";
+            + "(alertid, notifheader, notifdate, notiftime, notiftype, empid, recipients, message, dismissible) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     try {
       ps = db.getConnection().prepareStatement(SQL);
       ps.setInt(1, maxID);
-      ps.setDate(2, ((Notification) obj).getNotifDate());
-      ps.setTime(3, ((Notification) obj).getNotifTime());
-      ps.setString(4, ((Notification) obj).getNotiftype());
-      ps.setInt(5, ((Notification) obj).getEmpid());
-      ps.setString(6, ((Notification) obj).getRecipients());
-      ps.setString(7, ((Notification) obj).getMessage());
+      ps.setString(2, ((Notification) obj).getNotifheader());
+      ps.setDate(3, ((Notification) obj).getNotifDate());
+      ps.setTime(4, ((Notification) obj).getNotifTime());
+      ps.setString(5, ((Notification) obj).getNotiftype());
+      ps.setInt(6, ((Notification) obj).getEmpid());
+      ps.setString(7, ((Notification) obj).getRecipients());
+      ps.setString(8, ((Notification) obj).getMessage());
+      ps.setBoolean(9, ((Notification) obj).getDismissible());
 
       ps.executeUpdate();
       notifHash.put(((Notification) obj).getAlertID(), (Notification) obj);
@@ -88,12 +90,12 @@ public class NotificationDAO implements DAO {
     SQL =
         "select * from iteration4.notification where notiftype <> 'Alert' and recipients like '%"
             + recipient
-            + "%' order by alertid desc";
+            + ",%' order by alertid desc";
 
     SQL_AlertOnly =
         "select * from iteration4.notification where notiftype = 'Alert' and recipients like '%"
             + recipient
-            + "%' order by alertid desc";
+            + ",%' order by alertid desc";
 
     try {
       ps = db.getConnection().prepareStatement(SQL_AlertOnly);
@@ -107,15 +109,17 @@ public class NotificationDAO implements DAO {
 
       int alertID = rs.getInt("alertid");
       int empid = rs.getInt("empid");
+      String header = rs.getString("notifheader");
       String message = rs.getString("message");
       String notiftype = rs.getString("notiftype");
-
+      Boolean dismissible = rs.getBoolean("dismissible");
       String recipients = rs.getString("recipients");
       Date notifDate = rs.getDate("notifdate");
       Time notifTime = rs.getTime("notiftime");
 
       Notification notif =
-          new Notification(empid, message, notiftype, recipients, notifDate, notifTime);
+          new Notification(
+              empid, header, message, notiftype, recipients, notifDate, notifTime, dismissible);
 
       notif.setAlertID(alertID);
 
@@ -134,15 +138,18 @@ public class NotificationDAO implements DAO {
 
       int alertID = rs.getInt("alertid");
       int empid = rs.getInt("empid");
+      String header = rs.getString("notifheader");
       String message = rs.getString("message");
       String notiftype = rs.getString("notiftype");
 
       String recipients = rs.getString("recipients");
       Date notifDate = rs.getDate("notifdate");
       Time notifTime = rs.getTime("notiftime");
+      Boolean dismissible = rs.getBoolean("dismissible");
 
       Notification notif =
-          new Notification(empid, message, notiftype, recipients, notifDate, notifTime);
+          new Notification(
+              empid, header, message, notiftype, recipients, notifDate, notifTime, dismissible);
 
       notif.setAlertID(alertID);
 
@@ -155,7 +162,24 @@ public class NotificationDAO implements DAO {
   }
 
   @Override
-  public void delete(Object obj) throws SQLException {}
+  public void delete(Object obj) throws SQLException {
+    db.setConnection();
+
+    PreparedStatement ps;
+
+    SQL = "delete from iteration4.notification where alertid = ?";
+
+    try {
+      ps = db.getConnection().prepareStatement(SQL);
+      ps.setInt(1, (Integer) obj);
+      ps.executeUpdate();
+    } catch (SQLException e) {
+      System.err.println("SQL exception");
+      e.printStackTrace();
+      // printSQLException(e);
+    }
+    db.closeConnection();
+  }
 
   @Override
   public void importCSV(String path) throws SQLException {}

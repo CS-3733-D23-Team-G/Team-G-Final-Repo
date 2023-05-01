@@ -26,9 +26,25 @@
                <children>
                   <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="850.0">
                      <children>
+                        <ImageView fx:id="kids" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/NewKid.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="25.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
                         <ImageView fx:id="information" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Images/informationIcon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="listenButton" fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/VoiceCommand.png" />
                            </image>
                            <HBox.margin>
                               <Insets right="10.0" top="10.0" />

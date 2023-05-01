@@ -31,6 +31,8 @@ public class DirectionsPopUpController {
 
   boolean last = false;
 
+  String pathForAni = "";
+
   String orientation = "S";
 
   public void initialize() {
@@ -55,6 +57,10 @@ public class DirectionsPopUpController {
     this.path = getPath;
     this.updatedMoves = movin;
     printTxtPath();
+  }
+
+  public String retForAni() {
+    return pathForAni;
   }
 
   public void printTxtPath() {
@@ -89,6 +95,7 @@ public class DirectionsPopUpController {
             pathInstructions.setText(
                 pathInstructions.getText() + "End At: " + updatedMoves.get(j).getLongName());
             last = false;
+            pathForAni = pathInstructions.getText();
           }
 
         } else {

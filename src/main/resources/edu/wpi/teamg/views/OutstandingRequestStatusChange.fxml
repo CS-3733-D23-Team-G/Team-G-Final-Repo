@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="179.0" prefWidth="438.0" styleClass="confirmationPopover" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.OutstandingRequestStatusChangeController">
+   <children>
+      <VBox layoutX="17.0" layoutY="17.0" prefHeight="198.0" prefWidth="400.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="Mark as ">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <MFXComboBox fx:id="statusComboBox" floatMode="DISABLED" prefHeight="40.0" prefWidth="179.0" style="-fx-font-size: 15;">
+                     <font>
+                        <Font size="15.0" />
+                     </font></MFXComboBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text=" ?">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <Text fill="#363636" strokeType="OUTSIDE" strokeWidth="0.0" text="This will change the status of the request. Request marked as &quot;done&quot; will be remove." wrappingWidth="298.7187805175781">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </Text>
+            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="398.0">
+               <children>
+                  <MFXButton fx:id="cancel" prefHeight="20.0" prefWidth="197.0" style="-fx-font-size: 18;" styleClass="requestTextBox_MFX" text="Cancel" />
+                  <MFXButton fx:id="confirm" prefWidth="177.0" style="-fx-background-color: #F6BD38; -fx-font-size: 18;" styleClass="requestTextBox_MFX" text="Confirm">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </MFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

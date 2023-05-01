@@ -13,10 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +23,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -46,10 +42,8 @@ import org.controlsfx.control.PopOver;
 
 public class pathfindingController {
   public Group group;
-  @FXML MFXButton goToAdminSign;
   @FXML MFXButton pathFindButton;
 
-  @FXML TextArea results;
   @FXML GesturePane pane;
   @FXML Pane nodePane;
 
@@ -68,19 +62,16 @@ public class pathfindingController {
   @FXML MFXComboBox floorStart;
   @FXML MFXComboBox floorEnd;
 
-  @FXML MFXCheckbox aStarCheckBox;
-  @FXML MFXCheckbox bfsCheckBox;
-  @FXML MFXCheckbox dfsCheckBox;
-  @FXML MFXCheckbox Dijkstracheckbox;
-
-  @FXML MFXDatePicker date;
+  // @FXML MFXDatePicker date;
 
   @FXML MFXToggleButton dSN;
 
   @FXML MFXToggleButton toggN;
-  @FXML MFXButton alertButton;
+  @FXML ImageView alertButton;
 
   @FXML MFXButton txtDirections;
+
+  @FXML MFXToggleButton aniPath;
 
   ObservableList<String> locationListStart;
   ObservableList<String> locationListEnd;
@@ -93,6 +84,7 @@ public class pathfindingController {
 
   boolean snLab = true;
   boolean togg = false;
+  boolean animation = false;
 
   ArrayList<String> txtPath;
 
@@ -103,11 +95,23 @@ public class pathfindingController {
   @FXML
   public void initialize() throws SQLException {
     updateMoves();
+
+    App.bool = true;
+    System.out.println(bool);
     //  goToAdminSign.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_SIGNAGE_PAGE));
 
-    aStarCheckBox.setSelected(true);
+    // aStarCheckBox.setSelected(true);
     dSN.setSelected(true);
 
+    aniPath.setOnAction(
+        event -> {
+          if (aniPath.isSelected()) {
+            animation = true;
+          }
+          if (!aniPath.isSelected()) {
+            animation = false;
+          }
+        });
     txtDirections.setVisible(false);
     txtDirections.setOnMouseClicked(
         event -> {
@@ -117,44 +121,7 @@ public class pathfindingController {
             throw new RuntimeException(e);
           }
         });
-    aStarCheckBox.setOnAction(
-        event -> {
-          aStarCheckBox.setSelected(true);
-          if (aStarCheckBox.isSelected()) {
-            bfsCheckBox.setSelected(false);
-            dfsCheckBox.setSelected(false);
-            Dijkstracheckbox.setSelected(false);
-          }
-        });
-    Dijkstracheckbox.setOnAction(
-        event -> {
-          Dijkstracheckbox.setSelected(true);
-          if (Dijkstracheckbox.isSelected()) {
-            bfsCheckBox.setSelected(false);
-            dfsCheckBox.setSelected(false);
-            aStarCheckBox.setSelected(false);
-          }
-        });
 
-    bfsCheckBox.setOnAction(
-        event -> {
-          bfsCheckBox.setSelected(true);
-          if (bfsCheckBox.isSelected()) {
-            aStarCheckBox.setSelected(false);
-            dfsCheckBox.setSelected(false);
-            Dijkstracheckbox.setSelected(false);
-          }
-        });
-
-    dfsCheckBox.setOnAction(
-        event -> {
-          dfsCheckBox.setSelected(true);
-          if (dfsCheckBox.isSelected()) {
-            aStarCheckBox.setSelected(false);
-            bfsCheckBox.setSelected(false);
-            Dijkstracheckbox.setSelected(false);
-          }
-        });
     dSN.setOnAction(
         event -> {
           if (!dSN.isSelected()) {
@@ -187,16 +154,16 @@ public class pathfindingController {
           }
         });
 
-    date.setOnCommit(
-        event -> {
-          updateMoves();
-          nodePane.getChildren().removeIf(node -> node instanceof Text);
-          try {
-            floorButtons(imageViewsList, floor);
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-        });
+    //    date.setOnCommit(
+    //        event -> {
+    //          updateMoves();
+    //          nodePane.getChildren().removeIf(node -> node instanceof Text);
+    //          try {
+    //            floorButtons(imageViewsList, floor);
+    //          } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //          }
+    //        });
 
     startingFloor();
     longNameEnd(0);
@@ -245,33 +212,51 @@ public class pathfindingController {
     pathFindButton.setOnMouseClicked(
         event -> {
           try {
-            if (aStarCheckBox.isSelected()) {
+            if (App.pathfindingAlgo.equals("Astar")) {
               algo = new Astar();
               updateMove(floor);
               txtDirections.setVisible(true);
-              setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
-            } else if (dfsCheckBox.isSelected()) {
+              if (animation) {
+                animatedPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              } else {
+                setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              }
+            } else if (App.pathfindingAlgo.equals("DFS")) {
 
               algo = new DFS();
               updateMove(floor);
               txtDirections.setVisible(true);
-              setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              if (animation) {
+                animatedPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              } else {
+                setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              }
 
-            } else if (bfsCheckBox.isSelected()) {
+            } else if (App.pathfindingAlgo.equals("BFS")) {
               algo = new BFS();
               updateMove(floor);
               txtDirections.setVisible(true);
-              setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              if (animation) {
+                animatedPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              } else {
+                setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              }
 
-            } else if (Dijkstracheckbox.isSelected()) {
+            } else if (App.pathfindingAlgo.equals("Dijkstra")) {
               algo = new Dijkstra();
               updateMove(floor);
               txtDirections.setVisible(true);
-              setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              if (animation) {
+                animatedPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              } else {
+                setPath(algo.process(startLocDrop, endLocDrop, movesForAlgos));
+              }
             }
           } catch (SQLException e) {
             System.err.println("SQL Exception");
             e.printStackTrace();
+          } catch (IOException e) {
+            throw new RuntimeException(e);
           }
         });
 
@@ -501,7 +486,6 @@ public class pathfindingController {
 
   public void setPath(ArrayList<String> path) throws SQLException {
 
-    System.out.println(path);
     txtPath = path;
     //    if (path.size() == 1) {
     //      results.setText("Error: No Possible Path Found");
@@ -1060,14 +1044,21 @@ public class pathfindingController {
 
     for (int i = 0; i < move.size(); i++) {
 
-      if (date.getValue() == null) {
+      if (App.pathfindingDate
+          == null) { // the default in app is 01/01 not null. ye if they fuk up and leave the date
+        // blank or do before then it will just be the defaults Ohhh
         if (move.get(i).getDate().toLocalDate().isEqual(LocalDate.of(2023, Month.JANUARY, 1))) {
           moving.put(move.get(i).getNodeID(), move.get(i));
         }
       } else {
-        if (date.getValue().isAfter(move.get(i).date.toLocalDate())) {
+        if (App.pathfindingDate.isAfter(
+            move.get(i)
+                .getDate()
+                .toLocalDate())) { // lol don't you love 2 differnt type of dates? I think isAfter
+          // only works for l
+
           moving.put(move.get(i).getNodeID(), move.get(i));
-        } else if (date.getValue().isEqual(move.get(i).getDate().toLocalDate())) {
+        } else if (pathfindingDate.isEqual(move.get(i).getDate().toLocalDate())) {
           updatedMove.add(move.get(i));
         }
       }
@@ -1173,14 +1164,14 @@ public class pathfindingController {
 
     for (int i = 0; i < move.size(); i++) {
 
-      if (date.getValue() == null) {
+      if (pathfindingDate == null) {
         if (move.get(i).getDate().toLocalDate().isEqual(LocalDate.of(2023, Month.JANUARY, 1))) {
           moving.put(move.get(i).getNodeID(), move.get(i));
         }
       } else {
-        if (date.getValue().isAfter(move.get(i).date.toLocalDate())) {
+        if (pathfindingDate.isAfter(move.get(i).getDate().toLocalDate())) {
           moving.put(move.get(i).getNodeID(), move.get(i));
-        } else if (date.getValue().isEqual(move.get(i).getDate().toLocalDate())) {
+        } else if (pathfindingDate.isEqual(move.get(i).getDate().toLocalDate())) {
           updatedMove.add(move.get(i));
         }
       }
@@ -1286,14 +1277,14 @@ public class pathfindingController {
 
     for (int i = 0; i < move.size(); i++) {
 
-      if (date.getValue() == null) {
+      if (pathfindingDate == null) {
         if (move.get(i).getDate().toLocalDate().isEqual(LocalDate.of(2023, Month.JANUARY, 1))) {
           moving.put(move.get(i).getNodeID(), move.get(i));
         }
       } else {
-        if (date.getValue().isAfter(move.get(i).date.toLocalDate())) {
+        if (pathfindingDate.isAfter(move.get(i).getDate().toLocalDate())) {
           moving.put(move.get(i).getNodeID(), move.get(i));
-        } else if (date.getValue().isEqual(move.get(i).getDate().toLocalDate())) {
+        } else if (pathfindingDate.isEqual(move.get(i).getDate().toLocalDate())) {
           updatedMove.add(move.get(i));
         }
       }
@@ -1398,14 +1389,14 @@ public class pathfindingController {
 
     for (int i = 0; i < move.size(); i++) {
 
-      if (date.getValue() == null) {
+      if (pathfindingDate == null) {
         if (move.get(i).getDate().toLocalDate().isEqual(LocalDate.of(2023, Month.JANUARY, 1))) {
           moving.put(move.get(i).getNodeID(), move.get(i));
         }
       } else {
-        if (date.getValue().isAfter(move.get(i).date.toLocalDate())) {
+        if (pathfindingDate.isAfter(move.get(i).getDate().toLocalDate())) {
           moving.put(move.get(i).getNodeID(), move.get(i));
-        } else if (date.getValue().isEqual(move.get(i).getDate().toLocalDate())) {
+        } else if (pathfindingDate.isEqual(move.get(i).getDate().toLocalDate())) {
           updatedMove.add(move.get(i));
         }
       }
@@ -1473,14 +1464,14 @@ public class pathfindingController {
 
     for (int i = 0; i < move.size(); i++) {
 
-      if (date.getValue() == null) {
+      if (pathfindingDate == null) {
         if (move.get(i).getDate().toLocalDate().isEqual(LocalDate.of(2023, Month.JANUARY, 1))) {
           moving.put(move.get(i).getNodeID(), move.get(i));
         }
       } else {
-        if (date.getValue().isAfter(move.get(i).date.toLocalDate())) {
+        if (pathfindingDate.isAfter(move.get(i).getDate().toLocalDate())) {
           moving.put(move.get(i).getNodeID(), move.get(i));
-        } else if (date.getValue().isEqual(move.get(i).getDate().toLocalDate())) {
+        } else if (pathfindingDate.isEqual(move.get(i).getDate().toLocalDate())) {
           updateMove.add(move.get(i));
         }
       }
@@ -1489,6 +1480,28 @@ public class pathfindingController {
     for (int i = 0; i < updateMove.size(); i++) {
       moving.put(updateMove.get(i).getNodeID(), updateMove.get(i));
     }
+    // GOnna call this for pathfinding
+
+    // movesForAlgos = new ArrayList<>(moving.values());
+  }
+
+  public void animatedPath(ArrayList<String> p) throws IOException {
+    final PopOver window = new PopOver();
+    var loader = new FXMLLoader(App.class.getResource("views/DirectionsPopUp.fxml"));
+    window.setContentNode(loader.load());
+    DirectionsPopUpController controller = loader.getController();
+    controller.setF(window, p, movesForAlgos);
+    String txtDir = controller.retForAni();
+
+    final PopOver windowAni = new PopOver();
+    var loaderAni = new FXMLLoader(App.class.getResource("views/AnimatedPopOver.fxml"));
+    windowAni.setContentNode(loaderAni.load());
+    AnimatedPopOverController aniController = loaderAni.getController();
+    aniController.setTxtForPath(txtDir, nodePane);
+    aniController.getThePath(p);
+
+    final Point mouseLocationAni = MouseInfo.getPointerInfo().getLocation();
+    windowAni.show(App.getPrimaryStage(), mouseLocationAni.getX(), mouseLocationAni.getY());
   }
 
   public void exit() {
