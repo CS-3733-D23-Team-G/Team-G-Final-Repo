@@ -561,12 +561,31 @@ Popup
     -fx-text-alignment: left;
 }
 
-
 .admin_page_3_buttons{
     -fx-pref-height: 65;
     -fx-pref-width: 300;
     -fx-background-color: #D9D9D9;
-    -fx-background-radius: 30;
+    -fx-background-radius: 10;
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+
+.admin_page_table_edit{
+    -fx-pref-height: 65;
+    -fx-pref-width: 300;
+    -fx-background-color: #F6BD38;
+    -fx-background-radius: 10;
+    -fx-font-size: 30;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+}
+
+.admin_page_table_cancel{
+    -fx-pref-height: 65;
+    -fx-pref-width: 300;
+    -fx-background-color: #D9D9D9;
+    -fx-background-radius: 10;
     -fx-font-size: 30;
     -fx-text-fill: #000000;
     -fx-alignment: center;
@@ -613,7 +632,7 @@ Popup
 
 .table-view .table-column .label{
     -fx-font-size: 20;
-    -fx-alignment: left;
+   /* -fx-alignment: left; */
     -fx-font-weight: 800;
 }
 
