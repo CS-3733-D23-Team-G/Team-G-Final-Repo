@@ -4,45 +4,72 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.DirectionsPopUpController">
+<AnchorPane prefHeight="703.0" prefWidth="543.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.DirectionsPopUpController">
    <children>
-      <VBox layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1000.0" spacing="16.0">
+      <VBox layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="673.0" spacing="16.0">
          <children>
             <HBox alignment="CENTER" prefWidth="453.0" VBox.vgrow="NEVER">
                <children>
-                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="140.0" text="Path From">
+                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="140.0" style="-fx-font-size: 20; -fx-font-weight: 800;" text="Path From">
                      <font>
-                        <Font size="22.0" />
+                        <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefWidth="453.0">
                <children>
-                  <Text fx:id="lnStart" strokeType="OUTSIDE" strokeWidth="0.0" text="Long Name 1" />
-                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="140.0" text="To">
+                  <Text fx:id="lnStart" strokeType="OUTSIDE" strokeWidth="0.0" text="Long Name 1">
                      <font>
-                        <Font size="22.0" />
+                        <Font size="20.0" />
+                     </font></Text>
+                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="72.0" style="-fx-font-size: 20; -fx-font-weight: 800;" text="to">
+                     <font>
+                        <Font size="20.0" />
                      </font>
                   </Label>
-                  <Text fx:id="lnEnd" strokeType="OUTSIDE" strokeWidth="0.0" text="Long Name 2" />
+                  <Text fx:id="lnEnd" strokeType="OUTSIDE" strokeWidth="0.0" text="Long Name 2">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Text>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefWidth="200.0">
                <children>
-                  <TextArea fx:id="pathInstructions" prefHeight="500.0" prefWidth="1000.0" />
+                  <TextArea fx:id="pathInstructions" prefHeight="500.0" prefWidth="1044.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></TextArea>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefWidth="453.0" stylesheets="@style.css">
                <children>
-                  <MFXButton fx:id="closePath" styleClass="add_Buttons" text="Close" />
-                  <MFXButton fx:id="speakButton" styleClass="add_Buttons" text="Speak" />
+                  <MFXButton fx:id="closePath" prefHeight="47.0" prefWidth="131.0" style="-fx-font-size: 20; -fx-background-color: #d9d9d9;" text="Close">
+                     <HBox.margin>
+                        <Insets right="25.0" />
+                     </HBox.margin></MFXButton>
+                  <MFXButton fx:id="speakButton" prefHeight="48.0" prefWidth="144.0" style="-fx-font-size: 20; -fx-background-color: #012D5A; -fx-text-fill: #F6BD38;" text="Listen">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/TTS%20Directions.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font></MFXButton>
                </children>
             </HBox>
          </children>

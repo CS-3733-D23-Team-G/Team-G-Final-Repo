@@ -1498,12 +1498,14 @@ public class pathfindingController {
     final PopOver windowAni = new PopOver();
     var loaderAni = new FXMLLoader(App.class.getResource("views/AnimatedPopOver.fxml"));
     windowAni.setContentNode(loaderAni.load());
+    windowAni.setArrowSize(0);
+    windowAni.setTitle("Step-By-Step Path with Text Directions");
     AnimatedPopOverController aniController = loaderAni.getController();
     aniController.setTxtForPath(txtDir, nodePane, imageViewsList);
     aniController.getThePath(p);
 
     final Point mouseLocationAni = MouseInfo.getPointerInfo().getLocation();
-    windowAni.show(App.getPrimaryStage(), mouseLocationAni.getX(), mouseLocationAni.getY());
+    windowAni.show(App.getPrimaryStage(), 1500, 150);
   }
 
   public void exit() {

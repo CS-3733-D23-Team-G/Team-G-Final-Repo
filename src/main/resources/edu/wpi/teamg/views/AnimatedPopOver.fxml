@@ -5,21 +5,33 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AnimatedPopOverController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="442.0" spacing="16.0" style="-fx-background-color: #012D5A; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AnimatedPopOverController">
    <children>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <TextArea fx:id="anitxt" prefHeight="200.0" prefWidth="200.0" />
+            <TextArea fx:id="anitxt" prefHeight="219.0" prefWidth="532.0" style="-fx-border-color: none; -fx-background-radius: 5;">
+               <font>
+                  <Font size="15.0" />
+               </font></TextArea>
          </children></HBox>
-      <HBox alignment="CENTER" prefWidth="200.0" />
-      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+      <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <MFXButton fx:id="back" text="Back" />
-            <MFXButton fx:id="next" text="Next">
+            <MFXButton fx:id="back" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #d9d9d9; -fx-font-size: 15; -fx-font-weight: 800;" text="Previous Step">
+               <font>
+                  <Font size="20.0" />
+               </font>
                <HBox.margin>
-                  <Insets left="80.0" />
+                  <Insets right="25.0" />
                </HBox.margin></MFXButton>
+            <MFXButton fx:id="next" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #F6BD38; -fx-text-fill: #012D5A; -fx-font-size: 15; -fx-font-weight: 800;" text="Next Step">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font></MFXButton>
          </children>
       </HBox>
    </children>
