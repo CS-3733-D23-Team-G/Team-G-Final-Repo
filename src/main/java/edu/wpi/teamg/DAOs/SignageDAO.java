@@ -171,6 +171,5 @@ public class SignageDAO implements DAO {
   public String getTable() {
 
     return "iteration4_presentation.signage";
-
   }
 }

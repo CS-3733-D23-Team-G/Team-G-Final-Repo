@@ -165,7 +165,6 @@ public class LocationNameDAO implements LocationDAO {
   public String getTable() {
 
     return "iteration4_presentation.locationname";
-
   }
 
   @Override

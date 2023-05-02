@@ -61,7 +61,6 @@ public class NodeDAO implements LocationDAO {
   public String getTable() {
 
     return "iteration4_presentation.node";
-
   }
 
   @Override

@@ -21,9 +21,7 @@ public class MoveDAO implements LocationMoveDao {
     PreparedStatement ps;
     ResultSet rs = null;
 
-
     sql = "select * from iteration4_presentation.move";
-
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -90,10 +88,7 @@ public class MoveDAO implements LocationMoveDao {
     Move move = (Move) obj;
     db.setConnection(App.getWhichDB());
 
-
-    sql =
-        "INSERT INTO iteration4_presentation.move (nodeid, longname, date) VALUES (?,?,?);";
-
+    sql = "INSERT INTO iteration4_presentation.move (nodeid, longname, date) VALUES (?,?,?);";
 
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
@@ -113,11 +108,8 @@ public class MoveDAO implements LocationMoveDao {
   public void delete(Object obj) throws SQLException {
     Move move = (Move) obj;
 
-      db.setConnection(App.getWhichDB());
-    sql =
-        "DELETE FROM iteration4_presentation.move WHERE nodeID = ? and longname=? and date =?";
-
-
+    db.setConnection(App.getWhichDB());
+    sql = "DELETE FROM iteration4_presentation.move WHERE nodeID = ? and longname=? and date =?";
 
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
@@ -199,10 +191,8 @@ public class MoveDAO implements LocationMoveDao {
   @Override
   public void importCSV(String filePath) throws SQLException {
 
-      db.setConnection(App.getWhichDB());
-    sql =
-        "insert into iteration4_presentation.move (nodeid, longname, date) values (?,?,?)";
-
+    db.setConnection(App.getWhichDB());
+    sql = "insert into iteration4_presentation.move (nodeid, longname, date) values (?,?,?)";
 
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
     try {

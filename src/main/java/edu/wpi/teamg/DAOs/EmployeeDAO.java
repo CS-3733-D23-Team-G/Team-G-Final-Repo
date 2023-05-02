@@ -106,7 +106,6 @@ public class EmployeeDAO implements DAO {
   public String getTable() {
 
     return "iteration4_presentation.employee";
-
   }
 
   public static HashMap<Integer, String> getEmployeeFullName(String canServe) throws SQLException {

@@ -90,7 +90,6 @@ public class RequestDAO implements DAO {
 
     sql = "update iteration4_presentation.request set " + colName + " = ? where reqid = ?";
 
-
     try {
       ps = db.getConnection().prepareStatement(sql);
 
@@ -161,7 +160,6 @@ public class RequestDAO implements DAO {
   public String getTable() {
 
     return "iteration4_presentation.request";
-
   }
 
   public static ArrayList getOutstandingRequest(int serveby) throws SQLException {

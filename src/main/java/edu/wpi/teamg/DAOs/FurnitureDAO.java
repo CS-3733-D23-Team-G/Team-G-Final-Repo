@@ -209,5 +209,4 @@ public class FurnitureDAO implements DAO {
   public String getRequest() {
     return "iteration4_presentation.request";
   }
-
 }

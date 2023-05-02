@@ -126,7 +126,6 @@ public class EdgeDAO implements LocationDAO {
   public String getTable() {
 
     return "iteration4_presentation.edge";
-
   }
 
   @Override

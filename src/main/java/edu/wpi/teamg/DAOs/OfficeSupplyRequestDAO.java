@@ -29,7 +29,6 @@ public class OfficeSupplyRequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
     SQL =
-
         "select * from iteration4_presentation.request"
             + " join "
             + this.getTable()
@@ -104,9 +103,7 @@ public class OfficeSupplyRequestDAO implements DAO {
     ResultSet rs = null;
     OfficeSupplyRequest supplyRequest = (OfficeSupplyRequest) obj;
 
-
-    SQL_MAXID =
-        "select reqid from iteration4_presentation.request order by reqid desc limit 1";
+    SQL_MAXID = "select reqid from iteration4_presentation.request order by reqid desc limit 1";
 
     try {
       ps_maxid = db.getConnection().prepareStatement(SQL_MAXID);
@@ -125,9 +122,7 @@ public class OfficeSupplyRequestDAO implements DAO {
     SQL =
         "insert into " + this.getTable() + " (reqid, supplytype, note, recipient) values(?,?,?,?)";
     SQL_REQUEST =
-
         "insert into iteration4_presentation.request (reqid,reqtype,empid,location,serveBy,status,requestdate,requesttime) values (?,?,?,?,?,?,?,?)";
-
 
     try {
       ps_req = db.getConnection().prepareStatement(SQL_REQUEST);
@@ -215,6 +210,5 @@ public class OfficeSupplyRequestDAO implements DAO {
   public String getTable() {
 
     return "iteration4_presentation.officesupplyrequest";
-
   }
 }

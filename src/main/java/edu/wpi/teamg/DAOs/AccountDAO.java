@@ -110,6 +110,5 @@ public class AccountDAO implements DAO {
   public String getTable() {
 
     return "iteration4_presentation.account";
-
   }
 }
