@@ -48,10 +48,14 @@ public class AnimatedPopOverController {
   int bottomAni = 0;
 
   int switchFloor = 0;
+
+  int lineCounter = 1;
   Pane pane;
+  boolean added = true;
 
   int index = 1;
-  int index2 = 1;
+  int storedVal = 0;
+  ArrayList<Integer> storedValList = new ArrayList<>();
 
   public void initialize() {
     anitxt.setEditable(false);
@@ -90,24 +94,26 @@ public class AnimatedPopOverController {
 
   public void parseText(String textPath) {
     textDirections = textPath.split("\n");
-
-    for (int i = 0; i < textDirections.length; i++) {
-      System.out.println(textDirections[i]);
-    }
   }
 
   public void goToNextEdge() throws IOException, SQLException {
 
     pane.getChildren().clear();
     index = index + 1;
+    lineCounter = lineCounter + 1;
+    added = true;
+    System.out.println(lineCounter);
+
+    //    if (index == switchFloor + 1 && switchFloor != 0) {
+    //      lineCounter = lineCounter + 2;
+    //    }
 
     if (switchFloor == 0) {
       bottomAni = 0;
       setPath(path);
     } else {
 
-      nextFloor(
-          App.allNodes.get(Integer.parseInt(path.get(switchFloor + 1))), path, switchFloor + 1);
+      nextFloor(App.allNodes.get(Integer.parseInt(path.get(switchFloor))), path, switchFloor);
       bottomAni = bottomAni + 1;
     }
 
@@ -227,6 +233,7 @@ public class AnimatedPopOverController {
         pane.getChildren().add(triangle);
         pathForFloor.add(path.get(i));
         switchFloor = finalI + 1;
+        storedValList.add(0);
         triangle.setOnMouseClicked(
             event -> {
               try {
@@ -309,6 +316,22 @@ public class AnimatedPopOverController {
     Polygon triangle = new Polygon();
     Circle downPoint = new Circle();
     Circle end = new Circle();
+    anitxt.clear();
+
+    if (index == this.index - 1 && added) {
+      lineCounter = lineCounter + 2;
+      added = false;
+    }
+
+    for (int i = 0; i < lineCounter; i++) {
+      if (i == 0) {
+        anitxt.setText(textDirections[i]);
+
+      } else {
+        anitxt.setText(anitxt.getText() + "\n" + textDirections[i]);
+      }
+    }
+    System.out.println(anitxt.getText());
 
     String floor = App.allNodes.get(Integer.parseInt(path.get(index))).getFloor();
     switch (floor) {
@@ -415,10 +438,13 @@ public class AnimatedPopOverController {
         pathForFloor2.add(path.get(i));
         switchFloor = finalI + 1;
         bottomAni = -1;
+        added = true;
+        storedVal = storedVal + 1;
+        storedValList.add(index);
         triangle.setOnMouseClicked(
             event -> {
               try {
-                nextFloor(nodes.get(Integer.parseInt(path.get(finalI + 1))), path, finalI + 1);
+                nextFloor(nodes.get(Integer.parseInt(path.get(finalI))), path, finalI);
               } catch (SQLException ex) {
                 throw new RuntimeException(ex);
               }
@@ -474,7 +500,7 @@ public class AnimatedPopOverController {
 
       System.out.println(bottomAni);
       System.out.println(i);
-      if (i == bottomAni - 1) {
+      if (i == bottomAni) {
         timeline.play();
       }
     }
@@ -508,7 +534,30 @@ public class AnimatedPopOverController {
 
     pane.getChildren().clear();
     index = index - 1;
-    setPath(path);
+
+    lineCounter = lineCounter - 1;
+    added = false;
+
+    //    if (index == switchFloor + 1 && switchFloor != 0) {
+    //      lineCounter = lineCounter - 2;
+    //    }
+
+    System.out.println(storedValList);
+    if (index < switchFloor) {
+      switchFloor = storedValList.get(storedVal);
+      storedValList.remove(storedVal);
+      if (storedVal != 0) {
+        storedVal = storedVal - 1;
+      }
+    }
+
+    if (switchFloor == 0) {
+      setPath(path);
+    } else {
+      nextFloor(App.allNodes.get(Integer.parseInt(path.get(switchFloor))), path, switchFloor);
+      bottomAni = bottomAni - 1;
+    }
+
     if (index == 0) {
       back.setVisible(false);
     } else {
