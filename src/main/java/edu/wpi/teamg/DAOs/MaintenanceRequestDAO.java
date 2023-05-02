@@ -97,9 +97,7 @@ public class MaintenanceRequestDAO implements DAO {
     PreparedStatement ps_Req;
 
     ResultSet rs = null;
-
     SQL_maxID = "select reqid from iteration4_presentation.request order by reqid desc limit 1";
-
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
       rs = ps_getMaxID.executeQuery();
@@ -118,7 +116,6 @@ public class MaintenanceRequestDAO implements DAO {
             + "(reqid, recipient, phoneNumber, type, specified, note) values (?,?,?,?,?,?)";
     SQL_Request =
         "insert into iteration4_presentation.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
-
     try {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
       ps_Req.setInt(1, maxID);
