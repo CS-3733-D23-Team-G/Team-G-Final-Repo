@@ -6,18 +6,28 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MovePopOverController">
    <children>
       <HBox alignment="CENTER" prefWidth="453.0" VBox.vgrow="NEVER">
          <children>
-            <Label prefHeight="15.0" prefWidth="15.0" text="ID" />
-            <MFXTextField fx:id="nodeID" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Label prefHeight="21.0" prefWidth="64.0" style="-fx-font-weight: 800;" text="NodeID:" textFill="#118ab2">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXTextField fx:id="nodeID" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXTextField>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <TextArea fx:id="moveInfo" prefHeight="500.0" prefWidth="500.0" />
+            <TextArea fx:id="moveInfo" prefHeight="500.0" prefWidth="500.0" style="-fx-font-size: 15;">
+               <font>
+                  <Font size="15.0" />
+               </font></TextArea>
          </children>
       </HBox>
    </children>

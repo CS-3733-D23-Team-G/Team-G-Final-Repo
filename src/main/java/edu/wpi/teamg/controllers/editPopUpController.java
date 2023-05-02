@@ -36,6 +36,8 @@ public class editPopUpController {
 
   HashMap<Integer, Move> moving = new HashMap<>();
 
+  PopOver wind = new PopOver();
+
   public void initialize() {
 
     nID.setEditable(false);
@@ -103,7 +105,13 @@ public class editPopUpController {
     nodeDAO.update(node, "ycoord", Integer.parseInt(nYcoord.getText()));
     nodeDAO.update(node, "floor", nFloor.getText());
     nodeDAO.update(node, "building", nBuilding.getText());
+    wind.hide();
+    MapEditorController.playAnimation = true;
     App.refresh();
+  }
+
+  public void setWind(PopOver window) {
+    this.wind = window;
   }
 
   public void deleteNode() throws SQLException {
@@ -116,7 +124,8 @@ public class editPopUpController {
             nFloor.getText(),
             nBuilding.getText());
     nodeDAO.delete(node);
-
+    wind.hide();
+    MapEditorController.playAnimation = true;
     App.refresh();
   }
 

@@ -338,7 +338,14 @@ Popup
     -fx-background-color: #D9D9D9;
     -fx-font-size: 15;
     -fx-pref-height: 50;
-    -fx-pref-width: 300;
+    -fx-pref-width: 245;
+}
+
+.locationSelect_comboSearchBox_floor{
+    -fx-background-color: #D9D9D9;
+    -fx-font-size: 15;
+    -fx-pref-height: 50;
+    -fx-pref-width: 100;
 }
 
 .getPath_Button{
@@ -402,18 +409,18 @@ Popup
 }
 
 .table_view_Button_edit{
-    -fx-pref-height: 60;
-    -fx-pref-width: 140;
+    -fx-pref-height: 50;
+    -fx-pref-width: 100;
     -fx-background-color: #F6BD38;
-    -fx-font-size: 20;
+    -fx-font-size: 15;
     -fx-text-fill: #000000;
     -fx-alignment: center;
 }
 .table_view_Button_cancel{
-    -fx-pref-height: 60;
-    -fx-pref-width: 140;
+    -fx-pref-height: 50;
+    -fx-pref-width: 100;
     -fx-background-color: #D9D9D9;
-    -fx-font-size: 20;
+    -fx-font-size: 15;
     -fx-text-fill: #000000;
     -fx-alignment: center;
 }

@@ -23,24 +23,24 @@
                   <VBox alignment="CENTER" prefHeight="992.0" prefWidth="370.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800; -fx-font-size: 30;" styleClass="admin_page_text" text="Request Type" textAlignment="CENTER" wrappingWidth="275.5009765625" />
-                        <ChoiceBox fx:id="requestTables" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="280.0" styleClass="locationSelect_comboSearchBox">
+                        <ChoiceBox fx:id="requestTables" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="305.0" styleClass="locationSelect_comboSearchBox">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
                         </ChoiceBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="338.0">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="296.0">
                            <children>
-                              <MFXButton fx:id="cancelTableForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="280.0" styleClass="table_view_Button_cancel" text="Cancel Edit">
+                              <MFXButton fx:id="cancelTableForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="112.0" styleClass="table_view_Button_cancel" text="Cancel Edit">
                                  <font>
                                     <Font size="50.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets right="10.0" />
+                                    <Insets right="35.0" />
                                  </HBox.margin>
                               </MFXButton>
                               <MFXButton fx:id="editTableForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="280.0" styleClass="table_view_Button_edit" text="Edit Status">
                                  <font>
-                                    <Font size="50.0" />
+                                    <Font size="20.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets left="10.0" />
@@ -48,7 +48,7 @@
                               </MFXButton>
                            </children>
                         </HBox>
-                        <Line endX="172.5" startX="-100.0" stroke="#012d5a" strokeWidth="3.0" />
+                        <Line endX="142.5" startX="-100.0" stroke="#012d5a" strokeWidth="3.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Export">
                            <VBox.margin>
                               <Insets top="20.0" />

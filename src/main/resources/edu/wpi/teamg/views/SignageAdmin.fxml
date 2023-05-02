@@ -30,19 +30,19 @@
                               </ChoiceBox>
                               <HBox>
                                  <children>
-                                    <MFXButton fx:id="cancel" prefHeight="28.0" prefWidth="127.0" styleClass="admin_page_table_cancel" text="Table Cancel">
+                                    <MFXButton fx:id="cancel" prefHeight="28.0" prefWidth="11.0" styleClass="table_view_Button_cancel" text="Cancel Edit">
                                        <HBox.margin>
-                                          <Insets right="10.0" />
+                                          <Insets right="35.0" />
                                        </HBox.margin>
                                     </MFXButton>
-                                    <MFXButton fx:id="edit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="130.0" styleClass="admin_page_table_edit" text="Table Edit">
+                                    <MFXButton fx:id="edit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="130.0" styleClass="table_view_Button_edit" text="Table Edit">
                                        <HBox.margin>
                                           <Insets bottom="20.0" left="10.0" />
                                        </HBox.margin>
                                     </MFXButton>
                                  </children>
                               </HBox>
-                              <Line endX="185.5549774169922" endY="0.2928627133369446" startX="-100.0" stroke="#012d5a" strokeWidth="3.0" />
+                              <Line endX="145.87867736816406" startX="-100.0" stroke="#012d5a" strokeWidth="3.0" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Import">
                                  <VBox.margin>
                                     <Insets top="20.0" />

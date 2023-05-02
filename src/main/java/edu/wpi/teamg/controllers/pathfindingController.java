@@ -1439,6 +1439,8 @@ public class pathfindingController {
     var loader = new FXMLLoader(App.class.getResource("views/AlertPopUp.fxml"));
     window.setContentNode(loader.load());
 
+    window.setTitle("Move Alerts");
+    window.setArrowSize(0);
     PathfindingAlertPopUpController controller = new PathfindingAlertPopUpController();
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
