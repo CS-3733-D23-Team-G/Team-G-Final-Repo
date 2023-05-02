@@ -13,12 +13,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class SignageEditorController {
   Image westArrow = new Image("edu/wpi/teamg/Images/WestArrow.png");
@@ -70,7 +75,11 @@ public class SignageEditorController {
   @FXML MFXFilterComboBox yearDrop;
   // @FXML MFXComboBox kioskDrop;
 
+  @FXML AnchorPane forms;
+
   static boolean attribute = false;
+
+  static boolean playAnimation;
 
   public static String[] locationNameSave = new String[10];
   ObservableList<String> locationList;
@@ -100,6 +109,11 @@ public class SignageEditorController {
     DAORepo dao = new DAORepo();
     monthDrop.setItems(monthChoice);
     yearDrop.setItems(yearChoice);
+
+    if(playAnimation){
+      completeAnimation("Signage configuration added.");
+      playAnimation = false;
+    }
 
     HashMap<Integer, String> locationHash = App.ln;
 
@@ -470,7 +484,111 @@ public class SignageEditorController {
           new Signage((String) locationDrop.getValue(), null, sb.toString(), sb1.toString(), false);
       SignageDAO dao = new SignageDAO();
       dao.insert(signage);
-      Navigation.navigate(Screen.SIGNAGE_EDITOR_SUBMIT);
+
+      SignageEditorController.playAnimation = true;
+      Navigation.navigate(Screen.EDIT_SIGNAGE_PAGE);
+
+      // Navigation.navigate(Screen.SIGNAGE_EDITOR_SUBMIT);
     }
+  }
+
+  public void completeAnimation(String message) {
+
+    // Form Completion PopUp
+    AnchorPane rect = new AnchorPane();
+    rect.setLayoutX(1300);
+    rect.setStyle(
+        "-fx-pref-width: 400; -fx-pref-height: 100; -fx-background-color: #97E198; -fx-background-radius: 10");
+    rect.setLayoutY(800);
+    rect.toFront();
+
+    Text completionText = new Text("You Are All Set!");
+    completionText.setLayoutX(1425);
+    completionText.setLayoutY(845);
+    completionText.setStyle(
+        "-fx-stroke: #000000;"
+            + "-fx-fill: #012D5A;"
+            + "-fx-font-size: 25;"
+            + "-fx-font-weight: 500;");
+    completionText.toFront();
+
+    Text completionTextSecondRow = new Text(message);
+    completionTextSecondRow.setLayoutX(1425);
+    completionTextSecondRow.setLayoutY(875);
+    completionTextSecondRow.setStyle(
+        "-fx-stroke: #404040;"
+            + "-fx-fill: #012D5A;"
+            + "-fx-font-size: 20;"
+            + "-fx-font-weight: 500;");
+    completionTextSecondRow.toFront();
+
+    // Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
+    ImageView completionImage = new ImageView(App.checkmarkImage);
+
+    completionImage.setFitHeight(50);
+    completionImage.setFitWidth(50);
+    completionImage.setLayoutX(1325);
+    completionImage.setLayoutY(825);
+    completionImage.toFront();
+
+    rect.setOpacity(0.0);
+    completionImage.setOpacity(0.0);
+    completionText.setOpacity(0.0);
+    completionTextSecondRow.setOpacity(0.0);
+
+    forms.getChildren().add(rect);
+    forms.getChildren().add(completionText);
+    forms.getChildren().add(completionImage);
+    forms.getChildren().add(completionTextSecondRow);
+
+    FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(0.5), rect);
+    fadeIn1.setFromValue(0.0);
+    fadeIn1.setToValue(1.0);
+
+    FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(0.5), completionImage);
+    fadeIn2.setFromValue(0.0);
+    fadeIn2.setToValue(1.0);
+
+    FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(0.5), completionText);
+    fadeIn3.setFromValue(0.0);
+    fadeIn3.setToValue(1.0);
+
+    FadeTransition fadeIn4 = new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
+    fadeIn4.setFromValue(0.0);
+    fadeIn4.setToValue(1.0);
+
+    ParallelTransition parallelTransition =
+        new ParallelTransition(fadeIn1, fadeIn2, fadeIn3, fadeIn4);
+
+    parallelTransition.play();
+
+    parallelTransition.setOnFinished(
+        (event) -> {
+          FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(0.5), rect);
+          fadeOut1.setDelay(Duration.seconds(1.5));
+          fadeOut1.setFromValue(1.0);
+          fadeOut1.setToValue(0.0);
+
+          FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(0.5), completionImage);
+          fadeOut2.setDelay(Duration.seconds(1.5));
+          fadeOut2.setFromValue(1.0);
+          fadeOut2.setToValue(0.0);
+
+          FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(0.5), completionText);
+          fadeOut3.setDelay(Duration.seconds(1.5));
+          fadeOut3.setFromValue(1.0);
+          fadeOut3.setToValue(0.0);
+
+          FadeTransition fadeOut4 =
+              new FadeTransition(Duration.seconds(0.5), completionTextSecondRow);
+          fadeOut4.setDelay(Duration.seconds(1.5));
+          fadeOut4.setFromValue(1.0);
+          fadeOut4.setToValue(0.0);
+
+          fadeOut1.play();
+          fadeOut2.play();
+          fadeOut3.play();
+          fadeOut4.play();
+        });
   }
 }

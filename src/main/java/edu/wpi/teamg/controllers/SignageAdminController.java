@@ -3,8 +3,6 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
@@ -44,12 +42,13 @@ public class SignageAdminController {
 
   @FXML ChoiceBox<String> importDrop;
   @FXML ChoiceBox<String> exportDrop;
+  @FXML ChoiceBox<String> tableDropDown;
 
-  @FXML MFXButton nodesButton;
-  @FXML MFXButton edgesButton;
-
-  @FXML MFXButton nodeLocButton;
-  @FXML MFXButton moveButton;
+  //  @FXML MFXButton nodesButton;
+  //  @FXML MFXButton edgesButton;
+  //
+  //  @FXML MFXButton nodeLocButton;
+  //  @FXML MFXButton moveButton;
 
   @FXML TableView<Node> nodeTable;
   @FXML TableView<Edge> edgeTable;
@@ -83,49 +82,23 @@ public class SignageAdminController {
   @FXML MFXButton edit;
   @FXML MFXButton cancel;
 
-  //  @FXML Button disMap;
-
-  //  @FXML Button gf;
-  //  @FXML Button l1;
-  //  @FXML Button l2;
-  //  @FXML Button floor1;
-  //  @FXML Button floor2;
-  //  @FXML Button floor3;
-
-  //  @FXML MFXButton mapEdit;
-  //  @FXML MFXButton mapCancel;
-
-  //  @FXML MFXButton add;
-
-  @FXML MFXButton mapEditorPageBtn;
-
   ObservableList<String> importList =
       FXCollections.observableArrayList("Nodes", "Edges", "LocationName", "Moves");
 
   ObservableList<String> exportList =
       FXCollections.observableArrayList("Nodes", "Edges", "LocationName", "Moves");
 
+  ObservableList<String> tableList =
+      FXCollections.observableArrayList("Nodes", "Edges", "Node Location", "Moves");
+
   @FXML
   public void initialize() throws SQLException {
     App.bool = false;
     importDrop.setItems(importList);
     exportDrop.setItems(exportList);
+    tableDropDown.setItems(tableList);
     cancel.setOnMouseClicked(event -> cancelTable());
     edit.setOnMouseClicked(event -> editTable());
-    //    disMap.setOnMouseClicked(event -> showAdminMap());
-    //    mapEdit.setOnMouseClicked(event -> editMap());
-    //    mapCancel.setOnMouseClicked(event -> cancelMap());
-    mapEditorPageBtn.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_MAP_EDITOR));
-    //    add.setOnMouseClicked(
-    //        event -> {
-    //          try {
-    //            addNode();
-    //          } catch (IOException | SQLException e) {
-    //            throw new RuntimeException(e);
-    //          }
-    //        });
-
-    // importButton.setOnAction(event -> fileChooser());
 
     importDrop.setOnAction(
         event -> {
@@ -143,23 +116,12 @@ public class SignageAdminController {
             throw new RuntimeException(e);
           }
         });
+    tableDropDown.setOnAction(event -> loadTables());
 
-    // fileLabel.getText();
-
-    /*pathFindButton.setOnMouseClicked(
-       event -> {
-         try {
-           processAStarAlg();
-         } catch (SQLException e) {
-           throw new RuntimeException(e);
-         }
-       });
-    */
-
-    nodesButton.setOnMouseClicked(event -> loadNodeTable());
-    edgesButton.setOnMouseClicked(event -> loadEdgeTable());
-    moveButton.setOnMouseClicked(event -> loadMoveTable());
-    nodeLocButton.setOnMouseClicked(event -> loadLocTable());
+    //    nodesButton.setOnMouseClicked(event -> loadNodeTable());
+    //    edgesButton.setOnMouseClicked(event -> loadEdgeTable());
+    //    moveButton.setOnMouseClicked(event -> loadMoveTable());
+    //    nodeLocButton.setOnMouseClicked(event -> loadLocTable());
 
     ObservableList<Node> nodeList;
     ObservableList<Edge> edgeList;
@@ -198,51 +160,24 @@ public class SignageAdminController {
     locLongName.setCellValueFactory(new PropertyValueFactory<>("LongName"));
     locShortName.setCellValueFactory(new PropertyValueFactory<>("ShortName"));
     locNodeType.setCellValueFactory(new PropertyValueFactory<>("NodeType"));
+  }
 
-    //
-    //    l1.setOnMouseClicked(
-    //        event -> {
-    //          try {
-    //            goToL1(imageViewsList);
-    //          } catch (SQLException e) {
-    //            throw new RuntimeException(e);
-    //          }
-    //        });
-    //    l2.setOnMouseClicked(
-    //        event -> {
-    //          try {
-    //            goToL2(imageViewsList);
-    //          } catch (SQLException e) {
-    //            throw new RuntimeException(e);
-    //          }
-    //        });
-    //    floor1.setOnMouseClicked(
-    //        event -> {
-    //          try {
-    //            goToFloor1(imageViewsList);
-    //          } catch (SQLException e) {
-    //            throw new RuntimeException(e);
-    //          }
-    //        });
-    //    floor2.setOnMouseClicked(
-    //        event -> {
-    //          try {
-    //            goToFloor2(imageViewsList);
-    //          } catch (SQLException e) {
-    //            throw new RuntimeException(e);
-    //          }
-    //        });
-    //    floor3.setOnMouseClicked(
-    //        event -> {
-    //          try {
-    //            goToFloor3(imageViewsList);
-    //          } catch (SQLException e) {
-    //            throw new RuntimeException(e);
-    //          }
-    //        });
-
-    // Scaling is currently the issue with the node map
-
+  public void loadTables() {
+    String tableSelected = tableDropDown.getValue();
+    switch (tableSelected) {
+      case "Nodes":
+        loadNodeTable();
+        break;
+      case "Edges":
+        loadEdgeTable();
+        break;
+      case "Node Location":
+        loadLocTable();
+        break;
+      case "Moves":
+        loadMoveTable();
+        break;
+    }
   }
 
   DAORepo dao = new DAORepo();
@@ -517,3 +452,74 @@ public class SignageAdminController {
     }
   }
 }
+
+//
+//    l1.setOnMouseClicked(
+//        event -> {
+//          try {
+//            goToL1(imageViewsList);
+//          } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//          }
+//        });
+//    l2.setOnMouseClicked(
+//        event -> {
+//          try {
+//            goToL2(imageViewsList);
+//          } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//          }
+//        });
+//    floor1.setOnMouseClicked(
+//        event -> {
+//          try {
+//            goToFloor1(imageViewsList);
+//          } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//          }
+//        });
+//    floor2.setOnMouseClicked(
+//        event -> {
+//          try {
+//            goToFloor2(imageViewsList);
+//          } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//          }
+//        });
+//    floor3.setOnMouseClicked(
+//        event -> {
+//          try {
+//            goToFloor3(imageViewsList);
+//          } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//          }
+//        });
+
+// Scaling is currently the issue with the node map
+
+//    disMap.setOnMouseClicked(event -> showAdminMap());
+//    mapEdit.setOnMouseClicked(event -> editMap());
+//    mapCancel.setOnMouseClicked(event -> cancelMap());
+
+//    add.setOnMouseClicked(
+//        event -> {
+//          try {
+//            addNode();
+//          } catch (IOException | SQLException e) {
+//            throw new RuntimeException(e);
+//          }
+//        });
+
+// importButton.setOnAction(event -> fileChooser());
+
+// fileLabel.getText();
+
+    /*pathFindButton.setOnMouseClicked(
+       event -> {
+         try {
+           processAStarAlg();
+         } catch (SQLException e) {
+           throw new RuntimeException(e);
+         }
+       });
+    */

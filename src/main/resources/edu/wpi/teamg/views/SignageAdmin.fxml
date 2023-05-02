@@ -8,8 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="900.0" prefWidth="1600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SignageAdminController">
@@ -22,25 +22,30 @@
                      <children>
                         <VBox alignment="CENTER" fillWidth="false" maxWidth="-Infinity" prefHeight="838.0" prefWidth="571.0">
                            <children>
-                              <MFXButton fx:id="nodesButton" minHeight="-Infinity" minWidth="-Infinity" styleClass="admin_page_4_buttons" text="Nodes">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800; -fx-font-size: 30;" styleClass="admin_page_text" text="Choose Table" />
+                              <ChoiceBox fx:id="tableDropDown" prefHeight="36.0" prefWidth="290.0" styleClass="locationSelect_comboSearchBox">
                                  <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin></MFXButton>
-                              <MFXButton fx:id="edgesButton" styleClass="admin_page_4_buttons" text="Edges">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin></MFXButton>
-                              <MFXButton fx:id="nodeLocButton" styleClass="admin_page_4_buttons" text="Node Loc">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin></MFXButton>
-                              <MFXButton fx:id="moveButton" styleClass="admin_page_4_buttons" text="Move">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin></MFXButton>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                              </ChoiceBox>
+                              <HBox>
+                                 <children>
+                                    <MFXButton fx:id="cancel" prefHeight="28.0" prefWidth="11.0" styleClass="table_view_Button_cancel" text="Cancel Edit">
+                                       <HBox.margin>
+                                          <Insets right="35.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                    <MFXButton fx:id="edit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="130.0" styleClass="table_view_Button_edit" text="Table Edit">
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="10.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
+                              <Line endX="145.87867736816406" startX="-100.0" stroke="#012d5a" strokeWidth="3.0" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Import">
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets top="20.0" />
                                  </VBox.margin></Text>
                   
                                                       <ChoiceBox fx:id="importDrop" prefHeight="36.0" prefWidth="290.0" styleClass="locationSelect_comboSearchBox" />
@@ -52,75 +57,59 @@
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin></ChoiceBox>
-                              <MFXButton fx:id="cancel" prefHeight="28.0" prefWidth="127.0" styleClass="admin_page_3_buttons" text="Table Cancel">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" top="20.0" />
-                                 </VBox.margin></MFXButton>
-                              <MFXButton fx:id="edit" prefHeight="28.0" prefWidth="126.0" styleClass="admin_page_3_buttons" text="Table Edit">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin></MFXButton>
-                              <MFXButton fx:id="mapEditorPageBtn" styleClass="admin_page_3_buttons" text="Map Editor Page ">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin></MFXButton>
                            </children>
                         </VBox>
                      </children>
                   </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane styleClass="table_view_right" HBox.hgrow="ALWAYS">
+            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1350.0" styleClass="table_view_right" stylesheets="@style.css">
                <children>
-                  <StackPane prefHeight="980.0" prefWidth="1450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
-                     <children>
-                        <TableView fx:id="moveTable" styleClass="table-text">
-                           <columns>
-                              <TableColumn fx:id="moveNodeID" prefWidth="100.0" text="NodeID" />
-                              <TableColumn fx:id="moveDate" prefWidth="655.1977233886719" text="Date" />
-                              <TableColumn fx:id="moveLongName" prefWidth="55.0" text="LongName" />
-                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </TableView>
-                        <TableView fx:id="edgeTable" styleClass="table-text">
-                           <columns>
-                              <TableColumn fx:id="edgeEdgeID" prefWidth="55.0" text="EdgeID" />
-                              <TableColumn fx:id="edgeEndNode" prefWidth="55.0" text="EndNode" />
-                              <TableColumn fx:id="edgeStartNode" prefWidth="55.0" text="StartNode" />
-                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </TableView>
-                        <TableView fx:id="nodeLocTable" styleClass="table-text">
-                           <columns>
-                              <TableColumn fx:id="locLongName" prefWidth="55.0" text="LongName" />
-                              <TableColumn fx:id="locShortName" prefWidth="55.0" text="ShortName" />
-                              <TableColumn fx:id="locNodeType" prefWidth="60.0" text="NodeType" />
-                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </TableView>
-                        <TableView fx:id="nodeTable" styleClass="table-text">
-                           <columns>
-                              <TableColumn fx:id="nodeNodeID" prefWidth="100.0" text="NodeID" />
-                              <TableColumn fx:id="nodeXcoord" prefWidth="100.0" text="x-coord" />
-                              <TableColumn fx:id="nodeYcoord" prefWidth="100.0" text="y-coord" />
-                              <TableColumn fx:id="nodeFloor" prefWidth="150.0" text="floor" />
-                              <TableColumn fx:id="nodeBuilding" prefWidth="150.0" text="building" />
-                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </TableView>
-                     </children>
-                  </StackPane>
+                  <TableView fx:id="moveTable" layoutX="5.0" layoutY="5.0" prefHeight="880.0" prefWidth="1244.0" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="moveNodeID" prefWidth="100.0" text="NodeID" />
+                        <TableColumn fx:id="moveDate" prefWidth="655.1977233886719" text="Date" />
+                        <TableColumn fx:id="moveLongName" prefWidth="55.0" text="LongName" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <TableView fx:id="edgeTable" layoutX="5.0" layoutY="5.0" prefHeight="880.0" prefWidth="1244.0" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="edgeEdgeID" prefWidth="55.0" text="EdgeID" />
+                        <TableColumn fx:id="edgeEndNode" prefWidth="55.0" text="EndNode" />
+                        <TableColumn fx:id="edgeStartNode" prefWidth="55.0" text="StartNode" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <TableView fx:id="nodeLocTable" layoutX="5.0" layoutY="5.0" prefHeight="880.0" prefWidth="1244.0" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="locLongName" prefWidth="55.0" text="LongName" />
+                        <TableColumn fx:id="locShortName" prefWidth="55.0" text="ShortName" />
+                        <TableColumn fx:id="locNodeType" prefWidth="60.0" text="NodeType" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <TableView fx:id="nodeTable" layoutX="5.0" layoutY="5.0" prefHeight="880.0" prefWidth="1244.0" styleClass="table-text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="nodeNodeID" prefWidth="100.0" text="NodeID" />
+                        <TableColumn fx:id="nodeXcoord" prefWidth="100.0" text="x-coord" />
+                        <TableColumn fx:id="nodeYcoord" prefWidth="100.0" text="y-coord" />
+                        <TableColumn fx:id="nodeFloor" prefWidth="150.0" text="floor" />
+                        <TableColumn fx:id="nodeBuilding" prefWidth="150.0" text="building" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
                </children>
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="50.0" left="50.0" right="100.0" top="50.0" />
                </HBox.margin>
             </AnchorPane>
          </children>

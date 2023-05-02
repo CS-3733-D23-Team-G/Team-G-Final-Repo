@@ -6,58 +6,104 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.editPopUpController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="233.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.editPopUpController">
    <children>
       <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER">
          <children>
-            <Label prefWidth="200.0" text="ID" />
-            <MFXTextField fx:id="nID" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Label prefWidth="200.0" text="ID">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXTextField fx:id="nID" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXTextField>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="XCoord" />
-            <MFXTextField fx:id="nXcoord" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Label prefWidth="200.0" text="XCoord">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXTextField fx:id="nXcoord" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXTextField>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="YCoord" />
-            <MFXTextField fx:id="nYcoord" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Label prefWidth="200.0" text="YCoord">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXTextField fx:id="nYcoord" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXTextField>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="Floor" />
-            <MFXTextField fx:id="nFloor" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Label prefWidth="200.0" text="Floor">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXTextField fx:id="nFloor" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXTextField>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="Building" />
-            <MFXTextField fx:id="nBuilding" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Label prefWidth="200.0" text="Building">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXTextField fx:id="nBuilding" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXTextField>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="Short Name" />
-            <MFXTextField fx:id="shortName" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Label prefWidth="200.0" text="Short Name">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <MFXTextField fx:id="shortName" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXTextField>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <MFXButton fx:id="delete" text="Delete">
+            <MFXButton fx:id="delete" minHeight="-Infinity" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: #E19797; -fx-text-fill: black;" text="Delete">
                <HBox.margin>
-                  <Insets right="50.0" />
+                  <Insets right="52.0" />
                </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </MFXButton>
-            <MFXButton fx:id="submit" text="Submit" />
+            <MFXButton fx:id="submit" prefHeight="38.0" prefWidth="72.0" style="-fx-background-color: #118AB2; -fx-text-fill: white;" text="Submit">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXButton>
          </children>
       </HBox>
-      <HBox>
+      <HBox alignment="CENTER">
          <children>
-            <MFXButton fx:id="fmoves" text="Future Moves" />
+            <MFXButton fx:id="fmoves" prefHeight="38.0" style="-fx-background-color: #a88b10; -fx-text-fill: white;" text="Future Moves">
+               <font>
+                  <Font size="15.0" />
+               </font></MFXButton>
          </children>
       </HBox>
    </children>

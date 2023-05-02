@@ -17,52 +17,52 @@
             <children>
                 <AnchorPane prefHeight="540.0" prefWidth="971.0" styleClass="rest_of_page">
                     <children>
-                        <ImageView fx:id="arrow1" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="185.0">
+                        <ImageView fx:id="arrow1" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="170.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow2" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="335.0">
+                        <ImageView fx:id="arrow2" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="320.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow3" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="485.0">
+                        <ImageView fx:id="arrow3" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="470.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow4" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="635.0">
+                        <ImageView fx:id="arrow4" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="620.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow5" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="785.0">
+                        <ImageView fx:id="arrow5" fitHeight="100.0" fitWidth="100.0" layoutX="112.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="770.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow6" fitHeight="100.0" fitWidth="100.0" layoutX="801.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="185.0">
+                        <ImageView fx:id="arrow6" fitHeight="100.0" fitWidth="100.0" layoutX="801.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="170.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow7" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="335.0">
+                        <ImageView fx:id="arrow7" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="320.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow8" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="485.0">
+                        <ImageView fx:id="arrow8" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="470.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow9" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="635.0">
+                        <ImageView fx:id="arrow9" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="620.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="arrow10" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="785.0">
+                        <ImageView fx:id="arrow10" fitHeight="100.0" fitWidth="100.0" layoutX="791.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="770.0">
                             <image>
                                 <Image url="@../Images/NoArrow.png" />
                             </image>

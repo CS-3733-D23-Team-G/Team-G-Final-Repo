@@ -193,9 +193,9 @@ public class GameTicTacToe implements ActionListener {
   }
 
   public void xWins(int a, int b, int c) {
-    buttons[a].setBackground(Color.GREEN);
-    buttons[b].setBackground(Color.GREEN);
-    buttons[c].setBackground(Color.GREEN);
+    buttons[a].setBackground(new Color(246, 189, 56));
+    buttons[b].setBackground(new Color(246, 189, 56));
+    buttons[c].setBackground(new Color(246, 189, 56));
 
     for (int i = 0; i < 9; i++) {
       buttons[i].setEnabled(false);
@@ -204,9 +204,9 @@ public class GameTicTacToe implements ActionListener {
   }
 
   public void oWins(int a, int b, int c) {
-    buttons[a].setBackground(Color.GREEN);
-    buttons[b].setBackground(Color.GREEN);
-    buttons[c].setBackground(Color.GREEN);
+    buttons[a].setBackground(new Color(1, 45, 90));
+    buttons[b].setBackground(new Color(1, 45, 90));
+    buttons[c].setBackground(new Color(1, 45, 90));
 
     for (int i = 0; i < 9; i++) {
       buttons[i].setEnabled(false);

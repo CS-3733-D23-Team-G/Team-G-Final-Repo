@@ -21,16 +21,16 @@
          <children>
             <AnchorPane fx:id="forms" prefHeight="540.0" prefWidth="971.0">
                <children>
-                  <MFXFilterComboBox fx:id="signageDropDown1" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="195.0" />
-                  <MFXFilterComboBox fx:id="signageDropDown2" layoutX="10.0" layoutY="10.0" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="345.0" />
-                  <MFXFilterComboBox fx:id="signageDropDown3" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="495.0" />
-                  <MFXFilterComboBox fx:id="signageDropDown4" layoutX="10.0" layoutY="10.0" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="645.0" />
-                  <MFXFilterComboBox fx:id="signageDropDown5" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="795.0" />
-                  <MFXFilterComboBox fx:id="signageDropDown6" layoutX="10.0" layoutY="10.0" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="195.0" />
-                  <MFXFilterComboBox fx:id="signageDropDown7" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="345.0" />
-                  <MFXFilterComboBox fx:id="signageDropDown8" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="495.0" />
-                  <MFXFilterComboBox fx:id="signageDropDown9" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="645.0" />
-                  <MFXFilterComboBox fx:id="signageDropDown10" layoutX="10.0" layoutY="10.0" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="795.0" />
+                  <MFXFilterComboBox fx:id="signageDropDown1" floatMode="DISABLED" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="195.0" />
+                  <MFXFilterComboBox fx:id="signageDropDown2" floatMode="DISABLED" layoutX="10.0" layoutY="10.0" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="345.0" />
+                  <MFXFilterComboBox fx:id="signageDropDown3" floatMode="DISABLED" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="495.0" />
+                  <MFXFilterComboBox fx:id="signageDropDown4" floatMode="DISABLED" layoutX="10.0" layoutY="10.0" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="645.0" />
+                  <MFXFilterComboBox fx:id="signageDropDown5" floatMode="DISABLED" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="795.0" />
+                  <MFXFilterComboBox fx:id="signageDropDown6" floatMode="DISABLED" layoutX="10.0" layoutY="10.0" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="195.0" />
+                  <MFXFilterComboBox fx:id="signageDropDown7" floatMode="DISABLED" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="345.0" />
+                  <MFXFilterComboBox fx:id="signageDropDown8" floatMode="DISABLED" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="495.0" />
+                  <MFXFilterComboBox fx:id="signageDropDown9" floatMode="DISABLED" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="645.0" />
+                  <MFXFilterComboBox fx:id="signageDropDown10" floatMode="DISABLED" layoutX="10.0" layoutY="10.0" styleClass="requestTextBox_MFX" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="795.0" />
                   <ImageView fx:id="arrow1" fitHeight="100.0" fitWidth="100.0" layoutX="230.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="175.0">
                      <image>
                         <Image url="@../Images/NoArrow.png" />
@@ -101,7 +101,7 @@
                               <Insets left="20.0" top="15.0" />
                            </HBox.margin>
                         </Text>
-                        <MFXFilterComboBox fx:id="locationDrop" minHeight="10.0" minWidth="10.0" prefHeight="55.0" prefWidth="286.0" styleClass="requestTextBox_MFX">
+                        <MFXFilterComboBox fx:id="locationDrop" floatMode="DISABLED" minHeight="10.0" minWidth="10.0" prefHeight="55.0" prefWidth="286.0" styleClass="requestTextBox_MFX">
                            <HBox.margin>
                               <Insets left="5.0" top="5.0" />
                            </HBox.margin>
@@ -114,7 +114,7 @@
                               <Insets left="20.0" top="15.0" />
                            </HBox.margin>
                         </Text>
-                        <MFXFilterComboBox fx:id="monthDrop" maxHeight="-Infinity" minHeight="10.0" minWidth="10.0" prefHeight="26.0" prefWidth="85.0" styleClass="requestTextBox_MFX">
+                        <MFXFilterComboBox fx:id="monthDrop" floatMode="DISABLED" maxHeight="-Infinity" minHeight="10.0" minWidth="10.0" prefHeight="26.0" prefWidth="85.0" styleClass="requestTextBox_MFX">
                            <HBox.margin>
                               <Insets left="5.0" top="5.0" />
                            </HBox.margin>
@@ -127,12 +127,12 @@
                               <Insets left="20.0" top="15.0" />
                            </HBox.margin>
                         </Text>
-                        <MFXFilterComboBox fx:id="yearDrop" minHeight="10.0" minWidth="10.0" prefHeight="55.0" prefWidth="85.0" styleClass="requestTextBox_MFX">
+                        <MFXFilterComboBox fx:id="yearDrop" floatMode="DISABLED" minHeight="10.0" minWidth="10.0" prefHeight="55.0" prefWidth="85.0" styleClass="requestTextBox_MFX">
                            <HBox.margin>
                               <Insets left="5.0" top="5.0" />
                            </HBox.margin>
                         </MFXFilterComboBox>
-                        <MFXCheckbox fx:id="daySpecify" prefHeight="60.0" prefWidth="128.0" styleClass="signageCheckBox" text="Specify Date?">
+                        <MFXCheckbox fx:id="daySpecify" prefHeight="60.0" prefWidth="128.0" styleClass="signageCheckBox" text="Specify Date?" visible="false">
                            <HBox.margin>
                               <Insets left="20.0" top="5.0" />
                            </HBox.margin>

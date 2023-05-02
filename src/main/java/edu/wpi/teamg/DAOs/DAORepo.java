@@ -21,6 +21,8 @@ public class DAORepo {
 
   private MaintenanceRequestDAO maintenanceRequest = new MaintenanceRequestDAO();
 
+  private NotificationDAO notifcationDao = new NotificationDAO();
+
   public HashMap getAllNodes() throws SQLException {
     return nodeDao.getAll();
   }
@@ -67,6 +69,10 @@ public class DAORepo {
 
   public HashMap getAllMaintenance() throws SQLException {
     return maintenanceRequest.getAll();
+  }
+
+  public HashMap getAllNotifications() throws SQLException {
+    return notifcationDao.getAll();
   }
 
   public void insertNode(Object obj) throws SQLException {
