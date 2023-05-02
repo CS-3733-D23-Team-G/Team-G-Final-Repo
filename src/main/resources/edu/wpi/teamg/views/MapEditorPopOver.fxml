@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MapEditorPopUpController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.MapEditorPopUpController">
    <children>
-      <Label fx:id="moveChangeLabel" style="-fx-font-size: 30px;" text="What would like the move message to be?" />
-      <TextArea fx:id="messageText" prefHeight="200.0" prefWidth="200.0" style="-fx-font-size: 20px;" />
-      <MFXButton fx:id="confirmButton" buttonType="RAISED" prefHeight="50.0" prefWidth="150.0" style="-fx-border-radius: 20px; -fx-font-size: 20px;" text="Confirm" />
+      <BorderPane minHeight="-Infinity" prefHeight="444.0" prefWidth="600.0" stylesheets="@style.css">
+         <top>
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox prefHeight="461.0" prefWidth="600.0" style="-fx-border-color: #012D5A; -fx-border-width: 3;" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label style="-fx-font-size: 30; -fx-font-weight: 800; -fx-text-fill: #012D5A;" text="Move Alert Message">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="25.0" top="25.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Line endX="435.5857849121094" startX="-100.0" stroke="#d9d9d9" strokeWidth="2.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="25.0" right="25.0" />
+                           </VBox.margin>
+                        </Line>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is a space to note future moving of nodes and location names. The message will be display as an alert message on the pathfinding page." wrappingWidth="544.291015625">
+                           <VBox.margin>
+                              <Insets left="25.0" right="25.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <TextArea fx:id="messageText" prefHeight="309.0" prefWidth="544.0" style="-fx-font-size: 20px;" styleClass="notes" wrapText="true">
+                           <VBox.margin>
+                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextArea>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="594.0">
+                           <children>
+                              <MFXButton fx:id="confirmButton" cacheShape="false" centerShape="false" depthTest="DISABLE" prefHeight="50.0" prefWidth="150.0" scaleShape="false" style="-fx-font-size: 20px; -fx-background-color: #F6BD38;" text="Confirm">
+                                 <HBox.margin>
+                                    <Insets bottom="25.0" right="25.0" />
+                                 </HBox.margin>
+                              </MFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </top>
+      </BorderPane>
    </children>
 </VBox>

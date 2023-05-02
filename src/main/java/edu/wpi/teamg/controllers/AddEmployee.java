@@ -48,7 +48,8 @@ public class AddEmployee {
           "Conference Room Request",
           "Flowers Request",
           "Office Supplies Request",
-          "Furniture Request");
+          "Furniture Request",
+          "Maintenance Request");
 
   EmployeeDAO empDao = new EmployeeDAO();
   AccountDAO accDao = new AccountDAO();

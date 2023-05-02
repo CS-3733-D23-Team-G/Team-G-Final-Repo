@@ -115,6 +115,8 @@ public class MapEditorController {
   boolean moves = false;
   HashMap<Integer, Move> moving = new HashMap<>();
 
+  static PopOver wind = new PopOver();
+
   public void initialize() throws SQLException, IOException {
     App.bool = false;
     verticalButton.setVisible(false);
@@ -944,10 +946,21 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     editPopUpController controller = loader.getController();
+    controller.setWind(window);
     controller.setFields(point, knownLoc, moving);
+
+    window.setTitle("Edit/Delete Node");
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+
+    window.setOnHiding(
+        event -> {
+          if (playAnimation) {
+            completeAnimation("Node modified or deleted.");
+            playAnimation = false;
+          }
+        });
   }
 
   public void remove(javafx.scene.control.TextArea displayNode, Button exit) {
@@ -978,6 +991,8 @@ public class MapEditorController {
     AddLocationNameController controller = loader.getController();
     controller.setWind(window);
 
+    window.setTitle("Add Location Name");
+
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
 
@@ -1000,6 +1015,8 @@ public class MapEditorController {
     controller.moveSetter(moving);
     controller.setWind(window);
 
+    window.setTitle("Add Move");
+
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
 
@@ -1020,6 +1037,8 @@ public class MapEditorController {
     window.setArrowSize(0);
     DeleteLocationNameControllerPopOver controller = loader.getController();
     controller.setWind(window);
+
+    window.setTitle("Delete Node");
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
@@ -1053,7 +1072,8 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     DeleteEdgeController controller = loader.getController();
-    controller.setWind(window);
+
+    window.setTitle("Delete Edge");
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
@@ -1068,15 +1088,19 @@ public class MapEditorController {
   }
 
   public void displayMoveChange() throws IOException {
-    final PopOver window = new PopOver();
+
     var loader = new FXMLLoader(App.class.getResource("views/MapEditorPopOver.fxml"));
-    window.setContentNode(loader.load());
+    wind.setContentNode(loader.load());
+
+    wind.setArrowSize(0);
+
+    wind.setTitle("Move Change Alert");
 
     MapEditorPopUpController controller = loader.getController();
     message = controller.message;
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+    wind.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void recordDrag(MouseEvent event, Circle point) {
@@ -1112,6 +1136,8 @@ public class MapEditorController {
     window.setArrowSize(0);
     ConfirmPopUpController controller = loader.getController();
 
+    window.setTitle("Change Node Position");
+
     controller.setFields(x1, y1, x2, y2, potentialUpdate, window, imgs, index, nodePane);
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
@@ -1140,6 +1166,9 @@ public class MapEditorController {
     window.setArrowSize(0);
     DeleteMovePopUpController controller = loader.getController();
     controller.passOver(window);
+
+    window.setTitle("Delete A Move");
+
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
 

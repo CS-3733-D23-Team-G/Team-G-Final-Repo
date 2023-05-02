@@ -11,6 +11,12 @@ public class PathfindingAlertPopUpController {
   String message;
 
   public void initialize() {
-    messageText.setText(App.message);
+
+    if (App.message == null) {
+      messageText.setText("There is currently no alerts.");
+
+    } else {
+      messageText.setText(App.message);
+    }
   }
 }

@@ -5,36 +5,52 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" spacing="16.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.EdgeDataPopOverController">
    <children>
       <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="NEVER">
          <children>
-            <Label prefWidth="200.0" text="EdgeID" />
+            <Label prefWidth="200.0" style="-fx-font-weight: 800;" text="EdgeID" textFill="#ef476f">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="edgeID" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="Start Node ID" />
+            <Label prefWidth="200.0" text="Start Node ID">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="startNode" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="Start Node Long Name" />
+            <Label prefWidth="200.0" text="Start Node Long Name">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="startLn" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="End Node ID" />
+            <Label prefWidth="200.0" text="End Node ID">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="endNode" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Label prefWidth="200.0" text="End Node Long Name" />
+            <Label prefWidth="200.0" text="End Node Long Name">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <MFXTextField fx:id="endLn" floatMode="DISABLED" floatingText="Text" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
