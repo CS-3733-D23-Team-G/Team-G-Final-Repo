@@ -238,7 +238,7 @@ public class RequestDAO implements DAO {
 
     PreparedStatement ps;
 
-    RequestSQL = "update teamgdb.iteration4_presentation.request set status = ? where reqid = ?";
+    RequestSQL = "update iteration4_presentation.request set status = ? where reqid = ?";
 
     try {
       ps = db.getConnection().prepareStatement(RequestSQL);
