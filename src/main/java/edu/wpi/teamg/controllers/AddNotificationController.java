@@ -18,8 +18,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -50,6 +53,20 @@ public class AddNotificationController {
   @FXML MFXCheckbox dismissible;
 
   @FXML AnchorPane forms;
+
+  // AddNotification
+  @FXML TableView<Notification> notifTable;
+  @FXML TableColumn<Notification, Integer> notifAlertIDColumn;
+  @FXML TableColumn<Notification, Date> notifDateColumn;
+  @FXML TableColumn<Notification, Time> notifTimeColumn;
+  @FXML TableColumn<Notification, String> notifTypeColumn;
+  @FXML TableColumn<Notification, Integer> notifEmpIDColumn;
+  @FXML TableColumn<Notification, String> notifRecipientsColumn;
+  @FXML TableColumn<Notification, String> notifMessageColumn;
+  @FXML TableColumn<Notification, String> notifHeaderColumn;
+
+  // TODO
+  ObservableList<Notification> testNotificationList;
 
   ObservableList<String> notifTypeList =
       FXCollections.observableArrayList("Alert", "Request Assign", "Message");
@@ -118,6 +135,21 @@ public class AddNotificationController {
         event -> {
           allDataFilled();
         });
+
+    ArrayList<Notification> testingNotification = App.testingNotifs;
+
+    testNotificationList = FXCollections.observableArrayList(testingNotification);
+
+    notifTable.setItems(testNotificationList);
+
+    notifAlertIDColumn.setCellValueFactory(new PropertyValueFactory<>("alertID"));
+    notifDateColumn.setCellValueFactory(new PropertyValueFactory<>("notifDate"));
+    notifTimeColumn.setCellValueFactory(new PropertyValueFactory<>("notifTime"));
+    notifTypeColumn.setCellValueFactory(new PropertyValueFactory<>("notiftype"));
+    notifEmpIDColumn.setCellValueFactory(new PropertyValueFactory<>("empid"));
+    notifRecipientsColumn.setCellValueFactory(new PropertyValueFactory<>("recipients"));
+    notifMessageColumn.setCellValueFactory(new PropertyValueFactory<>("message"));
+    notifHeaderColumn.setCellValueFactory(new PropertyValueFactory<>("notifheader"));
   }
 
   public void allDataFilled() {

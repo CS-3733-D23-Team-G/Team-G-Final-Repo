@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="900.0" prefWidth="1600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.SignageAdminController">
@@ -22,25 +23,16 @@
                      <children>
                         <VBox alignment="CENTER" fillWidth="false" maxWidth="-Infinity" prefHeight="838.0" prefWidth="571.0">
                            <children>
-                              <MFXButton fx:id="nodesButton" minHeight="-Infinity" minWidth="-Infinity" styleClass="admin_page_4_buttons" text="Nodes">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Choose Table to View" />
+                              <ChoiceBox fx:id="tableDropDown" prefHeight="36.0" prefWidth="290.0" styleClass="locationSelect_comboSearchBox">
                                  <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin></MFXButton>
-                              <MFXButton fx:id="edgesButton" styleClass="admin_page_4_buttons" text="Edges">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin></MFXButton>
-                              <MFXButton fx:id="nodeLocButton" styleClass="admin_page_4_buttons" text="Node Loc">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin></MFXButton>
-                              <MFXButton fx:id="moveButton" styleClass="admin_page_4_buttons" text="Move">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin></MFXButton>
+                                    <Insets bottom="40.0" />
+                                 </VBox.margin>
+                              </ChoiceBox>
+                              <Line endX="185.5549774169922" endY="0.2928627133369446" startX="-100.0" stroke="#012d5a" strokeWidth="3.0" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="admin_page_text" text="Import">
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets top="20.0" />
                                  </VBox.margin></Text>
                   
                                                       <ChoiceBox fx:id="importDrop" prefHeight="36.0" prefWidth="290.0" styleClass="locationSelect_comboSearchBox" />
@@ -52,11 +44,12 @@
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin></ChoiceBox>
-                              <MFXButton fx:id="cancel" prefHeight="28.0" prefWidth="127.0" styleClass="admin_page_3_buttons" text="Table Cancel">
+                              <MFXButton fx:id="edit" prefHeight="28.0" prefWidth="126.0" styleClass="admin_page_table_edit" text="Table Edit">
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="20.0" />
-                                 </VBox.margin></MFXButton>
-                              <MFXButton fx:id="edit" prefHeight="28.0" prefWidth="126.0" styleClass="admin_page_3_buttons" text="Table Edit">
+                                 </VBox.margin>
+                              </MFXButton>
+                              <MFXButton fx:id="cancel" prefHeight="28.0" prefWidth="127.0" styleClass="admin_page_table_cancel" text="Table Cancel">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin></MFXButton>
