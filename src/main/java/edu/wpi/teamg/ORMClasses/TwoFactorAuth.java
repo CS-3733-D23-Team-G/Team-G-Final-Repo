@@ -31,7 +31,8 @@ public class TwoFactorAuth {
     db.setConnection();
     String email = null;
     int id = 0;
-    String retrieveAccount = "select * from teamgdb.iteration4.account where username = ?";
+    String retrieveAccount =
+        "select * from teamgdb.iteration4_presentation.account where username = ?";
     PreparedStatement ps = db.getConnection().prepareStatement(retrieveAccount);
     ps.setString(1, user);
     ResultSet rs = ps.executeQuery();
@@ -39,7 +40,8 @@ public class TwoFactorAuth {
       id = rs.getInt("empid");
     }
 
-    String retrieveEmployee = "select * from teamgdb.iteration4.employee where empid = ?";
+    String retrieveEmployee =
+        "select * from teamgdb.iteration4_presentation.employee where empid = ?";
     PreparedStatement ps2 = db.getConnection().prepareStatement(retrieveEmployee);
     ps2.setInt(1, id);
     ResultSet rs2 = ps2.executeQuery();

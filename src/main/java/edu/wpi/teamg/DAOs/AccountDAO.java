@@ -107,6 +107,6 @@ public class AccountDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4.account";
+    return "teamgdb.iteration4_presentation.account";
   }
 }

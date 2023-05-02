@@ -46,7 +46,11 @@ public class TopBannerController {
     //    signagePageButton.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
     signagePageButton.setOnAction(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
     exit.setOnMouseClicked(event -> exit());
-    statusButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_STATUS_PAGE));
+    statusButton.setOnMouseClicked(
+        event -> {
+          AdminFormStatusController.isAll = false;
+          Navigation.navigate(Screen.ADMIN_STATUS_PAGE);
+        });
 
     serviceRequestChoiceBox.setItems(list);
     serviceRequestChoiceBox.setOnAction(event -> loadServiceRequestForm());

@@ -103,7 +103,7 @@ public class EmployeeDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4.employee";
+    return "teamgdb.iteration4_presentation.employee";
   }
 
   public static HashMap<Integer, String> getEmployeeFullName(String canServe) throws SQLException {
@@ -117,7 +117,7 @@ public class EmployeeDAO implements DAO {
 
     query =
         "SELECT empid, firstname, lastname\n"
-            + "FROM iteration4.employee\n"
+            + "FROM iteration4_presentation.employee\n"
             + "WHERE can_serve = ?;";
 
     try {
@@ -151,7 +151,7 @@ public class EmployeeDAO implements DAO {
 
     ResultSet rs = null;
 
-    query = "SELECT empid, firstname, lastname\n" + "FROM iteration4.employee;";
+    query = "SELECT empid, firstname, lastname\n" + "FROM iteration4_presentation.employee;";
 
     try {
       ps = conn.getConnection().prepareStatement(query);

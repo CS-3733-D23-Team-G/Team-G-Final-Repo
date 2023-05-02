@@ -28,7 +28,7 @@ public class FurnitureDAO implements DAO {
             + getRequest()
             + " join "
             + getTable()
-            + " on iteration4.request.reqid= iteration4.furniturerequest.reqid";
+            + " on iteration4_presentation.request.reqid= iteration4_presentation.furniturerequest.reqid";
     try {
       ps = db.getConnection().prepareStatement(SQL);
       rs = ps.executeQuery();
@@ -202,10 +202,10 @@ public class FurnitureDAO implements DAO {
   @Override
   public String getTable() {
 
-    return "teamgdb.iteration4.furniturerequest";
+    return "teamgdb.iteration4_presentation.furniturerequest";
   }
 
   public String getRequest() {
-    return "teamgdb.iteration4.request";
+    return "teamgdb.iteration4_presentation.request";
   }
 }
