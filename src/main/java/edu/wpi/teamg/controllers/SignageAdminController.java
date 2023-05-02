@@ -3,8 +3,6 @@ package edu.wpi.teamg.controllers;
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.*;
 import edu.wpi.teamg.ORMClasses.*;
-import edu.wpi.teamg.navigation.Navigation;
-import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.*;
@@ -84,8 +82,6 @@ public class SignageAdminController {
   @FXML MFXButton edit;
   @FXML MFXButton cancel;
 
-  @FXML MFXButton mapEditorPageBtn;
-
   ObservableList<String> importList =
       FXCollections.observableArrayList("Nodes", "Edges", "LocationName", "Moves");
 
@@ -103,7 +99,6 @@ public class SignageAdminController {
     tableDropDown.setItems(tableList);
     cancel.setOnMouseClicked(event -> cancelTable());
     edit.setOnMouseClicked(event -> editTable());
-    mapEditorPageBtn.setOnMouseClicked(event -> Navigation.navigate(Screen.ADMIN_MAP_EDITOR));
 
     importDrop.setOnAction(
         event -> {

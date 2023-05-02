@@ -35,13 +35,16 @@
                                     <Font size="50.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets right="20.0" />
+                                    <Insets right="10.0" />
                                  </HBox.margin>
                               </MFXButton>
                               <MFXButton fx:id="editTableForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="280.0" styleClass="table_view_Button_edit" text="Edit Status">
                                  <font>
                                     <Font size="50.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </MFXButton>
                            </children>
                         </HBox>
