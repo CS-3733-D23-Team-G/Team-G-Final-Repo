@@ -4,11 +4,13 @@ import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
 import edu.wpi.teamg.App;
+import edu.wpi.teamg.Main;
 import edu.wpi.teamg.navigation.Navigation;
 import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.awt.*;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.event.EventHandler;
@@ -43,8 +45,14 @@ public class SpeechPopController {
     Configuration config = new Configuration();
     Timer timer = new Timer();
     config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-    config.setDictionaryPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.dic");
-    config.setLanguageModelPath("src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.lm");
+    // "src/main/resources/edu/wpi/teamg/voiceCommandFiles/6500.dic"
+    config.setDictionaryPath(
+        Objects.requireNonNull(Main.class.getResource("voiceCommandFiles/6500.dic"))
+            .toExternalForm());
+    config.setLanguageModelPath(
+        Objects.requireNonNull(Main.class.getResource("voiceCommandFiles/6500.lm"))
+            .toExternalForm());
+
     recog = new LiveSpeechRecognizer(config);
 
     recog.startRecognition(true);
