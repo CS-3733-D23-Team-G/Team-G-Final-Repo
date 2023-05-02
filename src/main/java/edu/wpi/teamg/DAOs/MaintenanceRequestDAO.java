@@ -22,11 +22,7 @@ public class MaintenanceRequestDAO implements DAO {
     PreparedStatement ps;
     ResultSet rs = null;
     SQL_maintenceRequest =
-        "Select * from iteration4_presentation.request join "
-            + getTable()
-            + " on iteration4_presentation.request.reqid = "
-            + getTable()
-            + ".reqid";
+        "select * from iteration4_presentation.request join iteration4_presentation.maintenancerequest on iteration4_presentation.request.reqid = iteration4_presentation.maintenancerequest.reqid";
     try {
       ps = db.getConnection().prepareStatement(SQL_maintenceRequest);
       rs = ps.executeQuery();
