@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.TranslatePopOverController">
-   <children>
-      <TextArea fx:id="userInput" layoutX="114.0" layoutY="160.0" prefHeight="39.0" prefWidth="407.0" />
-      <TextArea fx:id="translatedInput" layoutX="118.0" layoutY="255.0" prefHeight="39.0" prefWidth="407.0" />
-      <Label layoutX="290.0" layoutY="120.0" prefHeight="18.0" prefWidth="62.0" text="User Input" />
-      <Label layoutX="278.0" layoutY="228.0" text="Translated Text" />
-      <MFXButton fx:id="translateButton" layoutX="291.0" layoutY="332.0" text="Translate" />
-      <Label layoutX="287.0" layoutY="40.0" prefHeight="18.0" prefWidth="62.0" text="Languages" />
-      <MFXComboBox fx:id="language" layoutX="259.0" layoutY="59.0" />
-   </children>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="edu.wpi.teamg.views.TranslatePopOver"
+            prefHeight="400.0" prefWidth="600.0">
+
 </AnchorPane>

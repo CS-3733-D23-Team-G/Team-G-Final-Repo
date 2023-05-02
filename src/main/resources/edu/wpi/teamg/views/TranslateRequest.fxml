@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.views.TranslateRequest">
+   <children>
+      <TextArea fx:id="language" layoutX="207.0" layoutY="92.0" prefHeight="38.0" prefWidth="187.0" />
+      <Label layoutX="269.0" layoutY="73.0" prefHeight="18.0" prefWidth="62.0" text="Language" />
+      <Label layoutX="274.0" layoutY="161.0" prefHeight="18.0" prefWidth="62.0" text="Location" />
+      <TextArea fx:id="longName" layoutX="207.0" layoutY="180.0" prefHeight="39.0" prefWidth="187.0" />
+      <TextArea fx:id="employeeID" layoutX="207.0" layoutY="258.0" prefHeight="39.0" prefWidth="187.0" />
+      <Label layoutX="263.0" layoutY="239.0" prefHeight="18.0" prefWidth="76.0" text="Employee ID" />
+      <Label layoutX="207.0" layoutY="43.0" prefHeight="18.0" prefWidth="187.0" text="Translate Language Request Form" />
+      <Button fx:id="submitButton" layoutX="274.0" layoutY="325.0" mnemonicParsing="false" text="Submit" />
+   </children>
+</AnchorPane>
