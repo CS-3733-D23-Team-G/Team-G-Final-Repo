@@ -32,19 +32,19 @@ public class TranslatePopOverController {
 
   public void translate() throws Exception {
 
-    //        String fromLang = "en";
-    //        String toLang;
-    //        String text = String.valueOf(userInput);
+    //            String fromLang = "en";
+    //            String toLang;
+    //            String text = String.valueOf(userInput);
     //
     //
-    //        toLang = switch (String.valueOf(language)) {
-    //            case "English" -> "en";
-    //            case "Spanish" -> "es";
-    //            case "French" -> "fr";
-    //            case "German" -> "de";
-    //            case "Russian" -> "ru";
-    //            default -> "Language Unknown";
-    //        };
+    //            toLang = switch (String.valueOf(language)) {
+    //                case "English" -> "en";
+    //                case "Spanish" -> "es";
+    //                case "French" -> "fr";
+    //                case "German" -> "de";
+    //                case "Russian" -> "ru";
+    //                default -> "Language Unknown";
+    //            };
 
     //        if(!(toLang.equals("Language Unknown"))) {
     //            //TranslatePopOverController.translate(fromLang, toLang, text);

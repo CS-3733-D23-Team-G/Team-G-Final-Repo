@@ -1,7 +1,5 @@
 package edu.wpi.teamg.controllers;
 
-import static edu.wpi.teamg.App.*;
-
 import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.LocationNameDAO;
 import edu.wpi.teamg.DAOs.NodeDAO;
@@ -12,14 +10,6 @@ import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
-import java.awt.*;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +26,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.PopOver;
+
+import java.awt.*;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
+
+import static edu.wpi.teamg.App.*;
 
 public class MapEditorController {
 
@@ -261,6 +262,15 @@ public class MapEditorController {
           }
         });
 
+    translate.setOnMouseClicked(
+            event -> {
+                try {
+                    displayTranslate();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
     help.setOnMouseClicked(
         event -> {
           try {
@@ -270,6 +280,7 @@ public class MapEditorController {
             throw new RuntimeException(e);
           }
         });
+
 
     ImageView mapView = new ImageView(mapL1);
     ImageView mapViewL2 = new ImageView(mapL2);
@@ -367,6 +378,7 @@ public class MapEditorController {
             throw new RuntimeException(e);
           }
         });
+
     // Scaling is currently the issue with the node map
     //
     //    NodeDAO nodeDAO = new NodeDAO();
@@ -397,7 +409,7 @@ public class MapEditorController {
     //            throw new RuntimeException(e);
     //          }
     //        });
-  }
+  } // stop //
 
   public void alignCirclesVertical(ArrayList<Node> circles) throws SQLException {
     int firstX = circles.get(0).getXcoord();
@@ -929,7 +941,19 @@ public class MapEditorController {
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
-  public void recordDrag(MouseEvent event, Circle point) {
+    public void displayTranslate() throws IOException {
+        final PopOver window = new PopOver();
+        var loader = new FXMLLoader(App.class.getResource("views/TranslatePopOver.fxml"));
+        window.setContentNode(loader.load());
+
+        MapEditorPopUpController controller = loader.getController();
+        //message = controller.message;
+
+        final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+        window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+    }
+
+    public void recordDrag(MouseEvent event, Circle point) {
 
     pane.setGestureEnabled(false);
 
