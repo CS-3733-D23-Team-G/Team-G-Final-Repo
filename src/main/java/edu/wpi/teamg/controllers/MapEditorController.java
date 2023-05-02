@@ -415,11 +415,18 @@ public class MapEditorController {
       edgeDisplay(0);
     }
     ArrayList<Node> listOfNodes = allNodeList;
+
     //    HashMap<Integer, String> ln = nodeDAO.getLongNames("L1");
     //    HashMap<Integer, String> sn = nodeDAO.getShortName("L1");
 
     for (int i = 0; i < listOfNodes.size(); i++) {
       if (Objects.equals(listOfNodes.get(i).getFloor(), "L1")) {
+
+        if (listOfNodes.get(i).getNodeID() == 999980) {
+          System.out.println("got here");
+          System.out.println(i);
+          System.out.println(moving.get(listOfNodes.get(i).getNodeID()));
+        }
         getNodesWFunctionality(listOfNodes, i, sn);
       }
     }
@@ -1004,6 +1011,8 @@ public class MapEditorController {
 
     window.setArrowSize(0);
     InsertNodeController controller = loader.getController();
+    controller.setW(window);
+    window.setOnHidden(event -> updateMove());
 
     final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
     window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
