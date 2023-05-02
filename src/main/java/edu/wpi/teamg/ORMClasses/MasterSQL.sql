@@ -52,6 +52,7 @@ create table iteration4.signage(
                                    arrow text,
                                    month text,
                                    is_spec bool,
+                                   location text,
                                    primary key (kiosknum,arrow,month)
 );
 
@@ -149,6 +150,8 @@ create table iteration4.notification(
     empID int,
     recipients text,
     message text,
+    notifheader varchar(50),
+    dismissible boolean,
     foreign key (empID) references iteration4.employee(empID) on delete cascade on update cascade);
 
 
@@ -230,17 +233,17 @@ insert into iteration4.signage (kiosknum, specdate, arrow, month, is_spec) value
     (2,null, 'Watkins Clinic C (EP & Echo) (up to 3rd fl)_U_6','APR-23',false),
     (2,null, 'Brigham Circle Medical Associates (up to 3rd floor)_U_2','APR-23',false),
     (2,null, 'L2PRU (down to Lower Level "L2")_D_5','APR-23',false);
-insert into iteration4.signage (kiosknum, specdate, arrow, month, is_spec) values
-    (1,null, 'information_R_6','MAY-23',false),
-    (1,null, 'Shapiro Admitting_R_7','MAY-23',false),
-    (1,null, 'Shapiro Procedural Check-in_R_8','MAY-23',false),
-    (1,null, 'Watkins Clinics A & B (this floor)_L_1','MAY-23',false),
-    (1,null, 'Watkins Clinic C (up to 3rd floor)_L_2','MAY-23',false),
-    (1,null, 'Rehabilitation Services(down to first floor)_L_4','MAY-23',false),
-    (2,null, 'Watkins Clinics A & B (this floor)_U_1','MAY-23',false),
-    (2,null, 'Watkins Clinic C (EP & Echo) (up to 3rd fl)_U_6','MAY-23',false),
-    (2,null, 'Brigham Circle Medical Associates (up to 3rd floor)_U_2','MAY-23',false),
-    (2,null, 'L2PRU (down to Lower Level "L2")_D_5','MAY-23',false);
+insert into iteration4.signage (kiosknum, specdate, arrow, month, is_spec, location) values
+    (1,null, 'information_R_6','MAY-23',false,'Innovation Hub'),
+    (1,null, 'Shapiro Admitting_R_7','MAY-23',false,'Innovation Hub'),
+    (1,null, 'Shapiro Procedural Check-in_R_8','MAY-23',false,'Innovation Hub'),
+    (1,null, 'Watkins Clinics A & B (this floor)_L_1','MAY-23',false,'Innovation Hub'),
+    (1,null, 'Watkins Clinic C (up to 3rd floor)_L_2','MAY-23',false,'Innovation Hub'),
+    (1,null, 'Rehabilitation Services(down to first floor)_L_4','MAY-23',false,null),
+    (2,null, 'Watkins Clinics A & B (this floor)_U_1','MAY-23',false,null),
+    (2,null, 'Watkins Clinic C (EP & Echo) (up to 3rd fl)_U_6','MAY-23',false,null),
+    (2,null, 'Brigham Circle Medical Associates (up to 3rd floor)_U_2','MAY-23',false,null),
+    (2,null, 'L2PRU (down to Lower Level "L2")_D_5','MAY-23',false,null);
 insert into iteration4.signage (kiosknum, specdate, arrow, month, is_spec) values
     (1,null, 'Stop here for_N_N','JUL-23',false),
     (1,null, 'Information_N_N','JUL-23',false),
