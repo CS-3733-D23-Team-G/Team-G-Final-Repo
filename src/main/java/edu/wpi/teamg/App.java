@@ -25,6 +25,8 @@ import org.controlsfx.control.PopOver;
 public class App extends Application {
   static PopOver window = new PopOver();
 
+  @Getter @Setter static int whichDB = 1;
+
   public static ArrayList<String> usernames = new ArrayList<>();
 
   @Setter @Getter private static Stage primaryStage;
@@ -66,8 +68,7 @@ public class App extends Application {
   public static LocalDate pathfindingDate = LocalDate.of(2023, 1, 1);
 
   // MEAL IMAGES
-  public static Image checkmarkImage =
-      new Image("edu/wpi/teamg/Images/blueCheckMark-removebg-preview(1).png");
+  public static Image checkmarkImage = new Image("edu/wpi/teamg/Images/checkMarkIcon.png");
 
   public static Image frenchFries = new Image("edu/wpi/teamg/Images/frenchfries.jpg");
 
@@ -450,6 +451,17 @@ public class App extends Application {
     //
     //    final Point mouseLoc = MouseInfo.getPointerInfo().getLocation();
     //    window.show(getPrimaryStage(), mouseLoc.getX(), mouseLoc.getY());
+  }
+
+  public static void totalRefresh() throws SQLException {
+    refresh();
+    mealRefresh();
+    confRefresh();
+    flowerRefresh();
+    fernsRefresh();
+    oSuppsRefresh();
+    maintainRefresh();
+    requestRefresh();
   }
 
   public static void refresh() throws SQLException {

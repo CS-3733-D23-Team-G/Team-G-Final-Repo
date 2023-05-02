@@ -7,6 +7,7 @@ import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.collections.FXCollections;
@@ -41,6 +42,15 @@ public class SettingsPopOverController {
         break;
       case "Dijkstra":
         Dijkstracheckbox.setSelected(true);
+        break;
+    }
+
+    switch (App.getWhichDB()) {
+      case 1:
+        clientSideCheckBox.setSelected(true);
+        break;
+      case 2:
+        awsCheckBox.setSelected(true);
         break;
     }
 
@@ -115,6 +125,12 @@ public class SettingsPopOverController {
           if (awsCheckBox.isSelected()) {
             clientSideCheckBox.setSelected(false);
           }
+          App.setWhichDB(2);
+          try {
+            App.totalRefresh();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
         });
 
     clientSideCheckBox.setOnAction(
@@ -122,6 +138,12 @@ public class SettingsPopOverController {
           clientSideCheckBox.setSelected(true);
           if (clientSideCheckBox.isSelected()) {
             awsCheckBox.setSelected(false);
+          }
+          App.setWhichDB(1);
+          try {
+            App.totalRefresh();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
           }
         });
     date.setOnCommit(
@@ -133,7 +155,7 @@ public class SettingsPopOverController {
             Navigation.navigate(Screen.PATHFINDING_PAGE);
             App.bool = false;
           }
-          // if(Window.getWindows() == 2)// LLOlOL SORRY, NVM NOT SORRY fuck it just fix the date to
+          // if(Window.getWindows() == 2)
 
         });
   }

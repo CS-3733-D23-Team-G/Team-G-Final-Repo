@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Request;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -24,7 +25,7 @@ public class RequestDAO implements DAO {
 
   @Override
   public HashMap<Integer, Request> getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     ResultSet rs = null;
@@ -83,10 +84,12 @@ public class RequestDAO implements DAO {
 
   @Override
   public void update(Object obj, String colName, Object value) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
-    sql = "update teamgdb.iteration4_presentation.request set " + colName + " = ? where reqid = ?";
+
+    sql = "update iteration4_presentation.request set " + colName + " = ? where reqid = ?";
+
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -122,7 +125,7 @@ public class RequestDAO implements DAO {
 
   @Override
   public void importCSV(String path) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     sql =
         "insert into "
             + this.getTable()
@@ -156,11 +159,13 @@ public class RequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4_presentation.request";
+
+    return "iteration4_presentation.request";
+
   }
 
   public static ArrayList getOutstandingRequest(int serveby) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     ArrayList<Request> oRequestList = new ArrayList<>();
 
@@ -229,7 +234,7 @@ public class RequestDAO implements DAO {
   }
 
   public static void updateRequestStatus(StatusTypeEnum newStatus, int reqid) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     String RequestSQL;
 

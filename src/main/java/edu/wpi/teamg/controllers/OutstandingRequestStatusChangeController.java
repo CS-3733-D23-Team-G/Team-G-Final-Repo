@@ -66,7 +66,7 @@ public class OutstandingRequestStatusChangeController {
               if (statusComboBox.getValue() == StatusTypeEnum.done) {
                 HomeController.changeStatusConfirmation.hide();
               }
-              HomeController.playAnimationStatus = true;
+
               Navigation.navigate(Screen.HOME);
             } catch (SQLException e) {
               throw new RuntimeException(e);

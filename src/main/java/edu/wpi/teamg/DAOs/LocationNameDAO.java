@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.LocationName;
 import java.io.*;
@@ -18,7 +19,7 @@ public class LocationNameDAO implements LocationDAO {
 
   @Override
   public HashMap<String, LocationName> getAll() throws SQLException {
-    connection.setConnection();
+    connection.setConnection(App.getWhichDB());
     PreparedStatement ps;
     ResultSet rs = null;
 
@@ -51,7 +52,7 @@ public class LocationNameDAO implements LocationDAO {
 
     ArrayList<String> LNgivenReqType = new ArrayList<>();
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
 
@@ -98,7 +99,7 @@ public class LocationNameDAO implements LocationDAO {
 
   @Override
   public void update(Object obj, String colName, Object value) {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     SQL = "update  " + this.getTable() + " set " + colName + " = ? where longname = ?";
     String lnameID = ((LocationName) obj).getLongName();
 
@@ -117,7 +118,7 @@ public class LocationNameDAO implements LocationDAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    connection.setConnection();
+    connection.setConnection(App.getWhichDB());
     PreparedStatement ps;
     LocationName l1 = (LocationName) obj;
 
@@ -141,7 +142,7 @@ public class LocationNameDAO implements LocationDAO {
 
   @Override
   public void delete(Object obj) throws SQLException {
-    connection.setConnection();
+    connection.setConnection(App.getWhichDB());
     PreparedStatement ps;
     LocationName l1 = (LocationName) obj;
 
@@ -162,12 +163,14 @@ public class LocationNameDAO implements LocationDAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4_presentation.locationname";
+
+    return "iteration4_presentation.locationname";
+
   }
 
   @Override
   public void importCSV(String filename) throws SQLException {
-    connection.setConnection();
+    connection.setConnection(App.getWhichDB());
 
     try {
 

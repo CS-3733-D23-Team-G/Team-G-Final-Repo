@@ -73,7 +73,7 @@ public class LoginController {
     ResultSet rs = null;
     ResultSet rs1 = null;
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     query = "select * from " + accountDAO.getTable() + " where username = ?";
 
     try {

@@ -31,15 +31,15 @@
                            </opaqueInsets>
                            <children>
                               <Accordion styleClass="algoSelect_hbox">
-                                <panes>
-                                  <TitledPane animated="false" styleClass="nodesTitledPane" stylesheets="@style.css" text="Nodes">
+                                 <panes>
+                                    <TitledPane animated="false" styleClass="nodesTitledPane" stylesheets="@style.css" text="Nodes">
                                        <content>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
                                                    <children>
 
-                                                                                                                                                                                                                                                      <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" stylesheets="@style.css" text="Add Node" />
+                                                      <MFXButton fx:id="add" prefHeight="70.0" prefWidth="191.0" styleClass="add_Buttons" stylesheets="@style.css" text="Add Node" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="algoSelect_hbox">
@@ -72,8 +72,8 @@
                                              </children>
                                           </VBox>
                                        </content>
-                                  </TitledPane>
-                                  <TitledPane animated="false" styleClass="edgesTitledPane" text="Edges">
+                                    </TitledPane>
+                                    <TitledPane animated="false" styleClass="edgesTitledPane" text="Edges">
                                        <content>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
@@ -98,8 +98,8 @@
                                              </children>
                                           </VBox>
                                        </content>
-                                  </TitledPane>
-                                  <TitledPane animated="false" styleClass="locsTitledPane" text="Location Names">
+                                    </TitledPane>
+                                    <TitledPane animated="false" styleClass="locsTitledPane" text="Location Names">
                                        <content>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
@@ -133,7 +133,7 @@
                                              </children>
                                           </VBox>
                                        </content>
-                                  </TitledPane>
+                                    </TitledPane>
                                     <TitledPane animated="false" styleClass="movesTitledPane" text="Move">
                                        <content>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
@@ -169,7 +169,7 @@
                                           </VBox>
                                        </content>
                                     </TitledPane>
-                                </panes>
+                                 </panes>
                               </Accordion>
                            </children>
                         </HBox>

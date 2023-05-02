@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Node;
 import java.io.*;
@@ -15,7 +16,7 @@ public class NodeDAO implements LocationDAO {
 
   @Override
   public void update(Object obj, String colName, Object value) {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     SQL = "update " + this.getTable() + " set " + colName + " = ? where nodeid = ?";
     int nodeID = ((Node) obj).getNodeID();
 
@@ -35,7 +36,7 @@ public class NodeDAO implements LocationDAO {
 
   @Override
   public void delete(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
 
@@ -58,12 +59,14 @@ public class NodeDAO implements LocationDAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4_presentation.node";
+
+    return "iteration4_presentation.node";
+
   }
 
   @Override
   public void importCSV(String path) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     try {
 
       SQL =
@@ -111,7 +114,7 @@ public class NodeDAO implements LocationDAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     SQL =
@@ -140,7 +143,7 @@ public class NodeDAO implements LocationDAO {
 
   @Override
   public HashMap<Integer, Node> getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     ResultSet rs = null;
@@ -176,7 +179,7 @@ public class NodeDAO implements LocationDAO {
 
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
 
     ResultSet rs = null;
@@ -212,7 +215,7 @@ public class NodeDAO implements LocationDAO {
   public static HashMap<Integer, String> getMandFLLongName() throws SQLException {
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
 
     ResultSet rs = null;
@@ -252,7 +255,7 @@ public class NodeDAO implements LocationDAO {
   public static HashMap<Integer, String> getL1LongNames() throws SQLException {
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
 
     ResultSet rs = null;
@@ -288,7 +291,7 @@ public class NodeDAO implements LocationDAO {
   public static HashMap<Integer, String> getL2LongNames() throws SQLException {
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
 
     ResultSet rs = null;
@@ -324,7 +327,7 @@ public class NodeDAO implements LocationDAO {
   public static HashMap<Integer, String> getF1LongNames() throws SQLException {
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
 
     ResultSet rs = null;
@@ -360,7 +363,7 @@ public class NodeDAO implements LocationDAO {
   public static HashMap<Integer, String> getShortName(String floor) throws SQLException {
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
 
     ResultSet rs = null;
@@ -399,7 +402,7 @@ public class NodeDAO implements LocationDAO {
   public static HashMap<Integer, String> getAllLongName() throws SQLException {
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
 
     ResultSet rs = null;
@@ -431,7 +434,7 @@ public class NodeDAO implements LocationDAO {
       throws SQLException {
     HashMap<Integer, String> shortNameHash = new HashMap<>();
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
 
     ResultSet rs = null;
@@ -465,7 +468,7 @@ public class NodeDAO implements LocationDAO {
   }
 
   public int getNodeIDbyLongName(String longname, Date date) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
 
     ResultSet rs = null;
@@ -495,7 +498,7 @@ public class NodeDAO implements LocationDAO {
 
     HashMap<Integer, String> longNameHash = new HashMap<>();
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     SQL =
         "SELECT Move.nodeID, LocationName.longname\n"
             + "             FROM iteration4_presentation.Move\n"
@@ -533,7 +536,7 @@ public class NodeDAO implements LocationDAO {
       ArrayList<String> shortNames, String floorFilter) throws SQLException {
 
     HashMap<Integer, Node> filteredNodeHash = new HashMap();
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     ResultSet rs = null;

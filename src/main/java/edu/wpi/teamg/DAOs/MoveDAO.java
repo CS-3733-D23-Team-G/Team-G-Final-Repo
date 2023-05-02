@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Move;
 import java.io.*;
@@ -15,12 +16,14 @@ public class MoveDAO implements LocationMoveDao {
 
   @Override
   public List getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     ResultSet rs = null;
 
-    sql = "select * from teamgdb.iteration4_presentation.move";
+
+    sql = "select * from iteration4_presentation.move";
+
 
     try {
       ps = db.getConnection().prepareStatement(sql);
@@ -48,13 +51,15 @@ public class MoveDAO implements LocationMoveDao {
 
   @Override
   public void update(Object obj, String colName, Object value) {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
+
     sql =
-        "update teamgdb.iteration4_presentation.move set "
+        "update iteration4_presentation.move set "
             + colName
             + " = ? where nodeID=? AND longname=? AND Date=?";
+
     try {
       ps = db.getConnection().prepareStatement(sql);
       switch (colName) {
@@ -83,10 +88,12 @@ public class MoveDAO implements LocationMoveDao {
   @Override
   public void insert(Object obj) throws SQLException {
     Move move = (Move) obj;
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
+
 
     sql =
-        "INSERT INTO teamgdb.iteration4_presentation.move (nodeid, longname, date) VALUES (?,?,?);";
+        "INSERT INTO iteration4_presentation.move (nodeid, longname, date) VALUES (?,?,?);";
+
 
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
@@ -105,9 +112,13 @@ public class MoveDAO implements LocationMoveDao {
   @Override
   public void delete(Object obj) throws SQLException {
     Move move = (Move) obj;
-    db.setConnection();
+
+      db.setConnection(App.getWhichDB());
     sql =
-        "DELETE FROM teamgdb.iteration4_presentation.move WHERE nodeID = ? and longname=? and date =?";
+        "DELETE FROM iteration4_presentation.move WHERE nodeID = ? and longname=? and date =?";
+
+
+
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
 
     try {
@@ -135,10 +146,12 @@ public class MoveDAO implements LocationMoveDao {
 
   @Override
   public void exportCSV() throws SQLException, IOException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     Statement statement = null;
-    String sql = "select * from teamgdb.iteration4_presentation.move";
+
+    String sql = "select * from iteration4_presentation.move";
+
     ResultSet rs = null;
     FileWriter writer = null;
 
@@ -185,9 +198,12 @@ public class MoveDAO implements LocationMoveDao {
 
   @Override
   public void importCSV(String filePath) throws SQLException {
-    db.setConnection();
+
+      db.setConnection(App.getWhichDB());
     sql =
-        "insert into teamgdb.iteration4_presentation.move (nodeid, longname, date) values (?,?,?)";
+        "insert into iteration4_presentation.move (nodeid, longname, date) values (?,?,?)";
+
+
     PreparedStatement ps = db.getConnection().prepareStatement(sql);
     try {
       BufferedReader br = new BufferedReader(new FileReader(filePath));

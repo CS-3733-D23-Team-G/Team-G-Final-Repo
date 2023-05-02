@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.MealRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -24,13 +25,15 @@ public class MealRequestDAO implements DAO {
   @Override
   public HashMap<Integer, MealRequest> getAll() throws SQLException {
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
     ResultSet rs = null;
 
     SQL_mealRequest =
-        "select * from teamgdb.iteration4_presentation.request join teamgdb.iteration4_presentation.mealrequest on teamgdb.iteration4_presentation.request.reqid = teamgdb.iteration4_presentation.mealrequest.reqid";
+
+        "select * from iteration4_presentation.request join iteration4_presentation.mealrequest on iteration4_presentation.request.reqid = iteration4_presentation.mealrequest.reqid";
+
 
     try {
       ps = db.getConnection().prepareStatement(SQL_mealRequest);
@@ -98,7 +101,7 @@ public class MealRequestDAO implements DAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps_getMaxID;
     PreparedStatement ps_mealRequest;
@@ -106,8 +109,10 @@ public class MealRequestDAO implements DAO {
 
     ResultSet rs = null;
 
+
     SQL_maxID =
-        "select reqID from teamgdb.iteration4_presentation.request order by reqid desc limit 1";
+        "select reqID from iteration4_presentation.request order by reqid desc limit 1";
+
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -131,7 +136,9 @@ public class MealRequestDAO implements DAO {
             + "(reqid, recipient, mealOrder, note) values (?, ?, ?, ?)";
 
     SQL_Request =
-        "insert into teamgdb.iteration4_presentation.request(reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+
+        "insert into iteration4_presentation.request(reqid, reqtype, empid, location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+
 
     try {
 
@@ -174,7 +181,7 @@ public class MealRequestDAO implements DAO {
       ps_Request.executeUpdate();
 
       db.closeConnection();
-      db.setConnection();
+      db.setConnection(App.getWhichDB());
 
       ps_mealRequest = db.getConnection().prepareStatement(SQL_mealRequest);
       ps_mealRequest.setInt(1, maxID);
@@ -196,14 +203,16 @@ public class MealRequestDAO implements DAO {
   @Override
   public void delete(Object obj) throws SQLException {
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps_mealrequest;
     PreparedStatement ps_request;
 
     String SQL_mealrequest = "delete from " + this.getTable() + " where reqId = ?";
 
-    String SQL_request = "delete from teamgdb.iteration4_presentation.request where reqId = ?";
+
+    String SQL_request = "delete from iteration4_presentation.request where reqId = ?";
+
 
     try {
       ps_mealrequest = db.getConnection().prepareStatement(SQL_mealrequest);
@@ -249,6 +258,8 @@ public class MealRequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4_presentation.mealrequest";
+
+    return "iteration4_presentation.mealrequest";
+
   }
 }

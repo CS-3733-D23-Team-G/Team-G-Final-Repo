@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.MaintenanceRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -17,7 +18,7 @@ public class MaintenanceRequestDAO implements DAO {
 
   @Override
   public HashMap getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
     ResultSet rs = null;
     SQL_maintenceRequest =
@@ -90,14 +91,16 @@ public class MaintenanceRequestDAO implements DAO {
   @Override
   public void insert(Object obj) throws SQLException {
     MaintenanceRequest maintenanceRequest = (MaintenanceRequest) obj;
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps_getMaxID;
     PreparedStatement ps_getMain;
     PreparedStatement ps_Req;
 
     ResultSet rs = null;
+
     SQL_maxID =
-        "select reqid from teamgdb.iteration4_presentation.request order by reqid desc limit 1";
+        "select reqid from iteration4_presentation.request order by reqid desc limit 1";
+
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
       rs = ps_getMaxID.executeQuery();
@@ -115,7 +118,9 @@ public class MaintenanceRequestDAO implements DAO {
             + getTable()
             + "(reqid, recipient, phoneNumber, type, specified, note) values (?,?,?,?,?,?)";
     SQL_Request =
-        "insert into teamgdb.iteration4_presentation.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+
+        "insert into iteration4_presentation.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+
     try {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
       ps_Req.setInt(1, maxID);
@@ -156,7 +161,7 @@ public class MaintenanceRequestDAO implements DAO {
       ps_Req.setTime(8, ((MaintenanceRequest) obj).getRequestTime());
       ps_Req.executeUpdate();
       db.closeConnection();
-      db.setConnection();
+      db.setConnection(App.getWhichDB());
       ps_getMain = db.getConnection().prepareStatement(SQL_maintenceRequest);
       ps_getMain.setInt(1, maxID);
       ps_getMain.setString(2, maintenanceRequest.getRecipient());

@@ -1,3 +1,6 @@
 url: "jdbc:postgresql://database.cs.wpi.edu:5432/teamgdb"
 username: "teamg"
 password: "teamg70"
+awsurl: "jdbc:postgresql://databaseteamg.cvaq6qg0oaxg.us-east-2.rds.amazonaws.com:5432/postgres"
+awsusername: "teamgaws"
+awspassword: "Ger1atricGobl1n5"

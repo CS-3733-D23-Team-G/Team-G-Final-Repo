@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.OfficeSupplyRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -24,14 +25,16 @@ public class OfficeSupplyRequestDAO implements DAO {
 
   @Override
   public HashMap getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
     ResultSet rs = null;
     SQL =
-        "select * from teamgdb.iteration4_presentation.request"
+
+        "select * from iteration4_presentation.request"
             + " join "
             + this.getTable()
-            + " on teamgdb.iteration4_presentation.request.reqid= teamgdb.iteration4_presentation.officesupplyrequest.reqid";
+            + " on iteration4_presentation.request.reqid= iteration4_presentation.officesupplyrequest.reqid";
+
     try {
       ps = db.getConnection().prepareStatement(SQL);
       rs = ps.executeQuery();
@@ -94,15 +97,17 @@ public class OfficeSupplyRequestDAO implements DAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps_maxid;
     PreparedStatement ps_supply;
     PreparedStatement ps_req;
     ResultSet rs = null;
     OfficeSupplyRequest supplyRequest = (OfficeSupplyRequest) obj;
 
+
     SQL_MAXID =
-        "select reqid from teamgdb.iteration4_presentation.request order by reqid desc limit 1";
+        "select reqid from iteration4_presentation.request order by reqid desc limit 1";
+
     try {
       ps_maxid = db.getConnection().prepareStatement(SQL_MAXID);
       rs = ps_maxid.executeQuery();
@@ -120,7 +125,9 @@ public class OfficeSupplyRequestDAO implements DAO {
     SQL =
         "insert into " + this.getTable() + " (reqid, supplytype, note, recipient) values(?,?,?,?)";
     SQL_REQUEST =
-        "insert into teamgdb.iteration4_presentation.request (reqid,reqtype,empid,location,serveBy,status,requestdate,requesttime) values (?,?,?,?,?,?,?,?)";
+
+        "insert into iteration4_presentation.request (reqid,reqtype,empid,location,serveBy,status,requestdate,requesttime) values (?,?,?,?,?,?,?,?)";
+
 
     try {
       ps_req = db.getConnection().prepareStatement(SQL_REQUEST);
@@ -161,7 +168,7 @@ public class OfficeSupplyRequestDAO implements DAO {
       ps_req.executeUpdate();
 
       db.closeConnection();
-      db.setConnection();
+      db.setConnection(App.getWhichDB());
 
       ps_supply = db.getConnection().prepareStatement(SQL);
       ps_supply.setInt(1, maxid);
@@ -206,6 +213,8 @@ public class OfficeSupplyRequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4_presentation.officesupplyrequest";
+
+    return "iteration4_presentation.officesupplyrequest";
+
   }
 }

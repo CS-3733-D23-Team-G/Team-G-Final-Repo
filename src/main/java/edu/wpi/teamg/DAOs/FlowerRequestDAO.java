@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.FlowerRequest;
 import edu.wpi.teamg.ORMClasses.StatusTypeEnum;
@@ -23,7 +24,7 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public HashMap<Integer, FlowerRequest> getAll() throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps;
     ResultSet rs = null;
     SQL_flowerRequest =
@@ -91,14 +92,16 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public void insert(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
     PreparedStatement ps_getMaxID;
     PreparedStatement ps_getFlowerReq;
     PreparedStatement ps_Req;
 
     ResultSet rs = null;
+
     SQL_maxID =
-        "select reqid from teamgdb.iteration4_presentation.request order by reqid desc limit 1";
+        "select reqid from iteration4_presentation.request order by reqid desc limit 1";
+
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -114,9 +117,11 @@ public class FlowerRequestDAO implements DAO {
     }
 
     SQL_flowerRequest =
-        "insert into teamgdb.iteration4_presentation.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
+
+        "insert into iteration4_presentation.flowerrequest(reqid, flowertype, numflower, recipient, note) values (?,?,?,?,?)";
     SQL_Request =
-        "insert into teamgdb.iteration4_presentation.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+        "insert into iteration4_presentation.request(reqid,reqtype,empid,location, serveBy, status, requestdate, requesttime) values (?,?,?,?,?,?,?,?)";
+
 
     try {
       ps_Req = db.getConnection().prepareStatement(SQL_Request);
@@ -159,7 +164,7 @@ public class FlowerRequestDAO implements DAO {
       ps_Req.executeUpdate();
 
       db.closeConnection();
-      db.setConnection();
+      db.setConnection(App.getWhichDB());
 
       ps_getFlowerReq = db.getConnection().prepareStatement(SQL_flowerRequest);
       ps_getFlowerReq.setInt(1, maxID);
@@ -205,6 +210,8 @@ public class FlowerRequestDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4_presentation.flowerrequest";
+
+    return "iteration4_presentation.flowerrequest";
+
   }
 }

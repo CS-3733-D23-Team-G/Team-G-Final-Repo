@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import java.io.*;
 import java.sql.*;
@@ -10,7 +11,7 @@ public interface LocationDAO<T> extends DAO {
   DBConnection db = new DBConnection();
 
   public default void importCSV() throws SQLException, IOException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     JFileChooser chooser = new JFileChooser();
     chooser.setFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));

@@ -1,5 +1,6 @@
 package edu.wpi.teamg.DAOs;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DBConnection;
 import edu.wpi.teamg.ORMClasses.Notification;
 import java.sql.*;
@@ -26,14 +27,16 @@ public class NotificationDAO implements DAO {
   @Override
   public void insert(Object obj) throws SQLException {
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps_getMaxID;
 
     ResultSet rs = null;
 
+
     SQL_maxID =
-        "select alertid from teamgdb.iteration4_presentation.notification order by alertid desc limit 1";
+        "select alertid from iteration4_presentation.notification order by alertid desc limit 1";
+
 
     try {
       ps_getMaxID = db.getConnection().prepareStatement(SQL_maxID);
@@ -81,7 +84,7 @@ public class NotificationDAO implements DAO {
 
   public static ArrayList<Notification> getAllNotificationOf(int recipient) throws SQLException {
 
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     ArrayList<Notification> filteredNotifList = new ArrayList<>();
 
@@ -164,7 +167,7 @@ public class NotificationDAO implements DAO {
 
   @Override
   public void delete(Object obj) throws SQLException {
-    db.setConnection();
+    db.setConnection(App.getWhichDB());
 
     PreparedStatement ps;
 
@@ -187,6 +190,8 @@ public class NotificationDAO implements DAO {
 
   @Override
   public String getTable() {
-    return "teamgdb.iteration4_presentation.notification";
+
+    return "iteration4_presentation.notification";
+
   }
 }
