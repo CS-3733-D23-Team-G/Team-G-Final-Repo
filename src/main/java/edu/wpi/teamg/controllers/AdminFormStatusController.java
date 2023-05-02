@@ -139,7 +139,7 @@ public class AdminFormStatusController {
 
   ObservableList<String> serviceList =
       FXCollections.observableArrayList(
-          "Conference Room", "Flowers", "Meal", "Furniture", "Office Supply");
+          "Conference Room", "Flowers", "Meal", "Furniture", "Office Supply", "Maintenance");
 
   ObservableList<Request> testList;
   ObservableList<MealRequest> testMealList;
@@ -624,6 +624,10 @@ public class AdminFormStatusController {
       case "Office Supply":
         OfficeSupplyRequestDAO officeSupplyRequestDAO = new OfficeSupplyRequestDAO();
         officeSupplyRequestDAO.exportCSV();
+      case "Maintenance":
+        MaintenanceRequestDAO maintenanceRequestDAO = new MaintenanceRequestDAO();
+        maintenanceRequestDAO.exportCSV();
+        break;
       default:
         break;
     }

@@ -12,11 +12,16 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -43,10 +48,21 @@ public class AddEmployee {
           "Conference Room Request",
           "Flowers Request",
           "Office Supplies Request",
-          "Furniture Request");
+          "Furniture Request",
+          "Maintenance Request");
 
   EmployeeDAO empDao = new EmployeeDAO();
   AccountDAO accDao = new AccountDAO();
+
+  // AddEmployee
+  @FXML TableView<Employee> empTable;
+  @FXML TableColumn<Employee, String> empLastName;
+  @FXML TableColumn<Employee, String> empFirstName;
+  @FXML TableColumn<Employee, String> empEmail;
+  @FXML TableColumn<Employee, String> empCanServe;
+
+  // TODO
+  ObservableList<Employee> testEmployeeList;
 
   public void initialize() throws SQLException {
     App.bool = false;
@@ -58,6 +74,19 @@ public class AddEmployee {
     userName.getText();
     Password.getText();
     serveDrop.setItems(serveList);
+
+    // TODO
+    HashMap<Integer, Employee> testingEmployee = App.testingEmps;
+    ArrayList<Employee> emps = new ArrayList<>(testingEmployee.values());
+
+    testEmployeeList = FXCollections.observableArrayList(emps);
+
+    empTable.setItems(testEmployeeList);
+
+    empLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+    empFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+    empEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+    empCanServe.setCellValueFactory(new PropertyValueFactory<>("can_serve"));
   };
 
   private void allDataFilled() {

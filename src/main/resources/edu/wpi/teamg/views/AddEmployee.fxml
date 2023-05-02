@@ -13,6 +13,8 @@
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="rest_of_page" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamg.controllers.AddEmployee">
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -167,7 +169,23 @@
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page" />
+            <AnchorPane fx:id="forms" prefHeight="200.0" prefWidth="200.0" styleClass="half_bottom_page">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="All Employees" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <TableView fx:id="empTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                     <columns>
+                        <TableColumn fx:id="empLastName" prefWidth="150.0" text="Last Name" />
+                        <TableColumn fx:id="empFirstName" prefWidth="150.0" text="First Name" />
+                        <TableColumn fx:id="empEmail" prefWidth="250.0" text="Email" />
+                        <TableColumn fx:id="empCanServe" prefWidth="250.0" text="Can Serve" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
          </children>
       </HBox>
    </center>

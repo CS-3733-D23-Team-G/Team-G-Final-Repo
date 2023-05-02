@@ -631,7 +631,7 @@ Popup
 
 .table-view .table-column .label{
     -fx-font-size: 20;
-   /* -fx-alignment: left; */
+    -fx-alignment: left;
     -fx-font-weight: 800;
 }
 
