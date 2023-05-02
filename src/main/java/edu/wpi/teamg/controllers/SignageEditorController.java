@@ -110,7 +110,7 @@ public class SignageEditorController {
     monthDrop.setItems(monthChoice);
     yearDrop.setItems(yearChoice);
 
-    if(playAnimation){
+    if (playAnimation) {
       completeAnimation("Signage configuration added.");
       playAnimation = false;
     }

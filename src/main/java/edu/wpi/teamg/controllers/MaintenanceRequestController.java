@@ -109,7 +109,6 @@ public class MaintenanceRequestController {
     maintainTime.getText();
     maintainPhoneNumber.getText();
 
-
     ArrayList<String> time_hour = new ArrayList<>();
     int x = -1;
     while (x < 24) {
