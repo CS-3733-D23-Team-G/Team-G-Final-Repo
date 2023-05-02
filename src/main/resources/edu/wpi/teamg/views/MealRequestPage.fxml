@@ -121,11 +121,7 @@
                                           <Line endX="-35.70710754394531" endY="-0.41421353816986084" layoutX="99.0" layoutY="96.0" startX="-100.0" stroke="#f6bd38" strokeWidth="3.0" />
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane prefHeight="70.0" prefWidth="296.0">
-                                       <children>
-                                          <ComboBox layoutY="1.0" prefHeight="70.0" prefWidth="284.0" />
-                                       </children>
-                                    </AnchorPane>
+                                    <MFXTextField fx:id="mealTimeOfDeliver" minHeight="-Infinity" prefHeight="30.0" prefWidth="400.0" styleClass="requestTextBox" />
                                     <Text fx:id="assignToText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="requestFormFieldHeader" text="Assign To">
                                        <font>
                                           <Font size="22.0" />
