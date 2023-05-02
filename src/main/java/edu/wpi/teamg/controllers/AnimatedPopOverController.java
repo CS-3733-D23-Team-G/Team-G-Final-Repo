@@ -2,6 +2,7 @@ package edu.wpi.teamg.controllers;
 
 import static edu.wpi.teamg.App.nodeDAO;
 
+import edu.wpi.teamg.App;
 import edu.wpi.teamg.DAOs.NodeDAO;
 import edu.wpi.teamg.ORMClasses.Node;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -11,13 +12,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
+import javafx.util.Duration;
 
 public class AnimatedPopOverController {
 
@@ -31,13 +37,25 @@ public class AnimatedPopOverController {
 
   String txtForPath;
 
+  String[] textDirections;
+
+  ArrayList<ImageView> imgs;
+
   boolean start = true;
 
   boolean end = false;
 
-  Pane pane;
+  int bottomAni = 0;
 
-  int index;
+  int switchFloor = 0;
+
+  int lineCounter = 1;
+  Pane pane;
+  boolean added = true;
+
+  int index = 1;
+  int storedVal = 0;
+  ArrayList<Integer> storedValList = new ArrayList<>();
 
   public void initialize() {
     anitxt.setEditable(false);
@@ -51,35 +69,112 @@ public class AnimatedPopOverController {
           }
         });
 
-    back.setOnMouseClicked(event -> goBackEdge());
+    back.setOnMouseClicked(
+        event -> {
+          try {
+            goBackEdge();
+          } catch (SQLException e) {
+            throw new RuntimeException(e);
+          }
+        });
   }
 
-  public void setTxtForPath(String txtPath, Pane nPane) {
-    anitxt.setText(txtPath);
+  public void setTxtForPath(
+      String txtPath, Pane nPane, ArrayList<javafx.scene.image.ImageView> img) {
+    // anitxt.setText(txtPath);
+    parseText(txtPath);
     this.pane = nPane;
     pane.getChildren().clear();
+    imgs = img;
   }
 
   public void getThePath(ArrayList<String> path) {
     this.path = path;
   }
 
+  public void parseText(String textPath) {
+    textDirections = textPath.split("\n");
+  }
+
   public void goToNextEdge() throws IOException, SQLException {
 
     pane.getChildren().clear();
-
-    setPath(path);
     index = index + 1;
-    if (index == path.size() - 1) {
+    lineCounter = lineCounter + 1;
+    added = true;
+    System.out.println(lineCounter);
+
+    //    if (index == switchFloor + 1 && switchFloor != 0) {
+    //      lineCounter = lineCounter + 2;
+    //    }
+
+    if (switchFloor == 0) {
+      bottomAni = 0;
+      setPath(path);
+    } else {
+
+      nextFloor(App.allNodes.get(Integer.parseInt(path.get(switchFloor))), path, switchFloor);
+      bottomAni = bottomAni + 1;
+    }
+
+    if (index == path.size()) {
       next.setVisible(false);
     } else {
       next.setVisible(true);
       back.setVisible(true);
     }
-    System.out.println("going up + " + index);
   }
 
   public void setPath(ArrayList<String> path) throws SQLException {
+    pane.getChildren().clear();
+    anitxt.clear();
+
+    for (int i = 0; i < index; i++) {
+      if (i == 0) {
+        anitxt.setText(textDirections[i]);
+      } else {
+        anitxt.setText(anitxt.getText() + "\n" + textDirections[i]);
+      }
+    }
+
+    String floor = App.allNodes.get(Integer.parseInt(path.get(0))).getFloor();
+    switch (floor) {
+      case "L1":
+        imgs.get(0).setVisible(true);
+        imgs.get(1).setVisible(false);
+        imgs.get(2).setVisible(false);
+        imgs.get(3).setVisible(false);
+        imgs.get(4).setVisible(false);
+        break;
+      case "L2":
+        imgs.get(0).setVisible(false);
+        imgs.get(1).setVisible(true);
+        imgs.get(2).setVisible(false);
+        imgs.get(3).setVisible(false);
+        imgs.get(4).setVisible(false);
+        break;
+      case "1 ":
+        imgs.get(0).setVisible(false);
+        imgs.get(1).setVisible(false);
+        imgs.get(2).setVisible(true);
+        imgs.get(3).setVisible(false);
+        imgs.get(4).setVisible(false);
+        break;
+      case "2 ":
+        imgs.get(0).setVisible(false);
+        imgs.get(1).setVisible(false);
+        imgs.get(2).setVisible(false);
+        imgs.get(3).setVisible(true);
+        imgs.get(4).setVisible(false);
+        break;
+      case "3 ":
+        imgs.get(0).setVisible(false);
+        imgs.get(1).setVisible(false);
+        imgs.get(2).setVisible(false);
+        imgs.get(3).setVisible(false);
+        imgs.get(4).setVisible(true);
+        break;
+    }
     //    ArrayList<String> aniPath = new ArrayList<>();
     //
     //    for (int i = 0; i < index; i++) {
@@ -137,6 +232,8 @@ public class AnimatedPopOverController {
         }
         pane.getChildren().add(triangle);
         pathForFloor.add(path.get(i));
+        switchFloor = finalI + 1;
+        storedValList.add(0);
         triangle.setOnMouseClicked(
             event -> {
               try {
@@ -176,9 +273,35 @@ public class AnimatedPopOverController {
               nodes.get(Integer.parseInt(path.get(i - 1))).getYcoord(),
               nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
               nodes.get(Integer.parseInt(path.get(i))).getYcoord());
-      pathLine.setStrokeWidth(10);
+
+      Timeline timeline =
+          new Timeline(
+              new KeyFrame(
+                  Duration.seconds(0),
+                  new KeyValue(
+                      pathLine.endXProperty(),
+                      nodes.get(Integer.parseInt(path.get(i - 1))).getXcoord()),
+                  new KeyValue(
+                      pathLine.endYProperty(),
+                      nodes.get(Integer.parseInt(path.get(i - 1))).getYcoord())),
+              new KeyFrame(
+                  Duration.seconds(1.25),
+                  new KeyValue(
+                      pathLine.endXProperty(),
+                      nodes.get(Integer.parseInt(path.get(i))).getXcoord()),
+                  new KeyValue(
+                      pathLine.endYProperty(),
+                      nodes.get(Integer.parseInt(path.get(i))).getYcoord())));
+
       pathLine.setStroke(Color.rgb(1, 45, 90));
+      pathLine.setStrokeWidth(10);
+      timeline.setCycleCount(Timeline.INDEFINITE);
+
       pane.getChildren().add(pathLine);
+
+      if (i == index - 1) {
+        timeline.play();
+      }
     }
 
     triangle.toFront();
@@ -189,17 +312,76 @@ public class AnimatedPopOverController {
   public void nextFloor(Node node, ArrayList<String> path, int index) throws SQLException {
     NodeDAO nodeDAO = new NodeDAO();
     HashMap<Integer, Node> nodes = nodeDAO.getAll();
-    ArrayList<String> pathForFloor = new ArrayList<>();
+    ArrayList<String> pathForFloor2 = new ArrayList<>();
     Polygon triangle = new Polygon();
     Circle downPoint = new Circle();
     Circle end = new Circle();
+    anitxt.clear();
 
-    String floor = node.getFloor();
+    if (index == this.index - 1 && added) {
+      lineCounter = lineCounter + 2;
+      added = false;
+    }
 
-    for (int i = index; i < path.size(); i++) {
+    for (int i = 0; i < lineCounter; i++) {
+      if (i == 0) {
+        anitxt.setText(textDirections[i]);
+
+      } else {
+        anitxt.setText(anitxt.getText() + "\n" + textDirections[i]);
+      }
+    }
+    System.out.println(anitxt.getText());
+
+    String floor = App.allNodes.get(Integer.parseInt(path.get(index))).getFloor();
+    switch (floor) {
+      case "L1":
+        imgs.get(0).setVisible(true);
+        imgs.get(1).setVisible(false);
+        imgs.get(2).setVisible(false);
+        imgs.get(3).setVisible(false);
+        imgs.get(4).setVisible(false);
+
+        break;
+      case "L2":
+        imgs.get(0).setVisible(false);
+        imgs.get(1).setVisible(true);
+        imgs.get(2).setVisible(false);
+        imgs.get(3).setVisible(false);
+        imgs.get(4).setVisible(false);
+
+        break;
+      case "1 ":
+        imgs.get(0).setVisible(false);
+        imgs.get(1).setVisible(false);
+        imgs.get(2).setVisible(true);
+        imgs.get(3).setVisible(false);
+        imgs.get(4).setVisible(false);
+
+        break;
+      case "2 ":
+        imgs.get(0).setVisible(false);
+        imgs.get(1).setVisible(false);
+        imgs.get(2).setVisible(false);
+        imgs.get(3).setVisible(true);
+        imgs.get(4).setVisible(false);
+
+        break;
+      case "3 ":
+        imgs.get(0).setVisible(false);
+        imgs.get(1).setVisible(false);
+        imgs.get(2).setVisible(false);
+        imgs.get(3).setVisible(false);
+        imgs.get(4).setVisible(true);
+
+        break;
+    }
+
+    for (int i = index; i < this.index; i++) {
       int finalI = i;
 
       if (i == index) {
+
         downPoint =
             new Circle(
                 nodes.get(Integer.parseInt(path.get(i))).getXcoord(),
@@ -253,11 +435,16 @@ public class AnimatedPopOverController {
         }
         triangle.setFill(Color.rgb(246, 189, 56));
         pane.getChildren().add(triangle);
-        pathForFloor.add(path.get(i));
+        pathForFloor2.add(path.get(i));
+        switchFloor = finalI + 1;
+        bottomAni = -1;
+        added = true;
+        storedVal = storedVal + 1;
+        storedValList.add(index);
         triangle.setOnMouseClicked(
             event -> {
               try {
-                nextFloor(nodes.get(Integer.parseInt(path.get(finalI + 1))), path, finalI + 1);
+                nextFloor(nodes.get(Integer.parseInt(path.get(finalI))), path, finalI);
               } catch (SQLException ex) {
                 throw new RuntimeException(ex);
               }
@@ -269,25 +456,53 @@ public class AnimatedPopOverController {
           point.setRadius(20);
           end = point;
           pane.getChildren().add(end);
-          pathForFloor.add(path.get(i));
+          pathForFloor2.add(path.get(i));
         } else {
 
           pane.getChildren().add(point);
-          pathForFloor.add(path.get(i));
+          pathForFloor2.add(path.get(i));
         }
       }
     }
 
-    for (int i = 1; i < pathForFloor.size(); i++) {
+    for (int i = 1; i < pathForFloor2.size(); i++) {
       Line pathLine =
           new Line(
               nodes.get(Integer.parseInt(path.get(index + i - 1))).getXcoord(),
               nodes.get(Integer.parseInt(path.get(index + i - 1))).getYcoord(),
               nodes.get(Integer.parseInt(path.get(index + i))).getXcoord(),
               nodes.get(Integer.parseInt(path.get(index + i))).getYcoord());
-      pathLine.setStrokeWidth(10);
+
+      Timeline timeline =
+          new Timeline(
+              new KeyFrame(
+                  Duration.seconds(0),
+                  new KeyValue(
+                      pathLine.endXProperty(),
+                      nodes.get(Integer.parseInt(path.get(index + i - 1))).getXcoord()),
+                  new KeyValue(
+                      pathLine.endYProperty(),
+                      nodes.get(Integer.parseInt(path.get(index + i - 1))).getYcoord())),
+              new KeyFrame(
+                  Duration.seconds(1.25),
+                  new KeyValue(
+                      pathLine.endXProperty(),
+                      nodes.get(Integer.parseInt(path.get(index + i))).getXcoord()),
+                  new KeyValue(
+                      pathLine.endYProperty(),
+                      nodes.get(Integer.parseInt(path.get(index + i))).getYcoord())));
+
       pathLine.setStroke(Color.rgb(1, 45, 90));
+      pathLine.setStrokeWidth(10);
+      timeline.setCycleCount(Timeline.INDEFINITE);
+
       pane.getChildren().add(pathLine);
+
+      System.out.println(bottomAni);
+      System.out.println(i);
+      if (i == bottomAni) {
+        timeline.play();
+      }
     }
 
     downPoint.toFront();
@@ -315,16 +530,39 @@ public class AnimatedPopOverController {
     return floorIndex;
   }
 
-  public void goBackEdge() {
+  public void goBackEdge() throws SQLException {
 
+    pane.getChildren().clear();
     index = index - 1;
+
+    lineCounter = lineCounter - 1;
+    added = false;
+
+    //    if (index == switchFloor + 1 && switchFloor != 0) {
+    //      lineCounter = lineCounter - 2;
+    //    }
+
+    System.out.println(storedValList);
+    if (index < switchFloor) {
+      switchFloor = storedValList.get(storedVal);
+      storedValList.remove(storedVal);
+      if (storedVal != 0) {
+        storedVal = storedVal - 1;
+      }
+    }
+
+    if (switchFloor == 0) {
+      setPath(path);
+    } else {
+      nextFloor(App.allNodes.get(Integer.parseInt(path.get(switchFloor))), path, switchFloor);
+      bottomAni = bottomAni - 1;
+    }
+
     if (index == 0) {
       back.setVisible(false);
     } else {
       back.setVisible(true);
       next.setVisible(true);
     }
-
-    System.out.println("going down + " + index);
   }
 }

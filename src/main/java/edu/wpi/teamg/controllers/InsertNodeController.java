@@ -12,6 +12,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.sql.Date;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
+import org.controlsfx.control.PopOver;
 
 public class InsertNodeController {
 
@@ -22,6 +23,8 @@ public class InsertNodeController {
   @FXML MFXTextField nBuilding;
   @FXML MFXTextField ln;
   @FXML MFXButton addNode;
+
+  PopOver wind;
 
   public void initialize() {
     nID.setEditable(true);
@@ -40,6 +43,10 @@ public class InsertNodeController {
         });
   }
 
+  public void setW(PopOver window) {
+    wind = window;
+  }
+
   public void insertNode() throws SQLException {
     NodeDAO nodeDAO = new NodeDAO();
     LocationNameDAO locationNameDAO = new LocationNameDAO();
@@ -51,14 +58,16 @@ public class InsertNodeController {
             Integer.parseInt(nYcoord.getText()),
             nFloor.getText(),
             nBuilding.getText());
-    LocationName loc = new LocationName(ln.getText(), ln.getText(), "HALL");
-    Date date = new Date(2023 - 01 - 01);
+    LocationName loc = new LocationName(ln.getText().toString(), ln.getText().toString(), "HALL");
+    Date date = Date.valueOf(App.pathfindingDate);
+    System.out.println(loc.getLongName());
 
     Move move = new Move(Integer.parseInt(nID.getText()), loc.getLongName(), date);
 
-    nodeDAO.insert(node);
-    locationNameDAO.insert(loc);
-    moveDAO.insert(move);
+    App.nodeDAO.insert(node);
+    App.loc.insert(loc);
+    App.moveDAO.insert(move);
     App.refresh();
+    wind.hide();
   }
 }
