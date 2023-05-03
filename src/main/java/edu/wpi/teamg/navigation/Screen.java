@@ -48,6 +48,10 @@ public enum Screen {
 
   DICTIONARY("views/Dictionary.fxml"),
 
+  TRANSLATE("views/Translate.fxml"),
+
+  TRANSLATIONREQUESTLIST("views/TranslationRequestList.fxml"),
+
   CREDITS("views/Credits.fxml");
 
   private final String filename;

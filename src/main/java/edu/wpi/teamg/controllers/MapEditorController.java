@@ -9,6 +9,8 @@ import edu.wpi.teamg.ORMClasses.Edge;
 import edu.wpi.teamg.ORMClasses.LocationName;
 import edu.wpi.teamg.ORMClasses.Move;
 import edu.wpi.teamg.ORMClasses.Node;
+import edu.wpi.teamg.navigation.Navigation;
+import edu.wpi.teamg.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
@@ -929,7 +931,7 @@ public class MapEditorController {
 
   public void displayMoveChange() throws IOException {
     final PopOver window = new PopOver();
-    var loader = new FXMLLoader(App.class.getResource("views/MapEditorPopOver.fxml"));
+    var loader = new FXMLLoader(App.class.getResource("views/MapEditorRequest.fxml"));
     window.setContentNode(loader.load());
 
     MapEditorPopUpController controller = loader.getController();
@@ -941,14 +943,15 @@ public class MapEditorController {
 
   public void displayTranslateRequest() throws IOException {
     final PopOver window = new PopOver();
-    var loader = new FXMLLoader(App.class.getResource("views/TranslateRequest.fxml"));
-    window.setContentNode(loader.load());
-
-    MapEditorPopUpController controller = loader.getController();
-    // message = controller.message;
-
-    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
+    Navigation.navigate(Screen.TRANSLATE);
+    //    var loader = new FXMLLoader(App.class.getResource("views/Translate.fxml"));
+    //    window.setContentNode(loader.load());
+    //
+    //    MapEditorPopUpController controller = loader.getController();
+    //    // message = controller.message;
+    //
+    //    final Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+    //    window.show(App.getPrimaryStage(), mouseLocation.getX(), mouseLocation.getY());
   }
 
   public void recordDrag(MouseEvent event, Circle point) {
