@@ -4,7 +4,7 @@ public enum Screen {
   ROOT("views/Root.fxml"),
   HOME("views/Home.fxml"),
   MEAL_REQUEST("views/MealRequestPage.fxml"),
-  ROOM_REQUEST("views/ConRoomRequestPage.fxml"),
+  ROOM_REQUEST("views/BetterConferenceRoom.fxml"),
   FLOWERS_REQUEST("views/FlowersRequestPage.fxml"),
   FURNITURE_REQUEST("views/FurnitureRequestPage.fxml"),
   SUPPLIES_REQUEST("views/OfficeSuppRequestPage.fxml"),
